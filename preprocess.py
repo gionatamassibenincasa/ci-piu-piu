@@ -30,11 +30,17 @@ def process_file(filepath, visited=None):
         return
 
     # Leggi il file riga per riga
+    in_code_block = False
     with open(abs_path, 'r', encoding='utf-8') as f:
         for line in f:
-            # Verifica se la riga inizia con #include <...>
-            # Usiamo una regex semplice per catturare il nome del file tra < e >
-            match = re.match(r'^\s*#include\s*<(.+?)>\s*$', line)
+            # Rileva blocchi di codice Markdown (```)
+            if line.strip().startswith('```'):
+                in_code_block = not in_code_block
+                print(line, end='')
+                continue
+
+            # Verifica se la riga inizia con #include <...> solo fuori dai blocchi di codice
+            match = re.match(r'^\s*#include\s*<(.+?)>\s*$', line) if not in_code_block else None
             
             if match:
                 # Estrai il nome del file (gruppo 1 della regex)
@@ -43,6 +49,8 @@ def process_file(filepath, visited=None):
                 # Risolvi il percorso relativo rispetto alla directory del file corrente
                 current_dir = os.path.dirname(abs_path)
                 target_path = os.path.join(current_dir, include_file)
+                if not os.path.isfile(target_path) and os.path.isfile(target_path + '.md'):
+                    target_path = target_path + '.md'
                 
                 # Chiamata ricorsiva
                 process_file(target_path, visited)
