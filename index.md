@@ -23,6 +23,7 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 ---
 
 #include <chapters/00_guida_allo_studio.md>
+#include <chapters/01_ambiente_di_sviluppo.md>
 #include <chapters/01_il_motore_sotto_il_cofano.md>
 #include <chapters/02_ciao_mondo.md>
 #include <chapters/03_variabili_costanti_tipi.md>
