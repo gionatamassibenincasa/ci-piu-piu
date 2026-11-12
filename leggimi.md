@@ -43,7 +43,7 @@ ci-piu-piu/
    ```bash
    python3 preprocess.py index.md > README.md
    ```
-4. **Verifica**: controlla il risultato localmente o aprendolo su LiaScript.
+4. **Verifica**: controlla il risultato localmente con il dev-server (vedi sotto) o aprendolo su LiaScript.
 5. **Pubblicazione**:
    ```bash
    git add .
@@ -51,3 +51,42 @@ ci-piu-piu/
    git push
    ```
 6. Torna al passo 1 per il modulo successivo.
+
+## Dev-server LiaScript (anteprima locale)
+
+### Installazione con Bun
+
+```bash
+bun install -g @liascript/devserver
+```
+
+Assicurati che `~/.bun/bin` sia nel `PATH`.
+
+### Correzione dei link simbolici
+
+Con `bun install -g` il pacchetto `@liascript/editor` viene installato accanto a `devserver`, mentre il dev-server lo cerca in `devserver/node_modules`. Il risultato è l'errore `index.html not found or could not be read`. Si risolve con un link simbolico:
+
+```bash
+cd ~/.bun/install/global/node_modules/@liascript/devserver
+mkdir -p node_modules/@liascript
+ln -s ../../../editor node_modules/@liascript/editor
+```
+
+Verifica che il link punti a un file esistente:
+
+```bash
+ls node_modules/@liascript/editor/dist/index.html
+```
+
+Se il link esiste già ma è rotto, rimuovilo (`rm node_modules/@liascript/editor`) e ricrealo. Il link va ricreato dopo ogni reinstallazione o aggiornamento del pacchetto.
+
+### Avvio
+
+Dalla radice del repository:
+
+```bash
+liascript-devserver -i README.md -o -l
+```
+
+- `-o` apre il browser, `-l` ricarica la pagina a ogni modifica, `-p` cambia la porta (default 3000).
+- Il server mostra `README.md`, quindi rigenera prima il file con `preprocess.py` (passo 3).

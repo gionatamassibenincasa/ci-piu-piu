@@ -24,8 +24,19 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 
 ## 🧭 Guida allo Studio: Come Imparare a Programmare
 
-> "Non si può insegnare niente a un uomo; si può solo aiutarlo a scoprire ciò che ha dentro di sé."
-> — *Galileo Galilei*
+
+> Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
+> e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
+> congegno pratico che modifica la società -- e tutti sappiamo quanto abbia
+> cambiato la nostra vita.
+>
+> Perché lo dico? Perché il calcolatore cambia l'epistemologia, modifica il
+> significato del verbo «comprendere».
+> A mio giudizio, si capisce qualcosa solo se si è capaci -- noi, non altri! --
+> di scriverne il programma.
+> Altrimenti non si ha una vera comprensione, si crede soltanto di capire.
+>
+> — Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
 
 Imparare a programmare non significa memorizzare comandi a memoria: significa sviluppare un **metodo di lavoro mentale**.
 
@@ -110,60 +121,87 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 > "Uno strumento non fa il mestiere, ma senza gli strumenti giusti il mestiere diventa impossibile."
 > — *Principio di officina*
 
-Prima di scrivere anche una sola riga di C++, hai bisogno di un **ambiente di lavoro** funzionante.  
-Pensa a questo capitolo come all’allestimento di un’officina: senza banco, utensili e luce non puoi riparare niente. Allo stesso modo, senza compilatore, editor e debugger non puoi costruire programmi.
+Questo non è un capitolo da leggere in 20 minuti.  
+È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.
 
-Alla fine di questa lezione avrai sul tuo computer Windows:
-- Visual Studio Code (l’editor)
-- l’estensione C/C++
-- il compilatore **g++** e il debugger **gdb** forniti da **MinGW-w64** tramite **MSYS2**
-- la variabile d’ambiente PATH impostata correttamente
-- un programma di prova compilato ed eseguito con successo
+Alla fine di questa sessione avrai:
+- Visual Studio Code (il banco di lavoro)
+- l’estensione C/C++ (gli utensili specializzati)
+- il compilatore **g++** e il debugger **gdb** (tramite MSYS2 + MinGW-w64)
+- la variabile PATH impostata correttamente
+- un programma di prova compilato, eseguito e debuggato con successo
 
 > 💡 **Metafora:**  
-> - **VS Code** = il tuo banco di lavoro (dove scrivi e organizzi i pezzi)  
-> - **Estensione C/C++** = le lampade e gli utensili specializzati per il C++  
-> - **MSYS2 + MinGW-w64** = il magazzino di pezzi di ricambio e il banco prove (compilatore + debugger)  
-> - **PATH** = l’etichetta che dice a Windows “i tuoi utensili sono in questo cassetto”
+> - **VS Code** = il tuo banco di lavoro (dove organizzi i pezzi e lavori)  
+> - **Estensione C/C++** = le lampade e gli utensili specifici per il C++  
+> - **MSYS2 + MinGW-w64** = il magazzino di pezzi di ricambio e il banco prove  
+> - **PATH** = l’etichetta che dice a Windows “i tuoi utensili sono in *questo* cassetto”  
+> - **Compilatore (g++)** = l’operaio che traduce il progetto in un pezzo finito (l’eseguibile)  
+> - **Debugger (gdb)** = il tecnico che ti fa vedere cosa succede *dentro* il pezzo mentre funziona
 
 ---
 
-### 🎯 Obiettivo di questo chunk
-Alla fine di questa lezione sei in grado di:
+### 🎯 Obiettivo di questa sessione
+Alla fine sei in grado di:
 - Installare e verificare un ambiente C++ completo su Windows 10/11
 - Compilare ed eseguire da terminale un programma minimo
-- Aprire e far girare lo stesso programma da Visual Studio Code
+- Eseguire e debuggare lo stesso programma da Visual Studio Code
+
+---
+
+### ⚠️ Prima di iniziare — casi particolari
+
+**Se sei in laboratorio a scuola** e i computer hanno già VS Code + MinGW installati:  
+salta i passi di installazione e vai direttamente al **Passo 6** (programma di prova). Chiedi al docente il percorso corretto se `g++` non viene riconosciuto.
+
+**Se a casa non hai diritti di amministratore** o l’antivirus / le policy bloccano l’installazione:
+1. Prova comunque i passi (molte operazioni non richiedono admin).
+2. Se fallisci, usa temporaneamente un compilatore online (es. [Compiler Explorer](https://godbolt.org/) o [OnlineGDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
+3. Segnala il problema al docente: troveremo una soluzione (immagine di laboratorio, chiavetta, ecc.).
+
+Hai bisogno di **connessione Internet** per i download iniziali.
 
 ---
 
 ### 📋 Checklist di lavoro (segui l’ordine)
 
-Lavora con calma. Ogni passo ha un punto di controllo.  
-Se un controllo fallisce, **non andare avanti**: risolvi prima.
+Ogni passo ha un **punto di controllo**.  
+Se il controllo fallisce, **fermati** e risolvi prima di proseguire.
 
-#### Passo 1 — Installa Visual Studio Code
+#### Passo 1 — Crea la cartella di lavoro del corso
+Apri il Prompt dei comandi e digita:
+
+```bat
+mkdir %USERPROFILE%\Documenti\Cpp-3SIA
+cd %USERPROFILE%\Documenti\Cpp-3SIA
+```
+
+(Se preferisci un altro percorso, va bene: l’importante è averne uno dedicato e ricordartelo.)
+
+**Controllo:** il comando `cd` ti porta dentro la cartella senza errori.
+
+#### Passo 2 — Installa Visual Studio Code
 1. Vai su [https://code.visualstudio.com/](https://code.visualstudio.com/) e scarica la versione per Windows.
-2. Esegui l’installer accettando le opzioni consigliate (in particolare “Aggiungi a PATH” se proposta).
+2. Esegui l’installer. Accetta le opzioni consigliate (in particolare “Aggiungi a PATH” se proposta).
 3. Avvia VS Code almeno una volta.
 
-**Controllo:** apri VS Code. Se vedi la schermata di benvenuto, il passo è ok.
+**Controllo:** vedi la schermata di benvenuto di VS Code.
 
-#### Passo 2 — Installa l’estensione C/C++
+#### Passo 3 — Installa l’estensione C/C++
 1. In VS Code apri la vista Extensions (`Ctrl+Shift+X`).
 2. Cerca `C++` e installa l’estensione ufficiale **C/C++** di Microsoft (`ms-vscode.cpptools`).
-3. (Opzionale ma consigliato) Installa anche **C/C++ Extension Pack**.
+3. (Consigliato) Installa anche **C/C++ Extension Pack**.
 
 **Controllo:** nell’elenco delle estensioni installate compare “C/C++”.
 
-#### Passo 3 — Installa MSYS2
-1. Scarica l’installer più recente da [https://www.msys2.org/](https://www.msys2.org/)  
-   (oppure usa il link diretto presente nella documentazione ufficiale di VS Code).
-2. Esegui l’installer. Lascia il percorso predefinito (`C:\msys64`) se non hai motivi particolari per cambiarlo.
+#### Passo 4 — Installa MSYS2
+1. Scarica l’installer più recente da [https://www.msys2.org/](https://www.msys2.org/).
+2. Esegui l’installer. Lascia il percorso predefinito `C:\msys64` se non hai motivi particolari per cambiarlo.
 3. Alla fine seleziona **Run MSYS2 now** e premi Finish. Si apre un terminale MSYS2.
 
 **Controllo:** hai una finestra di terminale MSYS2 aperta.
 
-#### Passo 4 — Installa la toolchain MinGW-w64 (ucrt)
+#### Passo 5 — Installa la toolchain MinGW-w64 (ucrt)
 Nel terminale MSYS2 digita **esattamente**:
 
 ```bash
@@ -172,38 +210,35 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 
 - Premi `Invio` per accettare il numero predefinito di pacchetti.
 - Digita `Y` e premi `Invio` quando chiede conferma.
-- Attendi la fine del download e dell’installazione (può richiedere alcuni minuti).
+- Attendi la fine (può richiedere diversi minuti).
 
 **Controllo:** il comando termina senza messaggi di errore in rosso.
 
-#### Passo 5 — Aggiungi MinGW al PATH di Windows
-1. Nella barra di ricerca di Windows digita **“Modifica le variabili di ambiente per l’account”** e aprilo.
-2. Nella sezione **Variabili utente** seleziona `Path` → **Modifica**.
-3. Premi **Nuovo** e aggiungi:
+#### Passo 6 — Aggiungi MinGW al PATH di Windows (il punto più delicato)
+1. Nella barra di ricerca di Windows digita:  
+   **“Modifica le variabili di ambiente per l’account”** e aprilo.
+2. Nella sezione **Variabili utente** seleziona la riga `Path` → clicca **Modifica**.
+3. Clicca **Nuovo** e scrivi (o incolla):
    ```
    C:\msys64\ucrt64\bin
    ```
-   (Se hai installato MSYS2 in un percorso diverso, adatta di conseguenza).
-4. Conferma con **OK** su tutte le finestre.
-5. **Chiudi e riapri** qualsiasi Prompt dei comandi o PowerShell già aperti (il PATH viene letto all’avvio).
+   (Se hai installato MSYS2 altrove, adatta il percorso.)
+4. Premi **OK** su tutte le finestre.
+5. **Chiudi completamente** ogni Prompt dei comandi o PowerShell già aperti.  
+   Il PATH viene letto solo all’avvio del terminale.
 
-**Controllo:** apri un **nuovo** Prompt dei comandi e digita:
+**Controllo (fondamentale):** apri un **nuovo** Prompt dei comandi e digita:
 
 ```bat
-gcc --version
 g++ --version
 gdb --version
 ```
 
-Devi vedere le versioni di gcc, g++ e gdb. Se compare “non riconosciuto come comando…” il PATH non è ancora corretto.
+Devi vedere le versioni. Se compare “non è riconosciuto come comando…” il PATH non è ancora corretto: ricontrolla il percorso e riavvia il terminale.
 
-#### Passo 6 — Primo programma di prova da terminale
-1. Crea una cartella di lavoro, ad esempio:
-   ```bat
-   mkdir %USERPROFILE%\progetti\prova_cpp
-   cd %USERPROFILE%\progetti\prova_cpp
-   ```
-2. Crea un file `ridotto.cpp` con un editor di testo (o direttamente da VS Code) contenente:
+#### Passo 7 — Primo programma di prova (ciclo leggero PRIMM)
+
+Crea il file `ridotto.cpp` nella cartella del corso (`Documenti\Cpp-3SIA`) con questo contenuto:
 
 ```cpp
 /**
@@ -218,850 +253,1037 @@ int main() {
 }
 ```
 
-3. Compila ed esegui dal Prompt dei comandi:
+##### 1. PREDICT
+Prima di compilare, rispondi:
+
+Cosa pensi che succeda quando eseguirai il programma?
+
+[( )] Comparirà una finestra grafica con un messaggio
+[(X)] Nel terminale apparirà la scritta "Ambiente C++ pronto!"
+[( )] Il computer si riavvierà
+[( )] Comparirà un errore perché manca qualcosa
+
+##### 2. RUN (da terminale)
+Nel Prompt dei comandi (sempre dentro la cartella del progetto):
 
 ```bat
 g++ ridotto.cpp -o ridotto.exe
 ridotto.exe
 ```
 
-**Controllo:** deve comparire la scritta `Ambiente C++ pronto!`.
+**Controllo:** deve comparire esattamente `Ambiente C++ pronto!`.
 
-#### Passo 7 — Stesso programma da Visual Studio Code
-1. Dal Prompt dei comandi (sempre nella cartella del progetto):
-   ```bat
-   code .
-   ```
-2. Apri `ridotto.cpp`.
-3. Premi il pulsante **Run** (o `F5` / play in alto a destra) e scegli **C/C++: g++.exe build and debug active file** quando richiesto.
-4. La prima volta VS Code creerà i file di configurazione nella cartella `.vscode` (`tasks.json`, ecc.).
-
-**Controllo:** nel Terminale integrato di VS Code compare di nuovo `Ambiente C++ pronto!`.
+##### 3. MODIFY
+Cambia il messaggio stampato (es. metti il tuo nome o la tua classe) e ricompila.  
+Verifica che la nuova frase appaia correttamente.
 
 ---
 
-### 🔬 Cosa abbiamo appena costruito?
+### ▶️ Esecuzione e Debug da Visual Studio Code
 
-| Componente              | Ruolo nella “officina”                          | Comando / verifica tipica      |
-|-------------------------|--------------------------------------------------|--------------------------------|
-| VS Code                 | Banco di lavoro e organizzazione file           | `code .`                       |
-| Estensione C/C++        | IntelliSense, build e debug integrati           | Extensions view                |
-| MSYS2                   | Gestore di pacchetti e ambiente Unix-like       | Terminale MSYS2                |
-| MinGW-w64 (ucrt64)      | Compilatore `g++` + debugger `gdb`              | `g++ --version`                |
-| Variabile PATH          | Dice a Windows dove trovare gli utensili        | `where g++`                    |
-| `ridotto.cpp`           | Primo pezzo prodotto e collaudato               | `g++ ridotto.cpp -o ridotto.exe` |
+Ora che il compilatore funziona da terminale, usiamo il banco di lavoro completo.
 
-> 🔗 Documentazione ufficiale di riferimento:  
+1. Dalla cartella del progetto digita:
+   ```bat
+   code .
+   ```
+   (Si apre VS Code con la cartella già caricata.)
+
+2. Apri il file `ridotto.cpp`.
+
+3. **Esecuzione semplice**  
+   - Clicca il pulsante **Run** (play) in alto a destra,  
+     oppure premi `Ctrl+F5`.  
+   - La prima volta ti chiederà il compilatore: scegli **C/C++: g++.exe build and debug active file** (o simile).  
+   - VS Code creerà automaticamente i file di configurazione nella cartella `.vscode`.
+
+4. **Debug (il vero potere del banco di lavoro)**  
+   - Clicca nel margine sinistro accanto a una riga di codice per mettere un **breakpoint** (pallino rosso).  
+   - Premi `F5` (o scegli “Debug C/C++ File”).  
+   - L’esecuzione si ferma sul breakpoint.  
+   - A sinistra vedi le variabili, il call stack e i controlli per andare avanti passo-passo (`F10` = Step Over, `F11` = Step Into).
+
+**Controllo finale:** riesci a far fermare il programma su un breakpoint e a vedere le variabili.  
+Se sì, l’officina è completamente operativa.
+
+> 🔗 Guida ufficiale di riferimento:  
 > [Using GCC with MinGW – Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-mingw)
 
 ---
 
+### 🔬 Cosa abbiamo costruito?
+
+| Componente              | Ruolo nella “officina”                          | Come si verifica              |
+|-------------------------|--------------------------------------------------|-------------------------------|
+| Cartella del corso      | Il tuo laboratorio personale                     | `cd` nella cartella           |
+| VS Code                 | Banco di lavoro                                  | `code .`                      |
+| Estensione C/C++        | Utensili specializzati + IntelliSense            | Extensions view               |
+| MSYS2 + MinGW-w64       | Compilatore `g++` e debugger `gdb`               | `g++ --version`               |
+| Variabile PATH          | Dice a Windows dove sono gli utensili            | `where g++`                   |
+| `ridotto.cpp`           | Primo pezzo prodotto e collaudato                | Compila ed esegue             |
+| Breakpoint + F5         | Ispezione interna del programma in esecuzione    | Il programma si ferma         |
+
+---
+
 ### 📝 Riepilogo tascabile
+- Questa è una **sessione di laboratorio**, non una lettura veloce.
 - Senza compilatore non esiste programma eseguibile.
-- MSYS2 + MinGW-w64 è il modo consigliato da Microsoft per avere `g++` e `gdb` aggiornati su Windows.
-- Il PATH deve contenere `C:\msys64\ucrt64\bin` (o il percorso equivalente).
-- Verifica sempre con `g++ --version` **in un nuovo** terminale.
-- Il programma `ridotto.cpp` è il tuo “banco di prova”: se compila e stampa, l’officina è pronta.
+- Il PATH deve contenere `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
+- `g++` traduce il codice sorgente in eseguibile; `gdb` ti fa guardare dentro mentre gira.
+- Il programma `ridotto.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
+- Da ora in poi lavorerai quasi sempre da VS Code, ma sapere usare il terminale ti salva quando qualcosa non va.
 
 ---
 
 ### ⚠️ Problemi frequenti e soluzioni rapide
 
-| Sintomo                                      | Causa più probabile                     | Cosa fare                                      |
-|----------------------------------------------|-----------------------------------------|------------------------------------------------|
-| `g++` non è riconosciuto                     | PATH non aggiornato o terminale vecchio | Chiudi e riapri il Prompt; controlla il Path   |
-| `pacman` non trova i pacchetti               | Connessione o mirror MSYS2              | Riprova più tardi o aggiorna con `pacman -Syu` |
-| VS Code non trova il compilatore             | Estensione C/C++ non installata o PATH  | Reinstalla l’estensione e riavvia VS Code      |
-| Messaggio su `miDebuggerPath`                | manca il pacchetto gdb                  | Reinstalla il gruppo toolchain da MSYS2        |
+| Sintomo                                      | Causa più probabile                          | Cosa fare                                              |
+|----------------------------------------------|----------------------------------------------|--------------------------------------------------------|
+| `g++` non è riconosciuto                     | PATH non aggiornato o terminale vecchio      | Chiudi **tutti** i terminali, ricontrolla Path, riapri |
+| `pacman` non trova i pacchetti               | Connessione o mirror MSYS2                   | `pacman -Syu` e riprova più tardi                      |
+| VS Code non trova il compilatore             | Estensione assente o PATH non visto          | Reinstalla estensione C/C++ e riavvia VS Code          |
+| Messaggio su `miDebuggerPath`                | manca gdb                                    | Reinstalla il gruppo toolchain da MSYS2                |
+| Antivirus blocca `g++.exe` o `ridotto.exe`   | Falso positivo                               | Aggiungi un’eccezione per la cartella del corso        |
+| Non hai diritti di amministratore            | Policy di scuola o account limitato          | Usa il laboratorio o un compilatore online temporaneo  |
 
 ---
 
 ### ➡️ Prossimo chunk
-Ora che l’officina è allestita, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
+Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
 ---
+## ⚙️ Capitolo: Il Motore Sotto il Cofano
 
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [ ] Un solo obiettivo principale: ambiente funzionante
-  [ ] Metafora officina / banco di lavoro
-  [ ] Checklist sequenziale con punti di controllo (chunking)
-  [ ] Nessun costrutto C++ avanzato (solo il minimo per il test)
-  [ ] Link alla documentazione ufficiale VS Code
-  [ ] Pronto per essere inserito dopo 00_guida_allo_studio
--->
-## ⚙️ Il Motore Sotto il Cofano
-
-> "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle. Spesso un problema viene compreso appieno solo attraverso il processo di programmazione di una soluzione."
+> "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 > — *Bjarne Stroustrup*
 
-Sviluppare un programma non è "scrivere codice a caso sperando che funzioni". È un processo ingegneristico composto da 4 fasi:
-1. **Analisi**: Qual è il problema? Cosa vuole l'utente?
-2. **Progettazione**: Qual è la struttura? Come comunicano le parti?
-3. **Programmazione**: Scrivere il codice rispettando i vincoli (tempo, spazio, affidabilità).
-4. **Test**: Provare sistematicamente che tutto funzioni in ogni circostanza.
+Hai appena allestito l’officina (VS Code + g++).  
+Ora apriamo il cofano e guardiamo **cosa succede davvero** quando premi il pulsante di compilazione.
 
-### 🇨🇭 Perché proprio il C++?
-- **Espressivo**: Ti permette di tradurre le tue idee in codice in modo diretto.
-- **Onnipresente**: È uno standard disponibile su quasi tutti i computer e dispositivi.
-- **Formativo**: I concetti che impari qui (memoria, tipi, controllo) sono le fondamenta per *qualsiasi* altro linguaggio futuro.
+Il computer non capisce il C++. Capisce solo istruzioni macchina (sequenze di 0 e 1).  
+Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una **catena di montaggio** con quattro stazioni.
+
+> 💡 **Metafora:**  
+> Pensa a una **fabbrica di auto**.  
+> - Il progetto su carta = il tuo file `.cpp`  
+> - I reparti della fabbrica = pre-elaboratore, compilatore, assemblatore, linker  
+> - L’auto finita che esce dal cancello = il file eseguibile  
+> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “multa” (errore di compilazione).
 
 ---
 
-### 🏭 La Fabbrica del Codice: La Compilazione
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Descrivere le quattro fasi della compilazione C++ e il ruolo di ciascuna
+- Usare `g++ -save-temps` per generare e ispezionare i file intermedi (`.ii`, `.s`, `.o`)
+- Collegare una riga di C++ semplice al corrispondente frammento Assembly
 
-Il C++ è un linguaggio **compilato**. Il computer non capisce il C++ direttamente; capisce solo istruzioni macchina (zeri e uni). Dobbiamo quindi tradurre il nostro codice. Immagina una catena di montaggio in 4 passaggi:
+---
+
+### 🏭 La fabbrica del codice — le quattro stazioni
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
 
-rectangle "Codice Sorgente\n(human readable)" as Source {
-  [main.cpp]
-}
+rectangle "1. Codice sorgente\n(.cpp)" as Source
+rectangle "2. Pre-elaboratore\n(.ii)" as Pre
+rectangle "3. Compilatore\n(.s Assembly)" as Comp
+rectangle "4. Assemblatore\n(.o oggetto)" as Asm
+rectangle "5. Linker\n(.exe eseguibile)" as Link
 
-rectangle "Pre-elaboratore\n(Preprocessor)" as Pre {
-  note right: Espande gli #include\nRimuove i commenti
-}
-
-rectangle "Compilatore\n(Compiler)" as Comp {
-  note right: Traduce in Assembly\n(controlla la sintassi!)
-}
-
-rectangle "Assemblatore\n(Assembler)" as Asm {
-  note right: Traduce in Codice\nMacchina (file .o)
-}
-
-rectangle "Linker\n(Linker)" as Link {
-  note right: Unisce i file .o\ne le librerie esterne
-}
-
-rectangle "Eseguibile\n(machine code)" as Exe {
-  [a.out / main.exe]
-}
-
-Source --> Pre : 1. cpp
-Pre --> Comp : 2. codice pulito
-Comp --> Asm : 3. codice assembly (.s)
-Asm --> Link : 4. file oggetto (.o)
-Link --> Exe : 5. eseguibile finale
+Source --> Pre : espande #include\nrimuove commenti
+Pre --> Comp : controlla sintassi\ntraduce in Assembly
+Comp --> Asm : traduce in\ncodice macchina
+Asm --> Link : unisce librerie\nproduce l'eseguibile
 @enduml
 ```
-*💡 Brain Friendly Tip: Il compilatore è un controllore pedante, non un indovino. Se dimentichi un punto e virgola, lui si ferma e ti fa la multa (errore di compilazione), non cerca di "indovinare" cosa volevi dire!*
+
+| Stazione | Cosa fa | File tipico |
+|----------|---------|-------------|
+| **Pre-elaboratore** | Espande le direttive `#include`, rimuove i commenti, gestisce le macro | `.ii` |
+| **Compilatore** | Controlla la sintassi e traduce il C++ in **Assembly** (linguaggio a basso livello ma ancora leggibile) | `.s` |
+| **Assemblatore** | Traduce l’Assembly in codice macchina (oggetti non ancora eseguibili da soli) | `.o` |
+| **Linker** | Unisce i file oggetto con le librerie (es. la parte di sistema che serve per `main`) e produce l’eseguibile finale | `.exe` |
+
+> 💡 **Brain-friendly tip:** Il compilatore è un controllore pedante, non un indovino. Se dimentichi un punto e virgola, si ferma e ti segnala l’errore. Non cerca di “capire cosa volevi dire”.
 
 ---
 
-### 🔬 PRIMM: Il Programma Più Piccolo Possibile
+### 🔬 Laboratorio PRIMM: Guarda sotto il cofano
 
-Il nostro obiettivo ora non è fare qualcosa di utile, ma **sperimentare la catena di montaggio**. Vogliamo vedere con i nostri occhi gli artefatti intermedi.
-
-#### 1. PREDICT (Prevedi)
-? Guarda questo codice. Secondo te, cosa succederà se proviamo a compilarlo ed eseguirlo?
-- [ ] Darà un errore perché manca `#include <iostream>`
-- [x] Si compilerà silenziosamente e non stamperà nulla a video
-- [ ] Stamperà "Hello World" automaticamente
+Useremo il programma **più piccolo possibile** (senza ancora stampare nulla).  
+Così concentriamo l’attenzione sulla catena di montaggio, non sull’output a video.
 
 ```cpp
-// file: ridotto.cpp
-int main() {}
+/**
+ * @file ridotto.cpp
+ * @brief Programma minimo per ispezionare la catena di compilazione.
+ */
+int main() {
+    return 0;   /// dice al sistema operativo: "tutto ok"
+}
 ```
-<details>
-<summary>🔍 Clicca per la spiegazione</summary>
-Ogni programma C++ deve avere <b>esattamente una</b> funzione globale chiamata <code>main</code>. È il punto di ingresso. Le parentesi <code>{}</code> racchiudono il corpo della funzione. Essendo vuoto, non fa nulla e termina immediatamente, restituendo implicitamente 0 al sistema operativo (successo).
-</details>
+
+#### 1. PREDICT (Prevedi)
+Prima di compilare, rispondi:
+
+Se compiliamo questo programma con `g++ -save-temps`, quale file conterrà il codice **dopo** che il pre-elaboratore ha rimosso i commenti?
+
+[( )] `ridotto.o`
+[(X)] `ridotto.ii`
+[( )] `ridotto.s`
+[( )] `ridotto.exe`
 
 #### 2. RUN (Esegui)
-Copia e incolla questi comandi nel tuo terminale (o nell'ambiente di sviluppo). Stiamo chiedendo al compilatore (`g++`) di **salvare le tappe intermedie** (`-save-temps`) invece di cancellarle.
+Nella cartella del progetto digita:
 
-```bash
-# 1. Compila salvando i file temporanei
-g++ -save-temps -fverbose-asm -O0 ridotto.cpp -o ridotto
+```bat
+g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
+```
 
-# 2. Lista i file generati
-ls
+Il flag `-save-temps` dice a g++: “non cancellare i file intermedi”.  
+`-O0` disattiva le ottimizzazioni, così l’Assembly resta più leggibile.
+
+**Controllo:** nella cartella devono comparire almeno:
+- `ridotto.ii`
+- `ridotto.s`
+- `ridotto.o`
+- `ridotto.exe`
+
+Prova anche:
+
+```bat
+ridotto.exe
+echo %ERRORLEVEL%
 ```
-**Output atteso:**
-```text
-ridotto  ridotto.cpp  ridotto.ii  ridotto.o  ridotto.s
-```
+
+(Su Windows `ERRORLEVEL` mostra il valore restituito da `main`. Dovresti vedere `0`.)
 
 #### 3. INVESTIGATE (Investiga)
-Osserviamo cosa ha prodotto la "fabbrica".
+Apri i file intermedi con un editor di testo (o con `type ridotto.ii` / `type ridotto.s` nel Prompt).
 
-? Quale di questi file contiene il codice dopo che il **Pre-elaboratore** ha rimosso i commenti e espanso le direttive?
-- [ ] `ridotto.o`
-- [x] `ridotto.ii`
-- [ ] `ridotto.s`
+| File | Cosa ci trovi | Cosa osservare |
+|------|----------------|----------------|
+| `ridotto.ii` | Codice “pulito” dopo il pre-elaboratore | I commenti sono spariti; possono comparire righe di sistema |
+| `ridotto.s` | Assembly | Cerca una riga con `movl` o `mov` e il numero `0` |
+| `ridotto.o` | Codice macchina (binario) | Non è leggibile come testo |
+| `ridotto.exe` | Eseguibile finale | È il prodotto finito della fabbrica |
 
-Se esegui `cat ridotto.ii`, vedrai il tuo codice originale, ma con l'aggiunta di alcune righe di sistema (le "dichiarazioni d'obbligo" del compilatore).
-Se esegui `cat ridotto.s`, vedrai il linguaggio **Assembly**, il ponte tra il C++ leggibile e il codice macchina. Noterai istruzioni come `pushq %rbp` e `movl $0, %eax` (che significa proprio "prepara il valore di ritorno 0").
+Nel file `.s` noterai istruzioni del tipo:
+```asm
+movl $0, %eax
+```
+Che, in pratica, prepara il valore di ritorno `0` (successo).
 
 #### 4. MODIFY (Modifica)
-Modifichiamo il nostro programma minimo per vedere come cambia la catena di montaggio.
-
-1. Apri `ridotto.cpp`.
-2. Cambia il codice in:
+1. Cambia il programma in:
    ```cpp
    int main() {
        return 42;
    }
    ```
-3. Ricompila con lo stesso comando: `g++ -save-temps -O0 ridotto.cpp -o ridotto`
-4. Esegui `cat ridotto.s` e cerca la riga che contiene `movl`.
+2. Ricompila con lo stesso comando:
+   ```bat
+   g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
+   ```
+3. Riapri `ridotto.s` e cerca di nuovo l’istruzione `movl` / `mov`.
 
-? Cosa è cambiato nell'istruzione Assembly rispetto a prima?
-- [ ] È scomparsa l'istruzione `movl`
-- [x] Il valore è cambiato da `$0` a `$42`
-- [ ] Il file `.s` è diventato molto più grande
+Cosa è cambiato?
+
+[( )] È scomparsa l’istruzione di movimento
+[(X)] Il valore letterale è passato da `$0` a `$42`
+[( )] Il file `.s` è diventato molto più grande
+[( )] Non viene più generato il file `.s`
 
 <details>
 <summary>💡 Perché è importante?</summary>
-Hai appena visto con i tuoi occhi come un'istruzione C++ ad alto livello (<code>return 42;</code>) si traduce in una specifica istruzione macchina (<code>movl $42, %eax</code>). Il compilatore non fa magia, fa traduzione!
+Hai visto con i tuoi occhi la traduzione: una riga C++ ad alto livello (<code>return 42;</code>) diventa una precisa istruzione Assembly. Il compilatore non fa magia: fa <strong>traduzione</strong>.
 </details>
 
-#### 5. MAKE (Crea)
-Ora tocca a te. Crea un nuovo file chiamato `saluto.cpp`.
-1. Scrivi il programma minimo `int main() {}`.
-2. Aggiungi una riga per stampare "Ciao, Mondo!" usando `#include <iostream>` e `std::cout`. *(Suggerimento: guarda l'esempio qui sotto se sei bloccato)*.
-3. Compilalo ed eseguilo.
+Esegui di nuovo il programma e controlla il codice di uscita:
 
-```cpp
-// Esempio di riferimento (non copiare subito, prova prima tu!)
-#include <iostream>
-
-int main() {
-    // Stampa "Ciao, Mondo!" e va a capo con \n
-    std::cout << "Ciao, Mondo!\n";
-    return 0; // 0 = successo per il sistema operativo
-}
+```bat
+ridotto.exe
+echo %ERRORLEVEL%
 ```
-@LIA.cpp
+
+Dovresti vedere `42`.
+
+#### 5. MAKE (Crea)
+Crea un nuovo file `codice_uscita.cpp` che:
+1. Contiene solo la funzione `main`
+2. Restituisce un numero a tua scelta tra 1 e 99 (diverso da 0 e da 42)
+3. Viene compilato con `-save-temps`
+4. Ti permette di verificare, aprendo il `.s`, che il numero scelto compaia nell’Assembly
+5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l’esecuzione
+
+**Non** usare ancora `#include <iostream>` né `std::cout`: restiamo concentrati sulla catena di compilazione.  
+La stampa a video arriverà nel prossimo capitolo.
 
 ---
-### 📝 Riepilogo "Tascabile"
-- Un programma C++ parte **sempre** dalla funzione `int main()`.
-- Il valore `return 0;` dice al sistema operativo: "Tutto ok, nessuna errore".
-- La compilazione ha 4 fasi: **Pre-processing** → **Compiling** → **Assembling** → **Linking**.
-- Il codice è scritto per **due lettori**: il computer (che lo esegue) e l'essere umano (che lo deve leggere e mantenere). Usa i commenti `//` per parlare con l'umano!
 
-> **Sfida per la prossima volta:** Cosa succede se dimentichiamo il punto e virgola `;` dopo `std::cout << "Ciao"`? Provaci e porta l'errore in classe!
+### 📝 Riepilogo tascabile
+- C++ è un linguaggio **compilato**: il sorgente viene tradotto in eseguibile attraverso più stazioni.
+- Le quattro fasi: **Pre-elaboratore → Compilatore → Assemblatore → Linker**.
+- `g++ -save-temps` lascia i file intermedi (`.ii`, `.s`, `.o`) così puoi ispezionarli.
+- `return N;` in `main` diventa, in Assembly, un’istruzione che mette `N` nel registro di ritorno.
+- Gli errori di compilazione sono segnalazioni precise della fabbrica: imparare a leggerli è una competenza chiave.
+
+---
+
+### ➡️ Prossimo chunk
+Finora il nostro programma non ha ancora *parlato* con noi.  
+Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Un solo obiettivo principale: capire la catena di compilazione
+  [x] Metafora fabbrica / catena di montaggio
+  [x] Quiz con sintassi LiaScript corretta
+  [x] PRIMM completo su programma minimo SENZA iostream
+  [x] Nessuna sovrapposizione con Ciao Mondo (niente cout nel Make)
+  [x] -save-temps e ispezione .ii / .s
+  [x] Collegamento esplicito return N → movl $N
+  [x] Riepilogo tascabile e ponte al capitolo successivo
+-->
 ## 💬 Capitolo 2: Il Primo Dialogo con la Macchina
 
 > "S'impara a programmare scrivendo programmi."
 > — *Brian Kernighan*
 
-Un *linguaggio di programmazione* è come un linguaggio straniero con una grammatica rigidissima e un vocabolario preciso, progettato per dare istruzioni a un computer. Ma ricorda una regola d'oro:
+Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
 
-> 💡 **Metafora:** Scrivere codice è come scrivere una ricetta di cucina. 
-> - Il **computer** è lo chef che la esegue alla lettera (se dimentichi "aggiungi un pizzico di sale", lui non lo indovina, si blocca!). 
-> - L'**essere umano** è l'altro lettore: deve poter capire, modificare e mantenere la ricetta in futuro. Per questo usiamo i commenti e un codice ordinato.
+> 💡 **Metafora:** Scrivere codice è come scrivere una ricetta di cucina.  
+> - Il **computer** è lo chef che la esegue alla lettera. Se dimentichi “aggiungi un pizzico di sale”, lui non lo indovina: si blocca o produce un risultato sbagliato.  
+> - L’**essere umano** (tu tra sei mesi, un collega, il docente) è l’altro lettore: deve poter capire, modificare e mantenere la ricetta. Per questo usiamo commenti e codice ordinato.
 
 ---
 
-### 🔬 PRIMM: Il Programma "Ciao, Mondo!"
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video
+- Usare correttamente `#include <iostream>`, `std::cout`, `\n` e `return 0`
+- Leggere e interpretare i messaggi di errore più comuni legati a sintassi e namespace
+
+---
+
+### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
 
 #### 1. PREDICT (Prevedi)
-? Prima di eseguire il codice qui sotto, osserva la riga `std::cout << "Ciao, Mondo!\n";`. Cosa pensi che faccia il simbolo `\n` alla fine della frase?
-- [ ] Stampa esattamente i caratteri "\n" a video
-- [x] Va a capo, spostando il cursore alla riga successiva
-- [ ] Cancella tutto quello che è stato stampato prima
+Guarda attentamente la riga:
+```cpp
+std::cout << "Ciao, Mondo!\n";
+```
+
+Cosa fa il simbolo `\n` alla fine della frase?
+
+[( )] Stampa esattamente i caratteri `\n` a video
+[(X)] Va a capo, spostando il cursore alla riga successiva
+[( )] Cancella tutto quello che è stato stampato prima
+[( )] Inserisce uno spazio extra
 
 #### 2. RUN (Esegui)
-Clicca sul pulsante "Run" qui sotto per vedere il codice in azione direttamente nel tuo browser.
+Digita il codice **a mano** (non fare copia-incolla) nel blocco qui sotto e premilo Run.  
+Confronta l’output con la tua previsione.
 
 ```cpp
 /**
  * @file ciao_mondo.cpp
  * @brief Il primo programma in C++ che stampa un messaggio a video.
- * @author Gionata Massi
- * @date 2024-10-10
  */
 #include <iostream>
 
 /**
  * @brief Punto di ingresso del programma.
- * @return int Codice di uscita (0 = successo).
+ * @return int 0 se tutto è andato bene.
  */
 int main() {
     /// Stampa il messaggio di saluto e va a capo
     std::cout << "Ciao, Mondo!\n";
-    
-    return 0; /// 0 indica al sistema operativo che tutto è andato bene
+
+    return 0; /// 0 = successo per il sistema operativo
 }
 ```
 @LIA.cpp
 
-#### 3. INVESTIGATE (Investiga: Analisi Linea per Linea)
-Analizziamo il codice come se fossimo detective. Ogni riga ha un ruolo preciso:
+#### 3. INVESTIGATE (Investiga)
+Analizziamo il codice riga per riga come detective.
 
-| Codice | Spiegazione "Brain-Friendly" |
-| :--- | :--- |
-| `#include <iostream>` | **Il Pre-elaboratore** legge questa riga e "incolla" nel tuo codice tutte le istruzioni necessarie per gestire l'Input/Output (come `cout`). Senza di essa, il compilatore non sa cosa sia `cout`. |
-| `int main() {` | Il **punto di partenza**. Ogni programma C++ deve avere *esattamente una* funzione chiamata `main`. L'esecuzione inizia sempre da qui. La `{` apre il blocco di istruzioni. |
-| `std::cout << ...` | `cout` (si pronuncia *"si-out"*, abbreviazione di *Character Output Stream*) è il "megafono" del programma. `std::` è lo **spazio dei nomi** (namespace): dice al compilatore "cerca `cout` nella libreria standard". L'operatore `<<` è detto *"poni in"* (insertion operator) e spinge il testo verso il megafono. |
-| `"Ciao, Mondo!\n"` | È un **letterale stringa** (testo tra doppi apici). `\n` è un carattere speciale di *escape* che significa "newline" (vai a capo). |
-| `return 0;` | La funzione `main` restituisce un numero intero (`int`) al sistema operativo. `0` è la convenzione universale per dire: "Esecuzione completata con successo, nessun errore". |
-| `}` | Chiude il blocco della funzione `main`. |
-| `/// ...` o `// ...` | **Commenti**. Tutto ciò che segue `//` è ignorato dal compilatore. Serve *solo* agli esseri umani per capire il codice. |
+| Codice | Spiegazione brain-friendly | Perché è importante |
+| :--- | :--- | :--- |
+| `#include <iostream>` | Il pre-elaboratore “incolla” qui le istruzioni necessarie per l’input/output. Senza di essa il compilatore non conosce `cout`. | È il passaporto per parlare con lo schermo (e con la tastiera). |
+| `int main() { ... }` | Punto di partenza obbligatorio. Ogni programma C++ ha **esattamente una** funzione `main`. L’esecuzione inizia sempre da qui. | Senza `main` non c’è programma. |
+| `std::cout << ...` | `cout` (si legge “si-out”) è il megafono del programma. `std::` è lo **spazio dei nomi**: dice “cerca `cout` nella libreria standard”. | Ti permette di scrivere testo a video. |
+| `"Ciao, Mondo!\n"` | Una **stringa letterale**. `\n` è un carattere speciale che forza l’andata a capo. | Controlla esattamente cosa e come viene stampato. |
+| `return 0;` | Dice al sistema operativo: “Ho finito e tutto è andato bene”. | Convenzione universale di successo. |
 
-#### 4. MODIFY (Modifica: Fallimento Produttivo)
-Il miglior modo per imparare è vedere cosa succede quando le regole vengono infrante. Il compilatore non è cattivo, è solo un controllore molto pignolo.
+> 🔗 **Ispezione memoria (opzionale ma utile):**  
+> Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
-**Sfida 1: Il punto e virgola dimenticato**
-1. Copia il codice qui sopra in un file locale o nell'editor.
-2. Rimuovi il punto e virgola `;` alla fine della riga `std::cout << "Ciao, Mondo!\n"`.
-3. Prova a compilare.
+#### 4. MODIFY (Modifica)
+Apporta queste modifiche **una alla volta** e osserva cosa succede.  
+Dopo ogni modifica ricompila/esegui.
 
-? Quale tipo di errore ti aspetti dal compilatore?
-- [ ] Un errore a runtime (il programma si chiude da solo)
-- [x] Un errore di sintassi (il compilatore si rifiuta di creare l'eseguibile)
-- [ ] Nessun errore, il compilatore lo aggiunge da solo
+**Modifica A — Il punto e virgola traditore**
+1. Togli il `;` alla fine della riga di `std::cout`.
+2. Compila.
+
+Cosa ti aspetti?
+
+[( )] Funziona comunque
+[(X)] Il compilatore segnala un errore di sintassi
+[( )] Il programma stampa comunque il messaggio
+[( )] Si crea un file eseguibile vuoto
 
 <details>
-<summary>🔍 Clicca per vedere l'errore tipico del compilatore</summary>
-Il compilatore ti dirà qualcosa come: <code>error: expected ';' before 'return'</code>. 
-<strong>Lezione imparata:</strong> Il compilatore legge il codice riga per riga. Se manca il `;`, lui pensa che l'istruzione continui alla riga dopo, si confonde e si ferma.
+<summary>💡 Spiegazione</summary>
+Il punto e virgola è obbligatorio in C++ per terminare quasi tutte le istruzioni. Senza di esso il compilatore non sa dove finisce un’istruzione e dove ne inizia un’altra.
 </details>
 
-**Sfida 2: Dimenticare lo spazio dei nomi**
+**Modifica B — Lo spazio dei nomi**
 1. Ripristina il `;`.
-2. Cambia `std::cout` in solo `cout` (rimuovi `std::`).
+2. Cambia `std::cout` in solo `cout` (togli `std::`).
 3. Compila.
 
-? Cosa succede?
-- [ ] Funziona lo stesso
-- [x] Errore: "'cout' was not declared in this scope"
-- [ ] Il programma stampa uno spazio vuoto
+Cosa succede?
+
+[( )] Funziona lo stesso
+[(X)] Errore: `'cout' was not declared in this scope`
+[( )] Il programma stampa uno spazio vuoto
+[( )] Stampa “Ciao, Mondo!” due volte
 
 <details>
-<summary>🔍 Perché succede?</summary>
-Senza <code>std::</code>, il compilatore cerca una funzione chiamata <code>cout</code> nel tuo codice, non la trova, e si arrende. (In futuro vedremo che esiste un'istruzione <code>using namespace std;</code> per evitare di scriverlo sempre, ma per ora è meglio essere espliciti!).
+<summary>💡 Spiegazione</summary>
+Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo codice e non la trova. Per ora resta esplicito con <code>std::</code>. Più avanti vedremo <code>using namespace std;</code>, ma all’inizio è meglio essere chiari.
 </details>
 
-#### 5. MAKE (Crea)
-Ora tocca a te. Non copiare e incollare: scrivi il codice da zero.
+**Modifica C — Più messaggi**
+Aggiungi una seconda riga di output che stampa il tuo nome o la tua classe.  
+Verifica che appaiano su due righe separate.
 
-**Obiettivo:** Crea un programma chiamato `presentazione.cpp` che:
-1. Include la libreria corretta.
-2. Ha una funzione `main` correttamente formattata.
-3. Stampa a video **tre righe separate** usando più istruzioni `std::cout`:
-   - La prima riga deve contenere il tuo nome.
-   - La seconda riga deve contenere la tua classe (es. "3A SIA").
-   - La terza riga deve contenere una tua passione o hobby.
-4. Utilizza i commenti Doxygen (`/** ... */` e `///`) per documentare il file e le righe di codice.
-5. Restituisce `0` alla fine.
+#### 5. MAKE (Crea)
+Scrivi da zero un nuovo programma chiamato `presentazione.cpp`.
+
+**Scenario:** vuoi presentarti al computer (e a chi leggerà il codice).
+
+**Requisiti:**
+1. Includi la libreria corretta.
+2. Hai una funzione `main` ben formattata.
+3. Stampa **tre righe separate** con tre istruzioni `std::cout`:
+   - riga 1 → il tuo nome
+   - riga 2 → la tua classe (es. “3A SIA”)
+   - riga 3 → una tua passione o hobby
+4. Usa commenti `///` sul “perché” delle righe importanti.
+5. Termina con `return 0;`.
 
 <details>
-<summary>💡 Suggerimento (Scaffold)</summary>
-Ecco lo scheletro da completare. Non guardare subito la soluzione completa, prova a riempire i puntini!
-<br><br>
-<code>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
 /**
  * @brief Programma di presentazione personale.
  */
-#include &lt;iostream&gt;
+#include <iostream>
 
 int main() {
     /// Stampa il nome
-    std::cout &lt;&lt; "....................\n";
-    
+    std::cout << "....................\n";
+
     /// Stampa la classe
-    std::cout &lt;&lt; "....................\n";
-    
+    std::cout << "....................\n";
+
     /// Stampa l'hobby
-    std::cout &lt;&lt; "....................\n";
-    
+    std::cout << "....................\n";
+
     return 0;
 }
-</code>
+```
+
 </details>
 
 ---
-### 📝 Riepilogo "Tascabile"
-- Un programma C++ si legge in due direzioni: dal **compilatore** (che cerca errori di sintassi) e dall'**umano** (che cerca logica e chiarezza).
-- `#include <iostream>` è il passaporto per usare l'input/output.
-- `std::cout <<` è l'operatore per scrivere sullo schermo.
-- `\n` dentro una stringa forza l'andata a capo.
-- `return 0;` alla fine di `main` è il sigillo di "successo" per il sistema operativo.
-- **I commenti (`//`) sono il tuo miglior amico per il futuro te stesso.**
 
-> **🚀 Sfida per la prossima volta:** Come faresti a chiedere al computer di *ascoltare* invece che solo *parlare*? (Spoiler: ci serve un nuovo operatore e una nuova "scatola" per salvare i dati. Ne parleremo nel prossimo capitolo!)
+### 📝 Riepilogo tascabile
+- Ogni programma C++ parte da `int main()`.
+- `#include <iostream>` è il passaporto per l’input/output.
+- `std::cout <<` scrive sullo schermo; `\n` va a capo.
+- `return 0;` comunica “successo” al sistema operativo.
+- Il codice ha **due lettori**: il compilatore (sintassi) e l’essere umano (chiarezza). I commenti servono al secondo.
+- Gli errori di compilazione sono messaggi utili: imparare a leggerli è una competenza fondamentale.
+
+---
+
+### ➡️ Prossimo chunk
+Finora il computer ha solo *parlato*.  
+Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo unico e osservabile
+  [x] Metafora ricetta / chef
+  [x] Quiz con sintassi LiaScript corretta
+  [x] PRIMM completo
+  [x] Investigate con tabella
+  [x] Modify progressive + spiegazioni
+  [x] Make con scaffold e requisiti chiari
+  [x] Riepilogo tascabile
+  [x] Nessun costrutto non ancora introdotto
+-->
 ## 📦 Capitolo 3: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
 
 > "La memoria è lo spazio in cui i dati attendono il loro turno per essere trasformati in valore."
 > — *Principio dei Sistemi Informativi*
 
-Nei programmi precedenti abbiamo stampato a schermo testi fissi. Ma un vero software gestionale deve poter **memorizzare, ricordare e aggiornare dati che cambiano nel tempo**: il prezzo di un articolo, il saldo di un conto, la quantità di merci in magazzino.
+Finora abbiamo solo *stampato* testi fissi.  
+Un software gestionale, però, deve **ricordare e aggiornare dati che cambiano**: prezzo di un articolo, giacenza di magazzino, saldo di un conto.
 
-Per fare questo usiamo le **variabili** e le **costanti**.
+Per farlo usiamo **variabili** e **costanti**.
 
----
-
-### 💡 La Metafora: Il "Locker" di E-Commerce
-
-Immagina la memoria del computer (la RAM) come una gigantesca parete di **Locker automatici** per il ritiro dei pacchi (come i punti di ritiro Amazon o InPost):
-
-> 💡 **Metafora:**  
-> - **La parete dei Locker** è la memoria **RAM**.
-> - **Il numero stampato sullo sportello** è l'**indirizzo di memoria** (es. `0x7ffee4`). Per il computer è una coordinata numerica esatta.
-> - **L'etichetta sull'App** è il **nome della variabile** (es. `prezzo`, `quantita`). È il nome comodo che usi tu programmatore per non dover memorizzare indirizzi incomprensibili.
-> - **La dimensione dello sportello** è il **tipo di dato**: uno scomparto piccolo basta per una busta sottile; uno scomparto medio serve per delle scarpe; un vano grande serve per uno schermo.
-> - **La merce nel pacco** è il **valore** memorizzato all'interno.
-> - **Uno sportello blindato e sigillato** è una **costante (`const`)**: una volta inserita la merce all'inizio, nessuno può più sostituirla!
+> 💡 **Metafora: i locker di ritiro pacchi**  
+> La memoria RAM è una parete di **locker automatici** (come i punti di ritiro Amazon / InPost):
+> - **La parete** = la RAM  
+> - **Il numero dello sportello** = l’indirizzo di memoria (es. `0x7ffee4`) — lo usa il computer  
+> - **L’etichetta sull’app** = il **nome della variabile** (`prezzo`, `giacenza`) — lo usi tu  
+> - **La dimensione dello sportello** = il **tipo** (`int` piccolo, `double` medio, `string` variabile…)  
+> - **La merce dentro** = il **valore**  
+> - **Uno sportello sigillato** = una **costante (`const`)**: una volta inserito il valore, non si può più cambiare
 
 ---
 
-### 🗄️ I Tipi di Dato Fondamentali in C++
-
-Prima di aprire uno sportello in memoria, dobbiamo dire al compilatore **che tipo di merce conterrà**, così che possa riservare lo spazio esatto:
-
-| Tipo C++ | Cosa contiene | Esempio nel contesto SIA | Dimensione tipica |
-| :--- | :--- | :--- | :--- |
-| `int` | Numeri interi (positivi o negativi, senza virgola) | `int giacenza = 15;` (pezzi a magazzino) | 4 byte |
-| `double` | Numeri decimali (a virgola mobile, doppia precisione) | `double prezzo = 149.99;` (prezzo in euro) | 8 byte |
-| `char` | Un **singolo carattere** (racchiuso tra apici singoli `' '`) | `char reparto = 'E';` (reparto Elettronica) | 1 byte |
-| `bool` | Valore logico di verità: solo `true` oppure `false` | `bool disponibile = true;` (prodotto a catalogo) | 1 byte |
-| `std::string` | Testo alfanumerico (racchiuso tra virgolette doppie `" "`) | `std::string nome = "Monitor 24";` | Variabile (richiede `<string>`) |
-
-> ⚠️ **Regola d'oro del compilatore:** Un tipo non può contenere dati incompatibili. Se provi a forzare un numero con la virgola (`19.99`) dentro uno sportello `int`, il compilatore troncherà la parte decimale senza pietà, tenendo solo `19`!
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare variabili e costanti dei tipi fondamentali (`int`, `double`, `char`, `bool`, `std::string`)
+- Scegliere il tipo adatto al dato aziendale che vuoi memorizzare
+- Stampare i valori memorizzati e capire perché un `int` “taglia” i decimali
 
 ---
 
-### 🔬 Laboratorio PRIMM: La Scheda Prodotto di Magazzino
+### 🗄️ I tipi di dato fondamentali
 
-Mettiamo subito in pratica questi concetti realizzando il modulo anagrafico di un articolo gestionale.
+Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** conterrà, così riserva lo spazio giusto.
+
+| Tipo | Cosa contiene | Esempio SIA | Note |
+|------|---------------|-------------|------|
+| `int` | Numeri interi (senza virgola) | `int giacenza = 42;` | Pezzi, quantità, conteggi |
+| `double` | Numeri con la virgola | `double prezzo = 19.50;` | Prezzi, saldi, aliquote |
+| `char` | Un solo carattere | `char reparto = 'A';` | Codici corti (tra apici singoli) |
+| `bool` | Vero / falso | `bool inPromozione = true;` | Flag, condizioni |
+| `std::string` | Testo di lunghezza variabile | `std::string nome = "Mouse";` | Serve `#include <string>` |
+| `const T` | Valore **non modificabile** | `const double IVA = 0.22;` | Aliquote, limiti di legge, tassi |
+
+> ⚠️ **Trappola classica:**  
+> Se scrivi `int pezzi = 7.85;` il compilatore **non** arrotonda: **tronca** i decimali → diventa `7`.  
+> Per i centesimi usa sempre `double`.
+
+---
+
+### 🔬 Laboratorio PRIMM: Scheda articolo di magazzino
 
 #### 1. PREDICT (Prevedi)
-? Osserva il seguente frammento di codice. Quale sarà l'output a schermo della variabile `pezziDisponibili`?
+Osserva questo frammento:
+
 ```cpp
 int pezziDisponibili = 7.85;
 std::cout << pezziDisponibili;
 ```
-- [ ] Stampa `7.85`
-- [x] Stampa `7` (la parte decimale viene troncata)
-- [ ] Il programma va in crash immediato
-- [ ] Stampa `8` per arrotondamento
+
+Cosa viene stampato?
+
+[( )] `7.85`
+[(X)] `7` (la parte decimale viene troncata)
+[( )] Il programma va in crash
+[( )] `8` (arrotondamento)
 
 <details>
 <summary>💡 Spiegazione</summary>
-In C++, la variabile di tipo <code>int</code> è progettata per contenere <b>esclusivamente numeri interi</b>. Se le assegni un valore con la virgola come <code>7.85</code>, il C++ non arrotonda al più vicino: <b>elimina direttamente tutti i decimali</b> (troncamento). Per memorizzare correttamente i centesimi è obbligatorio usare <code>double</code>.
+<code>int</code> può contenere solo interi. Assegnare un valore con la virgola provoca <strong>troncamento</strong>, non arrotondamento. Per i prezzi e le quantità decimali serve <code>double</code>.
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma completo qui sotto. Nota i commenti strutturati in standard **Doxygen** (`/** ... */` per l'intestazione e `///` per descrivere le singole variabili).
-
-Clicca su **"Run"** per compilarlo ed eseguirlo nel browser:
+Digita (a mano) e esegui il programma completo:
 
 ```cpp
 /**
  * @file scheda_prodotto.cpp
- * @brief Gestione anagrafica di un articolo di magazzino aziendale.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @brief Anagrafica di un articolo di magazzino.
  */
 #include <iostream>
 #include <string>
 
 /**
- * @brief Funzione principale: memorizza e stampa i dati del prodotto.
- * @return int Codice di stato (0 = esecuzione corretta).
+ * @brief Memorizza e stampa i dati di un prodotto.
+ * @return int 0 se tutto è andato bene.
  */
 int main() {
-    /// Costante: aliquota IVA ordinaria al 22% (non modificabile)
+    /// Aliquota IVA ordinaria vigente (non modificabile)
     const double ALIQUOTA_IVA = 0.22;
 
-    /// Denominazione commerciale dell'articolo
+    /// Denominazione commerciale
     std::string nomeArticolo = "Mouse Wireless Ottico";
 
-    /// Reparto aziendale di appartenenza ('A' = Accessori, 'H' = Hardware)
+    /// Codice reparto ('A' = Accessori, 'H' = Hardware)
     char codiceReparto = 'A';
 
-    /// Quantità fisica presente sugli scaffali di magazzino
+    /// Pezzi presenti a magazzino
     int pezziInMagazzino = 42;
 
-    /// Prezzo unitario di vendita al netto dell'IVA
+    /// Prezzo unitario al netto di IVA
     double prezzoNetto = 19.50;
 
-    /// Flag booleano: true se il prodotto è coperto da garanzia estesa
+    /// true se è attiva la garanzia estesa
     bool haGaranziaEstesa = true;
 
-    // Visualizzazione dei dati del prodotto
-    std::cout << "=== SCHEDA ARTICOLO MAGAZZINO ===" << "\n";
+    std::cout << "=== SCHEDA ARTICOLO MAGAZZINO ===\n";
     std::cout << "Descrizione : " << nomeArticolo << "\n";
     std::cout << "Reparto     : " << codiceReparto << "\n";
-    std::cout << "Giacenza    : " << pezziInMagazzino << " pezzi" << "\n";
-    std::cout << "Prezzo netto: " << prezzoNetto << " EUR" << "\n";
-    std::cout << "Aliquota IVA: " << (ALIQUOTA_IVA * 100) << "%" << "\n";
-    std::cout << "Garanzia est: " << (haGaranziaEstesa ? "Si" : "No") << "\n";
+    std::cout << "Giacenza    : " << pezziInMagazzino << " pezzi\n";
+    std::cout << "Prezzo netto: " << prezzoNetto << " euro\n";
+    std::cout << "Garanzia    : " << haGaranziaEstesa << "\n";  // 1 = true, 0 = false
+    std::cout << "Aliquota IVA: " << ALIQUOTA_IVA << "\n";
 
     return 0;
 }
 ```
 @LIA.cpp
 
----
+#### 3. INVESTIGATE (Investiga)
+Collega ogni “sportello” al suo ruolo.
 
-#### 3. INVESTIGATE (Investiga: La Memoria Passo Passo)
+| Nome nello sportello | Tipo | Perché quel tipo? | Si può cambiare dopo? |
+|----------------------|------|-------------------|------------------------|
+| `ALIQUOTA_IVA` | `const double` | È un valore di legge / listino, non deve essere modificato per sbaglio | No |
+| `nomeArticolo` | `std::string` | Testo di lunghezza variabile | Sì |
+| `codiceReparto` | `char` | Un solo carattere di classificazione | Sì |
+| `pezziInMagazzino` | `int` | Si contano pezzi interi | Sì |
+| `prezzoNetto` | `double` | Serve la virgola (centesimi) | Sì |
+| `haGaranziaEstesa` | `bool` | Solo due stati: sì / no | Sì |
 
-Ora andiamo a vedere cosa succede realmente all'interno della memoria RAM del computer.
+> 🔗 Apri il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come nascono le variabili nello stack.
 
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%23include%20%3Cstring%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20const%20double%20ALIQUOTA_IVA%20%3D%200.22%3B%0A%20%20%20%20std%3A%3Astring%20nomeArticolo%20%3D%20%22Mouse%20Wireless%22%3B%0A%20%20%20%20char%20codiceReparto%20%3D%20'A'%3B%0A%20%20%20%20int%20pezziInMagazzino%20%3D%2042%3B%0A%20%20%20%20double%20prezzoNetto%20%3D%2019.50%3B%0A%20%20%20%20bool%20haGaranziaEstesa%20%3D%20true%3B%0A%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20nomeArticolo%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
+#### 4. MODIFY (Modifica)
+Apporta le modifiche **una alla volta** e verifica.
 
-Clicca su **"Visualize Execution"** e premi il tasto **"Next"** un'istruzione alla volta. Osserva attentamente il riquadro **Frames (Stack)** sulla destra:
-1. All'inizio dell'esecuzione di `main()`, lo stack riserva uno spazio ordinato per ogni variabile.
-2. Man mano che la freccia verde avanza, ogni sportello del "locker" viene riempito con il valore assegnato.
-3. Nota la differenza visiva tra una variabile numerica semplice (`int`, `double`) e un oggetto testuale come `std::string`.
+1. **Calcolo IVA**  
+   Dichiara `double importoIva = prezzoNetto * ALIQUOTA_IVA;`  
+   e stampa il prezzo lordo (`prezzoNetto + importoIva`).
 
-> ⚠️ **Attenzione al "Locker con Spazzatura": l'Inizializzazione Obbligatoria!**  
-> In C++, se scrivi semplicemente `int quantita;` senza assegnarle un valore iniziale, lo sportello **non è vuoto né azzerato**: contiene i residui binari casuali (detti *garbage values*) lasciati dai programmi eseguiti in precedenza!  
-> **Buona pratica aziendale:** Inizializza sempre ogni variabile al momento della creazione (es. `int quantita = 0;` oppure `int quantita{0};`).
+2. **Prova del lucchetto**  
+   Aggiungi a metà programma la riga:
+   ```cpp
+   ALIQUOTA_IVA = 0.10;
+   ```
+   Cosa dice il compilatore?
 
-#### 🕳️ La Trappola Classica del C++: `std::cin` e le Stringhe con Spazi
-Quando permetterai all'utente di digitare dati da tastiera, la tentazione immediata sarà usare `std::cin >> variabile;`.  
-Per numeri (`int`, `double`) o singole parole va benissimo. Ma cosa accade se provi a leggere la descrizione di un articolo aziendale come `"Monitor 24 Pollici"`?
+   [( )] Compila e cambia l’aliquota
+   [(X)] Segnala un errore (variabile di sola lettura)
+   [( )] Ignora la riga in silenzio
+   [( )] Stampa un avviso ma produce l’eseguibile
+
+   <details>
+   <summary>💡 Spiegazione</summary>
+   Una variabile dichiarata <code>const</code> è in sola lettura. Il compilatore rifiuta qualsiasi assegnamento successivo (es. <code>assignment of read-only variable</code>).
+   </details>
+
+3. **Inizializzazione moderna (opzionale)**  
+   Prova la forma con graffe: `int scorte{100};`  
+   È consigliata negli standard moderni perché è più sicura contro conversioni indesiderate.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scheda conto corrente aziendale**
+
+Scrivi da zero `conto_corrente.cpp` che memorizza e visualizza:
+
+| Dato | Tipo suggerito |
+|------|----------------|
+| Nome della banca | `std::string` |
+| Codice IBAN | `std::string` |
+| Saldo contabile | `double` |
+| Tasso di interesse annuo | `const double` |
+| Fido concesso (sì/no) | `bool` |
+| Classe di rating (es. `'A'`) | `char` |
+
+**Requisiti:**
+- Intestazione Doxygen del file e di `main`
+- Commento `///` sul “perché” di ogni variabile importante
+- Calcola e stampa la stima degli interessi annui: `saldo * tasso`
+- Non modificare la costante del tasso dopo l’inizializzazione
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
 
 ```cpp
-std::string descrizione;
-std::cout << "Inserisci descrizione: ";
-std::cin >> descrizione; // ⚠️ TRAPPOLA IN AGGUATO!
+/**
+ * @brief Scheda sintetica di un conto corrente aziendale.
+ */
+#include <iostream>
+#include <string>
+
+int main() {
+    // Dichiara qui le variabili e la costante
+    // Stampa i dati e gli interessi stimati
+    return 0;
+}
 ```
 
-> 💥 **Cosa si rompe:**  
-> L'operatore `>>` considera lo spazio bianco come un separatore di fine lettura.  
-> Risultato: `descrizione` conterrà **solo** `"Monitor"`, mentre `"24"` e `"Pollici"` resteranno incastrati nel "tubo" di input (il buffer di tastiera).  
-> Quando il programma tenterà la lettura successiva (es. la quantità di pezzi o il prezzo), leggerà `"24"` al posto del numero atteso, mandando completamente in tilt la logica del programma!
-
-> 🛡️ **Il Rito di Passaggio: La Soluzione `std::getline`**  
-> Per leggere un'intera riga di testo con spazi fino a quando l'utente non preme il tasto Invio, usa sempre:
-> ```cpp
-> std::getline(std::cin, descrizione);
-> ```
-> Questo comando cattura tutta la riga (spazi inclusi) e la deposita in modo sicuro nel locker della stringa.
+</details>
 
 ---
 
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-Ora mettiti alla prova modificando il codice precedente:
-
-1. **Il calcolo dell'IVA:** Dichiara una nuova variabile `double importoIva;` e calcolala moltiplicando `prezzoNetto * ALIQUOTA_IVA`. Poi stampa a video il prezzo totale al lordo dell'IVA.
-2. **La prova del lucchetto:** Prova ad aggiungere a metà programma la riga `ALIQUOTA_IVA = 0.10;`. Cosa dice il compilatore?  
-   <details>
-   <summary>💡 Mostra l'errore del compilatore</summary>
-   Il compilatore si rifiuterà categoricamente di creare il programma, segnalando un errore del tipo:  
-   <code>error: assignment of read-only variable 'ALIQUOTA_IVA'</code>.  
-   Questo ti dimostra che una variabile marcata con <code>const</code> è blindata contro modifiche accidentali!
-   </details>
-3. **Inizializzazione uniforme (C++ Moderno):** Prova a inizializzare le variabili usando le parentesi graffe invece dell'uguale: `int scorte{100};`. Questa sintassi è consigliata dagli standard moderni perché protegge dai cambi di tipo involontari.
-4. **La prova pratica della trappola (`cin` vs `getline`):** Aggiungi in testa a `main` la richiesta di digitare il nome del prodotto. Prova prima con `std::cin >> nomeArticolo;` inserendo `"Tastiera Meccanica RGB"` e osserva come lo scontrino tronchi il nome. Sostituiscilo poi con `std::getline(std::cin, nomeArticolo);` e verifica che l'intera frase venga conservata!
+### 📝 Riepilogo tascabile
+- Variabile = sportello etichettato in memoria (nome + tipo + valore).
+- Il **tipo** decide quanto spazio riservare e quali operazioni sono legali.
+- `int` tronca i decimali; per i soldi usa `double`.
+- `const` rende lo sportello **sigillato**: utile per aliquote, tassi, limiti.
+- `std::string` richiede `#include <string>`.
+- Scegli sempre il tipo in base al significato aziendale del dato, non a caso.
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
+### ➡️ Prossimo chunk
+Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
 
-> 🎯 **Sfida SIA: La Scheda Conto Corrente Aziendale**  
-> Scrivi un nuovo programma C++ autonomo (`conto_corrente.cpp`) che rappresenti la situazione contabile del conto aziendale presso la banca d'affari.
-> 
-> Il programma deve memorizzare e visualizzare:
-> - `std::string denominazioneBanca`: nome dell'istituto di credito.
-> - `std::string codiceIban`: codice IBAN del conto (27 caratteri).
-> - `double saldoContabile`: saldo monetario attuale (es. `12450.75`).
-> - `const double TASSO_INTERESSE`: costante con il tasso annuo attivo (es. `0.015`, pari all'1.5%).
-> - `bool fidoConcesso`: indica se la banca ha accordato una linea di fido aziendale (`true`/`false`).
-> - `char classeRating`: lettera di rating creditizio dell'azienda (es. `'A'`).
-> 
-> **Requisiti di qualità:**
-> - Inserisci l'intestazione Doxygen per il file e per la funzione `main`.
-> - Commenta ogni variabile con `///`.
-> - Calcola e visualizza la stima degli interessi maturati a fine anno moltiplicando `saldoContabile * TASSO_INTERESSE`.
-## 🧮 Capitolo 4: La Calcolatrice Fiscale (Espressioni, Operatori e Operatore Ternario)
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Un solo obiettivo principale: variabili, tipi, const
+  [x] Metafora locker (Head First + contesto logistica/e-commerce)
+  [x] Quiz sintassi LiaScript corretta
+  [x] PRIMM completo con scenario magazzino
+  [x] Modify progressivo (IVA, const, init moderna)
+  [x] Make con scenario conto corrente (SIA)
+  [x] cin/getline NON introdotti qui (troppa densità; eventuali in capitolo successivo)
+  [x] Riepilogo tascabile e ponte al capitolo espressioni
+-->
+## 🧮 Capitolo 4: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
 > — *Principio dell'Elaborazione Dati*
 
-Nel capitolo precedente abbiamo aperto i nostri "sportelli" (variabili) nella memoria per riporre dati statici. Ma l'informatica aziendale vive di **calcoli, confronti e logica**: calcolare l'IVA, applicare sconti percentuali, verificare se un cliente ha diritto a promozioni e decidere tariffe al volo.
+Nel capitolo precedente abbiamo riempito gli sportelli della memoria.  
+Ora impariamo a **calcolare** e a **decidere in una riga**: IVA, sconti, spese di spedizione, commissioni POS.
 
-Per trasformare i dati grezzi in informazioni utili usiamo le **espressioni**, gli **operatori** e uno strumento compatto ed elegante: l'**operatore ternario (`?:`)**.
-
----
-
-### 💡 La Metafora: La Cassa Veloce con Smistamento Automatico
-
-> 💡 **Metafora:**  
-> Pensa alla cassa automatica di un supermercato moderno:
-> - **Gli operatori aritmetici** sono i calcoli sui prodotti sul nastro (somma dei prezzi, moltiplicazione per i pezzi, calcolo della percentuale di sconto).
-> - **Gli operatori di confronto e logici** sono i sensori della cassa: verificano se il peso della busta corrisponde (`==`), se l'importo supera i 50€ (`>`) e se hai scansionato sia la carta fedeltà **CHE** il coupon sconto (`&&`).
-> - **L'operatore ternario (`?:`)** è il display rapido che, con una sola occhiata al carrello, decide all'istante:  
->   *"Spesa > 50€ ? Spedizione Gratuita : Paga 5.90€"*.
+> 💡 **Metafora: la cassa automatica**  
+> - **Operatori aritmetici** = i calcoli sul nastro (somme, sconti %, quantità × prezzo)  
+> - **Operatori di confronto e logici** = i sensori (“spesa > 50?”, “ha tessera E spesa alta?”)  
+> - **Operatore ternario `?:`** = il display che decide all’istante:  
+>   *“Spesa ≥ 60€ ? Spedizione gratis : paghi 6,50€”*
 
 ---
 
-### ⚙️ Gli Operatori Fondamentali del C++
-
-Un'**espressione** è una combinazione di variabili, valori e operatori che, una volta calcolata dal processore, **produce un singolo valore**.
-
-#### 1. Operatori Aritmetici (I Calcoli)
-- `+` (Somma) e `-` (Sottrazione)
-- `*` (Moltiplicazione)
-- `/` (Divisione): **attenzione al tranello della divisione intera!**
-  - Se dividi due interi (`7 / 2`), il C++ esegue una divisione intera e il risultato è `3` (il resto viene perso).
-  - Se almeno uno dei due è `double` (`7.0 / 2` o `7 / 2.0`), il risultato è `3.5`.
-- `%` (Modulo o Resto): calcola il resto della divisione tra interi (`7 % 2` restituisce `1`). Fondamentale per sapere se un numero è pari o dispari o per gestire turni e periodicità.
-
-#### 2. Operatori di Confronto (Le Domande)
-Confrontano due valori e restituiscono sempre un valore booleano: `true` (vero) oppure `false` (falso).
-- `==` (Uguale a — attenzione: **due segni uguale**, non confonderlo con l'assegnamento `=`!)
-- `!=` (Diverso da)
-- `<`, `>`, `<=`, `>=` (Minore, Maggiore, Minore o uguale, Maggiore o uguale)
-
-#### 3. Operatori Logici Booleani (La Logica di Business)
-Permettono di combinare più condizioni insieme:
-
-| Operatore | Nome | Quando è `true`? | Esempio SIA |
-| :--- | :--- | :--- | :--- |
-| `&&` | **AND** (E logico) | Solo se **entrambe** le condizioni sono vere | `haTessera && spesa > 100` (sconto per tesserati con alta spesa) |
-| `\|\|` | **OR** (O logico) | Se **almeno una** delle condizioni è vera | `isStudente \|\| isOver65` (tariffa agevolata) |
-| `!` | **NOT** (Negazione) | Ribalta il valore: trasforma `true` in `false` | `!contoBloccato` (il conto è operativo) |
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere espressioni aritmetiche, di confronto e logiche corrette
+- Evitare la trappola della **divisione intera**
+- Usare l’**operatore ternario** per assegnare un valore in base a una condizione
 
 ---
 
-### ⚡ L'Operatore Condizionale Ternario: Decisioni in Una Riga
+### ⚙️ Gli operatori fondamentali
 
-Spesso nei sistemi informativi dobbiamo assegnare un valore a una variabile in base a una semplice condizione. Invece di scrivere blocchi lunghi, il C++ offre una sintassi compatta chiamata **operatore ternario** (perché richiede 3 elementi):
+Un’**espressione** combina valori, variabili e operatori e produce **un solo risultato**.
 
-```
-condizione ? valore_se_vero : valore_se_falso;
-```
+#### Aritmetici
+| Operatore | Significato | Attenzione |
+|-----------|-------------|------------|
+| `+` `-` `*` | somma, sottrazione, moltiplicazione | — |
+| `/` | divisione | Se **entrambi** gli operandi sono `int` → **divisione intera** (i decimali si perdono) |
+| `%` | resto (modulo) | Solo su interi: `14 % 2 == 0` → pari |
 
 ```cpp
-// Se la spesa supera 50€ la spedizione è gratis (0.0), altrimenti costa 5.90€
-double speseSpedizione = (totaleSpesa >= 50.0) ? 0.0 : 5.90;
+int pezzi = 5;
+double a = pezzi / 2;      // 2  (divisione intera!)
+double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
 ```
 
-L'operatore ternario è una **espressione** (calcola e restituisce un valore pronto per essere assegnato o stampato), non una sequenza di istruzioni.
+#### Confronto (producono `bool`)
+`==`  `!=`  `<`  `<=`  `>`  `>=`
+
+#### Logici
+| Operatore | Nome | Vero quando… | Esempio SIA |
+|-----------|------|--------------|-------------|
+| `&&` | AND | **entrambe** le condizioni sono vere | `haTessera && spesa >= 50` |
+| `\|\|` | OR | **almeno una** è vera | `isStudente \|\| isOver65` |
+| `!` | NOT | ribalta il valore | `!contoBloccato` |
 
 ---
 
-### 🔬 Laboratorio PRIMM: Il Totale Fiscale e la Spedizione
+### ⚡ L’operatore ternario `?:`
 
-Mettiamo alla prova la logica di business di un software e-commerce.
+Forma:
+```text
+condizione ? valore_se_vero : valore_se_falso
+```
+
+È un’**espressione**: calcola e restituisce un valore, pronto per essere assegnato o stampato.
+
+```cpp
+double speseSpedizione = (totaleSpesa >= 60.0) ? 0.0 : 6.50;
+```
+
+Utile quando la decisione è semplice e produce un valore.  
+Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
+
+---
+
+### 🔬 Laboratorio PRIMM: Scontrino e-commerce
 
 #### 1. PREDICT (Prevedi)
-? Quale sarà l'output a schermo delle seguenti due righe di codice C++?
+Cosa stampa questo codice?
+
 ```cpp
 int pezzi = 5;
 double costoTotale = pezzi / 2 * 10.0;
 std::cout << costoTotale;
 ```
-- [ ] `25`
-- [x] `20`
-- [ ] `25.5`
-- [ ] Errore di compilazione
+
+[( )] `25`
+[(X)] `20`
+[( )] `25.5`
+[( )] Errore di compilazione
 
 <details>
 <summary>💡 Spiegazione</summary>
-Attenzione all'ordine di esecuzione e ai tipi! Le operazioni con la stessa precedenza (moltiplicazione e divisione) si valutano da sinistra a destra:
-1. Prima viene calcolato <code>pezzi / 2</code>. Poiché <code>pezzi</code> (5) e <code>2</code> sono entrambi numeri <b>interi</b>, il C++ esegue la <b>divisione intera</b>: <code>5 / 2 = 2</code> (il decimale .5 viene eliminato!).
-2. Poi viene calcolato <code>2 * 10.0</code>: essendoci un <code>double</code>, il risultato finale diventa <code>20.0</code>.
-Se avessimo scritto <code>pezzi / 2.0 * 10.0</code>, il risultato sarebbe stato correttamente <code>25.0</code>!
+<code>pezzi / 2</code> è divisione tra interi → risultato <code>2</code> (troncato).  
+Poi <code>2 * 10.0</code> → <code>20.0</code>.  
+Con <code>pezzi / 2.0 * 10.0</code> otterresti <code>25.0</code>.
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma gestionale per la cassa. Nota l'uso dell'operatore ternario per decidere la percentuale di sconto e le spese di trasporto:
+Digita e esegui:
 
 ```cpp
 /**
  * @file cassa_fiscale.cpp
- * @brief Calcolo scontrino con sconti fedeltà e spese di trasporto con operatore ternario.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @brief Scontrino con sconto fedeltà e spese di spedizione (ternario).
  */
 #include <iostream>
 
 /**
- * @brief Calcola il totale carrello, lo sconto e le spese di consegna.
- * @return int Codice di stato (0 = successo).
+ * @brief Calcola totale carrello, sconto e spedizione.
+ * @return int 0 se successo.
  */
 int main() {
-    /// Costante: soglia di spesa minima per avere la spedizione gratuita
     const double SOGLIA_SPEDIZIONE_GRATIS = 60.0;
-
-    /// Costo standard della spedizione per ordini sotto soglia
     const double COSTO_SPEDIZIONE_STANDARD = 6.50;
 
-    /// Importo totale lordo dei prodotti acquistati nel carrello
     double importoProdotti = 85.00;
-
-    /// Il cliente possiede la tessera fedeltà aziendale?
     bool isClienteFedelta = true;
 
-    // Calcolo percentuale di sconto: 10% se tesserato con spesa >= 50€, altrimenti 2%
-    double percentualeSconto = (isClienteFedelta && importoProdotti >= 50.0) ? 0.10 : 0.02;
+    /// 10% se tesserato e spesa >= 50, altrimenti 2%
+    double percentualeSconto =
+        (isClienteFedelta && importoProdotti >= 50.0) ? 0.10 : 0.02;
 
-    /// Valore monetario dello sconto applicato
     double valoreSconto = importoProdotti * percentualeSconto;
+    double nettoProdotti = importoProdotti - valoreSconto;
 
-    /// Importo effettivo dei prodotti al netto dello sconto
-    double totaleMerceScontata = importoProdotti - valoreSconto;
+    /// Spedizione gratis oltre soglia
+    double speseSpedizione =
+        (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS) ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
 
-    // Calcolo spese di spedizione tramite operatore ternario
-    double speseConsegna = (totaleMerceScontata >= SOGLIA_SPEDIZIONE_GRATIS) ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
+    double totaleDaPagare = nettoProdotti + speseSpedizione;
 
-    /// Importo complessivo finale dovuto dal cliente
-    double totaleFattura = totaleMerceScontata + speseConsegna;
-
-    // Visualizzazione dettagliata dello scontrino
-    std::cout << "===== RIEPILOGO SCONTRINO CASSA =====" << "\n";
-    std::cout << "Totale carrello : " << importoProdotti << " EUR" << "\n";
-    std::cout << "Sconto applicato: -" << valoreSconto << " EUR (" << (percentualeSconto * 100) << "%)\n";
-    std::cout << "Merce scontata  : " << totaleMerceScontata << " EUR" << "\n";
-    std::cout << "Spese trasporto : " << speseConsegna << " EUR" << "\n";
-    std::cout << "-------------------------------------" << "\n";
-    std::cout << "TOTALE DA PAGARE: " << totaleFattura << " EUR" << "\n";
+    std::cout << "=== SCONTRINO E-COMMERCE ===\n";
+    std::cout << "Prodotti (lordo) : " << importoProdotti << " euro\n";
+    std::cout << "Sconto applicato : " << valoreSconto << " euro\n";
+    std::cout << "Prodotti (netto) : " << nettoProdotti << " euro\n";
+    std::cout << "Spedizione       : " << speseSpedizione << " euro\n";
+    std::cout << "TOTALE DA PAGARE : " << totaleDaPagare << " euro\n";
 
     return 0;
 }
 ```
 @LIA.cpp
 
----
+#### 3. INVESTIGATE (Investiga)
+Segui il flusso dei valori (con i numeri dell’esempio).
 
-#### 3. INVESTIGATE (Investiga: La Valutazione dell'Espressione)
+| Espressione | Risultato | Perché |
+|-------------|-----------|--------|
+| `isClienteFedelta && importoProdotti >= 50.0` | `true` | entrambe vere |
+| percentuale sconto | `0.10` | ramo `?` del ternario |
+| `valoreSconto` | `8.5` | `85 * 0.10` |
+| `nettoProdotti` | `76.5` | `85 - 8.5` |
+| `nettoProdotti >= 60` | `true` | soglia superata |
+| `speseSpedizione` | `0.0` | ramo `?` del secondo ternario |
 
-Vediamo passo dopo passo come il processore valuta l'operatore ternario e memorizza i dati:
+> 🔗 Esegui il programma passo-passo su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20const%20double%20SOGLIA_GRATIS%20%3D%2060.0%3B%0A%20%20%20%20double%20spesa%20%3D%2085.0%3B%0A%20%20%20%20bool%20isFedele%20%3D%20true%3B%0A%0A%20%20%20%20double%20sconto%20%3D%20%28isFedele%20%26%26%20spesa%20%3E%3D%2050.0%29%20%3F%200.10%20%3A%200.02%3B%0A%20%20%20%20double%20trasporto%20%3D%20%28spesa%20%3E%3D%20SOGLIA_GRATIS%29%20%3F%200.0%20%3A%206.50%3B%0A%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Totale%3A%20%22%20%3C%3C%20%28spesa%20-%20%28spesa%20*%20sconto%29%20%2B%20trasporto%29%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
+#### 4. MODIFY (Modifica)
+1. **Promozione weekend**  
+   Concedi lo sconto del 10% se il cliente ha la tessera **oppure** la spesa (lordo) supera i 100€ (`||`).
 
-Clicca su **"Visualize Execution"** e procedi con il tasto **"Next"**:
-1. All'istruzione con `(isFedele && spesa >= 50.0) ? 0.10 : 0.02`:
-   - Il processore controlla prima la condizione tra parentesi: `isFedele` è `true`, e `spesa >= 50.0` è `true`.
-   - `true && true` produce `true`.
-   - Il processore seleziona il ramo sinistro (`0.10`) e **ignora completamente** il ramo destro (`0.02`).
-   - Il valore `0.10` viene scritto nello sportello della variabile `sconto`.
-2. Nota come le espressioni complesse non occupano spazio permanente: vengono calcolate al volo nei registri della CPU e solo il risultato finale viene salvato nello stack.
+2. **Consegna express**  
+   Aggiungi `bool consegnaRapida = true;`.  
+   Se è `true`, aggiungi un supplemento fisso di `3.00` alle spese di spedizione (anche se erano gratis), usando un ternario.
 
----
-
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Promozione Weekend:** Modifica la condizione dello sconto usando l'operatore `||` (OR): concedi lo sconto del 10% se il cliente ha la tessera **OPPURE** se la spesa supera i 100€ (anche senza tessera).
-2. **Supplemento Servizio Express:** Aggiungi un flag `bool consegnaRapida = true;`. Modifica il calcolo delle spese di trasporto in modo che, se la consegna è rapida, venga aggiunto un supplemento fisso di `3.00€` tramite un'espressione ternaria.
-3. **Controllo Resto con il Modulo:** Dichiara una variabile `int articoli = 14;` e usa l'operatore modulo `%` con il ternario per stampare se il numero di articoli acquistati è pari o dispari:
+3. **Pari o dispari**  
+   Con `int articoli = 14;` stampa se il numero è pari o dispari:
    ```cpp
-   std::cout << ((articoli % 2 == 0) ? "Numero pari" : "Numero dispari");
+   std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");
    ```
 
+#### 5. MAKE (Crea)
+**Scenario SIA — Commissione transazione POS**
+
+Scrivi `commissioni_pos.cpp` per un esercente:
+
+- `double importoPagamento` (es. `45.00`)
+- `bool circuitoInternazionale` (`true` = Visa/MC estera, `false` = PagoBANCOMAT)
+- **Regola con ternario:**
+  - circuito internazionale → commissione **1,8%** (`0.018`)
+  - altrimenti → **0,7%** (`0.007`)
+- **Commissione minima:** se la commissione calcolata è `< 0.15`, applica comunque `0.15` (secondo ternario)
+- Calcola e stampa l’**incasso netto** dell’esercente (`importo - commissioneFinale`)
+
+**Requisiti:** Doxygen, commenti `///` sulle aliquote, output chiaro tipo scontrino.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Calcolo commissione POS e incasso netto esercente.
+ */
+#include <iostream>
+
+int main() {
+    // dichiara importo, flag circuito, calcola commissione e netto
+    return 0;
+}
+```
+
+</details>
+
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
+### 📝 Riepilogo tascabile
+- Espressione = calcoli/confronti che producono **un** valore.
+- Divisione tra soli `int` → risultato intero (trappola classica).
+- `&&` = entrambe vere; `||` = almeno una vera; `!` = negazione.
+- Ternario: `condizione ? se_vero : se_falso` — ideale per scelte semplici che restituiscono un valore.
+- Per decisioni lunghe o a più rami → nei prossimi capitoli useremo `if` / `else`.
 
-> 🎯 **Sfida SIA: La Commissione Transazione POS Bancario**  
-> Gli esercenti commerciali pagano una commissione alla banca per ogni pagamento ricevuto tramite POS (Point of Sale).
-> 
-> Scrivi un programma C++ autonomo (`commissioni_pos.cpp`) che calcoli il costo di una transazione per un negozio:
-> - Dichiara `double importoPagamento`: l'incasso della vendita effettuata dal cliente (es. `45.00€`).
-> - Dichiara `bool circuitoInternazionale`: `true` se la carta appartiene a un circuito internazionale (es. Visa/Mastercard estera), `false` se è un circuito PagoBANCOMAT nazionale.
-> - **Regola di Business con Operatore Ternario:**
->   - Se il circuito è internazionale, la commissione percentuale è dell'**1.8%** (`0.018`).
->   - Se è PagoBANCOMAT, la commissione è dello **0.7%** (`0.007`).
-> - **Commissione Minima Fissa (Operatore Ternario):**
->   - Calcola la commissione in euro. Se la commissione calcolata risulta inferiore a `0.15€`, la banca applica comunque una commissione minima fissa di `0.15€` (usa il ternario per verificare se la commissione calcolata è `< 0.15`).
-> - Calcola l'**incasso netto effettivo** che rimane all'esercente (`importoPagamento - commissioneFinale`).
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti `///` sulle variabili con le relative aliquote.
-> - Stampa chiara e professionale dello scontrino di cassa con i costi bancari esplicitati.
-## 🚦 Capitolo 5: Bivi e Decisioni (Il Costrutto if e if-else)
+---
+
+### ➡️ Prossimo chunk
+Finora le decisioni tengono in una riga.  
+Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni per ramo), entra in scena il costrutto `if` / `else`.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: espressioni + ternario (un focus)
+  [x] Metafora cassa automatica
+  [x] Quiz sintassi corretta
+  [x] Trappola divisione intera in Predict
+  [x] PRIMM su scontrino e-commerce
+  [x] Make su commissioni POS (SIA)
+  [x] if/else solo annunciato, non introdotto
+-->
+## 🚦 Capitolo 5: Bivi e Decisioni (`if` e `if-else`)
 
 > "Le decisioni sono i binari su cui viaggiano i processi aziendali."
 > — *Principio di Ingegneria Gestionale*
 
-Fino ad ora i nostri programmi hanno marciato dritti come un treno su un unico binario: una riga dopo l'altra, dall'inizio alla fine. Ma il mondo reale non è mai una linea retta: un pagamento può essere **approvato o rifiutato**, una merce in magazzino può essere **esaurita o disponibile**, un cliente può avere o meno i requisiti per un prestito.
+Finora i programmi correvano su un unico binario.  
+Nel mondo reale un pagamento può essere **approvato o rifiutato**, una giacenza **sufficiente o sotto scorta**, un badge **valido o no**.
 
-Per gestire queste situazioni, il C++ mette a disposizione il costrutto fondamentale di selezione: l'istruzione **`if`** (se) e la sua estensione **`if-else`** (se... altrimenti).
+Per gestire i bivi usiamo **`if`** e **`if-else`**.
 
----
-
-### 💡 La Metafora: Il Tornello Automatico di Sicurezza
-
-> 💡 **Metafora:**  
-> Pensa al **tornello d'accesso** all'ingresso della sede aziendale o della metropolitana:
-> - **L'`if` semplice (senza `else`):** È un sensore di controllo "guardiano". Se rileva un'anomalia (es. allarme antincendio), attiva la sirena. Se non rileva nulla, non fa assolutamente niente e il flusso continua indisturbato.
-> - **L'`if-else` (bivio a due vie):** È il lettore di badge al tornello:
->   - *SE (`if`)* passi un badge valido: il tornello si sblocca, la spia diventa verde e ti fa passare.
->   - *ALTRIMENTI (`else`)*: la spia diventa rossa, emette un segnale acustico d'errore e ti blocca l'ingresso.
->   - **Non esistono vie di mezzo:** o si attiva il ramo verde, o si attiva il ramo rosso. Mai entrambi contemporaneamente!
+> 💡 **Metafora: il tornello aziendale**  
+> - **`if` semplice** = sensore di allarme: se rileva un’anomalia fa qualcosa; se non rileva nulla, non fa niente e il flusso continua.  
+> - **`if-else`** = lettore badge al tornello:  
+>   - *SE* badge valido → verde, passa  
+>   - *ALTRIMENTI* → rosso, bloccato  
+>   Non esistono vie di mezzo: si attiva **un solo** ramo.
 
 ---
 
-### 🔀 I Due Modelli di Selezione
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere un `if` semplice e un `if-else` con graffe corrette
+- Evitare i due tranelli classici (`;` dopo la condizione e graffe mancanti)
+- Capire lo **scope**: una variabile dichiarata dentro `{ }` esiste solo lì
 
-#### 1. L'Istruzione `if` Semplice (Azione Condizionata)
-Si usa quando vuoi eseguire un blocco di istruzioni **solo se si verifica una determinata condizione**. Se la condizione è falsa, l'azione viene semplicemente saltata.
+---
+
+### 🔀 I due modelli
+
+**`if` semplice** — esegui un blocco *solo se* la condizione è vera:
 
 ```cpp
-if (giacenzaMagazzino < LIVELLO_MINIMO) {
-    std::cout << "ATTENZIONE: Scorte in esaurimento! Inviare ordine fornitore.\n";
+if (giacenza < LIVELLO_MINIMO) {
+    std::cout << "ATTENZIONE: scorte in esaurimento!\n";
 }
 ```
 
-#### 2. L'Istruzione `if-else` (Mutua Esclusione)
-Si usa quando devi scegliere **esattamente una fra due strade alternative**:
+**`if-else`** — scegli **esattamente uno** dei due rami:
+
+```cpp
+if (saldo >= importo) {
+    std::cout << "Pagamento approvato\n";
+} else {
+    std::cout << "Fondi insufficienti\n";
+}
+```
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
-
 start
-:Leggi Saldo e Importo Spesa;
-if (Saldo >= Spesa?) then (VERO)
-  :Transazione Approvata;
-  :Scala importo dal Saldo;
-else (FALSO)
-  :Transazione Rifiutata;
-  :Mostra avviso "Fondi Insufficienti";
+:Leggi saldo e importo;
+if (saldo >= importo?) then (sì)
+  :Transazione approvata;
+  :Aggiorna saldo;
+else (no)
+  :Transazione rifiutata;
+  :Mostra importo mancante;
 endif
-:Stampa scontrino finale;
+:Stampa esito;
 stop
 @enduml
 ```
 
 ---
 
-### ⚠️ I Due Grandi Tranelli di Sintassi
+### ⚠️ I due grandi tranelli
 
-I programmatori alle prime armi cadono spesso in due insidie classiche del C++:
+**1. Il punto e virgola traditore**
 
-1. **Il Punto e Virgola Traditore:**
-   ```cpp
-   // ERRORE GRAVISSIMO:
-   if (saldo >= importo); // <-- QUEL PUNTO E VIRGOLA CHIUDE SUBITO L'IF!
-   {
-       std::cout << "Pagamento approvato!\n"; // Verrà eseguito SEMPRE!
-   }
-   ```
-   Dopo la tonda della condizione dell'`if` **non va mai il punto e virgola**.
+```cpp
+// SBAGLIATO: il ; chiude subito l'if
+if (saldo >= importo);
+{
+    std::cout << "Approvato\n";  // viene eseguito SEMPRE
+}
+```
 
-2. **Le Parentesi Graffe `{}` e lo "Scope" (Visibilità):**
-   Se ometti le parentesi graffe, il C++ considera legata all'`if` **esclusivamente la prima istruzione successiva**. Per evitare bug nascosti e mantenere il codice sicuro, **usa sempre le graffe**, anche per una sola riga!
-   Inoltre, qualsiasi variabile creata dentro un blocco `{}` nasce e muore lì dentro (non esiste al di fuori di quelle graffe).
+Dopo la `)` della condizione **non va mai** il `;`.
+
+**2. Graffe e scope**
+
+Senza `{ }` l’`if` controlla **solo** la prima istruzione successiva.  
+**Usa sempre le graffe**, anche per una sola riga.
+
+Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (scope locale).
 
 ---
 
-### 🔬 Laboratorio PRIMM: Il Terminale Pagamenti POS
-
-Sviluppiamo il sistema di autorizzazione dei pagamenti elettronici per un punto vendita.
+### 🔬 Laboratorio PRIMM: Terminale pagamenti POS
 
 #### 1. PREDICT (Prevedi)
-? Osserva attentamente il seguente frammento di codice. Quali righe verranno stampate sul terminale?
+Quali righe vengono stampate?
+
 ```cpp
 int scorte = 12;
 if (scorte < 5)
@@ -1069,128 +1291,151 @@ if (scorte < 5)
     std::cout << "2. Notifica inviata al fornitore.\n";
 std::cout << "3. Controllo terminato.\n";
 ```
-- [ ] Non stampa nulla
-- [ ] Stampa tutte e tre le righe: 1, 2 e 3
-- [x] Stampa solo le righe 2 e 3
-- [ ] Stampa solo la riga 3
+
+[( )] Non stampa nulla
+[( )] Stampa 1, 2 e 3
+[(X)] Stampa solo 2 e 3
+[( )] Stampa solo 3
 
 <details>
 <summary>💡 Spiegazione</summary>
-Poiché non sono state usate le parentesi graffe <code>{}</code>, l'istruzione <code>if (scorte < 5)</code> controlla <b>soltanto</b> la prima riga successiva (la riga 1).  
-Dato che <code>scorte < 5</code> è <code>false</code> (12 non è minore di 5), la riga 1 viene saltata.  
-Ma la riga 2 ("Notifica inviata...") è un'istruzione indipendente, non appartiene all'if! Viene quindi eseguita, seguita dalla riga 3.  
-<b>Regola d'oro:</b> usa sempre le parentesi graffe <code>{}</code> per racchiudere i blocchi decisionali!
+Senza graffe, l’<code>if</code> controlla solo la riga 1.  
+Condizione falsa → riga 1 saltata.  
+Riga 2 e 3 sono istruzioni indipendenti: vengono eseguite.  
+<strong>Regola d’oro: graffe sempre.</strong>
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma gestionale `autorizzazione_pos.cpp`. Nota come l'`if-else` garantisce la sicurezza della transazione finanziaria:
+Digita e esegui:
 
 ```cpp
 /**
  * @file autorizzazione_pos.cpp
- * @brief Sistema di verifica e autorizzazione per pagamenti con carta POS.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @brief Verifica fondi e autorizza (o nega) un pagamento POS.
  */
 #include <iostream>
 
 /**
- * @brief Punto di ingresso: verifica i fondi disponibili e processa il pagamento.
- * @return int Codice di stato (0 = transazione conclusa).
+ * @brief Controlla saldo vs importo e aggiorna il saldo se possibile.
+ * @return int 0 se la procedura è terminata.
  */
 int main() {
-    /// Saldo disponibile sulla carta prepagata del cliente
     double saldoDisponibile = 45.00;
-
-    /// Importo totale della spesa battuta in cassa
     double importoSpesa = 62.50;
 
-    std::cout << "=== TERMINALE PAGAMENTI POS ===" << "\n";
-    std::cout << "Importo richiesto: " << importoSpesa << " EUR" << "\n";
-    std::cout << "Verifica disponibilita in corso...\n\n";
+    std::cout << "=== TERMINALE PAGAMENTI POS ===\n";
+    std::cout << "Importo richiesto: " << importoSpesa << " EUR\n";
+    std::cout << "Verifica disponibilita...\n\n";
 
-    // Bivio decisionale a due rami (if-else)
     if (saldoDisponibile >= importoSpesa) {
-        // Ramo VERO: I fondi sono sufficienti
-        /// Flag locale di autorizzazione: esiste SOLO all'interno di questo blocco if
+        /// Flag locale: esiste SOLO dentro questo blocco
         bool autorizzato = true;
 
         saldoDisponibile = saldoDisponibile - importoSpesa;
-        std::cout << ">>> TRANSAZIONE APPROVATA (" << (autorizzato ? "ESITO POSITIVO" : "") << ") <<<" << "\n";
-        std::cout << "Nuovo saldo residuo: " << saldoDisponibile << " EUR" << "\n";
+        std::cout << ">>> TRANSAZIONE APPROVATA <<<\n";
+        std::cout << "Nuovo saldo: " << saldoDisponibile << " EUR\n";
     } else {
-        // Ramo FALSO: Fondi insufficienti
-        /// Variabile locale per il debito residuo: esiste SOLO dentro l'else
+        /// Esiste SOLO dentro l'else
         double importoMancante = importoSpesa - saldoDisponibile;
 
-        std::cout << ">>> TRANSAZIONE NEGATA <<<" << "\n";
-        std::cout << "Motivo: Credito insufficiente sulla carta." << "\n";
-        std::cout << "Importo mancante : " << importoMancante << " EUR" << "\n";
+        std::cout << ">>> TRANSAZIONE NEGATA <<<\n";
+        std::cout << "Credito insufficiente.\n";
+        std::cout << "Importo mancante: " << importoMancante << " EUR\n";
     }
 
-    std::cout << "\nGrazie per aver utilizzato i nostri servizi bancari.\n";
+    std::cout << "\nOperazione conclusa.\n";
     return 0;
 }
 ```
 @LIA.cpp
 
+#### 3. INVESTIGATE (Investiga)
+Con i valori dell’esempio (`saldo = 45`, `importo = 62.50`):
+
+| Punto | Cosa succede |
+|-------|----------------|
+| Condizione `saldo >= importo` | `false` |
+| Ramo eseguito | `else` |
+| `importoMancante` | `17.50` (visibile solo dentro l’else) |
+| Dopo l’`if-else` | messaggio “Operazione conclusa” |
+
+Prova a cambiare `importoSpesa` in `30.00` e riesegui: ora si attiva il ramo `if` e il saldo viene aggiornato.
+
+> 🔗 Ispeziona lo stack su [Python Tutor C++](https://pythontutor.com/cpp.html): nota che `autorizzato` e `importoMancante` nascono e muoiono nei rispettivi blocchi.
+
+#### 4. MODIFY (Modifica)
+1. **Guardiano sottoscorta**  
+   Aggiungi `int rotoloCartaTermica = 3;`.  
+   Con un `if` **semplice** (senza else): se `< 5`, stampa un allarme per sostituire il rotolo.
+
+2. **Micro-pagamento**  
+   Se `importoSpesa < 10.00`, aggiungi una commissione fissa di `0.30` **prima** del controllo sul saldo.
+
+3. **Prova di scope**  
+   Prova a stampare `autorizzato` o `importoMancante` **dopo** la chiusura dell’`if-else`.  
+   Il compilatore deve rifiutare (variabile non dichiarata in quello scope).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Controllo accessi al caveau**
+
+Scrivi `controllo_caveau.cpp`:
+
+- `const int PIN_SEGRETO = 4821;`
+- `int pinInserito` (es. `4821`)
+- `bool badgeDirigente` (`true` / `false`)
+- **Regola:** apri il caveau **solo se** PIN corretto **e** badge dirigente (`&&`)
+  - se ok → messaggio di benvenuto / sblocco
+  - altrimenti → “ACCESSO NEGATO” + attivazione telecamere
+- Nel ramo `else`, se `pinInserito != 0`, aggiungi anche: tentativo registrato nel log
+
+**Requisiti:** Doxygen, commenti `///`, graffe su tutti i blocchi, indentazione chiara.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Controllo accessi caveau (PIN + badge dirigente).
+ */
+#include <iostream>
+
+int main() {
+    const int PIN_SEGRETO = 4821;
+    // dichiara pinInserito e badgeDirigente
+    // if-else con la regola di sicurezza
+    return 0;
+}
+```
+
+</details>
+
 ---
 
-#### 3. INVESTIGATE (Investiga: Il Bivio e la Visibilità nello Stack)
-
-Ora è **obbligatorio** aprire Python Tutor per toccare con mano uno dei concetti più importanti e fraintesi della programmazione: la **visibilità (scope)** delle variabili.
-
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20double%20saldo%20%3D%20100.00%3B%0A%20%20%20%20double%20spesa%20%3D%2062.50%3B%0A%0A%20%20%20%20if%20%28saldo%20%3E%3D%20spesa%29%20%7B%0A%20%20%20%20%20%20%20%20bool%20autorizzato%20%3D%20true%3B%0A%20%20%20%20%20%20%20%20saldo%20-%3D%20spesa%3B%0A%20%20%20%20%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Approvato%3A%20%22%20%3C%3C%20autorizzato%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20double%20importoMancante%20%3D%20spesa%20-%20saldo%3B%0A%20%20%20%20%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Negato%5Cn%22%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
-
-Clicca su **"Visualize Execution"** e premi il tasto **"Next"** passo dopo passo, tenendo gli occhi fissi sul riquadro **Frames (Stack)** a destra.
-
-> ❓ **Domanda Guida Obbligatoria:**  
-> **"Cosa succede alla variabile `autorizzato` quando il cursore di esecuzione esce dalla parentesi graffa di chiusura `}` dell'if?"**
-
-Osserva cosa accade a schermo:
-1. All'ingresso nel blocco `if`, nello stack viene riservato uno spazio per `autorizzato = true`.
-2. Appena l'esecuzione raggiunge e supera la parentesi graffa `}`, **la variabile `autorizzato` scompare letteralmente dallo stack!**
-
-> 💡 **La Metafora del Locker Temporaneo:**  
-> Immagina che aprire una parentesi graffa `{` equivalga ad attivare uno **scomparto locker a noleggio istantaneo**:  
-> - Ci depositi dentro il pacco (`bool autorizzato = true;`).  
-> - Puoi usarlo liberamente finché rimani all'interno di quella stanza delimitata dalle graffe `{ ... }`.  
-> - Ma non appena varchi la soglia della graffa di chiusura `}`, **lo scompartimento si sigilla e diventa inaccessibile**: la serratura scatta e il vano viene rimosso dal sistema.  
-> 
-> Se subito dopo la graffa provi a scrivere `std::cout << autorizzato;`, per il compilatore è come chiedere il pacco a uno sportello che **non esiste più nel magazzino**: riceverai l'errore bloccante:  
-> `error: 'autorizzato' was not declared in this scope`.
+### 📝 Riepilogo tascabile
+- `if` = azione opzionale; `if-else` = bivio a due vie (un solo ramo eseguito).
+- **Mai** `;` subito dopo la condizione.
+- **Sempre** le graffe `{ }`, anche per una sola istruzione.
+- Variabili dichiarate dentro un blocco esistono **solo** lì (scope).
+- Condizioni complesse: combina con `&&` e `||` (già visti nel capitolo sulle espressioni).
 
 ---
 
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Aggiunta del Guardiano Sottoscorta (`if` semplice):** Aggiungi in testa al programma una variabile `int rotoloCartaTermica = 3;` (metri di carta rimasti nella stampante del POS). Se i metri sono inferiori a 5, stampa un messaggio di allarme: *"Attenzione: sostituire presto il rotolo di carta scontrini!"*. Usa un `if` semplice senza `else`.
-2. **Commissione di Micro-Pagamento:** Se il pagamento è inferiore a `10.00€`, applica una commissione fissa di `0.30€` sommandola a `importoSpesa` prima di verificare se il saldo è sufficiente.
-3. **La prova dell'errore di Scope:** Prova a scrivere `std::cout << autorizzato;` oppure `std::cout << importoMancante;` fuori dai rispettivi blocchi, subito prima di `return 0;`. Osserva l'errore del compilatore che rifiuta di compilare il programma!
+### ➡️ Prossimo chunk
+Quando i bivi diventano **più di due** (es. fasce di sconto, giudizi, stati di un ordine) un solo `if-else` non basta.  
+Passeremo a catene `if / else if / else` e alle regole per non perdere il controllo del flusso.
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
-
-> 🎯 **Sfida SIA: Il Controllo Accessi al Caveau Aziendale**  
-> L'azienda di logistica custodisce merci di alto valore in un caveau blindato. L'accesso è regolato da una doppia verifica elettronica: codice PIN numerico e possesso del badge dirigente.
-> 
-> Scrivi un programma C++ autonomo (`controllo_caveau.cpp`):
-> - Dichiara la costante con il PIN corretto: `const int PIN_SEGRETO = 4821;`.
-> - Dichiara `int pinInserito`: il codice digitato dall'impiegato sul tastierino (es. `4821`).
-> - Dichiara `bool badgeDirigente`: `true` se il dipendente ha passato il badge da supervisore.
-> - **Regola di Sicurezza:**
->   - Con un `if-else`, autorizza l'apertura della porta solo se il PIN digitato è identico al PIN segreto **E** il badge dirigente è abilitato (`pinInserito == PIN_SEGRETO && badgeDirigente`).
->   - Se l'accesso è autorizzato, stampa a video: *"Sblocco serratura... Accesso al Caveau consentito. Benvenuto!"*.
->   - Nel ramo `else`, stampa: *"ACCESSO NEGATO: Credenziali errate! Attivazione telecamere di sicurezza."*.
->   - Inoltre, all'interno del ramo `else`, aggiungi un `if` semplice: se il PIN inserito era diverso da zero, stampa anche: *"Tentativo registrato nel log di sicurezza."*.
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti `///` sulle variabili e costanti.
-> - Indentazione perfetta e graffe `{}` su tutti i blocchi.
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: if e if-else + tranelli + scope
+  [x] Metafora tornello
+  [x] Quiz sintassi corretta
+  [x] Predict sulla trappola delle graffe mancanti
+  [x] PRIMM su terminale POS
+  [x] Make su caveau (SIA / sicurezza)
+  [x] else-if non introdotto (solo annunciato)
+-->
 ## 🌲 Capitolo 6: Scaglioni e Labirinti (if-else if in Cascata, if Annidati e Guida alla Scelta)
 
 > "La complessità di un problema si risolve dividendolo in livelli ordinati di decisioni."

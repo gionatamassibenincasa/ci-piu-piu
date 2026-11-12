@@ -235,16 +235,3 @@ Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il co
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Dichiarato come sessione di laboratorio (durata realistica)
-  [x] Sezione casi particolari (scuola / no admin / alternative)
-  [x] PATH rafforzato + controlli espliciti
-  [x] Mini-PRIMM sul programma di prova
-  [x] Spiegazione plain-language di compilatore e debugger
-  [x] Sezione Run + Debug da VS Code
-  [x] Cartella di lavoro dedicata consigliata
-  [x] Metafora officina mantenuta e ampliata
-  [x] Un solo obiettivo principale
--->
