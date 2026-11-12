@@ -11,18 +11,11 @@ ci-piu-piu/
 ├── preprocess.py       # Pre-processore che espande gli #include in README.md
 ├── chapters/           # I "segmenti" (chunk) delle lezioni
 │   ├── 00_guida_allo_studio.md
-│   ├── 01_il_motore_sotto_il_cofano.md
-│   ├── 02_ciao_mondo.md
-│   ├── 03_variabili_costanti_tipi.md
-│   ├── 04_espressioni_e_operatore_ternario.md
-│   ├── 05_bivi_semplici_if_else.md
-│   ├── 06_bivi_complessi_e_regole_if.md
-│   ├── 07_selezione_multipla_switch.md
-│   ├── 08_ciclo_while.md
-│   ├── 09_ciclo_for.md
-│   ├── 10_ciclo_do_while.md
-│   ├── 11_controllo_cicli_e_formattazione.md
+│   ├── ...
 │   └── ...
+├── docs/               # Riferimenti metodologici e template (per autori e LLM)
+│   ├── template_lezione.md   # Template standard di capitolo (PRIORITÀ 1)
+│   └── quiz_liascript.md     # Sintassi corretta dei quiz LiaScript
 ├── assets/             # Immagini o risorse esterne (se necessarie)
 ├── SKILLS.md           # Profilo docente, metodologie didattiche (PRIMM) e regole di stile
 ├── leggimi.md          # Guida al repository e flusso di lavoro per i contributori
@@ -32,7 +25,7 @@ ci-piu-piu/
 
 ## Flusso di lavoro
 
-1. **Scelta o creazione del segmento**: crea o modifica un file in `chapters/` (es. `chapters/02_ciao_mondo.md`), seguendo le metodologie didattiche (PRIMM, metafore "Head First", commenti Doxygen) definite in [SKILLS.md](SKILLS.md).
+1. **Scelta o creazione del segmento**: parti sempre da `docs/template_lezione.md`. Copialo in `chapters/XX_nome.md` e sostituisci i placeholder. Rispetta le regole in [SKILLS.md](SKILLS.md) e la sintassi quiz in [docs/quiz_liascript.md](docs/quiz_liascript.md).
 2. **Inclusione nell'indice**: assicurati che il capitolo sia incluso in `index.md` tramite la direttiva `#include <chapters/nome_file.md>`.
 3. **Generazione dell'output**:
    ```bash
