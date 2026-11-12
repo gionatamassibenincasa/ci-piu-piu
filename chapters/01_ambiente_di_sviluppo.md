@@ -157,7 +157,21 @@ ridotto.exe
 
 ##### 3. MODIFY
 Cambia il messaggio stampato (es. metti il tuo nome o la tua classe) e ricompila.  
-Verifica che la nuova frase appaia correttamente.
+Verifica che la nuova frase appaia correttamente. Puoi usare il bottone "Esegui" sotto la finestra del codice sorgente per eseguire il codice.
+
+```cpp[modify.cpp]
+/**
+ * @file modify.cpp
+ * @brief Modifica la frase!
+ */
+#include <iostream>
+
+int main() {
+    std::cout << "Ambiente C++ pronto!\n";
+    return 0;
+}
+```
+@LIA.cpp
 
 ---
 

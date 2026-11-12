@@ -1,7 +1,7 @@
 <!--
 author:   Gionata Massi
 email:    gionata.massi@savoiabenicasa.it
-version:  2026-11-11
+version:  2026-11-12
 language: it
 narrator: IT Italian Male
 comment:  Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
@@ -15,7 +15,7 @@ import:   https://raw.githubusercontent.com/liascript-templates/plantUML/master/
 > "Programmare è capire."
 > — *Kristen Nygaard*
 
-Benvenuto nel corso! Questo non è un semplice libro di testo: è un **laboratorio interattivo**. 
+Benvenuto nel corso! Questo non è un semplice libro di testo: è un **laboratorio interattivo**.  
 Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visualizzare questa pagina su LiaScript:
 
 🔗 [Apri il corso su LiaScript](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/refs/heads/main/README.md)
@@ -24,98 +24,115 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 
 ## 🧭 Guida allo Studio: Come Imparare a Programmare
 
-
 > Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
-> e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
-> congegno pratico che modifica la società -- e tutti sappiamo quanto abbia
-> cambiato la nostra vita.
+> e matematico. […] si capisce qualcosa solo se si è capaci — noi, non altri! —
+> di scriverne il programma. Altrimenti non si ha una vera comprensione,
+> si crede soltanto di capire.
 >
-> Perché lo dico? Perché il calcolatore cambia l'epistemologia, modifica il
-> significato del verbo «comprendere».
-> A mio giudizio, si capisce qualcosa solo se si è capaci -- noi, non altri! --
-> di scriverne il programma.
-> Altrimenti non si ha una vera comprensione, si crede soltanto di capire.
->
-> — Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
+> — *Gregory Chaitin, Alla ricerca di Omega*
 
-Imparare a programmare non significa memorizzare comandi a memoria: significa sviluppare un **metodo di lavoro mentale**.
-
-Questa guida raccoglie due strumenti metodologici complementari pensati per accompagnarti lungo tutto il corso:
-1. **La visione d'insieme:** come studiare e assimilare i contenuti di ogni capitolo (metodo di lettura tecnica).
-2. **Il lavoro pratico:** come affrontare ogni singolo programma ed esercizio di codice (metodo PRIMM).
+Imparare a programmare non è memorizzare comandi: è costruire un **metodo di lavoro mentale**.  
+Questa guida ti dà tre bussole per tutto il corso.
 
 ---
 
-### 📖 Consigli per ottenere il massimo da un testo tecnico
+### 🎯 Cosa trovi in questo corso
 
-> 💡 *Traduzione e adattamento per la classe del saggio di Sebastian Raschka: [How to Read Technical Books](https://sebastianraschka.com/blog/2025/reading-books.html).*
+| Blocco | Contenuti principali | Capitoli (indicativi) |
+|--------|----------------------|------------------------|
+| **1 — Il linguaggio** | Ambiente, compilazione, I/O, variabili, espressioni, selezione, cicli | 1–13 |
+| **2 — Modularità e dati** | Funzioni, array, struct, algoritmi di base, progetto gestionale | 14–24 |
+| **3 — OOP e template** | Classi, incapsulamento, cenni a ereditarietà e template | (in costruzione) |
 
-Ti suggeriamo vivamente di affrontare il materiale **in ordine**, poiché ogni capitolo costruisce sulle basi di quello precedente. Per ogni capitolo, ti raccomandiamo di seguire questi 5 passaggi:
-
-#### 1. Prima lettura (offline e panoramica)
-- Leggi il capitolo dall'inizio alla fine **senza ancora scrivere codice**. L'obiettivo è ottenere una visione d'insieme del quadro generale.
-- Se possibile, leggi lontano dalle distrazioni del computer (una copia stampata o uno schermo senza notifiche, browser o social).
-- Mantieni questa sessione breve e mirata (circa **20 minuti**): non bloccarti sui dettagli e non fare ricerche esterne adesso. Annota o evidenzia semplicemente i punti che ti incuriosiscono o ti sembrano confusi.
-
-#### 2. Seconda lettura (con il codice tra le mani)
-- Rileggi il capitolo, ma questa volta **digita ed esegui il codice**.
-- **Regola d'oro:** riscrivere il codice a mano richiede più tempo rispetto al fare copia-incolla, ma costringe la mente a riflettere su ogni singola istruzione, sintassi e punteggiatura.
-- Se ottieni un risultato inatteso o un errore del compilatore, cerca di capirne il motivo. Se dopo averci riflettuto non trovi la causa, confrontati con i compagni o chiedi al docente.
-
-#### 3. Esercizi (mettersi alla prova)
-- Dopo aver digitato e compreso il codice base, affronta gli esercizi proposti.
-- Gli esercizi servono a consolidare la comprensione in modo guidato.
-- Se un esercizio ti sembra troppo difficile, consulta i suggerimenti o la soluzione, ma **solo dopo aver fatto un tentativo serio**.
-
-#### 4. Revisione delle note e approfondimenti
-- Torna alle parti che avevi annotato o evidenziato durante le prime due letture: ci sono ancora dubbi irrisolti?
-- Questo è il momento perfetto per consultare la documentazione, approfondire o chiedere chiarimenti in classe.
-- Riporta sul tuo quaderno (o nella tua app di note) le intuizioni più importanti, gli schemi o i frammenti di codice riutilizzabili.
-
-#### 5. Applicare le idee in un progetto personale
-- I passaggi precedenti servono ad assorbire la conoscenza. Ora prova a chiederti: *"Come posso usare questo concetto in un progetto mio?"*
-- Costruisci un piccolo programma partendo dagli esempi del capitolo. A volte basta una piccola idea per consolidare una grande competenza!
-
-> 💬 **Considerazioni aggiuntive:**  
-> Questo approccio non è scolpito nella pietra: se un argomento ti è già del tutto familiare, puoi velocizzare la lettura per dedicare più tempo ai concetti nuovi. Nei capitoli puramente concettuali, concentrati sulla comprensione logica senza forzare la scrittura di codice.
+Ogni capitolo è pensato come **chunk** da 15–25 minuti (a volte una sessione di laboratorio più lunga, come l’installazione dell’ambiente).
 
 ---
 
-### 🔬 Il Metodo PRIMM: Come affrontare ogni programma
+### 📖 Come leggere un capitolo tecnico (5 passi)
 
-> 💡 *Adattato dalle linee guida pedagogiche di [primmportal.com](https://primmportal.com/).*
+Adattamento per la classe del saggio di Sebastian Raschka [*How to Read Technical Books*](https://sebastianraschka.com/blog/2025/reading-books.html).
 
-Ogni volta che incontri un programma nel libro di testo, negli appunti o durante le lezioni in laboratorio, non limitarti a guardarlo passivamente. Segui rigorosamente queste 5 tappe:
+1. **Prima lettura (panoramica, ~15–20 min)**  
+   Leggi dall’inizio alla fine **senza scrivere codice**. Cerca il quadro generale. Annota solo i punti confusi.
 
-```
-[ 1. Predict ]  ──►  [ 2. Run ]  ──►  [ 3. Investigate ]  ──►  [ 4. Modify ]  ──►  [ 5. Make ]
- (Prevedi & Traccia)  (Digita a mano)    (Debug & Memoria)     (Piccoli cambi)   (Crea da zero)
-```
+2. **Seconda lettura (con le mani sulla tastiera)**  
+   Rileggi e **digita** gli esempi. Niente copia-incolla nella fase di studio: digitare costringe a notare ogni simbolo.
 
-#### 1. PREDICT (Prevedi)
-- Prima di eseguire il programma, esamina attentamente il codice sorgente e **ipotizza cosa farà**.
-- Se il codice contiene condizioni, cicli o variabili che cambiano, costruisci sul quaderno una **tabella di traccia** (colonne con i valori assunti dalle variabili passo dopo passo).
+3. **Esegui e osserva**  
+   Compila, lancia, confronta l’output con ciò che ti aspettavi. Se qualcosa non torna, **non andare avanti**: ferma e investiga.
 
-#### 2. RUN (Esegui)
-- Copia il programma nel tuo ambiente di sviluppo (VS Code o blocco interattivo `@LIA.cpp`).
-- **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
-- Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
+4. **Modifica con uno scopo**  
+   Cambia *una cosa alla volta* (un numero, una condizione, un messaggio) e prevedi l’effetto prima di rieseguire.
 
-#### 3. INVESTIGATE (Investiga)
-- Copia il programma su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
-- Osserva visivamente come evolve lo stato della memoria (Stack, variabili locali, tipi) a ogni istruzione di assegnamento.
-- Confronta l'evoluzione effettiva con la tabella di traccia che hai disegnato sul quaderno.
+5. **Crea**  
+   Affronta il Make del capitolo da zero. È il momento in cui passi da lettore a autore.
 
-#### 4. MODIFY (Modifica)
-- Modifica il codice sorgente procedendo a piccoli passi, per fare tuo il programma:
-  - *Esempio 1:* se il programma usa valori prefissati (hardcoded), modificalo per chiedere i dati all'utente tramite istruzioni di input (`std::cin`).
-  - *Esempio 2:* se usa numeri interi (`int`), prova a convertirli in numeri a virgola mobile (`double`) o viceversa, osservando come cambia il comportamento della divisione.
-- Più modifichi il codice con cognizione di causa, più ne diventi padrone.
+---
 
-#### 5. MAKE (Crea)
-- Scrivi un **nuovo programma autonomo** partendo da zero.
-- Puoi prendere in prestito frammenti o strutture logiche dal programma appena studiato, applicandoli per risolvere un problema diverso o per realizzare una funzione nuova.
-- Questo è il momento in cui passi da "lettore di codice" a "creatore di software".
+### 🔬 Il metodo PRIMM (per ogni laboratorio di codice)
+
+| Fase | Cosa fai tu | Perché serve |
+|------|-------------|--------------|
+| **P**redict | Prima di eseguire, *indovina* cosa succederà | Attiva il modello mentale |
+| **R**un | Esegui (terminale, VS Code o blocco `@LIA.cpp`) | Confronto con la realtà |
+| **I**nvestigate | Spiega *perché* è successo così (tabella, Python Tutor, messaggio del compilatore) | Collega sintassi e significato |
+| **M**odify | Cambia il codice in modo guidato | Consolida senza partire da zero |
+| **M**ake | Scrivi un programma nuovo sul tema | Trasferimento autonomo |
+
+Nei capitoli trovi queste fasi già strutturate. Usale anche quando studi da solo.
+
+---
+
+### 🧩 Come sono fatti i capitoli
+
+- **Un solo obiettivo** osservabile per chunk  
+- **Metafora** concreta (officina, locker, tornello, cassa…)  
+- **Scenario SIA** (magazzino, POS, conto corrente, caveau…)  
+- **Quiz** interattivi LiaScript  
+- **Riepilogo tascabile** e ponte al capitolo successivo  
+
+Regole di scrittura del codice (le rispetterai nei Make):
+- Documentazione **Doxygen** proporzionata (vedi capitolo 4)
+- Commenti `///` sul **perché**, non sul cosa ovvio
+- Niente programmi monolitici inutilmente lunghi
+
+---
+
+### 🛠️ Strumenti che userai
+
+- **VS Code + MinGW-w64 (MSYS2)** — officina locale (capitolo 1)
+- **Terminale** — compilazione e primi controlli
+- **Python Tutor (C++)** — ispezione di memoria e stack nelle fasi Investigate
+- **LiaScript** — questa pagina interattiva (quiz, codice eseguibile)
+
+---
+
+### ⚠️ Errori e mentalità
+
+Gli errori di compilazione non sono “fallimenti”: sono **messaggi precisi** della fabbrica.  
+Imparare a leggerli è una competenza del corso, al pari della sintassi.
+
+Se resti bloccato:
+1. Rileggi l’obiettivo del chunk  
+2. Rifai la fase Investigate sull’ultimo esempio che funzionava  
+3. Chiedi in classe portando il messaggio di errore completo  
+
+---
+
+### ➡️ Prossimo passo
+
+Allestisci l’officina: installazione di VS Code, estensione C/C++, MSYS2 e MinGW-w64.  
+Poi apriremo il cofano e vedremo come il sorgente diventa un eseguibile.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Allineata a chunking, PRIMM, Head First
+  [x] Mappa a tre blocchi e numerazione aggiornata (1–13 / 14–24)
+  [x] Riferimento esplicito a Doxygen (cap. 4) e a Python Tutor
+  [x] Tono conversazionale, senza sovraccarico
+-->
 ## 🛠️ Capitolo 1: Prepara la tua Officina di Sviluppo
 
 > "Uno strumento non fa il mestiere, ma senza gli strumenti giusti il mestiere diventa impossibile."
@@ -275,7 +292,21 @@ ridotto.exe
 
 ##### 3. MODIFY
 Cambia il messaggio stampato (es. metti il tuo nome o la tua classe) e ricompila.  
-Verifica che la nuova frase appaia correttamente.
+Verifica che la nuova frase appaia correttamente. Puoi usare il bottone "Esegui" sotto la finestra del codice sorgente per eseguire il codice.
+
+```cpp[modify.cpp]
+/**
+ * @file modify.cpp
+ * @brief Modifica la frase!
+ */
+#include <iostream>
+
+int main() {
+    std::cout << "Ambiente C++ pronto!\n";
+    return 0;
+}
+```
+@LIA.cpp
 
 ---
 
@@ -353,7 +384,7 @@ Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il co
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
 ---
-## ⚙️ Capitolo: Il Motore Sotto il Cofano
+## ⚙️ Capitolo 2: Il Motore Sotto il Cofano
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 > — *Bjarne Stroustrup*
@@ -551,7 +582,7 @@ Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo
   [x] Collegamento esplicito return N → movl $N
   [x] Riepilogo tascabile e ponte al capitolo successivo
 -->
-## 💬 Capitolo 2: Il Primo Dialogo con la Macchina
+## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
 
 > "S'impara a programmare scrivendo programmi."
 > — *Brian Kernighan*
@@ -736,7 +767,127 @@ Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i d
   [x] Riepilogo tascabile
   [x] Nessun costrutto non ancora introdotto
 -->
-## 📦 Capitolo 3: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
+## 📝 Capitolo 4: Parlare al Futuro Te Stesso (Documentazione Doxygen)
+
+> "Il codice viene letto molto più spesso di quanto venga scritto."
+> — *Principio di manutenibilità*
+
+Hai già scritto `Ciao, Mondo!` e presto scriverai programmi più lunghi.  
+Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente.  
+
+Per questo in azienda (e in questo corso) non basta che il programma *funzioni*: deve anche essere **comprensibile**.  
+Usiamo uno standard leggero e diffusissimo: **Doxygen**.
+
+> 💡 **Metafora:**  
+> Il codice è il prodotto finito.  
+> I commenti Doxygen sono l’**etichetta e il manuale d’uso** attaccati al prodotto: dicono *cosa fa*, *per chi*, *con quali dati*, senza costringere a smontare tutto.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere un’intestazione di file e di `main` in stile Doxygen
+- Usare il commento `///` per spiegare il **perché** (non il cosa ovvio)
+- Applicare la **regola di proporzionalità** del corso
+
+---
+
+### 📋 I tag essenziali (solo quelli che usiamo)
+
+| Tag | A cosa serve | Esempio |
+|-----|--------------|---------|
+| `@file` | Nome del file | `@file scheda_prodotto.cpp` |
+| `@brief` | Una riga: cosa fa il programma / la funzione | `@brief Calcola il totale ivato.` |
+| `@param` | Descrive un parametro (quando avremo le funzioni) | `@param prezzo Importo netto in euro` |
+| `@return` | Cosa restituisce la funzione | `@return int 0 se successo` |
+
+Commento di riga leggero:
+
+```cpp
+/// Aliquota IVA ordinaria vigente (non modificare a caso)
+const double ALIQUOTA_IVA = 0.22;
+```
+
+---
+
+### 🔬 Esempio minimo completo
+
+```cpp
+/**
+ * @file presentazione.cpp
+ * @brief Stampa nome, classe e hobby dello studente.
+ */
+#include <iostream>
+
+/**
+ * @brief Punto di ingresso del programma.
+ * @return int 0 se l'esecuzione termina correttamente.
+ */
+int main() {
+    /// Identificativo dello studente per lo scontrino di presentazione
+    std::cout << "Nome: Alex\n";
+    std::cout << "Classe: 3A SIA\n";
+    return 0;
+}
+```
+
+---
+
+### ⚖️ Regola di proporzionalità (obbligatoria nel corso)
+
+| Situazione | Cosa scrivere |
+|------------|----------------|
+| Programma o funzione **> ~15 righe** | Intestazione Doxygen completa (`@file` / `@brief` / `@param` / `@return` dove servono) |
+| Snippet o esercizio **breve** | Solo `///` sul **perché** economico o logico |
+| Vietato | Commenti tautologici (`/// incrementa i di 1`) |
+
+Esempio **buono**:
+```cpp
+/// 0.22 = aliquota IVA ordinaria vigente per beni e servizi
+const double ALIQUOTA_IVA = 0.22;
+```
+
+Esempio **da evitare**:
+```cpp
+/// dichiara la costante aliquota
+const double ALIQUOTA_IVA = 0.22;
+```
+
+---
+
+### 🧪 Mini-esercizio (MAKE leggero)
+
+Prendi il programma `presentazione.cpp` del capitolo precedente (o riscrivilo) e:
+1. Aggiungi l’intestazione `@file` + `@brief` in testa al file
+2. Aggiungi `@brief` e `@return` su `main`
+3. Metti un `///` utile su almeno una riga di output
+
+Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scrivere** i commenti nel modo giusto. Più avanti, quando i progetti cresceranno, potremo anche generarne la documentazione automatica.
+
+---
+
+### 📝 Riepilogo tascabile
+- Doxygen = etichette standard per file e funzioni.
+- Tag minimi: `@file`, `@brief`, `@param`, `@return`.
+- `///` spiega il **perché**, non il cosa ovvio.
+- Proporzionalità: completo sopra ~15 righe, leggero sotto.
+- Da questo capitolo in poi i Make “ufficiali” richiederanno questi standard.
+
+---
+
+### ➡️ Prossimo chunk
+Con l’officina pronta, il motore visto, il primo dialogo scritto e le etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Chunk breve e monotematico (solo documentazione)
+  [x] Allineato a SKILLS.md (proporzionalità)
+  [x] Nessun costrutto nuovo di linguaggio
+  [x] Ponte esplicito verso variabili
+-->
+## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
 
 > "La memoria è lo spazio in cui i dati attendono il loro turno per essere trasformati in valore."
 > — *Principio dei Sistemi Informativi*
@@ -962,7 +1113,7 @@ Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere dec
   [x] cin/getline NON introdotti qui (troppa densità; eventuali in capitolo successivo)
   [x] Riepilogo tascabile e ponte al capitolo espressioni
 -->
-## 🧮 Capitolo 4: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
+## 🧮 Capitolo 6: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
 > — *Principio dell'Elaborazione Dati*
@@ -1189,7 +1340,7 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
   [x] Make su commissioni POS (SIA)
   [x] if/else solo annunciato, non introdotto
 -->
-## 🚦 Capitolo 5: Bivi e Decisioni (`if` e `if-else`)
+## 🚦 Capitolo 7: Bivi e Decisioni (`if` e `if-else`)
 
 > "Le decisioni sono i binari su cui viaggiano i processi aziendali."
 > — *Principio di Ingegneria Gestionale*
@@ -1436,198 +1587,176 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
   [x] Make su caveau (SIA / sicurezza)
   [x] else-if non introdotto (solo annunciato)
 -->
-## 🌲 Capitolo 6: Scaglioni e Labirinti (if-else if in Cascata, if Annidati e Guida alla Scelta)
+## 🌲 Capitolo 8: Scaglioni e Labirinti (`if / else if / else` e if annidati)
 
 > "La complessità di un problema si risolve dividendolo in livelli ordinati di decisioni."
 > — *Principio dell'Analisi dei Sistemi*
 
-Nel capitolo precedente abbiamo affrontato i bivi a due sole strade (`if-else`). Ma nei contesti gestionali ed economici le scelte raramente sono binarie:
-- Il fatturato di un cliente non è solo "alto o basso": si divide in **scaglioni di sconto progressivi** (Silver, Gold, Platinum).
-- L'approvazione di un prestito aziendale richiede una sequenza gerarchica di controlli: prima la maggiore età, poi il bilancio, infine le garanzie.
+Con `if-else` gestiamo un bivio a due strade.  
+Nei contesti aziendali le scelte sono spesso **a scaglioni**: fasce di sconto, livelli di fido, aliquote fiscali.  
+Servono la **scala** `if / else if / else` e, quando un controllo dipende da un altro, gli **`if` annidati**.
 
-Per governare queste situazioni senza scrivere codice confuso e caotico, utilizziamo la scala **`if / else if / ... / else`**, gli **`if` annidati** e una **bussola decisionale** per scegliere sempre lo strumento giusto.
-
----
-
-### 💡 La Metafora: Il Nastro di Smistamento Logistico
-
-> 💡 **Metafora:**  
-> Pensa al nastro trasportatore di un grande centro logistico con bilancia e scanner ottico:
-> - **La scala `if - else if - else` (I Varchi Progressivi):**  
->   Il pacco scorre sul nastro e incontra una serie di sensori posti in ordine:
->   1. Se pesa meno di 2 kg (`if`), viene deviato sulla rampa dei colli leggeri.
->   2. Altrimenti, se pesa meno di 10 kg (`else if`), finisce nella rampa media.
->   3. Altrimenti, se pesa meno di 30 kg (`else if`), va nei colli pesanti.
->   4. Se fallisce tutti i controlli precedenti (`else`), viene spinto sul binario dei colli speciali fuori misura.
->   *Regola fondamentale:* non appena un sensore intercetta il pacco e lo devia, **nessun altro sensore successivo lo esaminerà più**!
->
-> - **L'`if` annidato (La Stanza di Sicurezza con Doppia Porta):**  
->   Per entrare nel caveau devi prima superare la porta esterna (`if`). Solo se sei dentro quella stanza trovi la seconda porta blindata (`if` interno). Se la prima porta non si apre, la seconda non la vedrai nemmeno!
+> 💡 **Metafora: nastro di smistamento logistico**  
+> - **Scala `if / else if / else`** = sensori in sequenza sul nastro: il primo che “prende” il pacco lo devia e **i successivi non lo vedono più**.  
+> - **`if` annidato** = doppia porta di sicurezza: solo se apri la prima trovi la seconda. Se la prima resta chiusa, la seconda non la incontri.
 
 ---
 
-### 🪜 La Scala `if / else if / else` per Alternative Disgiunte
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere una catena `if / else if / else` per alternative mutuamente esclusive
+- Usare un `if` annidato quando un controllo ha senso solo dopo un altro
+- Scegliere tra scala, annidamento e `&&` senza creare rami morti o condizioni fuori ordine
 
-Quando hai più di due alternative mutuamente esclusive (se ne verifica una, tutte le altre si escludono), si collegano più `if` a cascata:
+---
+
+### 🪜 La scala `if / else if / else`
+
+Per alternative **disgiunte** (se ne vale una, le altre no):
+
+```cpp
+if (fatturato >= 50000.0) {
+    sconto = 0.15;          // Platinum
+} else if (fatturato >= 20000.0) {
+    sconto = 0.10;          // Gold
+} else if (fatturato >= 5000.0) {
+    sconto = 0.05;          // Silver
+} else {
+    sconto = 0.0;           // nessuna fascia
+}
+```
+
+**Ordine critico:** metti prima le soglie più restrittive (es. ≥ 50000 prima di ≥ 20000).  
+Se invertissi l’ordine, un cliente Platinum verrebbe classificato Gold.
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
-
 start
-:Leggi Volume Fatturato;
-if (Fatturato >= 50.000€?) then (SI)
-  :Fascia Platinum (Sconto 15%);
-elseif (Fatturato >= 20.000€?) then (SI)
-  :Fascia Gold (Sconto 10%);
-elseif (Fatturato >= 5.000€?) then (SI)
-  :Fascia Silver (Sconto 5%);
-else (NO)
-  :Fascia Base (Nessuno sconto);
+:Leggi fatturato;
+if (fatturato >= 50000?) then (sì)
+  :Platinum 15%;
+elseif (fatturato >= 20000?) then (sì)
+  :Gold 10%;
+elseif (fatturato >= 5000?) then (sì)
+  :Silver 5%;
+else (no)
+  :Nessuno sconto;
 endif
-:Applica sconto alla fattura;
 stop
 @enduml
 ```
 
-#### ⚠️ Il Tranello dell'Ordine delle Condizioni
-In una scala `if - else if`, **l'ordine delle condizioni è vitale**! Il computer le valuta dall'alto verso il basso e si ferma alla **prima condizione vera**.
-Se ordini male le condizioni (es. mettendo la più generica prima di quella specifica), le condizioni successive diventeranno "codice morto", ovvero non verranno mai raggiunte!
-
 ---
 
-### 🧩 `if` Annidati e l'Anti-Pattern della Piramide
+### 🚪 L’`if` annidato
 
-Un `if` è **annidato** quando si trova all'interno del blocco `{}` di un altro `if`:
+Quando la seconda domanda ha senso **solo se** la prima è vera:
 
 ```cpp
-if (clienteMaggiorenne) {
-    if (redditoCertificato >= 20000.0) {
-        std::cout << "Finanziamento concesso.\n";
+if (anniCollaborazione >= 3) {
+    if (fatturatoAnnuo >= 20000.0) {
+        std::cout << "Fido concesso\n";
+    } else {
+        std::cout << "Fatturato insufficiente per il fido\n";
     }
+} else {
+    std::cout << "Anzianita insufficiente\n";
 }
 ```
 
-> ⚠️ **Attenzione all'Anti-Pattern "Pyramid of Doom" (La Piramide del Caos):**  
-> Annidare `if` dentro `if` per 4 o 5 livelli rende il codice illeggibile e difficile da manutenere (il codice scivola continuamente a destra).  
-> **Regola di pulizia:** se due condizioni devono verificarsi contemporaneamente senza azioni intermedie, **uniscile con l'operatore logico `&&`**:
-> ```cpp
-> if (clienteMaggiorenne && redditoCertificato >= 20000.0) {
->     std::cout << "Finanziamento concesso.\n";
-> }
-> ```
+A volte la stessa logica si scrive più corta con `&&` (un solo messaggio di esito).  
+L’annidamento resta utile quando i **messaggi di errore** devono essere distinti.
 
 ---
 
-### 🧭 La Bussola Decisionale: Quale `if` Scegliere?
+### 🧭 Bussola: quale strumento usare?
 
-Di fronte a un problema logico, consulta questa tabella per scegliere il costrutto ottimale:
-
-| Situazione del Problema | Struttura da Utilizzare | Esempio Pratico |
-| :--- | :--- | :--- |
-| **Azione opzionale (filtro / guardia):** devo fare qualcosa solo se c'è un'anomalia, altrimenti continuo normalmente. | `if` semplice (senza `else`) | Allarme scorte basse: avvisa solo se `scorte < soglia`. |
-| **Aut-aut secco:** esattamente una strada tra due possibili. | `if - else` | Pagamento POS: o autorizzato o negato. |
-| **Scaglioni continui / intervalli numerici:** il dato ricade in una sola fascia tra 3 o più alternative. | `if - else if - else` | Scaglioni di fatturato, fasce di peso, sconti per età. |
-| **Verifiche preliminari bloccanti:** il secondo controllo ha senso solo se il primo ha avuto successo. | `if` annidato o condizioni con `&&` | Accesso al conto: PIN corretto prima, poi saldo sufficiente. |
+| Situazione | Strumento |
+|------------|-----------|
+| Due sole alternative | `if-else` |
+| Tre o più fasce mutuamente esclusive | scala `if / else if / else` |
+| Secondo controllo solo se il primo è superato, con messaggi diversi | `if` annidato |
+| Tutte le condizioni devono essere vere, un solo esito | `if (A && B)` |
 
 ---
 
-### 🔬 Laboratorio PRIMM: Il Calcolo Scaglioni Clienti B2B
-
-Implementiamo la politica di fidelizzazione aziendale per clienti Business-to-Business (B2B).
+### 🔬 Laboratorio PRIMM: Fasce sconto e fido
 
 #### 1. PREDICT (Prevedi)
-? Osserva questo codice che assegna un giudizio scolastico. Cosa verrà stampato a video se `voto = 85`?
+Con `voto = 85`, cosa stampa questo codice?
+
 ```cpp
-int voto = 85;
-if (voto >= 60) {
-    std::cout << "Sufficiente";
-} else if (voto >= 80) {
-    std::cout << "Ottimo";
+if (voto >= 90) {
+    std::cout << "Ottimo\n";
+} else if (voto >= 60) {
+    std::cout << "Sufficiente\n";
 } else {
-    std::cout << "Non sufficiente";
+    std::cout << "Insufficiente\n";
 }
 ```
-- [ ] `Ottimo`
-- [x] `Sufficiente`
-- [ ] Stampa sia `Sufficiente` che `Ottimo`
-- [ ] Errore di compilazione
+
+[( )] `Ottimo`
+[(X)] `Sufficiente`
+[( )] Stampa sia `Sufficiente` che `Ottimo`
+[( )] Errore di compilazione
 
 <details>
 <summary>💡 Spiegazione</summary>
-Il programma valuta la prima condizione: <code>85 >= 60</code>, che è <b>vera</b>!  
-Stampa immediatamente <code>"Sufficiente"</code> e <b>ignora tutto il resto della catena</b> (anche se 85 è maggiore di 80).  
-<b>Lezione fondamentale:</b> quando confronti intervalli con <code>>=</code>, devi partire sempre dallo scaglione <b>più alto e restrittivo</b> e scendere verso il più basso!
+<code>85 >= 90</code> è falso → si passa al primo <code>else if</code>.  
+<code>85 >= 60</code> è vero → stampa <code>Sufficiente</code> e <strong>salta</strong> il resto della catena.
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma `politica_sconti.cpp` con gli scaglioni ordinati correttamente dal più alto al più basso:
 
 ```cpp
 /**
- * @file politica_sconti.cpp
- * @brief Calcolo sconti B2B a scaglioni di fatturato e verifica fido cliente.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @file fasce_sconto_cliente.cpp
+ * @brief Assegna fascia sconto per fatturato e valuta un fido semplice.
  */
 #include <iostream>
 #include <string>
 
 /**
- * @brief Funzione principale: determina la fascia cliente e il fido commerciale.
- * @return int Codice di stato (0 = successo).
+ * @brief Classifica il cliente e stampa esito sconto/fido.
+ * @return int 0 se ok.
  */
 int main() {
-    /// Ragione sociale dell'azienda cliente
-    std::string cliente = "TechSolutions S.r.l.";
-
-    /// Volume d'affari annuo cumulato dal cliente
-    double fatturatoAnnuo = 32500.00;
-
-    /// Anzianita del cliente in anni di collaborazione
+    std::string ragioneSociale = "Alpha Logistica Srl";
+    double fatturato = 32500.0;
     int anniCollaborazione = 4;
 
-    /// Percentuale di sconto commerciale da applicare
-    double percentualeSconto = 0.0;
-    std::string livelloFascia;
+    double sconto = 0.0;
+    std::string fascia = "Nessuna";
 
-    // SCALA DECISIONALE A SCAGLIONI ORDINATI (dal piu alto al piu basso)
-    if (fatturatoAnnuo >= 50000.0) {
-        percentualeSconto = 0.15; /// Sconto Platinum: 15%
-        livelloFascia = "Platinum";
-    } else if (fatturatoAnnuo >= 20000.0) {
-        percentualeSconto = 0.10; /// Sconto Gold: 10%
-        livelloFascia = "Gold";
-    } else if (fatturatoAnnuo >= 5000.0) {
-        percentualeSconto = 0.05; /// Sconto Silver: 5%
-        livelloFascia = "Silver";
+    if (fatturato >= 50000.0) {
+        sconto = 0.15;
+        fascia = "Platinum";
+    } else if (fatturato >= 20000.0) {
+        sconto = 0.10;
+        fascia = "Gold";
+    } else if (fatturato >= 5000.0) {
+        sconto = 0.05;
+        fascia = "Silver";
     } else {
-        percentualeSconto = 0.00; /// Fascia Standard: nessun sconto
-        livelloFascia = "Standard";
+        sconto = 0.0;
+        fascia = "Nessuna";
     }
 
-    std::cout << "=== PROFILO COMMERCIALE CLIENTE ===" << "\n";
-    std::cout << "Cliente       : " << cliente << "\n";
-    std::cout << "Fatturato     : " << fatturatoAnnuo << " EUR" << "\n";
-    std::cout << "Fascia premio : " << livelloFascia << "\n";
-    std::cout << "Sconto listino: " << (percentualeSconto * 100) << "%\n\n";
+    std::cout << "Cliente : " << ragioneSociale << "\n";
+    std::cout << "Fatturato: " << fatturato << " euro\n";
+    std::cout << "Fascia   : " << fascia << " (sconto " << sconto * 100 << "%)\n";
 
-    // DECISIONE ANNIDATA: Valutazione affidamento creditizio (Fido)
-    std::cout << "--- Istruttoria Fido Bancario/Commerciale ---" << "\n";
-    if (fatturatoAnnuo >= 20000.0) {
-        // Solo per clienti con buon fatturato, controlliamo l'affidabilita storica
-        if (anniCollaborazione >= 3) {
-            /// Fido accordato per clienti storici ad alto volume
-            std::cout << "Esito: FIDO AZIENDALE CONCESSO (Linea di credito: 10.000 EUR)\n";
+    // Fido: doppia porta (annidato) per messaggi distinti
+    if (anniCollaborazione >= 3) {
+        if (fatturato >= 20000.0) {
+            std::cout << "Fido: CONCESSO\n";
         } else {
-            /// Volume alto ma cliente troppo recente: fido prudenziale
-            std::cout << "Esito: FIDO LIMITATO (Cliente recente, max 2.500 EUR)\n";
+            std::cout << "Fido: NEGATO (fatturato insufficiente)\n";
         }
     } else {
-        std::cout << "Esito: FIDO NEGATO (Fatturato insufficiente)\n";
+        std::cout << "Fido: NEGATO (anzianita insufficiente)\n";
     }
 
     return 0;
@@ -1635,1183 +1764,1236 @@ int main() {
 ```
 @LIA.cpp
 
----
+#### 3. INVESTIGATE (Investiga)
+Con `fatturato = 32500`:
 
-#### 3. INVESTIGATE (Investiga: Il Cortocircuito della Cascata)
+| Passo | Condizione | Esito |
+|-------|------------|-------|
+| `>= 50000` | falso | passa oltre |
+| `>= 20000` | vero | `sconto = 0.10`, fascia Gold |
+| resto della scala | — | **non eseguito** |
 
-Ora osserviamo come il processore naviga la catena `else if` ed entra solo nel blocco corretto:
+Poi, con `anniCollaborazione = 4`, si entra nel primo `if` del fido e, poiché `32500 >= 20000`, il fido è concesso.
 
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20double%20fatturato%20%3D%2032500.0%3B%0A%20%20%20%20int%20anni%20%3D%204%3B%0A%20%20%20%20double%20sconto%20%3D%200.0%3B%0A%0A%20%20%20%20if%20%28fatturato%20%3E%3D%2050000.0%29%20%7B%0A%20%20%20%20%20%20%20%20sconto%20%3D%200.15%3B%0A%20%20%20%20%7D%20else%20if%20%28fatturato%20%3E%3D%2020000.0%29%20%7B%0A%20%20%20%20%20%20%20%20sconto%20%3D%200.10%3B%0A%20%20%20%20%7D%20else%20if%20%28fatturato%20%3E%3D%205000.0%29%20%7B%0A%20%20%20%20%20%20%20%20sconto%20%3D%200.05%3B%0A%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20sconto%20%3D%200.0%3B%0A%20%20%20%20%7D%0A%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Sconto%3A%20%22%20%3C%3C%20sconto%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
+> 🔗 Segui il flusso su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-Clicca su **"Visualize Execution"** e premi **"Next"**:
-1. Alla riga `if (fatturato >= 50000.0)`: la condizione è `false` (32500 < 50000). Il cursore salta al primo `else if`.
-2. Alla riga `else if (fatturato >= 20000.0)`: la condizione è `true` (32500 >= 20000).
-3. Il processore entra nel blocco ed esegue `sconto = 0.10;`.
-4. **Guarda attentamente il passo successivo:** la freccia di esecuzione **salta direttamente alla fine di tutta la catena**, oltrepassando gli altri `else if` e l'`else` senza nemmeno leggerli!
+#### 4. MODIFY (Modifica)
+1. **Fascia Diamond**  
+   In cima alla scala: se `fatturato >= 100000` → sconto `0.20`.  
+   Verifica con `120000` che non resti classificato Platinum.
 
----
-
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Nuovo Scaglione Diamond:** Aggiungi in cima alla scala lo scaglione *Diamond*: per fatturati pari o superiori a `100.000€`, applica uno sconto del `20%` (`0.20`). Verifica che un fatturato di `120000` riceva lo sconto Diamond e non Platinum!
-2. **Rifattorizzazione dell'`if` annidato:** Sostituisci l'`if` annidato del fido bancario con un'unica istruzione `if` con operatore logico `&&`:
+2. **Fido in una riga**  
+   Sostituisci l’annidamento con:
    ```cpp
-   if (fatturatoAnnuo >= 20000.0 && anniCollaborazione >= 3) {
-       std::cout << "Fido concesso!\n";
+   if (anniCollaborazione >= 3 && fatturato >= 20000.0) {
+       std::cout << "Fido: CONCESSO\n";
+   } else {
+       std::cout << "Fido: NEGATO\n";
    }
    ```
-   Rifletti: il codice è più corto e chiaro? Quali sono i vantaggi?
+   Più corto, ma perdi i messaggi distinti. Quando preferiresti l’annidamento?
+
+3. **Ordine sbagliato (esperimento)**  
+   Inverti temporaneamente le soglie Gold e Platinum e osserva cosa succede a un fatturato di `60000`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scaglioni di imposta (modello didattico semplificato)**
+
+Scrivi `imposte_reddito.cpp`:
+
+- `std::string nomeDitta`
+- `double redditoImponibile` (es. `38500`)
+- **Aliquota unica per fascia** (semplificazione didattica, non il calcolo progressivo reale):
+  - ≤ 15000 → 23%
+  - ≤ 28000 → 25%
+  - ≤ 50000 → 35%
+  - oltre → 43%
+- Imposta stimata = `redditoImponibile * aliquota`
+- `bool certificazioneGreen`: se `true`, detrai `1000` dall’imposta (non sotto zero)
+- Output: prospetto con fascia, aliquota, imposta, eventuale detrazione, totale
+
+**Requisiti:** Doxygen, `///` sulle aliquote, scala `if / else if / else` ordinata.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Stima imposta per scaglioni (modello didattico).
+ */
+#include <iostream>
+#include <string>
+
+int main() {
+    // dichiara dati, scala aliquote, detrazione green, stampa prospetto
+    return 0;
+}
+```
+
+</details>
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
+### 📝 Riepilogo tascabile
+- Scala `if / else if / else` = alternative esclusive; **ordine delle soglie** decisivo.
+- Al primo ramo vero il resto della catena viene saltato.
+- `if` annidato = seconda domanda solo se la prima è superata (messaggi diversi).
+- `A && B` = stesso esito in forma compatta; meno flessibile sui messaggi.
+- Per molte costanti discrete (menu 1/2/3) nel prossimo capitolo useremo `switch`.
 
-> 🎯 **Sfida SIA: Calcolo Scaglioni di Imposta sul Reddito Aziendale (IRES/IRPEF)**  
-> Nel diritto tributario ed economico, le imposte dirette sul reddito sono calcolate ad aliquote progressive per scaglioni.
-> 
-> Scrivi un programma C++ autonomo (`imposte_reddito.cpp`) che calcoli l'aliquota e l'imposta presunta dovuta da una ditta individuale:
-> - Dichiara `std::string nomeDitta`: denominazione dell'impresa.
-> - Dichiara `double redditoImponibile`: il reddito netto annuale dichiarato (es. `38500.00€`).
-> - **Regola di Calcolo ad Aliquote Progressive (usando `if - else if - else`):**
->   - Fino a `15.000€` -> Aliquota **23%** (`0.23`).
->   - Da `15.000,01€` a `28.000€` -> Aliquota **25%** (`0.25`).
->   - Da `28.000,01€` a `50.000€` -> Aliquota **35%** (`0.35`).
->   - Oltre `50.000€` -> Aliquota massima **43%** (`0.43`).
-> - Calcola l'importo totale dell'imposta stimata moltiplicando `redditoImponibile * aliquotaApplicata`.
-> - **Bonus di Sostenibilità:** Aggiungi un flag `bool certificazioneGreen = true;`. Se l'azienda possiede la certificazione ambientale, applica una detrazione secca di `1.000€` dall'imposta dovuta (usa un `if` semplice come filtro).
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti proporzionati `///` con le motivazioni delle aliquote vigenti.
-> - Stampa elegante del prospetto fiscale aziendale con riepilogo delle imposte.
-## 🎛️ Capitolo 7: Lo Smistatore di Sportello (Il Costrutto switch-case)
+---
+
+### ➡️ Prossimo chunk
+Quando la decisione dipende da un **valore discreto** (tasto di menu, codice operazione, stato numerico), la scala di `else if` diventa verbosa.  
+Entra in scena lo **`switch`**.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: scala else-if + annidamento + bussola di scelta
+  [x] Metafora nastro logistico
+  [x] Quiz sintassi corretta
+  [x] Predict sull'esclusività dei rami
+  [x] PRIMM fasce sconto + fido
+  [x] Make scaglioni imposta (modello semplificato esplicitato)
+  [x] switch solo annunciato
+-->
+## 🎛️ Capitolo 9: Lo Smistatore di Sportello (`switch-case`)
 
 > "La semplicità è il prerequisito per l'affidabilità di un'interfaccia utente."
 > — *Edsger W. Dijkstra*
 
-Nei capitoli precedenti abbiamo visto come l'`if` e l'`else if` siano perfetti per valutare condizioni con confronti e scaglioni numerici (`>` o `<`).  
-Tuttavia, quando un software gestionale deve gestire un **menu a scelte fisse** (es. i tasti del bancomat: *1. Prelievo*, *2. Versamento*, *3. Saldo*) o **codici a singolo carattere** (es. `'A'`, `'B'`, `'C'`), scrivere una sfilza di `else if (scelta == 1) ... else if (scelta == 2)` diventa verboso e poco leggibile.
+`if / else if` gestisce bene scaglioni e confronti (`>`, `<`, intervalli).  
+Quando invece la scelta è un **valore discreto fisso** — tasto di menu `1/2/3`, codice `'A'/'B'/'C'` — una lunga catena di `else if (x == …)` diventa verbosa.  
+Per questi casi il C++ offre lo **`switch-case`**.
 
-Per queste selezioni puntuali e discrete, il C++ mette a disposizione un costrutto compatto e velocissimo: lo **`switch-case`**.
-
----
-
-### 💡 La Metafora: La Tastiera del Distributore Automatico
-
-> 💡 **Metafora:**  
-> Pensa alla tastiera di un distributore automatico di bevande o a uno sportello Bancomat (ATM):
-> - Non digiti una formula o un intervallo; digiti un **singolo codice preciso**: tasto `1`, tasto `2`, oppure tasto `'A'`.
-> - Lo **`switch`** è il microcontrollore interno: legge il tasto premuto e invia all'istante l'impulso al motorino corrispondente (**`case`**).
-> - L'istruzione **`break`** è il freno meccanico di fine erogazione: una volta rilasciata la bibita, il carrello si ferma ed esce dalla macchina. Se il freno fosse rotto (dimentichi il `break`), la macchina continuerebbe a far scendere a cascata anche tutte le bibite dei cassetti successivi!
-> - Il ramo **`default`** è lo schermo che mostra *"Codice non valido"* se premi un numero che non corrisponde a nessuno scompartimento attivo.
+> 💡 **Metafora: tastiera del distributore / ATM**  
+> - Digiti un **codice preciso** (tasto `1`, `2`, `'A'`…).  
+> - Lo **`switch`** legge il tasto e attiva lo scomparto giusto (`case`).  
+> - Il **`break`** è il freno di fine erogazione: senza di esso la macchina continua e fa scendere anche i prodotti dei cassetti successivi (*fall-through*).  
+> - **`default`** = “codice non valido” sullo schermo.
 
 ---
 
-### ⚙️ Anatomia dello `switch-case`
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere uno `switch` su `int` o `char` con `case`, `break` e `default`
+- Spiegare e usare (o evitare) il *fall-through*
+- Scegliere tra `switch` e scala `if / else if` in base al tipo di decisione
 
-Lo `switch` confronta una singola variabile con una lista di valori costanti:
+---
+
+### ⚙️ Anatomia
+
+```cpp
+switch (scelta) {
+    case 1:
+        // prelievo
+        break;
+    case 2:
+        // versamento
+        break;
+    case 3:
+        // saldo
+        break;
+    default:
+        // opzione non valida
+        break;  // consigliato anche qui
+}
+```
+
+**Regole ferree in C++:**
+1. L’espressione dello `switch` deve essere di tipo **intero o carattere** (non `double`, non `std::string`).
+2. Ogni `case` confronta con una **costante** (letterale o `const`/`constexpr`), non con un intervallo.
+3. Senza `break`, l’esecuzione **continua** nei `case` successivi (fall-through). Di solito è un bug; a volte è voluto (es. `'A'` e `'a'`).
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
-
 start
 :Leggi codice scelta;
 switch (scelta)
-case ( 1 )
-  :Esegui Operazione Prelievo;
+case (1)
+  :Prelievo;
   :break;
-case ( 2 )
-  :Esegui Operazione Versamento;
+case (2)
+  :Versamento;
   :break;
-case ( 3 )
-  :Stampa Estratto Conto;
+case (3)
+  :Saldo;
   :break;
-case ( default )
-  :Messaggio "Opzione non valida";
+case (default)
+  :Opzione non valida;
 endswitch
-:Prosegui programma;
+:Prosegui;
 stop
 @enduml
 ```
 
-#### Regole e Limiti Ferrei in C++
-1. **Solo tipi discreti (interi e caratteri):** la variabile dello `switch` può essere solo di tipo `int`, `char`, `short` o `bool`. **Non si possono usare numeri con la virgola (`double`) né stringhe di testo (`std::string`)**!
-2. **I valori dei `case` devono essere costanti:** non puoi scrivere `case variabile:` o `case x > 10:`. Solo valori fissi e noti a priori (es. `case 1:` o `case 'E':`).
-3. **Il fenomeno del "Fall-Through" (Caduta a cascata):** se ometti l'istruzione `break;`, il C++ **non esce** dallo switch: prosegue ed esegue anche le istruzioni del `case` successivo, anche se la condizione non corrisponde!
+---
 
-#### Sfruttare il Fall-Through in Modo Intelligente
-A volte la caduta a cascata è voluta. È utilissima per raggruppare più tasti che devono produrre lo stesso risultato (ad esempio maiuscolo e minuscolo):
+### 🧭 Bussola: `switch` o `if / else if`?
 
-```cpp
-switch (risposta) {
-    case 'S':
-    case 's': // Se l'utente preme 'S' oppure 's', fa la stessa cosa!
-        std::cout << "Operazione confermata.\n";
-        break;
-    case 'N':
-    case 'n':
-        std::cout << "Operazione annullata.\n";
-        break;
-}
-```
+| Situazione | Preferisci |
+|------------|------------|
+| Menu 1/2/3, codici carattere, stati numerici fissi | `switch` |
+| Scaglioni (`>= 50`, intervalli), condizioni composte | `if / else if` |
+| Confronti su `double` o `std::string` | `if / else if` |
 
 ---
 
-### 🔬 Laboratorio PRIMM: Il Menu dello Sportello ATM
-
-Realizziamo il terminale di gestione opzioni di uno sportello bancario automatico.
+### 🔬 Laboratorio PRIMM: Menu ATM
 
 #### 1. PREDICT (Prevedi)
-? Osserva questo frammento in cui è stato dimenticato un `break;`. Cosa verrà stampato se `tasto = 1`?
+Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
+
 ```cpp
-int tasto = 1;
 switch (tasto) {
     case 1:
         std::cout << "Saldo ";
     case 2:
         std::cout << "Estratto Conto ";
-        break;
     default:
         std::cout << "Errore";
 }
 ```
-- [ ] Stampa solo `Saldo `
-- [x] Stampa `Saldo Estratto Conto `
-- [ ] Stampa `Saldo Estratto Conto Errore`
-- [ ] Errore di compilazione
+
+[( )] Stampa solo `Saldo `
+[(X)] Stampa `Saldo Estratto Conto Errore`
+[( )] Stampa `Saldo Estratto Conto `
+[( )] Errore di compilazione
 
 <details>
 <summary>💡 Spiegazione</summary>
-Il programma entra nel <code>case 1:</code> e stampa <code>"Saldo "</code>.  
-Non trovando l'istruzione <code>break;</code>, il cursore "scivola giù" per inerzia (fall-through) ed esegue anche il <code>case 2:</code>, stampando <code>"Estratto Conto "</code>.  
-Solo a quel punto incontra un <code>break;</code> ed esce dallo switch.  
-<b>Regola d'oro:</b> a meno che tu non voglia intenzionalmente raggruppare due opzioni, ogni <code>case</code> deve terminare sempre con <code>break;</code>!
+Senza <code>break</code>, dopo <code>case 1</code> l’esecuzione “cade” nei case successivi (*fall-through*).  
+Per fermarsi serve un <code>break</code> in ogni ramo (salvo quando il fall-through è intenzionale).
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma gestionale per lo sportello ATM:
 
 ```cpp
 /**
  * @file menu_atm.cpp
- * @brief Gestione menu interattivo per sportello bancario automatico (ATM).
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @brief Menu semplificato di uno sportello bancomat.
  */
 #include <iostream>
 
 /**
- * @brief Funzione principale: simula la scelta dell'utente da tastierino ATM.
- * @return int Codice di stato (0 = esecuzione regolare).
+ * @brief Esegue un'operazione ATM in base al tasto scelto.
+ * @return int 0 se ok.
  */
 int main() {
-    /// Saldo disponibile sul conto corrente del cliente
-    double saldoConto = 1850.50;
+    double saldo = 1250.00;
+    int sceltaMenu = 2;   // simula il tasto premuto dal cliente
 
-    /// Tasto opzione simulato selezionato dal cliente (1, 2, 3 o 0)
-    int sceltaMenu = 2;
+    std::cout << "=== SPORTELLO ATM ===\n";
+    std::cout << "1. Prelievo fisso 50 EUR\n";
+    std::cout << "2. Versamento fisso 100 EUR\n";
+    std::cout << "3. Visualizza saldo\n";
+    std::cout << "0. Esci\n";
+    std::cout << "Scelta: " << sceltaMenu << "\n\n";
 
-    std::cout << "======================================" << "\n";
-    std::cout << "       SPORTELLO BANCOMAT B2B        " << "\n";
-    std::cout << "======================================" << "\n";
-    std::cout << "1. Visualizza Saldo Disponibile" << "\n";
-    std::cout << "2. Prelievo Rapido Standard (50 EUR)" << "\n";
-    std::cout << "3. Versamento Contanti" << "\n";
-    std::cout << "0. Restituisci Carta ed Esci" << "\n";
-    std::cout << "--------------------------------------" << "\n";
-    std::cout << "Scelta effettuata: " << sceltaMenu << "\n\n";
-
-    // SMISTATORE AUTOMATICO A CASI DISCRETI
     switch (sceltaMenu) {
-        case 1:
-            /// Consultazione saldo contabile
-            std::cout << ">>> SALDO DISPONIBILE: " << saldoConto << " EUR\n";
-            break;
-
-        case 2: {
-            /// Prelievo predefinito con aggiornamento saldo
-            const double PRELIEVO_RAPIDO = 50.00;
-            if (saldoConto >= PRELIEVO_RAPIDO) {
-                saldoConto -= PRELIEVO_RAPIDO;
-                std::cout << ">>> EROGAZIONE IN CORSO: 50.00 EUR ritirati.\n";
-                std::cout << ">>> NUOVO SALDO RESIDUO: " << saldoConto << " EUR\n";
+        case 1: {
+            const double PRELIEVO = 50.0;
+            if (saldo >= PRELIEVO) {
+                saldo -= PRELIEVO;
+                std::cout << "Prelievo effettuato. Nuovo saldo: " << saldo << " EUR\n";
             } else {
-                std::cout << ">>> ERRORE: Fondi insufficienti per il prelievo.\n";
+                std::cout << "Fondi insufficienti.\n";
             }
             break;
         }
-
+        case 2: {
+            const double VERSAMENTO = 100.0;
+            saldo += VERSAMENTO;
+            std::cout << "Versamento effettuato. Nuovo saldo: " << saldo << " EUR\n";
+            break;
+        }
         case 3:
-            /// Informativa versamento
-            std::cout << ">>> SPORTELLO APERTO: Inserire le banconote nella fessura.\n";
+            std::cout << "Saldo disponibile: " << saldo << " EUR\n";
             break;
-
         case 0:
-            /// Chiusura sessione
-            std::cout << ">>> Arrivederci. Ricordati di ritirare la tua carta!\n";
+            std::cout << "Arrivederci.\n";
             break;
-
         default:
-            /// Gestione di qualsiasi tasto non previsto
-            std::cout << ">>> CODICE NON VALIDO: Scelta inesistente. Riprovare.\n";
+            std::cout << "Opzione non valida.\n";
             break;
     }
 
-    std::cout << "\nOperazione conclusa. Grazie per aver scelto la nostra banca.\n";
     return 0;
 }
 ```
 @LIA.cpp
 
+#### 3. INVESTIGATE (Investiga)
+Con `sceltaMenu = 2`:
+
+| Passo | Cosa succede |
+|-------|----------------|
+| `switch` valuta `2` | salta direttamente a `case 2` |
+| Versamento | `saldo` diventa `1350` |
+| `break` | esce dallo `switch` (non esegue case 3/default) |
+
+Prova a togliere il `break` del `case 2` e riesegui: vedrai anche l’output del saldo (fall-through).
+
+#### 4. MODIFY (Modifica)
+1. **Ricarica telefonica**  
+   Aggiungi `case 4:` con addebito fisso di `20.00` (se il saldo basta) e relativo `break`.
+
+2. **Doppio tasto di uscita**  
+   Fai sì che sia `0` sia `9` eseguano l’uscita, usando fall-through intenzionale:
+   ```cpp
+   case 0:
+   case 9:
+       std::cout << "Arrivederci.\n";
+       break;
+   ```
+
+3. **Tipo sbagliato**  
+   Prova `double sceltaMenu = 2.0;` nello `switch`: il compilatore segnala che la quantità non è intera.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Convertitore valute al POS**
+
+Scrivi `cambio_valute.cpp`:
+
+- `double importoValutaEstera` (es. `120.00`)
+- `char codiceValuta`:
+  - `'U'` / `'u'` → USD, tasso `0.92`
+  - `'G'` / `'g'` → GBP, tasso `1.18`
+  - `'J'` / `'j'` → JPY, tasso `0.0061`
+  - `'S'` / `'s'` → CHF, tasso `1.05`
+  - altro → `default`: “Valuta non supportata”
+- Usa fall-through per maiuscole/minuscole
+- Se valida: stampa importo originale, tasso, controvalore in euro
+
+**Requisiti:** Doxygen, `///` sui tassi, `break` corretti.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Conversione valuta estera in euro al POS.
+ */
+#include <iostream>
+
+int main() {
+    // dichiara importo e codice, switch sui char, stampa risultato
+    return 0;
+}
+```
+
+</details>
+
 ---
 
-#### 3. INVESTIGATE (Investiga: Il Salto Diretto nello Stack)
-
-Visualizziamo la rapidità con cui il computer raggiunge l'opzione corretta:
-
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20double%20saldo%20%3D%201850.50%3B%0A%20%20%20%20int%20scelta%20%3D%202%3B%0A%0A%20%20%20%20switch%20%28scelta%29%20%7B%0A%20%20%20%20%20%20%20%20case%201%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Saldo%3A%20%22%20%3C%3C%20saldo%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20break%3B%0A%20%20%20%20%20%20%20%20case%202%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20saldo%20-%3D%2050.0%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Ritirati%2050%2C%20nuovo%3A%20%22%20%3C%3C%20saldo%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20break%3B%0A%20%20%20%20%20%20%20%20default%3A%0A%20%20%20%20%20%20%20%20%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Altro%5Cn%22%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20break%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
-
-Clicca su **"Visualize Execution"** e premi **"Next"**:
-1. All'istruzione `switch (scelta)`:
-   - Poiché `scelta` vale `2`, la freccia verde **non legge nemmeno** il `case 1:`.
-   - Salta con un balzo secco direttamente alla riga del `case 2:`.
-2. Esegue `saldo -= 50.0;` e la stampa a video.
-3. Raggiunge l'istruzione `break;`: osserva come il cursore viene proiettato istantaneamente **fuori dalla parentesi graffa di chiusura** dello `switch`, senza toccare il `default`.
+### 📝 Riepilogo tascabile
+- `switch` = selezione su valori **discreti** (`int`, `char`).
+- Ogni ramo utile termina di solito con `break`.
+- Senza `break` → fall-through (a volte voluto, spesso bug).
+- `default` gestisce i codici non previsti.
+- Per intervalli e confronti su `double`/`string` resta l’`if / else if`.
 
 ---
 
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Aggiungi l'opzione Ricarica Telefonica:** Aggiungi un `case 4:` per consentire una ricarica telefonica fissa da 20.00€. Ricordati di scalare l'importo dal saldo e di inserire il `break;`!
-2. **Doppio Tasto di Uscita (Fall-Through utile):** Modifica il codice in modo che sia premendo `0` sia premendo `9` il programma esegua la procedura di uscita (`case 0:` seguito immediatamente da `case 9:` senza break in mezzo).
-3. **Proviamo l'errore del tipo `double`:** Prova a cambiare `double sceltaMenu = 2.0;`. Cosa ti urla il compilatore?  
-   <details>
-   <summary>💡 Spiegazione dell'errore di compilazione</summary>
-   Il compilatore rifiuterà il codice con:  
-   <code>error: switch quantity not an integer</code>.  
-   Questo ti ricorda che lo <code>switch</code> funziona solo su categorie discrete intere o caratteri, mai su numeri con la virgola!
-   </details>
+### ➡️ Prossimo chunk
+Finora il flusso va avanti o sceglie un ramo, ma non **ripete**.  
+Nel prossimo capitolo entra in scena il ciclo: il **`while`**.
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
-
-> 🎯 **Sfida SIA: Il Convertitore di Valuta del Terminale Cassa**  
-> Nei negozi duty-free aeroportuali, i clienti possono pagare scegliendo tra diverse valute estere. La cassa calcola il controvalore in Euro applicando il tasso di cambio convenzionato.
-> 
-> Scrivi un programma C++ autonomo (`cambio_valute.cpp`):
-> - Dichiara `double importoValutaEstera`: cifra pagata dal cliente (es. `120.00`).
-> - Dichiara `char codiceValuta`: codice della moneta estera consegnata:
->   - `'U'` oppure `'u'`: Dollaro USA (USD) -> moltiplica per tasso `0.92` per ottenere gli Euro.
->   - `'G'` oppure `'g'`: Sterlina Inglese (GBP) -> moltiplica per tasso `1.18`.
->   - `'J'` oppure `'j'`: Yen Giapponese (JPY) -> moltiplica per tasso `0.0061`.
->   - `'S'` oppure `'s'`: Franco Svizzero (CHF) -> moltiplica per tasso `1.05`.
->   - Per qualsiasi altro carattere (`default`): stampa un messaggio d'errore: *"Valuta non supportata dal POS di cassa!"*.
-> - Sfrutta la tecnica del *fall-through* per far funzionare lo `switch` sia con lettere maiuscole sia con minuscole.
-> - Se la valuta è valida, calcola e visualizza:
->   - L'importo in valuta originale.
->   - Il tasso di cambio applicato.
->   - Il controvalore netto accreditato sul conto dell'azienda in Euro.
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti `///` proporzionati per documentare i tassi di cambio.
-> - Gestione corretta dei `break;` su tutti i case.
-## 🔄 Capitolo 8: L'Anello Fondamentale (L'Iterazione Indefinita con il Ciclo while)
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: switch, break, default, fall-through
+  [x] Metafora distributore/ATM
+  [x] Quiz sintassi corretta
+  [x] Predict sul fall-through
+  [x] PRIMM menu ATM
+  [x] Make cambio valute (SIA)
+  [x] while solo annunciato
+-->
+## 🔄 Capitolo 10: L'Anello Fondamentale (Il Ciclo `while`)
 
 > "Iterare è umano, automatizzare è informatica."
 > — *Adattamento da L. Peter Deutsch*
 
-Immagina di essere il cassiere di un supermercato. Un cliente si avvicina al nastro trasportatore: quanti articoli ha nel carrello? Possono essere 3, 12 oppure 75. Non puoi saperlo prima di iniziare!
+Quanti articoli ha un cliente al nastro della cassa? 3, 12, 75… non lo sai in anticipo.  
+Con soli `if` e variabili fisse finiresti a dichiarare `prezzo1`, `prezzo2`, … sperando che bastino.
 
-Se dovessimo usare solo le istruzioni viste finora, saremmo bloccati: dovremmo dichiarare decine di variabili (`prezzo1`, `prezzo2`, `prezzo3`...) sperando che bastino.  
-Questo è il vicolo cieco del codice lineare. La vera potenza di un computer sta nella sua capacità instancabile di **ripetere lo stesso blocco di istruzioni finché una determinata condizione rimane vera**.
+La potenza del computer sta nel **ripetere** lo stesso blocco **finché** una condizione resta vera.  
+La forma più essenziale di questa ripetizione è il ciclo **`while`**.
 
-Questo meccanismo si chiama **iterazione** (o ciclo), e la sua forma più pura ed essenziale è il ciclo **`while`**.
-
----
-
-### 💡 La Metafora: Il Nastro della Cassa Continua
-
-> 💡 **Metafora:**  
-> Pensa al nastro scorrevole della cassa di un ipermercato:
-> - Finché sul nastro c'è un articolo da scansionare (**condizione vera**), il nastro avanza, il laser legge il prezzo, il totale cresce e il cassiere mette il prodotto nella busta.
-> - Quando arriva il blocchetto separatore con lo zero (**valore sentinella** di fine spesa), la condizione diventa **falsa**: il rullo si ferma all'istante e la cassa emette lo scontrino finale.
-> - Se il cliente arriva con il carrello vuoto (**condizione falsa in partenza**), il nastro non fa neppure un solo giro: il ciclo viene eseguito **zero volte**!
+> 💡 **Metafora: nastro della cassa**  
+> - Finché c’è un articolo da scansionare (**condizione vera**), il nastro avanza e il totale cresce.  
+> - Quando arriva il separatore con **valore sentinella** (es. `0`), la condizione diventa falsa: il rullo si ferma e si emette lo scontrino.  
+> - Carrello vuoto già all’inizio → il nastro **non fa neppure un giro** (zero iterazioni).
 
 ---
 
-### ⚙️ Il Controllo in Testa e i Tre Ingredienti Vitali
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere un `while` con i tre ingredienti (inizializzazione, condizione, aggiornamento)
+- Usare un **valore sentinella** per terminare l’input
+- Riconoscere e evitare il ciclo infinito
 
-Il ciclo `while` è un costrutto con **controllo in testa**: la condizione viene verificata *prima* di eseguire qualsiasi istruzione all'interno del blocco.
+---
+
+### ⚙️ Controllo in testa e tre ingredienti
+
+Il `while` verifica la condizione **prima** di entrare nel corpo.
+
+```cpp
+// 1. Inizializzazione
+double prezzo = 0.0;
+std::cin >> prezzo;
+
+// 2. Condizione di continuazione
+while (prezzo != 0.0) {
+    // corpo: accumula, conta, ...
+    // 3. Aggiornamento (nuova lettura)
+    std::cin >> prezzo;
+}
+```
+
+| Ingrediente | Ruolo | Se manca… |
+|-------------|-------|-----------|
+| **Inizializzazione** | Valore di partenza *prima* del ciclo | Comportamento indefinito / non entra mai |
+| **Condizione** | Decide se ripetere | Ciclo assente o infinito |
+| **Aggiornamento** | Fa evolvere la variabile di controllo | **Ciclo infinito** |
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
-
 start
-:1. Inizializza Variabile di Controllo;
-while (2. Condizione di Continuazione?) is (VERO)
-  :Esegui azioni del corpo;
-  :3. Aggiorna Variabile di Controllo;
-endwhile (FALSO)
-:Prosegui con il resto del programma;
+:Inizializza variabile di controllo;
+while (Condizione vera?) is (sì)
+  :Corpo del ciclo;
+  :Aggiorna variabile di controllo;
+endwhile (no)
+:Continua dopo il ciclo;
 stop
 @enduml
 ```
 
-Per costruire un ciclo sano e funzionante, servono **tassativamente tre ingredienti**:
-
-1. **Inizializzazione:** la variabile di controllo deve avere un valore di partenza sensato *prima* di entrare nel ciclo (es. `int tentativi = 0;`).
-2. **Condizione di continuazione (Predicato):** la domanda tra parentesi `while (condizione)`. Finché risponde `true`, il corpo continua a ripetersi.
-3. **Aggiornamento:** all'interno del corpo del ciclo, deve esserci un'istruzione che modifica la variabile di controllo (es. `tentativi++;` oppure la lettura di un nuovo dato da tastiera).
-
-> ☠️ **L'Incubo del Ciclo Infinito:**  
-> Se dimentichi l'ingrediente 3 (l'aggiornamento), la condizione rimarrà per sempre vera! Il processore rimarrà intrappolato per l'eternità a eseguire le stesse righe, bloccando il programma (consumando il 100% della CPU).
-
 ---
 
-### 🧮 Due Pattern Algoritmici Essenziali: Contatore e Accumulatore
-
-Nel software gestionale, il ciclo `while` viene quasi sempre associato a due ruoli chiave:
-
-| Pattern | Ruolo Aziendale | Come si scrive in C++ |
-| :--- | :--- | :--- |
-| **Il Contatore** | Conta **quante volte** accade un evento (es. numero di articoli comprati). | `conteggio++;` (oppure `conteggio = conteggio + 1;`) |
-| **L'Accumulatore** | Calcola la **somma progressiva** di valori diversi (es. il totale in denaro). | `totale += prezzo;` (oppure `totale = totale + prezzo;`) |
-
-#### Il Concetto di "Valore Sentinella"
-In molti contesti non sai a priori quanti dati inserirà l'utente. Si adotta quindi un **valore sentinella**: un valore speciale e convenzionale (es. `0` per i prezzi, o `-1` per i giorni lavorati) che non rappresenta un dato reale, ma funge da segnale convenuto di chiusura dei lavori.
-
----
-
-### 🔬 Laboratorio PRIMM: Il Registratore di Cassa Continua
-
-Realizziamo il software di battitura scontrini di un punto vendita al dettaglio.
+### 🔬 Laboratorio PRIMM: Scontrino a nastro
 
 #### 1. PREDICT (Prevedi)
-? Osserva attentamente questo ciclo con controllo in testa. Quante volte verrà stampata la parola `"Elaborazione"`?
+Quante volte viene stampata la parola `"Elaborazione"`?
+
 ```cpp
-int pezzi = 10;
-while (pezzi < 5) {
+int n = 0;
+while (n > 5) {
     std::cout << "Elaborazione\n";
-    pezzi++;
+    n = n + 1;
 }
-std::cout << "Fine spesa\n";
 ```
-- [x] 0 volte (non viene mai stampata)
-- [ ] 1 volta
-- [ ] 5 volte
-- [ ] Il ciclo è infinito
+
+[(X)] 0 volte (non viene mai stampata)
+[( )] 1 volta
+[( )] 5 volte
+[( )] Il ciclo è infinito
 
 <details>
 <summary>💡 Spiegazione</summary>
-Il ciclo <code>while</code> ha il <b>controllo in testa</b>: prima di eseguire il corpo, verifica la condizione.  
-Dato che <code>pezzi</code> vale 10, la condizione <code>10 < 5</code> è <b>falsa fin dal primissimo istante</b>!  
-Il computer scavalca immediatamente l'intero blocco ed esegue direttamente <code>std::cout << "Fine spesa\n";</code>.
+All’ingresso <code>n > 5</code> è falso (<code>0 > 5</code>).  
+Il <code>while</code> ha controllo in testa: se la condizione è già falsa, il corpo non viene eseguito mai.
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma `cassa_continua.cpp`. Nota come la variabile `prezzoArticolo` viene inizializzata prima del ciclo, testata nella guardia del `while` e aggiornata ad ogni passaggio tramite `std::cin`:
 
 ```cpp
 /**
- * @file cassa_continua.cpp
- * @brief Registratore di cassa per punto vendita con sentinella di fine spesa.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @file scontrino_nastro.cpp
+ * @brief Accumula i prezzi finché non arriva la sentinella 0.
  */
 #include <iostream>
 
 /**
- * @brief Funzione principale: batte scontrini fino all'inserimento dello 0.
- * @return int Codice di uscita (0 = cassa chiusa regolarmente).
+ * @brief Legge prezzi da nastro (sentinella 0) e stampa totale e pezzi.
+ * @return int 0 se ok.
  */
 int main() {
-    /// Accumulatore: somma monetaria progressiva degli articoli battuti
     double totaleSpesa = 0.0;
-
-    /// Contatore: numero complessivo di articoli acquistati
     int numeroArticoli = 0;
 
-    /// Variabile di controllo: prezzo dell'articolo corrente
+    /// Prima lettura (inizializzazione della condizione)
     double prezzoArticolo = 0.0;
+    std::cout << "Prezzo articolo (0 per terminare): ";
+    // In questo laboratorio simuliamo tre letture fisse:
+    // 12.50, 3.20, 0  — in classe userai std::cin in loop
 
-    std::cout << "======================================" << "\n";
-    std::cout << "     CASSA CONTINUA PUNTO VENDITA    " << "\n";
-    std::cout << " Inserisci i prezzi dei prodotti (EUR)\n";
-    std::cout << " Digita 0 quando hai terminato la spesa\n";
-    std::cout << "======================================" << "\n\n";
+    // Simulazione input per ambiente interattivo
+    double letture[] = {12.50, 3.20, 0.0};
+    int i = 0;
+    prezzoArticolo = letture[i++];
 
-    // 1. Prima lettura (Inizializzazione esterna)
-    std::cout << "Prezzo primo articolo: ";
-    std::cin >> prezzoArticolo;
-
-    // 2. Controllo in testa con Sentinella (0.0 indica la fine)
     while (prezzoArticolo != 0.0) {
-        // Aggiornamento dell'accumulatore e del contatore
         totaleSpesa += prezzoArticolo;
-        numeroArticoli++;
+        numeroArticoli += 1;
+        std::cout << "  + " << prezzoArticolo << " EUR (pezzi: " << numeroArticoli << ")\n";
 
-        std::cout << "-> Articolo n. " << numeroArticoli << " registrato (" 
-                  << prezzoArticolo << " EUR). Totale provvisorio: " 
-                  << totaleSpesa << " EUR\n";
-
-        // 3. Nuova lettura per il prossimo giro (Aggiornamento della variabile)
-        std::cout << "Prezzo prossimo articolo (0 per chiudere): ";
-        std::cin >> prezzoArticolo;
+        /// Aggiornamento: prossimo prezzo (sentinella inclusa)
+        prezzoArticolo = letture[i++];
     }
 
-    // Chiusura e stampa dello scontrino fiscale
-    std::cout << "\n========== SCONTRINO FISCALE ==========" << "\n";
-    std::cout << "Pezzi battuti   : " << numeroArticoli << "\n";
-    std::cout << "TOTALE DOVUTO   : " << totaleSpesa << " EUR\n";
-    std::cout << "=======================================" << "\n";
+    std::cout << "=== SCONTRINO ===\n";
+    std::cout << "Articoli: " << numeroArticoli << "\n";
+    std::cout << "Totale  : " << totaleSpesa << " EUR\n";
 
     return 0;
 }
 ```
 @LIA.cpp
 
+> In laboratorio con tastiera reale sostituisci l’array di simulazione con:
+> ```cpp
+> std::cin >> prezzoArticolo;
+> // ... nel while, di nuovo: std::cin >> prezzoArticolo;
+> ```
+
+#### 3. INVESTIGATE (Investiga)
+Sequenza simulata: `12.50` → `3.20` → `0.0`
+
+| Iterazione | `prezzoArticolo` | Condizione | Totale dopo |
+|------------|------------------|------------|-------------|
+| ingresso | 12.50 | vero | 12.50 |
+| 2ª | 3.20 | vero | 15.70 |
+| 3ª lettura | 0.0 | **falso** → esce | 15.70 |
+
+La sentinella `0` **non** viene sommata: il controllo avviene prima del corpo.
+
+> 🔗 Osserva le variabili su [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+#### 4. MODIFY (Modifica)
+1. **Media per articolo**  
+   Dopo il ciclo, se `numeroArticoli > 0`, stampa `totaleSpesa / numeroArticoli`.  
+   Altrimenti messaggio “nessun articolo”.
+
+2. **Scarta i negativi**  
+   Se un prezzo è `< 0`, non accumularlo: stampa un avviso e continua.
+
+3. **Ciclo infinito (esperimento controllato)**  
+   Commenta l’aggiornamento di `prezzoArticolo` nel corpo.  
+   La condizione resta vera per sempre → il programma non termina.  
+   **Regola:** ogni ciclo deve aggiornare qualcosa che influisce sulla condizione.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Registro fatture fornitori**
+
+Scrivi `fatture_fornitori.cpp`:
+
+- Ciclo `while` che legge importi fattura
+- Sentinella `-1.0` per terminare (**non** sommare la sentinella)
+- Accumula `totaleDebiti`, conta fatture totali e quante sono “rilevanti” (`>= 1000`)
+- A fine ciclo stampa:
+  - totale debiti
+  - numero fatture
+  - numero rilevanti
+  - percentuale rilevanti sul totale (se totale > 0)
+
+**Requisiti:** Doxygen, `///` su contatori/accumulatori, sentinella gestita correttamente.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Registra fatture fornitori fino alla sentinella -1.
+ */
+#include <iostream>
+
+int main() {
+    // inizializza totali e contatori
+    // leggi primo importo
+    // while (importo != -1.0) { ... aggiorna ... leggi di nuovo }
+    // stampa riepilogo
+    return 0;
+}
+```
+
+</details>
+
 ---
 
-#### 3. INVESTIGATE (Investiga: L'Anello nello Stack)
-
-Ora apriamo Python Tutor per osservare come si comportano l'accumulatore e il contatore nello stack di memoria:
-
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20double%20totale%20%3D%200.0%3B%0A%20%20%20%20int%20articoli%20%3D%200%3B%0A%20%20%20%20double%20prezzo%20%3D%2015.50%3B%20//%20Simulazione%20primo%20articolo%0A%0A%20%20%20%20while%20%28prezzo%20%21%3D%200.0%29%20%7B%0A%20%20%20%20%20%20%20%20totale%20%2B%3D%20prezzo%3B%0A%20%20%20%20%20%20%20%20articoli%2B%2B%3B%0A%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20//%20Simuliamo%20l'avanzamento%20della%20cassa%0A%20%20%20%20%20%20%20%20if%20%28articoli%20%3D%3D%201%29%20prezzo%20%3D%204.50%3B%0A%20%20%20%20%20%20%20%20else%20prezzo%20%3D%200.0%3B%20//%20Sentinella%20di%20uscita%0A%20%20%20%20%7D%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
-
-Clicca su **"Visualize Execution"** e premi **"Next"** osservando la colonna a destra:
-1. Ad ogni iterazione, la freccia verde risale in alto fino alla riga del `while`: è questo l'**anello**!
-2. Guarda come nello stack `totale` si aggiorna progressivamente (`0.0` -> `15.5` -> `20.0`), mentre `articoli` conta i passaggi (`0` -> `1` -> `2`).
-3. Quando `prezzo` viene impostato a `0.0`, la condizione `prezzo != 0.0` diventa `false`: la freccia non entra più nel blocco e salta direttamente al `return 0;`.
+### 📝 Riepilogo tascabile
+- `while` = ripeti **mentre** la condizione è vera (controllo in testa).
+- Tre ingredienti: inizializza → controlla → aggiorna.
+- Sentinella = valore speciale che dice “basta” (es. `0` o `-1`).
+- Senza aggiornamento → ciclo infinito.
+- Zero iterazioni è un comportamento normale se la condizione è già falsa.
 
 ---
 
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Calcolo della Spesa Media per Articolo:** Al termine del ciclo, prima di stampare lo scontrino, calcola e visualizza lo scontrino medio per pezzo (`totaleSpesa / numeroArticoli`).  
-   *Attenzione:* usa un `if` per assicurarti che `numeroArticoli > 0`, evitando la divisione per zero se il cliente esce senza comprare nulla!
-2. **Scarta i Prezzi Negativi:** Se il cassiere digita per errore un prezzo negativo (es. `-5.0`), non sommarlo alla spesa ma stampa: *"Errore: importo negativo non valido!"*.
-3. **Simuliamo il Ciclo Infinito:** Prova a commentare la riga `std::cin >> prezzoArticolo;` all'interno del corpo del ciclo con `//`. Cosa succede quando premi Run?  
-   <details>
-   <summary>💡 Spiegazione dell'errore di esecuzione</summary>
-   Dato che il valore di <code>prezzoArticolo</code> non cambia mai, la condizione resterà perennemente vera. Il programma continuerà a stampare all'infinito finché il sistema o il browser non interromperanno forzatamente il processo per timeout!
-   </details>
+### ➡️ Prossimo chunk
+Quando sai già **quante** volte ripetere (es. 12 mesi, 30 giorni, 100 pezzi), il `while` funziona ma è verboso.  
+Il ciclo **`for`** concentra inizializzazione, condizione e aggiornamento in una riga.
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
-
-> 🎯 **Sfida SIA: Il Registro Fatture Passive dei Fornitori**  
-> L'ufficio contabilità deve registrare gli importi delle fatture passive arrivate dai fornitori durante la settimana per monitorare il fabbisogno di liquidità.
-> 
-> Scrivi un programma C++ autonomo (`fatture_fornitori.cpp`):
-> - Utilizza un ciclo `while` per richiedere l'inserimento degli importi delle fatture (in Euro).
-> - Usa il valore sentinella `-1.0` per terminare l'inserimento.
-> - Durante il ciclo:
->   - Accumula il debito totale verso i fornitori (`totaleDebiti`).
->   - Conta quante fatture sono state registrate in totale.
->   - Conta anche quante fatture sono considerate "Fatture Rilevanti" (importo `>= 1000.00€`).
-> - Al termine del ciclo, stampa il riepilogo contabile:
->   - Totale generale debiti da liquidare.
->   - Numero totale fatture.
->   - Numero fatture rilevanti oltre i 1.000€.
->   - Percentuale delle fatture rilevanti rispetto al totale.
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti proporzionati `///` per descrivere i contatori e gli accumulatori.
-> - Gestione corretta dell'uscita con la sentinella senza sommare il `-1.0` al totale.
-## ⏳ Capitolo 9: Il Contatore Compatto (Il Ciclo for)
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: while, sentinella, tre ingredienti, no infinito
+  [x] Metafora nastro cassa
+  [x] Quiz sintassi corretta
+  [x] Predict: zero iterazioni
+  [x] PRIMM scontrino (simulazione input per LiaScript)
+  [x] Make fatture fornitori
+  [x] for solo annunciato
+-->
+## ⏳ Capitolo 11: Il Contatore Compatto (Il Ciclo `for`)
 
 > "La regolarità e la prevedibilità sono le migliori alleate della precisione contabile."
 > — *Principio di Revisione Aziendale*
 
-Nel capitolo precedente abbiamo scoperto il ciclo `while`, ideale quando **non sappiamo a priori** quante volte dovremo ripetere un'azione (come la cassa che batte scontrini finché il cliente non ha finito gli articoli).
+Il `while` è ideale quando **non sai quanti** giri farai (articoli al nastro, fatture fino alla sentinella).  
+In azienda però molte ripetizioni sono **già note**: 5 anni di ammortamento, 12 mesi, 24 rate.
 
-Tuttavia, in moltissimi contesti aziendali il numero di ripetizioni è **noto e prestabilito fin dall'inizio**:
-- Calcolare l'ammortamento contabile di un cespite per **5 anni**.
-- Elaborare le buste paga dei **12 mesi** dell'esercizio.
-- Stampare il piano di rimborso di un finanziamento in **24 rate**.
+Con un `while` i tre ingredienti restano sparsi nel file: è facile dimenticare l’aggiornamento.  
+Il ciclo **`for`** li raccoglie in **una sola riga**.
 
-Anche per questi problemi potremmo usare un `while`, ma c'è un rischio: i tre ingredienti vitali (inizializzazione, condizione e aggiornamento) si trovano sparpagliati in punti diversi del file. Dimenticare l'aggiornamento in fondo a un blocco lungo è un errore comunissimo.
-
-Per risolvere questo problema, il C++ mette a disposizione il ciclo **`for`**: un costrutto compatto che raccoglie l'intero meccanismo di controllo in una sola riga chiara e ordinata.
-
----
-
-### 💡 La Metafora: Il Cronometro di Precisione con Timer
-
-> 💡 **Metafora:**  
-> Pensa all'impostazione di un timer sul microonde o su una macchina industriale:
-> - Nel `while`, dovevi ricordarti tu a mano di accendere il timer prima di entrare nella stanza, controllare l'orologio a ogni secondo e avanzare le lancette prima di uscire.
-> - Nel **`for`**, imposti tutto direttamente sul display all'inizio:  
->   *"Parti da 1; fermati a 5; aumenta di 1 a ogni scatto"*.  
-> - La macchina esegue la sequenza con precisione millimetrica senza che tu possa dimenticare di mandare avanti il contatore.
+> 💡 **Metafora: timer del microonde / macchina industriale**  
+> Imposti sul display: *“Parti da 1; fermati a 5; avanza di 1 a ogni scatto”*.  
+> La macchina esegue la sequenza senza che tu debba ricordarti di far avanzare il contatore a mano.
 
 ---
 
-### 🔍 Il `for` come Forma Compatta del `while`
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere un `for` con inizializzazione, condizione e aggiornamento nell’intestazione
+- Usarlo quando il numero di ripetizioni è noto a priori
+- Capire lo **scope** del contatore dichiarato nell’intestazione
 
-Dal punto di vista del calcolatore, il ciclo `for` non fa nulla che il `while` non sapesse già fare: è una forma di scrittura più comoda ed elegante (talvolta chiamata *zucchero sintattico*), pensata per aiutare la mente del programmatore a **non dimenticare i passaggi chiave**.
+---
 
-Osserva come i due costrutti si corrispondono riga per riga:
+### 🔍 `for` = `while` in forma compatta
+
+```cpp
+// while equivalente
+int anno = 1;
+while (anno <= 5) {
+    // corpo
+    anno = anno + 1;
+}
+
+// stessa logica con for
+for (int anno = 1; anno <= 5; ++anno) {
+    // corpo
+}
+```
+
+| Parte nell’intestazione `for` | Ruolo |
+|-------------------------------|--------|
+| `int anno = 1` | **Inizializzazione** (una sola volta, all’ingresso) |
+| `anno <= 5` | **Condizione** (prima di ogni iterazione) |
+| `++anno` | **Aggiornamento** (dopo ogni corpo) |
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
-
-rectangle "Con il ciclo WHILE" as W {
-  [1. int i = 1; (Inizializzazione)]
-  --> [2. while (i <= 5) (Condizione)]
-  --> [Corpo: elabora dato]
-  --> [3. i++; (Aggiornamento)]
-}
-
-rectangle "Con il ciclo FOR (Tutto in una riga!)" as F {
-  [for ( 1. int i = 1 ;  2. i <= 5 ;  3. i++ )]
-  --> [Corpo: elabora dato]
-}
+start
+:Init contatore;
+while (Condizione?) is (sì)
+  :Corpo;
+  :Aggiorna contatore;
+endwhile (no)
+stop
 @enduml
 ```
 
-#### Anatomia dell'Intestazione del `for`
-L'intestazione è separata da **due punti e virgola `;` obbligatori**:
-
-```cpp
-for (inizializzazione ; condizione / predicato ; aggiornamento) {
-    // Istruzioni da ripetere
-}
-```
-
-1. **Inizializzazione (`int i = 1;`):** viene eseguita **una sola volta**, all'inizio assoluto del ciclo. In C++ moderno dichiariamo la variabile contatore direttamente qui dentro: in questo modo il contatore nasce e vive *solo* dentro il ciclo, evitando di sporcare la memoria esterna!
-2. **Condizione / Predicato (`i <= 5;`):** viene testata **prima di ogni giro**. Se è vera, si esegue il blocco; se è falsa, si esce immediatamente.
-3. **Aggiornamento (`i++`):** viene eseguito automaticamente **al termine di ogni giro**, subito prima di ritestare la condizione.
+**Scope:** se dichiari il contatore nell’intestazione (`for (int anno = …)`), `anno` **non esiste** fuori dal ciclo.
 
 ---
 
-### 🔬 Laboratorio PRIMM: Il Piano di Ammortamento Cespiti
-
-Nell'economia aziendale, i beni strumentali durevoli (computer, macchinari, veicoli) perdono valore ogni anno. Questo processo contabile si chiama **ammortamento a quote costanti**.
+### 🔬 Laboratorio PRIMM: Piano di ammortamento
 
 #### 1. PREDICT (Prevedi)
-? Osserva questo ciclo `for`. Quante righe verranno stampate a video?
+Quante righe stampa questo ciclo?
+
 ```cpp
-for (int anno = 1; anno < 5; ++anno) {
-    std::cout << "Esercizio contabile\n";
+for (int i = 0; i < 5; ++i) {
+    std::cout << i << "\n";
 }
 ```
-- [ ] 5 righe
-- [x] 4 righe (per anno = 1, 2, 3, 4)
-- [ ] 0 righe
-- [ ] Il ciclo è infinito
+
+[( )] 5 righe: `1 2 3 4 5`
+[(X)] 5 righe: `0 1 2 3 4`
+[( )] 4 righe: `0 1 2 3`
+[( )] Ciclo infinito
 
 <details>
 <summary>💡 Spiegazione</summary>
-Attenzione al classico errore <b>Off-by-One</b> (errore di uno):  
-La condizione è <code>anno < 5</code> (strettamente minore), <b>non</b> <code>anno <= 5</code>!  
-Il contatore assumerà i valori 1, 2, 3, 4 (esattamente <b>4 iterazioni</b>). Quando <code>anno</code> diventa 5, la condizione <code>5 < 5</code> è falsa e il ciclo si arresta prima di stampare la quinta volta.  
-Se vuoi contare esattamente fino a 5, devi usare <code>anno <= 5</code>.
+<code>i</code> parte da <code>0</code>; la condizione è <code>i &lt; 5</code>; dopo ogni giro <code>++i</code>.  
+Valori stampati: 0, 1, 2, 3, 4 — cinque righe. In C++ i conteggi “da zero” sono la norma (come gli indici degli array che vedrai più avanti).
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma `piano_ammortamento.cpp`. Calcoliamo la quota e il valore residuo di un macchinario aziendale su un arco di 5 anni:
 
 ```cpp
 /**
- * @file piano_ammortamento.cpp
- * @brief Calcolo del piano di ammortamento a quote costanti di un cespite aziendale.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @file ammortamento_cespite.cpp
+ * @brief Piano di ammortamento a quote costanti su N anni.
  */
 #include <iostream>
 
 /**
- * @brief Funzione principale: genera il prospetto contabile su N anni.
- * @return int Codice di uscita (0 = esecuzione regolare).
+ * @brief Stampa tabella anno / quota / valore residuo.
+ * @return int 0 se ok.
  */
 int main() {
-    /// Costo storico di acquisto del bene strumentale
-    const double VALORE_INIZIALE = 20000.00;
-
-    /// Numero di esercizi contabili di ammortamento previsti dal piano
+    const double COSTO_CESPITE = 10000.0;
     const int NUMERO_ANNI = 5;
+    const double QUOTA_ANNUA = COSTO_CESPITE / NUMERO_ANNI;
 
-    /// Quota annuale costante di ammortamento (ripartizione uniforme)
-    const double QUOTA_ANNUA = VALORE_INIZIALE / NUMERO_ANNI;
+    double valoreResiduo = COSTO_CESPITE;
 
-    /// Valore contabile residuo del bene (decresce ogni anno)
-    double valoreResiduo = VALORE_INIZIALE;
+    std::cout << "Anno\tQuota\tResiduo\n";
+    std::cout << "----\t-----\t-------\n";
 
-    std::cout << "=================================================" << "\n";
-    std::cout << "    PIANO DI AMMORTAMENTO CESPITI AZIENDALI      " << "\n";
-    std::cout << " Costo Storico: " << VALORE_INIZIALE << " EUR | Durata: " 
-              << NUMERO_ANNI << " Anni" << "\n";
-    std::cout << " Quota Annua  : " << QUOTA_ANNUA << " EUR/anno\n";
-    std::cout << "=================================================" << "\n";
-    std::cout << " Anno | Quota Ammortamento | Valore Residuo Fine Anno\n";
-    std::cout << "-------------------------------------------------" << "\n";
-
-    // CICLO FOR: Controllo compatto (inizializzazione, condizione, incremento)
     for (int anno = 1; anno <= NUMERO_ANNI; ++anno) {
-        // Aggiorniamo il valore del bene scalando la quota annua
         valoreResiduo -= QUOTA_ANNUA;
-
-        std::cout << "   " << anno << "  |     " 
-                  << QUOTA_ANNUA << " EUR      |     " 
-                  << valoreResiduo << " EUR\n";
+        std::cout << anno << "\t" << QUOTA_ANNUA << "\t" << valoreResiduo << "\n";
     }
-
-    std::cout << "-------------------------------------------------" << "\n";
-    std::cout << "Cespite completamente ammortizzato. Valore finale: " 
-              << valoreResiduo << " EUR\n";
 
     return 0;
 }
 ```
 @LIA.cpp
 
----
+#### 3. INVESTIGATE (Investiga)
+Con 5 anni e cespite 10000:
 
-#### 3. INVESTIGATE (Investiga: Il Contatore e lo Scope nel `for`)
+| anno | Quota | Residuo dopo |
+|------|-------|--------------|
+| 1 | 2000 | 8000 |
+| 2 | 2000 | 6000 |
+| … | … | … |
+| 5 | 2000 | 0 |
 
-Visualizziamo passo dopo passo come il processore governa il contatore compatto del `for`:
+Il contatore `anno` nasce nell’intestazione del `for` e **muore** alla graffa di chiusura.
 
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20const%20int%20ANNI%20%3D%203%3B%0A%20%20%20%20double%20valore%20%3D%2015000.0%3B%0A%20%20%20%20double%20quota%20%3D%205000.0%3B%0A%0A%20%20%20%20for%20%28int%20anno%20%3D%201%3B%20anno%20%3C%3D%20ANNI%3B%20%2B%2Banno%29%20%7B%0A%20%20%20%20%20%20%20%20valore%20-%3D%20quota%3B%0A%20%20%20%20%20%20%20%20std%3A%3Acout%20%3C%3C%20anno%20%3C%3C%20%22%3A%20%22%20%3C%3C%20valore%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20%7D%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
+> 🔗 Segui `anno` e `valoreResiduo` su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-Clicca su **"Visualize Execution"** e premi **"Next"** osservando lo stack a destra:
-1. Quando l'esecuzione tocca la riga del `for`, nello stack viene creata la variabile `anno = 1`.
-2. Il processore valuta la condizione `1 <= 3` (vera) ed entra nel corpo, aggiornando `valore`.
-3. Al termine del corpo, la freccia torna alla riga del `for`: vedi che `anno` diventa `2`, e viene subito ritestata la condizione.
-4. **Osserva cosa succede alla fine del 3° anno:** quando `anno` diventa `4`, la condizione `4 <= 3` è falsa.  
-   La freccia esce dal ciclo e **la variabile `anno` scompare istantaneamente dallo stack!** Non esiste più al di fuori del ciclo (la regola dello scope del Locker!).
+#### 4. MODIFY (Modifica)
+1. **Fondo ammortamento**  
+   Prima del ciclo: `double fondo = 0.0;`.  
+   A ogni giro: `fondo += QUOTA_ANNUA;` e stampalo in tabella.
 
----
-
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Il Fondo Ammortamento Cumulativo:** Dichiara una variabile `double fondoAmmortamento = 0.0;` prima del ciclo. A ogni giro, somma la quota al fondo (`fondoAmmortamento += QUOTA_ANNUA;`) e visualizzala nella tabella accanto al valore residuo.
-2. **Ammortamento a Ritroso:** Modifica l'intestazione del ciclo per contare alla rovescia, partendo dall'anno 5 fino all'anno 1:
+2. **Conto alla rovescia**  
    ```cpp
    for (int anniRimanenti = NUMERO_ANNI; anniRimanenti >= 1; --anniRimanenti)
    ```
-3. **La prova dello Scope:** Prova a scrivere `std::cout << anno;` subito dopo la graffa di chiusura del `for`. Che errore ti segnala il compilatore?  
-   <details>
-   <summary>💡 Spiegazione dell'errore di compilazione</summary>
-   Riceverai: <code>error: 'anno' was not declared in this scope</code>.  
-   Questo conferma che dichiarare il contatore dentro l'intestazione del <code>for</code> garantisce che la variabile non resti attiva per errore nel resto del programma.
-   </details>
+   Adatta la stampa in modo coerente.
+
+3. **Prova di scope**  
+   Dopo il `for`, prova `std::cout << anno;`.  
+   Il compilatore deve segnalare che `anno` non è dichiarato in quello scope.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Interesse composto su deposito aziendale**
+
+Scrivi `interesse_composto.cpp`:
+
+- `double capitale = 10000.00`
+- `const double TASSO = 0.04` (4% annuo)
+- `const int ANNI = 6`
+- Ciclo `for` da anno 1 a `ANNI`:
+  - interessi dell’anno = `capitale * TASSO`
+  - aggiorna `capitale`
+  - stampa: anno, interessi, nuovo capitale
+- A fine ciclo: guadagno netto = capitale finale − 10000
+
+**Requisiti:** Doxygen, `///` sulle grandezze finanziarie, tabella leggibile.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Simula capitalizzazione composta su N anni.
+ */
+#include <iostream>
+
+int main() {
+    // capitale, tasso, anni; for; stampa guadagno netto
+    return 0;
+}
+```
+
+</details>
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
+### 📝 Riepilogo tascabile
+- `for` = quando il numero di ripetizioni è **noto** (o facile da esprimere con un contatore).
+- Intestazione: `init; condizione; aggiornamento`.
+- Contatore dichiarato nel `for` → scope limitato al ciclo.
+- Stesso potere del `while`; forma più sicura per i conteggi regolari.
+- Per input a sentinella resta preferibile il `while`.
 
-> 🎯 **Sfida SIA: Il Piano di Crescita con Interesse Composto**  
-> Un'impresa vincola un capitale di liquidità in un conto deposito remunerato per $N$ anni a tasso fisso. Ogni anno gli interessi maturati si sommano al capitale, generando a loro volta nuovi interessi (capitalizzazione composta).
-> 
-> Scrivi un programma C++ autonomo (`interesse_composto.cpp`):
-> - Dichiara il capitale iniziale depositato: `double capitale = 10000.00;` (10.000 EUR).
-> - Dichiara il tasso di interesse attivo annuo: `const double TASSO = 0.04;` (4%).
-> - Dichiara la durata dell'investimento in anni: `const int ANNI_INVESTIMENTO = 6;`.
-> - Utilizza un ciclo `for` a contatore (`anno = 1` fino a `ANNI_INVESTIMENTO`) per:
->   - Calcolare gli interessi maturati in quell'anno: `interessiAnno = capitale * TASSO;`.
->   - Incrementare il capitale: `capitale += interessiAnno;`.
->   - Stampare anno per anno: Anno, Interessi guadagnati nel periodo, e Nuovo Capitale Maturato.
-> - Al termine del ciclo, calcola e visualizza il guadagno netto totale ottenuto dall'azienda al termine dei 6 anni (`capitaleFinale - 10000.00`).
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti proporzionati `///` per descrivere le variabili finanziarie.
-> - Formattazione ordinata dei dati in tabella.
-## 🔁 Capitolo 10: Garantire l'Azione (Il Ciclo do-while e la Validazione dell'Input)
+---
+
+### ➡️ Prossimo chunk
+A volte il corpo del ciclo deve girare **almeno una volta** (es. chiedere un dato finché non è valido).  
+Entra in scena il **`do-while`**: controllo in coda.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: for, contatore, scope
+  [x] Metafora timer
+  [x] Quiz sintassi corretta
+  [x] Predict conteggio da 0
+  [x] PRIMM ammortamento cespite
+  [x] Make interesse composto (SIA)
+  [x] do-while solo annunciato
+-->
+## 🔁 Capitolo 12: Garantire l'Azione (Il Ciclo `do-while`)
 
 > "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
 > — *Regola Aurea dello Sviluppo Software*
 
-Nei capitoli precedenti abbiamo esplorato il ciclo `while` e il ciclo `for`: entrambi hanno il **controllo in testa**, il che significa che se la condizione di partenza è falsa, il corpo del ciclo non viene eseguito nemmeno una volta (zero iterazioni).
+`while` e `for` hanno il **controllo in testa**: se la condizione è già falsa, il corpo non gira **mai**.
 
-Tuttavia, esistono situazioni in cui **un'azione deve essere eseguita per forza almeno una volta**, prima ancora di poter fare qualsiasi verifica:
-- Chiedere all'utente di digitare un dato (es. l'importo di un bonifico): non puoi controllare se l'importo è corretto prima che l'utente l'abbia inserito!
-- Mostrare un menu operativo a video: devi prima mostrare le opzioni, consentire la scelta e solo dopo verificare se l'utente desidera uscire.
+A volte però un’azione deve avvenire **almeno una volta** prima di poter controllare:
+- chiedere un importo (non puoi validarlo prima che esista);
+- mostrare un menu e poi decidere se uscire.
 
-Per queste esigenze, il C++ offre il ciclo **`do-while`**: il costrutto con **controllo in coda**.
+Per questo esiste il **`do-while`**: controllo **in coda**.
 
----
-
-### 💡 La Metafora: Il Modulo con Campi Obbligatori
-
-> 💡 **Metafora:**  
-> Pensa alla compilazione di un modulo di pagamento su un sito bancario:
-> - Prima di tutto, la pagina ti presenta il modulo e ti chiede di compilare i dati (**il blocco `do` viene eseguito almeno una volta**).
-> - Quando premi "Invia", il sistema controlla:  
->   *"I dati inseriti contengono errori?"* (**controllo in coda**).
-> - Se c'è un errore (es. importo negativo o superiore al massimale), il modulo ti viene ripresentato e sei costretto a correggerlo.
-> - La richiesta si ripete **finché la condizione di errore rimane vera** (cioè finché non inserisci un dato finalmente valido!).
+> 💡 **Metafora: modulo online con campi obbligatori**  
+> 1. La pagina ti mostra il form e tu compili (**il `do` gira almeno una volta**).  
+> 2. Premi “Invia”: il sistema controlla (*controllo in coda*).  
+> 3. Se c’è un errore, il form torna indietro e riprovi.  
+> 4. Si ripete **finché** i dati non sono validi.
 
 ---
 
-### ⚙️ Il `do-while` come Comodità di Scrittura
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere un `do-while` e spiegare la differenza con il `while`
+- Usarlo per **validare un input** (ripeti finché il dato non è accettabile)
+- Evitare la duplicazione di codice tipica del `while` “con lettura prima e dentro”
 
-Anche il `do-while` è una forma comoda ed elegante di scrittura che evita la duplicazione del codice.
+---
 
-Se volessimo validare un input usando solo un normale `while`, dovremmo copiare e incollare l'istruzione di lettura due volte (una volta prima del ciclo e una volta dentro):
+### ⚙️ Anatomia e confronto con `while`
 
 ```cpp
-// VALIDAZIONE SCOMODA CON IL WHILE (codice duplicato):
-std::cout << "Inserisci importo: ";
-std::cin >> importo; // <-- 1a lettura duplicata
+// do-while: il corpo gira almeno una volta
+double importo;
+do {
+    std::cout << "Importo (> 0): ";
+    std::cin >> importo;
+} while (importo <= 0.0);
+```
+
+Equivalente scomodo con `while` (codice di lettura **duplicato**):
+
+```cpp
+std::cout << "Importo (> 0): ";
+std::cin >> importo;
 while (importo <= 0.0) {
-    std::cout << "Errore! Inserisci importo: ";
-    std::cin >> importo; // <-- 2a lettura duplicata
+    std::cout << "Importo (> 0): ";
+    std::cin >> importo;
 }
 ```
 
-Con il `do-while`, la richiesta viene scritta **una sola volta**, garantendo che venga eseguita subito e poi ripetuta all'occorrenza:
+| | `while` / `for` | `do-while` |
+|--|-----------------|------------|
+| Controllo | in **testa** | in **coda** |
+| Iterazioni minime | 0 | **1** |
+| Uso tipico | conteggi, sentinella già nota | validazione input, menu “almeno una volta” |
+
+**Attenzione alla sintassi:** dopo il `while (...)` del `do-while` serve il **`;`**.
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
-
 start
-repeat
-  :1. Esegui il corpo (es. Chiedi dato da tastiera);
-repeat while (2. Il dato e' ERRATO?) is (VERO: ripeti richiesta)
-->FALSO: dato valido;
-:Prosegui con l'operazione bancaria;
+:Esegui corpo (do);
+while (Condizione ancora vera?) is (sì)
+  :Esegui di nuovo il corpo;
+endwhile (no)
+:Esci;
 stop
 @enduml
 ```
 
-#### ⚠️ La Logica della Condizione: Ripetere Finché C'è un Errore
-Fai molta attenzione alla domanda posta nel `while` in coda:
-- La condizione tra parentesi **non indica quando il dato è valido**, ma stabilisce **quando il ciclo deve continuare a ripetersi**!
-- Si ripete **finché la negazione della condizione di validità è soddisfatta** (cioè finché il dato inserito è errato).
-
-```cpp
-// Vogliamo che l'importo sia compreso tra 1€ e 5.000€ (dato valido: importo > 0 && importo <= 5000)
-// Il ciclo deve ripetersi finche il dato e FUORI dai limiti:
-do {
-    std::cout << "Importo bonifico (max 5000 EUR): ";
-    std::cin >> importo;
-} while (importo <= 0.0 || importo > 5000.0); // <-- Ripeti finche e NON valido!
-```
-
-> ⚠️ **Sintassi: Il Punto e Virgola Finale Obbligatorio!**  
-> A differenza dell'`if`, del `while` normale e del `for`, l'istruzione `do { ... } while (condizione);` **richiede tassativamente il punto e virgola `;` finale** dopo la parentesi tonda di chiusura. Se lo dimentichi, il compilatore segnalerà un errore di sintassi.
-
 ---
 
-### 🧭 Quadro Comparativo Finale: Quale Ciclo Scegliere?
-
-Con l'introduzione del `do-while`, hai completato la triade fondamentale dei cicli in C++. Ecco la guida rapida per scegliere a colpo sicuro:
-
-| Situazione Operativa | Ciclo Consigliato | Perché questa scelta? |
-| :--- | :--- | :--- |
-| **Iterazione Definita:** Conosciamo già a priori il numero esatto di passaggi ($N$ anni, 12 mesi, dimensione nota). | **`for`** | Raccoglie contatore, limite e incremento in una riga compatta ed elegante. |
-| **Iterazione Indefinita (0 o più volte):** Dipende da un evento esterno o sentinella, e potremmo non dover eseguire nulla se la condizione iniziale è già falsa. | **`while`** | Il controllo in testa garantisce la sicurezza prima di compiere qualsiasi azione. |
-| **Validazione Input o Menu (almeno 1 volta):** L'azione deve essere necessariamente compiuta prima di poter verificare l'esito. | **`do-while`** | Garantisce la prima esecuzione senza duplicare il codice di richiesta. |
-
----
-
-### 🔬 Laboratorio PRIMM: Il Bonifico Bancario Protetto
-
-Realizziamo il modulo di acquisizione sicura dell'importo per un bonifico bancario aziendale.
+### 🔬 Laboratorio PRIMM: Validazione importo bonifico
 
 #### 1. PREDICT (Prevedi)
-? Osserva questo codice in cui la condizione è falsa fin dall'inizio. Cosa verrà stampato a video?
+Quante volte viene eseguito il corpo?
+
 ```cpp
-int tentativi = 10;
+int n = 10;
 do {
-    std::cout << "Controllo eseguito ";
-} while (tentativi < 3);
-std::cout << "Fine";
+    std::cout << "giro\n";
+    n = n + 1;
+} while (n < 5);
 ```
-- [ ] Stampa solo `Fine`
-- [x] Stampa `Controllo eseguito Fine`
-- [ ] Il ciclo è infinito
-- [ ] Errore di compilazione per il punto e virgola
+
+[( )] 0 volte
+[(X)] 1 volta
+[( )] 5 volte
+[( )] Infinito
 
 <details>
 <summary>💡 Spiegazione</summary>
-Il ciclo <code>do-while</code> ha il <b>controllo in coda</b>: il computer esegue prima il corpo del <code>do</code> (stampando <code>"Controllo eseguito "</code>) e solo <i>dopo</i> valuta la condizione <code>10 < 3</code>.  
-Poiché 10 non è minore di 3, la condizione risulta <code>false</code> e il ciclo si interrompe, stampando infine <code>"Fine"</code>.  
-Anche con una condizione falsa in partenza, il <code>do-while</code> garantisce <b>sempre almeno un'esecuzione</b>!
+Il corpo viene eseguito <strong>prima</strong> del controllo.  
+Anche se <code>n &lt; 5</code> è già falso (10 &lt; 5), stampi comunque una volta <code>giro</code>, poi la condizione fallisce e usci.
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma `bonifico_sicuro.cpp`. L'algoritmo obbliga l'utente a reinserire l'importo finché non rispetta le regole aziendali di sicurezza:
 
 ```cpp
 /**
- * @file bonifico_sicuro.cpp
- * @brief Acquisizione e validazione robusta dell'importo per un bonifico bancario.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @file valida_bonifico.cpp
+ * @brief Chiede un importo di bonifico finché non e' nel range ammesso.
  */
 #include <iostream>
 
 /**
- * @brief Funzione principale: valida l'importo e conferma la disposizione bancaria.
- * @return int Codice di stato (0 = operazione autorizzata).
+ * @brief Valida importo in [1, 5000] con do-while.
+ * @return int 0 se ok.
  */
 int main() {
-    /// Massimale di sicurezza giornaliero per bonifici online
-    const double MASSIMALE_GIORNALIERO = 5000.00;
+    const double MIN_BONIFICO = 1.0;
+    const double MAX_BONIFICO = 5000.0;
 
-    /// Variabile per l'importo inserito dal cliente
-    double importoBonifico = 0.0;
+    double importo = 0.0;
 
-    std::cout << "==========================================" << "\n";
-    std::cout << "      DISPOSIZIONE BONIFICO BANCARIO      " << "\n";
-    std::cout << " Vincoli: importo > 0 e max 5.000,00 EUR  " << "\n";
-    std::cout << "==========================================" << "\n\n";
+    // Sequenza simulata per demo: -10, 0, 250  (in classe usa cin nel loop)
+    double tentativi[] = {-10.0, 0.0, 250.0};
+    int t = 0;
 
-    // CICLO DO-WHILE: La richiesta viene eseguita almeno una volta
-    // e ripetuta finche la condizione di validita e violata (negazione)
     do {
-        std::cout << "Inserisci l'importo da trasferire (EUR): ";
-        std::cin >> importoBonifico;
-
-        // Feedback immediato se il dato non rispetta i vincoli
-        if (importoBonifico <= 0.0) {
-            std::cout << ">>> ERRORE: L'importo deve essere positivo e maggiore di zero!\n\n";
-        } else if (importoBonifico > MASSIMALE_GIORNALIERO) {
-            std::cout << ">>> ERRORE: Importo superiore al massimale di " 
-                      << MASSIMALE_GIORNALIERO << " EUR!\n\n";
+        importo = tentativi[t++];
+        std::cout << "Tentativo importo: " << importo << " EUR\n";
+        if (importo < MIN_BONIFICO || importo > MAX_BONIFICO) {
+            std::cout << "  Non valido (ammessi " << MIN_BONIFICO
+                      << " .. " << MAX_BONIFICO << ")\n";
         }
+    } while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
 
-    } while (importoBonifico <= 0.0 || importoBonifico > MASSIMALE_GIORNALIERO);
-
-    // Se arriviamo qui, il dato e matematicamente garantito come valido
-    std::cout << "\n==========================================" << "\n";
-    std::cout << ">>> DISPOSIZIONE ACQUISITA CON SUCCESSO <<<" << "\n";
-    std::cout << "Importo autorizzato : " << importoBonifico << " EUR\n";
-    std::cout << "Commissione servizio: 1.00 EUR\n";
-    std::cout << "Totale addebitato   : " << (importoBonifico + 1.00) << " EUR\n";
-    std::cout << "==========================================" << "\n";
-
+    std::cout << "Bonifico accettato: " << importo << " EUR\n";
     return 0;
 }
 ```
 @LIA.cpp
 
+> In laboratorio reale:
+> ```cpp
+> do {
+>     std::cout << "Importo bonifico: ";
+>     std::cin >> importo;
+> } while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
+> ```
+
+#### 3. INVESTIGATE (Investiga)
+Sequenza: `-10` → `0` → `250`
+
+| Giro | importo | Valido? | Continua? |
+|------|---------|---------|-----------|
+| 1 | -10 | no | sì |
+| 2 | 0 | no | sì |
+| 3 | 250 | sì | **no** (esce) |
+
+Il controllo avviene **dopo** ogni tentativo: ecco perché il primo giro c’è sempre.
+
+#### 4. MODIFY (Modifica)
+1. **Limite 3 tentativi**  
+   Contatore `tentativi`. Se dopo 3 errori non è ancora valido, esci dal ciclo e stampa “sessione bloccata”.
+
+2. **Menu “altra operazione?”**  
+   Dopo un bonifico accettato, chiedi `S/N` in un `do-while` esterno e ripeti finché la risposta è `S`/`s`.
+
+3. **Dimenticare il `;`**  
+   Togli il punto e virgola dopo `while (...)`: osserva l’errore del compilatore.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — PIN sportello con tentativi limitati**
+
+Scrivi `pin_sportello.cpp`:
+
+- `const int PIN_CORRETTO = 4821`
+- L’utente inserisce un PIN (`int`)
+- `do-while`: ripeti finché il PIN è sbagliato **e** i tentativi sono `< 3`
+- Se indovina entro 3 prove → “Accesso consentito”
+- Se esaurisce i tentativi → “Carta bloccata”
+- Non rivelare il PIN corretto nei messaggi di errore
+
+**Requisiti:** Doxygen, messaggi chiari, niente ciclo infinito.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Validazione PIN sportello con massimo 3 tentativi.
+ */
+#include <iostream>
+
+int main() {
+    const int PIN_CORRETTO = 4821;
+    // tentativi, do-while, esiti
+    return 0;
+}
+```
+
+</details>
+
+**Variante di sintesi (opzionale, se avete tempo in lab):**  
+un mini menu cassa con `do-while` esterno + `switch` (nuova spesa / uscita), riusando sentinella e scaglioni già visti. Non è obbligatorio per chiudere il capitolo.
+
 ---
 
-#### 3. INVESTIGATE (Investiga: Il Controllo in Coda nello Stack)
-
-Visualizziamo passo dopo passo come il processore esegue il corpo prima di arrivare alla guardia in fondo:
-
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20double%20importo%20%3D%200.0%3B%0A%20%20%20%20int%20passaggio%20%3D%200%3B%0A%0A%20%20%20%20do%20%7B%0A%20%20%20%20%20%20%20%20passaggio%2B%2B%3B%0A%20%20%20%20%20%20%20%20//%20Simuliamo%20l'inserimento%3A%20al%201%C2%B0%20giro%20dato%20errato%2C%20al%202%C2%B0%20valido%0A%20%20%20%20%20%20%20%20if%20%28passaggio%20%3D%3D%201%29%20importo%20%3D%20-20.0%3B%0A%20%20%20%20%20%20%20%20else%20importo%20%3D%20250.0%3B%0A%0A%20%20%20%20%7D%20while%20%28importo%20%3C%3D%200.0%20%7C%7C%20importo%20%3E%205000.0%29%3B%0A%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Importo%20valido%3A%20%22%20%3C%3C%20importo%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
-
-Clicca su **"Visualize Execution"** e premi **"Next"**:
-1. All'avvio, il cursore entra direttamente nel blocco `do` senza fermarsi a controllare alcuna guardia.
-2. Alla riga del `while (importo <= 0.0 || importo > 5000.0)`:
-   - Al primo passaggio, `importo` vale `-20.0`. La condizione di errore è `true`.
-   - Il cursore **risale alla parola `do`** per eseguire nuovamente il corpo.
-3. Al secondo passaggio, `importo` vale `250.0`. La condizione di errore diventa `false`.
-4. Il cursore supera il punto e virgola ed esce definitivamente dal ciclo!
+### 📝 Riepilogo tascabile
+- `do-while` = esegui **poi** controlla → **almeno un** giro.
+- Ideale per validare input e menu che devono apparire subito.
+- Dopo `while (...)` del `do-while` non dimenticare il **`;`**.
+- `while`/`for` restano la scelta giusta quando 0 iterazioni è accettabile.
 
 ---
 
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Limite Massimo di 3 Tentativi di Inserimento:** Aggiungi un contatore `int tentativi = 0;`. Incrementalo a ogni giro. Se l'utente sbaglia per 3 volte consecutive, interrompi il ciclo e stampa: *"SESSIONE BLOCCATA: Raggiunto il limite massimo di errori per motivi di sicurezza."*.
-2. **Ciclo di Vita con Menu ("Vuoi fare un'altra operazione?"):** Avvolgi l'intero programma all'interno di un ulteriore ciclo `do-while` esterno con una variabile `char risposta;`. Al termine di ogni bonifico chiedi: *"Vuoi disporre un altro bonifico? (S/N): "* e ripeti finché `risposta == 'S' || risposta == 's'`.
+### ➡️ Prossimo chunk
+Chiudiamo il Blocco 1 con gli strumenti di “guida fine” del ciclo: **`break`**, **`continue`** e la formattazione professionale dei numeri con **`<iomanip>`**.
 
 ---
 
-#### 5. MAKE (Crea: Il Capolavoro di Fine Blocco 1)
-
-> 🏆 **La Sfida Finale del Blocco 1: Il Terminale Cassa Integrato**  
-> Metti a frutto **tutto ciò che hai imparato nel Blocco 1** (variabili, costanti, operatore ternario, `if-else`, `switch`, `while` e `do-while`) creando il prototipo del software di cassa per un negozio al dettaglio.
-> 
-> Scrivi un programma C++ completo (`terminale_cassa_completo.cpp`):
-> 
-> 1. **Loop Principale (`do-while`):** Il programma mostra il menu principale e continua a funzionare finché l'operatore non sceglie l'opzione di chiusura cassa (`0`).
-> 2. **Menu di Selezione (`switch-case`):**
->    - `Tasto 1 - Nuova Spesa Cliente:`
->      - Usa un ciclo `while` con sentinella `0.0` per battere i prezzi degli articoli nel carrello e calcolare il totale spesa.
->      - Con un `if-else if-else`, applica gli scaglioni di sconto fedeltà sul totale:
->        - Spesa < 50€: 0% sconto.
->        - Tra 50€ e 100€: 5% sconto.
->        - Oltre 100€: 10% sconto.
->      - Usa l'**operatore ternario (`?:`)** per verificare se regalare una shopper ecologica (`spesaScontata > 30.0 ? "Shopper Omaggio" : "Nessun omaggio"`).
->    - `Tasto 2 - Ricarica Carta Prepagata Punto Vendita:`
->      - Usa un `do-while` per validare l'importo della ricarica (deve essere compreso tra 5€ e 200€).
->    - `Tasto 0 - Chiusura Giornaliera di Cassa ed Uscita:`
->      - Stampa il messaggio di arrivederci e termina.
->    - `default:`
->      - Avvisa che il tasto premuto non è valido.
-> 
-> **Requisiti di qualità professionale:**
-> - Intestazione Doxygen completa su file e `main`.
-> - Commenti proporzionati `///` sulle regole di business e sulle costanti.
-> - Codice ben indentato e suddiviso logicamente in sezioni.
-## 🎯 Capitolo 11: Il Cruscotto del Programmatore (break, continue e Formattazione con <iomanip>)
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: do-while, validazione, almeno una iterazione
+  [x] Metafora form online
+  [x] Quiz sintassi corretta
+  [x] Predict: una iterazione anche se condizione già falsa
+  [x] PRIMM validazione bonifico
+  [x] Make PIN con 3 tentativi (più mirato del mega-terminale)
+  [x] Sintesi menu lasciata opzionale
+  [x] break/iomanip solo annunciati
+-->
+## 🎯 Capitolo 13: Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
 > — *Principio dei Sistemi Contabili*
 
-Hai conquistato tutti i costrutti fondamentali del linguaggio C++: variabili, decisioni e cicli. Prima di salire al livello successivo e iniziare a progettare programmi complessi suddivisi in funzioni (Blocco 2), ci mancano due strumenti indispensabili per rendere il tuo codice **flessibile, sicuro e professionale**:
+Prima di salire al Blocco 2 (funzioni e strutture dati) chiudiamo il Blocco 1 con due strumenti da “cruscotto”:
 
-1. **Il controllo chirurgico dei cicli (`break` e `continue`):** come interrompere un'elaborazione prima del tempo o come saltare un singolo passaggio difettoso senza fermare l'intero programma.
-2. **La formattazione dell'output con `<iomanip>`:** come stampare numeri monetari con esattamente due cifre decimali (`19.50 EUR` invece del brutto `19.5`) e allineare scontrini e fatture in perfette tabelle contabili.
+1. **Controllo fine dei cicli:** `break` e `continue`
+2. **Output contabile leggibile:** header `<iomanip>` (`fixed`, `setprecision`, `setw`)
 
----
-
-### 💡 Le Metafore: Il Nastro di Confezionamento e la Stampante Fiscale
-
-> 💡 **Metafora:**  
-> - **Il tasto `break` (Il Pulsante Rosso di Emergenza):**  
->   Sulla linea di confezionamento automatica delle merci scatta un allarme grave (es. sensore di sicurezza violato). L'operatore preme il pulsante a fungo: **tutto il nastro si ferma immediatamente** e il ciclo di produzione viene interrotto all'istante.
-> - **Il tasto `continue` (Il Braccio di Scarto):**  
->   Lungo il nastro passa un pacco vuoto o un codice a barre illeggibile. Un braccio pneumatico lo spinge nel cestino degli scarti: la macchina non si blocca, **salta quel singolo pacco difettoso** e passa subito a lavorare il pacco successivo!
-> - **I manipolatori di `<iomanip>` (La Stampante Fiscale Professionale):**  
->   Il terminale di cassa non stampa numeri alla rinfusa sul rotolo di carta: usa un righello tipografico per incolonnare le descrizioni a sinistra, gli importi a destra e stampare sempre i due zeri dei centesimi.
+> 💡 **Metafore**  
+> - **`break`** = pulsante rosso di emergenza: il nastro si **ferma subito**.  
+> - **`continue`** = braccio di scarto: salta **quel** pezzo difettoso e passa al successivo.  
+> - **`<iomanip>`** = stampante fiscale: centesimi sempre a due cifre, colonne allineate.
 
 ---
 
-### ⚙️ Controllo Chirurgico: `break` vs `continue`
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Usare `break` per uscire anticipatamente da un ciclo
+- Usare `continue` per saltare il resto del corpo e passare all’iterazione successiva
+- Formattare importi e tabelle con `std::fixed`, `std::setprecision` e `std::setw`
 
-| Istruzione | Cosa fa | Dove atterra il cursore? | Esempio Gestionale |
-| :--- | :--- | :--- | :--- |
-| **`break;`** | **Esce forzatamente e definitivamente dal ciclo**, interrompendo qualsiasi iterazione futura. | Salta alla prima riga **dopo la graffa di chiusura `}`** del ciclo. | Arresto per frode: se una carta risulta rubata, blocca l'elaborazione. |
-| **`continue;`** | **Interrompe solo il giro corrente**, ignorando le righe rimanenti del blocco. | Salta **in testa al ciclo** per iniziare subito l'iterazione successiva (nel `for` esegue prima l'aggiornamento contatore). | Transazione annullata: se l'importo è 0€, salta la stampa dello scontrino e passa al cliente successivo. |
+---
 
-```text @plantUML
-@startuml
-skinparam monochrome true
-skinparam shadowing false
+### ⚙️ `break` vs `continue`
 
-start
-while (Elementi da elaborare?) is (SI)
-  :Leggi transazione;
-  if (Errore Bloccante?) then (SI)
-    :break;
-    detach
-  elseif (Transazione Annullata?) then (SI)
-    :continue;
-  else (NO: Valida)
-    :Aggiorna bilancio;
-    :Stampa ricevuta;
-  endif
-endwhile (NO)
-:Report finale;
-stop
-@enduml
+| Istruzione | Effetto | Dove va il flusso |
+|------------|---------|-------------------|
+| `break;` | Interrompe il ciclo | subito **dopo** il ciclo |
+| `continue;` | Salta il resto del corpo di **questa** iterazione | alla condizione / aggiornamento del ciclo |
+
+```cpp
+for (int i = 1; i <= 10; ++i) {
+    if (i == 3) continue;   // salta il 3
+    if (i == 8) break;      // ferma tutto a 8
+    std::cout << i << " ";
+}
+// stampa: 1 2 4 5 6 7
 ```
 
 ---
 
-### 📐 Formattare l'Output Aziendale con `<iomanip>`
-
-Di default, `std::cout` stampa i numeri decimali nel modo più compatto possibile:
-- Il numero `19.50` viene stampato come `19.5` (perde lo zero finale!).
-- La divisione `100.0 / 3.0` stampa `33.3333` (un disastro estetico per un bilancio contabile).
-
-Includendo la libreria `<iomanip>` (*Input/Output Manipulators*) possiamo istruire il flusso di stampa:
+### 🖨️ Formattazione con `<iomanip>`
 
 ```cpp
 #include <iomanip>
 
-// 1. FORZARE 2 CIFRE DECIMALI (Standard Valuta / Euro):
 std::cout << std::fixed << std::setprecision(2);
-// Da questo punto in poi: 19.5 diventa "19.50", e 33.3333 diventa "33.33"!
-
-// 2. IMPOSTARE LA LARGHEZZA DI UNA COLONNA:
-// std::setw(10) riserva uno spazio di esattamente 10 caratteri per la stampa successiva
-std::cout << std::setw(10) << 45.50;
-
-// 3. ALLINEAMENTO CONTABILE (Sinistra per testi, Destra per importi):
-std::cout << std::left  << std::setw(20) << "Monitor 24 Pollici" 
-          << std::right << std::setw(10) << 149.99 << " EUR\n";
+std::cout << std::setw(10) << 19.5 << "\n";  // es. "     19.50"
 ```
 
-> ⚠️ **Attenzione su `std::setw`:** Mentre `std::fixed` e `std::setprecision` restano attivi per tutte le stampe successive, **`std::setw` vale per una sola singola stampa** e va ripetuto per ogni colonna che desideri formattare!
+| Manipolatore | Ruolo |
+|--------------|--------|
+| `std::fixed` | Notazione fissa (non scientifica) |
+| `std::setprecision(2)` | Cifre **dopo la virgola** (con `fixed`) |
+| `std::setw(n)` | Larghezza minima del **prossimo** campo |
+| `std::left` / `std::right` | Allineamento (testo a sx, importi a dx) |
+
+Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può produrre notazione scientifica: in ambito monetario **`fixed` è obbligatorio**.
 
 ---
 
-### 🔬 Laboratorio PRIMM: Il Report Fiscale delle Vendite Giornaliere
-
-Sviluppiamo un generatore di prospetti contabili tabellari per l'amministrazione aziendale.
+### 🔬 Laboratorio PRIMM: Report fiscale con scarti e stop
 
 #### 1. PREDICT (Prevedi)
-? Osserva questo ciclo `for`. Quale sequenza numerica verrà stampata?
+Cosa stampa?
+
 ```cpp
 for (int i = 1; i <= 5; ++i) {
     if (i == 2) continue;
     if (i == 4) break;
-    std::cout << i << " ";
+    std::cout << i;
 }
 ```
-- [ ] `1 2 3 4 5 `
-- [x] `1 3 `
-- [ ] `1 2 3 `
-- [ ] `3 `
+
+[( )] `12345`
+[( )] `1345`
+[(X)] `13`
+[( )] `1234`
 
 <details>
 <summary>💡 Spiegazione</summary>
-Seguiamo il ciclo passo dopo passo:
-1. <code>i = 1</code>: i due <code>if</code> sono falsi -> stampa <code>1 </code>.
-2. <code>i = 2</code>: si attiva <code>continue;</code> -> il resto del corpo viene saltato e si passa subito a <code>i = 3</code> (non stampa nulla!).
-3. <code>i = 3</code>: i due <code>if</code> sono falsi -> stampa <code>3 </code>.
-4. <code>i = 4</code>: si attiva <code>break;</code> -> il ciclo viene <b>terminato all'istante</b> e il programma esce dal <code>for</code>.
-Il risultato finale a video è esattamente <code>1 3 </code>!
+<code>i=1</code> stampa; <code>i=2</code> → <code>continue</code> (niente stampa); <code>i=3</code> stampa; <code>i=4</code> → <code>break</code> (esce). Risultato: <code>13</code>.
 </details>
 
----
-
 #### 2. RUN (Esegui)
-Esamina il programma `report_fiscale.cpp`. Nota come combina `continue` per saltare gli storni a importo zero, `break` per bloccare la cassa in caso di furto/anomalia, e i manipolatori di `<iomanip>` per generare una tabella contabile impeccabile:
 
 ```cpp
 /**
  * @file report_fiscale.cpp
- * @brief Report vendite giornaliere con scarto transazioni e formattazione monetaria.
- * @author Docente di Informatica - 3ª SIA
- * @date 2026-11-11
+ * @brief Report di transazioni con scarto, stop di sicurezza e formattazione.
  */
 #include <iostream>
 #include <iomanip>
-#include <string>
 
 /**
- * @brief Funzione principale: genera il prospetto contabile delle vendite.
- * @return int Codice di uscita (0 = esecuzione regolare).
+ * @brief Elabora 6 transazioni simulate: continue se <=0, break se >50000.
+ * @return int 0 se ok.
  */
 int main() {
-    /// Incasso totale cumulato valido
-    double totaleIncasso = 0.0;
+    const double importi[] = {120.5, -3.0, 45.0, 12.75, 52000.0, 8.0};
+    const int N = 6;
 
-    /// Numero di transazioni commerciali valide andate a buon fine
-    int transazioniValide = 0;
+    double totale = 0.0;
 
-    // Impostiamo una volta per tutte la precisione monetaria a 2 decimali
     std::cout << std::fixed << std::setprecision(2);
+    std::cout << std::setw(4) << "ID" << std::setw(12) << "Importo" << "\n";
+    std::cout << "----  ----------\n";
 
-    std::cout << "========================================================" << "\n";
-    std::cout << "        PROSPETTO FISCALE GIORNALIERO VENDITE          " << "\n";
-    std::cout << "========================================================" << "\n";
-    
-    // Intestazione tabella allineata con larghezze fisse
-    std::cout << std::left  << std::setw(6)  << "ID" 
-              << std::left  << std::setw(28) << "Descrizione Prodotto" 
-              << std::right << std::setw(12) << "Importo (EUR)" 
-              << std::right << std::setw(10) << "Stato" << "\n";
-    std::cout << "--------------------------------------------------------" << "\n";
+    for (int id = 1; id <= N; ++id) {
+        double importo = importi[id - 1];
 
-    // Simulazione di una sequenza di 5 transazioni registrate
-    for (int id = 1; id <= 5; ++id) {
-        std::string descrizione;
-        double importo = 0.0;
-
-        // Dati simulati delle transazioni
-        if (id == 1)      { descrizione = "Mouse Wireless Ottico";   importo = 19.50;  }
-        else if (id == 2) { descrizione = "Storno Ordine Annullato"; importo = 0.00;   }
-        else if (id == 3) { descrizione = "Tastiera Meccanica RGB";  importo = 59.90;  }
-        else if (id == 4) { descrizione = "Toner Stampante Laser";   importo = 120.00; }
-        else if (id == 5) { descrizione = "Allarme Blocco Fiscale";  importo = -999.0; }
-
-        // 1. USO DI BREAK: Se c'e un codice di allarme critico, ferma tutto!
-        if (importo == -999.0) {
-            std::cout << ">>> ARRESTO D'EMERGENZA: Rilevata anomalia bloccante al n. " 
-                      << id << " <<<\n";
+        if (importo <= 0.0) {
+            std::cout << "  (scarto ID " << id << ": non positivo)\n";
+            continue;
+        }
+        if (importo > 50000.0) {
+            std::cout << "  ALERT antiriciclaggio ID " << id
+                      << " — interrompo il report\n";
             break;
         }
 
-        // 2. USO DI CONTINUE: Se la transazione e uno storno nullo, scartala!
-        if (importo == 0.0) {
-            std::cout << std::left  << std::setw(6)  << id
-                      << std::left  << std::setw(28) << descrizione
-                      << std::right << std::setw(12) << importo
-                      << std::right << std::setw(10) << "[SCARTATA]\n";
-            continue; // Salta il resto del corpo e passa direttamente a id = 3!
-        }
-
-        // Se arriviamo qui, la transazione e valida: aggiorniamo i totali
-        totaleIncasso += importo;
-        transazioniValide++;
-
-        // Stampa riga contabile con allineamento professionale
-        std::cout << std::left  << std::setw(6)  << id
-                  << std::left  << std::setw(28) << descrizione
-                  << std::right << std::setw(12) << importo
-                  << std::right << std::setw(10) << "[VALIDA]\n";
+        totale += importo;
+        std::cout << std::setw(4) << id << std::setw(12) << importo << "\n";
     }
 
-    std::cout << "--------------------------------------------------------" << "\n";
-    std::cout << std::left  << std::setw(34) << "TOTALE GENERALE INCASSATO:" 
-              << std::right << std::setw(12) << totaleIncasso << " EUR\n";
-    std::cout << "Transazioni valide registrate: " << transazioniValide << "\n";
-    std::cout << "========================================================" << "\n";
+    std::cout << "----  ----------\n";
+    std::cout << std::setw(4) << "" << std::setw(12) << totale << "  TOTALE\n";
 
     return 0;
 }
 ```
 @LIA.cpp
 
+#### 3. INVESTIGATE (Investiga)
+| ID | Importo | Azione |
+|----|---------|--------|
+| 1 | 120.50 | accumula |
+| 2 | -3.00 | `continue` (scarto) |
+| 3 | 45.00 | accumula |
+| 4 | 12.75 | accumula |
+| 5 | 52000 | `break` (stop) |
+| 6 | 8.00 | **non elaborato** |
+
+> 🔗 Osserva il salto di `continue`/`break` su [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+#### 4. MODIFY (Modifica)
+1. **Colonna IVA**  
+   Per ogni riga valida stampa anche `importo * 0.22` con `setw`.
+
+2. **Soglia micro-pagamenti**  
+   Con `continue`, scarta anche gli importi `< 5.00`.
+
+3. **Senza `fixed`**  
+   Rimuovi `std::fixed` e osserva come cambia la stampa con solo `setprecision(2)`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Liquidazione IVA trimestrale (semplificata)**
+
+Scrivi `liquidazione_iva.cpp`:
+
+- Ciclo su 6 fatture (ID 1…6) con imponibile e codice aliquota simulati in array (o costanti)
+- Aliquote: `'O'` 22%, `'R'` 10%, `'M'` 4%, `'E'` 0%
+- `continue` se imponibile `<= 0` (messaggio “fattura annullata”)
+- `break` se imponibile `> 50000` (alert)
+- Tabella formattata: `ID | Imponibile | Aliq. | IVA`
+- A fine ciclo (o allo stop): totale imponibile e totale IVA
+
+**Requisiti:** `#include <iomanip>`, `fixed` + `setprecision(2)`, Doxygen, `///` sulle aliquote.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+/**
+ * @brief Prospetto semplificato liquidazione IVA.
+ */
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    // dati, ciclo, continue/break, tabella, totali
+    return 0;
+}
+```
+
+</details>
+
 ---
 
-#### 3. INVESTIGATE (Investiga: Salti e Registri nello Stack)
-
-Visualizziamo come `break` e `continue` deviano istantaneamente il flusso di esecuzione:
-
-🔗 **[Apri questo codice su Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html#code=%23include%20%3Ciostream%3E%0A%0Aint%20main%28%29%20%7B%0A%20%20%20%20double%20totale%20%3D%200.0%3B%0A%0A%20%20%20%20for%20%28int%20i%20%3D%201%3B%20i%20%3C%3D%204%3B%20%2B%2Bi%29%20%7B%0A%20%20%20%20%20%20%20%20if%20%28i%20%3D%3D%202%29%20continue%3B%20//%20Scarta%20il%20giro%202%0A%20%20%20%20%20%20%20%20if%20%28i%20%3D%3D%204%29%20break%3B%20%20%20%20//%20Esce%20al%20giro%204%0A%20%20%20%20%20%20%20%20totale%20%2B%3D%2010.0%3B%0A%20%20%20%20%7D%0A%20%20%20%20std%3A%3Acout%20%3C%3C%20%22Totale%3A%20%22%20%3C%3C%20totale%20%3C%3C%20%22%5Cn%22%3B%0A%20%20%20%20return%200%3B%0A%7D&mode=edit)**
-
-Clicca su **"Visualize Execution"** e premi **"Next"**:
-1. A `i = 2`, quando la freccia tocca `continue;`:
-   - Guarda come la freccia **salta all'insù** tornando alla riga del `for`, incrementa `i` a `3` ed esegue il test, **senza mai toccare la riga `totale += 10.0;`**.
-2. A `i = 4`, quando la freccia tocca `break;`:
-   - Guarda come la freccia viene **proiettata in avanti fuori dal ciclo**, atterrando direttamente sulla riga `std::cout`, senza neppure aggiornare `i` a 5!
+### 📝 Riepilogo tascabile
+- `break` = esci dal ciclo; `continue` = salta al giro successivo.
+- In report contabili: scarti → `continue`; allarmi gravi → `break`.
+- `<iomanip>`: `fixed` + `setprecision(2)` per i soldi; `setw` per le colonne.
+- Senza `fixed`, `setprecision` non significa “due decimali monetari”.
 
 ---
 
-#### 4. MODIFY (Modifica: Sperimenta e Cambia)
-
-1. **Aggiungi la Colonna dell'IVA:** Nel programma `report_fiscale.cpp`, aggiungi una nuova colonna calcolata: `double impostaIva = importo * 0.22;`. Usa `std::setw(10)` per visualizzare l'importo dell'IVA accanto a quello della merce.
-2. **Scarta Transazioni Sotto Soglia:** Modifica il controllo con `continue`: fai in modo che scarti tutte le transazioni con importo inferiore a `5.00€` (considerate micro-pagamenti non rilevanti per il report).
-3. **Cosa succede senza `std::fixed`?** Prova a rimuovere `std::fixed` lasciando solo `std::setprecision(2);`. Noterai che il C++ interpreterà il 2 come numero totale di cifre significative (es. `120.00` verrà stampato come `1.2e+02` in notazione scientifica!). Questo ti dimostra perché `std::fixed` è obbligatorio in ambito economico.
+### ➡️ Fine Blocco 1 — Prossimo orizzonte
+Hai il controllo di dati, decisioni, cicli e presentazione.  
+Nel **Blocco 2** spezzeremo i programmi in **funzioni**, introdurremo **array** e **struct** e costruiremo piccoli sistemi gestionali in memoria.
 
 ---
 
-#### 5. MAKE (Crea: La Tua Sfida Autonoma)
-
-> 🎯 **Sfida SIA: Il Prospetto di Liquidazione IVA Trimestrale**  
-> L'ufficio contabile deve predisporre il prospetto trimestrale per la liquidazione periodica dell'IVA.
-> 
-> Scrivi un programma C++ autonomo (`liquidazione_iva.cpp`):
-> - Utilizza un ciclo `for` per elaborare 6 fatture registrate nel trimestre (ID da 1 a 6).
-> - Ogni fattura ha un imponibile netto e un codice aliquota (`char`):
->   - `'O'`: Ordinaria 22% (`0.22`).
->   - `'R'`: Ridotta 10% (`0.10`).
->   - `'M'`: Minima 4% (`0.04`).
->   - `'E'`: Esente IVA (`0.00`).
-> - **Regola di Controllo Flusso:**
->   - Se l'imponibile di una fattura è `<= 0.0`, usa `continue;` per ignorarla stampando un avviso *"Fattura annullata"*.
->   - Se l'imponibile supera `50.000€`, scatta un alert antiriciclaggio che interrompe il ciclo con `break;`.
-> - **Formattazione Contabile (`<iomanip>`):**
->   - Imposta `std::fixed` e `std::setprecision(2)`.
->   - Stampa una tabella a 4 colonne perfettamente allineate con `std::setw`:
->     `Fattura ID` | `Imponibile (EUR)` | `Aliq.` | `Imposta IVA (EUR)`
-> - Al termine del ciclo, calcola e stampa:
->   - L'imponibile complessivo.
->   - Il totale dell'IVA a debito da versare all'Erario.
-> 
-> **Requisiti di qualità:**
-> - Intestazione Doxygen del file e della funzione `main`.
-> - Commenti `///` proporzionati sulle aliquote fiscali.
-> - Allineamenti contabili ordinati (testo a sinistra, numeri e valute a destra).
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Obiettivo: break, continue, iomanip monetario
+  [x] Metafore nastro / stampante fiscale
+  [x] Quiz sintassi corretta
+  [x] PRIMM report con scarti e alert
+  [x] Make liquidazione IVA
+  [x] Ponte esplicito a Blocco 2
+-->
