@@ -1,7 +1,7 @@
 ## 📝 Capitolo 4: Parlare al Futuro Te Stesso (Documentazione Doxygen)
 
-> "Il codice viene letto molto più spesso di quanto venga scritto."
-> — *Principio di manutenibilità*
+> "Il codice non mente mai, i commenti sì."
+> — Ron Jeffries
 
 Hai già scritto `Ciao, Mondo!` e presto scriverai programmi più lunghi.  
 Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente.  
@@ -19,7 +19,7 @@ Usiamo uno standard leggero e diffusissimo: **Doxygen**.
 Alla fine di questa lezione sei in grado di:
 - Scrivere un’intestazione di file e di `main` in stile Doxygen
 - Usare il commento `///` per spiegare il **perché** (non il cosa ovvio)
-- Applicare la **regola di proporzionalità** del corso
+- Scegliere cosa commentare e cosa no
 
 ---
 
@@ -46,7 +46,7 @@ const double ALIQUOTA_IVA = 0.22;
 ```cpp
 /**
  * @file presentazione.cpp
- * @brief Stampa nome, classe e hobby dello studente.
+ * @brief Stampa cognome e materia dell'insegnante.
  */
 #include <iostream>
 
@@ -55,9 +55,9 @@ const double ALIQUOTA_IVA = 0.22;
  * @return int 0 se l'esecuzione termina correttamente.
  */
 int main() {
-    /// Identificativo dello studente per lo scontrino di presentazione
-    std::cout << "Nome: Alex\n";
-    std::cout << "Classe: 3A SIA\n";
+    /// Tesserino degli insegnanti
+    std::cout << "Cognome: Massi\n";
+    std::cout << "Materia: Informatica\n";
     return 0;
 }
 ```
@@ -101,8 +101,7 @@ Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scriver
 - Doxygen = etichette standard per file e funzioni.
 - Tag minimi: `@file`, `@brief`, `@param`, `@return`.
 - `///` spiega il **perché**, non il cosa ovvio.
-- Proporzionalità: completo sopra ~15 righe, leggero sotto.
-- Da questo capitolo in poi i Make “ufficiali” richiederanno questi standard.
+- L'editor ci mostra i commenti Doxygen quando ci riferiamo ad una risorsa documentata.
 
 ---
 
@@ -110,11 +109,3 @@ Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scriver
 Con l’officina pronta, il motore visto, il primo dialogo scritto e le etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Chunk breve e monotematico (solo documentazione)
-  [x] Allineato a SKILLS.md (proporzionalità)
-  [x] Nessun costrutto nuovo di linguaggio
-  [x] Ponte esplicito verso variabili
--->

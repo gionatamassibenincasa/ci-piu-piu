@@ -1,6 +1,6 @@
 ## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
 
-> "S'impara a programmare scrivendo programmi."
+> "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 > — *Brian Kernighan*
 
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
@@ -35,7 +35,7 @@ Cosa fa il simbolo `\n` alla fine della frase?
 [( )] Inserisce uno spazio extra
 
 #### 2. RUN (Esegui)
-Digita il codice **a mano** (non fare copia-incolla) nel blocco qui sotto e premilo Run.  
+Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
 Confronta l’output con la tua previsione.
 
 ```cpp
@@ -170,16 +170,3 @@ Finora il computer ha solo *parlato*.
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Obiettivo unico e osservabile
-  [x] Metafora ricetta / chef
-  [x] Quiz con sintassi LiaScript corretta
-  [x] PRIMM completo
-  [x] Investigate con tabella
-  [x] Modify progressive + spiegazioni
-  [x] Make con scaffold e requisiti chiari
-  [x] Riepilogo tascabile
-  [x] Nessun costrutto non ancora introdotto
--->

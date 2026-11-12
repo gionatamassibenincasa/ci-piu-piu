@@ -1,7 +1,7 @@
 ## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
 
-> "La memoria è lo spazio in cui i dati attendono il loro turno per essere trasformati in valore."
-> — *Principio dei Sistemi Informativi*
+> "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
+> — G. Orwell
 
 Finora abbiamo solo *stampato* testi fissi.  
 Un software gestionale, però, deve **ricordare e aggiornare dati che cambiano**: prezzo di un articolo, giacenza di magazzino, saldo di un conto.
@@ -31,7 +31,7 @@ Alla fine di questa lezione sei in grado di:
 
 Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** conterrà, così riserva lo spazio giusto.
 
-| Tipo | Cosa contiene | Esempio SIA | Note |
+| Tipo | Cosa contiene | Esempio | Note |
 |------|---------------|-------------|------|
 | `int` | Numeri interi (senza virgola) | `int giacenza = 42;` | Pezzi, quantità, conteggi |
 | `double` | Numeri con la virgola | `double prezzo = 19.50;` | Prezzi, saldi, aliquote |
@@ -69,7 +69,7 @@ Cosa viene stampato?
 </details>
 
 #### 2. RUN (Esegui)
-Digita (a mano) e esegui il programma completo:
+Esegui il programma completo:
 
 ```cpp
 /**
@@ -212,15 +212,3 @@ int main() {
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Un solo obiettivo principale: variabili, tipi, const
-  [x] Metafora locker (Head First + contesto logistica/e-commerce)
-  [x] Quiz sintassi LiaScript corretta
-  [x] PRIMM completo con scenario magazzino
-  [x] Modify progressivo (IVA, const, init moderna)
-  [x] Make con scenario conto corrente (SIA)
-  [x] cin/getline NON introdotti qui (troppa densità; eventuali in capitolo successivo)
-  [x] Riepilogo tascabile e ponte al capitolo espressioni
--->

@@ -28,7 +28,7 @@ Alla fine di questa lezione sei in grado di:
 
 ### 🏭 La fabbrica del codice — le quattro stazioni
 
-Il percorso essenziale (come nella classica figura “Compiler and linker”) è questo:
+Il percorso essenziale è questo:
 
 ```text @plantUML
 @startuml
@@ -124,11 +124,13 @@ Se compiliamo questo programma con `g++ -save-temps`, quale file conterrà il co
 Nella cartella del progetto digita:
 
 ```bat
-g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
+g++ -save-temps -O0 -fverbose-asm ridotto.cpp -o ridotto.exe
 ```
 
 Il flag `-save-temps` dice a g++: “non cancellare i file intermedi”.  
 `-O0` disattiva le ottimizzazioni, così l’Assembly resta più leggibile.
+`-fverbose-asm` annota ogni riga rilevante per mostrare la corrispondenza tra il codice assembly prodotto e quello C++ _sorgente_.
+
 
 **Controllo:** nella cartella devono comparire almeno:
 - `ridotto.ii`
@@ -170,7 +172,7 @@ Che, in pratica, prepara il valore di ritorno `0` (successo).
    ```
 2. Ricompila con lo stesso comando:
    ```bat
-   g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
+   g++ -save-temps -O0 -fverbose-asm ridotto.cpp -o ridotto.exe
    ```
 3. Riapri `ridotto.s` e cerca di nuovo l’istruzione `movl` / `mov`.
 
@@ -199,7 +201,7 @@ Dovresti vedere `42`.
 Crea un nuovo file `codice_uscita.cpp` che:
 1. Contiene solo la funzione `main`
 2. Restituisce un numero a tua scelta tra 1 e 99 (diverso da 0 e da 42)
-3. Viene compilato con `-save-temps`
+3. Viene compilato con `-save-temps -fverbose-asm`
 4. Ti permette di verificare, aprendo il `.s`, che il numero scelto compaia nell’Assembly
 5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l’esecuzione
 
@@ -222,15 +224,3 @@ Finora il nostro programma non ha ancora *parlato* con noi.
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Un solo obiettivo principale: capire la catena di compilazione
-  [x] Metafora fabbrica / catena di montaggio
-  [x] Quiz con sintassi LiaScript corretta
-  [x] PRIMM completo su programma minimo SENZA iostream
-  [x] Nessuna sovrapposizione con Ciao Mondo (niente cout nel Make)
-  [x] -save-temps e ispezione .ii / .s
-  [x] Collegamento esplicito return N → movl $N
-  [x] Riepilogo tascabile e ponte al capitolo successivo
--->

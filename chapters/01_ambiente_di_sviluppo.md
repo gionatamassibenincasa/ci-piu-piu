@@ -120,12 +120,12 @@ Devi vedere le versioni. Se compare “non è riconosciuto come comando…” il
 
 #### Passo 7 — Primo programma di prova (ciclo leggero PRIMM)
 
-Crea il file `ridotto.cpp` nella cartella del corso (`Documenti\Cpp-3SIA`) con questo contenuto:
+Crea il file `prova.cpp` nella cartella del corso (`Documenti\Ci-Piu-Piu`) con questo contenuto:
 
 ```cpp
 /**
- * @file ridotto.cpp
- * @brief Programma minimo di verifica dell'ambiente di sviluppo.
+ * @file prova.cpp
+ * @brief Programma di verifica dell'ambiente di sviluppo.
  */
 #include <iostream>
 
@@ -149,8 +149,8 @@ Cosa pensi che succeda quando eseguirai il programma?
 Nel Prompt dei comandi (sempre dentro la cartella del progetto):
 
 ```bat
-g++ ridotto.cpp -o ridotto.exe
-ridotto.exe
+g++ prova.cpp -o prova.exe
+prova.exe
 ```
 
 **Controllo:** deve comparire esattamente `Ambiente C++ pronto!`.
@@ -159,9 +159,9 @@ ridotto.exe
 Cambia il messaggio stampato (es. metti il tuo nome o la tua classe) e ricompila.  
 Verifica che la nuova frase appaia correttamente. Puoi usare il bottone "Esegui" sotto la finestra del codice sorgente per eseguire il codice.
 
-```cpp[modify.cpp]
+```cpp[modificami.cpp]
 /**
- * @file modify.cpp
+ * @file modificami.cpp
  * @brief Modifica la frase!
  */
 #include <iostream>
