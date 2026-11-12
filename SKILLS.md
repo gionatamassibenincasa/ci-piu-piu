@@ -76,7 +76,11 @@ Quando generi contenuti, rispetta **tassativamente** queste regole:
 
 1. **Struttura File:** Usa sempre il formato pronto per essere salvato come `chapters/XX_nome.md`.
 2. **Sintassi LiaScript:**
-   - Quiz: Usa `?` seguito da `- [ ]` e `- [x]` per la risposta corretta.
+   - Quiz: **usa solo** la sintassi nativa LiaScript (vedi `docs/quiz_liascript.md`).
+     - Single-choice: `[(X)]` / `[( )]`
+     - Multiple-choice: `[[X]]` / `[[ ]]`
+     - Text: `[[soluzione]]`
+     - **Non usare** più la forma `? domanda` + `- [ ]` / `- [x]` (non genera quiz interattivi).
    - Codice eseguibile: Termina i blocchi cpp con `@LIA.cpp`.
    - Diagrammi: Usa ````text @plantUML` per visualizzare flussi o concetti.
    - Dettagli: Usa `<details><summary>💡 Soluzione / Spiegazione</summary>...</details>` per non spoilerare subito le risposte.

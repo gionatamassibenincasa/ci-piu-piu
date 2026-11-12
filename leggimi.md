@@ -14,10 +14,13 @@ ci-piu-piu/
 │   ├── ...
 │   └── ...
 ├── docs/               # Riferimenti metodologici e template (per autori e LLM)
-│   ├── template_lezione.md   # Template standard di capitolo (PRIORITÀ 1)
-│   └── quiz_liascript.md     # Sintassi corretta dei quiz LiaScript
+│   ├── template_lezione.md   # Template standard di capitolo
+│   ├── quiz_liascript.md     # Sintassi corretta dei quiz LiaScript
+│   ├── chunking.md           # Lezioni segmentate e un solo obiettivo
+│   ├── primm.md              # Le cinque fasi PRIMM in dettaglio
+│   └── head_first_style.md   # Tono, metafore e scenari aziendali
 ├── assets/             # Immagini o risorse esterne (se necessarie)
-├── SKILLS.md           # Profilo docente, metodologie didattiche (PRIMM) e regole di stile
+├── SKILLS.md           # Profilo docente, metodologie e regole di stile
 ├── leggimi.md          # Guida al repository e flusso di lavoro per i contributori
 ├── LICENSE             # La licenza del progetto
 └── .gitignore
@@ -25,7 +28,13 @@ ci-piu-piu/
 
 ## Flusso di lavoro
 
-1. **Scelta o creazione del segmento**: parti sempre da `docs/template_lezione.md`. Copialo in `chapters/XX_nome.md` e sostituisci i placeholder. Rispetta le regole in [SKILLS.md](SKILLS.md) e la sintassi quiz in [docs/quiz_liascript.md](docs/quiz_liascript.md).
+1. **Scelta o creazione del segmento**: parti sempre da `docs/template_lezione.md`. Copialo in `chapters/XX_nome.md` e sostituisci i placeholder.  
+   Rispetta:
+   - [SKILLS.md](SKILLS.md)
+   - [docs/chunking.md](docs/chunking.md)
+   - [docs/primm.md](docs/primm.md)
+   - [docs/head_first_style.md](docs/head_first_style.md)
+   - [docs/quiz_liascript.md](docs/quiz_liascript.md)
 2. **Inclusione nell'indice**: assicurati che il capitolo sia incluso in `index.md` tramite la direttiva `#include <chapters/nome_file.md>`.
 3. **Generazione dell'output**:
    ```bash

@@ -2,7 +2,13 @@
   TEMPLATE DI LEZIONE — Ci Più Più
   Uso: copia questo file in chapters/XX_nome_argomento.md e sostituisci i
   placeholder. Ogni capitolo deve essere un "chunk" autonomo di 15-25 minuti.
-  Riferimenti: SKILLS.md + docs/ (quiz, chunking, PRIMM, Head First).
+
+  Riferimenti obbligatori:
+  - SKILLS.md                          (profilo docente e regole generali)
+  - docs/chunking.md                   (un solo obiettivo, durata, check)
+  - docs/primm.md                      (le cinque fasi in dettaglio)
+  - docs/head_first_style.md           (metafore, tono, scenari aziendali)
+  - docs/quiz_liascript.md             (sintassi corretta dei quiz)
 -->
 
 ## 📌 Capitolo XX: [Titolo chiaro e concreto — es. "Il Tornello delle Decisioni"]
@@ -175,11 +181,14 @@ Nel prossimo capitolo vedremo [anteprima motivante del concetto successivo, coll
 
 <!-- 
   NOTE PER L'AUTORE / LLM (non visibili allo studente)
-  - Un solo obiettivo principale per chunk.
-  - Metafora obbligatoria e esplicita.
-  - Quiz: usa SEMPRE la sintassi LiaScript corretta (vedi docs/quiz_liascript.md).
-  - Codice eseguibile termina sempre con @LIA.cpp
-  - Commenti /// solo sul "perché", mai tautologie.
-  - Preferisci scenari di Economia Aziendale (magazzino, POS, clienti, IVA, ordini...).
-  - Durata target: 15-25 minuti di lavoro studente.
+  Checklist rapida (vedi i documenti in docs/ per i dettagli):
+  [ ] Un solo obiettivo principale (chunking.md)
+  [ ] Metafora obbligatoria e collegata (head_first_style.md)
+  [ ] Predict con quiz sintassi corretta PRIMA di qualsiasi Run (primm.md + quiz_liascript.md)
+  [ ] Investigate con tabella e/o Python Tutor quando c’è memoria
+  [ ] Modify con scaffold progressivo (niente costrutti nuovi)
+  [ ] Make su scenario aziendale diverso + requisiti chiari
+  [ ] Codice eseguibile termina sempre con @LIA.cpp
+  [ ] Commenti /// solo sul "perché", mai tautologie
+  [ ] Durata target nucleo: 15-25 minuti
 -->
