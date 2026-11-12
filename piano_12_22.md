@@ -1,6 +1,8 @@
 # 📋 Piano Didattico Blocco 2: Modularità, Strutture Dati e Algoritmi
 **Corso:** Ci Più Più — C++ per la classe 3ª SIA (Sistemi Informativi Aziendali)  
-**Approccio:** Micro-Chunking a granularità fine (lezioni da 20-25 min) con casi studio economico-gestionali, metodo PRIMM rigoroso, metafore cognitive "Head First" e approccio **unplugged** per gli algoritmi.
+**Prerequisito:** Blocco 1 completato (capitoli 0–13: ambiente, linguaggio, selezione, cicli, documentazione Doxygen).  
+**Approccio:** Micro-Chunking (15–25 min) + casi studio economico-gestionali, PRIMM, metafore Head First, attività **unplugged** per gli algoritmi.  
+**Numerazione:** i file di questo blocco partono dal capitolo **14** (dopo l’inserimento del cap. 4 Doxygen nel Blocco 1).
 
 ---
 
@@ -17,9 +19,9 @@
 
 ---
 
-## 🗺️ Mappa Dettagliata dei Capitoli (12 - 23)
+## 🗺️ Mappa Dettagliata dei Capitoli (14 - 24)
 
-### 🏢 Capitolo 12: `chapters/12_funzioni_scomposizione_top_down.md`
+### 🏢 Capitolo 14: `chapters/14_funzioni_scomposizione_top_down.md`
 **Titolo:** *I Reparti dell'Azienda: Sviluppo Top-Down e la Funzione come Scatola Nera*  
 **Durata stimata:** 20 minuti
 
@@ -40,11 +42,14 @@
   - *Predict:* Cosa accade se una funzione ha istruzioni dopo la riga del `return`? (Codice irraggiungibile).
   - *Investigate (PythonTutor):* Visualizzare lo **Stack Frame**: come la chiamata mette "in pausa" il `main`, alloca un nuovo frame isolato per la funzione e lo distrugge al `return`.
   - *Modify:* Creare una funzione `applicaBonus(double stipendio, double bonus)` e comporla con il calcolo del netto.
-  - *Make:* Progettare una funzione `calcolaRataMutuo` con documentazione Doxygen completa.
+  - *Make:* Funzione `calcolaRataMutuo(double capitale, double tassoAnnuo, int mesi)` con:
+    - Doxygen completo (`@brief`, `@param`, `@return`)
+    - Formula semplificata concordata in classe (o quota interessi + quota capitale fittizia)
+    - Programma driver in `main` che stampa 3 scenari di mutuo aziendale
 
 ---
 
-### 📎 Capitolo 13: `chapters/13_scope_e_passaggio_parametri.md`
+### 📎 Capitolo 15: `chapters/15_scope_e_passaggio_parametri.md`
 **Titolo:** *La Fotocopia vs L'Originale: Scope e Passaggio per Riferimento (`&`)*  
 **Durata stimata:** 20 minuti
 
@@ -68,7 +73,7 @@
 
 ---
 
-### 🗄️ Capitolo 14: `chapters/14_array_sequenze_dati.md`
+### 🗄️ Capitolo 16: `chapters/16_array_sequenze_dati.md`
 **Titolo:** *La Batteria di Locker: Gli Array e le Sequenze di Dati*  
 **Durata stimata:** 25 minuti
 
@@ -91,11 +96,15 @@
   - *Predict:* Cosa stampa `vendite[30]` se l'array è dichiarato con dimensione 30? (Errore di indice: l'ultimo è `[29]`).
   - *Investigate (PythonTutor):* Visualizzare l'array come un unico grande blocco rettangolare suddiviso in celle contigue nello stack.
   - *Modify:* Aggiungere il conteggio dei giorni in cui l'incasso ha superato una soglia prefissata (es. > 1.000€).
-  - *Make:* Programma `controllo_qualita.cpp` che registra le misure di 20 pezzi industriali, calcola lo scarto rispetto allo standard e individua i pezzi difettosi.
+  - *Make:* Programma `controllo_qualita.cpp`:
+    - array di 20 misure (double)
+    - standard di riferimento e tolleranza (const)
+    - media, minimo, massimo e conteggio pezzi fuori tolleranza
+    - stampa tabellare dei soli pezzi difettosi (indice + valore + scarto)
 
 ---
 
-### 📊 Capitolo 15: `chapters/15_array_bidimensionali_matrici.md`
+### 📊 Capitolo 17: `chapters/17_array_bidimensionali_matrici.md`
 **Titolo:** *Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili*  
 **Durata stimata:** 25 minuti
 
@@ -119,7 +128,7 @@
 
 ---
 
-### 🗝️ Capitolo 16: `chapters/16_puntatori_e_memoria.md`
+### 🗝️ Capitolo 18: `chapters/18_puntatori_e_memoria.md`
 **Titolo:** *Il Biglietto di Ritiro: Indirizzi di Memoria, Operatori & e * e Puntatori*  
 **Durata stimata:** 20 minuti
 
@@ -144,7 +153,7 @@
 
 ---
 
-### 🏷️ Capitolo 17: `chapters/17_enum_e_struct.md`
+### 🏷️ Capitolo 19: `chapters/19_enum_e_struct.md`
 **Titolo:** *L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct`)*  
 **Durata stimata:** 25 minuti
 
@@ -176,7 +185,7 @@
 
 ---
 
-### 🔍 Capitolo 18: `chapters/18_ricerca_dicotomica.md` *(Opzionale)*
+### 🔍 Capitolo 20: `chapters/20_ricerca_dicotomica.md` *(Opzionale)*
 **Titolo:** *Il Dizionario Magico: La Ricerca Dicotomica (Binaria)*  
 **Durata stimata:** 20 minuti
 
@@ -204,7 +213,7 @@
 
 ---
 
-### 🃏 Capitolo 19: `chapters/19_ordinamento_selection_sort.md` *(Opzionale)*
+### 🃏 Capitolo 21: `chapters/21_ordinamento_selection_sort.md` *(Opzionale)*
 **Titolo:** *Riordinare le Carte: L'Algoritmo Selection Sort*  
 **Durata stimata:** 20 minuti
 
@@ -235,7 +244,7 @@
 
 ---
 
-### 🧩 Capitolo 20: `chapters/20_ordinamento_divide_et_impera.md` *(Opzionale)*
+### 🧩 Capitolo 22: `chapters/22_ordinamento_divide_et_impera.md` *(Opzionale)*
 **Titolo:** *Divide et Impera: Merge Sort e Quick Sort*  
 **Durata stimata:** 25 minuti
 
@@ -267,7 +276,7 @@
 
 ---
 
-### 🏆 Capitolo 21: `chapters/21_database_in_memoria_progetto.md`
+### 🏆 Capitolo 23: `chapters/23_database_in_memoria_progetto.md`
 **Titolo:** *Il Database Gestionale: Vettori di Strutture e Progetto Finale del Blocco 2*  
 **Durata stimata:** 25 minuti
 
@@ -290,11 +299,21 @@
       4. *Vendita Articolo e Aggiornamento Giacenza* (con passaggio per riferimento `&`).
       5. *Calcolo Valore Totale Patrimoniale del Magazzino*.
       0. *Chiusura e Report Fiscale*.
-- **Requisiti di qualità:** Rigore formale, documentazione Doxygen completa su tutte le funzioni, zero variabili globali, gestione robusta dell'input.
+- **Requisiti di qualità:**
+  - documentazione Doxygen completa su tutte le funzioni
+  - zero variabili globali
+  - gestione robusta dell'input (do-while di validazione dove serve)
+  - menu numerato con `switch` + loop principale
+  - almeno una ricerca e un aggiornamento per riferimento (`&`)
+- **Checkpoint PRIMM del progetto (da usare in classe):**
+  - Predict: cosa succede se si vende più della giacenza?
+  - Investigate: stack frame durante una vendita
+  - Modify: aggiungere soglia di riordino automatico
+  - Make: report fiscale di fine giornata (valore magazzino + numero movimenti)
 
 ---
 
-### 🪆 Capitolo 22: `chapters/22_ricorsione_e_strutture_ricorsive.md`
+### 🪆 Capitolo 24: `chapters/24_ricorsione_e_strutture_ricorsive.md`
 **Titolo:** *Lo Specchio e la Catena: La Ricorsione e le Strutture Ricorsive*  
 **Durata stimata:** 25 minuti
 

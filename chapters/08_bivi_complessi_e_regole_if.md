@@ -1,4 +1,4 @@
-## 🌲 Capitolo 6: Scaglioni e Labirinti (if-else if in Cascata, if Annidati e Guida alla Scelta)
+## 🌲 Capitolo 8: Scaglioni e Labirinti (if-else if in Cascata, if Annidati e Guida alla Scelta)
 
 > "La complessità di un problema si risolve dividendolo in livelli ordinati di decisioni."
 > — *Principio dell'Analisi dei Sistemi*

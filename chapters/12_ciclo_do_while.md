@@ -1,4 +1,4 @@
-## 🔁 Capitolo 10: Garantire l'Azione (Il Ciclo do-while e la Validazione dell'Input)
+## 🔁 Capitolo 12: Garantire l'Azione (Il Ciclo do-while e la Validazione dell'Input)
 
 > "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
 > — *Regola Aurea dello Sviluppo Software*

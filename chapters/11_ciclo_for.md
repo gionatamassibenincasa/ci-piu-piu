@@ -1,4 +1,4 @@
-## ⏳ Capitolo 9: Il Contatore Compatto (Il Ciclo for)
+## ⏳ Capitolo 11: Il Contatore Compatto (Il Ciclo for)
 
 > "La regolarità e la prevedibilità sono le migliori alleate della precisione contabile."
 > — *Principio di Revisione Aziendale*

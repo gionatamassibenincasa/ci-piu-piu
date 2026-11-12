@@ -9,10 +9,17 @@ ci-piu-piu/
 ├── index.md            # Entrypoint sorgente con metadati e direttive #include
 ├── README.md           # File LiaScript assemblato (output finale generato)
 ├── preprocess.py       # Pre-processore che espande gli #include in README.md
-├── chapters/           # I "segmenti" (chunk) delle lezioni
+├── chapters/           # Segmenti (chunk) delle lezioni — Blocco 1: 00–13
 │   ├── 00_guida_allo_studio.md
-│   ├── ...
-│   └── ...
+│   ├── 01_ambiente_di_sviluppo.md
+│   ├── 02_il_motore_sotto_il_cofano.md
+│   ├── 03_ciao_mondo.md
+│   ├── 04_documentazione_doxygen.md
+│   ├── 05_variabili_costanti_tipi.md
+│   ├── 06_espressioni_e_operatore_ternario.md
+│   ├── 07_bivi_semplici_if_else.md
+│   ├── …
+│   └── 13_controllo_cicli_e_formattazione.md
 ├── docs/               # Riferimenti metodologici e template (per autori e LLM)
 │   ├── template_lezione.md
 │   ├── quiz_liascript.md
@@ -21,11 +28,11 @@ ci-piu-piu/
 │   └── head_first_style.md
 ├── .agents/skills/     # Skill ufficiali per agenti AI
 │   ├── README.md
-│   ├── liascript-syntax/   # Sintassi ufficiale LiaScript
-│   └── liascript-skill/    # LiaSkill — generazione corsi interattivi
-├── assets/             # Immagini o risorse esterne (se necessarie)
+│   ├── liascript-syntax/
+│   └── liascript-skill/
+├── piano_12_22.md      # Piano dettagliato Blocco 2 (capitoli 14–24)
 ├── SKILLS.md           # Profilo docente + gerarchia skill + regole di stile
-├── leggimi.md          # Guida al repository e flusso di lavoro
+├── leggimi.md
 ├── LICENSE
 └── .gitignore
 ```

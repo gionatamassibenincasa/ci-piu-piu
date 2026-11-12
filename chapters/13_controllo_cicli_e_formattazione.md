@@ -1,4 +1,4 @@
-## 🎯 Capitolo 11: Il Cruscotto del Programmatore (break, continue e Formattazione con <iomanip>)
+## 🎯 Capitolo 13: Il Cruscotto del Programmatore (break, continue e Formattazione con <iomanip>)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
 > — *Principio dei Sistemi Contabili*

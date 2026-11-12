@@ -1,4 +1,4 @@
-## 🔄 Capitolo 8: L'Anello Fondamentale (L'Iterazione Indefinita con il Ciclo while)
+## 🔄 Capitolo 10: L'Anello Fondamentale (L'Iterazione Indefinita con il Ciclo while)
 
 > "Iterare è umano, automatizzare è informatica."
 > — *Adattamento da L. Peter Deutsch*

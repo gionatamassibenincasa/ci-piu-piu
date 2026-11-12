@@ -1,4 +1,4 @@
-## 🧮 Capitolo 4: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
+## 🧮 Capitolo 6: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
 > — *Principio dell'Elaborazione Dati*

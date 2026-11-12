@@ -1,4 +1,4 @@
-## 🎛️ Capitolo 7: Lo Smistatore di Sportello (Il Costrutto switch-case)
+## 🎛️ Capitolo 9: Lo Smistatore di Sportello (Il Costrutto switch-case)
 
 > "La semplicità è il prerequisito per l'affidabilità di un'interfaccia utente."
 > — *Edsger W. Dijkstra*

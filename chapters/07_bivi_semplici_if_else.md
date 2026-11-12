@@ -1,4 +1,4 @@
-## 🚦 Capitolo 5: Bivi e Decisioni (`if` e `if-else`)
+## 🚦 Capitolo 7: Bivi e Decisioni (`if` e `if-else`)
 
 > "Le decisioni sono i binari su cui viaggiano i processi aziendali."
 > — *Principio di Ingegneria Gestionale*

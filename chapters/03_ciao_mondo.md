@@ -1,4 +1,4 @@
-## 💬 Capitolo 2: Il Primo Dialogo con la Macchina
+## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
 
 > "S'impara a programmare scrivendo programmi."
 > — *Brian Kernighan*

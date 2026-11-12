@@ -1,4 +1,4 @@
-## 📦 Capitolo 3: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
+## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
 
 > "La memoria è lo spazio in cui i dati attendono il loro turno per essere trasformati in valore."
 > — *Principio dei Sistemi Informativi*

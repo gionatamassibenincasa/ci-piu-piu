@@ -1,4 +1,4 @@
-## ⚙️ Capitolo: Il Motore Sotto il Cofano
+## ⚙️ Capitolo 2: Il Motore Sotto il Cofano
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 > — *Bjarne Stroustrup*
