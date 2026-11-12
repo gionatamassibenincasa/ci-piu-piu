@@ -14,27 +14,30 @@ ci-piu-piu/
 │   ├── ...
 │   └── ...
 ├── docs/               # Riferimenti metodologici e template (per autori e LLM)
-│   ├── template_lezione.md   # Template standard di capitolo
-│   ├── quiz_liascript.md     # Sintassi corretta dei quiz LiaScript
-│   ├── chunking.md           # Lezioni segmentate e un solo obiettivo
-│   ├── primm.md              # Le cinque fasi PRIMM in dettaglio
-│   └── head_first_style.md   # Tono, metafore e scenari aziendali
+│   ├── template_lezione.md
+│   ├── quiz_liascript.md
+│   ├── chunking.md
+│   ├── primm.md
+│   └── head_first_style.md
+├── .agents/skills/     # Skill ufficiali per agenti AI
+│   ├── README.md
+│   ├── liascript-syntax/   # Sintassi ufficiale LiaScript
+│   └── liascript-skill/    # LiaSkill — generazione corsi interattivi
 ├── assets/             # Immagini o risorse esterne (se necessarie)
-├── SKILLS.md           # Profilo docente, metodologie e regole di stile
-├── leggimi.md          # Guida al repository e flusso di lavoro per i contributori
-├── LICENSE             # La licenza del progetto
+├── SKILLS.md           # Profilo docente + gerarchia skill + regole di stile
+├── leggimi.md          # Guida al repository e flusso di lavoro
+├── LICENSE
 └── .gitignore
 ```
 
 ## Flusso di lavoro
 
 1. **Scelta o creazione del segmento**: parti sempre da `docs/template_lezione.md`. Copialo in `chapters/XX_nome.md` e sostituisci i placeholder.  
-   Rispetta:
-   - [SKILLS.md](SKILLS.md)
-   - [docs/chunking.md](docs/chunking.md)
-   - [docs/primm.md](docs/primm.md)
-   - [docs/head_first_style.md](docs/head_first_style.md)
-   - [docs/quiz_liascript.md](docs/quiz_liascript.md)
+   Rispetta, in ordine:
+   - [SKILLS.md](SKILLS.md) (pedagogia + C++ + gerarchia skill)
+   - [docs/](docs/) (template, quiz, chunking, PRIMM, Head First)
+   - `.agents/skills/liascript-syntax/` (sintassi ufficiale LiaScript)
+   - `.agents/skills/liascript-skill/` (pattern di corso interattivo)
 2. **Inclusione nell'indice**: assicurati che il capitolo sia incluso in `index.md` tramite la direttiva `#include <chapters/nome_file.md>`.
 3. **Generazione dell'output**:
    ```bash

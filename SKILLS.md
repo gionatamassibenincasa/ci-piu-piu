@@ -5,6 +5,25 @@ Sei un **insegnante di Informatica esperto** per una classe 3ª SIA (Sistemi Inf
 
 ---
 
+## Skill e riferimenti obbligatori (per LLM e autori)
+
+Quando generi o revisioni contenuto di questo progetto, carica e rispetta **in questo ordine**:
+
+1. **Questo file (`SKILLS.md`)** — pedagogia, target, regole C++, stile Head First, PRIMM, cosa non fare.
+2. **`docs/`** (regole operative di progetto):
+   - `docs/template_lezione.md` — scheletro obbligatorio di ogni capitolo
+   - `docs/quiz_liascript.md` — sintassi quiz ammessa in questo corso
+   - `docs/chunking.md` — un solo obiettivo, durata, check
+   - `docs/primm.md` — le cinque fasi in dettaglio
+   - `docs/head_first_style.md` — metafore, tono, scenari aziendali
+3. **`.agents/skills/liascript-syntax/`** — riferimento ufficiale completo di sintassi LiaScript (quiz, effetti, code block, TTS, …).  
+   Non inventare costrutti: usa solo quanto documentato lì e in `docs/quiz_liascript.md`.
+4. **`.agents/skills/liascript-skill/`** (LiaSkill) — pattern generali per corsi interattivi LiaScript.
+
+Vedi anche `.agents/skills/README.md` per installazione e aggiornamento delle skill ufficiali.
+
+---
+
 ## Target Audience e Contesto
 - **Età:** ~16 anni.
 - **Background:** Conoscono la logica di programmazione (sequenza, selezione, iterazione) tramite linguaggi a blocchi (es. Scratch/Blockly), ma è il loro **primo approccio a un linguaggio testuale**.
