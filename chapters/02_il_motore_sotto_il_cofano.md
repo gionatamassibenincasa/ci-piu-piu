@@ -28,21 +28,59 @@ Alla fine di questa lezione sei in grado di:
 
 ### 🏭 La fabbrica del codice — le quattro stazioni
 
+Il percorso essenziale (come nella classica figura “Compiler and linker”) è questo:
+
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
+skinparam defaultTextAlignment center
+skinparam ArrowColor #000000
+skinparam rectangle {
+  BackgroundColor #DDDDDD
+  BorderColor #000000
+}
+top to bottom direction
 
-rectangle "1. Codice sorgente\n(.cpp)" as Source
-rectangle "2. Pre-elaboratore\n(.ii)" as Pre
-rectangle "3. Compilatore\n(.s Assembly)" as Comp
-rectangle "4. Assemblatore\n(.o oggetto)" as Asm
-rectangle "5. Linker\n(.exe eseguibile)" as Link
+rectangle "ridotto.cpp\n(codice sorgente)" as SRC
+rectangle "Compilatore" as COMP
+rectangle "ridotto.o\n(codice oggetto)" as OBJ
+rectangle "Linker" as LINK
+rectangle "ridotto.exe\n(codice eseguibile)" as EXE
 
-Source --> Pre : espande #include\nrimuove commenti
-Pre --> Comp : controlla sintassi\ntraduce in Assembly
-Comp --> Asm : traduce in\ncodice macchina
-Asm --> Link : unisce librerie\nproduce l'eseguibile
+rectangle "codice di libreria" as LIB
+rectangle "codice di avvio\n(start-up)" as START
+
+SRC --> COMP
+COMP --> OBJ
+OBJ --> LINK
+LIB --> LINK
+START --> LINK
+LINK --> EXE
+
+SRC -[hidden]right-> LIB
+COMP -[hidden]right-> START
+@enduml
+```
+
+In realtà, dentro il “Compilatore” della figura ci sono **più stazioni**. Con `g++` le vediamo così:
+
+```text @plantUML
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultTextAlignment center
+
+rectangle ".cpp\nsorgente" as S
+rectangle "Pre-elaboratore\n(.ii)" as P
+rectangle "Compilatore\n(.s Assembly)" as C
+rectangle "Assemblatore\n(.o oggetto)" as A
+rectangle "Linker\n(+ librerie)\n.exe" as L
+
+S -right-> P
+P -right-> C
+C -right-> A
+A -right-> L
 @enduml
 ```
 
