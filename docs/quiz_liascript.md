@@ -1,6 +1,6 @@
 # Sintassi Quiz LiaScript — Riferimento rapido
 
-Usare **solo** queste forme. La vecchia notazione `? domanda` + `- [ ]` / `- [x]` **non** genera quiz interattivi in LiaScript.
+Usare **solo** queste forme.
 
 ## 1. Single-choice (una sola risposta corretta)
 

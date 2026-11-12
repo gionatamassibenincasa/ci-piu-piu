@@ -8,7 +8,7 @@
   - docs/chunking.md                   (un solo obiettivo, durata, check)
   - docs/primm.md                      (le cinque fasi in dettaglio)
   - docs/head_first_style.md           (metafore, tono, scenari aziendali)
-  - docs/quiz_liascript.md             (sintassi corretta dei quiz)
+  - docs/quiz_liascript.md             (sintassi dei quiz LiaScript)
 -->
 
 ## 📌 Capitolo XX: [Titolo chiaro e concreto — es. "Il Tornello delle Decisioni"]
