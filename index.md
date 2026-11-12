@@ -22,20 +22,15 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 
 ---
 
-## 🧠 Come useremo questo materiale (Metodo PRIMM)
-Ogni lezione è un "chunk" (un boccone digeribile) strutturato in 5 fasi per allenare il tuo cervello da programmatore:
-1. **P**redict (Prevedi): Cosa pensi che farà questo codice?
-2. **R**un (Esegui): Prova il codice e verifica la tua ipotesi.
-3. **I**nvestigate (Investiga): Analizza *perché* ha funzionato in quel modo.
-4. **M**odify (Modifica): Cambia piccole parti del codice per vedere cosa si rompe (e come aggiustarlo!).
-5. **M**ake (Crea): Usa ciò che hai imparato per costruire qualcosa di tuo.
-
----
-
+#include <chapters/00_guida_allo_studio.md>
 #include <chapters/01_il_motore_sotto_il_cofano.md>
-
-<!-- 
-QUI IN FUTURO AGGIUNGEREMO:
-#include <chapters/02_variabili_e_tipi.md>
-#include <chapters/03_input_output.md>
--->
+#include <chapters/02_ciao_mondo.md>
+#include <chapters/03_variabili_costanti_tipi.md>
+#include <chapters/04_espressioni_e_operatore_ternario.md>
+#include <chapters/05_bivi_semplici_if_else.md>
+#include <chapters/06_bivi_complessi_e_regole_if.md>
+#include <chapters/07_selezione_multipla_switch.md>
+#include <chapters/08_ciclo_while.md>
+#include <chapters/09_ciclo_for.md>
+#include <chapters/10_ciclo_do_while.md>
+#include <chapters/11_controllo_cicli_e_formattazione.md>
