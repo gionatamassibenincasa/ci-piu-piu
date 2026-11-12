@@ -1,156 +1,198 @@
-## ⚙️ Il Motore Sotto il Cofano
+## ⚙️ Capitolo: Il Motore Sotto il Cofano
 
-> "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle. Spesso un problema viene compreso appieno solo attraverso il processo di programmazione di una soluzione."
+> "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 > — *Bjarne Stroustrup*
 
-Sviluppare un programma non è "scrivere codice a caso sperando che funzioni". È un processo ingegneristico composto da 4 fasi:
-1. **Analisi**: Qual è il problema? Cosa vuole l'utente?
-2. **Progettazione**: Qual è la struttura? Come comunicano le parti?
-3. **Programmazione**: Scrivere il codice rispettando i vincoli (tempo, spazio, affidabilità).
-4. **Test**: Provare sistematicamente che tutto funzioni in ogni circostanza.
+Hai appena allestito l’officina (VS Code + g++).  
+Ora apriamo il cofano e guardiamo **cosa succede davvero** quando premi il pulsante di compilazione.
 
-### 🇨🇭 Perché proprio il C++?
-- **Espressivo**: Ti permette di tradurre le tue idee in codice in modo diretto.
-- **Onnipresente**: È uno standard disponibile su quasi tutti i computer e dispositivi.
-- **Formativo**: I concetti che impari qui (memoria, tipi, controllo) sono le fondamenta per *qualsiasi* altro linguaggio futuro.
+Il computer non capisce il C++. Capisce solo istruzioni macchina (sequenze di 0 e 1).  
+Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una **catena di montaggio** con quattro stazioni.
+
+> 💡 **Metafora:**  
+> Pensa a una **fabbrica di auto**.  
+> - Il progetto su carta = il tuo file `.cpp`  
+> - I reparti della fabbrica = pre-elaboratore, compilatore, assemblatore, linker  
+> - L’auto finita che esce dal cancello = il file eseguibile  
+> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “multa” (errore di compilazione).
 
 ---
 
-### 🏭 La Fabbrica del Codice: La Compilazione
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Descrivere le quattro fasi della compilazione C++ e il ruolo di ciascuna
+- Usare `g++ -save-temps` per generare e ispezionare i file intermedi (`.ii`, `.s`, `.o`)
+- Collegare una riga di C++ semplice al corrispondente frammento Assembly
 
-Il C++ è un linguaggio **compilato**. Il computer non capisce il C++ direttamente; capisce solo istruzioni macchina (zeri e uni). Dobbiamo quindi tradurre il nostro codice. Immagina una catena di montaggio in 4 passaggi:
+---
+
+### 🏭 La fabbrica del codice — le quattro stazioni
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
 
-rectangle "Codice Sorgente\n(human readable)" as Source {
-  [main.cpp]
-}
+rectangle "1. Codice sorgente\n(.cpp)" as Source
+rectangle "2. Pre-elaboratore\n(.ii)" as Pre
+rectangle "3. Compilatore\n(.s Assembly)" as Comp
+rectangle "4. Assemblatore\n(.o oggetto)" as Asm
+rectangle "5. Linker\n(.exe eseguibile)" as Link
 
-rectangle "Pre-elaboratore\n(Preprocessor)" as Pre {
-  note right: Espande gli #include\nRimuove i commenti
-}
-
-rectangle "Compilatore\n(Compiler)" as Comp {
-  note right: Traduce in Assembly\n(controlla la sintassi!)
-}
-
-rectangle "Assemblatore\n(Assembler)" as Asm {
-  note right: Traduce in Codice\nMacchina (file .o)
-}
-
-rectangle "Linker\n(Linker)" as Link {
-  note right: Unisce i file .o\ne le librerie esterne
-}
-
-rectangle "Eseguibile\n(machine code)" as Exe {
-  [a.out / main.exe]
-}
-
-Source --> Pre : 1. cpp
-Pre --> Comp : 2. codice pulito
-Comp --> Asm : 3. codice assembly (.s)
-Asm --> Link : 4. file oggetto (.o)
-Link --> Exe : 5. eseguibile finale
+Source --> Pre : espande #include\nrimuove commenti
+Pre --> Comp : controlla sintassi\ntraduce in Assembly
+Comp --> Asm : traduce in\ncodice macchina
+Asm --> Link : unisce librerie\nproduce l'eseguibile
 @enduml
 ```
-*💡 Brain Friendly Tip: Il compilatore è un controllore pedante, non un indovino. Se dimentichi un punto e virgola, lui si ferma e ti fa la multa (errore di compilazione), non cerca di "indovinare" cosa volevi dire!*
+
+| Stazione | Cosa fa | File tipico |
+|----------|---------|-------------|
+| **Pre-elaboratore** | Espande le direttive `#include`, rimuove i commenti, gestisce le macro | `.ii` |
+| **Compilatore** | Controlla la sintassi e traduce il C++ in **Assembly** (linguaggio a basso livello ma ancora leggibile) | `.s` |
+| **Assemblatore** | Traduce l’Assembly in codice macchina (oggetti non ancora eseguibili da soli) | `.o` |
+| **Linker** | Unisce i file oggetto con le librerie (es. la parte di sistema che serve per `main`) e produce l’eseguibile finale | `.exe` |
+
+> 💡 **Brain-friendly tip:** Il compilatore è un controllore pedante, non un indovino. Se dimentichi un punto e virgola, si ferma e ti segnala l’errore. Non cerca di “capire cosa volevi dire”.
 
 ---
 
-### 🔬 PRIMM: Il Programma Più Piccolo Possibile
+### 🔬 Laboratorio PRIMM: Guarda sotto il cofano
 
-Il nostro obiettivo ora non è fare qualcosa di utile, ma **sperimentare la catena di montaggio**. Vogliamo vedere con i nostri occhi gli artefatti intermedi.
-
-#### 1. PREDICT (Prevedi)
-? Guarda questo codice. Secondo te, cosa succederà se proviamo a compilarlo ed eseguirlo?
-- [ ] Darà un errore perché manca `#include <iostream>`
-- [x] Si compilerà silenziosamente e non stamperà nulla a video
-- [ ] Stamperà "Hello World" automaticamente
+Useremo il programma **più piccolo possibile** (senza ancora stampare nulla).  
+Così concentriamo l’attenzione sulla catena di montaggio, non sull’output a video.
 
 ```cpp
-// file: ridotto.cpp
-int main() {}
+/**
+ * @file ridotto.cpp
+ * @brief Programma minimo per ispezionare la catena di compilazione.
+ */
+int main() {
+    return 0;   /// dice al sistema operativo: "tutto ok"
+}
 ```
-<details>
-<summary>🔍 Clicca per la spiegazione</summary>
-Ogni programma C++ deve avere <b>esattamente una</b> funzione globale chiamata <code>main</code>. È il punto di ingresso. Le parentesi <code>{}</code> racchiudono il corpo della funzione. Essendo vuoto, non fa nulla e termina immediatamente, restituendo implicitamente 0 al sistema operativo (successo).
-</details>
+
+#### 1. PREDICT (Prevedi)
+Prima di compilare, rispondi:
+
+Se compiliamo questo programma con `g++ -save-temps`, quale file conterrà il codice **dopo** che il pre-elaboratore ha rimosso i commenti?
+
+[( )] `ridotto.o`
+[(X)] `ridotto.ii`
+[( )] `ridotto.s`
+[( )] `ridotto.exe`
 
 #### 2. RUN (Esegui)
-Copia e incolla questi comandi nel tuo terminale (o nell'ambiente di sviluppo). Stiamo chiedendo al compilatore (`g++`) di **salvare le tappe intermedie** (`-save-temps`) invece di cancellarle.
+Nella cartella del progetto digita:
 
-```bash
-# 1. Compila salvando i file temporanei
-g++ -save-temps -fverbose-asm -O0 ridotto.cpp -o ridotto
+```bat
+g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
+```
 
-# 2. Lista i file generati
-ls
+Il flag `-save-temps` dice a g++: “non cancellare i file intermedi”.  
+`-O0` disattiva le ottimizzazioni, così l’Assembly resta più leggibile.
+
+**Controllo:** nella cartella devono comparire almeno:
+- `ridotto.ii`
+- `ridotto.s`
+- `ridotto.o`
+- `ridotto.exe`
+
+Prova anche:
+
+```bat
+ridotto.exe
+echo %ERRORLEVEL%
 ```
-**Output atteso:**
-```text
-ridotto  ridotto.cpp  ridotto.ii  ridotto.o  ridotto.s
-```
+
+(Su Windows `ERRORLEVEL` mostra il valore restituito da `main`. Dovresti vedere `0`.)
 
 #### 3. INVESTIGATE (Investiga)
-Osserviamo cosa ha prodotto la "fabbrica".
+Apri i file intermedi con un editor di testo (o con `type ridotto.ii` / `type ridotto.s` nel Prompt).
 
-? Quale di questi file contiene il codice dopo che il **Pre-elaboratore** ha rimosso i commenti e espanso le direttive?
-- [ ] `ridotto.o`
-- [x] `ridotto.ii`
-- [ ] `ridotto.s`
+| File | Cosa ci trovi | Cosa osservare |
+|------|----------------|----------------|
+| `ridotto.ii` | Codice “pulito” dopo il pre-elaboratore | I commenti sono spariti; possono comparire righe di sistema |
+| `ridotto.s` | Assembly | Cerca una riga con `movl` o `mov` e il numero `0` |
+| `ridotto.o` | Codice macchina (binario) | Non è leggibile come testo |
+| `ridotto.exe` | Eseguibile finale | È il prodotto finito della fabbrica |
 
-Se esegui `cat ridotto.ii`, vedrai il tuo codice originale, ma con l'aggiunta di alcune righe di sistema (le "dichiarazioni d'obbligo" del compilatore).
-Se esegui `cat ridotto.s`, vedrai il linguaggio **Assembly**, il ponte tra il C++ leggibile e il codice macchina. Noterai istruzioni come `pushq %rbp` e `movl $0, %eax` (che significa proprio "prepara il valore di ritorno 0").
+Nel file `.s` noterai istruzioni del tipo:
+```asm
+movl $0, %eax
+```
+Che, in pratica, prepara il valore di ritorno `0` (successo).
 
 #### 4. MODIFY (Modifica)
-Modifichiamo il nostro programma minimo per vedere come cambia la catena di montaggio.
-
-1. Apri `ridotto.cpp`.
-2. Cambia il codice in:
+1. Cambia il programma in:
    ```cpp
    int main() {
        return 42;
    }
    ```
-3. Ricompila con lo stesso comando: `g++ -save-temps -O0 ridotto.cpp -o ridotto`
-4. Esegui `cat ridotto.s` e cerca la riga che contiene `movl`.
+2. Ricompila con lo stesso comando:
+   ```bat
+   g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
+   ```
+3. Riapri `ridotto.s` e cerca di nuovo l’istruzione `movl` / `mov`.
 
-? Cosa è cambiato nell'istruzione Assembly rispetto a prima?
-- [ ] È scomparsa l'istruzione `movl`
-- [x] Il valore è cambiato da `$0` a `$42`
-- [ ] Il file `.s` è diventato molto più grande
+Cosa è cambiato?
+
+[( )] È scomparsa l’istruzione di movimento
+[(X)] Il valore letterale è passato da `$0` a `$42`
+[( )] Il file `.s` è diventato molto più grande
+[( )] Non viene più generato il file `.s`
 
 <details>
 <summary>💡 Perché è importante?</summary>
-Hai appena visto con i tuoi occhi come un'istruzione C++ ad alto livello (<code>return 42;</code>) si traduce in una specifica istruzione macchina (<code>movl $42, %eax</code>). Il compilatore non fa magia, fa traduzione!
+Hai visto con i tuoi occhi la traduzione: una riga C++ ad alto livello (<code>return 42;</code>) diventa una precisa istruzione Assembly. Il compilatore non fa magia: fa <strong>traduzione</strong>.
 </details>
 
-#### 5. MAKE (Crea)
-Ora tocca a te. Crea un nuovo file chiamato `saluto.cpp`.
-1. Scrivi il programma minimo `int main() {}`.
-2. Aggiungi una riga per stampare "Ciao, Mondo!" usando `#include <iostream>` e `std::cout`. *(Suggerimento: guarda l'esempio qui sotto se sei bloccato)*.
-3. Compilalo ed eseguilo.
+Esegui di nuovo il programma e controlla il codice di uscita:
 
-```cpp
-// Esempio di riferimento (non copiare subito, prova prima tu!)
-#include <iostream>
-
-int main() {
-    // Stampa "Ciao, Mondo!" e va a capo con \n
-    std::cout << "Ciao, Mondo!\n";
-    return 0; // 0 = successo per il sistema operativo
-}
+```bat
+ridotto.exe
+echo %ERRORLEVEL%
 ```
-@LIA.cpp
+
+Dovresti vedere `42`.
+
+#### 5. MAKE (Crea)
+Crea un nuovo file `codice_uscita.cpp` che:
+1. Contiene solo la funzione `main`
+2. Restituisce un numero a tua scelta tra 1 e 99 (diverso da 0 e da 42)
+3. Viene compilato con `-save-temps`
+4. Ti permette di verificare, aprendo il `.s`, che il numero scelto compaia nell’Assembly
+5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l’esecuzione
+
+**Non** usare ancora `#include <iostream>` né `std::cout`: restiamo concentrati sulla catena di compilazione.  
+La stampa a video arriverà nel prossimo capitolo.
 
 ---
-### 📝 Riepilogo "Tascabile"
-- Un programma C++ parte **sempre** dalla funzione `int main()`.
-- Il valore `return 0;` dice al sistema operativo: "Tutto ok, nessuna errore".
-- La compilazione ha 4 fasi: **Pre-processing** → **Compiling** → **Assembling** → **Linking**.
-- Il codice è scritto per **due lettori**: il computer (che lo esegue) e l'essere umano (che lo deve leggere e mantenere). Usa i commenti `//` per parlare con l'umano!
 
-> **Sfida per la prossima volta:** Cosa succede se dimentichiamo il punto e virgola `;` dopo `std::cout << "Ciao"`? Provaci e porta l'errore in classe!
+### 📝 Riepilogo tascabile
+- C++ è un linguaggio **compilato**: il sorgente viene tradotto in eseguibile attraverso più stazioni.
+- Le quattro fasi: **Pre-elaboratore → Compilatore → Assemblatore → Linker**.
+- `g++ -save-temps` lascia i file intermedi (`.ii`, `.s`, `.o`) così puoi ispezionarli.
+- `return N;` in `main` diventa, in Assembly, un’istruzione che mette `N` nel registro di ritorno.
+- Gli errori di compilazione sono segnalazioni precise della fabbrica: imparare a leggerli è una competenza chiave.
+
+---
+
+### ➡️ Prossimo chunk
+Finora il nostro programma non ha ancora *parlato* con noi.  
+Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
+
+---
+
+<!-- 
+  NOTE PER L'AUTORE / LLM
+  [x] Un solo obiettivo principale: capire la catena di compilazione
+  [x] Metafora fabbrica / catena di montaggio
+  [x] Quiz con sintassi LiaScript corretta
+  [x] PRIMM completo su programma minimo SENZA iostream
+  [x] Nessuna sovrapposizione con Ciao Mondo (niente cout nel Make)
+  [x] -save-temps e ispezione .ii / .s
+  [x] Collegamento esplicito return N → movl $N
+  [x] Riepilogo tascabile e ponte al capitolo successivo
+-->
