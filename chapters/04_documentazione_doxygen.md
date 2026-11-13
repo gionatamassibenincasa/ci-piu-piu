@@ -1,53 +1,57 @@
-## 📝 Capitolo 4: Parlare al Futuro Te Stesso (Documentazione Doxygen)
+## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
 
 > "Il codice non mente mai, i commenti sì."
 >
-> — Ron Jeffries
+> — *Ron Jeffries*
 
-Hai già scritto `Ciao, Mondo!` e presto scriverai programmi più lunghi.  
-Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente.  
+Hai già scritto `Ciao, Mondo!` e presto i programmi si allungheranno.  
+Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente. In azienda, un collega che non eri tu.
 
-Per questo in azienda (e in questo corso) non basta che il programma *funzioni*: deve anche essere **comprensibile**.  
-Usiamo uno standard leggero e diffusissimo: **Doxygen**.
+Non basta che il programma *funzioni*: deve essere **comprensibile**.  
+In questo corso usiamo uno standard leggero e molto diffuso: **Doxygen**.
 
 > 💡 **Metafora:**  
-> Il codice è il prodotto finito.  
-> I commenti Doxygen sono l’**etichetta e il manuale d’uso** attaccati al prodotto: dicono *cosa fa*, *per chi*, *con quali dati*, senza costringere a smontare tutto.
+> Il codice è il prodotto.  
+> I commenti Doxygen sono **etichetta e manuale d’uso**: dicono *cosa fa*, *per chi*, *con quali dati*, senza smontare tutto il meccanismo.
+
+Questo non è un laboratorio PRIMM “classico”: è una **convenzione di lavoro** che userai da qui in poi nei Make e nei progetti.
 
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivo
 Alla fine di questa lezione sei in grado di:
-- Scrivere un’intestazione di file e di `main` in stile Doxygen
-- Usare il commento `///` per spiegare il **perché** (non il cosa ovvio)
-- Scegliere cosa commentare e cosa no
+- Scrivere un’intestazione di **file** e di **`main`** in stile Doxygen
+- Usare `///` per spiegare il **perché** (non il cosa ovvio)
+- Applicare la **regola di proporzionalità** del corso
 
 ---
 
-### 📋 I tag essenziali (solo quelli che usiamo)
+### 📋 I tag che usiamo (e basta)
 
 | Tag | A cosa serve | Esempio |
 |-----|--------------|---------|
-| `@file` | Nome del file | `@file scheda_prodotto.cpp` |
-| `@brief` | Una riga: cosa fa il programma / la funzione | `@brief Calcola il totale ivato.` |
+| `@file` | Nome del file | `@file presentazione.cpp` |
+| `@brief` | Una riga: cosa fa il programma o la funzione | `@brief Stampa nome e classe.` |
 | `@param` | Descrive un parametro (quando avremo le funzioni) | `@param prezzo Importo netto in euro` |
 | `@return` | Cosa restituisce la funzione | `@return int 0 se successo` |
 
-Commento di riga leggero:
+Commento di riga (tre slash):
 
 ```cpp
 /// Aliquota IVA ordinaria vigente (non modificare a caso)
 const double ALIQUOTA_IVA = 0.22;
 ```
 
+`@param` lo terrai a mente: tornerà utile con le **funzioni**. Per ora ti servono soprattutto `@file`, `@brief` e `@return`.
+
 ---
 
-### 🔬 Esempio minimo completo
+### ✅ Esempio minimo completo
 
 ```cpp
 /**
  * @file presentazione.cpp
- * @brief Stampa cognome e materia dell'insegnante.
+ * @brief Stampa nome, classe e hobby dello studente.
  */
 #include <iostream>
 
@@ -56,30 +60,34 @@ const double ALIQUOTA_IVA = 0.22;
  * @return int 0 se l'esecuzione termina correttamente.
  */
 int main() {
-    /// Tesserino degli insegnanti
-    std::cout << "Cognome: Massi\n";
-    std::cout << "Materia: Informatica\n";
+    /// Identificativo per lo "scontrino" di presentazione in lab
+    std::cout << "Nome: Alex\n";
+    std::cout << "Classe: 3A SIA\n";
+    std::cout << "Hobby: fotografia\n";
     return 0;
 }
 ```
 
+Nota: **non** generiamo ancora HTML con lo strumento Doxygen.  
+L’obiettivo è **scrivere** i commenti nel modo giusto; l’eventuale generazione automatica arriverà quando i progetti saranno più grandi.
+
 ---
 
-### ⚖️ Regola di proporzionalità (obbligatoria nel corso)
+### ⚖️ Regola di proporzionalità (obbligatoria)
 
 | Situazione | Cosa scrivere |
 |------------|----------------|
-| Programma o funzione **> ~15 righe** | Intestazione Doxygen completa (`@file` / `@brief` / `@param` / `@return` dove servono) |
-| Snippet o esercizio **breve** | Solo `///` sul **perché** economico o logico |
-| Vietato | Commenti tautologici (`/// incrementa i di 1`) |
+| Programma o funzione **più lungo di ~15 righe** | Intestazione Doxygen (`@file` / `@brief` / `@param` / `@return` dove servono) |
+| Snippet o esercizio **breve** | Solo `///` sul **perché** economico o logico, se serve |
+| **Vietato** | Commenti tautologici (`/// incrementa i di 1`, `/// dichiara la variabile`) |
 
-Esempio **buono**:
+**Buono** (spiega una scelta di business o un vincolo):
 ```cpp
 /// 0.22 = aliquota IVA ordinaria vigente per beni e servizi
 const double ALIQUOTA_IVA = 0.22;
 ```
 
-Esempio **da evitare**:
+**Da evitare** (ripete solo la sintassi):
 ```cpp
 /// dichiara la costante aliquota
 const double ALIQUOTA_IVA = 0.22;
@@ -87,26 +95,36 @@ const double ALIQUOTA_IVA = 0.22;
 
 ---
 
-### 🧪 Mini-esercizio (MAKE leggero)
+### 🧪 Mini-esercizio
 
-Prendi il programma `presentazione.cpp` del capitolo precedente (o riscrivilo) e:
-1. Aggiungi l’intestazione `@file` + `@brief` in testa al file
-2. Aggiungi `@brief` e `@return` su `main`
-3. Metti un `///` utile su almeno una riga di output
+Prendi il programma di presentazione del capitolo precedente (o riscrivilo) e:
 
-Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scrivere** i commenti nel modo giusto. Più avanti, quando i progetti cresceranno, potremo anche generarne la documentazione automatica.
+1. Aggiungi in testa al file `@file` e `@brief`
+2. Aggiungi su `main` `@brief` e `@return`
+3. Metti **un** `///` utile (un perché, non un ovvio) su almeno una riga
+
+Compila ed esegui: i commenti non cambiano l’output, ma cambiano quanto il codice è leggibile da un umano.
 
 ---
 
 ### 📝 Riepilogo tascabile
 - Doxygen = etichette standard per file e funzioni.
-- Tag minimi: `@file`, `@brief`, `@param`, `@return`.
-- `///` spiega il **perché**, non il cosa ovvio.
-- L'editor ci mostra i commenti Doxygen quando ci riferiamo ad una risorsa documentata.
+- Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
+- `///` = perché / vincolo / regola di business, non il cosa ovvio.
+- Proporzionalità: completo sopra ~15 righe, leggero sotto.
+- Da qui in poi i Make “ufficiali” si aspettano questi standard.
 
 ---
 
-### ➡️ Prossimo chunk
-Con l’officina pronta, il motore visto, il primo dialogo scritto e le etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
+### ➡️ Prossimo passo
+Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
 
 ---
+
+<!--#
+  NOTE AUTORE / LLM
+  - Capitolo di convenzione, NON forzare le 5 fasi PRIMM complete
+  - Nessun @LIA.cpp obbligatorio (non c'è un lab eseguibile centrale)
+  - Titolo senza "Capitolo N"
+  - Coerente con SKILLS.md (proporzionalità Doxygen)
+#-->
