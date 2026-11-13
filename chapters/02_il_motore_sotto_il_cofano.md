@@ -1,4 +1,4 @@
-## ⚙️ Capitolo 2: Il Motore Sotto il Cofano
+## ⚙️ Il Motore Sotto il Cofano: dalla sorgente all'eseguibile
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 >
@@ -151,12 +151,12 @@ echo %ERRORLEVEL%
 #### 3. INVESTIGATE (Investiga)
 Apri i file intermedi con un editor di testo (o con `type ridotto.ii` / `type ridotto.s` nel Prompt).
 
-| File | Cosa ci trovi | Cosa osservare |
-|------|----------------|----------------|
-| `ridotto.ii` | Codice “pulito” dopo il pre-elaboratore | I commenti sono spariti; possono comparire righe di sistema |
-| `ridotto.s` | Assembly | Cerca una riga con `movl` o `mov` e il numero `0` |
-| `ridotto.o` | Codice macchina (binario) | Non è leggibile come testo |
-| `ridotto.exe` | Eseguibile finale | È il prodotto finito della fabbrica |
+| File | Cosa ci trovi | Perché è importante |
+|------|---------------|---------------------|
+| `ridotto.ii` | Codice "pulito" dopo il pre-elaboratore | Vedi cosa resta quando spariscono i commenti |
+| `ridotto.s` | Assembly (ancora leggibile) | Colleghi una riga C++ a un'istruzione macchina |
+| `ridotto.o` | Codice oggetto (binario) | Non è ancora un programma completo da solo |
+| `ridotto.exe` | Eseguibile finale | È il prodotto della fabbrica, pronto da lanciare |
 
 Nel file `.s` noterai istruzioni del tipo:
 ```asm
@@ -185,7 +185,7 @@ Cosa è cambiato?
 [( )] Non viene più generato il file `.s`
 
 <details>
-<summary>💡 Perché è importante?</summary>
+<summary>💡 Perché è importante</summary>
 Hai visto con i tuoi occhi la traduzione: una riga C++ ad alto livello (<code>return 42;</code>) diventa una precisa istruzione Assembly. Il compilatore non fa magia: fa <strong>traduzione</strong>.
 </details>
 
