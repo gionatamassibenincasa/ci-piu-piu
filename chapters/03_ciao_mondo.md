@@ -1,4 +1,4 @@
-## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
+## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 >
@@ -73,7 +73,7 @@ int main() {
 #### 3. INVESTIGATE (Investiga)
 Analizziamo il codice riga per riga come detective.
 
-| Codice | Spiegazione brain-friendly | Perché è importante |
+| Codice | Cosa fa (spiegazione brain-friendly) | A cosa serve |
 | :--- | :--- | :--- |
 | `#include <iostream>` | Il pre-elaboratore “incolla” qui le istruzioni necessarie per l’input/output. Senza di essa il compilatore non conosce `cout`. | È il passaporto per parlare con lo schermo (e con la tastiera). |
 | `int main() { ... }` | Punto di partenza obbligatorio. Ogni programma C++ ha **esattamente una** funzione `main`. L’esecuzione inizia sempre da qui. | Senza `main` non c’è programma. |
@@ -83,6 +83,12 @@ Analizziamo il codice riga per riga come detective.
 
 > 🔗 **Ispezione memoria (opzionale ma utile):**  
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
+
+> 💡 **Nota sui namespace (senza usarla ancora)**  
+> Un **namespace** è un “reparto” di nomi: evita che due cose diverse si chiamino uguali e si confondano.  
+> La libreria standard vive nel reparto `std`. Per questo scriviamo `std::cout` e non solo `cout`.  
+> Esiste anche la scorciatoia `using namespace std;` (dopo gli `#include`), che permette di scrivere `cout` da solo.  
+> **In questo corso, all’inizio, non la usiamo:** rende gli errori più chiari e ti abitua a vedere da dove arrivano i nomi. La rivedremo quando i programmi saranno più lunghi.
 
 #### 4. MODIFY (Modifica)
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
@@ -118,7 +124,7 @@ Cosa succede?
 
 <details>
 <summary>💡 Spiegazione</summary>
-Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo codice e non la trova. Per ora resta esplicito con <code>std::</code>. Più avanti vedremo <code>using namespace std;</code>, ma all’inizio è meglio essere chiari.
+Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo programma e non la trova: non sa che intendevi quella della libreria standard. Per ora scriviamo sempre <code>std::cout</code> per intero.
 </details>
 
 **Modifica C — Più messaggi**
@@ -171,6 +177,7 @@ int main() {
 - Ogni programma C++ parte da `int main()`.
 - `#include <iostream>` è il passaporto per l’input/output.
 - `std::cout <<` scrive sullo schermo; `\n` va a capo.
+- `std::` indica il namespace della libreria standard; per ora lo scriviamo sempre esplicito (niente `using namespace std;` ancora).
 - `return 0;` comunica “successo” al sistema operativo.
 - Il codice ha **due lettori**: il compilatore (sintassi) e l’essere umano (chiarezza). I commenti servono al secondo.
 - Gli errori di compilazione sono messaggi utili: imparare a leggerli è una competenza fondamentale.
