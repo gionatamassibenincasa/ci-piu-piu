@@ -11,6 +11,12 @@
   - docs/quiz_liascript.md             (sintassi dei quiz LiaScript)
   - .agents/skills/liascript-syntax/   (sintassi ufficiale LiaScript)
 
+  Commenti autore/LLM:
+  - I blocchi tra <!--# e #--> sono STRIPPATI da preprocess.py e non compaiono
+    nel README.md servito a LiaScript. Usali per note di produzione.
+  - I commenti HTML normali <!-- ... --> restano nel sorgente del capitolo;
+    non usarli per materiale che non deve mai arrivare allo studente nel raw.
+
   DIVIETI PER LLM (non negoziabili):
   - Non usare quiz in stile GitHub (`- [ ]` / `- [x]` o `? domanda`).
   - Usare solo: [(X)] [( )]   [[X]] [[ ]]   [[testo]]   [[ (a) | b | c ]]
@@ -21,9 +27,10 @@
   - Un solo obiettivo principale per chunk; niente "anche ti spiego X, Y e Z".
   - Commenti /// solo sul "perché" (logica economica o motivo della scelta),
     mai tautologie del tipo "incrementa i di 1".
+  - Titolo: NON scrivere "Capitolo N". Formato obbligatorio sotto.
 -->
 
-## 📌 Capitolo N: [Titolo chiaro — es. Il Tornello delle Decisioni (`if` / `if-else`)]
+## 📌 [Titolo chiaro e concreto — es. Il Tornello delle Decisioni]: [Sottotitolo sul concetto del linguaggio — es. il costrutto `if` / `if-else`]
 
 > "[Citazione breve, pertinente e verificata]"  
 > — *Autore (pioniere dell'informatica o voce nota tra gli sviluppatori)*
@@ -91,14 +98,14 @@ Cosa succede quando viene eseguito il programma?
 [Perché l'opzione corretta è corretta; 2–4 frasi. Usa <code>…</code> per i frammenti di codice.]
 </details>
 
-<!--
+<!--#
   Quiz: UNA previsione obbligatoria nel Predict.
   Altre 1–2 domande (se servono) vanno in Investigate o Modify, non qui.
   Varianti ammesse (docs/quiz_liascript.md):
     Multiple-choice:  [[X]]  /  [[ ]]
     Text input:       [[risposta esatta]]
     Selection:        [[ (int) | float | string | bool ]]
--->
+#-->
 
 #### 2. RUN (Esegui)
 Esegui il codice qui sotto e premi **Run**. Confronta l'output con la tua previsione.
@@ -122,13 +129,13 @@ int main() {
 ```
 @LIA.cpp
 
-<!--
+<!--#
   Contratto LiaScript:
   - Questo è lo STESSO programma del blocco "da osservare", eventualmente
     arricchito di commenti Doxygen / ///.
   - La riga @LIA.cpp deve stare SUBITO DOPO il fence di chiusura, da sola.
   - Senza @LIA.cpp il blocco non è eseguibile in LiaScript.
--->
+#-->
 
 #### 3. INVESTIGATE (Investiga)
 Analizziamo il codice come detective. Usa la tabella e, se c'è stato di memoria, Python Tutor.
@@ -157,7 +164,9 @@ stop
 @enduml
 ```
 
-<!-- Opzionale: 1–2 quiz di consolidamento (stessa sintassi LiaScript del Predict) -->
+<!--#
+  Opzionale: 1–2 quiz di consolidamento (stessa sintassi LiaScript del Predict).
+#-->
 
 #### 4. MODIFY (Modifica)
 Apporta **piccole modifiche guidate**. Ogni modifica ha uno scopo chiaro.  
@@ -236,8 +245,9 @@ Nel prossimo capitolo vedremo [anteprima motivante del concetto successivo, coll
 
 ---
 
-<!--
-  NOTE PER L'AUTORE / LLM (non finiscono nel testo studente se restano in commento HTML)
+<!--#
+  NOTE PER L'AUTORE / LLM — questo intero blocco è rimosso da preprocess.py
+  (delimiter: <!--# ... #-->) e non compare nel README.md pubblicato.
 
   Checklist rapida:
   [ ] Un solo obiettivo principale (docs/chunking.md)
@@ -249,5 +259,6 @@ Nel prossimo capitolo vedremo [anteprima motivante del concetto successivo, coll
   [ ] Make: scenario aziendale diverso + requisiti chiari + Doxygen se > ~15 righe
   [ ] Commenti /// solo sul "perché"
   [ ] Durata target del nucleo: 15–25 minuti
-  [ ] Titolo nel formato: ## 📌 Capitolo N: ...
--->
+  [ ] Titolo: ## 📌 [Titolo concreto]: [sottotitolo sul costrutto/concetto del linguaggio]
+      (NON usare la forma "Capitolo N: ...")
+#-->
