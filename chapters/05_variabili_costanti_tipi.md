@@ -1,8 +1,8 @@
-## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
+## 📦 Gli Sportelli della Memoria: variabili, costanti e tipi
 
 > "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
 >
-> — G. Orwell
+> — *George Orwell*
 
 Finora abbiamo solo *stampato* testi fissi.  
 Un software gestionale, però, deve **ricordare e aggiornare dati che cambiano**: prezzo di un articolo, giacenza di magazzino, saldo di un conto.
@@ -25,6 +25,8 @@ Alla fine di questa lezione sei in grado di:
 - Dichiarare variabili e costanti dei tipi fondamentali (`int`, `double`, `char`, `bool`, `std::string`)
 - Scegliere il tipo adatto al dato aziendale che vuoi memorizzare
 - Stampare i valori memorizzati e capire perché un `int` “taglia” i decimali
+
+In questo chunk **non** chiediamo ancora dati da tastiera (`std::cin`): ci concentriamo su *ricordare* e *mostrare*. L’input arriverà quando servirà davvero nei laboratori successivi.
 
 ---
 
