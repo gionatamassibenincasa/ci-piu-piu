@@ -66,6 +66,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Scontrino a nastro
 
+Accumuiamo i prezzi finché non arriva la sentinella di fine spesa.
+
 #### 1. PREDICT (Prevedi)
 Quante volte viene stampata la parola `"Elaborazione"`?
 

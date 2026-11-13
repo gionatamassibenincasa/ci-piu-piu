@@ -85,6 +85,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Menu ATM
 
+Un menu a tasti fissi smista prelievo, versamento e saldo.
+
 #### 1. PREDICT (Prevedi)
 Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
 

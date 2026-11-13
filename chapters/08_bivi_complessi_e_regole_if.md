@@ -95,6 +95,8 @@ L’annidamento resta utile quando i **messaggi di errore** devono essere distin
 
 ### 🔬 Laboratorio PRIMM: Fasce sconto e fido
 
+Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
+
 #### 1. PREDICT (Prevedi)
 Con `voto = 85`, cosa stampa questo codice?
 

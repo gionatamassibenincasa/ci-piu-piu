@@ -65,6 +65,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Piano di ammortamento
 
+Costruiamo la tabella di ammortamento a quote costanti anno per anno.
+
 #### 1. PREDICT (Prevedi)
 Quante righe stampa questo ciclo?
 

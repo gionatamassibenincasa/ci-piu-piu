@@ -69,6 +69,9 @@ Alla fine di questa lezione sei in grado di:
 
 ### 🔬 Laboratorio PRIMM: [Nome del programma / scenario aziendale]
 
+[Obbligatorio: 1–2 frasi di contesto subito sotto il titolo del laboratorio.
+In LiaScript ogni `###` apre una slide: un heading senza testo prima del `####` produce una pagina vuota.]
+
 **Codice da osservare (non eseguire ancora — senza `@LIA.cpp`):**
 
 ```cpp

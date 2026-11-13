@@ -1,4 +1,4 @@
-## 🧮 Capitolo 6: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
+## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
 > — *Principio dell'Elaborazione Dati*
@@ -70,6 +70,8 @@ Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
 ---
 
 ### 🔬 Laboratorio PRIMM: Scontrino e-commerce
+
+Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
 
 #### 1. PREDICT (Prevedi)
 Cosa stampa questo codice?

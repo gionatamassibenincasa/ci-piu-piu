@@ -75,6 +75,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Validazione importo bonifico
 
+Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo).
+
 #### 1. PREDICT (Prevedi)
 Quante volte viene eseguito il corpo?
 

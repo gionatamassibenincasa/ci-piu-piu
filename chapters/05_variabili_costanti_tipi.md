@@ -51,6 +51,8 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 
 ### 🔬 Laboratorio PRIMM: Scheda articolo di magazzino
 
+Memorizziamo i dati di un articolo e li stampiamo: tipi diversi, uno sportello ciascuno.
+
 #### 1. PREDICT (Prevedi)
 Osserva questo frammento:
 

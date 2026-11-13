@@ -63,6 +63,8 @@ Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può prod
 
 ### 🔬 Laboratorio PRIMM: Report fiscale con scarti e stop
 
+Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
+
 #### 1. PREDICT (Prevedi)
 Cosa stampa?
 

@@ -90,6 +90,8 @@ Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (s
 
 ### 🔬 Laboratorio PRIMM: Terminale pagamenti POS
 
+Il terminale decide se autorizzare un pagamento confrontando saldo e importo.
+
 #### 1. PREDICT (Prevedi)
 Quali righe vengono stampate?
 
