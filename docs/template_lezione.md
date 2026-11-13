@@ -11,10 +11,10 @@
   - docs/quiz_liascript.md             (sintassi dei quiz LiaScript)
 -->
 
-## 📌 Capitolo XX: [Titolo chiaro e concreto — es. "Il Tornello delle Decisioni"]
+## 📌 [Titolo chiaro e concreto — es. "Il Tornello delle Decisioni"]: [Sottotitolo relativo al concetto chiave del linguaggio - es: il costrutto `if`]**
 
-> "[Citazione breve e pertinente]"  
-> — *Autore o Principio*
+> "[Citazione breve, pertinente e verificata]"  
+> — *Autore: pioniere dell'informatica o persona nota nella comunità degli sviluppatori*
 
 [2-4 frasi di contesto che collegano il nuovo concetto a ciò che lo studente già sa e al mondo aziendale. Tono conversazionale, "tu".]
 
@@ -37,19 +37,25 @@ Alla fine di questa lezione sarai in grado di:
 
 ### 🔬 Laboratorio PRIMM: [Nome del programma / scenario aziendale]
 
+```cpp
+// Il programma in C++ senza commenti
+```
+
 #### 1. PREDICT (Prevedi)
 Prima di eseguire qualsiasi cosa, guarda il codice e rispondi.
 
 **Domanda di previsione (single-choice):**
 
-Cosa pensi che succeda quando viene eseguito il programma qui sotto?
+Cosa pensi che succeda quando viene eseguito il programma?
 
 [( )] [Opzione plausibile ma sbagliata]
 [(X)] [Opzione corretta]
 [( )] [Opzione sbagliata]
 [( )] [Opzione sbagliata]
 
-<!-- Varianti quiz utili:
+<!-- Usa almeno 3 domande.
+
+ Varianti quiz utili:
   Multiple-choice:
   [[X]] opzione corretta
   [[ ]] opzione sbagliata
@@ -62,13 +68,13 @@ Cosa pensi che succeda quando viene eseguito il programma qui sotto?
 -->
 
 #### 2. RUN (Esegui)
-Copia il codice **a mano** (non fare copia-incolla) nel blocco qui sotto e premilo "Run". Confronta l'output con la tua previsione.
+ Esegui il codice qqu sotto e premilo "Run". Confronta l'output con la tua previsione.
 
 ```cpp
 /**
  * @file [nome_file].cpp
  * @brief [Descrizione breve del programma — cosa fa in termini aziendali]
- * @author [Nome]
+ * @author Gionata Massi
  * @date [YYYY-MM-DD]
  */
 #include <iostream>
@@ -89,7 +95,7 @@ int main() {
 #### 3. INVESTIGATE (Investiga)
 Analizziamo il codice come detective. Usa la tabella e, se utile, Python Tutor.
 
-| Riga / Costrutto              | Cosa fa (spiegazione brain-friendly)                  | Perché è importante in azienda          |
+| Riga / Costrutto              | Cosa fa (spiegazione brain-friendly)                  | Perché è importante          |
 |-------------------------------|-------------------------------------------------------|-----------------------------------------|
 | `...`                         | ...                                                   | ...                                     |
 | `...`                         | ...                                                   | ...                                     |
@@ -177,9 +183,18 @@ int main() {
 ### ➡️ Prossimo chunk
 Nel prossimo capitolo vedremo [anteprima motivante del concetto successivo, collegata al mondo aziendale].
 
+
+<!-- Opzionale -->
+### ⚔️ Sfida
+[Richiesta di risolvere un problema che non è facile affrontare senza le conoscenze del prossimo chunk]
+
+<!-- Opzionale -->
+### ⚔️⚔️⚔️ Mini-Progetto
+[Richiesta di risolvere un problema complesso che è possibile risolvere in circa 30 minuti con le conoscenze dei chunk fino al presente]
+
 ---
 
-<!-- 
+<!--# 
   NOTE PER L'AUTORE / LLM (non visibili allo studente)
   Checklist rapida (vedi i documenti in docs/ per i dettagli):
   [ ] Un solo obiettivo principale (chunking.md)
@@ -191,4 +206,4 @@ Nel prossimo capitolo vedremo [anteprima motivante del concetto successivo, coll
   [ ] Codice eseguibile termina sempre con @LIA.cpp
   [ ] Commenti /// solo sul "perché", mai tautologie
   [ ] Durata target nucleo: 15-25 minuti
--->
+#-->

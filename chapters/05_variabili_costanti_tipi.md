@@ -1,6 +1,7 @@
 ## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
 
 > "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
+>
 > — G. Orwell
 
 Finora abbiamo solo *stampato* testi fissi.  

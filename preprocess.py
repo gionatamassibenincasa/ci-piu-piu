@@ -33,6 +33,18 @@ def process_file(filepath, visited=None):
     in_code_block = False
     with open(abs_path, 'r', encoding='utf-8') as f:
         for line in f:
+            # Controlla se la linea inizia con <!--# (ignorando eventuali spazi iniziali)
+            if line.lstrip().startswith("<!--#"):
+                # Se il tag di chiusura non è sulla stessa riga, avanza fino a trovarlo
+                while "#-->" not in line:
+                    try:
+                        line = next(f)
+                    except StopIteration:
+                        # Evita errori se il file termina prima di trovare #-->
+                        break
+                    # Salta al prossimo giro del ciclo 'for' senza elaborare la riga di chiusura
+                    continue            # Non copiare i commenti tra <!--# e #-->
+                
             # Rileva blocchi di codice Markdown (```)
             if line.strip().startswith('```'):
                 in_code_block = not in_code_block

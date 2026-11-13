@@ -1,7 +1,8 @@
 ## ⚙️ Capitolo 2: Il Motore Sotto il Cofano
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
-> — *Bjarne Stroustrup*
+>
+> — Bjarne Stroustrup
 
 Hai appena allestito l’officina (VS Code + g++).  
 Ora apriamo il cofano e guardiamo **cosa succede davvero** quando premi il pulsante di compilazione.
@@ -14,7 +15,7 @@ Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una *
 > - Il progetto su carta = il tuo file `.cpp`  
 > - I reparti della fabbrica = pre-elaboratore, compilatore, assemblatore, linker  
 > - L’auto finita che esce dal cancello = il file eseguibile  
-> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “multa” (errore di compilazione).
+> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “notifica” (errore di compilazione).
 
 ---
 

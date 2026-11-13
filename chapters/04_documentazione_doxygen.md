@@ -1,6 +1,7 @@
 ## 📝 Capitolo 4: Parlare al Futuro Te Stesso (Documentazione Doxygen)
 
 > "Il codice non mente mai, i commenti sì."
+>
 > — Ron Jeffries
 
 Hai già scritto `Ciao, Mondo!` e presto scriverai programmi più lunghi.  

@@ -24,7 +24,6 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 
 ## 🧭 Guida allo Studio: Come Imparare a Programmare
 
-
 > Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
 > e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
 > congegno pratico che modifica la società -- e tutti sappiamo quanto abbia
@@ -118,8 +117,8 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Questo è il momento in cui passi da "lettore di codice" a "creatore di software".
 ## 🛠️ Capitolo 1: Prepara la tua Officina di Sviluppo
 
-> "Uno strumento non fa il mestiere, ma senza gli strumenti giusti il mestiere diventa impossibile."
-> — *Principio di officina*
+> "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
+> — Donald Knuth
 
 Questo non è un capitolo da leggere in 20 minuti.  
 È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.
@@ -370,7 +369,8 @@ Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 ## ⚙️ Capitolo 2: Il Motore Sotto il Cofano
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
-> — *Bjarne Stroustrup*
+>
+> — Bjarne Stroustrup
 
 Hai appena allestito l’officina (VS Code + g++).  
 Ora apriamo il cofano e guardiamo **cosa succede davvero** quando premi il pulsante di compilazione.
@@ -383,7 +383,7 @@ Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una *
 > - Il progetto su carta = il tuo file `.cpp`  
 > - I reparti della fabbrica = pre-elaboratore, compilatore, assemblatore, linker  
 > - L’auto finita che esce dal cancello = il file eseguibile  
-> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “multa” (errore di compilazione).
+> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “notifica” (errore di compilazione).
 
 ---
 
@@ -595,7 +595,8 @@ Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo
 ---
 ## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
 
-> "S'impara a programmare scrivendo programmi."
+> "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
+>
 > — *Brian Kernighan*
 
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
@@ -616,6 +617,17 @@ Alla fine di questa lezione sei in grado di:
 
 ### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
 
+```cpp[ciao.cpp]
+#include <iostream>
+
+int main() {
+    std::cout << "Ciao, Mondo!\n";
+
+    return 0;
+}
+```
+
+
 #### 1. PREDICT (Prevedi)
 Guarda attentamente la riga:
 ```cpp
@@ -630,7 +642,7 @@ Cosa fa il simbolo `\n` alla fine della frase?
 [( )] Inserisce uno spazio extra
 
 #### 2. RUN (Esegui)
-Digita il codice **a mano** (non fare copia-incolla) nel blocco qui sotto e premilo Run.  
+Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
 Confronta l’output con la tua previsione.
 
 ```cpp
@@ -765,23 +777,11 @@ Finora il computer ha solo *parlato*.
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Obiettivo unico e osservabile
-  [x] Metafora ricetta / chef
-  [x] Quiz con sintassi LiaScript corretta
-  [x] PRIMM completo
-  [x] Investigate con tabella
-  [x] Modify progressive + spiegazioni
-  [x] Make con scaffold e requisiti chiari
-  [x] Riepilogo tascabile
-  [x] Nessun costrutto non ancora introdotto
--->
 ## 📝 Capitolo 4: Parlare al Futuro Te Stesso (Documentazione Doxygen)
 
-> "Il codice viene letto molto più spesso di quanto venga scritto."
-> — *Principio di manutenibilità*
+> "Il codice non mente mai, i commenti sì."
+>
+> — Ron Jeffries
 
 Hai già scritto `Ciao, Mondo!` e presto scriverai programmi più lunghi.  
 Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente.  
@@ -799,7 +799,7 @@ Usiamo uno standard leggero e diffusissimo: **Doxygen**.
 Alla fine di questa lezione sei in grado di:
 - Scrivere un’intestazione di file e di `main` in stile Doxygen
 - Usare il commento `///` per spiegare il **perché** (non il cosa ovvio)
-- Applicare la **regola di proporzionalità** del corso
+- Scegliere cosa commentare e cosa no
 
 ---
 
@@ -826,7 +826,7 @@ const double ALIQUOTA_IVA = 0.22;
 ```cpp
 /**
  * @file presentazione.cpp
- * @brief Stampa nome, classe e hobby dello studente.
+ * @brief Stampa cognome e materia dell'insegnante.
  */
 #include <iostream>
 
@@ -835,9 +835,9 @@ const double ALIQUOTA_IVA = 0.22;
  * @return int 0 se l'esecuzione termina correttamente.
  */
 int main() {
-    /// Identificativo dello studente per lo scontrino di presentazione
-    std::cout << "Nome: Alex\n";
-    std::cout << "Classe: 3A SIA\n";
+    /// Tesserino degli insegnanti
+    std::cout << "Cognome: Massi\n";
+    std::cout << "Materia: Informatica\n";
     return 0;
 }
 ```
@@ -881,8 +881,7 @@ Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scriver
 - Doxygen = etichette standard per file e funzioni.
 - Tag minimi: `@file`, `@brief`, `@param`, `@return`.
 - `///` spiega il **perché**, non il cosa ovvio.
-- Proporzionalità: completo sopra ~15 righe, leggero sotto.
-- Da questo capitolo in poi i Make “ufficiali” richiederanno questi standard.
+- L'editor ci mostra i commenti Doxygen quando ci riferiamo ad una risorsa documentata.
 
 ---
 
@@ -890,18 +889,11 @@ Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scriver
 Con l’officina pronta, il motore visto, il primo dialogo scritto e le etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Chunk breve e monotematico (solo documentazione)
-  [x] Allineato a SKILLS.md (proporzionalità)
-  [x] Nessun costrutto nuovo di linguaggio
-  [x] Ponte esplicito verso variabili
--->
 ## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
 
-> "La memoria è lo spazio in cui i dati attendono il loro turno per essere trasformati in valore."
-> — *Principio dei Sistemi Informativi*
+> "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
+>
+> — G. Orwell
 
 Finora abbiamo solo *stampato* testi fissi.  
 Un software gestionale, però, deve **ricordare e aggiornare dati che cambiano**: prezzo di un articolo, giacenza di magazzino, saldo di un conto.
@@ -931,7 +923,7 @@ Alla fine di questa lezione sei in grado di:
 
 Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** conterrà, così riserva lo spazio giusto.
 
-| Tipo | Cosa contiene | Esempio SIA | Note |
+| Tipo | Cosa contiene | Esempio | Note |
 |------|---------------|-------------|------|
 | `int` | Numeri interi (senza virgola) | `int giacenza = 42;` | Pezzi, quantità, conteggi |
 | `double` | Numeri con la virgola | `double prezzo = 19.50;` | Prezzi, saldi, aliquote |
@@ -969,7 +961,7 @@ Cosa viene stampato?
 </details>
 
 #### 2. RUN (Esegui)
-Digita (a mano) e esegui il programma completo:
+Esegui il programma completo:
 
 ```cpp
 /**
@@ -1112,18 +1104,6 @@ int main() {
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
 
 ---
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Un solo obiettivo principale: variabili, tipi, const
-  [x] Metafora locker (Head First + contesto logistica/e-commerce)
-  [x] Quiz sintassi LiaScript corretta
-  [x] PRIMM completo con scenario magazzino
-  [x] Modify progressivo (IVA, const, init moderna)
-  [x] Make con scenario conto corrente (SIA)
-  [x] cin/getline NON introdotti qui (troppa densità; eventuali in capitolo successivo)
-  [x] Riepilogo tascabile e ponte al capitolo espressioni
--->
 ## 🧮 Capitolo 6: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."

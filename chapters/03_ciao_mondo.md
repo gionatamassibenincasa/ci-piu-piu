@@ -1,6 +1,7 @@
 ## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
+>
 > — *Brian Kernighan*
 
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
@@ -20,6 +21,17 @@ Alla fine di questa lezione sei in grado di:
 ---
 
 ### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
+
+```cpp[ciao.cpp]
+#include <iostream>
+
+int main() {
+    std::cout << "Ciao, Mondo!\n";
+
+    return 0;
+}
+```
+
 
 #### 1. PREDICT (Prevedi)
 Guarda attentamente la riga:

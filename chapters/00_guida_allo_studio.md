@@ -1,6 +1,5 @@
 ## 🧭 Guida allo Studio: Come Imparare a Programmare
 
-
 > Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
 > e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
 > congegno pratico che modifica la società -- e tutti sappiamo quanto abbia

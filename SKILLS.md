@@ -133,3 +133,10 @@ Quando generi contenuti, rispetta **tassativamente** queste regole:
 - Non ignorare il requisito della documentazione, ma evita Doxygen prolisso su micro-snippet (< 15 righe) per non alimentare copia-incolla svogliati.
 - Non scrivere commenti tautologici che descrivono il "cosa" evidente invece del "perché" (es. no `/// incremento i di 1`, sì `/// avanza al giorno contabile successivo`).
 
+
+## Nota su Template LiaScript e Preprocessore
+
+- `docs/template_lezione.md` è un template di lezione LiaScript valido. Contiene la sintassi richiesta da LiaScript (blocchi quiz, marker `@LIA.cpp`, diagrammi PlantUML, ecc.) e rispetta le convenzioni del progetto.
+- Lo script `preprocess.py` tratta le linee delimitata da `<!--#` e `#-->`, posti entrambi ad inizio della riga, come commenti del pre-elaboratore.
+Questi non vengono copiati nell'output generato.
+Il codice è realizzato nel controllo delle righe `line.lstrip().startswith("<!--#")` e salta il contenuto fino a quando trova il primo  `#-->`. I commenti del pre-elaboratore non sono annidabili.
