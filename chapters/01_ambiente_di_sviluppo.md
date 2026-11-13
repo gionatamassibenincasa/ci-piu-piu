@@ -1,4 +1,4 @@
-## 🛠️ Capitolo 1: Prepara la tua Officina di Sviluppo
+## 🛠️ Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64
 
 > "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
 > — Donald Knuth

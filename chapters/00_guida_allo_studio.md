@@ -91,3 +91,9 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Scrivi un **nuovo programma autonomo** partendo da zero.
 - Puoi prendere in prestito frammenti o strutture logiche dal programma appena studiato, applicandoli per risolvere un problema diverso o per realizzare una funzione nuova.
 - Questo è il momento in cui passi da "lettore di codice" a "creatore di software".
+
+---
+
+### ➡️ Da dove si comincia
+Prima di scrivere programmi, allestiamo l’**officina**: editor, compilatore e debugger.  
+È una sessione di laboratorio, non una lettura di 20 minuti: senza utensili collaudati il resto del corso non parte.
