@@ -1,12 +1,25 @@
 ---
-activity_id: "esempio-primm-24"
-title: "Lo Specchio e la Catena: La Ricorsione e le Strutture Ricorsive"
+activity_id: ricorsione-01
+title: Ricorsione e strutture ricorsive
 methodology: PRIMM
 order: 24
-version: "2026-11-15"
+version: '2026-11-15'
 language: it
-components: {}
+components:
+  predict_quiz:
+    question: Cosa deve avere ogni funzione ricorsiva corretta?
+    code: "int f(int n) {\n  if (n <= 0) return 1; // caso base\n  return n * f(n\
+      \ - 1);\n}"
+    options:
+    - text: Solo chiamate ricorsive, senza mai fermarsi
+      correct: false
+    - text: Almeno un caso base che interrompe la ricorsione
+      correct: true
+    - text: Obbligo di usare array globali
+      correct: false
 ---
+
+
 
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
@@ -43,6 +56,8 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Lista collegata ricorsiva*
 
 #### 1. PREDICT (Prevedi)
+
+[[ predict_block() ]]
 > Quale condizione garantisce la terminazione di una funzione ricorsiva che stampa i valori di una lista collegata?
 - [(X)] Quando il puntatore al nodo corrente è `nullptr`.
 - [( )] Quando la lista contiene più di un elemento.

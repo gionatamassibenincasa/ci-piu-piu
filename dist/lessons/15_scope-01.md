@@ -36,8 +36,11 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Cosa succede se una funzione prende un parametro per valore invece che per riferimento (`&`) quando dovrebbe modificare la variabile originale?
+
 ```cpp
 void aumenta(int valore) { valore += 5; }
 void aumentaRef(int& valore) { valore += 5; }
@@ -45,10 +48,12 @@ int x = 10;
 aumenta(x);
 // x è ?
 ```
-- [(X)] x rimane 10 (non modificato)
-- [( )] x diventa 15
-- [( )] Compila con errore
-- [( )] Il programma crasha
+
+[(X)] x rimane 10 (non modificato)
+[( )] x diventa 15
+[( )] Compila con errore
+[( )] Il programma crasha
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -94,4 +99,3 @@ Scrivi `aggiorna_listino.cpp` con le funzioni richieste, includendo Doxygen (`@b
 
 ---
 
-> 🔖 *Attività* `scope-01` · *ordine* 15 · *metodo* PRIMM

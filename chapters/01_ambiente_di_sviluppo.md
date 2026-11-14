@@ -256,9 +256,3 @@ Se sì, l’officina è completamente operativa.
 Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
----
-
-<!--# generato da frontmatter via Jinja; solo per test tooling #-->
-
-> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
-

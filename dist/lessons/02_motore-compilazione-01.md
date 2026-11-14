@@ -127,14 +127,19 @@ int main() {
 ```
 
 #### 1. PREDICT (Prevedi)
-Prima di compilare, rispondi:
 
-Se compiliamo questo programma con `g++ -save-temps`, quale file conterrà il codice **dopo** che il pre-elaboratore ha rimosso i commenti?
 
-[( )] `ridotto.o`
-[(X)] `ridotto.ii`
-[( )] `ridotto.s`
-[( )] `ridotto.exe`
+Dopo g++ -save-temps, quale file contiene il codice senza commenti?
+
+```cpp
+int main() { return 0; }
+```
+
+[( )] ridotto.o
+[(X)] ridotto.ii
+[( )] ridotto.exe
+[( )] ridotto.s
+
 
 #### 2. RUN (Esegui)
 Nella cartella del progetto digita:
@@ -238,25 +243,4 @@ La stampa a video arriverà nel prossimo capitolo.
 ### ➡️ Prossimo chunk
 Finora il nostro programma non ha ancora *parlato* con noi.  
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
-
----
-
-
-> 🔖 *Attività* `motore-compilazione-01` · *ordine* 2 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Dopo g++ -save-temps, quale file contiene il codice senza commenti?
-
-```cpp
-int main() { return 0; }
-```
-
-[( )] ridotto.o
-[(X)] ridotto.ii
-[( )] ridotto.exe
-[( )] ridotto.s
-
-</details>
 

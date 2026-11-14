@@ -13,6 +13,7 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Comprendere come rappresentare dati aziendali con array di struct in C++.
@@ -44,6 +45,17 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Mini‑ERP di Magazzino*
 
 #### 1. PREDICT (Prevedi)
+
+Perché un array di struct può modellare una tabella in memoria?
+
+```cpp
+struct Record { /* campi */ };
+Record tabella[100];
+```
+
+[(X)] Perché ogni elemento è una riga con gli stessi campi
+[( )] Perché gli array non hanno indici
+[( )] Perché le struct non possono contenere stringhe
 > Quale struttura dati è più adatta per mantenere ordinato un archivio di prodotti grande?
 - [(X)] `std::vector` con `std::sort`
 - [( )] `std::list`

@@ -80,15 +80,12 @@ Alla fine di questa lezione sei in grado di:
 ```
 
 #### 1. PREDICT (Prevedi)
-[Una domanda single-choice, sintassi LiaScript:]
 
-[( )] [sbagliata]
-[(X)] [corretta]
-[( )] [sbagliata]
+[[ predict_block() ]]
 
 <details>
 <summary>💡 Spiegazione</summary>
-[2–4 frasi.]
+[2–4 frasi sul perché — non duplicare le opzioni del quiz.]
 </details>
 
 #### 2. RUN (Esegui)

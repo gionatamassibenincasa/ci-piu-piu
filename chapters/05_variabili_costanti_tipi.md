@@ -89,19 +89,10 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 Memorizziamo i dati di un articolo e li stampiamo: tipi diversi, uno sportello ciascuno.
 
 #### 1. PREDICT (Prevedi)
-Osserva questo frammento:
 
-```cpp
-int pezziDisponibili = 7.85;
-std::cout << pezziDisponibili;
-```
 
-Cosa viene stampato?
+[[ predict_block() ]]
 
-[( )] `7.85`
-[(X)] `7` (la parte decimale viene troncata)
-[( )] Il programma va in crash
-[( )] `8` (arrotondamento)
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -250,17 +241,4 @@ int main() {
 
 ### ➡️ Prossimo chunk
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
-
----
-
-<!--# generato da frontmatter via Jinja; solo per test tooling #-->
-
-> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-[[ predict_block() ]]
-
-</details>
 

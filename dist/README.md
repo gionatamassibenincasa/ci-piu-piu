@@ -373,11 +373,6 @@ Se sì, l’officina è completamente operativa.
 Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
----
-
-
-> 🔖 *Attività* `ambiente-sviluppo-01` · *ordine* 1 · *metodo* lab
-
 
 ## ⚙️ Il Motore Sotto il Cofano: dalla sorgente all'eseguibile
 
@@ -493,14 +488,19 @@ int main() {
 ```
 
 #### 1. PREDICT (Prevedi)
-Prima di compilare, rispondi:
 
-Se compiliamo questo programma con `g++ -save-temps`, quale file conterrà il codice **dopo** che il pre-elaboratore ha rimosso i commenti?
 
-[( )] `ridotto.o`
-[(X)] `ridotto.ii`
-[( )] `ridotto.s`
-[( )] `ridotto.exe`
+Dopo g++ -save-temps, quale file contiene il codice senza commenti?
+
+```cpp
+int main() { return 0; }
+```
+
+[( )] ridotto.o
+[(X)] ridotto.ii
+[( )] ridotto.exe
+[( )] ridotto.s
+
 
 #### 2. RUN (Esegui)
 Nella cartella del progetto digita:
@@ -605,27 +605,6 @@ La stampa a video arriverà nel prossimo capitolo.
 Finora il nostro programma non ha ancora *parlato* con noi.  
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
 
----
-
-
-> 🔖 *Attività* `motore-compilazione-01` · *ordine* 2 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Dopo g++ -save-temps, quale file contiene il codice senza commenti?
-
-```cpp
-int main() { return 0; }
-```
-
-[( )] ridotto.o
-[(X)] ridotto.ii
-[( )] ridotto.exe
-[( )] ridotto.s
-
-</details>
-
 
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
@@ -663,17 +642,18 @@ int main() {
 
 
 #### 1. PREDICT (Prevedi)
-Guarda attentamente la riga:
+
+
+Cosa fa std::cout << "Ciao, Mondo!\n"; ?
+
 ```cpp
 std::cout << "Ciao, Mondo!\n";
 ```
 
-Cosa fa il simbolo `\n` alla fine della frase?
+[( )] Legge da tastiera
+[(X)] Stampa Ciao, Mondo! e va a capo
+[( )] Compila il programma
 
-[( )] Stampa esattamente i caratteri `\n` a video
-[(X)] Va a capo, spostando il cursore alla riga successiva
-[( )] Cancella tutto quello che è stato stampato prima
-[( )] Inserisce uno spazio extra
 
 #### 2. RUN (Esegui)
 Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
@@ -817,26 +797,6 @@ int main() {
 Finora il computer ha solo *parlato*.  
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
----
-
-
-> 🔖 *Attività* `ciao-mondo-01` · *ordine* 3 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Cosa fa std::cout << "Ciao, Mondo!\n"; ?
-
-```cpp
-std::cout << "Ciao, Mondo!\n";
-```
-
-[( )] Legge da tastiera
-[(X)] Stampa Ciao, Mondo! e va a capo
-[( )] Compila il programma
-
-</details>
-
 
 ## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
 
@@ -965,8 +925,6 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 
 
-> 🔖 *Attività* `doxygen-01` · *ordine* 4 · *metodo* convention
-
 
 ## 📦 Gli Sportelli della Memoria: variabili, costanti e tipi
 
@@ -1024,19 +982,20 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 Memorizziamo i dati di un articolo e li stampiamo: tipi diversi, uno sportello ciascuno.
 
 #### 1. PREDICT (Prevedi)
-Osserva questo frammento:
+
+
+Cosa stampa int pezzi = 7.85?
 
 ```cpp
-int pezziDisponibili = 7.85;
-std::cout << pezziDisponibili;
+int pezzi = 7.85;
+std::cout << pezzi;
 ```
 
-Cosa viene stampato?
+[( )] 7.85
+[(X)] 7 (troncamento)
+[( )] crash
+[( )] 8 (arrotondamento)
 
-[( )] `7.85`
-[(X)] `7` (la parte decimale viene troncata)
-[( )] Il programma va in crash
-[( )] `8` (arrotondamento)
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -1186,28 +1145,6 @@ int main() {
 ### ➡️ Prossimo chunk
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
 
----
-
-
-> 🔖 *Attività* `variabili-tipi-01` · *ordine* 5 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Cosa stampa int pezzi = 7.85?
-
-```cpp
-int pezzi = 7.85;
-std::cout << pezzi;
-```
-
-[( )] 7.85
-[(X)] 7 (troncamento)
-[( )] crash
-[( )] 8 (arrotondamento)
-
-</details>
-
 
 ## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
@@ -1285,18 +1222,20 @@ Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
 Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
 
 #### 1. PREDICT (Prevedi)
-Cosa stampa questo codice?
+
+
+Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
 
 ```cpp
 int pezzi = 5;
-double costoTotale = pezzi / 2 * 10.0;
-std::cout << costoTotale;
+double t = pezzi / 2 * 10.0;
+std::cout << t;
 ```
 
-[( )] `25`
-[(X)] `20`
-[( )] `25.5`
-[( )] Errore di compilazione
+[( )] 25
+[(X)] 20
+[( )] 2.5
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -1430,25 +1369,6 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
 
 
 
-> 🔖 *Attività* `espressioni-ternario-01` · *ordine* 6 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
-
-```cpp
-int pezzi = 5;
-double t = pezzi / 2 * 10.0;
-std::cout << t;
-```
-
-[( )] 25
-[(X)] 20
-[( )] 2.5
-
-</details>
-
 
 ## 🚦 Bivi e Decisioni: `if` e `if-else`
 
@@ -1545,20 +1465,20 @@ Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (s
 Il terminale decide se autorizzare un pagamento confrontando saldo e importo.
 
 #### 1. PREDICT (Prevedi)
-Quali righe vengono stampate?
+
+
+Senza graffe, quante righe controlla l'if?
 
 ```cpp
-int scorte = 12;
 if (scorte < 5)
-    std::cout << "1. Ordina nuovi pezzi!\n";
-    std::cout << "2. Notifica inviata al fornitore.\n";
-std::cout << "3. Controllo terminato.\n";
+    std::cout << "1\n";
+    std::cout << "2\n";
 ```
 
-[( )] Non stampa nulla
-[( )] Stampa 1, 2 e 3
-[(X)] Stampa solo 2 e 3
-[( )] Stampa solo 3
+[( )] Entrambe le cout
+[(X)] Solo la prima cout
+[( )] Nessuna
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -1701,25 +1621,6 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
 -->
 
 
-> 🔖 *Attività* `if-else-01` · *ordine* 7 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Senza graffe, quante righe controlla l'if?
-
-```cpp
-if (scorte < 5)
-    std::cout << "1\n";
-    std::cout << "2\n";
-```
-
-[( )] Entrambe le cout
-[(X)] Solo la prima cout
-[( )] Nessuna
-
-</details>
-
 
 ## 🌲 Scaglioni e Labirinti: `if / else if / else` e if annidati
 
@@ -1821,22 +1722,20 @@ L’annidamento resta utile quando i **messaggi di errore** devono essere distin
 Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
 
 #### 1. PREDICT (Prevedi)
-Con `voto = 85`, cosa stampa questo codice?
+
+
+Con fatturato = 25000, quale fascia assegna la scala corretta (≥50000 / ≥20000 / ≥5000)?
 
 ```cpp
-if (voto >= 90) {
-    std::cout << "Ottimo\n";
-} else if (voto >= 60) {
-    std::cout << "Sufficiente\n";
-} else {
-    std::cout << "Insufficiente\n";
-}
+double fatturato = 25000.0;
+// if / else if / else sulle soglie
 ```
 
-[( )] `Ottimo`
-[(X)] `Sufficiente`
-[( )] Stampa sia `Sufficiente` che `Ottimo`
-[( )] Errore di compilazione
+[( )] Platinum 15%
+[(X)] Gold 10%
+[( )] Silver 5%
+[( )] Nessuno sconto
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -1995,7 +1894,7 @@ Entra in scena lo **`switch`**.
   [x] Make scaglioni imposta (modello semplificato esplicitato)
   [x] switch solo annunciato
 -->
-## 🎛️ Capitolo 9: Lo Smistatore di Sportello (`switch-case`)
+## 🎛️ Lo Smistatore di Sportello (`switch-case`)
 
 > "La semplicità è il prerequisito per l'affidabilità di un'interfaccia utente."
 > — *Edsger W. Dijkstra*
@@ -2085,6 +1984,8 @@ stop
 Un menu a tasti fissi smista prelievo, versamento e saldo.
 
 #### 1. PREDICT (Prevedi)
+
+
 Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
 
 ```cpp
@@ -2101,7 +2002,7 @@ switch (tasto) {
 [( )] Stampa solo `Saldo `
 [(X)] Stampa `Saldo Estratto Conto Errore`
 [( )] Stampa `Saldo Estratto Conto `
-[( )] Errore di compilazione
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -2255,7 +2156,7 @@ Nel prossimo capitolo entra in scena il ciclo: il **`while`**.
   [x] while solo annunciato
 -->
 
-## 🔄 Capitolo 10: L'Anello Fondamentale (Il Ciclo `while`)
+## 🔄 L'Anello Fondamentale (Il Ciclo `while`)
 
 > "Iterare è umano, automatizzare è informatica."
 > — *Adattamento da L. Peter Deutsch*
@@ -2326,7 +2227,9 @@ stop
 Accumuiamo i prezzi finché non arriva la sentinella di fine spesa.
 
 #### 1. PREDICT (Prevedi)
-Quante volte viene stampata la parola `"Elaborazione"`?
+
+
+Quante volte viene stampata la parola "Elaborazione"?
 
 ```cpp
 int n = 0;
@@ -2340,6 +2243,7 @@ while (n > 5) {
 [( )] 1 volta
 [( )] 5 volte
 [( )] Il ciclo è infinito
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -2489,7 +2393,7 @@ Il ciclo **`for`** concentra inizializzazione, condizione e aggiornamento in una
   [x] for solo annunciato
 -->
 
-## ⏳ Capitolo 11: Il Contatore Compatto (Il Ciclo `for`)
+## ⏳ Il Contatore Compatto (Il Ciclo `for`)
 
 > "La regolarità e la prevedibilità sono le migliori alleate della precisione contabile."
 > — *Principio di Revisione Aziendale*
@@ -2559,6 +2463,8 @@ stop
 Costruiamo la tabella di ammortamento a quote costanti anno per anno.
 
 #### 1. PREDICT (Prevedi)
+
+
 Quante righe stampa questo ciclo?
 
 ```cpp
@@ -2571,6 +2477,7 @@ for (int i = 0; i < 5; ++i) {
 [(X)] 5 righe: `0 1 2 3 4`
 [( )] 4 righe: `0 1 2 3`
 [( )] Ciclo infinito
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -2701,7 +2608,7 @@ Entra in scena il **`do-while`**: controllo in coda.
   [x] do-while solo annunciato
 -->
 
-## 🔁 Capitolo 12: Garantire l'Azione (Il Ciclo `do-while`)
+## 🔁 Garantire l'Azione (Il Ciclo `do-while`)
 
 > "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
 > — *Regola Aurea dello Sviluppo Software*
@@ -2781,6 +2688,8 @@ stop
 Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo).
 
 #### 1. PREDICT (Prevedi)
+
+
 Quante volte viene eseguito il corpo?
 
 ```cpp
@@ -2795,6 +2704,7 @@ do {
 [(X)] 1 volta
 [( )] 5 volte
 [( )] Infinito
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -2931,7 +2841,7 @@ Chiudiamo il Blocco 1 con gli strumenti di “guida fine” del ciclo: **`break`
   [x] break/iomanip solo annunciati
 -->
 
-## 🎯 Capitolo 13: Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
+## 🎯 Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
 > — *Principio dei Sistemi Contabili*
@@ -2999,6 +2909,8 @@ Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può prod
 Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
 
 #### 1. PREDICT (Prevedi)
+
+
 Cosa stampa?
 
 ```cpp
@@ -3009,10 +2921,11 @@ for (int i = 1; i <= 5; ++i) {
 }
 ```
 
-[( )] `12345`
-[( )] `1345`
-[(X)] `13`
-[( )] `1234`
+[( )] 12345
+[( )] 1345
+[(X)] 13
+[( )] 1234
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -3176,7 +3089,24 @@ Nel **Blocco 2** spezzeremo i programmi in **funzioni**, introdurremo **array** 
 
 ## 🔬 Laboratorio PRIMM
 
-### 1. Predict (Prevedi)
+#### 1. PREDICT (Prevedi)
+
+
+Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
+
+```cpp
+int esempio(int x) {
+    return x * 2;
+    // qui c'è codice inutilizzabile
+    int y = x + 1;
+    return y;
+}
+```
+
+[( )] Il codice dopo `return` viene comunque eseguito
+[(X)] Il codice dopo `return` non viene mai eseguito (è inaccessibile)
+[( )] Il compilatore sposta il `return` alla fine del blocco
+[( )] Il programma crasha
 Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
 ```cpp
 int esempio(int x) {
@@ -3236,7 +3166,6 @@ Scrivi `calcolo_stipendio.cpp` con le funzioni richieste, includendo Doxygen (`@
 
 ---
 
-> 🔖 *Attività* `funzioni-01` · *ordine* 14 · *metodo* PRIMM
 
 ## 🎯 La Fotocopia vs L'Originale: Scope e Passaggio per Riferimento (`&`)
 
@@ -3261,8 +3190,11 @@ Scrivi `calcolo_stipendio.cpp` con le funzioni richieste, includendo Doxygen (`@
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Cosa succede se una funzione prende un parametro per valore invece che per riferimento (`&`) quando dovrebbe modificare la variabile originale?
+
 ```cpp
 void aumenta(int valore) { valore += 5; }
 void aumentaRef(int& valore) { valore += 5; }
@@ -3270,10 +3202,12 @@ int x = 10;
 aumenta(x);
 // x è ?
 ```
-- [(X)] x rimane 10 (non modificato)
-- [( )] x diventa 15
-- [( )] Compila con errore
-- [( )] Il programma crasha
+
+[(X)] x rimane 10 (non modificato)
+[( )] x diventa 15
+[( )] Compila con errore
+[( )] Il programma crasha
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -3319,7 +3253,6 @@ Scrivi `aggiorna_listino.cpp` con le funzioni richieste, includendo Doxygen (`@b
 
 ---
 
-> 🔖 *Attività* `scope-01` · *ordine* 15 · *metodo* PRIMM
 
 ## 🎯 La Batteria di Locker: Gli Array e le Sequenze di Dati
 
@@ -3345,17 +3278,22 @@ Scrivi `aggiorna_listino.cpp` con le funzioni richieste, includendo Doxygen (`@b
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Cosa succede se si accede a `vendite[30]` quando l'array è dichiarato con dimensione 30?
+
 ```cpp
 double vendite[30];
 // ...
 double x = vendite[30];
 ```
-- [(X)] Compila ma legge valore casuale (out‑of‑bounds)
-- [( )] Compila e stampa 0
-- [( )] Errore di compilazione
-- [( )] Il programma non avvia
+
+[(X)] Compila ma legge valore casuale (out‑of‑bounds)
+[( )] Compila e stampa 0
+[( )] Errore di compilazione
+[( )] Il programma non avvia
+
 
 <details><summary>💡 Spiegazione</summary>Indice 30 è fuori dall’intervallo valido `[0‑29]`; il comportamento è indefinito.
 </details>
@@ -3397,7 +3335,6 @@ Scrivi `controllo_vendite.cpp` includendo Doxygen (`@brief`, `@param`, `@return`
 
 ---
 
-> 🔖 *Attività* `array-01` · *ordine* 16 · *metodo* PRIMM
 
 ## 🎯 Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili
 
@@ -3424,8 +3361,11 @@ Scrivi `controllo_vendite.cpp` includendo Doxygen (`@brief`, `@param`, `@return`
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Se inverti l'ordine dei due cicli `for` annidati in una matrice `2×3`, in che ordine vengono stampati gli elementi?
+#### 1. PREDICT (Prevedi)
+
+
+Se inverti l'ordine dei due cicli `for` annidati in una matrice 2×3, in che ordine vengono stampati gli elementi?
+
 ```cpp
 int mat[2][3] = {{1,2,3},{4,5,6}};
 // ciclo interno primo
@@ -3437,10 +3377,12 @@ for (int i=0;i<2;i++){
 // ciclo esterno primo (invertito)
 // ...
 ```
-- [(X)] 1 2 3 4 5 6
-- [( )] 1 4 2 5 3 6
-- [( )] 4 5 6 1 2 3
-- [( )] Errore di compilazione
+
+[(X)] 1 2 3 4 5 6
+[( )] 1 4 2 5 3 6
+[( )] 4 5 6 1 2 3
+[( )] Errore di compilazione
+
 
 <details><summary>💡 Spiegazione</summary>Il ciclo interno stampa per ogni riga tutti gli elementi della colonna, quindi l'ordine naturale è riga‑per‑riga.
 </details>
@@ -3483,7 +3425,6 @@ Scrivi `matrici_fatturazione.cpp` con Doxygen (`@brief`, `@param`, `@return`). I
 
 ---
 
-> 🔖 *Attività* `matrici-01` · *ordine* 17 · *metodo* PRIMM
 
 ## 🎯 Il Biglietto di Ritiro: Indirizzi di Memoria, Operatori & e * e Puntatori
 
@@ -3509,12 +3450,22 @@ Scrivi `matrici_fatturazione.cpp` con Doxygen (`@brief`, `@param`, `@return`). I
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Dati `int a = 10; int* p = &a; *p = 20;`, quanto vale `a`?
-- [(X)] 20
-- [( )] 10
-- [( )] Compila con errore
-- [( )] Il programma crasha
+
+```cpp
+int a = 10;
+int* p = &a;
+*p = 20; // modifica a
+```
+
+[(X)] 20
+[( )] 10
+[( )] Compila con errore
+[( )] Il programma crasha
+
 
 <details><summary>💡 Spiegazione</summary>Il dereferenziamento `*p = 20` modifica direttamente la variabile `a`.
 </details>
@@ -3555,7 +3506,6 @@ Scrivi `gestione_fido.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il progr
 
 ---
 
-> 🔖 *Attività* `puntatori-01` · *ordine* 18 · *metodo* PRIMM
 
 ## 🎯 L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct`)
 
@@ -3582,12 +3532,23 @@ Scrivi `gestione_fido.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il progr
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Se assegno `Ordine o2 = o1;`, cosa succede alla memoria?
-- [(X)] Viene copiata campo per campo, occupa nuova memoria
-- [( )] Viene condivisa la stessa memoria (alias)
-- [( )] Compila con errore perché le struct non sono copiabili
-- [( )] Il programma crasha
+
+```cpp
+enum class StatoOrdine { InAttesa, Confermato, Spedito, Annullato };
+struct Ordine { int id; std::string cliente; double importo; StatoOrdine stato; };
+Ordine o1{1,"Mario",100.0,StatoOrdine::InAttesa};
+Ordine o2 = o1; // copia
+```
+
+[(X)] Viene copiata campo per campo, occupa nuova memoria
+[( )] Viene condivisa la stessa memoria (alias)
+[( )] Compila con errore perché le struct non sono copiabili
+[( )] Il programma crasha
+
 
 <details><summary>💡 Spiegazione</summary>La copia è profonda per i campi semplici; per campi `std::string` viene effettuata una copia della stringa.
 </details>
@@ -3638,7 +3599,6 @@ Scrivi `enum_struct.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il program
 
 ---
 
-> 🔖 *Attività* `enum-01` · *ordine* 19 · *metodo* PRIMM
 
 ## 🎯 Il Dizionario Magico: La Ricerca Dicotomica (Binaria)
 
@@ -3662,12 +3622,21 @@ Scrivi `enum_struct.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il program
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Se l'array ha 1.024 elementi ordinati, quanti passi al massimo servono per trovare un valore con ricerca binaria?
-- [(X)] 10
-- [( )] 9
-- [( )] 11
-- [( )] 12
+
+```cpp
+// array di 1024 elementi ordinati
+// ricerca binaria di un valore
+```
+
+[(X)] 10
+[( )] 9
+[( )] 11
+[( )] 12
+
 
 <details><summary>💡 Spiegazione</summary>2¹⁰ = 1024, quindi al massimo 10 confronti.
 </details>
@@ -3713,7 +3682,6 @@ Scrivi `ricerca_binaria.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il pro
 
 ---
 
-> 🔖 *Attività* `ricerca-01` · *ordine* 20 · *metodo* PRIMM
 
 ## 🎯 Riordinare le Carte: L'Algoritmo Selection Sort
 
@@ -3737,12 +3705,21 @@ Scrivi `ricerca_binaria.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il pro
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Se l'array è già ordinato, quanti confronti fa comunque il Selection Sort?
-- [(X)] Il numero di confronti è sempre lo stesso (n·(n‑1)/2)
-- [( )] Zero, poiché l'algoritmo riconosce l'array ordinato
-- [( )] n‑1 confronti
-- [( )] Dipende dalla presenza di duplicati
+
+```cpp
+int arr[5] = {1,2,3,4,5};
+// algoritmo selection sort
+```
+
+[(X)] Il numero di confronti è sempre lo stesso (n·(n‑1)/2)
+[( )] Zero, poiché l'algoritmo riconosce l'array ordinato
+[( )] n‑1 confronti
+[( )] Dipende dalla presenza di duplicati
+
 
 <details><summary>💡 Spiegazione</summary>Selection Sort non verifica se l'array è già ordinato; continua a confrontare tutti gli elementi.
 </details>
@@ -3790,7 +3767,7 @@ Scrivi `selection_sort.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il prog
 
 ---
 
-> 🔖 *Attività* `selection-sort-01` · *ordine* 21 · *metodo* PRIMM
+
 
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
@@ -3822,6 +3799,16 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Ordinamento aziendale*
 
 #### 1. PREDICT (Prevedi)
+
+Nel merge sort, cosa fa la fase "merge"?
+
+```cpp
+// due metà già ordinate → una sequenza ordinata
+```
+
+[( )] Divide l'array a metà
+[(X)] Fonde due sottosequenze ordinate
+[( )] Scambia solo due elementi
 > Quale dei seguenti casi peggiori può far degenerare Quick Sort a `O(n²)`?
 - [( )] L'array è già ordinato ascendente
 - [(X)] L'array è già ordinato discendente
@@ -3897,6 +3884,7 @@ int main(){
 
 ➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Comprendere come rappresentare dati aziendali con array di struct in C++.
@@ -3928,6 +3916,17 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Mini‑ERP di Magazzino*
 
 #### 1. PREDICT (Prevedi)
+
+Perché un array di struct può modellare una tabella in memoria?
+
+```cpp
+struct Record { /* campi */ };
+Record tabella[100];
+```
+
+[(X)] Perché ogni elemento è una riga con gli stessi campi
+[( )] Perché gli array non hanno indici
+[( )] Perché le struct non possono contenere stringhe
 > Quale struttura dati è più adatta per mantenere ordinato un archivio di prodotti grande?
 - [(X)] `std::vector` con `std::sort`
 - [( )] `std::list`
@@ -3999,6 +3998,7 @@ int main(){
 
 ➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Descrivere i concetti di caso base e passo ricorsivo.
@@ -4034,6 +4034,19 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Lista collegata ricorsiva*
 
 #### 1. PREDICT (Prevedi)
+
+Cosa deve avere ogni funzione ricorsiva corretta?
+
+```cpp
+int f(int n) {
+  if (n <= 0) return 1; // caso base
+  return n * f(n - 1);
+}
+```
+
+[( )] Solo chiamate ricorsive, senza mai fermarsi
+[(X)] Almeno un caso base che interrompe la ricorsione
+[( )] Obbligo di usare array globali
 > Quale condizione garantisce la terminazione di una funzione ricorsiva che stampa i valori di una lista collegata?
 - [(X)] Quando il puntatore al nodo corrente è `nullptr`.
 - [( )] Quando la lista contiene più di un elemento.

@@ -38,8 +38,11 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Se inverti l'ordine dei due cicli `for` annidati in una matrice `2×3`, in che ordine vengono stampati gli elementi?
+#### 1. PREDICT (Prevedi)
+
+
+Se inverti l'ordine dei due cicli `for` annidati in una matrice 2×3, in che ordine vengono stampati gli elementi?
+
 ```cpp
 int mat[2][3] = {{1,2,3},{4,5,6}};
 // ciclo interno primo
@@ -51,10 +54,12 @@ for (int i=0;i<2;i++){
 // ciclo esterno primo (invertito)
 // ...
 ```
-- [(X)] 1 2 3 4 5 6
-- [( )] 1 4 2 5 3 6
-- [( )] 4 5 6 1 2 3
-- [( )] Errore di compilazione
+
+[(X)] 1 2 3 4 5 6
+[( )] 1 4 2 5 3 6
+[( )] 4 5 6 1 2 3
+[( )] Errore di compilazione
+
 
 <details><summary>💡 Spiegazione</summary>Il ciclo interno stampa per ogni riga tutti gli elementi della colonna, quindi l'ordine naturale è riga‑per‑riga.
 </details>
@@ -97,4 +102,3 @@ Scrivi `matrici_fatturazione.cpp` con Doxygen (`@brief`, `@param`, `@return`). I
 
 ---
 
-> 🔖 *Attività* `matrici-01` · *ordine* 17 · *metodo* PRIMM

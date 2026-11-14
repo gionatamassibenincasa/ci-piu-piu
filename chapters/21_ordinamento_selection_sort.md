@@ -68,12 +68,11 @@ files:
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Se l'array è già ordinato, quanti confronti fa comunque il Selection Sort?
-- [(X)] Il numero di confronti è sempre lo stesso (n·(n‑1)/2)
-- [( )] Zero, poiché l'algoritmo riconosce l'array ordinato
-- [( )] n‑1 confronti
-- [( )] Dipende dalla presenza di duplicati
+#### 1. PREDICT (Prevedi)
+
+
+[[ predict_block() ]]
+
 
 <details><summary>💡 Spiegazione</summary>Selection Sort non verifica se l'array è già ordinato; continua a confrontare tutti gli elementi.
 </details>
@@ -121,4 +120,3 @@ Scrivi `selection_sort.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il prog
 
 ---
 
-> 🔖 *Attività* `selection-sort-01` · *ordine* 21 · *metodo* PRIMM

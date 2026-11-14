@@ -106,18 +106,10 @@ Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
 Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
 
 #### 1. PREDICT (Prevedi)
-Cosa stampa questo codice?
 
-```cpp
-int pezzi = 5;
-double costoTotale = pezzi / 2 * 10.0;
-std::cout << costoTotale;
-```
 
-[( )] `25`
-[(X)] `20`
-[( )] `25.5`
-[( )] Errore di compilazione
+[[ predict_block() ]]
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -261,13 +253,4 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
 #-->
 
 <!--# generato da frontmatter via Jinja; solo per test tooling #-->
-
-> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-[[ predict_block() ]]
-
-</details>
 

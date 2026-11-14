@@ -69,19 +69,20 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 Memorizziamo i dati di un articolo e li stampiamo: tipi diversi, uno sportello ciascuno.
 
 #### 1. PREDICT (Prevedi)
-Osserva questo frammento:
+
+
+Cosa stampa int pezzi = 7.85?
 
 ```cpp
-int pezziDisponibili = 7.85;
-std::cout << pezziDisponibili;
+int pezzi = 7.85;
+std::cout << pezzi;
 ```
 
-Cosa viene stampato?
+[( )] 7.85
+[(X)] 7 (troncamento)
+[( )] crash
+[( )] 8 (arrotondamento)
 
-[( )] `7.85`
-[(X)] `7` (la parte decimale viene troncata)
-[( )] Il programma va in crash
-[( )] `8` (arrotondamento)
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -230,26 +231,4 @@ int main() {
 
 ### ➡️ Prossimo chunk
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
-
----
-
-
-> 🔖 *Attività* `variabili-tipi-01` · *ordine* 5 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Cosa stampa int pezzi = 7.85?
-
-```cpp
-int pezzi = 7.85;
-std::cout << pezzi;
-```
-
-[( )] 7.85
-[(X)] 7 (troncamento)
-[( )] crash
-[( )] 8 (arrotondamento)
-
-</details>
 

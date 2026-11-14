@@ -89,18 +89,20 @@ Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
 Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
 
 #### 1. PREDICT (Prevedi)
-Cosa stampa questo codice?
+
+
+Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
 
 ```cpp
 int pezzi = 5;
-double costoTotale = pezzi / 2 * 10.0;
-std::cout << costoTotale;
+double t = pezzi / 2 * 10.0;
+std::cout << t;
 ```
 
-[( )] `25`
-[(X)] `20`
-[( )] `25.5`
-[( )] Errore di compilazione
+[( )] 25
+[(X)] 20
+[( )] 2.5
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -233,23 +235,4 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
 ---
 
 
-
-> 🔖 *Attività* `espressioni-ternario-01` · *ordine* 6 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
-
-```cpp
-int pezzi = 5;
-double t = pezzi / 2 * 10.0;
-std::cout << t;
-```
-
-[( )] 25
-[(X)] 20
-[( )] 2.5
-
-</details>
 

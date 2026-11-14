@@ -43,7 +43,7 @@ files:
       must_contain: ["int main"]
 ---
 
-## 🔁 Capitolo 12: Garantire l'Azione (Il Ciclo `do-while`)
+## 🔁 Garantire l'Azione (Il Ciclo `do-while`)
 
 > "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
 > — *Regola Aurea dello Sviluppo Software*
@@ -123,20 +123,10 @@ stop
 Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo).
 
 #### 1. PREDICT (Prevedi)
-Quante volte viene eseguito il corpo?
 
-```cpp
-int n = 10;
-do {
-    std::cout << "giro\n";
-    n = n + 1;
-} while (n < 5);
-```
 
-[( )] 0 volte
-[(X)] 1 volta
-[( )] 5 volte
-[( )] Infinito
+[[ predict_block() ]]
+
 
 <details>
 <summary>💡 Spiegazione</summary>

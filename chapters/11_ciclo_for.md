@@ -41,7 +41,7 @@ files:
       must_contain: ["int main"]
 ---
 
-## ⏳ Capitolo 11: Il Contatore Compatto (Il Ciclo `for`)
+## ⏳ Il Contatore Compatto (Il Ciclo `for`)
 
 > "La regolarità e la prevedibilità sono le migliori alleate della precisione contabile."
 > — *Principio di Revisione Aziendale*
@@ -111,18 +111,10 @@ stop
 Costruiamo la tabella di ammortamento a quote costanti anno per anno.
 
 #### 1. PREDICT (Prevedi)
-Quante righe stampa questo ciclo?
 
-```cpp
-for (int i = 0; i < 5; ++i) {
-    std::cout << i << "\n";
-}
-```
 
-[( )] 5 righe: `1 2 3 4 5`
-[(X)] 5 righe: `0 1 2 3 4`
-[( )] 4 righe: `0 1 2 3`
-[( )] Ciclo infinito
+[[ predict_block() ]]
+
 
 <details>
 <summary>💡 Spiegazione</summary>

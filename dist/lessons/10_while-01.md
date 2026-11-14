@@ -13,7 +13,7 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
-## 🔄 Capitolo 10: L'Anello Fondamentale (Il Ciclo `while`)
+## 🔄 L'Anello Fondamentale (Il Ciclo `while`)
 
 > "Iterare è umano, automatizzare è informatica."
 > — *Adattamento da L. Peter Deutsch*
@@ -84,7 +84,9 @@ stop
 Accumuiamo i prezzi finché non arriva la sentinella di fine spesa.
 
 #### 1. PREDICT (Prevedi)
-Quante volte viene stampata la parola `"Elaborazione"`?
+
+
+Quante volte viene stampata la parola "Elaborazione"?
 
 ```cpp
 int n = 0;
@@ -98,6 +100,7 @@ while (n > 5) {
 [( )] 1 volta
 [( )] 5 volte
 [( )] Il ciclo è infinito
+
 
 <details>
 <summary>💡 Spiegazione</summary>

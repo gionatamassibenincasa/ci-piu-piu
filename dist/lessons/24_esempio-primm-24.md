@@ -13,6 +13,7 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Descrivere i concetti di caso base e passo ricorsivo.
@@ -48,6 +49,19 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Lista collegata ricorsiva*
 
 #### 1. PREDICT (Prevedi)
+
+Cosa deve avere ogni funzione ricorsiva corretta?
+
+```cpp
+int f(int n) {
+  if (n <= 0) return 1; // caso base
+  return n * f(n - 1);
+}
+```
+
+[( )] Solo chiamate ricorsive, senza mai fermarsi
+[(X)] Almeno un caso base che interrompe la ricorsione
+[( )] Obbligo di usare array globali
 > Quale condizione garantisce la terminazione di una funzione ricorsiva che stampa i valori di una lista collegata?
 - [(X)] Quando il puntatore al nodo corrente è `nullptr`.
 - [( )] Quando la lista contiene più di un elemento.

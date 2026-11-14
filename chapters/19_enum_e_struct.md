@@ -81,12 +81,11 @@ files:
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Se assegno `Ordine o2 = o1;`, cosa succede alla memoria?
-- [(X)] Viene copiata campo per campo, occupa nuova memoria
-- [( )] Viene condivisa la stessa memoria (alias)
-- [( )] Compila con errore perché le struct non sono copiabili
-- [( )] Il programma crasha
+#### 1. PREDICT (Prevedi)
+
+
+[[ predict_block() ]]
+
 
 <details><summary>💡 Spiegazione</summary>La copia è profonda per i campi semplici; per campi `std::string` viene effettuata una copia della stringa.
 </details>
@@ -137,4 +136,3 @@ Scrivi `enum_struct.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il program
 
 ---
 
-> 🔖 *Attività* `enum-01` · *ordine* 19 · *metodo* PRIMM

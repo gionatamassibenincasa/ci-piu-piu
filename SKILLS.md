@@ -91,6 +91,9 @@ Ogni nuovo concetto deve seguire questa sequenza:
 
 ## Tooling OER e frontmatter (obbligatorio)
 
+- Predict PRIMM: unica fonte `components.predict_quiz` + `[[ predict_block() ]]` nel corpo.
+
+
 - Specifiche: `docs/SPEC.md`
 - Schema: `schemas/chapter-frontmatter.schema.json`
 - CLI unica: `python -m tools.cipiupiu` (`list` | `validate` | `render`)

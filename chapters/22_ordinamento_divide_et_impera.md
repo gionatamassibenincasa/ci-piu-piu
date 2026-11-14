@@ -1,12 +1,24 @@
 ---
-activity_id: "esempio-primm-22"
-title: "Divide et Impera: Merge Sort e Quick Sort"
+activity_id: merge-sort-01
+title: 'Ordinamento divide et impera: merge sort'
 methodology: PRIMM
 order: 22
-version: "2026-11-15"
+version: '2026-11-15'
 language: it
-components: {}
+components:
+  predict_quiz:
+    question: Nel merge sort, cosa fa la fase "merge"?
+    code: // due metà già ordinate → una sequenza ordinata
+    options:
+    - text: Divide l'array a metà
+      correct: false
+    - text: Fonde due sottosequenze ordinate
+      correct: true
+    - text: Scambia solo due elementi
+      correct: false
 ---
+
+
 
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
@@ -38,6 +50,8 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Ordinamento aziendale*
 
 #### 1. PREDICT (Prevedi)
+
+[[ predict_block() ]]
 > Quale dei seguenti casi peggiori può far degenerare Quick Sort a `O(n²)`?
 - [( )] L'array è già ordinato ascendente
 - [(X)] L'array è già ordinato discendente

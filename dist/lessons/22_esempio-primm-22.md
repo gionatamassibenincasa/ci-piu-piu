@@ -13,6 +13,7 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Spiegare la differenza tra Merge Sort e Quick Sort e quando usarli.
@@ -43,6 +44,16 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Ordinamento aziendale*
 
 #### 1. PREDICT (Prevedi)
+
+Nel merge sort, cosa fa la fase "merge"?
+
+```cpp
+// due metà già ordinate → una sequenza ordinata
+```
+
+[( )] Divide l'array a metà
+[(X)] Fonde due sottosequenze ordinate
+[( )] Scambia solo due elementi
 > Quale dei seguenti casi peggiori può far degenerare Quick Sort a `O(n²)`?
 - [( )] L'array è già ordinato ascendente
 - [(X)] L'array è già ordinato discendente

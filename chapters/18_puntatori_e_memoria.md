@@ -71,12 +71,11 @@ files:
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Dati `int a = 10; int* p = &a; *p = 20;`, quanto vale `a`?
-- [(X)] 20
-- [( )] 10
-- [( )] Compila con errore
-- [( )] Il programma crasha
+#### 1. PREDICT (Prevedi)
+
+
+[[ predict_block() ]]
+
 
 <details><summary>💡 Spiegazione</summary>Il dereferenziamento `*p = 20` modifica direttamente la variabile `a`.
 </details>
@@ -117,4 +116,3 @@ Scrivi `gestione_fido.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il progr
 
 ---
 
-> 🔖 *Attività* `puntatori-01` · *ordine* 18 · *metodo* PRIMM

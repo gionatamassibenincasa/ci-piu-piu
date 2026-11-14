@@ -1,12 +1,26 @@
 ---
-activity_id: "esempio-primm-23"
-title: "Il Database Gestionale: Vettori di Strutture e Progetto Finale del Blocco 2"
+activity_id: db-memoria-01
+title: 'Database in memoria: progetto con array di struct'
 methodology: PRIMM
 order: 23
-version: "2026-11-15"
+version: '2026-11-15'
 language: it
-components: {}
+components:
+  predict_quiz:
+    question: Perché un array di struct può modellare una tabella in memoria?
+    code: 'struct Record { /* campi */ };
+
+      Record tabella[100];'
+    options:
+    - text: Perché ogni elemento è una riga con gli stessi campi
+      correct: true
+    - text: Perché gli array non hanno indici
+      correct: false
+    - text: Perché le struct non possono contenere stringhe
+      correct: false
 ---
+
+
 
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
@@ -39,6 +53,8 @@ Alla fine di questa lezione sei in grado di:
 ### 🔬 Laboratorio PRIMM: *Mini‑ERP di Magazzino*
 
 #### 1. PREDICT (Prevedi)
+
+[[ predict_block() ]]
 > Quale struttura dati è più adatta per mantenere ordinato un archivio di prodotti grande?
 - [(X)] `std::vector` con `std::sort`
 - [( )] `std::list`

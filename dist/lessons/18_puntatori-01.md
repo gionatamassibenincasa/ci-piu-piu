@@ -37,12 +37,22 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Dati `int a = 10; int* p = &a; *p = 20;`, quanto vale `a`?
-- [(X)] 20
-- [( )] 10
-- [( )] Compila con errore
-- [( )] Il programma crasha
+
+```cpp
+int a = 10;
+int* p = &a;
+*p = 20; // modifica a
+```
+
+[(X)] 20
+[( )] 10
+[( )] Compila con errore
+[( )] Il programma crasha
+
 
 <details><summary>💡 Spiegazione</summary>Il dereferenziamento `*p = 20` modifica direttamente la variabile `a`.
 </details>
@@ -83,4 +93,3 @@ Scrivi `gestione_fido.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il progr
 
 ---
 
-> 🔖 *Attività* `puntatori-01` · *ordine* 18 · *metodo* PRIMM

@@ -43,7 +43,7 @@ files:
       min_lines: 8
       must_contain: ["int main"]
 ---
-## 🎛️ Capitolo 9: Lo Smistatore di Sportello (`switch-case`)
+## 🎛️ Lo Smistatore di Sportello (`switch-case`)
 
 > "La semplicità è il prerequisito per l'affidabilità di un'interfaccia utente."
 > — *Edsger W. Dijkstra*
@@ -133,23 +133,10 @@ stop
 Un menu a tasti fissi smista prelievo, versamento e saldo.
 
 #### 1. PREDICT (Prevedi)
-Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
 
-```cpp
-switch (tasto) {
-    case 1:
-        std::cout << "Saldo ";
-    case 2:
-        std::cout << "Estratto Conto ";
-    default:
-        std::cout << "Errore";
-}
-```
 
-[( )] Stampa solo `Saldo `
-[(X)] Stampa `Saldo Estratto Conto Errore`
-[( )] Stampa `Saldo Estratto Conto `
-[( )] Errore di compilazione
+[[ predict_block() ]]
+
 
 <details>
 <summary>💡 Spiegazione</summary>

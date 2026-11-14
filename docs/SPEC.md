@@ -59,6 +59,16 @@ Regole:
 - `order` decide ordinamento/prev-next delle **lezioni singole**.
 - `dist/` versionato in git (consumo LiaScript).
 
+
+## 4.1 Predict: unica fonte di verità
+
+Per i capitoli `methodology: PRIMM`:
+
+1. Il quiz Predict vive in **`components.predict_quiz`** (frontmatter).
+2. Nel corpo Markdown, sotto `#### 1. PREDICT`, compare solo **`[[ predict_block() ]]`**.
+3. Non duplicare opzioni `[(X)]` a mano nel Predict (il render le genera dalla macro).
+4. `cipiupiu validate` verifica: heading PREDICT, presenza di `predict_quiz`, presenza della macro.
+
 ## 4. Jinja nel corpo Markdown
 
 Delimitatori che non collidono col C++:

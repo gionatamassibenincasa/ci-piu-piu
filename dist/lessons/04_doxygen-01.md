@@ -140,5 +140,3 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 
 
-> 🔖 *Attività* `doxygen-01` · *ordine* 4 · *metodo* convention
-

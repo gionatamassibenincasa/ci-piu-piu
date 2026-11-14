@@ -13,7 +13,7 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
-## 🔁 Capitolo 12: Garantire l'Azione (Il Ciclo `do-while`)
+## 🔁 Garantire l'Azione (Il Ciclo `do-while`)
 
 > "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
 > — *Regola Aurea dello Sviluppo Software*
@@ -93,6 +93,8 @@ stop
 Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo).
 
 #### 1. PREDICT (Prevedi)
+
+
 Quante volte viene eseguito il corpo?
 
 ```cpp
@@ -107,6 +109,7 @@ do {
 [(X)] 1 volta
 [( )] 5 volte
 [( )] Infinito
+
 
 <details>
 <summary>💡 Spiegazione</summary>

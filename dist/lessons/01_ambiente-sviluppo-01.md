@@ -263,8 +263,3 @@ Se sì, l’officina è completamente operativa.
 Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
----
-
-
-> 🔖 *Attività* `ambiente-sviluppo-01` · *ordine* 1 · *metodo* lab
-

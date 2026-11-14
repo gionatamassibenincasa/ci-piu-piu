@@ -8,7 +8,7 @@ comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Sc
 import:    https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
 import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
-[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/20_ricerca-01.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/22_esempio-primm-22.md)
+[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/20_ricerca-01.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/22_merge-sort-01.md)
 
 ---
 
@@ -35,12 +35,21 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
+#### 1. PREDICT (Prevedi)
+
+
 Se l'array è già ordinato, quanti confronti fa comunque il Selection Sort?
-- [(X)] Il numero di confronti è sempre lo stesso (n·(n‑1)/2)
-- [( )] Zero, poiché l'algoritmo riconosce l'array ordinato
-- [( )] n‑1 confronti
-- [( )] Dipende dalla presenza di duplicati
+
+```cpp
+int arr[5] = {1,2,3,4,5};
+// algoritmo selection sort
+```
+
+[(X)] Il numero di confronti è sempre lo stesso (n·(n‑1)/2)
+[( )] Zero, poiché l'algoritmo riconosce l'array ordinato
+[( )] n‑1 confronti
+[( )] Dipende dalla presenza di duplicati
+
 
 <details><summary>💡 Spiegazione</summary>Selection Sort non verifica se l'array è già ordinato; continua a confrontare tutti gli elementi.
 </details>
@@ -88,4 +97,3 @@ Scrivi `selection_sort.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il prog
 
 ---
 
-> 🔖 *Attività* `selection-sort-01` · *ordine* 21 · *metodo* PRIMM

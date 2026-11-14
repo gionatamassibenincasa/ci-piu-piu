@@ -113,22 +113,20 @@ L’annidamento resta utile quando i **messaggi di errore** devono essere distin
 Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
 
 #### 1. PREDICT (Prevedi)
-Con `voto = 85`, cosa stampa questo codice?
+
+
+Con fatturato = 25000, quale fascia assegna la scala corretta (≥50000 / ≥20000 / ≥5000)?
 
 ```cpp
-if (voto >= 90) {
-    std::cout << "Ottimo\n";
-} else if (voto >= 60) {
-    std::cout << "Sufficiente\n";
-} else {
-    std::cout << "Insufficiente\n";
-}
+double fatturato = 25000.0;
+// if / else if / else sulle soglie
 ```
 
-[( )] `Ottimo`
-[(X)] `Sufficiente`
-[( )] Stampa sia `Sufficiente` che `Ottimo`
-[( )] Errore di compilazione
+[( )] Platinum 15%
+[(X)] Gold 10%
+[( )] Silver 5%
+[( )] Nessuno sconto
+
 
 <details>
 <summary>💡 Spiegazione</summary>

@@ -108,20 +108,20 @@ Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (s
 Il terminale decide se autorizzare un pagamento confrontando saldo e importo.
 
 #### 1. PREDICT (Prevedi)
-Quali righe vengono stampate?
+
+
+Senza graffe, quante righe controlla l'if?
 
 ```cpp
-int scorte = 12;
 if (scorte < 5)
-    std::cout << "1. Ordina nuovi pezzi!\n";
-    std::cout << "2. Notifica inviata al fornitore.\n";
-std::cout << "3. Controllo terminato.\n";
+    std::cout << "1\n";
+    std::cout << "2\n";
 ```
 
-[( )] Non stampa nulla
-[( )] Stampa 1, 2 e 3
-[(X)] Stampa solo 2 e 3
-[( )] Stampa solo 3
+[( )] Entrambe le cout
+[(X)] Solo la prima cout
+[( )] Nessuna
+
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -263,23 +263,4 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
   [x] else-if non introdotto (solo annunciato)
 -->
 
-
-> 🔖 *Attività* `if-else-01` · *ordine* 7 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Senza graffe, quante righe controlla l'if?
-
-```cpp
-if (scorte < 5)
-    std::cout << "1\n";
-    std::cout << "2\n";
-```
-
-[( )] Entrambe le cout
-[(X)] Solo la prima cout
-[( )] Nessuna
-
-</details>
 

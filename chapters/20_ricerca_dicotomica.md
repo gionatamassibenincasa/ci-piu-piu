@@ -67,12 +67,11 @@ files:
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Se l'array ha 1.024 elementi ordinati, quanti passi al massimo servono per trovare un valore con ricerca binaria?
-- [(X)] 10
-- [( )] 9
-- [( )] 11
-- [( )] 12
+#### 1. PREDICT (Prevedi)
+
+
+[[ predict_block() ]]
+
 
 <details><summary>💡 Spiegazione</summary>2¹⁰ = 1024, quindi al massimo 10 confronti.
 </details>
@@ -118,4 +117,3 @@ Scrivi `ricerca_binaria.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il pro
 
 ---
 
-> 🔖 *Attività* `ricerca-01` · *ordine* 20 · *metodo* PRIMM

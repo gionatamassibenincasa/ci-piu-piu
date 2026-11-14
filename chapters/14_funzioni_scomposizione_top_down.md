@@ -90,7 +90,10 @@ files:
 
 ## 🔬 Laboratorio PRIMM
 
-### 1. Predict (Prevedi)
+#### 1. PREDICT (Prevedi)
+
+
+[[ predict_block() ]]
 Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
 ```cpp
 int esempio(int x) {
@@ -150,4 +153,3 @@ Scrivi `calcolo_stipendio.cpp` con le funzioni richieste, includendo Doxygen (`@
 
 ---
 
-> 🔖 *Attività* `funzioni-01` · *ordine* 14 · *metodo* PRIMM

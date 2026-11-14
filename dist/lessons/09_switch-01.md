@@ -12,7 +12,7 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ---
 
-## 🎛️ Capitolo 9: Lo Smistatore di Sportello (`switch-case`)
+## 🎛️ Lo Smistatore di Sportello (`switch-case`)
 
 > "La semplicità è il prerequisito per l'affidabilità di un'interfaccia utente."
 > — *Edsger W. Dijkstra*
@@ -102,6 +102,8 @@ stop
 Un menu a tasti fissi smista prelievo, versamento e saldo.
 
 #### 1. PREDICT (Prevedi)
+
+
 Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
 
 ```cpp
@@ -118,7 +120,7 @@ switch (tasto) {
 [( )] Stampa solo `Saldo `
 [(X)] Stampa `Saldo Estratto Conto Errore`
 [( )] Stampa `Saldo Estratto Conto `
-[( )] Errore di compilazione
+
 
 <details>
 <summary>💡 Spiegazione</summary>

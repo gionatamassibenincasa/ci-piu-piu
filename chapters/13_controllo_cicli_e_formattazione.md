@@ -44,7 +44,7 @@ files:
       must_contain: ["int main"]
 ---
 
-## 🎯 Capitolo 13: Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
+## 🎯 Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
 > — *Principio dei Sistemi Contabili*
@@ -112,20 +112,10 @@ Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può prod
 Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
 
 #### 1. PREDICT (Prevedi)
-Cosa stampa?
 
-```cpp
-for (int i = 1; i <= 5; ++i) {
-    if (i == 2) continue;
-    if (i == 4) break;
-    std::cout << i;
-}
-```
 
-[( )] `12345`
-[( )] `1345`
-[(X)] `13`
-[( )] `1234`
+[[ predict_block() ]]
+
 
 <details>
 <summary>💡 Spiegazione</summary>

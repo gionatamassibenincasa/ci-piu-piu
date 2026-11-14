@@ -144,5 +144,3 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 <!--# generato da frontmatter via Jinja; solo per test tooling #-->
 
-> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
-

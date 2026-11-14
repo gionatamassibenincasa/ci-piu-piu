@@ -65,17 +65,11 @@ files:
 
 ## 🔬 Laboratorio PRIMM
 
-### Predict
-Cosa succede se si accede a `vendite[30]` quando l'array è dichiarato con dimensione 30?
-```cpp
-double vendite[30];
-// ...
-double x = vendite[30];
-```
-- [(X)] Compila ma legge valore casuale (out‑of‑bounds)
-- [( )] Compila e stampa 0
-- [( )] Errore di compilazione
-- [( )] Il programma non avvia
+#### 1. PREDICT (Prevedi)
+
+
+[[ predict_block() ]]
+
 
 <details><summary>💡 Spiegazione</summary>Indice 30 è fuori dall’intervallo valido `[0‑29]`; il comportamento è indefinito.
 </details>
@@ -117,4 +111,3 @@ Scrivi `controllo_vendite.cpp` includendo Doxygen (`@brief`, `@param`, `@return`
 
 ---
 
-> 🔖 *Attività* `array-01` · *ordine* 16 · *metodo* PRIMM

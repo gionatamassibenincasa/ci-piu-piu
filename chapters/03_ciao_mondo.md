@@ -63,17 +63,10 @@ int main() {
 
 
 #### 1. PREDICT (Prevedi)
-Guarda attentamente la riga:
-```cpp
-std::cout << "Ciao, Mondo!\n";
-```
 
-Cosa fa il simbolo `\n` alla fine della frase?
 
-[( )] Stampa esattamente i caratteri `\n` a video
-[(X)] Va a capo, spostando il cursore alla riga successiva
-[( )] Cancella tutto quello che è stato stampato prima
-[( )] Inserisce uno spazio extra
+[[ predict_block() ]]
+
 
 #### 2. RUN (Esegui)
 Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
@@ -216,17 +209,4 @@ int main() {
 ### ➡️ Prossimo chunk
 Finora il computer ha solo *parlato*.  
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
-
----
-
-<!--# generato da frontmatter via Jinja; solo per test tooling #-->
-
-> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-[[ predict_block() ]]
-
-</details>
 

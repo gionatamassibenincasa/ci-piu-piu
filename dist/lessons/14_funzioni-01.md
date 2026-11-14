@@ -41,7 +41,24 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ## 🔬 Laboratorio PRIMM
 
-### 1. Predict (Prevedi)
+#### 1. PREDICT (Prevedi)
+
+
+Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
+
+```cpp
+int esempio(int x) {
+    return x * 2;
+    // qui c'è codice inutilizzabile
+    int y = x + 1;
+    return y;
+}
+```
+
+[( )] Il codice dopo `return` viene comunque eseguito
+[(X)] Il codice dopo `return` non viene mai eseguito (è inaccessibile)
+[( )] Il compilatore sposta il `return` alla fine del blocco
+[( )] Il programma crasha
 Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
 ```cpp
 int esempio(int x) {
@@ -101,4 +118,3 @@ Scrivi `calcolo_stipendio.cpp` con le funzioni richieste, includendo Doxygen (`@
 
 ---
 
-> 🔖 *Attività* `funzioni-01` · *ordine* 14 · *metodo* PRIMM

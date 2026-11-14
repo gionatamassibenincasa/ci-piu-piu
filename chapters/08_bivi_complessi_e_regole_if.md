@@ -149,22 +149,10 @@ L’annidamento resta utile quando i **messaggi di errore** devono essere distin
 Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
 
 #### 1. PREDICT (Prevedi)
-Con `voto = 85`, cosa stampa questo codice?
 
-```cpp
-if (voto >= 90) {
-    std::cout << "Ottimo\n";
-} else if (voto >= 60) {
-    std::cout << "Sufficiente\n";
-} else {
-    std::cout << "Insufficiente\n";
-}
-```
 
-[( )] `Ottimo`
-[(X)] `Sufficiente`
-[( )] Stampa sia `Sufficiente` che `Ottimo`
-[( )] Errore di compilazione
+[[ predict_block() ]]
+
 
 <details>
 <summary>💡 Spiegazione</summary>

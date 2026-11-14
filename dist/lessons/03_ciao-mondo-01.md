@@ -49,17 +49,18 @@ int main() {
 
 
 #### 1. PREDICT (Prevedi)
-Guarda attentamente la riga:
+
+
+Cosa fa std::cout << "Ciao, Mondo!\n"; ?
+
 ```cpp
 std::cout << "Ciao, Mondo!\n";
 ```
 
-Cosa fa il simbolo `\n` alla fine della frase?
+[( )] Legge da tastiera
+[(X)] Stampa Ciao, Mondo! e va a capo
+[( )] Compila il programma
 
-[( )] Stampa esattamente i caratteri `\n` a video
-[(X)] Va a capo, spostando il cursore alla riga successiva
-[( )] Cancella tutto quello che è stato stampato prima
-[( )] Inserisce uno spazio extra
 
 #### 2. RUN (Esegui)
 Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
@@ -202,24 +203,4 @@ int main() {
 ### ➡️ Prossimo chunk
 Finora il computer ha solo *parlato*.  
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
-
----
-
-
-> 🔖 *Attività* `ciao-mondo-01` · *ordine* 3 · *metodo* PRIMM
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-Cosa fa std::cout << "Ciao, Mondo!\n"; ?
-
-```cpp
-std::cout << "Ciao, Mondo!\n";
-```
-
-[( )] Legge da tastiera
-[(X)] Stampa Ciao, Mondo! e va a capo
-[( )] Compila il programma
-
-</details>
 

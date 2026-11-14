@@ -142,14 +142,10 @@ int main() {
 ```
 
 #### 1. PREDICT (Prevedi)
-Prima di compilare, rispondi:
 
-Se compiliamo questo programma con `g++ -save-temps`, quale file conterrà il codice **dopo** che il pre-elaboratore ha rimosso i commenti?
 
-[( )] `ridotto.o`
-[(X)] `ridotto.ii`
-[( )] `ridotto.s`
-[( )] `ridotto.exe`
+[[ predict_block() ]]
+
 
 #### 2. RUN (Esegui)
 Nella cartella del progetto digita:
@@ -253,17 +249,4 @@ La stampa a video arriverà nel prossimo capitolo.
 ### ➡️ Prossimo chunk
 Finora il nostro programma non ha ancora *parlato* con noi.  
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
-
----
-
-<!--# generato da frontmatter via Jinja; solo per test tooling #-->
-
-> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
-
-<details>
-<summary>💡 Quiz Predict (da frontmatter)</summary>
-
-[[ predict_block() ]]
-
-</details>
 

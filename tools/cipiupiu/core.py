@@ -276,8 +276,45 @@ def validate_chapter(path: Path, schema: dict | None = None) -> list[str]:
             if has_from and not (ROOT / str(tf)).is_file():
                 errors.append(f"{path.name}: files[{i}].template_from non trovato: {tf}")
 
+
+    # ——— Lint corpo Markdown (minimo) ———
+    body = ch.body
+    # Titolo H2 senza "Capitolo N"
+    for m in re.finditer(r"^## .*$", body, re.M):
+        if re.search(r"Capitolo\s+\d+", m.group(0)):
+            errors.append(
+                f"{path.name}: titolo non deve contenere 'Capitolo N' (trovato: {m.group(0)[:60]}…)"
+            )
+            break
+
+    if meta.get("methodology") == "PRIMM":
+        # Heading Predict (accetta #### 1. PREDICT o ### 1. Predict)
+        if not re.search(
+            r"^#{2,4}\s*(?:\d+\.\s*)?PREDICT\b",
+            body,
+            re.M | re.I,
+        ):
+            errors.append(
+                f"{path.name}: methodology PRIMM richiede un heading '1. PREDICT' nel corpo"
+            )
+        # Single source Predict = components + macro
+        pq = components.get("predict_quiz")
+        if not pq:
+            errors.append(
+                f"{path.name}: methodology PRIMM richiede components.predict_quiz "
+                "(unica fonte del quiz Predict)"
+            )
+        if "[[ predict_block() ]]" not in body and "[[predict_block()]]" not in body:
+            errors.append(
+                f"{path.name}: methodology PRIMM richiede [[ predict_block() ]] nel corpo "
+                "(macro generata da components.predict_quiz)"
+            )
+        # Evita quiz Predict duplicati a mano (opzioni LiaScript fuori dalla macro)
+        # Solo warning soft se molte opzioni e nessuna macro - già coperta sopra
+
     # dedupe preservando ordine
     return list(dict.fromkeys(errors))
+
 
 
 def load_schema(path: Path | None = None) -> dict | None:
