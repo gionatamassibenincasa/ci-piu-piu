@@ -115,7 +115,13 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Scrivi un **nuovo programma autonomo** partendo da zero.
 - Puoi prendere in prestito frammenti o strutture logiche dal programma appena studiato, applicandoli per risolvere un problema diverso o per realizzare una funzione nuova.
 - Questo è il momento in cui passi da "lettore di codice" a "creatore di software".
-## 🛠️ Capitolo 1: Prepara la tua Officina di Sviluppo
+
+---
+
+### ➡️ Da dove si comincia
+Prima di scrivere programmi, allestiamo l’**officina**: editor, compilatore e debugger.  
+È una sessione di laboratorio, non una lettura di 20 minuti: senza utensili collaudati il resto del corso non parte.
+## 🛠️ Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64
 
 > "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
 > — Donald Knuth
@@ -366,7 +372,7 @@ Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il co
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
 ---
-## ⚙️ Capitolo 2: Il Motore Sotto il Cofano
+## ⚙️ Il Motore Sotto il Cofano: dalla sorgente all'eseguibile
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 >
@@ -519,12 +525,12 @@ echo %ERRORLEVEL%
 #### 3. INVESTIGATE (Investiga)
 Apri i file intermedi con un editor di testo (o con `type ridotto.ii` / `type ridotto.s` nel Prompt).
 
-| File | Cosa ci trovi | Cosa osservare |
-|------|----------------|----------------|
-| `ridotto.ii` | Codice “pulito” dopo il pre-elaboratore | I commenti sono spariti; possono comparire righe di sistema |
-| `ridotto.s` | Assembly | Cerca una riga con `movl` o `mov` e il numero `0` |
-| `ridotto.o` | Codice macchina (binario) | Non è leggibile come testo |
-| `ridotto.exe` | Eseguibile finale | È il prodotto finito della fabbrica |
+| File | Cosa ci trovi | Perché è importante |
+|------|---------------|---------------------|
+| `ridotto.ii` | Codice "pulito" dopo il pre-elaboratore | Vedi cosa resta quando spariscono i commenti |
+| `ridotto.s` | Assembly (ancora leggibile) | Colleghi una riga C++ a un'istruzione macchina |
+| `ridotto.o` | Codice oggetto (binario) | Non è ancora un programma completo da solo |
+| `ridotto.exe` | Eseguibile finale | È il prodotto della fabbrica, pronto da lanciare |
 
 Nel file `.s` noterai istruzioni del tipo:
 ```asm
@@ -553,7 +559,7 @@ Cosa è cambiato?
 [( )] Non viene più generato il file `.s`
 
 <details>
-<summary>💡 Perché è importante?</summary>
+<summary>💡 Spiegazione</summary>
 Hai visto con i tuoi occhi la traduzione: una riga C++ ad alto livello (<code>return 42;</code>) diventa una precisa istruzione Assembly. Il compilatore non fa magia: fa <strong>traduzione</strong>.
 </details>
 
@@ -593,7 +599,7 @@ Finora il nostro programma non ha ancora *parlato* con noi.
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
 
 ---
-## 💬 Capitolo 3: Il Primo Dialogo con la Macchina
+## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 >
@@ -668,7 +674,7 @@ int main() {
 #### 3. INVESTIGATE (Investiga)
 Analizziamo il codice riga per riga come detective.
 
-| Codice | Spiegazione brain-friendly | Perché è importante |
+| Codice | Cosa fa (spiegazione brain-friendly) | A cosa serve |
 | :--- | :--- | :--- |
 | `#include <iostream>` | Il pre-elaboratore “incolla” qui le istruzioni necessarie per l’input/output. Senza di essa il compilatore non conosce `cout`. | È il passaporto per parlare con lo schermo (e con la tastiera). |
 | `int main() { ... }` | Punto di partenza obbligatorio. Ogni programma C++ ha **esattamente una** funzione `main`. L’esecuzione inizia sempre da qui. | Senza `main` non c’è programma. |
@@ -678,6 +684,12 @@ Analizziamo il codice riga per riga come detective.
 
 > 🔗 **Ispezione memoria (opzionale ma utile):**  
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
+
+> 💡 **Nota sui namespace (senza usarla ancora)**  
+> Un **namespace** è un “reparto” di nomi: evita che due cose diverse si chiamino uguali e si confondano.  
+> La libreria standard vive nel reparto `std`. Per questo scriviamo `std::cout` e non solo `cout`.  
+> Esiste anche la scorciatoia `using namespace std;` (dopo gli `#include`), che permette di scrivere `cout` da solo.  
+> **In questo corso, all’inizio, non la usiamo:** rende gli errori più chiari e ti abitua a vedere da dove arrivano i nomi. La rivedremo quando i programmi saranno più lunghi.
 
 #### 4. MODIFY (Modifica)
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
@@ -713,7 +725,7 @@ Cosa succede?
 
 <details>
 <summary>💡 Spiegazione</summary>
-Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo codice e non la trova. Per ora resta esplicito con <code>std::</code>. Più avanti vedremo <code>using namespace std;</code>, ma all’inizio è meglio essere chiari.
+Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo programma e non la trova: non sa che intendevi quella della libreria standard. Per ora scriviamo sempre <code>std::cout</code> per intero.
 </details>
 
 **Modifica C — Più messaggi**
@@ -766,6 +778,7 @@ int main() {
 - Ogni programma C++ parte da `int main()`.
 - `#include <iostream>` è il passaporto per l’input/output.
 - `std::cout <<` scrive sullo schermo; `\n` va a capo.
+- `std::` indica il namespace della libreria standard; per ora lo scriviamo sempre esplicito (niente `using namespace std;` ancora).
 - `return 0;` comunica “successo” al sistema operativo.
 - Il codice ha **due lettori**: il compilatore (sintassi) e l’essere umano (chiarezza). I commenti servono al secondo.
 - Gli errori di compilazione sono messaggi utili: imparare a leggerli è una competenza fondamentale.
@@ -777,56 +790,60 @@ Finora il computer ha solo *parlato*.
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
 ---
-## 📝 Capitolo 4: Parlare al Futuro Te Stesso (Documentazione Doxygen)
+## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
 
 > "Il codice non mente mai, i commenti sì."
 >
-> — Ron Jeffries
+> — *Ron Jeffries*
 
-Hai già scritto `Ciao, Mondo!` e presto scriverai programmi più lunghi.  
-Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente.  
+Hai già scritto `Ciao, Mondo!` e presto i programmi si allungheranno.  
+Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente. In azienda, un collega che non eri tu.
 
-Per questo in azienda (e in questo corso) non basta che il programma *funzioni*: deve anche essere **comprensibile**.  
-Usiamo uno standard leggero e diffusissimo: **Doxygen**.
+Non basta che il programma *funzioni*: deve essere **comprensibile**.  
+In questo corso usiamo uno standard leggero e molto diffuso: **Doxygen**.
 
 > 💡 **Metafora:**  
-> Il codice è il prodotto finito.  
-> I commenti Doxygen sono l’**etichetta e il manuale d’uso** attaccati al prodotto: dicono *cosa fa*, *per chi*, *con quali dati*, senza costringere a smontare tutto.
+> Il codice è il prodotto.  
+> I commenti Doxygen sono **etichetta e manuale d’uso**: dicono *cosa fa*, *per chi*, *con quali dati*, senza smontare tutto il meccanismo.
+
+Questo non è un laboratorio PRIMM “classico”: è una **convenzione di lavoro** che userai da qui in poi nei Make e nei progetti.
 
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivo
 Alla fine di questa lezione sei in grado di:
-- Scrivere un’intestazione di file e di `main` in stile Doxygen
-- Usare il commento `///` per spiegare il **perché** (non il cosa ovvio)
-- Scegliere cosa commentare e cosa no
+- Scrivere un’intestazione di **file** e di **`main`** in stile Doxygen
+- Usare `///` per spiegare il **perché** (non il cosa ovvio)
+- Applicare la **regola di proporzionalità** del corso
 
 ---
 
-### 📋 I tag essenziali (solo quelli che usiamo)
+### 📋 I tag che usiamo (e basta)
 
 | Tag | A cosa serve | Esempio |
 |-----|--------------|---------|
-| `@file` | Nome del file | `@file scheda_prodotto.cpp` |
-| `@brief` | Una riga: cosa fa il programma / la funzione | `@brief Calcola il totale ivato.` |
+| `@file` | Nome del file | `@file presentazione.cpp` |
+| `@brief` | Una riga: cosa fa il programma o la funzione | `@brief Stampa nome e classe.` |
 | `@param` | Descrive un parametro (quando avremo le funzioni) | `@param prezzo Importo netto in euro` |
 | `@return` | Cosa restituisce la funzione | `@return int 0 se successo` |
 
-Commento di riga leggero:
+Commento di riga (tre slash):
 
 ```cpp
 /// Aliquota IVA ordinaria vigente (non modificare a caso)
 const double ALIQUOTA_IVA = 0.22;
 ```
 
+`@param` lo terrai a mente: tornerà utile con le **funzioni**. Per ora ti servono soprattutto `@file`, `@brief` e `@return`.
+
 ---
 
-### 🔬 Esempio minimo completo
+### ✅ Esempio minimo completo
 
 ```cpp
 /**
  * @file presentazione.cpp
- * @brief Stampa cognome e materia dell'insegnante.
+ * @brief Stampa nome, classe e hobby dello studente.
  */
 #include <iostream>
 
@@ -835,30 +852,34 @@ const double ALIQUOTA_IVA = 0.22;
  * @return int 0 se l'esecuzione termina correttamente.
  */
 int main() {
-    /// Tesserino degli insegnanti
-    std::cout << "Cognome: Massi\n";
-    std::cout << "Materia: Informatica\n";
+    /// Identificativo per lo "scontrino" di presentazione in lab
+    std::cout << "Nome: Alex\n";
+    std::cout << "Classe: 3A SIA\n";
+    std::cout << "Hobby: fotografia\n";
     return 0;
 }
 ```
 
+Nota: **non** generiamo ancora HTML con lo strumento Doxygen.  
+L’obiettivo è **scrivere** i commenti nel modo giusto; l’eventuale generazione automatica arriverà quando i progetti saranno più grandi.
+
 ---
 
-### ⚖️ Regola di proporzionalità (obbligatoria nel corso)
+### ⚖️ Regola di proporzionalità (obbligatoria)
 
 | Situazione | Cosa scrivere |
 |------------|----------------|
-| Programma o funzione **> ~15 righe** | Intestazione Doxygen completa (`@file` / `@brief` / `@param` / `@return` dove servono) |
-| Snippet o esercizio **breve** | Solo `///` sul **perché** economico o logico |
-| Vietato | Commenti tautologici (`/// incrementa i di 1`) |
+| Programma o funzione **più lungo di ~15 righe** | Intestazione Doxygen (`@file` / `@brief` / `@param` / `@return` dove servono) |
+| Snippet o esercizio **breve** | Solo `///` sul **perché** economico o logico, se serve |
+| **Vietato** | Commenti tautologici (`/// incrementa i di 1`, `/// dichiara la variabile`) |
 
-Esempio **buono**:
+**Buono** (spiega una scelta di business o un vincolo):
 ```cpp
 /// 0.22 = aliquota IVA ordinaria vigente per beni e servizi
 const double ALIQUOTA_IVA = 0.22;
 ```
 
-Esempio **da evitare**:
+**Da evitare** (ripete solo la sintassi):
 ```cpp
 /// dichiara la costante aliquota
 const double ALIQUOTA_IVA = 0.22;
@@ -866,34 +887,44 @@ const double ALIQUOTA_IVA = 0.22;
 
 ---
 
-### 🧪 Mini-esercizio (MAKE leggero)
+### 🧪 Mini-esercizio
 
-Prendi il programma `presentazione.cpp` del capitolo precedente (o riscrivilo) e:
-1. Aggiungi l’intestazione `@file` + `@brief` in testa al file
-2. Aggiungi `@brief` e `@return` su `main`
-3. Metti un `///` utile su almeno una riga di output
+Prendi il programma di presentazione del capitolo precedente (o riscrivilo) e:
 
-Non serve generare HTML con lo strumento Doxygen: per ora ci interessa **scrivere** i commenti nel modo giusto. Più avanti, quando i progetti cresceranno, potremo anche generarne la documentazione automatica.
+1. Aggiungi in testa al file `@file` e `@brief`
+2. Aggiungi su `main` `@brief` e `@return`
+3. Metti **un** `///` utile (un perché, non un ovvio) su almeno una riga
+
+Compila ed esegui: i commenti non cambiano l’output, ma cambiano quanto il codice è leggibile da un umano.
 
 ---
 
 ### 📝 Riepilogo tascabile
 - Doxygen = etichette standard per file e funzioni.
-- Tag minimi: `@file`, `@brief`, `@param`, `@return`.
-- `///` spiega il **perché**, non il cosa ovvio.
-- L'editor ci mostra i commenti Doxygen quando ci riferiamo ad una risorsa documentata.
+- Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
+- `///` = perché / vincolo / regola di business, non il cosa ovvio.
+- Proporzionalità: completo sopra ~15 righe, leggero sotto.
+- Da qui in poi i Make “ufficiali” si aspettano questi standard.
 
 ---
 
-### ➡️ Prossimo chunk
-Con l’officina pronta, il motore visto, il primo dialogo scritto e le etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
+### ➡️ Prossimo passo
+Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
 
 ---
-## 📦 Capitolo 5: Gli Sportelli della Memoria (Variabili, Costanti e Tipi)
+
+<!--#
+  NOTE AUTORE / LLM
+  - Capitolo di convenzione, NON forzare le 5 fasi PRIMM complete
+  - Nessun @LIA.cpp obbligatorio (non c'è un lab eseguibile centrale)
+  - Titolo senza "Capitolo N"
+  - Coerente con SKILLS.md (proporzionalità Doxygen)
+#-->
+## 📦 Gli Sportelli della Memoria: variabili, costanti e tipi
 
 > "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
 >
-> — G. Orwell
+> — *George Orwell*
 
 Finora abbiamo solo *stampato* testi fissi.  
 Un software gestionale, però, deve **ricordare e aggiornare dati che cambiano**: prezzo di un articolo, giacenza di magazzino, saldo di un conto.
@@ -917,6 +948,8 @@ Alla fine di questa lezione sei in grado di:
 - Scegliere il tipo adatto al dato aziendale che vuoi memorizzare
 - Stampare i valori memorizzati e capire perché un `int` “taglia” i decimali
 
+In questo chunk **non** chiediamo ancora dati da tastiera (`std::cin`): ci concentriamo su *ricordare* e *mostrare*. L’input arriverà quando servirà davvero nei laboratori successivi.
+
 ---
 
 ### 🗄️ I tipi di dato fondamentali
@@ -939,6 +972,8 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 ---
 
 ### 🔬 Laboratorio PRIMM: Scheda articolo di magazzino
+
+Memorizziamo i dati di un articolo e li stampiamo: tipi diversi, uno sportello ciascuno.
 
 #### 1. PREDICT (Prevedi)
 Osserva questo frammento:
@@ -1104,7 +1139,7 @@ int main() {
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
 
 ---
-## 🧮 Capitolo 6: La Calcolatrice Fiscale (Espressioni e Operatore Ternario)
+## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
 > — *Principio dell'Elaborazione Dati*
@@ -1152,7 +1187,7 @@ double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
 | Operatore | Nome | Vero quando… | Esempio SIA |
 |-----------|------|--------------|-------------|
 | `&&` | AND | **entrambe** le condizioni sono vere | `haTessera && spesa >= 50` |
-| `\|\|` | OR | **almeno una** è vera | `isStudente \|\| isOver65` |
+| `||` | OR | **almeno una** è vera | `isStudente || isOver65` |
 | `!` | NOT | ribalta il valore | `!contoBloccato` |
 
 ---
@@ -1176,6 +1211,8 @@ Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
 ---
 
 ### 🔬 Laboratorio PRIMM: Scontrino e-commerce
+
+Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
 
 #### 1. PREDICT (Prevedi)
 Cosa stampa questo codice?
@@ -1321,7 +1358,7 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
 
 ---
 
-<!-- 
+<!--#
   NOTE PER L'AUTORE / LLM
   [x] Obiettivo: espressioni + ternario (un focus)
   [x] Metafora cassa automatica
@@ -1330,8 +1367,8 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
   [x] PRIMM su scontrino e-commerce
   [x] Make su commissioni POS (SIA)
   [x] if/else solo annunciato, non introdotto
--->
-## 🚦 Capitolo 7: Bivi e Decisioni (`if` e `if-else`)
+#-->
+## 🚦 Bivi e Decisioni: `if` e `if-else`
 
 > "Le decisioni sono i binari su cui viaggiano i processi aziendali."
 > — *Principio di Ingegneria Gestionale*
@@ -1422,6 +1459,8 @@ Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (s
 ---
 
 ### 🔬 Laboratorio PRIMM: Terminale pagamenti POS
+
+Il terminale decide se autorizzare un pagamento confrontando saldo e importo.
 
 #### 1. PREDICT (Prevedi)
 Quali righe vengono stampate?
@@ -1674,6 +1713,8 @@ L’annidamento resta utile quando i **messaggi di errore** devono essere distin
 ---
 
 ### 🔬 Laboratorio PRIMM: Fasce sconto e fido
+
+Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
 
 #### 1. PREDICT (Prevedi)
 Con `voto = 85`, cosa stampa questo codice?
@@ -1937,6 +1978,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Menu ATM
 
+Un menu a tasti fissi smista prelievo, versamento e saldo.
+
 #### 1. PREDICT (Prevedi)
 Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
 
@@ -2175,6 +2218,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Scontrino a nastro
 
+Accumuiamo i prezzi finché non arriva la sentinella di fine spesa.
+
 #### 1. PREDICT (Prevedi)
 Quante volte viene stampata la parola `"Elaborazione"`?
 
@@ -2405,6 +2450,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Piano di ammortamento
 
+Costruiamo la tabella di ammortamento a quote costanti anno per anno.
+
 #### 1. PREDICT (Prevedi)
 Quante righe stampa questo ciclo?
 
@@ -2624,6 +2671,8 @@ stop
 
 ### 🔬 Laboratorio PRIMM: Validazione importo bonifico
 
+Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo).
+
 #### 1. PREDICT (Prevedi)
 Quante volte viene eseguito il corpo?
 
@@ -2838,6 +2887,8 @@ Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può prod
 ---
 
 ### 🔬 Laboratorio PRIMM: Report fiscale con scarti e stop
+
+Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
 
 #### 1. PREDICT (Prevedi)
 Cosa stampa?

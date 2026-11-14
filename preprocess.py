@@ -31,8 +31,8 @@ def process_file(filepath, visited=None):
     in_code_block = False
     with open(abs_path, "r", encoding="utf-8") as f:
         for line in f:
-            # --- strip blocchi <!--# ... #--> (anche su una sola riga) ---
-            if not in_code_block and line.lstrip().startswith("<!--#"):
+            # --- strip blocchi <--# ... #--> (anche su una sola riga) ---
+            if not in_code_block and line.lstrip().startswith("<--#"):
                 # Salta fino a (e inclusa) la prima riga che contiene #-->
                 while "#-->" not in line:
                     try:

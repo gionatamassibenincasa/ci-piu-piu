@@ -185,7 +185,7 @@ Cosa è cambiato?
 [( )] Non viene più generato il file `.s`
 
 <details>
-<summary>💡 Perché è importante</summary>
+<summary>💡 Spiegazione</summary>
 Hai visto con i tuoi occhi la traduzione: una riga C++ ad alto livello (<code>return 42;</code>) diventa una precisa istruzione Assembly. Il compilatore non fa magia: fa <strong>traduzione</strong>.
 </details>
 

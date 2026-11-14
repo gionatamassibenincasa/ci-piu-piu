@@ -32,6 +32,8 @@ Alla fine di questa lezione sei in grado di:
 |-----|--------------|---------|
 | `@file` | Nome del file | `@file presentazione.cpp` |
 | `@brief` | Una riga: cosa fa il programma o la funzione | `@brief Stampa nome e classe.` |
+| `@author` | L'autore del programma | `@author Gionata Massi` |
+| `@date` | La data | `@date 2026-11-03` |
 | `@param` | Descrive un parametro (quando avremo le funzioni) | `@param prezzo Importo netto in euro` |
 | `@return` | Cosa restituisce la funzione | `@return int 0 se successo` |
 
@@ -121,7 +123,7 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 ---
 
-<!--#
+<--#
   NOTE AUTORE / LLM
   - Capitolo di convenzione, NON forzare le 5 fasi PRIMM complete
   - Nessun @LIA.cpp obbligatorio (non c'è un lab eseguibile centrale)

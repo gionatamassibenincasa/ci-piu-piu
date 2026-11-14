@@ -46,7 +46,7 @@ double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
 | Operatore | Nome | Vero quando… | Esempio SIA |
 |-----------|------|--------------|-------------|
 | `&&` | AND | **entrambe** le condizioni sono vere | `haTessera && spesa >= 50` |
-| `\|\|` | OR | **almeno una** è vera | `isStudente \|\| isOver65` |
+| `||` | OR | **almeno una** è vera | `isStudente || isOver65` |
 | `!` | NOT | ribalta il valore | `!contoBloccato` |
 
 ---
@@ -217,7 +217,7 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
 
 ---
 
-<!-- 
+<!--#
   NOTE PER L'AUTORE / LLM
   [x] Obiettivo: espressioni + ternario (un focus)
   [x] Metafora cassa automatica
@@ -226,4 +226,4 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
   [x] PRIMM su scontrino e-commerce
   [x] Make su commissioni POS (SIA)
   [x] if/else solo annunciato, non introdotto
--->
+#-->

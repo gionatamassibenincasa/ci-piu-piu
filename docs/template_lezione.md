@@ -12,7 +12,7 @@
   - .agents/skills/liascript-syntax/   (sintassi ufficiale LiaScript)
 
   Commenti autore/LLM:
-  - I blocchi tra <!--# e #--> sono STRIPPATI da preprocess.py e non compaiono
+  - I blocchi tra <--# e #--> sono STRIPPATI da preprocess.py e non compaiono
     nel README.md servito a LiaScript. Usali per note di produzione.
   - I commenti HTML normali <!-- ... --> restano nel sorgente del capitolo;
     non usarli per materiale che non deve mai arrivare allo studente nel raw.
@@ -248,9 +248,8 @@ Nel prossimo capitolo vedremo [anteprima motivante del concetto successivo, coll
 
 ---
 
-<!--#
+<--#
   NOTE PER L'AUTORE / LLM — questo intero blocco è rimosso da preprocess.py
-  (delimiter: <!--# ... #-->) e non compare nel README.md pubblicato.
 
   Checklist rapida:
   [ ] Un solo obiettivo principale (docs/chunking.md)
