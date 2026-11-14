@@ -1,4 +1,15 @@
-## 🧭 Guida allo Studio: Come Imparare a Programmare
+---
+activity_id: "guida-studio-01"
+title: "Guida allo Studio: come imparare a programmare"
+methodology: guide
+order: 0
+version: "2026-11-14"
+last_update: "2026-11-14"
+language: it
+files: []
+---
+
+## 🧭 Guida allo Studio: come imparare a programmare
 
 > Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
 > e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
