@@ -40,6 +40,25 @@ Non sono annidabili. Non sostituiscono il frontmatter: il frontmatter è dato st
 3. `import` = unione ordinata globali + capitolo, senza duplicati
 4. Frontmatter **non** compare nell’output LiaScript (solo metadati espansi nel formato atteso dal player)
 
+## 3.1 CLI `cipiupiu` (fonte unica)
+
+Entrypoint: `python -m tools.cipiupiu`.
+
+| Slice | Comandi | Stato |
+|-------|---------|--------|
+| A | `validate`, `list`, `render` | attuale |
+| B | `build` (course + lessons, timestamp) | previsto |
+| C | `scaffold-assignment` | previsto |
+| D | `collect` | previsto |
+
+Nucleo condiviso: `tools/cipiupiu/core.py`  
+(`load_frontmatter` / `split_frontmatter`, `strip_author_blocks`, `render_jinja`, `expand_includes`, `render_file`, `iter_chapters`, `validate_chapter`).
+
+Regole:
+- `index.md` decide i capitoli del **corso completo**.
+- `order` decide ordinamento/prev-next delle **lezioni singole**.
+- `dist/` versionato in git (consumo LiaScript).
+
 ## 4. Jinja nel corpo Markdown
 
 Delimitatori che non collidono col C++:

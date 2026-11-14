@@ -93,7 +93,9 @@ Ogni nuovo concetto deve seguire questa sequenza:
 
 - Specifiche: `docs/SPEC.md`
 - Schema: `schemas/chapter-frontmatter.schema.json`
-- Validazione: `python tools/validate_chapters.py`
+- CLI unica: `python -m tools.cipiupiu` (`list` | `validate` | `render`)
+- Validazione: `python -m tools.cipiupiu validate` (wrapper: `tools/validate_chapters.py`)
+- Render: `python -m tools.cipiupiu render …` (wrapper: `preprocess.py`)
 - Ogni capitolo in `chapters/` ha frontmatter YAML (`activity_id`, `title`, `methodology`, `order`).
 - `methodology`: `PRIMM` | `lab` | `guide` | `convention`.
 - `components` e `files` servono ad assignment/validazione Classroom50, non a riscrivere la lezione in YAML.

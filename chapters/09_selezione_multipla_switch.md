@@ -1,3 +1,48 @@
+---
+activity_id: "switch-01"
+title: "Lo Smistatore di Sportello (`switch-case`)"
+methodology: PRIMM
+order: 9
+version: "2026-11-14"
+language: it
+components:
+  predict_quiz:
+    question: "Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?"
+    code: |
+      switch (tasto) {
+          case 1:
+              std::cout << "Saldo ";
+          case 2:
+              std::cout << "Estratto Conto ";
+          default:
+              std::cout << "Errore";
+      }
+    options:
+      - text: "Stampa solo `Saldo `"
+        correct: false
+      - text: "Stampa `Saldo Estratto Conto Errore`"
+        correct: true
+      - text: "Stampa `Saldo Estratto Conto `"
+        correct: false
+  make_instructions: "Scenario SIA — Convertitore valute al POS"
+files:
+  - path: student_work/make/cambio_valute.cpp
+    action: create
+    phase: make
+    template_content: |
+      /**
+       * @brief Conversione valuta estera in euro al POS.
+       */
+      #include <iostream>
+
+      int main() {
+          // dichiara importo e codice, switch sui char, stampa risultato
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain: ["int main"]
+---
 ## 🎛️ Capitolo 9: Lo Smistatore di Sportello (`switch-case`)
 
 > "La semplicità è il prerequisito per l'affidabilità di un'interfaccia utente."

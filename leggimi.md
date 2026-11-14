@@ -8,60 +8,77 @@ Fruizione: **LiaScript**. Consegne: **GitHub** + **Classroom50** (un assignment 
 ## Struttura del repository
 
 ```
-chapters/           # sorgenti lezione (frontmatter YAML + Markdown)
+chapters/           # sorgenti (frontmatter YAML + Markdown)
 docs/
-  SPEC.md           # specifiche tooling (fonte di verità)
-  template_*.md     # template PRIMM / lab / guide / convention
-  primm.md, chunking.md, head_first_style.md, quiz_liascript.md
+  SPEC.md           # specifiche tooling
+  template_*.md     # PRIMM / lab / guide / convention
 schemas/
   chapter-frontmatter.schema.json
 tools/
-  validate_chapters.py
-scaffolds/          # file referenziati da files[].template_from
-index.md            # include ordinati per il corso completo
-preprocess.py       # include + strip commenti <!--# ... #-->
-dist/               # output generato (README corso + lessons/) — non editare a mano
+  cipiupiu/         # nucleo + CLI (unica fonte di verità)
+  validate_chapters.py   # wrapper → cipiupiu validate
+scaffolds/          # file per files[].template_from
+index.md            # decide cosa entra nel *corso completo* (#include)
+preprocess.py       # wrapper → cipiupiu render (compatibilità)
+dist/               # artefatti LiaScript (in git; generati da build, slice B)
 ```
 
-## Frontmatter e validazione
+## CLI `cipiupiu` (slice A)
 
-Ogni capitolo **deve** iniziare con YAML tra `---`:
-
-- campi obbligatori: `activity_id`, `title`, `methodology`, `order`
-- `methodology`: `PRIMM` | `lab` | `guide` | `convention`
-- `order`: ordinamento canonico del corso e dei link prev/next
+Unica entrypoint. Logica in `tools/cipiupiu/core.py`.
 
 ```bash
-pip install python-frontmatter jsonschema
-python tools/validate_chapters.py              # tutti i chapters/
-python tools/validate_chapters.py chapters/08_bivi_complessi_e_regole_if.md
+pip install pyyaml jinja2
+# opzionale ma consigliato:
+pip install jsonschema
+
+# dalla root del repository:
+python -m tools.cipiupiu list
+python -m tools.cipiupiu list --all --format json
+python -m tools.cipiupiu validate
+python -m tools.cipiupiu validate chapters/05_variabili_costanti_tipi.md
+python -m tools.cipiupiu render chapters/05_variabili_costanti_tipi.md
+python -m tools.cipiupiu render index.md -o README.md
 ```
 
-Dettaglio: `docs/SPEC.md` e `schemas/chapter-frontmatter.schema.json`.
+| Comando | Ruolo |
+|---------|--------|
+| `list` | Capitoli con frontmatter, ordinati per `order` |
+| `validate` | Schema + vincoli (`create`, quiz, …) |
+| `render` | Strip YAML, strip `<!--#`, Jinja `[[ ]]`, espande `#include` |
 
-## Generare il corso per LiaScript
+**Compatibilità:**
 
 ```bash
-python3 preprocess.py index.md > README.md
+python preprocess.py index.md > README.md          # = cipiupiu render index.md
+python tools/validate_chapters.py chapters/05_….md # = cipiupiu validate …
 ```
 
-In prospettiva il preprocessor produrrà anche `dist/lessons/` (lezioni autonome).  
-I blocchi `<!--#` … `#-->` sono note d’autore e **non** compaiono nell’output.
+### Decisioni di prodotto (congelate)
 
-## Template di una nuova lezione
+- **Corso completo**: contenuto deciso da `index.md` (`#include`).
+- **Lezioni singole** (`dist/lessons/`, slice B): ordinate e collegate (prev/next) tramite `order` nel frontmatter.
+- **`build` senza argomenti** (slice B): genera course + lessons con invalidazione tipo Makefile sui timestamp.
+- **`dist/`** resta in git (file letti da LiaScript).
 
-| Metodologia | File da copiare |
-|-------------|-----------------|
-| PRIMM (default) | `docs/template_primm.md` |
-| Laboratorio ambiente | `docs/template_lab.md` |
-| Guida di metodo | `docs/template_guide.md` |
-| Convenzione (es. Doxygen) | `docs/template_convention.md` |
+## Frontmatter
 
-`docs/template_lezione.md` rimanda al template PRIMM.
+Campi obbligatori: `activity_id`, `title`, `methodology`, `order`.  
+`methodology`: `PRIMM` | `lab` | `guide` | `convention`.  
+Dettaglio: `docs/SPEC.md`, `schemas/chapter-frontmatter.schema.json`.
 
-## Visualizzazione
+## Template nuova lezione
 
-Corso su LiaScript (dopo push di `README.md`):
+| Metodologia | File |
+|-------------|------|
+| PRIMM | `docs/template_primm.md` |
+| Lab | `docs/template_lab.md` |
+| Guida | `docs/template_guide.md` |
+| Convenzione | `docs/template_convention.md` |
+
+## Visualizzazione LiaScript
+
+Dopo `python -m tools.cipiupiu render index.md -o README.md` e push:
 
 `https://liascript.github.io/course/?https://raw.githubusercontent.com/<org>/<repo>/refs/heads/main/README.md`
 

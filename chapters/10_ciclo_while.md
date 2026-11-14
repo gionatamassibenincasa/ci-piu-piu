@@ -1,3 +1,51 @@
+---
+activity_id: "while-01"
+title: "L'Anello Fondamentale (Il Ciclo `while`)"
+methodology: PRIMM
+order: 10
+version: "2026-11-14"
+language: it
+components:
+  predict_quiz:
+    question: "Quante volte viene stampata la parola \"Elaborazione\"?"
+    code: |
+      int n = 0;
+      while (n > 5) {
+          std::cout << "Elaborazione\n";
+          n = n + 1;
+      }
+    options:
+      - text: "0 volte (non viene mai stampata)"
+        correct: true
+      - text: "1 volta"
+        correct: false
+      - text: "5 volte"
+        correct: false
+      - text: "Il ciclo è infinito"
+        correct: false
+  make_instructions: "Scenario SIA — Registro fatture fornitori"
+files:
+  - path: student_work/make/fatture_fornitori.cpp
+    action: create
+    phase: make
+    template_content: |
+      /**
+       * @brief Registra fatture fornitori fino alla sentinella -1.
+       */
+      #include <iostream>
+
+      int main() {
+          // inizializza totali e contatori
+          // leggi primo importo
+          // while (importo != -1.0) { ... aggiorna ... leggi di nuovo }
+          // stampa riepilogo
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain: ["int main"]
+---
+
 ## 🔄 Capitolo 10: L'Anello Fondamentale (Il Ciclo `while`)
 
 > "Iterare è umano, automatizzare è informatica."

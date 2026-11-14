@@ -1,3 +1,49 @@
+---
+activity_id: "break-continue-01"
+title: "Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>` )"
+methodology: PRIMM
+order: 13
+version: "2026-11-14"
+language: it
+components:
+  predict_quiz:
+    question: "Cosa stampa?"
+    code: |
+      for (int i = 1; i <= 5; ++i) {
+          if (i == 2) continue;
+          if (i == 4) break;
+          std::cout << i;
+      }
+    options:
+      - text: "12345"
+        correct: false
+      - text: "1345"
+        correct: false
+      - text: "13"
+        correct: true
+      - text: "1234"
+        correct: false
+  make_instructions: "Scenario SIA — Liquidazione IVA trimestrale (semplificata)"
+files:
+  - path: student_work/make/liquidazione_iva.cpp
+    action: create
+    phase: make
+    template_content: |
+      /**
+       * @brief Liquidazione IVA trimestrale semplificata.
+       */
+      #include <iostream>
+      #include <iomanip>
+
+      int main() {
+          // dati fatture, ciclo, continue/break, tabella, totali
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain: ["int main"]
+---
+
 ## 🎯 Capitolo 13: Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."

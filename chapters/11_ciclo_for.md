@@ -1,3 +1,46 @@
+---
+activity_id: "for-01"
+title: "Il Contatore Compatto (Il Ciclo `for` )"
+methodology: PRIMM
+order: 11
+version: "2026-11-14"
+language: it
+components:
+  predict_quiz:
+    question: "Quante righe stampa questo ciclo?"
+    code: |
+      for (int i = 0; i < 5; ++i) {
+          std::cout << i << "\n";
+      }
+    options:
+      - text: "5 righe: `1 2 3 4 5`"
+        correct: false
+      - text: "5 righe: `0 1 2 3 4`"
+        correct: true
+      - text: "4 righe: `0 1 2 3`"
+        correct: false
+      - text: "Ciclo infinito"
+        correct: false
+  make_instructions: "Scenario SIA — Interesse composto su deposito aziendale"
+files:
+  - path: student_work/make/interesse_composto.cpp
+    action: create
+    phase: make
+    template_content: |
+      /**
+       * @brief Simula capitalizzazione composta su N anni.
+       */
+      #include <iostream>
+
+      int main() {
+          // capitale, tasso, anni; for; stampa guadagno netto
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain: ["int main"]
+---
+
 ## ⏳ Capitolo 11: Il Contatore Compatto (Il Ciclo `for`)
 
 > "La regolarità e la prevedibilità sono le migliori alleate della precisione contabile."

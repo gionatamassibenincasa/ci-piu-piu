@@ -1,3 +1,48 @@
+---
+activity_id: "do-while-01"
+title: "Garantire l'Azione (Il Ciclo `do-while` )"
+methodology: PRIMM
+order: 12
+version: "2026-11-14"
+language: it
+components:
+  predict_quiz:
+    question: "Quante volte viene eseguito il corpo?"
+    code: |
+      int n = 10;
+      do {
+          std::cout << "giro\n";
+          n = n + 1;
+      } while (n < 5);
+    options:
+      - text: "0 volte"
+        correct: false
+      - text: "1 volta"
+        correct: true
+      - text: "5 volte"
+        correct: false
+      - text: "Infinito"
+        correct: false
+  make_instructions: "Scenario SIA — PIN sportello con tentativi limitati"
+files:
+  - path: student_work/make/pin_sportello.cpp
+    action: create
+    phase: make
+    template_content: |
+      /**
+       * @brief Validazione PIN sportello con massimo 3 tentativi.
+       */
+      #include <iostream>
+
+      int main() {
+          // PIN corretto, tentativi, loop do-while, risultati
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain: ["int main"]
+---
+
 ## 🔁 Capitolo 12: Garantire l'Azione (Il Ciclo `do-while`)
 
 > "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
