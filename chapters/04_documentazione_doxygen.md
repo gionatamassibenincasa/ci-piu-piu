@@ -1,8 +1,11 @@
 ---
 activity_id: doxygen-01
-title: 'Parlare al Futuro Te Stesso: documentazione Doxygen'
+title: "Parlare al Futuro Te Stesso: documentazione Doxygen"
 methodology: convention
 order: 4
+version: "2026-11-14"
+language: it
+components: {}
 files: []
 ---
 
@@ -131,7 +134,7 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 ---
 
-<--#
+<!--#
   NOTE AUTORE / LLM
   - Capitolo di convenzione, NON forzare le 5 fasi PRIMM complete
   - Nessun @LIA.cpp obbligatorio (non c'è un lab eseguibile centrale)

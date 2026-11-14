@@ -36,3 +36,14 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 #include <chapters/11_ciclo_for.md>
 #include <chapters/12_ciclo_do_while.md>
 #include <chapters/13_controllo_cicli_e_formattazione.md>
+#include <chapters/14_funzioni_scomposizione_top_down.md>
+#include <chapters/15_scope_e_passaggio_parametri.md>
+#include <chapters/16_array_sequenze_dati.md>
+#include <chapters/17_array_bidimensionali_matrici.md>
+#include <chapters/18_puntatori_e_memoria.md>
+#include <chapters/19_enum_e_struct.md>
+#include <chapters/20_ricerca_dicotomica.md>
+#include <chapters/21_ordinamento_selection_sort.md>
+#include <chapters/22_ordinamento_divide_et_impera.md>
+#include <chapters/23_database_in_memoria_progetto.md>
+#include <chapters/24_ricorsione_e_strutture_ricorsive.md>

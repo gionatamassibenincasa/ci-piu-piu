@@ -287,3 +287,247 @@ def load_schema(path: Path | None = None) -> dict | None:
     import json
 
     return json.loads(p.read_text(encoding="utf-8"))
+
+
+# ——— Slice B: build course / lessons ———
+
+DEFAULT_COURSE_YAML = ROOT / "course.yaml"
+DEFAULT_DIST = ROOT / "dist"
+DEFAULT_INDEX = ROOT / "index.md"
+
+DEFAULT_LIASCRIPT_META: dict[str, Any] = {
+    "author": "Gionata Massi",
+    "email": "gionata.massi@savoiabenicasa.it",
+    "version": "2026-11-12",
+    "language": "it",
+    "narrator": "IT Italian Male",
+    "comment": (
+        "Appunti delle lezioni di Informatica - Classi terze ITE SIA - "
+        "Anno Scolastico 26/27"
+    ),
+    "import": [
+        "https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md",
+        "https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md",
+    ],
+}
+
+
+def load_course_config(path: Path | None = None) -> dict[str, Any]:
+    """Carica course.yaml se presente; altrimenti default minimi."""
+    p = path or DEFAULT_COURSE_YAML
+    cfg: dict[str, Any] = {
+        "chapters_dir": "chapters",
+        "index": "index.md",
+        "out_dir": "dist",
+        "course_out": "dist/README.md",
+        "lessons_dir": "dist/lessons",
+        "liascript": dict(DEFAULT_LIASCRIPT_META),
+        "urls": {
+            "mode": "prod",
+            "lessons_prod": (
+                "https://raw.githubusercontent.com/gionatamassibenincasa/"
+                "ci-piu-piu/main/dist/lessons/"
+            ),
+            "lessons_dev": "./",
+            "course_prod": (
+                "https://raw.githubusercontent.com/gionatamassibenincasa/"
+                "ci-piu-piu/main/dist/README.md"
+            ),
+            "course_dev": "../README.md",
+        },
+    }
+    if p.is_file():
+        data = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+        if not isinstance(data, dict):
+            return cfg
+        for key in ("chapters_dir", "index", "out_dir", "course_out", "lessons_dir"):
+            if key in data:
+                cfg[key] = data[key]
+        if isinstance(data.get("liascript"), dict):
+            cfg["liascript"] = {**cfg["liascript"], **data["liascript"]}
+        if isinstance(data.get("urls"), dict):
+            cfg["urls"] = {**cfg["urls"], **data["urls"]}
+    return cfg
+
+
+def merge_liascript_meta(
+    global_meta: dict[str, Any], chapter_meta: dict[str, Any]
+) -> dict[str, Any]:
+    """Scalari: capitolo vince. import: unione ordinata senza duplicati."""
+    out = dict(global_meta)
+    for key, val in chapter_meta.items():
+        if key in {"components", "files", "activity_id", "title", "methodology", "order"}:
+            continue
+        if key == "import":
+            continue
+        if val is not None and key in {
+            "author",
+            "email",
+            "language",
+            "narrator",
+            "comment",
+            "version",
+        }:
+            out[key] = val
+    imports: list[str] = []
+    for src in (global_meta.get("import") or [], chapter_meta.get("import") or []):
+        if isinstance(src, str):
+            src = [src]
+        for u in src:
+            if u and u not in imports:
+                imports.append(u)
+    out["import"] = imports
+    return out
+
+
+def format_liascript_header(meta: dict[str, Any]) -> str:
+    """Commento HTML in testa richiesto dal player LiaScript (solo lezioni)."""
+    lines = ["<!--"]
+    keys = ("author", "email", "version", "language", "narrator", "comment")
+    width = max(len(k) for k in keys + ("import",))
+    for key in keys:
+        if not meta.get(key):
+            continue
+        val = str(meta[key]).strip()
+        pad = " " * (width - len(key) + 2)
+        lines.append(f"{key}:{pad}{val}")
+    for url in meta.get("import") or []:
+        pad = " " * (width - len("import") + 2)
+        lines.append(f"import:{pad}{url}")
+    lines.append("-->")
+    lines.append("")
+    return "\n".join(lines)
+
+
+
+def lesson_filename(chapter: Chapter) -> str:
+    order = chapter.order if chapter.order is not None else 0
+    return f"{order:02d}_{chapter.activity_id}.md"
+
+
+def is_stale(targets: list[Path], sources: list[Path]) -> bool:
+    """True se bisogna rigenerare (manca target o source più recente)."""
+    if not targets:
+        return True
+    for t in targets:
+        if not t.is_file():
+            return True
+    try:
+        newest_src = max(s.stat().st_mtime for s in sources if s.is_file())
+    except ValueError:
+        return True
+    oldest_tgt = min(t.stat().st_mtime for t in targets)
+    return newest_src > oldest_tgt
+
+
+def build_course(
+    *,
+    index_path: Path | None = None,
+    out_path: Path | None = None,
+    force: bool = False,
+) -> tuple[Path, bool]:
+    """
+    Corso completo: render di index.md (include + Jinja).
+    Non aggiunge commento HTML LiaScript (resta quello già in index.md).
+    Ritorna (path_output, written).
+    """
+    index_path = (index_path or DEFAULT_INDEX).resolve()
+    out_path = (out_path or (DEFAULT_DIST / "README.md")).resolve()
+    sources = [index_path]
+    # include grezzi come dipendenze timestamp
+    text = index_path.read_text(encoding="utf-8")
+    for m in re.finditer(r"^\s*#include\s*<(.+?)>\s*$", text, re.M):
+        inc = index_path.parent / m.group(1)
+        if inc.is_file():
+            sources.append(inc.resolve())
+        elif Path(str(inc) + ".md").is_file():
+            sources.append(Path(str(inc) + ".md").resolve())
+
+    if not force and not is_stale([out_path], sources):
+        return out_path, False
+
+    rendered = render_file(index_path, expand=True)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(rendered, encoding="utf-8")
+    return out_path, True
+
+
+def build_lessons(
+    *,
+    chapters_dir: Path | None = None,
+    lessons_dir: Path | None = None,
+    course_cfg: dict[str, Any] | None = None,
+    mode: str | None = None,
+    force: bool = False,
+    only: str | None = None,
+) -> list[tuple[Path, bool]]:
+    """
+    Una lezione per capitolo con frontmatter.
+    Aggiunge commento HTML LiaScript + nav prev/next.
+    expand_includes=False (lezione autonoma).
+    """
+    cfg = course_cfg or load_course_config()
+    chapters_dir = Path(chapters_dir or cfg.get("chapters_dir") or DEFAULT_CHAPTERS)
+    if not chapters_dir.is_absolute():
+        chapters_dir = (ROOT / chapters_dir).resolve()
+    lessons_dir = Path(lessons_dir or cfg.get("lessons_dir") or (DEFAULT_DIST / "lessons"))
+    if not lessons_dir.is_absolute():
+        lessons_dir = (ROOT / lessons_dir).resolve()
+    lessons_dir.mkdir(parents=True, exist_ok=True)
+
+    urls = cfg.get("urls") or {}
+    mode = mode or urls.get("mode") or "prod"
+    if mode == "dev":
+        base = urls.get("lessons_dev") or "./"
+        course_link = urls.get("course_dev") or "../README.md"
+    else:
+        base = urls.get("lessons_prod") or "./"
+        course_link = urls.get("course_prod") or "../README.md"
+    if base and not base.endswith("/") and not base.endswith("./"):
+        # raw github directory should end with /
+        if base.startswith("http"):
+            base = base + "/"
+
+    chapters = [c for c in iter_chapters(chapters_dir) if c.meta]
+    results: list[tuple[Path, bool]] = []
+    global_meta = cfg.get("liascript") or DEFAULT_LIASCRIPT_META
+
+    for i, ch in enumerate(chapters):
+        if only and not (
+            only in ch.activity_id or only == str(ch.order) or only in ch.path.name
+        ):
+            continue
+        out = lessons_dir / lesson_filename(ch)
+        sources = [ch.path]
+        if not force and not is_stale([out], sources):
+            results.append((out, False))
+            continue
+
+        body = render_file(ch.path, expand=False)
+        header_meta = merge_liascript_meta(global_meta, ch.meta)
+        header = format_liascript_header(header_meta)
+
+        prev_c = chapters[i - 1] if i > 0 else None
+        next_c = chapters[i + 1] if i + 1 < len(chapters) else None
+        prev_link = f"{base}{lesson_filename(prev_c)}" if prev_c else None
+        next_link = f"{base}{lesson_filename(next_c)}" if next_c else None
+
+        nav_parts: list[str] = []
+        if prev_link:
+            nav_parts.append(f"[← Prec.]({prev_link})")
+        else:
+            nav_parts.append("← Prec.")
+        nav_parts.append(f"[Corso]({course_link})")
+        if next_link:
+            nav_parts.append(f"[Succ. →]({next_link})")
+        else:
+            nav_parts.append("Succ. →")
+        nav = " · ".join(nav_parts)
+
+        content = f"{header}{nav}\n\n---\n\n{body}"
+        if not content.endswith("\n"):
+            content += "\n"
+        out.write_text(content, encoding="utf-8")
+        results.append((out, True))
+
+    return results

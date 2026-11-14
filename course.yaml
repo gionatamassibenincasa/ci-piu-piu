@@ -1,0 +1,26 @@
+# Configurazione corso ci-più-più (usata da: python -m tools.cipiupiu build)
+chapters_dir: chapters
+index: index.md
+out_dir: dist
+course_out: dist/README.md
+lessons_dir: dist/lessons
+
+liascript:
+  author: Gionata Massi
+  email: gionata.massi@savoiabenicasa.it
+  version: "2026-11-12"
+  language: it
+  narrator: IT Italian Male
+  comment: >
+    Appunti delle lezioni di Informatica - Classi terze ITE SIA -
+    Anno Scolastico 26/27
+  import:
+    - https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
+    - https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+
+urls:
+  mode: prod
+  lessons_prod: https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/
+  lessons_dev: ./
+  course_prod: https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md
+  course_dev: ../dev/README.md

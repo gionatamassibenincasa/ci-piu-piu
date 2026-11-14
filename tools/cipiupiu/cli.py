@@ -1,4 +1,4 @@
-"""CLI cipiupiu — slice A: validate, list, render."""
+"""CLI cipiupiu — validate, list, render, build."""
 
 from __future__ import annotations
 
@@ -112,10 +112,64 @@ def cmd_render(args: argparse.Namespace) -> int:
     return 0
 
 
+
+def cmd_build(args: argparse.Namespace) -> int:
+    """build | build course | build lessons — timestamp-aware."""
+    cfg = core.load_course_config(Path(args.config) if args.config else None)
+    force = bool(args.force)
+    mode = args.mode
+    target = args.target  # None, "course", "lessons"
+
+    do_course = target in (None, "course")
+    do_lessons = target in (None, "lessons")
+
+    index = Path(args.index) if args.index else Path(cfg.get("index") or "index.md")
+    if not index.is_absolute():
+        index = (core.ROOT / index).resolve()
+
+    if args.output and target == "course":
+        course_out = Path(args.output)
+    else:
+        course_out = Path(cfg.get("course_out") or "dist/README.md")
+    if not course_out.is_absolute():
+        course_out = (core.ROOT / course_out).resolve()
+
+    lessons_dir = Path(args.lessons_dir) if args.lessons_dir else None
+
+    n_written = 0
+    if do_course:
+        path, written = core.build_course(
+            index_path=index,
+            out_path=course_out,
+            force=force,
+        )
+        status = "updated" if written else "up-to-date"
+        print(f"course: {status} → {path}")
+        n_written += int(written)
+
+    if do_lessons:
+        results = core.build_lessons(
+            course_cfg=cfg,
+            lessons_dir=lessons_dir,
+            mode=mode,
+            force=force,
+            only=args.only,
+        )
+        for path, written in results:
+            status = "updated" if written else "up-to-date"
+            print(f"lesson: {status} → {path.name}")
+            n_written += int(written)
+        if not results:
+            print("lesson: nessun capitolo con frontmatter", file=sys.stderr)
+
+    print(f"done: {n_written} file scritti")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cipiupiu",
-        description="CLI tooling OER ci-più-più (slice A: validate, list, render).",
+        description="CLI tooling OER ci-più-più (validate, list, render, build).",
     )
     sub = p.add_subparsers(dest="command", required=True)
 
@@ -139,6 +193,26 @@ def build_parser() -> argparse.ArgumentParser:
         help="Non espandere #include (lezione singola grezza)",
     )
     r.set_defaults(func=cmd_render)
+
+    b = sub.add_parser(
+        "build",
+        help="Genera dist/README.md (corso) e/o dist/lessons/* (con header LiaScript)",
+    )
+    b.add_argument(
+        "target",
+        nargs="?",
+        choices=("course", "lessons"),
+        default=None,
+        help="Solo course, solo lessons, o entrambi se omesso",
+    )
+    b.add_argument("--force", action="store_true", help="Ignora timestamp")
+    b.add_argument("--mode", choices=("dev", "prod"), default=None)
+    b.add_argument("--config", default=None, help="Path course.yaml")
+    b.add_argument("--index", default=None, help="index.md del corso")
+    b.add_argument("-o", "--output", default=None, help="Output corso (solo target course)")
+    b.add_argument("--lessons-dir", default=None)
+    b.add_argument("--only", default=None, help="Filtra lezioni (order, activity_id o nome file)")
+    b.set_defaults(func=cmd_build)
 
     return p
 
