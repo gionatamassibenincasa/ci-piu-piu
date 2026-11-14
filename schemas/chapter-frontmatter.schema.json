@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/gionatamassibenincasa/ci-piu-piu/schemas/chapter-frontmatter.schema.json",
+  "title": "ChapterFrontmatter",
+  "description": "Frontmatter YAML dei capitoli ci-piu-piu (v0.2). order è l'ordinamento canonico.",
+  "type": "object",
+  "required": ["activity_id", "title", "methodology", "order"],
+  "additionalProperties": false,
+  "properties": {
+    "activity_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$",
+      "description": "Identificativo stabile indipendente dal nome file."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "methodology": {
+      "type": "string",
+      "enum": ["PRIMM", "lab", "guide", "convention"]
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Ordinamento canonico per corso completo e prev/next."
+    },
+    "version": { "type": "string" },
+    "last_update": { "type": "string", "format": "date" },
+    "author": { "type": "string" },
+    "email": { "type": "string" },
+    "language": { "type": "string" },
+    "narrator": { "type": "string" },
+    "comment": { "type": "string" },
+    "import": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "liascript_extra": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "components": {
+      "type": "object",
+      "description": "Dati per assignment/validazione e macro Jinja esplicite. Non sostituiscono il Markdown didattico.",
+      "additionalProperties": true,
+      "properties": {
+        "predict_quiz": {
+          "type": "object",
+          "required": ["question", "options"],
+          "properties": {
+            "question": { "type": "string" },
+            "code": { "type": "string" },
+            "options": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "object",
+                "required": ["text", "correct"],
+                "properties": {
+                  "text": { "type": "string" },
+                  "correct": { "type": "boolean" }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "investigate_questions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "modify_instructions": { "type": "string" },
+        "make_instructions": { "type": "string" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "required": ["path", "action"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string" },
+          "action": { "type": "string", "enum": ["create", "reference"] },
+          "phase": {
+            "type": "string",
+            "enum": ["predict", "run", "investigate", "modify", "make"]
+          },
+          "description": { "type": "string" },
+          "template_from": { "type": "string" },
+          "template_content": { "type": "string" },
+          "validation_rules": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "min_lines": { "type": "integer", "minimum": 0 },
+              "must_contain": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

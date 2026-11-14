@@ -69,3 +69,4 @@ Testing/
 
 # LiaScript DevServer MCP chat transcripts
 .chats/
+tools/__pycache__/

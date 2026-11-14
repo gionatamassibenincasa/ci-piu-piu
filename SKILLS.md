@@ -89,6 +89,18 @@ Ogni nuovo concetto deve seguire questa sequenza:
 
 ---
 
+## Tooling OER e frontmatter (obbligatorio)
+
+- Specifiche: `docs/SPEC.md`
+- Schema: `schemas/chapter-frontmatter.schema.json`
+- Validazione: `python tools/validate_chapters.py`
+- Ogni capitolo in `chapters/` ha frontmatter YAML (`activity_id`, `title`, `methodology`, `order`).
+- `methodology`: `PRIMM` | `lab` | `guide` | `convention`.
+- `components` e `files` servono ad assignment/validazione Classroom50, non a riscrivere la lezione in YAML.
+- Template: `docs/template_primm.md` (default), `template_lab.md`, `template_guide.md`, `template_convention.md`.
+- Note autore/LLM: blocchi `<!--#` … `#-->` (strip da `preprocess.py`); non usare per dati strutturati.
+- Ordinamento corso: campo `order` (non il solo nome file).
+
 ## Regole di Generazione Output (LiaScript & Markdown)
 
 Quando generi contenuti, rispetta **tassativamente** queste regole:
