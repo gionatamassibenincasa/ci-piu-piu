@@ -1,3 +1,33 @@
+---
+activity_id: motore-compilazione-01
+title: 'Il Motore Sotto il Cofano: dalla sorgente all''eseguibile'
+methodology: PRIMM
+order: 2
+components:
+  predict_quiz:
+    question: Dopo g++ -save-temps, quale file contiene il codice senza commenti?
+    code: int main() { return 0; }
+    options:
+    - text: ridotto.o
+      correct: false
+    - text: ridotto.ii
+      correct: true
+    - text: ridotto.exe
+      correct: false
+    - text: ridotto.s
+      correct: false
+files:
+- path: student_work/make/codice_uscita.cpp
+  action: create
+  phase: make
+  template_content: "#include <iostream>\n// non usare ancora cout: solo return N\n\
+    int main() {\n    return 7;\n}\n"
+  validation_rules:
+    min_lines: 3
+    must_contain:
+    - return
+---
+
 ## ⚙️ Il Motore Sotto il Cofano: dalla sorgente all'eseguibile
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
@@ -225,3 +255,15 @@ Finora il nostro programma non ha ancora *parlato* con noi.
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
 
 ---
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+
+<details>
+<summary>💡 Quiz Predict (da frontmatter)</summary>
+
+[[ predict_block() ]]
+
+</details>
+

@@ -1,3 +1,38 @@
+---
+activity_id: variabili-tipi-01
+title: 'Gli Sportelli della Memoria: variabili, costanti e tipi'
+methodology: PRIMM
+order: 5
+components:
+  predict_quiz:
+    question: Cosa stampa int pezzi = 7.85?
+    code: 'int pezzi = 7.85;
+
+      std::cout << pezzi;'
+    options:
+    - text: '7.85'
+      correct: false
+    - text: 7 (troncamento)
+      correct: true
+    - text: crash
+      correct: false
+    - text: 8 (arrotondamento)
+      correct: false
+  make_instructions: Scheda conto corrente aziendale
+files:
+- path: student_work/make/conto_corrente.cpp
+  action: create
+  phase: make
+  template_content: "#include <iostream>\n#include <string>\nint main() {\n    //\
+    \ TODO: banca, IBAN, saldo, tasso const, fido, rating\n    return 0;\n}\n"
+  validation_rules:
+    min_lines: 12
+    must_contain:
+    - const
+    - double
+    - std::string
+---
+
 ## 📦 Gli Sportelli della Memoria: variabili, costanti e tipi
 
 > "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
@@ -217,3 +252,15 @@ int main() {
 Ora che sappiamo *memorizzare* i dati, impariamo a *calcolarli* e a prendere decisioni semplici con le espressioni e l’operatore ternario.
 
 ---
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+
+<details>
+<summary>💡 Quiz Predict (da frontmatter)</summary>
+
+[[ predict_block() ]]
+
+</details>
+

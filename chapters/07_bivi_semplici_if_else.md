@@ -1,3 +1,31 @@
+---
+activity_id: if-else-01
+title: 'Bivi e Decisioni: if e if-else'
+methodology: PRIMM
+order: 7
+components:
+  predict_quiz:
+    question: Senza graffe, quante righe controlla l'if?
+    code: "if (scorte < 5)\n    std::cout << \"1\\n\";\n    std::cout << \"2\\n\";"
+    options:
+    - text: Entrambe le cout
+      correct: false
+    - text: Solo la prima cout
+      correct: true
+    - text: Nessuna
+      correct: false
+files:
+- path: student_work/make/caveau.cpp
+  action: create
+  phase: make
+  template_content: "#include <iostream>\nint main() {\n    // TODO: if / if-else\
+    \ su PIN o soglia\n    return 0;\n}\n"
+  validation_rules:
+    min_lines: 10
+    must_contain:
+    - if
+---
+
 ## 🚦 Bivi e Decisioni: `if` e `if-else`
 
 > "Le decisioni sono i binari su cui viaggiano i processi aziendali."
@@ -247,3 +275,15 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
   [x] Make su caveau (SIA / sicurezza)
   [x] else-if non introdotto (solo annunciato)
 -->
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+
+<details>
+<summary>💡 Quiz Predict (da frontmatter)</summary>
+
+[[ predict_block() ]]
+
+</details>
+

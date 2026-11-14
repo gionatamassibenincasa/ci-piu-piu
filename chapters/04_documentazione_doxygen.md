@@ -1,3 +1,11 @@
+---
+activity_id: doxygen-01
+title: 'Parlare al Futuro Te Stesso: documentazione Doxygen'
+methodology: convention
+order: 4
+files: []
+---
+
 ## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
 
 > "Il codice non mente mai, i commenti sì."
@@ -130,3 +138,8 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
   - Titolo senza "Capitolo N"
   - Coerente con SKILLS.md (proporzionalità Doxygen)
 #-->
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+

@@ -1,3 +1,11 @@
+---
+activity_id: ambiente-sviluppo-01
+title: 'Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64'
+methodology: lab
+order: 1
+files: []
+---
+
 ## 🛠️ Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64
 
 > "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
@@ -249,3 +257,8 @@ Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il co
 Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
 ---
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+

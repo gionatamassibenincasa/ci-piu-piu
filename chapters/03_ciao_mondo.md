@@ -1,3 +1,32 @@
+---
+activity_id: ciao-mondo-01
+title: 'Il Primo Dialogo con la Macchina: std::cout e il programma minimo'
+methodology: PRIMM
+order: 3
+components:
+  predict_quiz:
+    question: Cosa fa std::cout << "Ciao, Mondo!\n"; ?
+    code: std::cout << "Ciao, Mondo!\n";
+    options:
+    - text: Legge da tastiera
+      correct: false
+    - text: Stampa Ciao, Mondo! e va a capo
+      correct: true
+    - text: Compila il programma
+      correct: false
+  make_instructions: 'presentazione.cpp con tre righe: nome, classe, hobby'
+files:
+- path: student_work/make/presentazione.cpp
+  action: create
+  phase: make
+  template_content: "#include <iostream>\nint main() {\n    // TODO: tre std::cout\n\
+    \    return 0;\n}\n"
+  validation_rules:
+    min_lines: 6
+    must_contain:
+    - std::cout
+---
+
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
@@ -189,3 +218,15 @@ Finora il computer ha solo *parlato*.
 Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
 ---
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+
+<details>
+<summary>💡 Quiz Predict (da frontmatter)</summary>
+
+[[ predict_block() ]]
+
+</details>
+

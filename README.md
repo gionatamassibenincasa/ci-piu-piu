@@ -22,7 +22,18 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 
 ---
 
-## 🧭 Guida allo Studio: Come Imparare a Programmare
+---
+activity_id: "guida-studio-01"
+title: "Guida allo Studio: come imparare a programmare"
+methodology: guide
+order: 0
+version: "2026-11-14"
+last_update: "2026-11-14"
+language: it
+files: []
+---
+
+## 🧭 Guida allo Studio: come imparare a programmare
 
 > Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
 > e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
@@ -824,6 +835,8 @@ Alla fine di questa lezione sei in grado di:
 |-----|--------------|---------|
 | `@file` | Nome del file | `@file presentazione.cpp` |
 | `@brief` | Una riga: cosa fa il programma o la funzione | `@brief Stampa nome e classe.` |
+| `@author` | L'autore del programma | `@author Gionata Massi` |
+| `@date` | La data | `@date 2026-11-03` |
 | `@param` | Descrive un parametro (quando avremo le funzioni) | `@param prezzo Importo netto in euro` |
 | `@return` | Cosa restituisce la funzione | `@return int 0 se successo` |
 
@@ -913,13 +926,6 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 ---
 
-<!--#
-  NOTE AUTORE / LLM
-  - Capitolo di convenzione, NON forzare le 5 fasi PRIMM complete
-  - Nessun @LIA.cpp obbligatorio (non c'è un lab eseguibile centrale)
-  - Titolo senza "Capitolo N"
-  - Coerente con SKILLS.md (proporzionalità Doxygen)
-#-->
 ## 📦 Gli Sportelli della Memoria: variabili, costanti e tipi
 
 > "Chi controlla il passato controlla il futuro: chi controlla il presente controlla il passato."
@@ -1617,7 +1623,57 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
   [x] Make su caveau (SIA / sicurezza)
   [x] else-if non introdotto (solo annunciato)
 -->
-## 🌲 Capitolo 8: Scaglioni e Labirinti (`if / else if / else` e if annidati)
+---
+activity_id: "bivi-complessi-01"
+title: "Scaglioni e Labirinti: if / else if / else e if annidati"
+methodology: PRIMM
+order: 8
+version: "2026-11-14"
+last_update: "2026-11-14"
+language: it
+components:
+  predict_quiz:
+    question: "Con fatturato = 25000, quale fascia assegna la scala corretta (≥50000 / ≥20000 / ≥5000)?"
+    code: |
+      double fatturato = 25000.0;
+      // if / else if / else sulle soglie
+    options:
+      - text: "Platinum 15%"
+        correct: false
+      - text: "Gold 10%"
+        correct: true
+      - text: "Silver 5%"
+        correct: false
+      - text: "Nessuno sconto"
+        correct: false
+  make_instructions: >
+    Scaglioni d'imposta semplificati su reddito imponibile con if/else if/else
+    e messaggio extra se reddito > soglia con if annidato o &&.
+files:
+  - path: student_work/make/scaglioni_imposta.cpp
+    action: create
+    phase: make
+    template_content: |
+      /**
+       * @brief Liquidazione semplificata scaglioni d'imposta.
+       */
+
+      int main() {
+          // TODO: reddito, scaglioni, eventuale secondo controllo
+          return 0;
+      }
+    validation_rules:
+      min_lines: 15
+      must_contain:
+        - "else if"
+        - "double"
+  - path: demos/fasce_sconto.cpp
+    action: reference
+    phase: run
+    description: "Programma del laboratorio Run (fasce sconto + fido)"
+---
+
+## 🌲 Scaglioni e Labirinti: `if / else if / else` e if annidati
 
 > "La complessità di un problema si risolve dividendolo in livelli ordinati di decisioni."
 > — *Principio dell'Analisi dei Sistemi*

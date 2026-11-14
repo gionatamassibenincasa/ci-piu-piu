@@ -1,3 +1,35 @@
+---
+activity_id: espressioni-ternario-01
+title: 'La Calcolatrice Fiscale: espressioni e operatore ternario'
+methodology: PRIMM
+order: 6
+components:
+  predict_quiz:
+    question: Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
+    code: 'int pezzi = 5;
+
+      double t = pezzi / 2 * 10.0;
+
+      std::cout << t;'
+    options:
+    - text: '25'
+      correct: false
+    - text: '20'
+      correct: true
+    - text: '2.5'
+      correct: false
+files:
+- path: student_work/make/commissioni_pos.cpp
+  action: create
+  phase: make
+  template_content: "#include <iostream>\nint main() {\n    // TODO: commissione POS\
+    \ con ternario\n    return 0;\n}\n"
+  validation_rules:
+    min_lines: 10
+    must_contain:
+    - '?'
+---
+
 ## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
 > "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
@@ -227,3 +259,15 @@ Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni
   [x] Make su commissioni POS (SIA)
   [x] if/else solo annunciato, non introdotto
 #-->
+
+<!--# generato da frontmatter via Jinja; solo per test tooling #-->
+
+> 🔖 *Attività* `[[ activity_id ]]` · *ordine* [[ order ]] · *metodo* [[ methodology ]]
+
+<details>
+<summary>💡 Quiz Predict (da frontmatter)</summary>
+
+[[ predict_block() ]]
+
+</details>
+
