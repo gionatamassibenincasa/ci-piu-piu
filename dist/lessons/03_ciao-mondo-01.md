@@ -12,7 +12,6 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 
 ---
 
-
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."

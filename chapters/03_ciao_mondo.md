@@ -6,27 +6,150 @@ order: 3
 components:
   predict_quiz:
     question: Cosa fa std::cout << "Ciao, Mondo!\n"; ?
-    code: std::cout << "Ciao, Mondo!\n";
+    code: |
+      std::cout << "Ciao, Mondo!\n";
     options:
-    - text: Legge da tastiera
-      correct: false
-    - text: Stampa Ciao, Mondo! e va a capo
-      correct: true
-    - text: Compila il programma
-      correct: false
-  make_instructions: 'presentazione.cpp con tre righe: nome, classe, hobby'
+      - text: Legge da tastiera
+        correct: false
+      - text: Stampa Ciao, Mondo! e va a capo
+        correct: true
+      - text: Compila il programma
+        correct: false
+  make_instructions: >
+    presentazione.cpp: tre std::cout (nome, classe, hobby),
+    commenti ///, return 0
 files:
-- path: student_work/make/presentazione.cpp
-  action: create
-  phase: make
-  template_content: "#include <iostream>\nint main() {\n    // TODO: tre std::cout\n\
-    \    return 0;\n}\n"
-  validation_rules:
-    min_lines: 6
-    must_contain:
-    - std::cout
----
+  - path: student_work/README.md
+    action: create
+    description: Istruzioni per svolgere gli esercizi del capitolo
+    template_content: |
+      # Istruzioni – Ciao Mondo
 
+      Lavora **in ordine** (PRIMM). Ogni fase ha un file dedicato.
+
+      1. **Predict** → `student_work/predict/answers.md`
+         (prima di eseguire qualsiasi codice)
+
+      2. **Run** → digita a mano il programma del capitolo,
+         poi rifletti in `student_work/run/answers.md`
+
+      3. **Investigate** → debugger o Python Tutor,
+         poi `student_work/investigate/answers.md`
+
+      4. **Modify** → `student_work/modify/ciao_modificato.cpp`
+         (modifiche A, B, C una alla volta)
+
+      5. **Make** → `student_work/make/presentazione.cpp`
+         (nome, classe, hobby)
+
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict – Ciao Mondo
+
+      Rispondi **prima** di compilare o eseguire.
+
+      Osserva il frammento:
+      ```cpp
+      std::cout << "Ciao, Mondo!\n";
+      ```
+
+      1. Cosa fa questa istruzione? Cosa ti aspetti a video?
+      >
+
+      2. Da dove inizia l'esecuzione di un programma C++?
+      >
+
+      3. In questo programma, quante volte viene eseguita ogni riga?
+      >
+
+      4. In quale ordine vengono eseguite le istruzioni?
+      >
+
+      5. C'è un output a video? Se sì, quale esattamente (includi eventuali andate a capo)?
+      >
+
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run – Ciao Mondo
+
+      Digita a mano il programma del capitolo, compilalo ed eseguilo.
+      Poi rispondi.
+
+      1. Il programma compilava al primo tentativo o hai dovuto correggere qualcosa?
+      >
+
+      2. Quale output hai ottenuto?
+      >
+
+      3. L'output corrisponde a quello che avevi previsto in Predict? Se no, cosa era diverso?
+      >
+
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate – Ciao Mondo
+
+      Prima di rispondere: esegui il programma col debugger oppure copialo su
+      [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. A che serve `#include <iostream>`?
+      >
+
+      2. Qual è il ruolo della funzione `main`? Cosa succede se manca?
+      >
+
+      3. Cosa significa `std::` davanti a `cout`? Perché non scriviamo solo `cout`?
+      >
+
+      4. A che serve `\n` alla fine della stringa?
+      >
+
+      5. A che serve `return 0;`?
+      >
+
+  - path: student_work/modify/ciao_modificato.cpp
+    action: create
+    phase: modify
+    description: >
+      Parti da questo file. Applica le modifiche A, B e C
+      descritte nel capitolo (una alla volta, ricompilando ogni volta).
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          std::cout << "Ciao, Mondo!\n";
+          return 0;
+      }
+    validation_rules:
+      min_lines: 6
+      must_contain:
+        - std::cout
+
+  - path: student_work/make/presentazione.cpp
+    action: create
+    phase: make
+    description: >
+      Programma da zero: tre righe (nome, classe, hobby),
+      commenti ///, return 0.
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          // TODO: tre std::cout (nome, classe, hobby)
+          // usa commenti /// sul perché
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain:
+        - std::cout
+        - return 0
+---
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."

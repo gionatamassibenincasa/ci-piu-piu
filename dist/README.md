@@ -605,7 +605,6 @@ La stampa a video arriverà nel prossimo capitolo.
 Finora il nostro programma non ha ancora *parlato* con noi.  
 Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
 
-
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
@@ -3769,6 +3768,7 @@ Scrivi `selection_sort.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il prog
 
 
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Spiegare la differenza tra Merge Sort e Quick Sort e quando usarli.
@@ -3885,6 +3885,7 @@ int main(){
 ➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
 
 
+
 ## 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
 - Comprendere come rappresentare dati aziendali con array di struct in C++.
@@ -3997,6 +3998,7 @@ int main(){
 ---
 
 ➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
+
 
 
 ## 🎯 Obiettivo di questo chunk
