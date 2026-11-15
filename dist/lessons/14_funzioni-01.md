@@ -1,7 +1,7 @@
 <!--
 author:    Gionata Massi
 email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-12
+version:   2026-11-16
 language:  it
 narrator:  IT Italian Male
 comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
@@ -13,44 +13,57 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
-## 🏢 Il Primo Reparto: una funzione che restituisce un valore
+## 🏢 Il Primo Reparto: funzioni che restituiscono un valore
 
-> 💡 **Metafora:** una funzione è un reparto: riceve un ordine, svolge un lavoro
-> preciso e restituisce il risultato senza mostrare tutti i passaggi interni.
+> "Un buon processo si scompone in reparti con responsabilità chiare."  
+> — *Organizzazione aziendale e top-down*
 
-### 🎯 Obiettivo
-Scrivere e chiamare una funzione che riceve un valore e ne restituisce uno.
+Finora quasi tutto viveva in `main`.  
+Quando la logica cresce (IVA, sconti, commissioni), conviene **estrarre un reparto**: una **funzione** con nome, parametri e **valore di ritorno**.
+
+> 💡 **Metafora: sportello specializzato**  
+> - `calcolaIva(imponibile)` = sportello “ufficio IVA”  
+> - Gli dai l’imponibile (documento in ingresso)  
+> - Ti restituisce l’importo IVA (documento in uscita)  
+> - `main` coordina: chiede, riceve, stampa
+
+In questo chunk: funzioni **semplici** che calcolano e `return`.  
+Passaggio per riferimento e scope fine: capitolo successivo.
 
 ---
 
-### ⚙️ Prima del laboratorio: ingresso e uscita
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare e chiamare una funzione con parametri e `return`
+- Usare il risultato in `main` senza ripetere la formula
+
+---
+
+### ⚙️ Anatomia minima
 
 ```cpp
 double calcolaIva(double imponibile) {
     return imponibile * 0.22;
 }
-```
 
-`imponibile` è il dato che entra nel reparto; `return` consegna il valore
-calcolato a chi ha chiamato la funzione.
-
----
-
-### 🧭 Prima del laboratorio: chiamare il reparto
-
-```cpp
+// uso:
 double iva = calcolaIva(100.0);
 ```
 
-Il valore `100.0` entra nella funzione; `22.0` torna e viene salvato in `iva`.
+| Parte | Ruolo |
+|-------|--------|
+| Tipo di ritorno | Cosa esce dallo sportello (`double`, `int`, …) |
+| Nome | Verbo + oggetto (`calcolaIva`) |
+| Parametri | Dati in ingresso |
+| `return` | Fine del lavoro + valore |
 
 ---
 
-### 🔬 Laboratorio PRIMM: IVA di una fattura
+### 🔬 Laboratorio PRIMM: Ufficio IVA
 
-#### 1. PREDICT
+#### 1. PREDICT (Prevedi)
 
-Quale valore restituisce calcolaIva(100.0)?
+Quanto vale `calcolaIva(100.0)` con aliquota 0.22?
 
 ```cpp
 double calcolaIva(double imponibile) {
@@ -61,10 +74,20 @@ double calcolaIva(double imponibile) {
 [(X)] 22
 [( )] 100
 [( )] 122
+[( )] 0.22
 
-#### 2. RUN
+<details>
+<summary>💡 Spiegazione</summary>
+100 × 0.22 = 22. La funzione restituisce solo l’IVA, non il totale documento.
+</details>
+
+#### 2. RUN (Esegui)
 
 ```cpp
+/**
+ * @file ufficio_iva.cpp
+ * @brief Funzione che calcola l'IVA al 22%.
+ */
 #include <iostream>
 
 double calcolaIva(double imponibile) {
@@ -72,49 +95,64 @@ double calcolaIva(double imponibile) {
 }
 
 int main() {
-    double iva = calcolaIva(100.0);
-    std::cout << "IVA: " << iva << "\n";
+    double imponibile = 100.0;
+    double iva = calcolaIva(imponibile);
+    double totale = imponibile + iva;
+
+    std::cout << "Imponibile: " << imponibile << '\n';
+    std::cout << "IVA:        " << iva << '\n';
+    std::cout << "Totale:     " << totale << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
-#### 3. INVESTIGATE
+#### 3. INVESTIGATE (Investiga)
 
-| Passo | Valore |
-|---|---|
-| Chiamata | `imponibile = 100.0` |
-| `return` | `22.0` |
-| In `main` | `iva = 22.0` |
+| Momento | Cosa succede |
+|---------|----------------|
+| Chiamata | `main` sospende; parte `calcolaIva` |
+| `return` | Il valore torna a `main` in `iva` |
+| Dopo | `main` usa `iva` nel totale |
 
-> 🔗 Osserva i due frame su [Python Tutor C++](https://pythontutor.com/cpp.html).
+> 🔗 [Python Tutor C++](https://pythontutor.com/cpp.html): osserva lo stack frame della funzione.
 
-#### 4. MODIFY
+#### 4. MODIFY (Modifica)
+1. Cambia l’imponibile a `250.0` e verifica i tre importi.
+2. Aggiungi `double calcolaTotale(double imponibile)` che usa `calcolaIva` al suo interno.
+3. Documenta le funzioni con `@brief` e `@param` / `@return`.
 
-<details><summary>💡 Scaffold</summary>
+#### 5. MAKE (Crea)
+**Scenario SIA — Commissione POS**
+
+`commissione_pos.cpp`:  
+- `double commissione(double importo)` → 1.2% dell’importo (o soglia minima fissa a tua scelta, documentata)  
+- `main` stampa importo, commissione e netto negoziante  
+
+<details>
+<summary>💡 Scaffold</summary>
 
 ```cpp
-double calcolaIva(double imponibile) {
-    return imponibile * 0.22;
+#include <iostream>
+double commissione(double importo) {
+    return importo * 0.012;
+}
+int main() {
+    // ...
+    return 0;
 }
 ```
-
 </details>
 
-1. Calcola l'IVA di `250.0`.
-2. Sostituisci `0.22` con `0.10` e osserva il risultato.
-3. Rinomina `imponibile` in `importoNetto` in firma e corpo.
-
-#### 5. MAKE
-
-**Scenario SIA:** scrivi `commissione_pos.cpp` con una funzione
-`calcolaCommissione(double importo)` che restituisce l'1% dell'importo e stampa
-il risultato in `main`.
+---
 
 ### 📝 Riepilogo tascabile
-- Una funzione riceve dati, svolge un lavoro e può restituire un valore.
-- `return` termina la funzione e consegna il risultato.
-- La chiamata usa il valore restituito in un'espressione.
+- Funzione = reparto con ingresso, lavoro, uscita
+- `return` consegna il risultato a chi ha chiamato
+- `main` orchestra; le funzioni specializzano
+- Un calcolo riusato → una funzione, non copia-incolla
+
+---
 
 ### ➡️ Prossimo chunk
-Nel prossimo chunk separeremo programmi più grandi in più reparti.
+Come far sì che una funzione **modifichi** le variabili del chiamante: passaggio per **riferimento**.
