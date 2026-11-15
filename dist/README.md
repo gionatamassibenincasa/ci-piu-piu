@@ -3023,52 +3023,52 @@ Chiudiamo il Blocco 1 con gli strumenti di “guida fine” del ciclo: **`break`
   [x] break/iomanip solo annunciati
 -->
 
-## 🎯 Il Cruscotto del Programmatore (`break` e `continue`)
+## ⏹️ Uscite Anticipate: `break` e `continue` nei cicli
 
-> "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
-> — *Principio dei Sistemi Contabili*
+> "Non tutte le iterazioni vanno completate: a volte si salta, a volte si chiude il banco."  
+> — *Controllo operativo dei processi*
 
-Prima di salire al Blocco 2 chiudiamo il Blocco 1 con due strumenti di controllo fine dei cicli.
+Nei cicli a volte serve **interrompere tutto** (`break`) o **saltare solo il giro corrente** (`continue`).  
+Sono il cruscotto fine del programmatore: da usare con chiarezza, non per nascondere logica confusa.
 
-> 💡 **Metafora:**
-> - **`break`** = pulsante rosso di emergenza: il nastro si **ferma subito**.  
-> - **`continue`** = braccio di scarto: salta **quel** pezzo difettoso e passa al successivo.  
+> 💡 **Metafora: nastro di controllo fatture**  
+> - **`continue`** = “questa fattura è a zero: **saltala**, passa alla successiva”  
+> - **`break`** = “importo anomalo: **ferma** l’intero controllo e segnala”
+
+In questo chunk **non** trattiamo la formattazione monetari (`iomanip`): ha un capitolo dedicato.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Usare `break` per uscire anticipatamente da un ciclo
-- Usare `continue` per saltare il resto del corpo e passare all’iterazione successiva
+- Usare `break` e `continue` in un `for`/`while` con intento chiaro
+- Prevedere l’output di un ciclo che li combina
 
 ---
 
-### ⚙️ `break` vs `continue`
+### ⚙️ In breve
 
-| Istruzione | Effetto | Dove va il flusso |
-|------------|---------|-------------------|
-| `break;` | Interrompe il ciclo | subito **dopo** il ciclo |
-| `continue;` | Salta il resto del corpo di **questa** iterazione | alla condizione / aggiornamento del ciclo |
+| Parola | Effetto |
+|--------|---------|
+| `continue` | Salta al **prossimo** giro del ciclo più interno |
+| `break` | Esce **subito** dal ciclo più interno |
 
 ```cpp
-for (int i = 1; i <= 10; ++i) {
-    if (i == 3) continue;   // salta il 3
-    if (i == 8) break;      // ferma tutto a 8
-    std::cout << i << " ";
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;  // non stampare 2
+    if (i == 4) break;     // stop prima di 4,5
+    std::cout << i;
 }
-// stampa: 1 2 4 5 6 7
+// stampa: 13
 ```
 
 ---
 
-### 🔬 Laboratorio PRIMM: Report con scarti e stop
-
-Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
+### 🔬 Laboratorio PRIMM: Controllo scarti
 
 #### 1. PREDICT (Prevedi)
 
-
-Cosa stampa?
+Cosa stampa il ciclo?
 
 ```cpp
 for (int i = 1; i <= 5; ++i) {
@@ -3083,150 +3083,126 @@ for (int i = 1; i <= 5; ++i) {
 [(X)] 13
 [( )] 1234
 
-
 <details>
 <summary>💡 Spiegazione</summary>
-<code>i=1</code> stampa; <code>i=2</code> → <code>continue</code> (niente stampa); <code>i=3</code> stampa; <code>i=4</code> → <code>break</code> (esce). Risultato: <code>13</code>.
+<code>i==2</code> → <code>continue</code> (niente stampa). <code>i==3</code> stampa. <code>i==4</code> → <code>break</code> (il 5 non si raggiunge). Resta <code>13</code>.
 </details>
 
 #### 2. RUN (Esegui)
 
 ```cpp
 /**
- * @file report_fiscale.cpp
- * @brief Report di transazioni con scarto, stop di sicurezza e formattazione.
+ * @file scarti_ciclo.cpp
+ * @brief continue salta, break interrompe.
  */
 #include <iostream>
 
-/**
- * @brief Elabora 6 transazioni simulate: continue se <=0, break se >50000.
- * @return int 0 se ok.
- */
 int main() {
-    const double importi[] = {120.5, -3.0, 45.0, 12.75, 52000.0, 8.0};
-    const int N = 6;
-
-    double totale = 0.0;
-
-    for (int id = 1; id <= N; ++id) {
-        double importo = importi[id - 1];
-
-        if (importo <= 0.0) {
-            std::cout << "  (scarto ID " << id << ": non positivo)\n";
+    for (int i = 1; i <= 5; ++i) {
+        if (i == 2) {
             continue;
         }
-        if (importo > 50000.0) {
-            std::cout << "  ALERT antiriciclaggio ID " << id
-                      << " — interrompo il report\n";
+        if (i == 4) {
             break;
         }
-
-        totale += importo;
-        std::cout << "ID " << id << ": " << importo << "\n";
+        std::cout << i;
     }
-
-    std::cout << "TOTALE: " << totale << "\n";
-
+    std::cout << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-| ID | Importo | Azione |
-|----|---------|--------|
-| 1 | 120.50 | accumula |
-| 2 | -3.00 | `continue` (scarto) |
-| 3 | 45.00 | accumula |
-| 4 | 12.75 | accumula |
-| 5 | 52000 | `break` (stop) |
-| 6 | 8.00 | **non elaborato** |
 
-> 🔗 Osserva il salto di `continue`/`break` su [Python Tutor C++](https://pythontutor.com/cpp.html).
+| `i` | Azione | Output accumulato |
+|-----|--------|-------------------|
+| 1 | stampa | `1` |
+| 2 | `continue` | `1` |
+| 3 | stampa | `13` |
+| 4 | `break` | fine |
 
 #### 4. MODIFY (Modifica)
-1. **Soglia micro-pagamenti**
-   Con `continue`, scarta anche gli importi `< 5.00`.
-
-2. **Soglia di allarme**
-   Cambia l'allarme da `50000` a `1000` e verifica che `break` interrompa il report.
+1. Inverti: `break` su 2 e `continue` su 4 — cosa cambia?
+2. Sostituisci il `for` con un `while` equivalente.
+3. Conta quanti numeri **effettivamente stampati** con un contatore.
 
 #### 5. MAKE (Crea)
-**Scenario SIA — Controllo transazioni**
+**Scenario SIA — Analisi movimenti di cassa**
 
-Scrivi `controllo_transazioni.cpp`:
-
-- Ciclo su sei ID di transazione.
-- `continue` per scartare un ID non valido.
-- `break` quando incontri un ID di allarme.
-- Stampa quali ID sono elaborati e il loro conteggio.
-
-**Requisiti:** Doxygen se superi 15 righe, graffe e messaggi chiari.
+Sequenza fissa di importi (array piccolo o elenco in variabili).  
+- `continue` se importo `== 0`  
+- `break` se importo `> 10000` (outlier)  
+- Stampa quanti movimenti validi sono stati elaborati prima dello stop  
 
 <details>
 <summary>💡 Scaffold</summary>
 
 ```cpp
-/**
- * @brief Controlla transazioni con scarti e allarmi.
- */
 #include <iostream>
 int main() {
-    // dati, ciclo, continue/break, conteggio
+    double mov[] = {100.0, 0.0, 250.0, 12000.0, 80.0};
+    // for + continue + break
     return 0;
 }
 ```
-
 </details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- `break` = esci dal ciclo; `continue` = salta al giro successivo.
-- In report contabili: scarti → `continue`; allarmi gravi → `break`.
+- `continue` = salta **questo** giro
+- `break` = esci dal ciclo
+- Usali quando la regola di business è chiara (scarto / stop)
+- Non sostituiscono una buona condizione di ciclo
 
 ---
 
-### ➡️ Fine Blocco 1 — Prossimo orizzonte
-Hai il controllo di dati, decisioni, cicli e presentazione.  
-Nel **Blocco 2** spezzeremo i programmi in **funzioni**, introdurremo **array** e **struct** e costruiremo piccoli sistemi gestionali in memoria.
+### ➡️ Prossimo chunk
+Dal ciclo al **reparto**: introduciamo le **funzioni** che restituiscono un valore.
 
----
-
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: break, continue, iomanip monetario
-  [x] Metafore nastro / stampante fiscale
-  [x] Quiz sintassi corretta
-  [x] PRIMM report con scarti e alert
-  [x] Make liquidazione IVA
-  [x] Ponte esplicito a Blocco 2
--->
 ## 🖨️ La Stampante Fiscale: formattare importi con `<iomanip>`
 
-> 💡 **Metafora:** una stampante fiscale rende ogni importo leggibile: centesimi
-> sempre uguali e colonne allineate.
+> "In contabilità due decimali non sono un vezzo: sono una regola."  
+> — *Pratica di bilanci e scontrini*
 
-### 🎯 Obiettivo
-Formattare importi monetari con `std::fixed`, `std::setprecision` e `std::setw`.
+`std::cout` di default non stampa sempre i centesimi come uno scontrino.  
+Con **`<iomanip>`** imposti **virgola fissa** e **precisione**, così gli importi sono leggibili e confrontabili.
 
-### ⚙️ Prima del laboratorio: due decimali
+> 💡 **Metafora: stampante dello scontrino**  
+> - `std::fixed` = “modo importi”, non notazione scientifica  
+> - `std::setprecision(2)` = sempre **due cifre** dopo la virgola  
+> - Risultato tipico: `19.50` e non `19.5`
+
+Questo chunk è **solo formattazione output**. Non mescola `break`/`continue`.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Usare `std::fixed` e `std::setprecision(2)` su importi monetari
+- Produrre un mini-prospetto allineato (imponibile, IVA, totale)
+
+---
+
+### ⚙️ In breve
 
 ```cpp
+#include <iomanip>
+
 std::cout << std::fixed << std::setprecision(2);
+std::cout << 19.5;   // 19.50
 ```
 
-`fixed` usa notazione decimale; `setprecision(2)` mostra due cifre dopo la virgola.
+La manipolazione resta attiva sulle stampe successive dello stesso stream finché non la cambi.
 
-### 🧭 Prima del laboratorio: colonne
+---
 
-`std::setw(10)` riserva la larghezza minima del prossimo campo.
+### 🔬 Laboratorio PRIMM: Riga di scontrino
 
-### 🔬 Laboratorio PRIMM: mini prospetto
+#### 1. PREDICT (Prevedi)
 
-#### 1. PREDICT
-
-Come viene stampato 19.5 con fixed e setprecision(2)?
+Come appare 19.5 con `std::fixed` e `std::setprecision(2)`?
 
 ```cpp
 std::cout << std::fixed << std::setprecision(2) << 19.5;
@@ -3235,77 +3211,134 @@ std::cout << std::fixed << std::setprecision(2) << 19.5;
 [(X)] 19.50
 [( )] 19.5
 [( )] 20
+[( )] 1.95e1
 
-#### 2. RUN
+<details>
+<summary>💡 Spiegazione</summary>
+<code>fixed</code> + precisione 2 forza due decimali: 19.5 diventa 19.50 in output.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file scontrino_riga.cpp
+ * @brief Importi con due decimali.
+ */
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    double imponibile = 19.5;
+    double iva = imponibile * 0.22;
+    double totale = imponibile + iva;
+
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "Imponibile: " << imponibile << '\n';
+    std::cout << "IVA 22%:    " << iva << '\n';
+    std::cout << "Totale:     " << totale << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Manipolatore | Effetto |
+|--------------|---------|
+| `std::fixed` | Notazione fissa |
+| `std::setprecision(2)` | Due cifre decimali in modo fixed |
+
+Prova a togliere `fixed` e osserva la differenza.
+
+#### 4. MODIFY (Modifica)
+1. Cambia l’imponibile a `100` e verifica i centesimi.
+2. Aggiungi una riga “Totale arrotondato visualizzato” (stesso formato).
+3. Estrai una funzione `void stampaImporto(const char* etichetta, double v)` già formattata.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Prospetto documento**
+
+`prospetto_importi.cpp`: imponibile, aliquota, IVA, totale; tutte le righe con due decimali; etichette chiare.
+
+<details>
+<summary>💡 Scaffold</summary>
 
 ```cpp
 #include <iostream>
 #include <iomanip>
 int main() {
     std::cout << std::fixed << std::setprecision(2);
-    std::cout << std::setw(10) << 19.5 << "\n";
+    // ...
     return 0;
 }
 ```
-@LIA.cpp
-
-#### 3. INVESTIGATE
-
-| Istruzione | Effetto |
-|---|---|
-| `fixed` | notazione decimale |
-| `setprecision(2)` | due centesimi |
-| `setw(10)` | colonna larga 10 |
-
-#### 4. MODIFY
-1. Stampa `1200.0` nella stessa colonna.
-2. Cambia la larghezza in `15`.
-
-#### 5. MAKE
-Scrivi `prospetto_importi.cpp` che stampa tre importi con due decimali e colonne allineate.
-
-### 📝 Riepilogo tascabile
-- `fixed` + `setprecision(2)` formatta i soldi.
-- `setw` allinea il campo successivo.
-
-## 🏢 Il Primo Reparto: una funzione che restituisce un valore
-
-> 💡 **Metafora:** una funzione è un reparto: riceve un ordine, svolge un lavoro
-> preciso e restituisce il risultato senza mostrare tutti i passaggi interni.
-
-### 🎯 Obiettivo
-Scrivere e chiamare una funzione che riceve un valore e ne restituisce uno.
+</details>
 
 ---
 
-### ⚙️ Prima del laboratorio: ingresso e uscita
+### 📝 Riepilogo tascabile
+- `#include <iomanip>` per la forma “scontrino”
+- `fixed` + `setprecision(2)` = due decimali stabili
+- Un chunk = solo output; la logica IVA resta nelle funzioni
+- Utile in ogni Make contabile successivo
+
+---
+
+### ➡️ Prossimo chunk
+Valore vs riferimento nei parametri di funzione: quando la modifica deve restare.
+
+## 🏢 Il Primo Reparto: funzioni che restituiscono un valore
+
+> "Un buon processo si scompone in reparti con responsabilità chiare."  
+> — *Organizzazione aziendale e top-down*
+
+Finora quasi tutto viveva in `main`.  
+Quando la logica cresce (IVA, sconti, commissioni), conviene **estrarre un reparto**: una **funzione** con nome, parametri e **valore di ritorno**.
+
+> 💡 **Metafora: sportello specializzato**  
+> - `calcolaIva(imponibile)` = sportello “ufficio IVA”  
+> - Gli dai l’imponibile (documento in ingresso)  
+> - Ti restituisce l’importo IVA (documento in uscita)  
+> - `main` coordina: chiede, riceve, stampa
+
+In questo chunk: funzioni **semplici** che calcolano e `return`.  
+Passaggio per riferimento e scope fine: capitolo successivo.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare e chiamare una funzione con parametri e `return`
+- Usare il risultato in `main` senza ripetere la formula
+
+---
+
+### ⚙️ Anatomia minima
 
 ```cpp
 double calcolaIva(double imponibile) {
     return imponibile * 0.22;
 }
-```
 
-`imponibile` è il dato che entra nel reparto; `return` consegna il valore
-calcolato a chi ha chiamato la funzione.
-
----
-
-### 🧭 Prima del laboratorio: chiamare il reparto
-
-```cpp
+// uso:
 double iva = calcolaIva(100.0);
 ```
 
-Il valore `100.0` entra nella funzione; `22.0` torna e viene salvato in `iva`.
+| Parte | Ruolo |
+|-------|--------|
+| Tipo di ritorno | Cosa esce dallo sportello (`double`, `int`, …) |
+| Nome | Verbo + oggetto (`calcolaIva`) |
+| Parametri | Dati in ingresso |
+| `return` | Fine del lavoro + valore |
 
 ---
 
-### 🔬 Laboratorio PRIMM: IVA di una fattura
+### 🔬 Laboratorio PRIMM: Ufficio IVA
 
-#### 1. PREDICT
+#### 1. PREDICT (Prevedi)
 
-Quale valore restituisce calcolaIva(100.0)?
+Quanto vale `calcolaIva(100.0)` con aliquota 0.22?
 
 ```cpp
 double calcolaIva(double imponibile) {
@@ -3316,932 +3349,1302 @@ double calcolaIva(double imponibile) {
 [(X)] 22
 [( )] 100
 [( )] 122
-
-#### 2. RUN
-
-```cpp
-#include <iostream>
-
-double calcolaIva(double imponibile) {
-    return imponibile * 0.22;
-}
-
-int main() {
-    double iva = calcolaIva(100.0);
-    std::cout << "IVA: " << iva << "\n";
-    return 0;
-}
-```
-@LIA.cpp
-
-#### 3. INVESTIGATE
-
-| Passo | Valore |
-|---|---|
-| Chiamata | `imponibile = 100.0` |
-| `return` | `22.0` |
-| In `main` | `iva = 22.0` |
-
-> 🔗 Osserva i due frame su [Python Tutor C++](https://pythontutor.com/cpp.html).
-
-#### 4. MODIFY
-
-<details><summary>💡 Scaffold</summary>
-
-```cpp
-double calcolaIva(double imponibile) {
-    return imponibile * 0.22;
-}
-```
-
-</details>
-
-1. Calcola l'IVA di `250.0`.
-2. Sostituisci `0.22` con `0.10` e osserva il risultato.
-3. Rinomina `imponibile` in `importoNetto` in firma e corpo.
-
-#### 5. MAKE
-
-**Scenario SIA:** scrivi `commissione_pos.cpp` con una funzione
-`calcolaCommissione(double importo)` che restituisce l'1% dell'importo e stampa
-il risultato in `main`.
-
-### 📝 Riepilogo tascabile
-- Una funzione riceve dati, svolge un lavoro e può restituire un valore.
-- `return` termina la funzione e consegna il risultato.
-- La chiamata usa il valore restituito in un'espressione.
-
-### ➡️ Prossimo chunk
-Nel prossimo chunk separeremo programmi più grandi in più reparti.
-
-## 🎯 La Fotocopia vs L'Originale: Scope e Passaggio per Riferimento (`&`)
-
-> "Il segreto del valore è chi lo possiede realmente."
->
-> — *Metafora di gestione dei dati*
-
-### Obiettivo
-- Distinguere passaggio per valore da passaggio per riferimento.
-- Comprendere lo scope delle variabili locali e globali.
-- Utilizzare `const &` per efficienza.
-
----
-
-## 📚 Teoria
-1. Passaggio per valore copia il dato.
-2. Passaggio per riferimento (`&`) passa un alias alla variabile originale.
-3. `const &` permette lettura senza copia.
-4. Scope locale vs globale.
-
----
-
-## 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-
-Cosa succede se una funzione prende un parametro per valore invece che per riferimento (`&`) quando dovrebbe modificare la variabile originale?
-
-```cpp
-void aumenta(int valore) { valore += 5; }
-void aumentaRef(int& valore) { valore += 5; }
-int x = 10;
-aumenta(x);
-// x è ?
-```
-
-[(X)] x rimane 10 (non modificato)
-[( )] x diventa 15
-[( )] Compila con errore
-[( )] Il programma crasha
-
+[( )] 0.22
 
 <details>
 <summary>💡 Spiegazione</summary>
-Il parametro per valore è una copia locale; le modifiche non si riflettono sulla variabile originale.
+100 × 0.22 = 22. La funzione restituisce solo l’IVA, non il totale documento.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file aggiorna_listino.cpp
- * @brief Funzioni per sconto e scambio prezzi.
+ * @file ufficio_iva.cpp
+ * @brief Funzione che calcola l'IVA al 22%.
  */
 #include <iostream>
 
-void applicaScontoPromozionale(double& prezzo, double percentuale) {
-    // implementazione
-}
-
-void scambiaPrezzi(double& p1, double& p2) {
-    // implementazione
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
 }
 
 int main() {
-    double a = 100.0, b = 150.0;
-    applicaScontoPromozionale(a, 10.0);
-    scambiaPrezzi(a, b);
-    std::cout << "a=" << a << " b=" << b << std::endl;
+    double imponibile = 100.0;
+    double iva = calcolaIva(imponibile);
+    double totale = imponibile + iva;
+
+    std::cout << "Imponibile: " << imponibile << '\n';
+    std::cout << "IVA:        " << iva << '\n';
+    std::cout << "Totale:     " << totale << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Usa Python Tutor per visualizzare le due variabili e l'alias dopo la chiamata.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi una versione `void applicaScontoCostante(const double& prezzo, double percentuale, double& risultato)`.
+| Momento | Cosa succede |
+|---------|----------------|
+| Chiamata | `main` sospende; parte `calcolaIva` |
+| `return` | Il valore torna a `main` in `iva` |
+| Dopo | `main` usa `iva` nel totale |
 
-### Make
-**Scenario SIA — Aggiornamento Listino e Scambio**
+> 🔗 [Python Tutor C++](https://pythontutor.com/cpp.html): osserva lo stack frame della funzione.
 
-Scrivi `aggiorna_listino.cpp` con le funzioni richieste, includendo Doxygen (`@brief`, `@param`, `@return`). Il programma deve dimostrare sconto e scambio.
+#### 4. MODIFY (Modifica)
+1. Cambia l’imponibile a `250.0` e verifica i tre importi.
+2. Aggiungi `double calcolaTotale(double imponibile)` che usa `calcolaIva` al suo interno.
+3. Documenta le funzioni con `@brief` e `@param` / `@return`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Commissione POS**
+
+`commissione_pos.cpp`:  
+- `double commissione(double importo)` → 1.2% dell’importo (o soglia minima fissa a tua scelta, documentata)  
+- `main` stampa importo, commissione e netto negoziante  
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+double commissione(double importo) {
+    return importo * 0.012;
+}
+int main() {
+    // ...
+    return 0;
+}
+```
+</details>
 
 ---
 
-
-## 🎯 La Batteria di Locker: Gli Array e le Sequenze di Dati
-
-> "Una fila di locker identici rappresenta un array, ogni locker è un elemento indicizzato."
->
-> — *Metafora di memoria contigua*
-
-### Obiettivo
-- Comprendere dichiarazione, indicizzazione e inizializzazione di array grezzi.
-- Riconoscere pericoli di out‑of‑bounds.
-- Utilizzare `for` per scorrere un array e calcolare somme, medie, min/max.
+### 📝 Riepilogo tascabile
+- Funzione = reparto con ingresso, lavoro, uscita
+- `return` consegna il risultato a chi ha chiamato
+- `main` orchestra; le funzioni specializzano
+- Un calcolo riusato → una funzione, non copia-incolla
 
 ---
 
-## 📚 Teoria
-1. Sintassi `tipo nome[DIM];`
-2. Indice parte da 0.
-3. Inizializzazione con `{}`.
-4. Limiti di indice.
-5. Confronto con `std::vector`.
+### ➡️ Prossimo chunk
+Come far sì che una funzione **modifichi** le variabili del chiamante: passaggio per **riferimento**.
+
+## 📄 Fotocopia o Originale: passaggio per valore e per riferimento
+
+> "Se ti passo la fotocopia, le tue note non restano sul documento ufficiale."  
+> — *Metafora di gestione documentale*
+
+Una funzione può ricevere:
+- una **copia** del valore (**per valore**) → modifiche locali non tornano al chiamante  
+- un **alias** della variabile originale (**per riferimento**, `&`) → le modifiche restano  
+
+> 💡 **Metafora**  
+> - Per valore = fotocopia del listino  
+> - Per riferimento (`double& prezzo`) = il listino **originale** sul bancone
+
+Lo **scope**: una variabile locale esiste solo nel blocco/funzione dove è dichiarata.
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Distinguere passaggio per valore e per riferimento
+- Scrivere una funzione che aggiorna un `double` del chiamante tramite `double&`
+
+---
+
+### ⚙️ Confronto
+
+```cpp
+void aumentaCopia(int v) { v += 5; }      // fotocopia
+void aumentaRef(int& v) { v += 5; }     // originale
+
+int x = 10;
+aumentaCopia(x);  // x resta 10
+aumentaRef(x);    // x diventa 15
+```
+
+---
+
+### 🔬 Laboratorio PRIMM: Aggiornare un prezzo
 
 #### 1. PREDICT (Prevedi)
 
+Dopo `aumenta(x)` con parametro per valore, quanto vale `x` se partiva da 10?
 
-Cosa succede se si accede a `vendite[30]` quando l'array è dichiarato con dimensione 30?
+```cpp
+void aumenta(int valore) { valore += 5; }
+int x = 10;
+aumenta(x);
+```
+
+[(X)] 10 (non modificato)
+[( )] 15
+[( )] Errore di compilazione
+[( )] Crash
+
+<details>
+<summary>💡 Spiegazione</summary>
+<code>valore</code> è una copia locale. Incrementarla non tocca <code>x</code> in <code>main</code>.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file prezzo_riferimento.cpp
+ * @brief Valore vs riferimento.
+ */
+#include <iostream>
+
+void scontoCopia(double prezzo, double perc) {
+    prezzo = prezzo * (1.0 - perc / 100.0);
+}
+
+void scontoRef(double& prezzo, double perc) {
+    prezzo = prezzo * (1.0 - perc / 100.0);
+}
+
+int main() {
+    double p1 = 100.0;
+    double p2 = 100.0;
+    scontoCopia(p1, 10.0);
+    scontoRef(p2, 10.0);
+    std::cout << "Dopo copia: " << p1 << '\n';
+    std::cout << "Dopo ref:   " << p2 << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Chiamata | Effetto su variabile in `main` |
+|----------|---------------------------------|
+| `scontoCopia` | Nessuno |
+| `scontoRef` | Prezzo aggiornato |
+
+In [Python Tutor](https://pythontutor.com/cpp.html) confronta i frame e l’alias `&`.
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `void scambia(double& a, double& b)`.
+2. Usa `const double&` in una funzione che **solo legge** il prezzo per stamparlo.
+3. Dimostra in `main` sconto + scambio.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Aggiornamento listino**
+
+`aggiorna_listino.cpp`:  
+- `applicaSconto(double& prezzo, double perc)`  
+- `scambiaPrezzi(double& a, double& b)`  
+- `main` con due prezzi di esempio  
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+void applicaSconto(double& prezzo, double perc) { /* ... */ }
+void scambiaPrezzi(double& a, double& b) { /* ... */ }
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Per valore = fotocopia; per riferimento = originale
+- `T&` nel parametro per modificare il chiamante
+- `const T&` per leggere senza copiare
+- Scope locale: fuori dal blocco la variabile non esiste
+
+---
+
+### ➡️ Prossimo chunk
+Sequenze di dati dello stesso tipo: gli **array**.
+
+## 📦 La Batteria di Locker: gli array e le sequenze di dati
+
+> "I dati non vivono isolati: vivono in elenchi."  
+> — *Principio di progettazione dei sistemi informativi*
+
+Finora ogni variabile era **uno sportello**.  
+In azienda, però, i dati arrivano a **serie**: 12 mesi di vendite, 50 codici prodotto, 100 movimenti di cassa.  
+Aprire 100 variabili diverse è insostenibile. Serve una **fila ordinata di sportelli**: l’**array**.
+
+> 💡 **Metafora: batteria di locker InPost**  
+> - L’**array** = una fila di locker **identici** e **numerati**  
+> - L’**indice** (`0`, `1`, `2`…) = il numero sullo sportello (parte da **zero**)  
+> - La **dimensione** = quanti locker hai prenotato (fissa, in C++ “grezzo”)  
+> - `vendite[3]` = “apri il locker numero 3” (il **quarto** della fila)  
+> - `vendite[30]` su 30 locker (`0`…`29`) = chiedi un locker che **non esiste** → caos
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare un array monodimensionale, indicizzarlo correttamente e scorrerlo con un `for`
+- Riconoscere e evitare l’accesso **fuori dai limiti** (out-of-bounds)
+
+---
+
+### ⚙️ In breve
+
+```cpp
+double vendite[12];          // 12 locker: indici 0..11
+vendite[0] = 1500.0;         // gennaio
+vendite[11] = 2100.0;        // dicembre
+
+for (int i = 0; i < 12; ++i) {
+    std::cout << vendite[i] << '\n';
+}
+```
+
+| Idea | Regola |
+|------|--------|
+| Indice legale | Da `0` a `N - 1` |
+| `vendite[N]` | **Fuori**: il compilatore spesso **non** ti ferma |
+| Tipo | Tutti gli elementi dello stesso tipo |
+
+---
+
+### 🔬 Laboratorio PRIMM: Vendite mensili
+
+Registriamo 6 mesi di fatturato e calcoliamo un totale.
+
+#### 1. PREDICT (Prevedi)
+
+Con `double vendite[30];`, cosa succede leggendo `vendite[30]`?
 
 ```cpp
 double vendite[30];
-// ...
 double x = vendite[30];
 ```
 
-[(X)] Compila ma legge valore casuale (out‑of‑bounds)
-[( )] Compila e stampa 0
-[( )] Errore di compilazione
-[( )] Il programma non avvia
+[( )] Compila e legge 0
+[(X)] Compila ma comportamento indefinito (indice fuori range)
+[( )] Errore di compilazione obbligatorio
+[( )] Il programma non parte
 
-
-<details><summary>💡 Spiegazione</summary>Indice 30 è fuori dall’intervallo valido `[0‑29]`; il comportamento è indefinito.
+<details>
+<summary>💡 Spiegazione</summary>
+Con dimensione 30 gli indici validi sono 0…29. L’indice 30 è fuori: il C++ non obbliga un controllo a runtime; il risultato è indefinito.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
+Digita e premi **Run**.
+
 ```cpp
 /**
- * @file controllo_vendite.cpp
- * @brief Analisi vendite di 30 giorni.
+ * @file vendite_semestre.cpp
+ * @brief Totale vendite su sei mesi (array).
  */
 #include <iostream>
 
 int main() {
-    double vendite[30] = { /* dati simulati */ };
+    double vendite[6] = {1200.0, 980.0, 1500.0, 1100.0, 1300.0, 1600.0};
     double totale = 0.0;
-    double max = vendite[0];
-    double min = vendite[0];
-    for (int i = 0; i < 30; ++i) {
-        totale += vendite[i];
-        if (vendite[i] > max) max = vendite[i];
-        if (vendite[i] < min) min = vendite[i];
+
+    for (int i = 0; i < 6; ++i) {
+        totale = totale + vendite[i];
+        std::cout << "Mese " << (i + 1) << ": " << vendite[i] << '\n';
     }
-    std::cout << "Totale=" << totale << " Media=" << totale/30 << " Max=" << max << " Min=" << min << "\n";
+    std::cout << "Totale semestre: " << totale << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Usa Python Tutor per visualizzare l’intero blocco di memoria dell’array.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi conteggio dei giorni con incasso > soglia (es. 1000 €).
+| Elemento | Ruolo |
+|----------|--------|
+| `vendite[6]` | Sei celle contigue di `double` |
+| `i` da 0 a 5 | Visita ogni locker una volta |
+| `totale = totale + vendite[i]` | Accumulo (stesso schema del `while` contabile) |
 
-### Make
-**Scenario SIA — Controllo Vendite Mensili con Array**
+> 🔗 Copia il programma su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva l’array nella memoria.
 
-Scrivi `controllo_vendite.cpp` includendo Doxygen (`@brief`, `@param`, `@return`). Il programma deve calcolare totale, media, max, min e giorni sopra soglia.
+#### 4. MODIFY (Modifica)
+1. Cambia un valore in inizializzazione e verifica il nuovo totale.
+2. Stampa anche la **media** (`totale / 6`).
+3. Trova e stampa il **mese con fatturato massimo** (indice + valore).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Controllo vendite annuali**
+
+Scrivi `controllo_vendite.cpp`:
+- Array di **12** `double` (un anno)
+- Inizializza con valori di esempio (o input se preferisci)
+- Stampa totale, media, mese di massimo fatturato (1–12, non 0–11 in output)
+- Documentazione Doxygen se superi ~15 righe
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+int main() {
+    double vendite[12] = {/* ... */};
+    // totale, media, max
+    return 0;
+}
+```
+</details>
 
 ---
 
-
-## 🎯 Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili
-
-> "Una tabella Excel è una griglia di dati dove ogni cella ha riga e colonna."
->
-> — *Metafora di matrici* 
-
-### Obiettivo
-- Dichiarare e inizializzare matrici 2‑dimensionali.
-- Implementare ricerca lineare in una matrice.
-- Utilizzare cicli annidati per scorrere righe e colonne.
-- Formattare output con `<iomanip>`.
+### 📝 Riepilogo tascabile
+- Array = fila di sportelli **stesso tipo**, indici da **0**
+- L’ultimo indice valido è **N − 1**
+- Fuori range = bug silenzioso tipico
+- Si scorre quasi sempre con un `for`
 
 ---
 
-## 📚 Teoria
-1. Sintassi `tipo nome[RIGHE][COLONNE];`
-2. Inizializzazione con `{{...},{...}}`.
-3. Accesso `mat[r][c]`.
-4. Ricerca lineare su matrice.
-5. Formattazione con `std::setw`, `std::fixed`.
+### ➡️ Prossimo chunk
+Quando i dati sono a **griglia** (reparti × mesi), serve un array a **due dimensioni**.
+
+## 📊 Il Foglio Excel in Memoria: array bidimensionali
+
+> "Una tabella è il modo più naturale di organizzare dati aziendali."  
+> — *Pratica di reporting gestionale*
+
+Un array monodimensionale è una **riga**.  
+Spesso i report sono **griglie**: righe = reparti, colonne = mesi o trimestri.  
+In C++ usiamo un **array bidimensionale** (matrice).
+
+> 💡 **Metafora: foglio Excel**  
+> - `vendite[r][c]` = cella all’incrocio **riga r**, **colonna c**  
+> - Prima dimensione = righe (reparti)  
+> - Seconda = colonne (periodi)  
+> - Anche qui gli indici partono da **0**
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare e scorrere un array `tipo nome[RIGHE][COLONNE]`
+- Calcolare totali per riga (o per colonna) su dati tabellari
+
+---
+
+### ⚙️ In breve
+
+```cpp
+// 2 reparti × 3 mesi
+double vendite[2][3] = {
+    {1000.0, 1200.0, 900.0},   // reparto 0
+    {800.0,  950.0,  1100.0}   // reparto 1
+};
+```
+
+Due cicli annidati: esterno sulle righe, interno sulle colonne.
+
+---
+
+### 🔬 Laboratorio PRIMM: Due reparti, tre mesi
 
 #### 1. PREDICT (Prevedi)
 
-
-Se inverti l'ordine dei due cicli `for` annidati in una matrice 2×3, in che ordine vengono stampati gli elementi?
+In `int m[2][3];`, quanti elementi ci sono e qual è l’ultimo indice di colonna?
 
 ```cpp
-int mat[2][3] = {{1,2,3},{4,5,6}};
-// ciclo interno primo
-for (int i=0;i<2;i++){
-  for (int j=0;j<3;j++){
-    std::cout << mat[i][j];
-  }
-}
-// ciclo esterno primo (invertito)
-// ...
+int m[2][3];
 ```
 
-[(X)] 1 2 3 4 5 6
-[( )] 1 4 2 5 3 6
-[( )] 4 5 6 1 2 3
-[( )] Errore di compilazione
+[(X)] 6 elementi; colonne 0..2
+[( )] 5 elementi; colonne 1..3
+[( )] 6 elementi; colonne 1..3
+[( )] 2 elementi in tutto
 
-
-<details><summary>💡 Spiegazione</summary>Il ciclo interno stampa per ogni riga tutti gli elementi della colonna, quindi l'ordine naturale è riga‑per‑riga.
+<details>
+<summary>💡 Spiegazione</summary>
+<code>int m[2][3]</code> ha 2×3 = 6 elementi. Le colonne sono indicizzate 0, 1, 2.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file matrici_fatturazione.cpp
- * @brief Analisi fatturazione mensile usando una matrice 4×12.
+ * @file matrice_vendite.cpp
+ * @brief Totale per reparto su tre mesi.
  */
 #include <iostream>
-#include <iomanip>
 
 int main() {
-    const int R = 4, C = 12;
-    double fatt[R][C] = { /* dati simulati */ };
-    // stampa con formattazione
-    std::cout << std::fixed << std::setprecision(2);
-    for (int r=0; r<R; ++r) {
-        for (int c=0; c<C; ++c) {
-            std::cout << std::setw(8) << fatt[r][c];
+    double vendite[2][3] = {
+        {1000.0, 1200.0, 900.0},
+        {800.0, 950.0, 1100.0}
+    };
+
+    for (int r = 0; r < 2; ++r) {
+        double subtotale = 0.0;
+        for (int c = 0; c < 3; ++c) {
+            subtotale = subtotale + vendite[r][c];
         }
-        std::cout << "\n";
+        std::cout << "Reparto " << r << " totale: " << subtotale << '\n';
     }
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Usa Python Tutor per visualizzare la memoria lineare della matrice.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi ricerca di un valore soglia (es. fatturato > 50000) e stampa le coordinate (riga, colonna).
+| Variabile | Significato |
+|-----------|-------------|
+| `r` | Indice di riga (reparto) |
+| `c` | Indice di colonna (mese) |
+| `subtotale` | Si azzera a ogni nuova riga |
 
-### Make
-**Scenario SIA — Griglia di fatturazione mensile**
+Segui con [Python Tutor](https://pythontutor.com/cpp.html) l’ordine delle celle visitate.
 
-Scrivi `matrici_fatturazione.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve stampare la matrice formattata e individuare il valore massimo.
+#### 4. MODIFY (Modifica)
+1. Aggiungi un terzo reparto (matrice `3×3`) e aggiorna i cicli.
+2. Stampa anche il **totale generale** di tutta la matrice.
+3. Stampa i totali **per colonna** (per mese).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Vendite per reparto e trimestre**
+
+`vendite_reparti.cpp`: matrice **3 reparti × 4 trimestri**, totali per riga, per colonna e complessivo. Output leggibile.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+int main() {
+    const int R = 3, C = 4;
+    double v[R][C] = { /* ... */ };
+    // cicli annidati
+    return 0;
+}
+```
+</details>
 
 ---
 
-
-## 🎯 Il Biglietto di Ritiro: Indirizzi di Memoria, Operatori & e * e Puntatori
-
-> "Un puntatore è un biglietto che indica dove si trova la merce."
->
-> — *Metafora di memoria*
-
-### Obiettivo
-- Comprendere gli operatori `&` (indirizzo) e `*` (dereferenza).
-- Usare `nullptr` e verificare la validità del puntatore.
-- Visualizzare lo stack con Python Tutor per capire la relazione tra puntatore e variabile.
+### 📝 Riepilogo tascabile
+- Matrice = foglio a righe e colonne
+- `m[i][j]`: prima riga, poi colonna
+- Quasi sempre **due** `for` annidati
+- Stessi pericoli di out-of-bounds, su due assi
 
 ---
 
-## 📚 Teoria
-1. `int* p;` dichiara un puntatore a `int`.
-2. `p = &var;` assegna l’indirizzo di `var`.
-3. `*p` accede al valore puntato.
-4. `nullptr` indica nessun puntatore valido.
-5. Puntatori a array e passaggio a funzioni.
+### ➡️ Prossimo chunk
+Dietro ogni array c’è un indirizzo in memoria: introduciamo i **puntatori** in modo guidato e cauto.
+
+## 🔑 Il Numero dello Sportello: puntatori e indirizzi
+
+> "Non ti do la merce: ti do la chiave del locker."  
+> — *Metafora operativa*
+
+Finora passavamo **valori** (copie) o **riferimenti** (`&` nei parametri).  
+Un **puntatore** è una variabile che memorizza l’**indirizzo** di un’altra variabile: il *numero dello sportello*, non la merce.
+
+> 💡 **Metafora**  
+> - `x` = merce nel locker  
+> - `&x` = numero civico dello sportello  
+> - `int* p` = foglietto su cui è scritto un numero di sportello  
+> - `p = &x` = “annota l’indirizzo di x”  
+> - `*p` = “apri lo sportello indicato e usa la merce”
+
+In questo chunk **non** usiamo ancora `new`/`delete`: solo puntatori a variabili automatiche.
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare un puntatore, assegnargli `&variabile` e usare `*` per leggere/scrivere
+- Spiegare la differenza tra l’indirizzo (`p`) e il valore puntato (`*p`)
+
+---
+
+### ⚙️ In breve
+
+```cpp
+int giacenza = 40;
+int* p = &giacenza;   // p contiene l'indirizzo di giacenza
+std::cout << *p;      // 40
+*p = 35;              // modifica giacenza tramite il puntatore
+```
+
+---
+
+### 🔬 Laboratorio PRIMM: Aggiornare la giacenza via puntatore
 
 #### 1. PREDICT (Prevedi)
 
-
-Dati `int a = 10; int* p = &a; *p = 20;`, quanto vale `a`?
+Dopo `int x = 10; int* p = &x; *p = 25;`, quanto vale `x`?
 
 ```cpp
-int a = 10;
-int* p = &a;
-*p = 20; // modifica a
+int x = 10;
+int* p = &x;
+*p = 25;
 ```
 
-[(X)] 20
 [( )] 10
-[( )] Compila con errore
-[( )] Il programma crasha
+[(X)] 25
+[( )] Indefinito
+[( )] L’indirizzo di x
 
-
-<details><summary>💡 Spiegazione</summary>Il dereferenziamento `*p = 20` modifica direttamente la variabile `a`.
+<details>
+<summary>💡 Spiegazione</summary>
+<code>*p = 25</code> scrive nello sportello di <code>x</code>, perché <code>p</code> punta a <code>x</code>. Quindi <code>x</code> diventa 25.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file gestione_fido.cpp
- * @brief Gestione di un fido bancario tramite puntatore.
+ * @file puntatore_giacenza.cpp
+ * @brief Modifica di una variabile tramite puntatore.
  */
 #include <iostream>
 
-void aggiornaFido(double* fido, double importo) {
-    if (fido && importo > 0) {
-        *fido += importo;
-    }
-}
-
 int main() {
-    double fido = 5000.0;
-    aggiornaFido(&fido, 1200.0);
-    std::cout << "Fido aggiornato: " << fido << std::endl;
+    int giacenza = 40;
+    int* p = &giacenza;
+
+    std::cout << "Prima: " << giacenza << '\n';
+    *p = *p - 5;  // scarico 5 pezzi
+    std::cout << "Dopo:  " << giacenza << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Usa Python Tutor per visualizzare il collegamento tra `a` e `p`.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi una funzione `void resetFido(double* fido)` che imposta a zero, controllando `nullptr`.
+| Espressione | Cosa rappresenta |
+|-------------|------------------|
+| `giacenza` | Valore (merce) |
+| `&giacenza` | Indirizzo |
+| `p` | Copia dell’indirizzo |
+| `*p` | Merce nello sportello puntato |
 
-### Make
-**Scenario SIA — Gestione Fido Bancario tramite Puntatore**
+Osserva in [Python Tutor](https://pythontutor.com/cpp.html) le frecce tra `p` e `giacenza`.
 
-Scrivi `gestione_fido.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve incrementare il fido e stampare il risultato.
+#### 4. MODIFY (Modifica)
+1. Stampa anche l’indirizzo con `std::cout << p;` (vedrai un hex).
+2. Crea `double prezzo` e un `double*` che lo aggiorna (+IVA 22%).
+3. Scrivi una funzione `void azzera(int* q)` che mette a 0 la variabile puntata.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scambio prezzi listino**
+
+`scambia_prezzi_ptr.cpp`: funzione `void scambia(double* a, double* b)` che scambia due prezzi **via puntatori**. In `main`, dimostra lo scambio su due variabili.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+void scambia(double* a, double* b) {
+    double tmp = *a;
+    // ...
+}
+int main() {
+    double p1 = 10.0, p2 = 20.0;
+    scambia(&p1, &p2);
+    return 0;
+}
+```
+</details>
 
 ---
 
-
-## 🎯 L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct`)
-
-> "Un enum è il timbro ufficiale dello stato pratica; una struct è la cartella anagrafica."
->
-> — *Metafora di dati aziendali*
-
-### Obiettivo
-- Creare `enum class` per stati discreti.
-- Definire `struct` per raggruppare dati eterogenei.
-- Usare `const &` per passare struct a funzione di stampa.
-- Formattare output con `<iomanip>`.
+### 📝 Riepilogo tascabile
+- Puntatore = variabile che tiene un **indirizzo**
+- `&x` indirizzo; `*p` valore puntato
+- `*p = …` modifica la variabile originale
+- In questo corso: prima i puntatori “semplici”, allocazione dinamica più avanti se serve
 
 ---
 
-## 📚 Teoria
-1. Sintassi `enum class Nome { ... };` evita conflitti.
-2. `struct Nome { ... };` raggruppa campi.
-3. Accesso con `.` e `->`.
-4. Passaggio per riferimento costante per evitare copie.
-5. Doxygen per documentare enum e struct.
+### ➡️ Prossimo chunk
+Raggruppiamo dati eterogenei (`struct`) e stati discreti (`enum`) come in un record anagrafico.
+
+## 🏷️ Stati e Schede Anagrafiche: `enum` e `struct`
+
+> "Un codice magazzino non è un intero a caso: è un *significato*."  
+> — *Disciplina dei dati master*
+
+`int stato = 2` è opaco: 2 cosa?  
+Un **`enum class`** dà **nomi** agli stati.  
+Una **`struct`** unisce campi eterogenei in una **scheda** (come una riga di anagrafica).
+
+> 💡 **Metafora: cartellino prodotto + semaforo stato**  
+> - `struct Articolo` = cartellino (codice, descrizione, prezzo)  
+> - `enum class Stato` = semaforo (`Disponibile`, `Esaurito`, `Sospeso`)
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Definire un `enum class` e una `struct` semplice
+- Creare variabili struct, assegnare campi e stamparli
+
+---
+
+### ⚙️ In breve
+
+```cpp
+enum class Stato { Disponibile, Esaurito, Sospeso };
+
+struct Articolo {
+    std::string codice;
+    std::string nome;
+    double prezzo;
+    Stato stato;
+};
+```
+
+Accesso ai campi: `a.prezzo`, `a.stato = Stato::Disponibile`.
+
+---
+
+### 🔬 Laboratorio PRIMM: Scheda articolo
 
 #### 1. PREDICT (Prevedi)
 
-
-Se assegno `Ordine o2 = o1;`, cosa succede alla memoria?
+Con `enum class Stato { Attivo, Sospeso };`, cosa stampa il confronto tra due variabili entrambe `Attivo`?
 
 ```cpp
-enum class StatoOrdine { InAttesa, Confermato, Spedito, Annullato };
-struct Ordine { int id; std::string cliente; double importo; StatoOrdine stato; };
-Ordine o1{1,"Mario",100.0,StatoOrdine::InAttesa};
-Ordine o2 = o1; // copia
+enum class Stato { Attivo, Sospeso };
+Stato a = Stato::Attivo;
+Stato b = Stato::Attivo;
+// a == b ?
 ```
 
-[(X)] Viene copiata campo per campo, occupa nuova memoria
-[( )] Viene condivisa la stessa memoria (alias)
-[( )] Compila con errore perché le struct non sono copiabili
-[( )] Il programma crasha
+[(X)] Sono uguali (true)
+[( )] Non si possono confrontare
+[( )] Sono sempre diversi
+[( )] Compila solo con int
 
-
-<details><summary>💡 Spiegazione</summary>La copia è profonda per i campi semplici; per campi `std::string` viene effettuata una copia della stringa.
+<details>
+<summary>💡 Spiegazione</summary>
+I valori dello stesso <code>enum class</code> si confrontano con <code>==</code>. Due variabili <code>Attivo</code> risultano uguali.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file enum_struct.cpp
- * @brief Esempio di enum class e struct per ordini.
+ * @file scheda_articolo.cpp
+ * @brief Struct + enum class per anagrafica di magazzino.
  */
 #include <iostream>
 #include <string>
-#include <iomanip>
 
-enum class StatoOrdine { InAttesa, Confermato, Spedito, Annullato };
+enum class Stato { Disponibile, Esaurito, Sospeso };
 
-struct Ordine {
-    int idOrdine;
-    std::string cliente;
-    double importoTotale;
-    StatoOrdine stato;
+struct Articolo {
+    std::string codice;
+    std::string nome;
+    double prezzo;
+    Stato stato;
 };
 
-void stampaScheda(const Ordine& o) {
-    std::cout << std::fixed << std::setprecision(2);
-    std::cout << "ID: " << o.idOrdine << " Cliente: " << o.cliente
-              << " Importo: " << o.importoTotale << " Stato: " << static_cast<int>(o.stato) << "\n";
-}
-
 int main() {
-    Ordine o{1, "Mario Rossi", 1234.56, StatoOrdine::InAttesa};
-    stampaScheda(o);
+    Articolo a;
+    a.codice = "A-100";
+    a.nome = "Carta A4";
+    a.prezzo = 4.50;
+    a.stato = Stato::Disponibile;
+
+    std::cout << a.codice << " — " << a.nome
+              << " — € " << a.prezzo << '\n';
+    if (a.stato == Stato::Disponibile) {
+        std::cout << "Stato: disponibile\n";
+    }
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Visualizza con Python Tutor l’allocazione di `Ordine` e la copia.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi funzione `void aggiornaStato(Ordine& o, StatoOrdine nuovo)`.
+| Costrutto | Perché usarlo |
+|-----------|----------------|
+| `enum class` | Evita numeri magici; scope proprio (`Stato::…`) |
+| `struct` | Un solo nome per più campi correlati |
+| `a.campo` | Accesso diretto al campo |
 
-### Make
-**Scenario SIA — Definizione di struct Dipendente e stampa scheda ordine**
+#### 4. MODIFY (Modifica)
+1. Aggiungi il campo `int giacenza`.
+2. Se `giacenza == 0`, imposta `stato = Stato::Esaurito`.
+3. Scrivi una funzione `void stampa(const Articolo& x)` (passaggio per riferimento const).
 
-Scrivi `enum_struct.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve creare un ordine, stamparne i dati e consentire aggiornamento stato.
+#### 5. MAKE (Crea)
+**Scenario SIA — Anagrafica articolo completa**
 
----
+`anagrafica_articolo.cpp`: `struct` + `enum class`, almeno due articoli in `main`, stampa formattata, stato coerente con la giacenza.
 
-
-## 🎯 Il Dizionario Magico: La Ricerca Dicotomica (Binaria)
-
-> "Il dizionario è un elenco ordinato: trovare una voce è una ricerca binaria."
->
-> — *Metafora di ricerca*
-
-### Obiettivo
-- Comprendere i requisiti di un array ordinato.
-- Implementare l'algoritmo di ricerca binaria (indice iniziale, finale, medio).
-- Analizzare la complessità O(log n).
-
----
-
-## 📚 Teoria
-1. L'array deve essere **ordinato**.
-2. Algoritmo: confronta `target` con elemento medio, riduce intervallo a metà.
-3. Convergenza quando `inizio > fine` → valore non trovato.
-
----
-
-## 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-
-Se l'array ha 1.024 elementi ordinati, quanti passi al massimo servono per trovare un valore con ricerca binaria?
+<details>
+<summary>💡 Scaffold</summary>
 
 ```cpp
-// array di 1024 elementi ordinati
-// ricerca binaria di un valore
+#include <iostream>
+#include <string>
+enum class Stato { /* ... */ };
+struct Articolo { /* ... */ };
+void stampa(const Articolo& x) { /* ... */ }
+int main() { /* ... */ return 0; }
 ```
-
-[(X)] 10
-[( )] 9
-[( )] 11
-[( )] 12
-
-
-<details><summary>💡 Spiegazione</summary>2¹⁰ = 1024, quindi al massimo 10 confronti.
 </details>
 
-### Run
-```cpp
-/**
- * @file ricerca_binaria.cpp
- * @brief Ricerca binaria su array ordinato.
- */
-#include <iostream>
+---
 
-int ricercaBinaria(const double arr[], int n, double target) {
-    int inizio = 0, fine = n - 1;
-    while (inizio <= fine) {
-        int medio = (inizio + fine) / 2;
-        if (arr[medio] == target) return medio;
-        if (arr[medio] < target) inizio = medio + 1;
-        else fine = medio - 1;
-    }
-    return -1; // non trovato
-}
-
-int main() {
-    double dati[5] = {10, 20, 30, 40, 50};
-    int idx = ricercaBinaria(dati, 5, 30);
-    std::cout << "Indice: " << idx << std::endl;
-    return 0;
-}
-```
-@LIA.cpp
-
-### Investigate
-Visualizza con Python Tutor l'aggiornamento di `inizio` e `fine` ad ogni iterazione.
-
-### Modify
-Aggiungi parametro `bool verbose` per stampare i passi eseguiti.
-
-### Make
-**Scenario SIA — Ricerca istantanea del prezzo di un articolo in un catalogo ordinato**
-
-Scrivi `ricerca_binaria.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve leggere un array, cercare un valore e stampare l'indice o -1.
+### 📝 Riepilogo tascabile
+- `enum class` = stati con nome
+- `struct` = scheda con più campi
+- `oggetto.campo` per leggere/scrivere
+- Preferisci `const Struct&` in lettura (niente copia inutile)
 
 ---
 
+### ➡️ Prossimo chunk
+Cercare un codice in un listino ordinato: **ricerca dicotomica**.
 
-## 🎯 Riordinare le Carte: L'Algoritmo Selection Sort
+## 🔍 Trovare il Codice nel Listino: ricerca dicotomica
 
-> "Un mazzo di carte sparso viene ordinato scegliendo il più piccolo e piazzandolo in prima posizione, ripetendo il processo."
->
-> — *Metafora di ordinamento* 
+> "Non sfogliare tutto il catalogo se è già in ordine alfabetico."  
+> — *Efficienza operativa*
 
-### Obiettivo
-- Implementare Selection Sort.
-- Analizzare la sua complessità O(n²).
-- Riconoscere che il numero di confronti è indipendente dallo stato iniziale dell'array.
+Cercare un codice prodotto scorrendo **tutto** l’array funziona, ma su listini lunghi è costoso.  
+Se il listino è **ordinato**, possiamo usare la **ricerca dicotomica** (binaria): a ogni passo dimezziamo l’intervallo.
 
----
-
-## 📚 Teoria
-1. Per ogni posizione `i` si cerca l'elemento minimo tra `i` e `n‑1`.
-2. Si scambia il minimo trovato con `arr[i]`.
-3. Il ciclo interno effettua `(n‑i‑1)` confronti; somma totale `n·(n‑1)/2`.
+> 💡 **Metafora: elenco telefonico (o catalogo a pagine)**  
+> Apri a metà: il nome cercato è prima o dopo?  
+> Scarti metà elenco e ripeti.  
+> **Precondizione:** l’elenco deve essere **già ordinato**.
 
 ---
 
-## 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-
-Se l'array è già ordinato, quanti confronti fa comunque il Selection Sort?
-
-```cpp
-int arr[5] = {1,2,3,4,5};
-// algoritmo selection sort
-```
-
-[(X)] Il numero di confronti è sempre lo stesso (n·(n‑1)/2)
-[( )] Zero, poiché l'algoritmo riconosce l'array ordinato
-[( )] n‑1 confronti
-[( )] Dipende dalla presenza di duplicati
-
-
-<details><summary>💡 Spiegazione</summary>Selection Sort non verifica se l'array è già ordinato; continua a confrontare tutti gli elementi.
-</details>
-
-### Run
-```cpp
-/**
- * @file selection_sort.cpp
- * @brief Implementazione di Selection Sort per array di double.
- */
-#include <iostream>
-#include <iomanip>
-
-void selectionSort(double arr[], int n) {
-    for (int i = 0; i < n - 1; ++i) {
-        int minIdx = i;
-        for (int j = i + 1; j < n; ++j) {
-            if (arr[j] < arr[minIdx]) minIdx = j;
-        }
-        if (minIdx != i) std::swap(arr[i], arr[minIdx]);
-    }
-}
-
-int main() {
-    double prezzi[5] = {250.0, 100.0, 150.0, 200.0, 50.0};
-    selectionSort(prezzi, 5);
-    std::cout << std::fixed << std::setprecision(2);
-    for (double p : prezzi) std::cout << p << " ";
-    std::cout << "\n";
-    return 0;
-}
-```
-@LIA.cpp
-
-### Investigate
-Usa Python Tutor per osservare il ciclo interno e gli scambi.
-
-### Modify
-Aggiungi versione `void selectionSortDesc(double arr[], int n)` che ordina decrescente.
-
-### Make
-**Scenario SIA — Ordinamento del listino prezzi con Selection Sort**
-
-Scrivi `selection_sort.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve ordinare un array di prezzi e stamparli.
-
----
-
-
-
-
-## 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Spiegare la differenza tra Merge Sort e Quick Sort e quando usarli.
-- Implementare entrambi gli algoritmi in C++.
-- Analizzare la complessità temporale e spaziale dei due algoritmi.
+- Implementare una ricerca binaria su un array di interi **ordinato**
+- Spiegare perché l’ordine dei dati è obbligatorio
 
 ---
 
-### 💡 La Metafora Guida
-> **Metafora:** *Il reparto amministrativo che deve organizzare migliaia di pratiche* – per **Merge Sort** dividiamo le pratiche in pile più piccole, le ordiniamo singolarmente e poi le fondiamo; per **Quick Sort** scegliamo una pratica “pivot” e separiamo le pratiche minori e maggiori attorno a essa, ripetendo ricorsivamente.
+### ⚙️ Idea dell’algoritmo
+1. `low = 0`, `high = N - 1`
+2. Finché `low <= high`: guarda il centro `mid`
+3. Se `a[mid] == chiave` → trovato  
+4. Se `a[mid] < chiave` → cerca a destra (`low = mid + 1`)  
+5. Altrimenti cerca a sinistra (`high = mid - 1`)
 
 ---
 
-### ⚙️ Concetto in breve
-| Algoritmo | Principio | Complessità Media | Uso consigliato |
-|----------|-----------|-------------------|-----------------|
-| Merge Sort | Divide‑et‑impera, fusione di sotto‑array ordinati | `O(n log n)` tempo, `O(n)` spazio | Dati molto grandi, stabilità richiesta |
-| Quick Sort | Sceglie un pivot e partiziona in‑place | `O(n log n)` medio, `O(n²)` peggiore | Quando lo spazio è critico e i dati sono casuali |
-
----
-
-### ⚠️ Tranelli tipici
-- **Merge Sort:** dimenticare di copiare gli elementi temporaneamente può corrompere l’array.
-- **Quick Sort:** scegliere un pivot pessimo (es. il primo elemento in un array già ordinato) porta a degradazione quadratica.
-
----
-
-### 🔬 Laboratorio PRIMM: *Ordinamento aziendale*
+### 🔬 Laboratorio PRIMM: Codici prodotto ordinati
 
 #### 1. PREDICT (Prevedi)
 
-Nel merge sort, cosa fa la fase "merge"?
+La ricerca binaria su un array disordinato è affidabile?
+
+```cpp
+// array NON ordinato
+// binary_search(...)
+```
+
+[( )] Sì, sempre
+[(X)] No: richiede array ordinato
+[( )] Solo se tutti pari
+[( )] Solo su stringhe
+
+<details>
+<summary>💡 Spiegazione</summary>
+La dicotomica assume ordinamento. Su dati disordinati può “perdere” elementi ancora presenti.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file ricerca_codice.cpp
+ * @brief Ricerca binaria su codici prodotto ordinati.
+ */
+#include <iostream>
+
+int main() {
+    int codici[8] = {100, 150, 200, 250, 300, 350, 400, 450};
+    int chiave = 300;
+    int low = 0;
+    int high = 7;
+    int trovato = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (codici[mid] == chiave) {
+            trovato = mid;
+            break;
+        } else if (codici[mid] < chiave) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    if (trovato >= 0) {
+        std::cout << "Trovato in posizione " << trovato << '\n';
+    } else {
+        std::cout << "Non presente\n";
+    }
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Passo | Cosa osservare |
+|-------|----------------|
+| `mid` | Sempre un indice nell’intervallo corrente |
+| `low` / `high` | Si restringono; non devono “incrociarsi” senza uscita |
+| Array | Deve restare ordinato in modo non decrescente |
+
+Simula a mano 2–3 iterazioni su carta, poi [Python Tutor](https://pythontutor.com/cpp.html).
+
+#### 4. MODIFY (Modifica)
+1. Cambia `chiave` in un valore assente e verifica il messaggio.
+2. Estrai una funzione `int cerca(const int a[], int n, int chiave)` che restituisce l’indice o `-1`.
+3. Conta quante volte si esegue il corpo del `while` (confronti).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Verifica codice EAN interno**
+
+`cerca_codice.cpp`: array ordinato di codici, input della chiave (o costante), stampa posizione o “non trovato”. Funzione dedicata alla ricerca.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+int cerca(const int a[], int n, int chiave) {
+    // binary search
+    return -1;
+}
+int main() { /* ... */ return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Dicotomica = dimezza l’intervallo a ogni passo
+- **Solo** su sequenze ordinate
+- Restituisci indice o `-1`
+- Molto più scalabile della scansione lineare su listini lunghi
+
+---
+
+### ➡️ Prossimo chunk
+Per usare la ricerca binaria serve spesso **ordinare** prima i dati: selection sort.
+
+## 🗂️ Riordinare il Listino: selection sort
+
+> "Metti in ordine i prezzi prima di cercare il migliore."  
+> — *Pratica di listino*
+
+La ricerca binaria chiede dati ordinati.  
+Un algoritmo semplice da capire (non il più veloce in assoluto) è il **selection sort**: a ogni passo **seleziona il minimo** della parte non ancora ordinata e lo mette al suo posto.
+
+> 💡 **Metafora: riorganizzare scaffali**  
+> Scaffale disordinato di prezzi.  
+> 1) Trova il più basso tra quelli ancora fuori posto  
+> 2) Scambialo con la prima posizione libera  
+> 3) Avanza e ripeti
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Implementare selection sort su un array di `double` (o `int`)
+- Spiegare il ruolo del doppio ciclo e dello scambio
+
+---
+
+### 🔬 Laboratorio PRIMM: Prezzi da ordinare
+
+#### 1. PREDICT (Prevedi)
+
+Selection sort, a ogni passo esterno, cosa fa?
+
+```cpp
+// for i ...
+//   cerca minimo in i..n-1
+//   scambia con posizione i
+```
+
+[(X)] Sceglie il minimo della parte non ordinata e lo mette in posizione i
+[( )] Divide sempre a metà l’array
+[( )] Ordina solo i numeri pari
+[( )] Usa obbligatoriamente un secondo array
+
+<details>
+<summary>💡 Spiegazione</summary>
+A ogni iterazione esterna il minimo della coda non ordinata viene portato in testa a quella coda.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file selection_prezzi.cpp
+ * @brief Ordinamento crescenti di prezzi con selection sort.
+ */
+#include <iostream>
+
+int main() {
+    double prezzi[6] = {12.5, 4.0, 9.9, 3.5, 20.0, 7.25};
+    const int n = 6;
+
+    for (int i = 0; i < n - 1; ++i) {
+        int iMin = i;
+        for (int j = i + 1; j < n; ++j) {
+            if (prezzi[j] < prezzi[iMin]) {
+                iMin = j;
+            }
+        }
+        if (iMin != i) {
+            double tmp = prezzi[i];
+            prezzi[i] = prezzi[iMin];
+            prezzi[iMin] = tmp;
+        }
+    }
+
+    for (int i = 0; i < n; ++i) {
+        std::cout << prezzi[i] << ' ';
+    }
+    std::cout << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Ciclo | Compito |
+|-------|---------|
+| Esterno `i` | Posizione da “fissare” |
+| Interno `j` | Cerca l’indice del minimo in `i..n-1` |
+| Scambio | Porta il minimo in posizione `i` |
+
+Esegui a mano il primo passaggio su un array di 4 elementi.
+
+#### 4. MODIFY (Modifica)
+1. Ordina in **ordine decrescente**.
+2. Estrai `void selectionSort(double a[], int n)`.
+3. Conta quanti scambi effettivi (quando `iMin != i`).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Listino prezzi ordinato**
+
+`ordina_prezzi.cpp`: almeno 8 prezzi, selection sort, stampa prima/dopo. Funzione dedicata all’ordinamento.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+void selectionSort(double a[], int n) { /* ... */ }
+int main() { /* ... */ return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Selection sort: minimo → posizione successiva
+- Due `for` annidati; scambi semplici
+- Facile da spiegare; non è il più efficiente su grandi N
+- Utile per listini piccoli e per capire l’idea di ordinamento
+
+---
+
+### ➡️ Prossimo chunk
+Strategie *divide et impera* (merge sort) per ordinamenti più scalabili.
+
+## 🧩 Dividere per Ordinare: idea del merge sort
+
+> "Ordina i reparti separatamente, poi unisci i due elenchi già ordinati."  
+> — *Divide et impera in magazzino*
+
+Selection sort è chiaro ma, su tanti dati, fa molti confronti.  
+Il **merge sort** applica *divide et impera*: spezza, ordina le parti, **fonde** (merge) due sequenze già ordinate.
+
+In questo chunk ci concentriamo sull’idea e sulla **fase di merge** (il cuore comprensibile e utile anche da solo). Un’implementazione ricorsiva completa può seguire dopo aver visto la ricorsione.
+
+> 💡 **Metafora: due pile di fatture già ordinate per data**  
+> Unisci in un’unica pila ordinata confrontando sempre le due “teste”.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Spiegare l’idea divide-et-impera del merge sort
+- Implementare la **fusione** di due array monodimensionali già ordinati
+
+---
+
+### 🔬 Laboratorio PRIMM: Unire due listini ordinati
+
+#### 1. PREDICT (Prevedi)
+
+Qual è il ruolo principale della fase di merge?
 
 ```cpp
 // due metà già ordinate → una sequenza ordinata
 ```
 
-[( )] Divide l'array a metà
-[(X)] Fonde due sottosequenze ordinate
-[( )] Scambia solo due elementi
-> Quale dei seguenti casi peggiori può far degenerare Quick Sort a `O(n²)`?
-- [( )] L'array è già ordinato ascendente
-- [(X)] L'array è già ordinato discendente
-- [( )] L'array è casuale
+[(X)] Fondere due sottosequenze già ordinate
+[( )] Mescolare a caso gli elementi
+[( )] Eliminare i duplicati obbligatoriamente
+[( )] Ordinare solo con scambi adiacenti
 
-<details><summary>💡 Spiegazione</summary>
-Il pivot scelto come primo elemento su un array ordinato (ascendente o discendente) crea partizioni squilibrate, provocando la degenerazione.
+<details>
+<summary>💡 Spiegazione</summary>
+Il merge non “riordina da zero”: sfrutta l’ordine già presente nelle due metà.
 </details>
 
 #### 2. RUN (Esegui)
-Esegui il codice e osserva i passaggi di fusione.
+
 ```cpp
+/**
+ * @file merge_due_listini.cpp
+ * @brief Fusione di due array ordinati in un terzo.
+ */
 #include <iostream>
-#include <vector>
 
-void merge(std::vector<int>& a, int l, int m, int r) {
-    std::vector<int> tmp(r - l + 1);
-    int i = l, j = m + 1, k = 0;
-    while (i <= m && j <= r) {
-        if (a[i] <= a[j]) tmp[k++] = a[i++];
-        else tmp[k++] = a[j++];
+int main() {
+    int a[4] = {10, 30, 50, 70};
+    int b[3] = {20, 40, 60};
+    int c[7];
+    int i = 0, j = 0, k = 0;
+
+    while (i < 4 && j < 3) {
+        if (a[i] <= b[j]) {
+            c[k] = a[i];
+            ++i;
+        } else {
+            c[k] = b[j];
+            ++j;
+        }
+        ++k;
     }
-    while (i <= m) tmp[k++] = a[i++];
-    while (j <= r) tmp[k++] = a[j++];
-    for (int p = 0; p < (r - l + 1); ++p) a[l + p] = tmp[p];
-}
+    while (i < 4) { c[k] = a[i]; ++i; ++k; }
+    while (j < 3) { c[k] = b[j]; ++j; ++k; }
 
-void mergeSort(std::vector<int>& a, int l, int r) {
-    if (l >= r) return;
-    int m = (l + r) / 2;
-    mergeSort(a, l, m);
-    mergeSort(a, m + 1, r);
-    merge(a, l, m, r);
-}
-
-int main(){
-    std::vector<int> v = {5,2,9,1,5,6};
-    mergeSort(v,0,v.size()-1);
-    for(int x: v) std::cout << x << ' ';
+    for (int t = 0; t < 7; ++t) {
+        std::cout << c[t] << ' ';
+    }
+    std::cout << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-| Riga / Costrutto | Cosa fa | A cosa serve |
-|------------------|---------|--------------|
-| `merge` | combina due sotto‑array ordinati in uno temporaneo | Unisce le parti ordinate preservando l’ordine |
-| `mergeSort` | ricorsivamente divide l’array | Divide il problema in sottoproblemi più piccoli |
 
-🔗 [Python Tutor C++](https://pythontutor.com/cpp.html)
+| Indice | Ruolo |
+|--------|--------|
+| `i` | Avanzamento su `a` |
+| `j` | Avanzamento su `b` |
+| `k` | Scrittura su `c` |
+
+Traccia i primi tre passi a mano: quale testa (`a[i]` o `b[j]`) viene scelta?
 
 #### 4. MODIFY (Modifica)
-1. Cambia il pivot di Quick Sort scegliendo l’elemento centrale.
-2. Aggiungi una variante di `merge` che utilizza un buffer statico per ridurre le allocazioni.
-3. Implementa una versione iterativa di Merge Sort.
+1. Cambia i valori (restando ordinati) e verifica `c`.
+2. Estrai `void merge(const int a[], int na, const int b[], int nb, int c[])`.
+3. Gestisci il caso in cui un array è vuoto (`na == 0`).
 
 #### 5. MAKE (Crea)
-**Scenario aziendale:** Un reparto risorse umane deve ordinare migliaia di record dipendente per stipendio.
-**Requisiti:**
-- Utilizzare Merge Sort per garantire stabilità.
-- Documentare con Doxygen.
-- Il programma deve stampare il top‑10 stipendi più alti.
+**Scenario SIA — Unione di due listini codici**
+
+`merge_listini.cpp`: due array di codici già ordinati, risultato fuso in un terzo array, stampa. Funzione `merge` dedicata.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+void merge(const int a[], int na, const int b[], int nb, int c[]) {
+    // ...
+}
+int main() { return 0; }
+```
+</details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- Merge Sort: divide, ordina, fonde (stabilità, `O(n log n)`).
-- Quick Sort: partiziona in‑place, pivot critico (`O(n log n)` medio).
-- Evita pivot pessimo e gestisci buffer temporaneo.
+- Merge sort = dividi, ordina, **fondi**
+- Merge di due sequenze ordinate: confronta le teste
+- Serve spazio per l’array risultato
+- Qui abbiamo padroneggiato il merge; la ricorsione completa è il passo successivo naturale
 
 ---
 
-➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
+### ➡️ Prossimo chunk
+Mettiamo insieme `struct` e array: un piccolo **database in memoria**.
 
+## 🗄️ L’Archivio in RAM: array di struct
 
+> "Una tabella è un insieme di righe con le stesse colonne."  
+> — *Modello relazionale in miniatura*
 
-## 🎯 Obiettivo di questo chunk
+Un database vero sta su disco e parla SQL.  
+In memoria, puoi simulare una **tabella** con un **array di struct**: ogni elemento è una riga; ogni campo della struct è una colonna.
+
+> 💡 **Metafora: foglio clienti / movimenti**  
+> - `struct Movimento` = colonne (id, descrizione, importo)  
+> - `Movimento tab[100]` = fino a 100 righe  
+> - `n` = quante righe sono **realmente** usate
+
+---
+
+### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Comprendere come rappresentare dati aziendali con array di struct in C++.
-- Implementare funzioni di caricamento, visualizzazione, ordinamento e ricerca su un vettore di strutture.
-- Realizzare un progetto mini‑ERP con menu interattivo.
+- Definire una struct-record e un array di record
+- Scorrere le righe “vive” (`0..n-1`) per elenchi e totali
 
 ---
 
-### 💡 La Metafora Guida
-> **Metafora:** *Il reparto amministrativo che gestisce migliaia di pratiche* – le pratiche sono i record dei prodotti, organizzati in un archivio (array di struct) e manipolati tramite funzioni modulari.
-
----
-
-### ⚙️ Concetto in breve
-| Aspetto | Dettaglio |
-|---------|-----------|
-| Dati | `struct Prodotto { int codice; std::string nome; double prezzo; int giacenza; }` |
-| Operazioni | Caricamento, stampa tabellare, ordinamento per campo, ricerca binaria, aggiornamento giacenza |
-| Complessità | Ordinamento `O(n log n)`, ricerca `O(log n)` su array ordinato |
-
----
-
-### ⚠️ Tranelli tipici
-- **Doxygen:** dimenticare di documentare le funzioni porta a mancanza di generazione automatica.
-- **Input:** non validare l’interazione `switch` può causare loop infiniti o crash.
-
----
-
-### 🔬 Laboratorio PRIMM: *Mini‑ERP di Magazzino*
+### 🔬 Laboratorio PRIMM: Tre movimenti di cassa
 
 #### 1. PREDICT (Prevedi)
 
-Perché un array di struct può modellare una tabella in memoria?
+Cosa rappresenta `Record tabella[100];` se Record è una struct?
 
 ```cpp
-struct Record { /* campi */ };
+struct Record { int id; double importo; };
 Record tabella[100];
 ```
 
-[(X)] Perché ogni elemento è una riga con gli stessi campi
-[( )] Perché gli array non hanno indici
-[( )] Perché le struct non possono contenere stringhe
-> Quale struttura dati è più adatta per mantenere ordinato un archivio di prodotti grande?
-- [(X)] `std::vector` con `std::sort`
-- [( )] `std::list`
-- [( )] `std::queue`
+[(X)] Fino a 100 righe con gli stessi campi
+[( )] Un solo record con 100 campi
+[( )] Una matrice 100×100 di int
+[( )] Un file su disco
 
-<details><summary>💡 Spiegazione</summary>
-`std::vector` permette accesso diretto e uso di `std::sort`, ideale per ordinamento rapido.
+<details>
+<summary>💡 Spiegazione</summary>
+Array di struct = molte righe, stesso schema di colonne. Non è un file: vive finché il programma è in esecuzione.
 </details>
 
 #### 2. RUN (Esegui)
-Esegui il codice base del progetto (caricamento, stampa, menu).
-```cpp
-#include <iostream>
-#include <vector>
-#include <iomanip>
 
-struct Prodotto {
-    int codice;
-    std::string nome;
-    double prezzo;
-    int giacenza;
+```cpp
+/**
+ * @file movimenti_cassa.cpp
+ * @brief Mini-archivio movimenti in RAM.
+ */
+#include <iostream>
+#include <string>
+
+struct Movimento {
+    int id;
+    std::string desc;
+    double importo;
 };
 
-// Funzioni prototype (da implementare) ...
-int main(){
-    std::vector<Prodotto> catalogo = {
-        {101, "Penna", 1.20, 100},
-        {102, "Quaderno", 2.50, 80},
-        {103, "Zaino", 45.00, 20}
-    };
-    // TODO: menu interattivo
-    for(const auto& p: catalogo)
-        std::cout << p.codice << " " << p.nome << " " << p.prezzo << " " << p.giacenza << '\n';
+int main() {
+    Movimento tab[10];
+    int n = 0;
+
+    tab[n++] = {1, "Vendita bancone", 25.0};
+    tab[n++] = {2, "Reso cliente", -5.0};
+    tab[n++] = {3, "Vendita online", 40.0};
+
+    double saldo = 0.0;
+    for (int i = 0; i < n; ++i) {
+        std::cout << tab[i].id << " | " << tab[i].desc
+                  << " | " << tab[i].importo << '\n';
+        saldo = saldo + tab[i].importo;
+    }
+    std::cout << "Saldo movimenti: " << saldo << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-| Riga / Costrutto | Cosa fa | A cosa serve |
-|------------------|---------|--------------|
-| `struct Prodotto` | definisce il record prodotto | raggruppa dati eterogenei |
-| `std::vector<Prodotto>` | contenitore dinamico | gestisce quantità variabile di record |
-| `std::sort` | ordina il vettore | permette ricerca binaria efficiente |
 
-🔗 [Python Tutor C++](https://pythontutor.com/cpp.html)
+| Simbolo | Significato |
+|---------|-------------|
+| `tab[i]` | Riga i-esima |
+| `tab[i].importo` | Campo della riga |
+| `n` | Numero di righe valide (non confonderlo con la capacità 10) |
 
 #### 4. MODIFY (Modifica)
-1. Aggiungi validazione dell’input per il menu.
-2. Implementa la ricerca binaria per codice prodotto.
-3. Inserisci la funzione di calcolo del valore patrimoniale totale.
+1. Aggiungi un quarto movimento e verifica `n` e il saldo.
+2. Funzione `double totale(const Movimento tab[], int n)`.
+3. Stampa solo i movimenti con `importo < 0` (uscite).
 
 #### 5. MAKE (Crea)
-**Scenario aziendale:** Un negozio deve gestire l’inventario di 20 articoli, consentendo stampa, ordinamento, ricerca e aggiornamento giacenza.
-**Requisiti:**
-- Documentazione Doxygen per ogni funzione.
-- Nessuna variabile globale.
-- Menu `switch` con loop principale.
-- Funzione `makeReport` che stampa il valore totale del magazzino.
+**Scenario SIA — Archivio movimenti contabili**
+
+`archivio_movimenti.cpp`: struct, array, almeno 5 movimenti di esempio, elenco completo, totale, conteggio positivi/negativi. Doxygen se il file cresce.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+struct Movimento { /* ... */ };
+double totale(const Movimento tab[], int n) { return 0.0; }
+int main() { return 0; }
+```
+</details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- Array di struct → modello di database in memoria.
-- Operazioni chiave: caricamento, visualizzazione, ordinamento, ricerca, aggiornamento.
-- Progetto mini‑ERP con menu interattivo e Doxygen.
+- Tabella in RAM ≈ array di struct
+- Capacità ≠ numero di righe usate (`n`)
+- Si scorre con `for` su `0..n-1`
+- È il ponte concettuale verso i database veri
 
 ---
 
-➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
+### ➡️ Prossimo chunk
+Quando un problema si definisce in termini di una versione più piccola di se stesso: **ricorsione**.
 
+## 🔁 Il Problema che Chiama Se Stesso: ricorsione
 
+> "Per capire n, capisci n−1; poi combina."  
+> — *Schema divide et impera*
 
-## 🎯 Obiettivo di questo chunk
+Una funzione **ricorsiva** si richiama su un’istanza **più piccola** dello stesso problema, finché raggiunge un **caso base**.
+
+> 💡 **Metafora: matrioske contabili**  
+> Per chiudere il totale di n movimenti: prendi l’importo dell’ultimo e **aggiungilo** al totale dei primi n−1.  
+> Caso base: zero movimenti → totale 0.
+
+Attenzione: senza caso base si ottiene **ricorsione infinita** (stack overflow).
+
+---
+
+### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Descrivere i concetti di caso base e passo ricorsivo.
-- Implementare funzioni ricorsive semplici in C++.
-- Utilizzare strutture dati ricorsive (es. liste collegate) per rappresentare alberi o componenti annidati.
-- Analizzare il flusso di chiamate (call stack) e il suo *unwinding*.
+- Scrivere una funzione ricorsiva con caso base chiaro
+- Tracciare le chiamate su un esempio piccolo (fattoriale o somma)
+
+*Non* affrontiamo qui liste collegate complete: restiamo su problemi numerici/array.
 
 ---
 
-### 💡 La Metafora Guida
-> **Metafora:** *La Matrioska e il riflesso di uno specchio* – ogni cavità contiene una più piccola, fino a giungere al nucleo (caso base). Analogamente, una funzione ricorsiva chiama se stessa su una versione più piccola del problema fino a raggiungere il caso base.
-
----
-
-### ⚙️ Concetto in breve
-| Elemento | Descrizione |
-|----------|-------------|
-| Caso Base | Condizione di arresto che restituisce un valore noto senza ulteriori chiamate. |
-| Passo Ricorsivo | Invocazione della stessa funzione con argomenti più piccoli o più semplici. |
-| Call Stack | Pila di attivazioni della funzione; ogni chiamata aggiunge un frame. |
-| Unwinding | Fase di ritorno dove i risultati vengono combinati mentre i frame si rimuovono. |
-| Struttura Ricorsiva | Tipo di dato che contiene un puntatore a se stesso (es. lista collegata, nodo albero). |
-
----
-
-### ⚠️ Tranelli tipici
-- **Mancanza di caso base:** porta a ricorsione infinita e stack overflow.
-- **Passo ricorsivo non riduttivo:** non avvicina il problema al caso base, causandolo anch'esso.
-- **Gestione della memoria:** dimenticare di liberare nodi in strutture ricorsive provoca leak.
-
----
-
-### 🔬 Laboratorio PRIMM: *Lista collegata ricorsiva*
+### 🔬 Laboratorio PRIMM: Fattoriale (per vedere lo stack)
 
 #### 1. PREDICT (Prevedi)
 
@@ -4249,78 +4652,88 @@ Cosa deve avere ogni funzione ricorsiva corretta?
 
 ```cpp
 int f(int n) {
-  if (n <= 0) return 1; // caso base
-  return n * f(n - 1);
+    if (n <= 0) return 1; // ?
+    return n * f(n - 1);
 }
 ```
 
 [( )] Solo chiamate ricorsive, senza mai fermarsi
 [(X)] Almeno un caso base che interrompe la ricorsione
-[( )] Obbligo di usare array globali
-> Quale condizione garantisce la terminazione di una funzione ricorsiva che stampa i valori di una lista collegata?
-- [(X)] Quando il puntatore al nodo corrente è `nullptr`.
-- [( )] Quando la lista contiene più di un elemento.
-- [( )] Quando il valore del nodo è zero.
+[( )] Obbligo di variabili globali
+[( )] Niente `return`
 
-<details><summary>💡 Spiegazione</summary>
-Il caso base per una lista collegata è raggiungere il puntatore nullo, segnale di fine lista.
+<details>
+<summary>💡 Spiegazione</summary>
+Senza un if di arresto la catena di chiamate non termina. Il caso base è obbligatorio.
 </details>
 
 #### 2. RUN (Esegui)
-Esegui il codice che stampa ricorsivamente i valori di una lista collegata.
+
 ```cpp
+/**
+ * @file fattoriale.cpp
+ * @brief Esempio didattico di ricorsione con caso base.
+ */
 #include <iostream>
 
-struct Nodo {
-    int valore;
-    Nodo* prossimo;
-};
-
-void stampa(Nodo* n) {
-    if (!n) return; // caso base
-    std::cout << n->valore << ' ';
-    stampa(n->prossimo); // passo ricorsivo
+int fattoriale(int n) {
+    if (n <= 1) {
+        return 1;  // caso base
+    }
+    return n * fattoriale(n - 1);
 }
 
-int main(){
-    Nodo n3{3, nullptr};
-    Nodo n2{2, &n3};
-    Nodo n1{1, &n2};
-    stampa(&n1);
+int main() {
+    std::cout << fattoriale(5) << '\n';  // 120
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-| Riga / Costrutto | Cosa fa | A cosa serve |
-|------------------|---------|--------------|
-| `if (!n) return;` | caso base | interrompe la ricorsione alla fine della lista |
-| `stampa(n->prossimo);` | passo ricorsivo | chiama la stessa funzione sul nodo successivo |
-| `struct Nodo` | definisce la struttura ricorsiva | ogni nodo contiene il prossimo nodo |
 
-🔗 [Python Tutor C++](https://pythontutor.com/cpp.html)
+| Chiamata | Ritorna |
+|----------|---------|
+| `fattoriale(1)` | `1` |
+| `fattoriale(2)` | `2 * 1` |
+| `fattoriale(3)` | `3 * 2` |
+| … | … |
+
+Usa [Python Tutor](https://pythontutor.com/cpp.html) e osserva i **frame** sullo stack.
 
 #### 4. MODIFY (Modifica)
-1. Aggiungi una funzione ricorsiva `int somma(Nodo* n)` che restituisce la somma dei valori.
-2. Implementa la cancellazione ricorsiva di tutta la lista.
-3. Trasforma la lista in una struttura ad albero binario e stampa in‑order.
+1. Calcola `fattoriale(0)` e `fattoriale(1)`.
+2. Scrivi `int potenza(int base, int exp)` ricorsiva (`exp == 0` → 1).
+3. Versione **iterativa** equivalente del fattoriale e confronta leggibilità.
 
 #### 5. MAKE (Crea)
-**Scenario aziendale:** Un magazzino registra le quantità di prodotti in una lista collegata; deve calcolare il totale e rimuovere prodotti esauriti.
-**Requisiti:**
-- Funzione `int totale(Nodo*)` che restituisce la somma.
-- Funzione `void rimuoviZero(Nodo*&)` che elimina i nodi con valore 0.
-- Documentazione Doxygen per ogni funzione.
-- Nessuna variabile globale.
+**Scenario SIA — Totale ricorsivo di importi**
+
+`somma_ricorsiva.cpp`: funzione `double somma(const double a[], int n)` ricorsiva  
+(`n == 0` → 0; altrimenti `a[n-1] + somma(a, n-1)`). Dimostrazione in `main` su un piccolo array di movimenti.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+double somma(const double a[], int n) {
+    if (n <= 0) return 0.0;
+    return a[n - 1] + somma(a, n - 1);
+}
+int main() { /* ... */ return 0; }
+```
+</details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- Caso base + passo ricorsivo = ricorsione corretta.
-- Call stack visualizza le attivazioni; l’unwinding restituisce i risultati.
-- Strutture ricorsive (liste, alberi) richiedono attenzione alla gestione della memoria.
+- Ricorsione = caso base + passo che riduce il problema
+- Ogni chiamata ha il proprio frame sullo stack
+- Senza caso base → ricorsione infinita
+- Utile quando il problema ha struttura naturale “a pezzi più piccoli”
 
 ---
 
-➡️ Prossimo chunk: *Fine del blocco* (eventuale conclusione).
+### ➡️ Prossimo passo
+Con array, struct, ricerca, ordinamento e ricorsione hai gli strumenti del **secondo blocco** del corso: dati e algoritmi di base in chiave aziendale.
