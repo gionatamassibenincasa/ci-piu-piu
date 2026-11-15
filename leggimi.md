@@ -20,6 +20,14 @@ python -m tools.cipiupiu build course       # solo dist/README.md
 python -m tools.cipiupiu build lessons      # solo dist/lessons/*.md
 python -m tools.cipiupiu build lessons --mode dev
 python -m tools.cipiupiu build --force
+
+# template repo GitHub per Classroom50 (un activity_id)
+python -m tools.cipiupiu scaffold-assignment \
+  --activity ciao-mondo-01 \
+  --org dip-inf-savoia-benincasa \
+  --classroom "26-27 3A SIA"
+# oppure con config di classe:
+#   --config assignments/3sia-2026.yaml --activity ciao-mondo-01
 ```
 
 | Comando | Effetto |
@@ -29,6 +37,7 @@ python -m tools.cipiupiu build --force
 | `render` | Strip FM / `<!--#` / Jinja / include → stdout o `-o` |
 | `build course` | `dist/README.md` **senza** aggiungere commento HTML (usa quello di `index.md`) |
 | `build lessons` | `dist/lessons/{order}_{activity_id}.md` **con** commento LiaScript + prev/next |
+| `scaffold-assignment` | Crea/aggiorna il **template repo** GitHub da `files[].action=create` |
 
 Wrapper legacy: `preprocess.py` → `render`; `tools/validate_chapters.py` → `validate`.
 
@@ -58,3 +67,12 @@ index.md    decide il contenuto del corso completo
 ## Licenza
 
 Vedi `LICENSE`.
+
+
+## Classroom50 (template repo)
+
+Documentazione completa: **`docs/scaffold_assignment.md`**.
+
+- Un `activity_id` → un repository template → un assignment.
+- Solo i file `action: create` del frontmatter finiscono nel template.
+- La creazione dell’assignment su Classroom50 resta **manuale** in v1 (istruzioni stampate dal comando).

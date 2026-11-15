@@ -255,12 +255,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     sa = sub.add_parser(
         "scaffold-assignment",
-        help="Crea o aggiorna il repository template di un'attività",
+        help="Crea/aggiorna il template repo GitHub (Classroom50) da files action=create",
     )
-    sa.add_argument("--activity", required=True, help="activity_id del capitolo")
-    sa.add_argument("--config", default=None, help="Configurazione YAML della classe")
-    sa.add_argument("--org", default=None, help="Organizzazione GitHub")
-    sa.add_argument("--classroom", default=None, help="Identificativo Classroom50")
+    sa.add_argument("--activity", required=True, help="activity_id del capitolo (es. ciao-mondo-01)")
+    sa.add_argument("--config", default=None, help="YAML classe (classroom.org + assignments[]); vedi docs/scaffold_assignment.md")
+    sa.add_argument("--org", default=None, help="Organizzazione GitHub (se non in --config)")
+    sa.add_argument("--classroom", default=None, help="Nome classroom Classroom50 (se non in --config)")
     sa.add_argument("--chapters", default=None, help="Directory chapters/")
     sa.set_defaults(func=cmd_scaffold_assignment)
 

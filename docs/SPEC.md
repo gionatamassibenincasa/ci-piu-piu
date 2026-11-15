@@ -232,6 +232,8 @@ Lo script `scaffold-assignment` legge questo file + i frontmatter dei capitoli i
 
 ### 5.1 `scaffold-assignment` v1
 
+Contratto dettagliato: [`docs/scaffold_assignment.md`](scaffold_assignment.md).
+
 ```bash
 python -m tools.cipiupiu scaffold-assignment \
   --config assignments/3sia-2026.yaml \

@@ -1,0 +1,16 @@
+# Copia come assignments/3sia-2026.yaml e adatta org / classroom / scadenze.
+# Non committare segreti: solo metadati di classe.
+
+classroom:
+  org: dip-inf-savoia-benincasa
+  classroom_name: "26-27 3A SIA"
+
+assignments:
+  - activity_id: ciao-mondo-01
+    # template_repo_name: cpp-ciao-mondo-template   # default: cpp-{activity_id}-template
+    # title: "Il Primo Dialogo con la Macchina"     # default: title del capitolo
+    # slug: ciao-mondo                              # default: activity_id senza -NN finale
+    deadline: "2026-12-01T23:59:00+01:00"
+
+  - activity_id: variabili-tipi-01
+    deadline: "2026-12-15T23:59:00+01:00"
