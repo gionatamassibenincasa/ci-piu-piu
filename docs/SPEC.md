@@ -1,75 +1,184 @@
-# Specifiche tooling – ci-piu-piu (v0.2)
+# Specifiche tooling – ci-piu-piu (v0.3)
 
-Fonte di verità per preprocessor, frontmatter, template repository e integrazione Classroom50.
+Fonte di verità per preprocessor, frontmatter, template repository, configurazione compiti e integrazione Classroom50.
 
-## 1. Obiettivi v1
+**Stato**: base implementata (Slice A operativa, Slice B in corso).  
+**Data**: 2026-11-15
 
-| ID | Obiettivo | Priorità |
-|----|-----------|----------|
-| O1 | Schema + template lezione | Must |
-| O2 | Template repo + assignment Classroom50 (1 assignment = 1 capitolo) | Must |
-| O3 | `dist/README.md` corso completo | Must |
-| O4 | `dist/lessons/*.md` lezioni autonome con prev/next | Must |
-| O5 | Post-scadenza: download repo + `validation_rules` base | Should |
-| O6 | Tracking visualizzazione opt-in | Could |
+---
+
+## 1. Contesto e obiettivi
+
+### 1.1 Contesto operativo
+
+- Una classe alla volta (~15 studenti), due classi per anno scolastico.
+- Organizzazione GitHub e classi Classroom50 già esistenti.
+- Materiale didattico: capitoli modulari (`chapters/*.md`) con frontmatter YAML + corpo Markdown.
+- Metodologia prevalente: **PRIMM**. Alcuni capitoli usano `lab`, `guide` o `convention`.
+- Gli studenti **visualizzano** su LiaScript; non clonano il repository del corso.
+- Il clone del repository di lavoro è gestito da Classroom50.
+- Tooling docente: solo Python, configurazione esterna, segreti in `.env`.
+
+### 1.2 Obiettivi v1
+
+| ID | Obiettivo | Priorità | Stato |
+|----|-----------|----------|--------|
+| O1 | Schema frontmatter + template lezione | Must | Fatto |
+| O2 | Template repo + assignment Classroom50 (1 assignment = 1 capitolo) | Must | Previsto (Slice C) |
+| O3 | `dist/README.md` corso completo | Must | Fatto / in rifinitura |
+| O4 | `dist/lessons/*.md` lezioni autonome con prev/next | Must | Fatto / in rifinitura |
+| O5 | Post-scadenza: download repo + `validation_rules` base | Should | Previsto (Slice D) |
+| O6 | Tracking visualizzazione opt-in | Could | Non iniziato |
 
 **Corso completo** = un unico Markdown amalgamato (`dist/README.md`) per la sequenza annuale.  
 **Lezione autonoma** = un capitolo in `dist/lessons/`, con link prev/next, per recupero e link diretti.
 
-## 2. Commenti `<!--#` … `#-->`
+### 1.3 Principi progettuali
 
-**Si mantengono.**  
-Sono note autore/LLM **non** destinate a LiaScript. `preprocess.py` le elimina interamente (apertura, corpo, chiusura `#-->`).  
-Non sono annidabili. Non sostituiscono il frontmatter: il frontmatter è dato strutturale; i blocchi `<!--#` sono appunti di produzione.
+- Due livelli di configurazione nettamente separati:
+  - **Capitolo** (frontmatter) = autoconsistente.
+  - **Config compiti per classe** = dipende dai capitoli.
+- Un assignment Classroom50 = **un solo capitolo**.
+- Preferire standard esistenti (YAML frontmatter, Jinja2, JSON Schema).
+- Implementare prima i componenti a più alto rischio.
+- `dist/` resta versionato in git (consumo diretto da LiaScript).
 
-## 3. Frontmatter
+---
 
-- Schema: `schemas/chapter-frontmatter.schema.json`
-- Validazione: `python tools/validate_chapters.py [path…]`
-- **`order`** = ordinamento canonico (non il nome file, non solo `index.md`)
-- **`methodology`**: `PRIMM` | `lab` | `guide` | `convention`
-- **`components`**: dati per assignment/validazione e macro Jinja **esplicite** (es. `[[ predict_block() ]]`). Il Markdown didattico resta la narrazione principale; non va riscritto tutto in YAML.
-- **`files`**: `action: create` → repo template studente; `reference` → solo supporto. Per `create`: esattamente uno tra `template_from` e `template_content`.
-- Capitoli non-PRIMM: `components` assente o vuoto; `files` può essere `[]`.
-- `target` non usato in v1 (gli assignment li decide la config classe).
+## 2. User Stories
 
-### Merge metadati LiaScript
+### Docente
 
-1. Default globali (`course.yaml` o header di generazione)
-2. Campi scalari del capitolo sovrascrivono
-3. `import` = unione ordinata globali + capitolo, senza duplicati
-4. Frontmatter **non** compare nell’output LiaScript (solo metadati espansi nel formato atteso dal player)
+| ID | Storia |
+|----|--------|
+| US-D1 | Come docente, voglio creare un nuovo capitolo con frontmatter + corpo Markdown (template PRIMM/lab/guide/convention) e validarlo senza scrivere codice di tooling. |
+| US-D2 | Come docente, voglio eseguire `python -m tools.cipiupiu validate` e ricevere errori chiari su schema, Predict e `files[]`. |
+| US-D3 | Come docente, voglio eseguire `python -m tools.cipiupiu build` e ottenere `dist/README.md` + `dist/lessons/*` con header LiaScript e prev/next. |
+| US-D4 | Come docente, voglio, da un file di configurazione della classe, generare il repository template (solo `action: create`) e preparare l’assignment Classroom50, ricevendo il link di accettazione. |
+| US-D5 | Come docente, voglio dopo la scadenza scaricare i repo studenti e applicare le `validation_rules` dichiarate, ottenendo un report leggibile. |
+| US-D6 | Come docente, voglio generare lezioni in modalità `dev` o `prod` (URL di navigazione) senza modifiche manuali. |
 
-## 3.1 CLI `cipiupiu` (fonte unica)
+### Studente
+
+| ID | Storia |
+|----|--------|
+| US-S1 | Come studente, voglio aprire il corso completo su LiaScript e trovare materiale interattivo senza clonare il repo del corso. |
+| US-S2 | Come studente, voglio aprire una lezione autonoma con link a precedente e successiva. |
+| US-S3 | Come studente, voglio accettare l’assignment Classroom50 di un capitolo e ottenere un repository già strutturato con i file previsti. |
+| US-S4 | Come studente, voglio svolgere Predict / Investigate / Modify / Make e fare push, sapendo che esiste un primo filtro automatico. |
+| US-S5 | Come studente, voglio poter segnalare (opt-in, login GitHub) di aver visualizzato una lezione, senza obbligo e senza bloccare l’uso offline. |
+
+---
+
+## 3. Architettura e pipeline
+
+```
+chapters/*.md          ← sorgente (frontmatter YAML + Markdown)
+        │
+        ▼
+tools/cipiupiu         ← unica CLI (core.py)
+        │
+        ├── dist/README.md              (corso completo, da index.md)
+        └── dist/lessons/<order>_<slug>.md
+        │
+config compiti (YAML per classe)
+        │
+        ▼
+scaffold-assignment    ← template repo (solo action=create) + assignment Classroom50
+        │
+        ▼
+collect                ← download repo studenti + validation_rules
+```
+
+### 3.1 CLI `cipiupiu` (fonte unica)
 
 Entrypoint: `python -m tools.cipiupiu`.
 
 | Slice | Comandi | Stato |
 |-------|---------|--------|
-| A | `validate`, `list`, `render` | attuale |
-| B | `build` (course + lessons, timestamp) | previsto |
-| C | `scaffold-assignment` | previsto |
-| D | `collect` | previsto |
+| A | `validate`, `list`, `render` | Operativa |
+| B | `build` (course + lessons, invalidazione su timestamp) | In corso |
+| C | `scaffold-assignment` | Previsto |
+| D | `collect` | Previsto |
 
 Nucleo condiviso: `tools/cipiupiu/core.py`  
 (`load_frontmatter` / `split_frontmatter`, `strip_author_blocks`, `render_jinja`, `expand_includes`, `render_file`, `iter_chapters`, `validate_chapter`).
 
 Regole:
 - `index.md` decide i capitoli del **corso completo**.
-- `order` decide ordinamento/prev-next delle **lezioni singole**.
-- `dist/` versionato in git (consumo LiaScript).
+- `order` decide ordinamento e prev/next delle **lezioni singole**.
+- `dist/` versionato in git.
 
+Compatibilità:
+```bash
+python preprocess.py index.md > README.md          # ≈ cipiupiu render index.md
+python tools/validate_chapters.py chapters/05_….md # ≈ cipiupiu validate …
+```
 
-## 4.1 Predict: unica fonte di verità
+### 3.2 course.yaml
+
+Configurazione globale del corso (metadati LiaScript, path, URL prod/dev).  
+Usata da `build`. I campi scalari del capitolo sovrascrivono i default; `import` viene unito senza duplicati.
+
+---
+
+## 4. Frontmatter del capitolo
+
+- Schema: `schemas/chapter-frontmatter.schema.json`
+- Validazione: `python -m tools.cipiupiu validate [path…]`
+
+### 4.1 Campi principali
+
+**Required**
+- `activity_id` (string, pattern stabile)
+- `title` (string)
+- `methodology`: `PRIMM` | `lab` | `guide` | `convention`
+- `order` (integer ≥ 0) — ordinamento canonico
+
+**Opzionali di identità**
+- `version`, `last_update`
+
+**Metadati LiaScript (opzionali)**  
+`author`, `email`, `language`, `narrator`, `comment`, `import` (array di URI), più eventuale `liascript_extra`.
+
+**components** (oggetto, opzionale per non-PRIMM)
+- `predict_quiz`: `{ question, code?, options[{text, correct}] }`
+- `investigate_questions`: array di stringhe
+- `modify_instructions`, `make_instructions` (stringhe, opzionali)
+
+**files** (array, default `[]`)
+- `path` (string, può essere gerarchico)
+- `action`: `create` | `reference`
+  - `create` → generato nel repository template studente
+  - `reference` → solo supporto (es. codice da digitare a mano in Run); **non** entra nel repo
+- `phase` (opzionale): `predict` | `run` | `investigate` | `modify` | `make`
+- `description` (opzionale, può coesistere con `phase`)
+- Per `action: create`: esattamente uno tra `template_from` e `template_content`
+- `validation_rules` (opzionale): `min_lines`, `must_contain`
+
+### 4.2 Regole
+
+- Capitoli non-PRIMM: `components` assente/vuoto; `files` può essere `[]`.
+- `phase` è opzionale (capitoli lab/guide/convention non devono forzarla).
+- Path con `action: create` univoci all’interno del capitolo.
+- `target` non usato in v1 (gli assignment li decide la config classe).
+
+### 4.3 Predict: unica fonte di verità
 
 Per i capitoli `methodology: PRIMM`:
 
-1. Il quiz Predict vive in **`components.predict_quiz`** (frontmatter).
-2. Nel corpo Markdown, sotto `#### 1. PREDICT`, compare solo **`[[ predict_block() ]]`**.
-3. Non duplicare opzioni `[(X)]` a mano nel Predict (il render le genera dalla macro).
+1. Il quiz Predict vive in `components.predict_quiz`.
+2. Nel corpo Markdown, sotto `#### 1. PREDICT`, compare solo `[[ predict_block() ]]`.
+3. Non duplicare opzioni `[(X)]` a mano nel Predict.
 4. `cipiupiu validate` verifica: heading PREDICT, presenza di `predict_quiz`, presenza della macro.
 
-## 4. Jinja nel corpo Markdown
+### 4.4 Commenti `<!--#` … `#-->`
+
+Si mantengono. Sono note autore/LLM **non** destinate a LiaScript.  
+Vengono eliminati interamente dal preprocessore. Non sono annidabili.  
+Non sostituiscono il frontmatter.
+
+### 4.5 Jinja nel corpo Markdown
 
 Delimitatori che non collidono col C++:
 
@@ -79,28 +188,40 @@ Delimitatori che non collidono col C++:
 | Blocco | `[% ... %]` |
 | Commento | `[# ... #]` |
 
-Macro tipiche (implementazione successive): `[[ predict_block() ]]`, `[[ nav_prev_next() ]]`.  
+Macro tipiche: `[[ predict_block() ]]`, `[[ nav_prev_next() ]]`.  
 I quiz già scritti a mano con sintassi LiaScript restano validi.
 
-## 5. Pipeline logica
+### 4.6 Merge metadati LiaScript
 
+1. Default globali (`course.yaml`)
+2. Campi scalari del capitolo sovrascrivono
+3. `import` = unione ordinata globali + capitolo, senza duplicati
+4. Frontmatter **non** compare nell’output LiaScript (solo metadati espansi nel formato atteso dal player)
+
+---
+
+## 5. Configurazione dei compiti (per classe)
+
+File YAML separato, uno per classe. Dipende dai capitoli; i capitoli non dipendono da esso.
+
+**Campi minimi previsti** (schema formale da consolidare in Slice C):
+
+```yaml
+classroom:                    # identificativo Classroom50 / org
+  org: "..."
+  classroom_name: "..."
+
+assignments:
+  - activity_id: ciao-mondo-01
+    template_repo_name: "cpp-ciao-mondo-template"   # o generato
+    title: "..."
+    deadline: "2026-12-01T23:59:00+01:00"
+    # eventuali istruzioni aggiuntive
 ```
-chapters/*.md  (+ frontmatter)
-        │
-        ▼
-preprocessor (frontmatter + Jinja + strip <!--# + includes)
-        │
-        ├── dist/README.md
-        └── dist/lessons/<order>_<slug>.md
-        │
-config classe YAML
-        │
-        ▼
-template repo (solo files action=create) + assignment Classroom50
-        │
-        ▼
-(post-scadenza) clone studenti + validation_rules
-```
+
+Lo script `scaffold-assignment` legge questo file + i frontmatter dei capitoli indicati, crea il template repo (solo `files` con `action: create`) e prepara/crea l’assignment Classroom50.
+
+---
 
 ## 6. Template lezione
 
@@ -112,16 +233,35 @@ template repo (solo files action=create) + assignment Classroom50
 | `docs/template_guide.md` | Guide metodologiche |
 | `docs/template_convention.md` | Convenzioni (es. Doxygen) |
 
-## 7. Fuori scope v1
+Scaffold riutilizzabili per `template_from`: directory `scaffolds/`.
+
+---
+
+## 7. Ordine di implementazione (rischio decrescente)
+
+1. **Schema frontmatter + validazione** — fatto
+2. **Preprocessor core** (`render`, `build` course/lessons, prev/next, macro Predict) — Slice A operativa, Slice B in corso
+3. **Esposizione `action: create` + generazione template repository** — Slice C
+4. **Config compiti per classe + interazione Classroom50/GitHub** — Slice C
+5. **Collect + validation_rules di base** — Slice D
+6. **Tracking opt-in** — Could
+
+---
+
+## 8. Fuori scope v1
 
 - Più capitoli in un solo assignment
-- Test I/O / runner
-- UI web docente
+- Test I/O avanzati / test runner
+- UI web dedicata lato docente
 - Sostituzione di Classroom50
-- Tracking obbligatorio
+- Tracking obbligatorio della visualizzazione
 
-## 8. Riferimenti
+---
+
+## 9. Riferimenti
 
 - LiaScript: https://liascript.github.io/
-- Classroom50: https://classroom50.org /
+- Classroom50: https://classroom50.org / https://github.com/foundation50/classroom50
 - Schema locale: `schemas/chapter-frontmatter.schema.json`
+- Config corso: `course.yaml`
+- CLI: `python -m tools.cipiupiu`
