@@ -30,9 +30,11 @@ Esempi da evitare:
 ### 3. Sequenza logica interna al chunk
 1. Contesto + metafora (attiva conoscenza pregressa).
 2. Obiettivo esplicito.
-3. PRIMM (Predict → Run → Investigate → Modify → Make).
-4. Riepilogo tascabile (3-5 punti).
-5. Anteprima del chunk successivo (collegamento).
+3. Una o due micro-slide teoriche: vocabolario, struttura o regola indispensabile
+   per affrontare il Predict, senza anticiparne la risposta.
+4. PRIMM (Predict → Run → Investigate → Modify → Make).
+5. Riepilogo tascabile (3-5 punti).
+6. Anteprima del chunk successivo (collegamento).
 
 ### 4. Check for understanding
 Prima di passare al pezzo successivo (o al capitolo successivo) lo studente deve aver:
@@ -57,6 +59,7 @@ Questo crea il bisogno cognitivo e rende il nuovo chunk desiderabile.
 ## Checklist rapida prima di chiudere un capitolo
 - [ ] Un solo obiettivo principale scritto in cima
 - [ ] Metafora presente e collegata all’obiettivo
+- [ ] Una o due micro-slide teoriche prima del Predict
 - [ ] Nessun concetto “di passaggio” non necessario
 - [ ] Quiz di Predict focalizzato sul concetto chiave
 - [ ] Modify e Make non introducono nuovi costrutti non ancora visti

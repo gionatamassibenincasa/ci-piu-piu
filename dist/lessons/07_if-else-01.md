@@ -34,13 +34,11 @@ Per gestire i bivi usiamo **`if`** e **`if-else`**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `if` semplice e un `if-else` con graffe corrette
-- Evitare i due tranelli classici (`;` dopo la condizione e graffe mancanti)
-- Capire lo **scope**: una variabile dichiarata dentro `{ }` esiste solo lì
+- Scrivere un `if` o un `if-else` con graffe per scegliere il ramo corretto
 
 ---
 
-### 🔀 I due modelli
+### ⚙️ Prima del laboratorio: i due modelli
 
 **`if` semplice** — esegui un blocco *solo se* la condizione è vera:
 
@@ -80,6 +78,20 @@ stop
 
 ---
 
+### 🧭 Prima del laboratorio: costruire una condizione
+
+Una condizione produce `true` o `false`. Il tornello apre solo quando la sua
+regola è vera; se servono due controlli, `&&` significa che devono superarsi
+entrambi.
+
+| Condizione | Significato al tornello |
+|------------|-------------------------|
+| `saldo >= importo` | Il credito basta per il pagamento. |
+| `pinInserito == PIN_SEGRETO` | Il codice è corretto. |
+| `pinInserito == PIN_SEGRETO && badgeDirigente` | PIN e badge sono validi. |
+
+---
+
 ### ⚠️ I due grandi tranelli
 
 **1. Il punto e virgola traditore**
@@ -92,14 +104,13 @@ if (saldo >= importo);
 }
 ```
 
-Dopo la `)` della condizione **non va mai** il `;`.
+Dopo la `)` della condizione **non va mai** il `;`: il codice compila, ma il
+blocco successivo non appartiene più all'`if` e viene eseguito sempre.
 
-**2. Graffe e scope**
+**2. Graffe**
 
 Senza `{ }` l’`if` controlla **solo** la prima istruzione successiva.  
 **Usa sempre le graffe**, anche per una sola riga.
-
-Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (scope locale).
 
 ---
 
@@ -154,19 +165,14 @@ int main() {
     std::cout << "Verifica disponibilita...\n\n";
 
     if (saldoDisponibile >= importoSpesa) {
-        /// Flag locale: esiste SOLO dentro questo blocco
-        bool autorizzato = true;
-
         saldoDisponibile = saldoDisponibile - importoSpesa;
         std::cout << ">>> TRANSAZIONE APPROVATA <<<\n";
         std::cout << "Nuovo saldo: " << saldoDisponibile << " EUR\n";
     } else {
-        /// Esiste SOLO dentro l'else
-        double importoMancante = importoSpesa - saldoDisponibile;
-
         std::cout << ">>> TRANSAZIONE NEGATA <<<\n";
         std::cout << "Credito insufficiente.\n";
-        std::cout << "Importo mancante: " << importoMancante << " EUR\n";
+        std::cout << "Importo mancante: "
+                  << importoSpesa - saldoDisponibile << " EUR\n";
     }
 
     std::cout << "\nOperazione conclusa.\n";
@@ -182,14 +188,28 @@ Con i valori dell’esempio (`saldo = 45`, `importo = 62.50`):
 |-------|----------------|
 | Condizione `saldo >= importo` | `false` |
 | Ramo eseguito | `else` |
-| `importoMancante` | `17.50` (visibile solo dentro l’else) |
+| `importoSpesa - saldoDisponibile` | `17.50` |
 | Dopo l’`if-else` | messaggio “Operazione conclusa” |
 
 Prova a cambiare `importoSpesa` in `30.00` e riesegui: ora si attiva il ramo `if` e il saldo viene aggiornato.
 
-> 🔗 Ispeziona lo stack su [Python Tutor C++](https://pythontutor.com/cpp.html): nota che `autorizzato` e `importoMancante` nascono e muoiono nei rispettivi blocchi.
+> 🔗 Ispeziona lo stack su [Python Tutor C++](https://pythontutor.com/cpp.html):
+> osserva saldo, importo e il ramo che viene eseguito.
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+if (saldoDisponibile >= importoSpesa) {
+    std::cout << "Approvato\n";
+} else {
+    std::cout << "Negato\n";
+}
+```
+
+</details>
+
 1. **Guardiano sottoscorta**  
    Aggiungi `int rotoloCartaTermica = 3;`.  
    Con un `if` **semplice** (senza else): se `< 5`, stampa un allarme per sostituire il rotolo.
@@ -197,9 +217,9 @@ Prova a cambiare `importoSpesa` in `30.00` e riesegui: ora si attiva il ramo `if
 2. **Micro-pagamento**  
    Se `importoSpesa < 10.00`, aggiungi una commissione fissa di `0.30` **prima** del controllo sul saldo.
 
-3. **Prova di scope**  
-   Prova a stampare `autorizzato` o `importoMancante` **dopo** la chiusura dell’`if-else`.  
-   Il compilatore deve rifiutare (variabile non dichiarata in quello scope).
+3. **Importo esatto**
+   Cambia `importoSpesa` in `45.00`. Prevedi e verifica quale ramo si attiva:
+   il confronto include anche il caso in cui saldo e importo sono uguali.
 
 #### 5. MAKE (Crea)
 **Scenario SIA — Controllo accessi al caveau**
@@ -227,8 +247,8 @@ Scrivi `controllo_caveau.cpp`:
 
 int main() {
     const int PIN_SEGRETO = 4821;
-    // dichiara pinInserito e badgeDirigente
-    // if-else con la regola di sicurezza
+    /// TODO: spiega perché servono due controlli di sicurezza.
+    // TODO: dichiara pinInserito e badgeDirigente, poi scrivi l'if-else
     return 0;
 }
 ```
@@ -241,8 +261,7 @@ int main() {
 - `if` = azione opzionale; `if-else` = bivio a due vie (un solo ramo eseguito).
 - **Mai** `;` subito dopo la condizione.
 - **Sempre** le graffe `{ }`, anche per una sola istruzione.
-- Variabili dichiarate dentro un blocco esistono **solo** lì (scope).
-- Condizioni complesse: combina con `&&` e `||` (già visti nel capitolo sulle espressioni).
+- `&&` richiede che entrambe le condizioni siano vere.
 
 ---
 
@@ -254,7 +273,7 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
 
 <!-- 
   NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: if e if-else + tranelli + scope
+  [x] Obiettivo: if e if-else con condizioni semplici o composte
   [x] Metafora tornello
   [x] Quiz sintassi corretta
   [x] Predict sulla trappola delle graffe mancanti

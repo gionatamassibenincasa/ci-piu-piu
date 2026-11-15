@@ -2,7 +2,7 @@
 activity_id: ricorsione-01
 title: Ricorsione e strutture ricorsive
 methodology: PRIMM
-order: 24
+order: 25
 version: '2026-11-15'
 language: it
 components:

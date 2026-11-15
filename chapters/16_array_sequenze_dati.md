@@ -2,7 +2,7 @@
 activity_id: "array-01"
 title: "La Batteria di Locker: Gli Array e le Sequenze di Dati"
 methodology: PRIMM
-order: 16
+order: 17
 version: "2026-11-14"
 language: it
 components:

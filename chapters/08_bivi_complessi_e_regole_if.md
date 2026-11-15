@@ -1,6 +1,6 @@
 ---
 activity_id: "bivi-complessi-01"
-title: "Scaglioni e Labirinti: if / else if / else e if annidati"
+title: "Scaglioni Ordinati: if / else if / else"
 methodology: PRIMM
 order: 8
 version: "2026-11-14"
@@ -23,8 +23,57 @@ components:
         correct: false
   make_instructions: >
     Scaglioni d'imposta semplificati su reddito imponibile con if/else if/else
-    e messaggio extra se reddito > soglia con if annidato o &&.
+    ordinati dalla soglia più alta alla più bassa.
 files:
+  - path: README.md
+    action: create
+    description: Istruzioni per svolgere la consegna PRIMM
+    template_content: |
+      # Scaglioni ordinati
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      Nelle fasce, scrivi sempre prima la soglia più alta.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict – Fasce
+
+      1. Quale fascia ottiene un fatturato di 25000?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run – Fasce sconto
+
+      1. Quale ramo della scala è stato eseguito?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate – Ordine delle soglie
+
+      1. Perché i rami dopo quello vero non vengono eseguiti?
+      >
+  - path: student_work/modify/fasce_sconto.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          double fatturato = 32500.0;
+          if (fatturato >= 50000.0) {
+              std::cout << "Platinum\n";
+          } else if (fatturato >= 20000.0) {
+              std::cout << "Gold\n";
+          } else {
+              std::cout << "Altra fascia\n";
+          }
+          return 0;
+      }
   - path: student_work/make/scaglioni_imposta.cpp
     action: create
     phase: make
@@ -49,30 +98,27 @@ files:
     description: "Programma del laboratorio Run (fasce sconto + fido)"
 ---
 
-## 🌲 Scaglioni e Labirinti: `if / else if / else` e if annidati
+## 🌲 Scaglioni Ordinati: `if / else if / else`
 
 > "La complessità di un problema si risolve dividendolo in livelli ordinati di decisioni."
 > — *Principio dell'Analisi dei Sistemi*
 
 Con `if-else` gestiamo un bivio a due strade.  
 Nei contesti aziendali le scelte sono spesso **a scaglioni**: fasce di sconto, livelli di fido, aliquote fiscali.  
-Servono la **scala** `if / else if / else` e, quando un controllo dipende da un altro, gli **`if` annidati**.
+Serve una **scala** `if / else if / else`, che controlla le fasce in ordine.
 
 > 💡 **Metafora: nastro di smistamento logistico**  
 > - **Scala `if / else if / else`** = sensori in sequenza sul nastro: il primo che “prende” il pacco lo devia e **i successivi non lo vedono più**.  
-> - **`if` annidato** = doppia porta di sicurezza: solo se apri la prima trovi la seconda. Se la prima resta chiusa, la seconda non la incontri.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere una catena `if / else if / else` per alternative mutuamente esclusive
-- Usare un `if` annidato quando un controllo ha senso solo dopo un altro
-- Scegliere tra scala, annidamento e `&&` senza creare rami morti o condizioni fuori ordine
+- Scrivere una scala `if / else if / else` ordinata per classificare un dato in fasce esclusive
 
 ---
 
-### 🪜 La scala `if / else if / else`
+### ⚙️ Prima del laboratorio: la scala `if / else if / else`
 
 Per alternative **disgiunte** (se ne vale una, le altre no):
 
@@ -112,41 +158,17 @@ stop
 
 ---
 
-### 🚪 L’`if` annidato
+### 🧭 Prima del laboratorio: l'ordine decide il risultato
 
-Quando la seconda domanda ha senso **solo se** la prima è vera:
-
-```cpp
-if (anniCollaborazione >= 3) {
-    if (fatturatoAnnuo >= 20000.0) {
-        std::cout << "Fido concesso\n";
-    } else {
-        std::cout << "Fatturato insufficiente per il fido\n";
-    }
-} else {
-    std::cout << "Anzianita insufficiente\n";
-}
-```
-
-A volte la stessa logica si scrive più corta con `&&` (un solo messaggio di esito).  
-L’annidamento resta utile quando i **messaggi di errore** devono essere distinti.
+Per una scala, chiedi prima la fascia più difficile da raggiungere. Se mettessi
+`>= 20000` prima di `>= 50000`, un cliente Platinum sarebbe fermato dal sensore
+Gold e non arriverebbe mai al successivo.
 
 ---
 
-### 🧭 Bussola: quale strumento usare?
+### 🔬 Laboratorio PRIMM: Fasce sconto cliente
 
-| Situazione | Strumento |
-|------------|-----------|
-| Due sole alternative | `if-else` |
-| Tre o più fasce mutuamente esclusive | scala `if / else if / else` |
-| Secondo controllo solo se il primo è superato, con messaggi diversi | `if` annidato |
-| Tutte le condizioni devono essere vere, un solo esito | `if (A && B)` |
-
----
-
-### 🔬 Laboratorio PRIMM: Fasce sconto e fido
-
-Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
+Assegniamo la fascia sconto del cliente con controlli in sequenza.
 
 #### 1. PREDICT (Prevedi)
 
@@ -177,7 +199,6 @@ Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in seq
 int main() {
     std::string ragioneSociale = "Alpha Logistica Srl";
     double fatturato = 32500.0;
-    int anniCollaborazione = 4;
 
     double sconto = 0.0;
     std::string fascia = "Nessuna";
@@ -200,17 +221,6 @@ int main() {
     std::cout << "Fatturato: " << fatturato << " euro\n";
     std::cout << "Fascia   : " << fascia << " (sconto " << sconto * 100 << "%)\n";
 
-    // Fido: doppia porta (annidato) per messaggi distinti
-    if (anniCollaborazione >= 3) {
-        if (fatturato >= 20000.0) {
-            std::cout << "Fido: CONCESSO\n";
-        } else {
-            std::cout << "Fido: NEGATO (fatturato insufficiente)\n";
-        }
-    } else {
-        std::cout << "Fido: NEGATO (anzianita insufficiente)\n";
-    }
-
     return 0;
 }
 ```
@@ -225,27 +235,29 @@ Con `fatturato = 32500`:
 | `>= 20000` | vero | `sconto = 0.10`, fascia Gold |
 | resto della scala | — | **non eseguito** |
 
-Poi, con `anniCollaborazione = 4`, si entra nel primo `if` del fido e, poiché `32500 >= 20000`, il fido è concesso.
-
 > 🔗 Segui il flusso su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+if (fatturato >= 50000.0) {
+    sconto = 0.15;
+} else if (fatturato >= 20000.0) {
+    sconto = 0.10;
+} else {
+    sconto = 0.0;
+}
+```
+
+</details>
+
 1. **Fascia Diamond**  
    In cima alla scala: se `fatturato >= 100000` → sconto `0.20`.  
    Verifica con `120000` che non resti classificato Platinum.
 
-2. **Fido in una riga**  
-   Sostituisci l’annidamento con:
-   ```cpp
-   if (anniCollaborazione >= 3 && fatturato >= 20000.0) {
-       std::cout << "Fido: CONCESSO\n";
-   } else {
-       std::cout << "Fido: NEGATO\n";
-   }
-   ```
-   Più corto, ma perdi i messaggi distinti. Quando preferiresti l’annidamento?
-
-3. **Ordine sbagliato (esperimento)**  
+2. **Ordine sbagliato (esperimento)**
    Inverti temporaneamente le soglie Gold e Platinum e osserva cosa succede a un fatturato di `60000`.
 
 #### 5. MAKE (Crea)
@@ -261,8 +273,7 @@ Scrivi `imposte_reddito.cpp`:
   - ≤ 50000 → 35%
   - oltre → 43%
 - Imposta stimata = `redditoImponibile * aliquota`
-- `bool certificazioneGreen`: se `true`, detrai `1000` dall’imposta (non sotto zero)
-- Output: prospetto con fascia, aliquota, imposta, eventuale detrazione, totale
+- Output: prospetto con fascia, aliquota e imposta stimata
 
 **Requisiti:** Doxygen, `///` sulle aliquote, scala `if / else if / else` ordinata.
 
@@ -277,7 +288,8 @@ Scrivi `imposte_reddito.cpp`:
 #include <string>
 
 int main() {
-    // dichiara dati, scala aliquote, detrazione green, stampa prospetto
+    /// TODO: spiega perché la soglia più alta viene controllata per prima.
+    // TODO: dichiara dati, scala aliquote e stampa prospetto
     return 0;
 }
 ```
@@ -289,8 +301,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - Scala `if / else if / else` = alternative esclusive; **ordine delle soglie** decisivo.
 - Al primo ramo vero il resto della catena viene saltato.
-- `if` annidato = seconda domanda solo se la prima è superata (messaggi diversi).
-- `A && B` = stesso esito in forma compatta; meno flessibile sui messaggi.
 - Per molte costanti discrete (menu 1/2/3) nel prossimo capitolo useremo `switch`.
 
 ---
@@ -303,7 +313,7 @@ Entra in scena lo **`switch`**.
 
 <!-- 
   NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: scala else-if + annidamento + bussola di scelta
+  [x] Obiettivo: scala else-if ordinata
   [x] Metafora nastro logistico
   [x] Quiz sintassi corretta
   [x] Predict sull'esclusività dei rami

@@ -36,6 +36,7 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 #include <chapters/11_ciclo_for.md>
 #include <chapters/12_ciclo_do_while.md>
 #include <chapters/13_controllo_cicli_e_formattazione.md>
+#include <chapters/14_formattazione_contabile.md>
 #include <chapters/14_funzioni_scomposizione_top_down.md>
 #include <chapters/15_scope_e_passaggio_parametri.md>
 #include <chapters/16_array_sequenze_dati.md>

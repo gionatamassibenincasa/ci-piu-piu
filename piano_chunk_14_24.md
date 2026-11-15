@@ -19,9 +19,9 @@
 
 ---
 
-## 🗺️ Mappa Dettagliata dei Capitoli (14 - 24)
+## 🗺️ Mappa Dettagliata dei Capitoli (14 - 25)
 
-### 🏢 Capitolo 14: `chapters/14_funzioni_scomposizione_top_down.md`
+### 🏢 Capitolo 15: `chapters/14_funzioni_scomposizione_top_down.md`
 **Titolo:** *I Reparti dell'Azienda: Sviluppo Top-Down e la Funzione come Scatola Nera*  
 **Durata stimata:** 20 minuti
 
@@ -49,7 +49,7 @@
 
 ---
 
-### 📎 Capitolo 15: `chapters/15_scope_e_passaggio_parametri.md`
+### 📎 Capitolo 16: `chapters/15_scope_e_passaggio_parametri.md`
 **Titolo:** *La Fotocopia vs L'Originale: Scope e Passaggio per Riferimento (`&`)*  
 **Durata stimata:** 20 minuti
 
@@ -73,7 +73,7 @@
 
 ---
 
-### 🗄️ Capitolo 16: `chapters/16_array_sequenze_dati.md`
+### 🗄️ Capitolo 17: `chapters/16_array_sequenze_dati.md`
 **Titolo:** *La Batteria di Locker: Gli Array e le Sequenze di Dati*  
 **Durata stimata:** 25 minuti
 
@@ -104,7 +104,7 @@
 
 ---
 
-### 📊 Capitolo 17: `chapters/17_array_bidimensionali_matrici.md`
+### 📊 Capitolo 18: `chapters/17_array_bidimensionali_matrici.md`
 **Titolo:** *Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili*  
 **Durata stimata:** 25 minuti
 
@@ -128,7 +128,7 @@
 
 ---
 
-### 🗝️ Capitolo 18: `chapters/18_puntatori_e_memoria.md`
+### 🗝️ Capitolo 19: `chapters/18_puntatori_e_memoria.md`
 **Titolo:** *Il Biglietto di Ritiro: Indirizzi di Memoria, Operatori & e * e Puntatori*  
 **Durata stimata:** 20 minuti
 
@@ -153,7 +153,7 @@
 
 ---
 
-### 🏷️ Capitolo 19: `chapters/19_enum_e_struct.md`
+### 🏷️ Capitolo 20: `chapters/19_enum_e_struct.md`
 **Titolo:** *L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct`)*  
 **Durata stimata:** 25 minuti
 
@@ -185,7 +185,7 @@
 
 ---
 
-### 🔍 Capitolo 20: `chapters/20_ricerca_dicotomica.md` *(Opzionale)*
+### 🔍 Capitolo 21: `chapters/20_ricerca_dicotomica.md` *(Opzionale)*
 **Titolo:** *Il Dizionario Magico: La Ricerca Dicotomica (Binaria)*  
 **Durata stimata:** 20 minuti
 
@@ -213,7 +213,7 @@
 
 ---
 
-### 🃏 Capitolo 21: `chapters/21_ordinamento_selection_sort.md` *(Opzionale)*
+### 🃏 Capitolo 22: `chapters/21_ordinamento_selection_sort.md` *(Opzionale)*
 **Titolo:** *Riordinare le Carte: L'Algoritmo Selection Sort*  
 **Durata stimata:** 20 minuti
 
@@ -244,7 +244,7 @@
 
 ---
 
-### 🧩 Capitolo 22: `chapters/22_ordinamento_divide_et_impera.md` *(Opzionale)*
+### 🧩 Capitolo 23: `chapters/22_ordinamento_divide_et_impera.md` *(Opzionale)*
 **Titolo:** *Divide et Impera: Merge Sort e Quick Sort*  
 **Durata stimata:** 25 minuti
 
@@ -276,7 +276,7 @@
 
 ---
 
-### 🏆 Capitolo 23: `chapters/23_database_in_memoria_progetto.md`
+### 🏆 Capitolo 24: `chapters/23_database_in_memoria_progetto.md`
 **Titolo:** *Il Database Gestionale: Vettori di Strutture e Progetto Finale del Blocco 2*  
 **Durata stimata:** 25 minuti
 
@@ -313,7 +313,7 @@
 
 ---
 
-### 🪆 Capitolo 24: `chapters/24_ricorsione_e_strutture_ricorsive.md`
+### 🪆 Capitolo 25: `chapters/24_ricorsione_e_strutture_ricorsive.md`
 **Titolo:** *Lo Specchio e la Catena: La Ricorsione e le Strutture Ricorsive*  
 **Durata stimata:** 25 minuti
 

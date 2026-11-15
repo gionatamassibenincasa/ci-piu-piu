@@ -2,7 +2,7 @@
 activity_id: db-memoria-01
 title: 'Database in memoria: progetto con array di struct'
 methodology: PRIMM
-order: 23
+order: 24
 version: '2026-11-15'
 language: it
 components:

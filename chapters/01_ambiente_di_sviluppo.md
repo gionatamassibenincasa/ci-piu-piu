@@ -32,10 +32,8 @@ Alla fine di questa sessione avrai:
 ---
 
 ### 🎯 Obiettivo di questa sessione
-Alla fine sei in grado di:
-- Installare e verificare un ambiente C++ completo su Windows 10/11
-- Compilare ed eseguire da terminale un programma minimo
-- Eseguire e debuggare lo stesso programma da Visual Studio Code
+Alla fine sei in grado di configurare e verificare un ambiente C++ che compila,
+esegue e fa il debug di un programma minimo.
 
 ---
 
@@ -126,15 +124,11 @@ gdb --version
 
 Devi vedere le versioni. Se compare “non è riconosciuto come comando…” il PATH non è ancora corretto: ricontrolla il percorso e riavvia il terminale.
 
-#### Passo 7 — Primo programma di prova (ciclo leggero PRIMM)
+#### Passo 7 — Primo programma di prova
 
 Crea il file `prova.cpp` nella cartella del corso (`Documenti\Ci-Piu-Piu`) con questo contenuto:
 
 ```cpp
-/**
- * @file prova.cpp
- * @brief Programma di verifica dell'ambiente di sviluppo.
- */
 #include <iostream>
 
 int main() {
@@ -143,7 +137,7 @@ int main() {
 }
 ```
 
-##### 1. PREDICT
+##### 1. Prevedi
 Prima di compilare, rispondi:
 
 Cosa pensi che succeda quando eseguirai il programma?
@@ -153,7 +147,7 @@ Cosa pensi che succeda quando eseguirai il programma?
 [( )] Il computer si riavvierà
 [( )] Comparirà un errore perché manca qualcosa
 
-##### 2. RUN (da terminale)
+##### 2. Esegui da terminale
 Nel Prompt dei comandi (sempre dentro la cartella del progetto):
 
 ```bat
@@ -163,15 +157,11 @@ prova.exe
 
 **Controllo:** deve comparire esattamente `Ambiente C++ pronto!`.
 
-##### 3. MODIFY
+##### 3. Modifica
 Cambia il messaggio stampato (es. metti il tuo nome o la tua classe) e ricompila.  
 Verifica che la nuova frase appaia correttamente. Puoi usare il bottone "Esegui" sotto la finestra del codice sorgente per eseguire il codice.
 
-```cpp[modificami.cpp]
-/**
- * @file modificami.cpp
- * @brief Modifica la frase!
- */
+```cpp
 #include <iostream>
 
 int main() {
@@ -193,7 +183,7 @@ Ora che il compilatore funziona da terminale, usiamo il banco di lavoro completo
    ```
    (Si apre VS Code con la cartella già caricata.)
 
-2. Apri il file `ridotto.cpp`.
+2. Apri il file `prova.cpp`.
 
 3. **Esecuzione semplice**  
    - Clicca il pulsante **Run** (play) in alto a destra,  
@@ -224,7 +214,7 @@ Se sì, l’officina è completamente operativa.
 | Estensione C/C++        | Utensili specializzati + IntelliSense            | Extensions view               |
 | MSYS2 + MinGW-w64       | Compilatore `g++` e debugger `gdb`               | `g++ --version`               |
 | Variabile PATH          | Dice a Windows dove sono gli utensili            | `where g++`                   |
-| `ridotto.cpp`           | Primo pezzo prodotto e collaudato                | Compila ed esegue             |
+| `prova.cpp`             | Primo pezzo prodotto e collaudato                | Compila ed esegue             |
 | Breakpoint + F5         | Ispezione interna del programma in esecuzione    | Il programma si ferma         |
 
 ---
@@ -234,7 +224,7 @@ Se sì, l’officina è completamente operativa.
 - Senza compilatore non esiste programma eseguibile.
 - Il PATH deve contenere `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
 - `g++` traduce il codice sorgente in eseguibile; `gdb` ti fa guardare dentro mentre gira.
-- Il programma `ridotto.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
+- Il programma `prova.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
 - Da ora in poi lavorerai quasi sempre da VS Code, ma sapere usare il terminale ti salva quando qualcosa non va.
 
 ---

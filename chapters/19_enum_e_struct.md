@@ -2,7 +2,7 @@
 activity_id: "enum-01"
 title: "L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct` )"
 methodology: PRIMM
-order: 19
+order: 20
 version: "2026-11-14"
 language: it
 components:

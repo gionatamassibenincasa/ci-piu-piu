@@ -23,6 +23,54 @@ components:
         correct: false
   make_instructions: "Scenario SIA — Interesse composto su deposito aziendale"
 files:
+  - path: README.md
+    action: create
+    description: Istruzioni per svolgere la consegna PRIMM
+    template_content: |
+      # Ciclo for
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      Nel `for` controlla sempre inizio, condizione e avanzamento.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict – For
+
+      1. Quali valori stampa il contatore?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run – Ammortamento
+
+      1. Quante righe della tabella vengono stampate?
+      >
+      2. Qual è il residuo finale?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate – Contatore
+
+      1. Quando viene eseguito `++anno`?
+      >
+      2. Come cambia il valore residuo a ogni giro?
+      >
+  - path: student_work/modify/ammortamento_cespite.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          for (int anno = 1; anno <= 5; ++anno) {
+              std::cout << anno << "\n";
+          }
+          return 0;
+      }
   - path: student_work/make/interesse_composto.cpp
     action: create
     phase: make
@@ -60,13 +108,11 @@ Il ciclo **`for`** li raccoglie in **una sola riga**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `for` con inizializzazione, condizione e aggiornamento nell’intestazione
-- Usarlo quando il numero di ripetizioni è noto a priori
-- Capire lo **scope** del contatore dichiarato nell’intestazione
+- Scrivere un `for` per ripetere un calcolo un numero noto di volte
 
 ---
 
-### 🔍 `for` = `while` in forma compatta
+### ⚙️ Prima del laboratorio: `for` = `while` in forma compatta
 
 ```cpp
 // while equivalente
@@ -102,7 +148,18 @@ stop
 @enduml
 ```
 
-**Scope:** se dichiari il contatore nell’intestazione (`for (int anno = …)`), `anno` **non esiste** fuori dal ciclo.
+---
+
+### 🧭 Prima del laboratorio: il timer conta prima di fermarsi
+
+L'intestazione del `for` dice alla macchina industriale quando partire, quando
+fermarsi e di quanto avanzare dopo ogni giro.
+
+| Parte | Domanda a cui risponde |
+|-------|-------------------------|
+| Inizializzazione | Da quale numero parto? |
+| Condizione | Posso fare un altro giro? |
+| Aggiornamento | Come preparo il giro successivo? |
 
 ---
 
@@ -119,7 +176,7 @@ Costruiamo la tabella di ammortamento a quote costanti anno per anno.
 <details>
 <summary>💡 Spiegazione</summary>
 <code>i</code> parte da <code>0</code>; la condizione è <code>i &lt; 5</code>; dopo ogni giro <code>++i</code>.  
-Valori stampati: 0, 1, 2, 3, 4 — cinque righe. In C++ i conteggi “da zero” sono la norma (come gli indici degli array che vedrai più avanti).
+Valori stampati: 0, 1, 2, 3, 4 — cinque righe.
 </details>
 
 #### 2. RUN (Esegui)
@@ -165,11 +222,20 @@ Con 5 anni e cespite 10000:
 | … | … | … |
 | 5 | 2000 | 0 |
 
-Il contatore `anno` nasce nell’intestazione del `for` e **muore** alla graffa di chiusura.
-
 > 🔗 Segui `anno` e `valoreResiduo` su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+for (int anno = 1; anno <= NUMERO_ANNI; ++anno) {
+    valoreResiduo -= QUOTA_ANNUA;
+}
+```
+
+</details>
+
 1. **Fondo ammortamento**  
    Prima del ciclo: `double fondo = 0.0;`.  
    A ogni giro: `fondo += QUOTA_ANNUA;` e stampalo in tabella.
@@ -180,9 +246,9 @@ Il contatore `anno` nasce nell’intestazione del `for` e **muore** alla graffa 
    ```
    Adatta la stampa in modo coerente.
 
-3. **Prova di scope**  
-   Dopo il `for`, prova `std::cout << anno;`.  
-   Il compilatore deve segnalare che `anno` non è dichiarato in quello scope.
+3. **Dodici mesi**
+   Imposta `NUMERO_ANNI` a `12` e interpreta ogni giro come un mese: verifica che
+   il timer esegua esattamente dodici scatti.
 
 #### 5. MAKE (Crea)
 **Scenario SIA — Interesse composto su deposito aziendale**
@@ -210,7 +276,8 @@ Scrivi `interesse_composto.cpp`:
 #include <iostream>
 
 int main() {
-    // capitale, tasso, anni; for; stampa guadagno netto
+    /// TODO: spiega perché il tasso resta costante per tutta la simulazione.
+    // TODO: capitale, tasso, anni; for; stampa guadagno netto
     return 0;
 }
 ```
@@ -222,7 +289,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - `for` = quando il numero di ripetizioni è **noto** (o facile da esprimere con un contatore).
 - Intestazione: `init; condizione; aggiornamento`.
-- Contatore dichiarato nel `for` → scope limitato al ciclo.
 - Stesso potere del `while`; forma più sicura per i conteggi regolari.
 - Per input a sentinella resta preferibile il `while`.
 
@@ -236,7 +302,7 @@ Entra in scena il **`do-while`**: controllo in coda.
 
 <!-- 
   NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: for, contatore, scope
+  [x] Obiettivo: for e conteggio noto
   [x] Metafora timer
   [x] Quiz sintassi corretta
   [x] Predict conteggio da 0

@@ -25,6 +25,55 @@ components:
         correct: false
   make_instructions: "Scenario SIA — Registro fatture fornitori"
 files:
+  - path: README.md
+    action: create
+    description: Istruzioni per svolgere la consegna PRIMM
+    template_content: |
+      # Ciclo while
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      In ogni ciclo verifica inizializzazione, condizione e aggiornamento.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict – While
+
+      1. Quante volte gira il ciclo se la condizione è falsa all'inizio?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run – Scontrino
+
+      1. Quali prezzi hai inserito?
+      >
+      2. La sentinella è stata sommata?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate – Ciclo
+
+      1. Quale valore cambia a ogni giro?
+      >
+      2. Quando la condizione diventa falsa?
+      >
+  - path: student_work/modify/scontrino_nastro.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          double prezzoArticolo = 1.0;
+          while (prezzoArticolo != 0.0) {
+              std::cin >> prezzoArticolo;
+          }
+          return 0;
+      }
   - path: student_work/make/fatture_fornitori.cpp
     action: create
     phase: make
@@ -66,13 +115,11 @@ La forma più essenziale di questa ripetizione è il ciclo **`while`**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `while` con i tre ingredienti (inizializzazione, condizione, aggiornamento)
-- Usare un **valore sentinella** per terminare l’input
-- Riconoscere e evitare il ciclo infinito
+- Scrivere un ciclo `while` che legge dati fino a una sentinella, aggiornando la condizione a ogni giro
 
 ---
 
-### ⚙️ Controllo in testa e tre ingredienti
+### ⚙️ Prima del laboratorio: controllo in testa e tre ingredienti
 
 Il `while` verifica la condizione **prima** di entrare nel corpo.
 
@@ -112,6 +159,18 @@ stop
 
 ---
 
+### 🧭 Prima del laboratorio: la sentinella ferma il nastro
+
+La sentinella è un valore che non rappresenta un articolo: è il separatore
+finale. Leggila prima del ciclo e alla fine di ogni giro, ma non sommarla mai.
+
+| Valore letto | Il ciclo continua? | Va nel totale? |
+|--------------|-------------------|----------------|
+| `12.50` | sì | sì |
+| `0.0` (sentinella) | no | no |
+
+---
+
 ### 🔬 Laboratorio PRIMM: Scontrino a nastro
 
 Accumuiamo i prezzi finché non arriva la sentinella di fine spesa.
@@ -145,24 +204,17 @@ int main() {
     double totaleSpesa = 0.0;
     int numeroArticoli = 0;
 
-    /// Prima lettura (inizializzazione della condizione)
     double prezzoArticolo = 0.0;
     std::cout << "Prezzo articolo (0 per terminare): ";
-    // In questo laboratorio simuliamo tre letture fisse:
-    // 12.50, 3.20, 0  — in classe userai std::cin in loop
-
-    // Simulazione input per ambiente interattivo
-    double letture[] = {12.50, 3.20, 0.0};
-    int i = 0;
-    prezzoArticolo = letture[i++];
+    std::cin >> prezzoArticolo;
 
     while (prezzoArticolo != 0.0) {
         totaleSpesa += prezzoArticolo;
         numeroArticoli += 1;
         std::cout << "  + " << prezzoArticolo << " EUR (pezzi: " << numeroArticoli << ")\n";
 
-        /// Aggiornamento: prossimo prezzo (sentinella inclusa)
-        prezzoArticolo = letture[i++];
+        std::cout << "Prezzo articolo (0 per terminare): ";
+        std::cin >> prezzoArticolo;
     }
 
     std::cout << "=== SCONTRINO ===\n";
@@ -174,14 +226,8 @@ int main() {
 ```
 @LIA.cpp
 
-> In laboratorio con tastiera reale sostituisci l’array di simulazione con:
-> ```cpp
-> std::cin >> prezzoArticolo;
-> // ... nel while, di nuovo: std::cin >> prezzoArticolo;
-> ```
-
 #### 3. INVESTIGATE (Investiga)
-Sequenza simulata: `12.50` → `3.20` → `0.0`
+Sequenza di esempio: `12.50` → `3.20` → `0.0`
 
 | Iterazione | `prezzoArticolo` | Condizione | Totale dopo |
 |------------|------------------|------------|-------------|
@@ -194,6 +240,20 @@ La sentinella `0` **non** viene sommata: il controllo avviene prima del corpo.
 > 🔗 Osserva le variabili su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+double prezzoArticolo = 0.0;
+std::cin >> prezzoArticolo;
+
+while (prezzoArticolo != 0.0) {
+    std::cin >> prezzoArticolo;
+}
+```
+
+</details>
+
 1. **Media per articolo**  
    Dopo il ciclo, se `numeroArticoli > 0`, stampa `totaleSpesa / numeroArticoli`.  
    Altrimenti messaggio “nessun articolo”.

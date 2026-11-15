@@ -2,7 +2,7 @@
 activity_id: "selection-sort-01"
 title: "Riordinare le Carte: L'Algoritmo Selection Sort"
 methodology: PRIMM
-order: 21
+order: 22
 version: "2026-11-14"
 language: it
 components:

@@ -2,7 +2,7 @@
 activity_id: "ricerca-01"
 title: "Il Dizionario Magico: La Ricerca Dicotomica (Binaria)"
 methodology: PRIMM
-order: 20
+order: 21
 version: "2026-11-14"
 language: it
 components:

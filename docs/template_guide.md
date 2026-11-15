@@ -17,6 +17,11 @@ files: []
 
 ---
 
+### 🎯 Obiettivo
+- [Risultato osservabile: es. pianificare una sessione PRIMM.]
+
+---
+
 ### 📖 [Sezione 1]
 - [Consiglio operativo]
 
@@ -28,6 +33,11 @@ files: []
 3. Investigate
 4. Modify
 5. Make
+
+---
+
+### 📝 Riepilogo tascabile
+- [2–4 regole che lo studente può applicare subito.]
 
 ---
 

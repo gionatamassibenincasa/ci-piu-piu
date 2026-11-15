@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 from . import core
+from . import assignments
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
@@ -166,10 +167,48 @@ def cmd_build(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_scaffold_assignment(args: argparse.Namespace) -> int:
+    try:
+        chapter = assignments.load_activity(
+            args.activity,
+            Path(args.chapters) if args.chapters else None,
+        )
+        options = assignments.resolve_options(
+            chapter,
+            config_path=Path(args.config) if args.config else None,
+            org=args.org,
+            classroom=args.classroom,
+        )
+        url = assignments.publish_template(chapter, options)
+    except (OSError, RuntimeError, ValueError) as exc:
+        print(f"Errore scaffold-assignment: {exc}", file=sys.stderr)
+        return 1
+
+    due = options.deadline or "YYYY-MM-DDTHH:MM:00+01:00"
+    print(f"Template repository creato: {url}")
+    print("Flag 'Template repository' attivato.")
+    print("\nA) CLI:")
+    print(
+        f"   gh teacher assignment add {options.org} {options.classroom} "
+        f"{options.assignment_slug} \\"
+    )
+    print(f'     --name "{options.assignment_name}" \\')
+    print(f"     --template {options.org}/{options.template_repo_name} \\")
+    print(f"     --due {due}")
+    print(
+        "\nB) Web: classroom50.org → classroom → New assignment → "
+        "scegli il template sopra."
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cipiupiu",
-        description="CLI tooling OER ci-più-più (validate, list, render, build).",
+        description=(
+            "CLI tooling OER ci-più-più "
+            "(validate, list, render, build, scaffold-assignment)."
+        ),
     )
     sub = p.add_subparsers(dest="command", required=True)
 
@@ -213,6 +252,17 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--lessons-dir", default=None)
     b.add_argument("--only", default=None, help="Filtra lezioni (order, activity_id o nome file)")
     b.set_defaults(func=cmd_build)
+
+    sa = sub.add_parser(
+        "scaffold-assignment",
+        help="Crea o aggiorna il repository template di un'attività",
+    )
+    sa.add_argument("--activity", required=True, help="activity_id del capitolo")
+    sa.add_argument("--config", default=None, help="Configurazione YAML della classe")
+    sa.add_argument("--org", default=None, help="Organizzazione GitHub")
+    sa.add_argument("--classroom", default=None, help="Identificativo Classroom50")
+    sa.add_argument("--chapters", default=None, help="Directory chapters/")
+    sa.set_defaults(func=cmd_scaffold_assignment)
 
     return p
 

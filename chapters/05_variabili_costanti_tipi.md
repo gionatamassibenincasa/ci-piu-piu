@@ -20,17 +20,76 @@ components:
       correct: false
   make_instructions: Scheda conto corrente aziendale
 files:
-- path: student_work/make/conto_corrente.cpp
-  action: create
-  phase: make
-  template_content: "#include <iostream>\n#include <string>\nint main() {\n    //\
-    \ TODO: banca, IBAN, saldo, tasso const, fido, rating\n    return 0;\n}\n"
-  validation_rules:
-    min_lines: 12
-    must_contain:
-    - const
-    - double
-    - std::string
+  - path: README.md
+    action: create
+    description: Istruzioni per svolgere la consegna PRIMM
+    template_content: |
+      # Variabili, costanti e tipi
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      Usa Python Tutor durante Investigate per vedere gli sportelli della memoria.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict – Tipi
+
+      1. Cosa pensi venga memorizzato in un `int` se assegni `7.85`?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run – Scheda articolo
+
+      1. Quali valori stampa il programma?
+      >
+      2. Come vengono mostrati `true` e `false`?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate – Sportelli della memoria
+
+      1. Quali variabili vedi nello stack?
+      >
+      2. Perché `ALIQUOTA_IVA` non può cambiare?
+      >
+  - path: student_work/modify/scheda_articolo.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          const double ALIQUOTA_IVA = 0.22;
+          double prezzoNetto = 19.50;
+          return 0;
+      }
+    validation_rules:
+      min_lines: 7
+      must_contain:
+        - const
+        - double
+  - path: student_work/make/conto_corrente.cpp
+    action: create
+    phase: make
+    template_content: |
+      #include <iostream>
+      #include <string>
+
+      int main() {
+          /// TODO: spiega perché il tasso è una costante del conto.
+          // TODO: banca, IBAN, saldo, tasso const, fido, rating
+          return 0;
+      }
+    validation_rules:
+      min_lines: 12
+      must_contain:
+        - const
+        - double
+        - std::string
 ---
 
 ## 📦 Gli Sportelli della Memoria: variabili, costanti e tipi
@@ -57,15 +116,13 @@ Per farlo usiamo **variabili** e **costanti**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare variabili e costanti dei tipi fondamentali (`int`, `double`, `char`, `bool`, `std::string`)
-- Scegliere il tipo adatto al dato aziendale che vuoi memorizzare
-- Stampare i valori memorizzati e capire perché un `int` “taglia” i decimali
+- Dichiarare e scegliere variabili e costanti con il tipo adatto a un dato aziendale
 
 In questo chunk **non** chiediamo ancora dati da tastiera (`std::cin`): ci concentriamo su *ricordare* e *mostrare*. L’input arriverà quando servirà davvero nei laboratori successivi.
 
 ---
 
-### 🗄️ I tipi di dato fondamentali
+### ⚙️ Prima del laboratorio: i tipi di dato fondamentali
 
 Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** conterrà, così riserva lo spazio giusto.
 
@@ -81,6 +138,22 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 > ⚠️ **Trappola classica:**  
 > Se scrivi `int pezzi = 7.85;` il compilatore **non** arrotonda: **tronca** i decimali → diventa `7`.  
 > Per i centesimi usa sempre `double`.
+
+---
+
+### 🧭 Prima del laboratorio: dichiarare e sigillare
+
+Una dichiarazione unisce tre informazioni: **tipo**, **nome** e **valore**.
+Il nome racconta il dato; il tipo dice al compilatore come conservarlo.
+
+| Scrittura | Come leggerla |
+|-----------|---------------|
+| `int giacenza = 42;` | Uno sportello per un conteggio intero. |
+| `double prezzo = 19.50;` | Uno sportello per un valore con centesimi. |
+| `const double IVA = 0.22;` | Uno sportello sigillato: il valore non cambia durante il programma. |
+
+Nel Predict osserva una conversione: il tipo scelto decide quale parte del valore
+può essere conservata.
 
 ---
 
@@ -163,6 +236,21 @@ Collega ogni “sportello” al suo ruolo.
 #### 4. MODIFY (Modifica)
 Apporta le modifiche **una alla volta** e verifica.
 
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    const double ALIQUOTA_IVA = 0.22;
+    double prezzoNetto = 19.50;
+    return 0;
+}
+```
+
+</details>
+
 1. **Calcolo IVA**  
    Dichiara `double importoIva = prezzoNetto * ALIQUOTA_IVA;`  
    e stampa il prezzo lordo (`prezzoNetto + importoIva`).
@@ -178,6 +266,12 @@ Apporta le modifiche **una alla volta** e verifica.
    [(X)] Segnala un errore (variabile di sola lettura)
    [( )] Ignora la riga in silenzio
    [( )] Stampa un avviso ma produce l’eseguibile
+
+   Un compilatore come g++ può segnalare:
+
+   ```text
+   error: assignment of read-only variable 'ALIQUOTA_IVA'
+   ```
 
    <details>
    <summary>💡 Spiegazione</summary>
@@ -219,8 +313,8 @@ Scrivi da zero `conto_corrente.cpp` che memorizza e visualizza:
 #include <string>
 
 int main() {
-    // Dichiara qui le variabili e la costante
-    // Stampa i dati e gli interessi stimati
+    /// TODO: spiega perché il tasso è una costante del conto.
+    // TODO: dichiara i dati e stampa gli interessi stimati
     return 0;
 }
 ```

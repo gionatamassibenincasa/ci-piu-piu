@@ -2,7 +2,7 @@
 activity_id: merge-sort-01
 title: 'Ordinamento divide et impera: merge sort'
 methodology: PRIMM
-order: 22
+order: 23
 version: '2026-11-15'
 language: it
 components:

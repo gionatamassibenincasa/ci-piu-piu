@@ -29,7 +29,8 @@ Non è un laboratorio PRIMM completo.
 | … | … |
 
 ```cpp
-// esempio minimo
+/// [Perché questa scelta rende il codice più utile a chi lo legge.]
+[esempio minimo]
 ```
 
 ---
@@ -43,6 +44,11 @@ Non è un laboratorio PRIMM completo.
 
 ### 🧪 Mini-esercizio
 [Applicare la convenzione a un programma già visto.]
+
+---
+
+### 📝 Riepilogo tascabile
+- [2–4 regole da riusare nei Make successivi.]
 
 ---
 

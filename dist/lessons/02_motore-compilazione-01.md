@@ -36,13 +36,11 @@ Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una *
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Descrivere le quattro fasi della compilazione C++ e il ruolo di ciascuna
-- Usare `g++ -save-temps` per generare e ispezionare i file intermedi (`.ii`, `.s`, `.o`)
-- Collegare una riga di C++ semplice al corrispondente frammento Assembly
+- Seguire il percorso di un programma C++ dal sorgente all'eseguibile e ispezionarne i file intermedi con `g++ -save-temps`
 
 ---
 
-### 🏭 La fabbrica del codice — le quattro stazioni
+### ⚙️ Prima del laboratorio: dal sorgente all'eseguibile
 
 Il percorso essenziale è questo:
 
@@ -79,7 +77,14 @@ COMP -[hidden]right-> START
 @enduml
 ```
 
-In realtà, dentro il “Compilatore” della figura ci sono **più stazioni**. Con `g++` le vediamo così:
+Il file `.cpp` che scrivi non viene eseguito direttamente: il compilatore e il
+linker lo trasformano in un `.exe` pronto per Windows.
+
+---
+
+### 🧭 Prima del laboratorio: le quattro stazioni
+
+Dentro la fase di traduzione ci sono quattro stazioni. Con `g++` le vediamo così:
 
 ```text @plantUML
 @startuml
@@ -117,12 +122,8 @@ Useremo il programma **più piccolo possibile** (senza ancora stampare nulla).
 Così concentriamo l’attenzione sulla catena di montaggio, non sull’output a video.
 
 ```cpp
-/**
- * @file ridotto.cpp
- * @brief Programma minimo per ispezionare la catena di compilazione.
- */
 int main() {
-    return 0;   /// dice al sistema operativo: "tutto ok"
+    return 0;
 }
 ```
 
@@ -142,6 +143,16 @@ int main() { return 0; }
 
 
 #### 2. RUN (Esegui)
+Prima esegui il programma minimo nel blocco, poi ripeti l'esperimento dal
+terminale per lasciare visibili i file intermedi.
+
+```cpp
+int main() {
+    return 0;
+}
+```
+@LIA.cpp
+
 Nella cartella del progetto digita:
 
 ```bat
@@ -185,6 +196,17 @@ movl $0, %eax
 Che, in pratica, prepara il valore di ritorno `0` (successo).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+int main() {
+    return 0;
+}
+```
+
+</details>
+
 1. Cambia il programma in:
    ```cpp
    int main() {
@@ -219,12 +241,28 @@ echo %ERRORLEVEL%
 Dovresti vedere `42`.
 
 #### 5. MAKE (Crea)
-Crea un nuovo file `codice_uscita.cpp` che:
-1. Contiene solo la funzione `main`
-2. Restituisce un numero a tua scelta tra 1 e 99 (diverso da 0 e da 42)
-3. Viene compilato con `-save-temps -fverbose-asm`
-4. Ti permette di verificare, aprendo il `.s`, che il numero scelto compaia nell’Assembly
-5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l’esecuzione
+**Scenario aziendale:** un programma automatico importa gli ordini notturni.
+Non deve ancora stampare nulla, ma deve restituire un codice di esito che un
+altro programma possa leggere.
+
+Crea `codice_uscita.cpp` che:
+1. Contiene solo `main` e restituisce un codice tra 1 e 99 (diverso da 0 e 42).
+2. Usa un commento `///` per spiegare cosa rappresenta il codice scelto.
+3. Viene compilato con `-save-temps -fverbose-asm`.
+4. Ti permette di verificare nel `.s` il numero scelto.
+5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l'esecuzione.
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+int main() {
+    /// TODO: spiega l'esito dell'importazione.
+    return 7;
+}
+```
+
+</details>
 
 **Non** usare ancora `#include <iostream>` né `std::cout`: restiamo concentrati sulla catena di compilazione.  
 La stampa a video arriverà nel prossimo capitolo.

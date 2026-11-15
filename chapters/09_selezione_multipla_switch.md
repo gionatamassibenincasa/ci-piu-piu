@@ -26,6 +26,63 @@ components:
         correct: false
   make_instructions: "Scenario SIA — Convertitore valute al POS"
 files:
+  - path: README.md
+    action: create
+    description: Istruzioni per svolgere la consegna PRIMM
+    template_content: |
+      # Switch-case
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      Ogni `case` utile termina con `break`, salvo fall-through intenzionale.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict – Fall-through
+
+      1. Cosa accade senza `break` dopo `case 1`?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run – Menu ATM
+
+      1. Quale `case` viene selezionato?
+      >
+      2. Cosa impedisce di eseguire il `case` successivo?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate – Switch
+
+      1. Cosa succede dopo un `break`?
+      >
+      2. Quando viene eseguito `default`?
+      >
+  - path: student_work/modify/menu_atm.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          int sceltaMenu = 2;
+          switch (sceltaMenu) {
+              case 1:
+                  std::cout << "Prelievo\n";
+                  break;
+              case 2:
+                  std::cout << "Versamento\n";
+                  break;
+              default:
+                  std::cout << "Opzione non valida\n";
+                  break;
+          }
+          return 0;
+      }
   - path: student_work/make/cambio_valute.cpp
     action: create
     phase: make
@@ -62,13 +119,11 @@ Per questi casi il C++ offre lo **`switch-case`**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere uno `switch` su `int` o `char` con `case`, `break` e `default`
-- Spiegare e usare (o evitare) il *fall-through*
-- Scegliere tra `switch` e scala `if / else if` in base al tipo di decisione
+- Scrivere uno `switch` su un codice discreto usando `case`, `break` e `default`
 
 ---
 
-### ⚙️ Anatomia
+### ⚙️ Prima del laboratorio: anatomia dello switch
 
 ```cpp
 switch (scelta) {
@@ -118,7 +173,7 @@ stop
 
 ---
 
-### 🧭 Bussola: `switch` o `if / else if`?
+### 🧭 Prima del laboratorio: quando usare switch
 
 | Situazione | Preferisci |
 |------------|------------|
@@ -158,7 +213,6 @@ Per fermarsi serve un <code>break</code> in ogni ramo (salvo quando il fall-thro
  * @return int 0 se ok.
  */
 int main() {
-    double saldo = 1250.00;
     int sceltaMenu = 2;   // simula il tasto premuto dal cliente
 
     std::cout << "=== SPORTELLO ATM ===\n";
@@ -169,24 +223,14 @@ int main() {
     std::cout << "Scelta: " << sceltaMenu << "\n\n";
 
     switch (sceltaMenu) {
-        case 1: {
-            const double PRELIEVO = 50.0;
-            if (saldo >= PRELIEVO) {
-                saldo -= PRELIEVO;
-                std::cout << "Prelievo effettuato. Nuovo saldo: " << saldo << " EUR\n";
-            } else {
-                std::cout << "Fondi insufficienti.\n";
-            }
+        case 1:
+            std::cout << "Prelievo selezionato.\n";
             break;
-        }
-        case 2: {
-            const double VERSAMENTO = 100.0;
-            saldo += VERSAMENTO;
-            std::cout << "Versamento effettuato. Nuovo saldo: " << saldo << " EUR\n";
+        case 2:
+            std::cout << "Versamento selezionato.\n";
             break;
-        }
         case 3:
-            std::cout << "Saldo disponibile: " << saldo << " EUR\n";
+            std::cout << "Visualizzazione saldo selezionata.\n";
             break;
         case 0:
             std::cout << "Arrivederci.\n";
@@ -207,12 +251,28 @@ Con `sceltaMenu = 2`:
 | Passo | Cosa succede |
 |-------|----------------|
 | `switch` valuta `2` | salta direttamente a `case 2` |
-| Versamento | `saldo` diventa `1350` |
+| `case 2` | stampa l'operazione selezionata |
 | `break` | esce dallo `switch` (non esegue case 3/default) |
 
 Prova a togliere il `break` del `case 2` e riesegui: vedrai anche l’output del saldo (fall-through).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+switch (sceltaMenu) {
+    case 1:
+        std::cout << "Prelievo\n";
+        break;
+    default:
+        std::cout << "Opzione non valida\n";
+        break;
+}
+```
+
+</details>
+
 1. **Ricarica telefonica**  
    Aggiungi `case 4:` con addebito fisso di `20.00` (se il saldo basta) e relativo `break`.
 
@@ -227,6 +287,12 @@ Prova a togliere il `break` del `case 2` e riesegui: vedrai anche l’output del
 
 3. **Tipo sbagliato**  
    Prova `double sceltaMenu = 2.0;` nello `switch`: il compilatore segnala che la quantità non è intera.
+
+   Un compilatore come g++ può segnalare:
+
+   ```text
+   error: switch quantity not an integer
+   ```
 
 #### 5. MAKE (Crea)
 **Scenario SIA — Convertitore valute al POS**
@@ -243,7 +309,8 @@ Scrivi `cambio_valute.cpp`:
 - Usa fall-through per maiuscole/minuscole
 - Se valida: stampa importo originale, tasso, controvalore in euro
 
-**Requisiti:** Doxygen, `///` sui tassi, `break` corretti.
+**Requisiti:** `///` sui tassi e `break` corretti; aggiungi Doxygen solo se il
+programma supera circa 15 righe.
 
 <details>
 <summary>💡 Scaffold</summary>
@@ -255,7 +322,8 @@ Scrivi `cambio_valute.cpp`:
 #include <iostream>
 
 int main() {
-    // dichiara importo e codice, switch sui char, stampa risultato
+    /// TODO: spiega perché ogni tasso dipende dalla valuta selezionata.
+    // TODO: dichiara importo e codice, poi scrivi lo switch
     return 0;
 }
 ```

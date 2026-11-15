@@ -1,155 +1,165 @@
 ---
 activity_id: "funzioni-01"
-title: "I Reparti dell'Azienda: Sviluppo Top-Down e la Funzione come Scatola Nera"
+title: "Il Primo Reparto: una funzione che restituisce un valore"
 methodology: PRIMM
 order: 14
-version: "2026-11-14"
 language: it
 components:
   predict_quiz:
-    question: "Cosa accade se una funzione ha istruzioni dopo la riga del `return`?"
+    question: "Quale valore restituisce calcolaIva(100.0)?"
     code: |
-      int esempio(int x) {
-          return x * 2;
-          // qui c'è codice inutilizzabile
-          int y = x + 1;
-          return y;
+      double calcolaIva(double imponibile) {
+          return imponibile * 0.22;
       }
     options:
-      - text: "Il codice dopo `return` viene comunque eseguito"
-        correct: false
-      - text: "Il codice dopo `return` non viene mai eseguito (è inaccessibile)"
+      - text: "22"
         correct: true
-      - text: "Il compilatore sposta il `return` alla fine del blocco"
+      - text: "100"
         correct: false
-      - text: "Il programma crasha"
+      - text: "122"
         correct: false
-  make_instructions: "Scenario SIA — Calcolo busta paga con funzioni modulari"
+  make_instructions: "Calcolare una commissione POS con una funzione."
 files:
-  - path: student_work/make/calcolo_stipendio.cpp
+  - path: README.md
+    action: create
+    template_content: |
+      # Prima funzione
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict
+      1. Quale valore torna dalla funzione?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run
+      1. Quale importo IVA hai ottenuto?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate
+      1. Quale valore entra e quale valore esce dalla funzione?
+      >
+  - path: student_work/modify/calcolo_iva.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+      double calcolaIva(double imponibile) { return imponibile * 0.22; }
+      int main() { std::cout << calcolaIva(100.0) << "\n"; }
+  - path: student_work/make/commissione_pos.cpp
     action: create
     phase: make
     template_content: |
-      /**
-       * @brief Calcola lo stipendio lordo a partire da ore lavorate e tariffa.
-       */
-      double calcolaLordo(double oreLavorate, double tariffaOraria) {
-          // TODO: implementazione
+      #include <iostream>
+      double calcolaCommissione(double importo) {
+          /// TODO: spiega perché la percentuale è applicata all'importo.
           return 0.0;
       }
-
-      /**
-       * @brief Calcola le ritenute fiscali sul lordo.
-       */
-      double calcolaRitenute(double lordo) {
-          // TODO: implementazione
-          return 0.0;
-      }
-
-      /**
-       * @brief Stampa il cedolino del dipendente.
-       */
-      void stampaCedolino(const std::string& nome, double lordo, double netto) {
-          // TODO: implementazione
-      }
-
-      int main() {
-          // driver di esempio: 3 scenari di calcolo
-          return 0;
-      }
+      int main() { return 0; }
     validation_rules:
-      min_lines: 12
-      must_contain: ["int main"]
+      min_lines: 8
+      must_contain: ["return"]
 ---
 
-## 🎯 I Reparti dell'Azienda: Sviluppo Top-Down e la Funzione come Scatola Nera
+## 🏢 Il Primo Reparto: una funzione che restituisce un valore
 
-> "Il dirigente non controlla come l'impiegato lavora, gli consegna i dati e attende il risultato."
->
-> — *Metafora applicata al design del software*
+> 💡 **Metafora:** una funzione è un reparto: riceve un ordine, svolge un lavoro
+> preciso e restituisce il risultato senza mostrare tutti i passaggi interni.
 
-### Obiettivo
-- Comprendere la scomposizione top‑down (divide et impera) nella progettazione di programmi.
-- Distinguere **parametro formale** da **argomento reale**.
-- Conoscere prototipo, definizione e `return` di una funzione.
-- Usare funzioni `void` per operazioni senza valore di ritorno.
+### 🎯 Obiettivo
+Scrivere e chiamare una funzione che riceve un valore e ne restituisce uno.
 
 ---
 
-## 📚 Teoria
-1. **Principio top‑down**: Si parte da una funzionalità alta‑livello e la si suddivide in sotto‑funzioni più piccole.
-2. **Scatola Nera**: L’interfaccia (nome, parametri, valore di ritorno) è l’unica cosa che il chiamante conosce.
-3. **Parametri**:
-   - *Formale*: nella firma della funzione (`double oreLavorate`).
-   - *Reale*: valore passato alla chiamata (`calcolaLordo(40, 15.5)`).
-4. **Prototipo vs Definizione**.
-5. **`return`**: termina la funzione e restituisce un valore.
-6. **Funzioni `void`**: eseguono un’azione senza restituire dati.
+### ⚙️ Prima del laboratorio: ingresso e uscita
 
----
-
-## 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-
-[[ predict_block() ]]
-Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
 ```cpp
-int esempio(int x) {
-    return x * 2;
-    // qui c'è codice inutilizzabile
-    int y = x + 1;
-    return y;
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
 }
 ```
-- [( )] Il codice dopo `return` viene comunque eseguito
-- [(X)] Il codice dopo `return` non viene mai eseguito (è inaccessibile)
-- [( )] Il compilatore sposta il `return` alla fine del blocco
-- [( )] Il programma crasha
 
-<details>
-<summary>💡 Spiegazione</summary>
-Il `return` termina immediatamente la funzione; le istruzioni successive non sono raggiungibili e vengono scartate dal compilatore (se presenti, generano avviso di codice non usato).
-</details>
+`imponibile` è il dato che entra nel reparto; `return` consegna il valore
+calcolato a chi ha chiamato la funzione.
 
-### 2. Run (Esegui)
+---
+
+### 🧭 Prima del laboratorio: chiamare il reparto
+
 ```cpp
-/**
- * @file calcolo_stipendio.cpp
- * @brief Modulo di calcolo della busta paga.
- */
-#include <iostream>
-#include <string>
+double iva = calcolaIva(100.0);
+```
 
-// prototipo
-double calcolaLordo(double oreLavorate, double tariffaOraria);
-double calcolaRitenute(double lordo);
-void stampaCedolino(const std::string& nome, double lordo, double netto);
+Il valore `100.0` entra nella funzione; `22.0` torna e viene salvato in `iva`.
+
+---
+
+### 🔬 Laboratorio PRIMM: IVA di una fattura
+
+#### 1. PREDICT
+
+[[ predict_block() ]]
+
+#### 2. RUN
+
+```cpp
+#include <iostream>
+
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
+}
 
 int main() {
-    std::string dipendente = "Mario Rossi";
-    double ore = 40.0;
-    double tariffa = 15.5;
-    double lordo = calcolaLordo(ore, tariffa);
-    double ritenute = calcolaRitenute(lordo);
-    double netto = lordo - ritenute;
-    stampaCedolino(dipendente, lordo, netto);
+    double iva = calcolaIva(100.0);
+    std::cout << "IVA: " << iva << "\n";
     return 0;
 }
 ```
 @LIA.cpp
 
-### 3. Investigate (Investiga)
-Usa Python Tutor per visualizzare lo stack frame quando `main` chiama `calcolaLordo` e `calcolaRitenute`. Nota come il frame di `main` è sospeso fino al ritorno.
+#### 3. INVESTIGATE
 
-### 4. Modify (Modifica)
-Aggiungi una funzione `double calcolaBonus(double netto, double percentuale)` e aggiorna `main` per applicare un bonus del 10% al netto.
+| Passo | Valore |
+|---|---|
+| Chiamata | `imponibile = 100.0` |
+| `return` | `22.0` |
+| In `main` | `iva = 22.0` |
 
-### 5. Make (Crea)
-**Scenario SIA — Calcolo busta paga con funzioni modulari**
+> 🔗 Osserva i due frame su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-Scrivi `calcolo_stipendio.cpp` con le funzioni richieste, includendo Doxygen (`@brief`, `@param`, `@return`). Il programma deve stampare tre scenari di stipendio (normale, straordinario, part‑time).
+#### 4. MODIFY
 
----
+<details><summary>💡 Scaffold</summary>
 
+```cpp
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
+}
+```
+
+</details>
+
+1. Calcola l'IVA di `250.0`.
+2. Sostituisci `0.22` con `0.10` e osserva il risultato.
+3. Rinomina `imponibile` in `importoNetto` in firma e corpo.
+
+#### 5. MAKE
+
+**Scenario SIA:** scrivi `commissione_pos.cpp` con una funzione
+`calcolaCommissione(double importo)` che restituisce l'1% dell'importo e stampa
+il risultato in `main`.
+
+### 📝 Riepilogo tascabile
+- Una funzione riceve dati, svolge un lavoro e può restituire un valore.
+- `return` termina la funzione e consegna il risultato.
+- La chiamata usa il valore restituito in un'espressione.
+
+### ➡️ Prossimo chunk
+Nel prossimo chunk separeremo programmi più grandi in più reparti.

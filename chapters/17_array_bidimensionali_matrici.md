@@ -2,7 +2,7 @@
 activity_id: "matrici-01"
 title: "Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili"
 methodology: PRIMM
-order: 17
+order: 18
 version: "2026-11-14"
 language: it
 components:

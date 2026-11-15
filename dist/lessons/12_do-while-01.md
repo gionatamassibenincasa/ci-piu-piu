@@ -36,13 +36,11 @@ Per questo esiste il **`do-while`**: controllo **in coda**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `do-while` e spiegare la differenza con il `while`
-- Usarlo per **validare un input** (ripeti finché il dato non è accettabile)
-- Evitare la duplicazione di codice tipica del `while` “con lettura prima e dentro”
+- Scrivere un `do-while` per validare un input che deve essere richiesto almeno una volta
 
 ---
 
-### ⚙️ Anatomia e confronto con `while`
+### ⚙️ Prima del laboratorio: anatomia e confronto con `while`
 
 ```cpp
 // do-while: il corpo gira almeno una volta
@@ -85,6 +83,18 @@ endwhile (no)
 stop
 @enduml
 ```
+
+---
+
+### 🧭 Prima del laboratorio: il controllo arriva dopo il modulo
+
+Il form viene mostrato, l'utente prova a inviarlo e solo dopo il sistema decide
+se chiedere una nuova compilazione. Per questo il primo giro è garantito.
+
+| Ciclo | Quando controlla? | Giri minimi |
+|-------|------------------|-------------|
+| `while` | prima del corpo | 0 |
+| `do-while` | dopo il corpo | 1 |
 
 ---
 
@@ -136,13 +146,9 @@ int main() {
 
     double importo = 0.0;
 
-    // Sequenza simulata per demo: -10, 0, 250  (in classe usa cin nel loop)
-    double tentativi[] = {-10.0, 0.0, 250.0};
-    int t = 0;
-
     do {
-        importo = tentativi[t++];
-        std::cout << "Tentativo importo: " << importo << " EUR\n";
+        std::cout << "Importo bonifico: ";
+        std::cin >> importo;
         if (importo < MIN_BONIFICO || importo > MAX_BONIFICO) {
             std::cout << "  Non valido (ammessi " << MIN_BONIFICO
                       << " .. " << MAX_BONIFICO << ")\n";
@@ -155,16 +161,8 @@ int main() {
 ```
 @LIA.cpp
 
-> In laboratorio reale:
-> ```cpp
-> do {
->     std::cout << "Importo bonifico: ";
->     std::cin >> importo;
-> } while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
-> ```
-
 #### 3. INVESTIGATE (Investiga)
-Sequenza: `-10` → `0` → `250`
+Sequenza di esempio: `-10` → `0` → `250`
 
 | Giro | importo | Valido? | Continua? |
 |------|---------|---------|-----------|
@@ -175,14 +173,33 @@ Sequenza: `-10` → `0` → `250`
 Il controllo avviene **dopo** ogni tentativo: ecco perché il primo giro c’è sempre.
 
 #### 4. MODIFY (Modifica)
-1. **Limite 3 tentativi**  
-   Contatore `tentativi`. Se dopo 3 errori non è ancora valido, esci dal ciclo e stampa “sessione bloccata”.
+<details>
+<summary>💡 Scaffold di partenza</summary>
 
-2. **Menu “altra operazione?”**  
-   Dopo un bonifico accettato, chiedi `S/N` in un `do-while` esterno e ripeti finché la risposta è `S`/`s`.
+```cpp
+do {
+    std::cin >> importo;
+} while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
+```
 
-3. **Dimenticare il `;`**  
+</details>
+
+1. **Range più stretto**
+   Cambia l'intervallo ammesso da `[1, 5000]` a `[10, 1000]` e prova un importo
+   fuori range prima di uno valido.
+
+2. **Dimenticare il `;`**
    Togli il punto e virgola dopo `while (...)`: osserva l’errore del compilatore.
+
+   Un compilatore come g++ può segnalare:
+
+   ```text
+   error: expected ';' before 'return'
+   ```
+
+3. **Valido al primo invio**
+   Inserisci subito `250`: verifica che il corpo gira una volta e il controllo
+   permette subito l'uscita.
 
 #### 5. MAKE (Crea)
 **Scenario SIA — PIN sportello con tentativi limitati**
@@ -209,7 +226,8 @@ Scrivi `pin_sportello.cpp`:
 
 int main() {
     const int PIN_CORRETTO = 4821;
-    // tentativi, do-while, esiti
+    /// TODO: spiega perché i tentativi sono limitati.
+    // TODO: tentativi, do-while, esiti
     return 0;
 }
 ```

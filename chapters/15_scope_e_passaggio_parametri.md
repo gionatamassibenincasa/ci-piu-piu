@@ -2,7 +2,7 @@
 activity_id: "scope-01"
 title: "La Fotocopia vs L'Originale: Scope e Passaggio per Riferimento (`&` )"
 methodology: PRIMM
-order: 15
+order: 16
 version: "2026-11-14"
 language: it
 components:

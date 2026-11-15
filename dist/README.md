@@ -46,6 +46,12 @@ Questa guida raccoglie due strumenti metodologici complementari pensati per acco
 
 ---
 
+### 🎯 Obiettivo
+Alla fine della guida sai pianificare lo studio di un capitolo e affrontare un
+programma seguendo il ciclo PRIMM.
+
+---
+
 ### 📖 Consigli per ottenere il massimo da un testo tecnico
 
 > 💡 *Traduzione e adattamento per la classe del saggio di Sebastian Raschka: [How to Read Technical Books](https://sebastianraschka.com/blog/2025/reading-books.html).*
@@ -96,15 +102,18 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Prima di eseguire il programma, esamina attentamente il codice sorgente e **ipotizza cosa farà**.
 - Se il codice contiene condizioni, cicli o variabili che cambiano, costruisci sul quaderno una **tabella di traccia** (colonne con i valori assunti dalle variabili passo dopo passo).
 
+#### Prima del Predict: orientati
+- Leggi la breve teoria che presenta parole, struttura e regola indispensabili.
+- Non cercare ancora la risposta del quiz: prepara soltanto gli strumenti per ragionare sul codice.
+
 #### 2. RUN (Esegui)
 - Copia il programma nel tuo ambiente di sviluppo (VS Code o blocco interattivo `@LIA.cpp`).
 - **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
 - Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
 
 #### 3. INVESTIGATE (Investiga)
-- Copia il programma su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
-- Osserva visivamente come evolve lo stato della memoria (Stack, variabili locali, tipi) a ogni istruzione di assegnamento.
-- Confronta l'evoluzione effettiva con la tabella di traccia che hai disegnato sul quaderno.
+- Quando il programma usa variabili o memoria, copialo su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
+- Osserva come evolve lo stato della memoria e confrontalo con la tabella di traccia.
 
 #### 4. MODIFY (Modifica)
 - Modifica il codice sorgente procedendo a piccoli passi, per fare tuo il programma:
@@ -116,6 +125,14 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Scrivi un **nuovo programma autonomo** partendo da zero.
 - Puoi prendere in prestito frammenti o strutture logiche dal programma appena studiato, applicandoli per risolvere un problema diverso o per realizzare una funzione nuova.
 - Questo è il momento in cui passi da "lettore di codice" a "creatore di software".
+
+---
+
+### 📝 Riepilogo tascabile
+- Prima leggi il contesto, l'obiettivo e la micro-teoria: poi fai una previsione.
+- Digita il codice a mano e confronta sempre output e Predict.
+- Usa una tabella di traccia e Python Tutor quando cambiano variabili o memoria.
+- Modifica poco alla volta; nel Make riusa l'idea in uno scenario nuovo.
 
 ---
 
@@ -149,10 +166,8 @@ Alla fine di questa sessione avrai:
 ---
 
 ### 🎯 Obiettivo di questa sessione
-Alla fine sei in grado di:
-- Installare e verificare un ambiente C++ completo su Windows 10/11
-- Compilare ed eseguire da terminale un programma minimo
-- Eseguire e debuggare lo stesso programma da Visual Studio Code
+Alla fine sei in grado di configurare e verificare un ambiente C++ che compila,
+esegue e fa il debug di un programma minimo.
 
 ---
 
@@ -243,15 +258,11 @@ gdb --version
 
 Devi vedere le versioni. Se compare “non è riconosciuto come comando…” il PATH non è ancora corretto: ricontrolla il percorso e riavvia il terminale.
 
-#### Passo 7 — Primo programma di prova (ciclo leggero PRIMM)
+#### Passo 7 — Primo programma di prova
 
 Crea il file `prova.cpp` nella cartella del corso (`Documenti\Ci-Piu-Piu`) con questo contenuto:
 
 ```cpp
-/**
- * @file prova.cpp
- * @brief Programma di verifica dell'ambiente di sviluppo.
- */
 #include <iostream>
 
 int main() {
@@ -260,7 +271,7 @@ int main() {
 }
 ```
 
-##### 1. PREDICT
+##### 1. Prevedi
 Prima di compilare, rispondi:
 
 Cosa pensi che succeda quando eseguirai il programma?
@@ -270,7 +281,7 @@ Cosa pensi che succeda quando eseguirai il programma?
 [( )] Il computer si riavvierà
 [( )] Comparirà un errore perché manca qualcosa
 
-##### 2. RUN (da terminale)
+##### 2. Esegui da terminale
 Nel Prompt dei comandi (sempre dentro la cartella del progetto):
 
 ```bat
@@ -280,15 +291,11 @@ prova.exe
 
 **Controllo:** deve comparire esattamente `Ambiente C++ pronto!`.
 
-##### 3. MODIFY
+##### 3. Modifica
 Cambia il messaggio stampato (es. metti il tuo nome o la tua classe) e ricompila.  
 Verifica che la nuova frase appaia correttamente. Puoi usare il bottone "Esegui" sotto la finestra del codice sorgente per eseguire il codice.
 
-```cpp[modificami.cpp]
-/**
- * @file modificami.cpp
- * @brief Modifica la frase!
- */
+```cpp
 #include <iostream>
 
 int main() {
@@ -310,7 +317,7 @@ Ora che il compilatore funziona da terminale, usiamo il banco di lavoro completo
    ```
    (Si apre VS Code con la cartella già caricata.)
 
-2. Apri il file `ridotto.cpp`.
+2. Apri il file `prova.cpp`.
 
 3. **Esecuzione semplice**  
    - Clicca il pulsante **Run** (play) in alto a destra,  
@@ -341,7 +348,7 @@ Se sì, l’officina è completamente operativa.
 | Estensione C/C++        | Utensili specializzati + IntelliSense            | Extensions view               |
 | MSYS2 + MinGW-w64       | Compilatore `g++` e debugger `gdb`               | `g++ --version`               |
 | Variabile PATH          | Dice a Windows dove sono gli utensili            | `where g++`                   |
-| `ridotto.cpp`           | Primo pezzo prodotto e collaudato                | Compila ed esegue             |
+| `prova.cpp`             | Primo pezzo prodotto e collaudato                | Compila ed esegue             |
 | Breakpoint + F5         | Ispezione interna del programma in esecuzione    | Il programma si ferma         |
 
 ---
@@ -351,7 +358,7 @@ Se sì, l’officina è completamente operativa.
 - Senza compilatore non esiste programma eseguibile.
 - Il PATH deve contenere `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
 - `g++` traduce il codice sorgente in eseguibile; `gdb` ti fa guardare dentro mentre gira.
-- Il programma `ridotto.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
+- Il programma `prova.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
 - Da ora in poi lavorerai quasi sempre da VS Code, ma sapere usare il terminale ti salva quando qualcosa non va.
 
 ---
@@ -397,13 +404,11 @@ Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una *
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Descrivere le quattro fasi della compilazione C++ e il ruolo di ciascuna
-- Usare `g++ -save-temps` per generare e ispezionare i file intermedi (`.ii`, `.s`, `.o`)
-- Collegare una riga di C++ semplice al corrispondente frammento Assembly
+- Seguire il percorso di un programma C++ dal sorgente all'eseguibile e ispezionarne i file intermedi con `g++ -save-temps`
 
 ---
 
-### 🏭 La fabbrica del codice — le quattro stazioni
+### ⚙️ Prima del laboratorio: dal sorgente all'eseguibile
 
 Il percorso essenziale è questo:
 
@@ -440,7 +445,14 @@ COMP -[hidden]right-> START
 @enduml
 ```
 
-In realtà, dentro il “Compilatore” della figura ci sono **più stazioni**. Con `g++` le vediamo così:
+Il file `.cpp` che scrivi non viene eseguito direttamente: il compilatore e il
+linker lo trasformano in un `.exe` pronto per Windows.
+
+---
+
+### 🧭 Prima del laboratorio: le quattro stazioni
+
+Dentro la fase di traduzione ci sono quattro stazioni. Con `g++` le vediamo così:
 
 ```text @plantUML
 @startuml
@@ -478,12 +490,8 @@ Useremo il programma **più piccolo possibile** (senza ancora stampare nulla).
 Così concentriamo l’attenzione sulla catena di montaggio, non sull’output a video.
 
 ```cpp
-/**
- * @file ridotto.cpp
- * @brief Programma minimo per ispezionare la catena di compilazione.
- */
 int main() {
-    return 0;   /// dice al sistema operativo: "tutto ok"
+    return 0;
 }
 ```
 
@@ -503,6 +511,16 @@ int main() { return 0; }
 
 
 #### 2. RUN (Esegui)
+Prima esegui il programma minimo nel blocco, poi ripeti l'esperimento dal
+terminale per lasciare visibili i file intermedi.
+
+```cpp
+int main() {
+    return 0;
+}
+```
+@LIA.cpp
+
 Nella cartella del progetto digita:
 
 ```bat
@@ -546,6 +564,17 @@ movl $0, %eax
 Che, in pratica, prepara il valore di ritorno `0` (successo).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+int main() {
+    return 0;
+}
+```
+
+</details>
+
 1. Cambia il programma in:
    ```cpp
    int main() {
@@ -580,12 +609,28 @@ echo %ERRORLEVEL%
 Dovresti vedere `42`.
 
 #### 5. MAKE (Crea)
-Crea un nuovo file `codice_uscita.cpp` che:
-1. Contiene solo la funzione `main`
-2. Restituisce un numero a tua scelta tra 1 e 99 (diverso da 0 e da 42)
-3. Viene compilato con `-save-temps -fverbose-asm`
-4. Ti permette di verificare, aprendo il `.s`, che il numero scelto compaia nell’Assembly
-5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l’esecuzione
+**Scenario aziendale:** un programma automatico importa gli ordini notturni.
+Non deve ancora stampare nulla, ma deve restituire un codice di esito che un
+altro programma possa leggere.
+
+Crea `codice_uscita.cpp` che:
+1. Contiene solo `main` e restituisce un codice tra 1 e 99 (diverso da 0 e 42).
+2. Usa un commento `///` per spiegare cosa rappresenta il codice scelto.
+3. Viene compilato con `-save-temps -fverbose-asm`.
+4. Ti permette di verificare nel `.s` il numero scelto.
+5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l'esecuzione.
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+int main() {
+    /// TODO: spiega l'esito dell'importazione.
+    return 7;
+}
+```
+
+</details>
 
 **Non** usare ancora `#include <iostream>` né `std::cout`: restiamo concentrati sulla catena di compilazione.  
 La stampa a video arriverà nel prossimo capitolo.
@@ -621,15 +666,47 @@ Un linguaggio di programmazione è come un linguaggio straniero con una grammati
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video
-- Usare correttamente `#include <iostream>`, `std::cout`, `\n` e `return 0`
-- Leggere e interpretare i messaggi di errore più comuni legati a sintassi e namespace
+- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
+
+---
+
+### ⚙️ Prima del laboratorio: le quattro parti essenziali
+
+Un programma C++ minimo non è una frase isolata: è un messaggio con indirizzo,
+inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.
+
+| Parte | Idea pratica | Perché c'è |
+| :--- | :--- | :--- |
+| `#include <iostream>` | Prendi in prestito gli strumenti per parlare con lo schermo. | Senza questa libreria il compilatore non conosce `std::cout`. |
+| `int main() { ... }` | Apri l'ufficio principale del programma. | L'esecuzione parte sempre da qui. |
+| `std::cout << "..."` | Invia un messaggio al monitor. | `std::` indica che usi uno strumento della libreria standard. |
+| `return 0;` | Comunica che il lavoro è terminato bene. | Il sistema operativo riceve un esito di successo. |
+
+Non serve ancora capire ogni dettaglio di `std::`: per ora ricordati di copiarlo
+sempre insieme a `cout`.
+
+---
+
+### 🧭 Prima del laboratorio: come scorre l'esecuzione
+
+Immagina l'avvio di un piccolo gestionale: il sistema apre `main`, esegue le
+istruzioni dall'alto verso il basso, mostra il messaggio e poi chiude il lavoro.
+
+| Ordine | Cosa avviene |
+| :---: | :--- |
+| 1 | Il sistema operativo entra in `main`. |
+| 2 | `std::cout` invia i caratteri tra virgolette allo schermo. |
+| 3 | `\n` sposta il cursore alla riga successiva. |
+| 4 | `return 0;` conclude il programma senza errori. |
+
+Adesso puoi fare una previsione: se cambia il testo tra virgolette, quale parte
+del risultato cambierà a video?
 
 ---
 
 ### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
 
-```cpp[ciao.cpp]
+```cpp
 #include <iostream>
 
 int main() {
@@ -655,8 +732,8 @@ std::cout << "Ciao, Mondo!\n";
 
 
 #### 2. RUN (Esegui)
-Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
-Confronta l’output con la tua previsione.
+Digita il codice sotto nel tuo editor oppure eseguilo con il bottone.
+Confronta l'output con la previsione: la differenza, se c'è, ti dice cosa investigare.
 
 ```cpp
 /**
@@ -670,7 +747,7 @@ Confronta l’output con la tua previsione.
  * @return int 0 se tutto è andato bene.
  */
 int main() {
-    /// Stampa il messaggio di saluto e va a capo
+    /// Il saluto rende riconoscibile l'avvio del programma.
     std::cout << "Ciao, Mondo!\n";
 
     return 0; /// 0 = successo per il sistema operativo
@@ -680,6 +757,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 Analizziamo il codice riga per riga come detective.
+
+| Fase | Cosa osservi a video |
+| :--- | :--- |
+| Il sistema operativo avvia `main` | Ancora niente: il programma è pronto a eseguire. |
+| `std::cout` invia la stringa | Compare `Ciao, Mondo!` e `\n` porta il cursore alla riga successiva. |
+| `return 0;` termina `main` | Nessun nuovo testo: il sistema riceve il segnale di successo. |
 
 | Codice | Cosa fa (spiegazione brain-friendly) | A cosa serve |
 | :--- | :--- | :--- |
@@ -692,15 +775,23 @@ Analizziamo il codice riga per riga come detective.
 > 🔗 **Ispezione memoria (opzionale ma utile):**  
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
-> 💡 **Nota sui namespace (senza usarla ancora)**  
-> Un **namespace** è un “reparto” di nomi: evita che due cose diverse si chiamino uguali e si confondano.  
-> La libreria standard vive nel reparto `std`. Per questo scriviamo `std::cout` e non solo `cout`.  
-> Esiste anche la scorciatoia `using namespace std;` (dopo gli `#include`), che permette di scrivere `cout` da solo.  
-> **In questo corso, all’inizio, non la usiamo:** rende gli errori più chiari e ti abitua a vedere da dove arrivano i nomi. La rivedremo quando i programmi saranno più lunghi.
-
 #### 4. MODIFY (Modifica)
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
 Dopo ogni modifica ricompila/esegui.
+
+<details>
+<summary>💡 Scaffold di partenza per tutte le modifiche</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Ciao, Mondo!\n";
+    return 0;
+}
+```
+
+</details>
 
 **Modifica A — Il punto e virgola traditore**
 1. Togli il `;` alla fine della riga di `std::cout`.
@@ -713,9 +804,17 @@ Cosa ti aspetti?
 [( )] Il programma stampa comunque il messaggio
 [( )] Si crea un file eseguibile vuoto
 
+Un compilatore come g++ può segnalare:
+
+```text
+error: expected ';' before 'return'
+```
+
 <details>
 <summary>💡 Spiegazione</summary>
-Il punto e virgola è obbligatorio in C++ per terminare quasi tutte le istruzioni. Senza di esso il compilatore non sa dove finisce un’istruzione e dove ne inizia un’altra.
+Leggi la parola chiave `expected`: il compilatore si aspettava un punto e virgola
+prima di arrivare a `return`. Il testo preciso può cambiare, ma riga e parola
+`error` sono il punto da cui iniziare.
 </details>
 
 **Modifica B — Lo spazio dei nomi**
@@ -730,47 +829,52 @@ Cosa succede?
 [( )] Il programma stampa uno spazio vuoto
 [( )] Stampa “Ciao, Mondo!” due volte
 
+Un compilatore come g++ può segnalare:
+
+```text
+error: 'cout' was not declared in this scope; did you mean 'std::cout'?
+```
+
 <details>
 <summary>💡 Spiegazione</summary>
-Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo programma e non la trova: non sa che intendevi quella della libreria standard. Per ora scriviamo sempre <code>std::cout</code> per intero.
+Senza <code>std::</code> il compilatore cerca <code>cout</code> nel tuo programma
+e non lo trova. Il suggerimento finale ti indica anche la correzione: per ora
+scrivi sempre <code>std::cout</code> per intero.
 </details>
 
 **Modifica C — Più messaggi**
-Aggiungi una seconda riga di output che stampa il tuo nome o la tua classe.  
+Aggiungi una seconda riga di output: `Gestionale ordini pronto`.
 Verifica che appaiano su due righe separate.
 
 #### 5. MAKE (Crea)
 Scrivi da zero un nuovo programma chiamato `presentazione.cpp`.
 
-**Scenario:** vuoi presentarti al computer (e a chi leggerà il codice).
+**Scenario aziendale:** la tua classe sta preparando la prima schermata di un
+piccolo gestionale ordini. Prima che l'operatore inizi a lavorare, il programma
+deve comunicare con chiarezza dove si trova.
 
 **Requisiti:**
 1. Includi la libreria corretta.
 2. Hai una funzione `main` ben formattata.
 3. Stampa **tre righe separate** con tre istruzioni `std::cout`:
-   - riga 1 → il tuo nome
-   - riga 2 → la tua classe (es. “3A SIA”)
-   - riga 3 → una tua passione o hobby
-4. Usa commenti `///` sul “perché” delle righe importanti.
+   - riga 1 → nome del gestionale;
+   - riga 2 → reparto o funzione, per esempio “Gestione ordini”;
+   - riga 3 → messaggio utile per l'operatore.
+4. Usa un commento `///` per spiegare **perché** una riga aiuta l'operatore.
 5. Termina con `return 0;`.
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
 ```cpp
-/**
- * @brief Programma di presentazione personale.
- */
 #include <iostream>
 
 int main() {
-    /// Stampa il nome
+    /// Fa capire subito all'operatore quale strumento sta usando.
     std::cout << "....................\n";
 
-    /// Stampa la classe
     std::cout << "....................\n";
 
-    /// Stampa l'hobby
     std::cout << "....................\n";
 
     return 0;
@@ -949,15 +1053,13 @@ Per farlo usiamo **variabili** e **costanti**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare variabili e costanti dei tipi fondamentali (`int`, `double`, `char`, `bool`, `std::string`)
-- Scegliere il tipo adatto al dato aziendale che vuoi memorizzare
-- Stampare i valori memorizzati e capire perché un `int` “taglia” i decimali
+- Dichiarare e scegliere variabili e costanti con il tipo adatto a un dato aziendale
 
 In questo chunk **non** chiediamo ancora dati da tastiera (`std::cin`): ci concentriamo su *ricordare* e *mostrare*. L’input arriverà quando servirà davvero nei laboratori successivi.
 
 ---
 
-### 🗄️ I tipi di dato fondamentali
+### ⚙️ Prima del laboratorio: i tipi di dato fondamentali
 
 Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** conterrà, così riserva lo spazio giusto.
 
@@ -973,6 +1075,22 @@ Prima di aprire uno sportello devi dire al compilatore **che tipo di merce** con
 > ⚠️ **Trappola classica:**  
 > Se scrivi `int pezzi = 7.85;` il compilatore **non** arrotonda: **tronca** i decimali → diventa `7`.  
 > Per i centesimi usa sempre `double`.
+
+---
+
+### 🧭 Prima del laboratorio: dichiarare e sigillare
+
+Una dichiarazione unisce tre informazioni: **tipo**, **nome** e **valore**.
+Il nome racconta il dato; il tipo dice al compilatore come conservarlo.
+
+| Scrittura | Come leggerla |
+|-----------|---------------|
+| `int giacenza = 42;` | Uno sportello per un conteggio intero. |
+| `double prezzo = 19.50;` | Uno sportello per un valore con centesimi. |
+| `const double IVA = 0.22;` | Uno sportello sigillato: il valore non cambia durante il programma. |
+
+Nel Predict osserva una conversione: il tipo scelto decide quale parte del valore
+può essere conservata.
 
 ---
 
@@ -1065,6 +1183,21 @@ Collega ogni “sportello” al suo ruolo.
 #### 4. MODIFY (Modifica)
 Apporta le modifiche **una alla volta** e verifica.
 
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    const double ALIQUOTA_IVA = 0.22;
+    double prezzoNetto = 19.50;
+    return 0;
+}
+```
+
+</details>
+
 1. **Calcolo IVA**  
    Dichiara `double importoIva = prezzoNetto * ALIQUOTA_IVA;`  
    e stampa il prezzo lordo (`prezzoNetto + importoIva`).
@@ -1080,6 +1213,12 @@ Apporta le modifiche **una alla volta** e verifica.
    [(X)] Segnala un errore (variabile di sola lettura)
    [( )] Ignora la riga in silenzio
    [( )] Stampa un avviso ma produce l’eseguibile
+
+   Un compilatore come g++ può segnalare:
+
+   ```text
+   error: assignment of read-only variable 'ALIQUOTA_IVA'
+   ```
 
    <details>
    <summary>💡 Spiegazione</summary>
@@ -1121,8 +1260,8 @@ Scrivi da zero `conto_corrente.cpp` che memorizza e visualizza:
 #include <string>
 
 int main() {
-    // Dichiara qui le variabili e la costante
-    // Stampa i dati e gli interessi stimati
+    /// TODO: spiega perché il tasso è una costante del conto.
+    // TODO: dichiara i dati e stampa gli interessi stimati
     return 0;
 }
 ```
@@ -1163,13 +1302,11 @@ Ora impariamo a **calcolare** e a **decidere in una riga**: IVA, sconti, spese d
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere espressioni aritmetiche, di confronto e logiche corrette
-- Evitare la trappola della **divisione intera**
-- Usare l’**operatore ternario** per assegnare un valore in base a una condizione
+- Scrivere un'espressione che calcola oppure sceglie un valore per uno scontrino
 
 ---
 
-### ⚙️ Gli operatori fondamentali
+### ⚙️ Prima del laboratorio: calcolare un valore
 
 Un’**espressione** combina valori, variabili e operatori e produce **un solo risultato**.
 
@@ -1186,21 +1323,13 @@ double a = pezzi / 2;      // 2  (divisione intera!)
 double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
 ```
 
-#### Confronto (producono `bool`)
-`==`  `!=`  `<`  `<=`  `>`  `>=`
-
-#### Logici
-| Operatore | Nome | Vero quando… | Esempio SIA |
-|-----------|------|--------------|-------------|
-| `&&` | AND | **entrambe** le condizioni sono vere | `haTessera && spesa >= 50` |
-| `||` | OR | **almeno una** è vera | `isStudente || isOver65` |
-| `!` | NOT | ribalta il valore | `!contoBloccato` |
-
 ---
 
-### ⚡ L’operatore ternario `?:`
+### 🧭 Prima del laboratorio: scegliere un valore
 
-Forma:
+Un confronto come `totaleSpesa >= 60.0` produce `true` o `false`. Il ternario
+usa quel risultato come un sensore alla cassa: sceglie uno dei due prezzi.
+
 ```text
 condizione ? valore_se_vero : valore_se_falso
 ```
@@ -1211,8 +1340,8 @@ condizione ? valore_se_vero : valore_se_falso
 double speseSpedizione = (totaleSpesa >= 60.0) ? 0.0 : 6.50;
 ```
 
-Utile quando la decisione è semplice e produce un valore.  
-Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
+Usalo per una scelta semplice che restituisce un valore. Per logiche con più
+istruzioni useremo `if` / `else` nel prossimo capitolo.
 
 ---
 
@@ -1262,11 +1391,10 @@ int main() {
     const double COSTO_SPEDIZIONE_STANDARD = 6.50;
 
     double importoProdotti = 85.00;
-    bool isClienteFedelta = true;
 
-    /// 10% se tesserato e spesa >= 50, altrimenti 2%
+    /// La soglia premia un ordine abbastanza grande con lo sconto maggiore.
     double percentualeSconto =
-        (isClienteFedelta && importoProdotti >= 50.0) ? 0.10 : 0.02;
+        (importoProdotti >= 50.0) ? 0.10 : 0.02;
 
     double valoreSconto = importoProdotti * percentualeSconto;
     double nettoProdotti = importoProdotti - valoreSconto;
@@ -1294,7 +1422,7 @@ Segui il flusso dei valori (con i numeri dell’esempio).
 
 | Espressione | Risultato | Perché |
 |-------------|-----------|--------|
-| `isClienteFedelta && importoProdotti >= 50.0` | `true` | entrambe vere |
+| `importoProdotti >= 50.0` | `true` | 85 è maggiore della soglia |
 | percentuale sconto | `0.10` | ramo `?` del ternario |
 | `valoreSconto` | `8.5` | `85 * 0.10` |
 | `nettoProdotti` | `76.5` | `85 - 8.5` |
@@ -1304,12 +1432,29 @@ Segui il flusso dei valori (con i numeri dell’esempio).
 > 🔗 Esegui il programma passo-passo su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    double importoProdotti = 85.00;
+    double speseSpedizione = (importoProdotti >= 60.0) ? 0.0 : 6.50;
+    std::cout << speseSpedizione << "\n";
+    return 0;
+}
+```
+
+</details>
+
 1. **Promozione weekend**  
-   Concedi lo sconto del 10% se il cliente ha la tessera **oppure** la spesa (lordo) supera i 100€ (`||`).
+   Porta la soglia per lo sconto del 10% da `50.0` a `100.0`. Ricompila e
+   osserva quale valore sceglie il ternario.
 
 2. **Consegna express**  
-   Aggiungi `bool consegnaRapida = true;`.  
-   Se è `true`, aggiungi un supplemento fisso di `3.00` alle spese di spedizione (anche se erano gratis), usando un ternario.
+   Aggiungi `bool consegnaRapida = true;`. Con un ternario assegna un
+   supplemento di `3.00` se è vero, `0.0` altrimenti, poi sommalo alla spedizione.
 
 3. **Pari o dispari**  
    Con `int articoli = 14;` stampa se il numero è pari o dispari:
@@ -1330,7 +1475,8 @@ Scrivi `commissioni_pos.cpp` per un esercente:
 - **Commissione minima:** se la commissione calcolata è `< 0.15`, applica comunque `0.15` (secondo ternario)
 - Calcola e stampa l’**incasso netto** dell’esercente (`importo - commissioneFinale`)
 
-**Requisiti:** Doxygen, commenti `///` sulle aliquote, output chiaro tipo scontrino.
+**Requisiti:** commenti `///` sulle aliquote, output chiaro tipo scontrino;
+aggiungi Doxygen solo se il programma supera circa 15 righe.
 
 <details>
 <summary>💡 Scaffold</summary>
@@ -1354,7 +1500,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - Espressione = calcoli/confronti che producono **un** valore.
 - Divisione tra soli `int` → risultato intero (trappola classica).
-- `&&` = entrambe vere; `||` = almeno una vera; `!` = negazione.
 - Ternario: `condizione ? se_vero : se_falso` — ideale per scelte semplici che restituiscono un valore.
 - Per decisioni lunghe o a più rami → nei prossimi capitoli useremo `if` / `else`.
 
@@ -1390,13 +1535,11 @@ Per gestire i bivi usiamo **`if`** e **`if-else`**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `if` semplice e un `if-else` con graffe corrette
-- Evitare i due tranelli classici (`;` dopo la condizione e graffe mancanti)
-- Capire lo **scope**: una variabile dichiarata dentro `{ }` esiste solo lì
+- Scrivere un `if` o un `if-else` con graffe per scegliere il ramo corretto
 
 ---
 
-### 🔀 I due modelli
+### ⚙️ Prima del laboratorio: i due modelli
 
 **`if` semplice** — esegui un blocco *solo se* la condizione è vera:
 
@@ -1436,6 +1579,20 @@ stop
 
 ---
 
+### 🧭 Prima del laboratorio: costruire una condizione
+
+Una condizione produce `true` o `false`. Il tornello apre solo quando la sua
+regola è vera; se servono due controlli, `&&` significa che devono superarsi
+entrambi.
+
+| Condizione | Significato al tornello |
+|------------|-------------------------|
+| `saldo >= importo` | Il credito basta per il pagamento. |
+| `pinInserito == PIN_SEGRETO` | Il codice è corretto. |
+| `pinInserito == PIN_SEGRETO && badgeDirigente` | PIN e badge sono validi. |
+
+---
+
 ### ⚠️ I due grandi tranelli
 
 **1. Il punto e virgola traditore**
@@ -1448,14 +1605,13 @@ if (saldo >= importo);
 }
 ```
 
-Dopo la `)` della condizione **non va mai** il `;`.
+Dopo la `)` della condizione **non va mai** il `;`: il codice compila, ma il
+blocco successivo non appartiene più all'`if` e viene eseguito sempre.
 
-**2. Graffe e scope**
+**2. Graffe**
 
 Senza `{ }` l’`if` controlla **solo** la prima istruzione successiva.  
 **Usa sempre le graffe**, anche per una sola riga.
-
-Inoltre: una variabile dichiarata dentro un blocco `{ }` **non esiste fuori** (scope locale).
 
 ---
 
@@ -1510,19 +1666,14 @@ int main() {
     std::cout << "Verifica disponibilita...\n\n";
 
     if (saldoDisponibile >= importoSpesa) {
-        /// Flag locale: esiste SOLO dentro questo blocco
-        bool autorizzato = true;
-
         saldoDisponibile = saldoDisponibile - importoSpesa;
         std::cout << ">>> TRANSAZIONE APPROVATA <<<\n";
         std::cout << "Nuovo saldo: " << saldoDisponibile << " EUR\n";
     } else {
-        /// Esiste SOLO dentro l'else
-        double importoMancante = importoSpesa - saldoDisponibile;
-
         std::cout << ">>> TRANSAZIONE NEGATA <<<\n";
         std::cout << "Credito insufficiente.\n";
-        std::cout << "Importo mancante: " << importoMancante << " EUR\n";
+        std::cout << "Importo mancante: "
+                  << importoSpesa - saldoDisponibile << " EUR\n";
     }
 
     std::cout << "\nOperazione conclusa.\n";
@@ -1538,14 +1689,28 @@ Con i valori dell’esempio (`saldo = 45`, `importo = 62.50`):
 |-------|----------------|
 | Condizione `saldo >= importo` | `false` |
 | Ramo eseguito | `else` |
-| `importoMancante` | `17.50` (visibile solo dentro l’else) |
+| `importoSpesa - saldoDisponibile` | `17.50` |
 | Dopo l’`if-else` | messaggio “Operazione conclusa” |
 
 Prova a cambiare `importoSpesa` in `30.00` e riesegui: ora si attiva il ramo `if` e il saldo viene aggiornato.
 
-> 🔗 Ispeziona lo stack su [Python Tutor C++](https://pythontutor.com/cpp.html): nota che `autorizzato` e `importoMancante` nascono e muoiono nei rispettivi blocchi.
+> 🔗 Ispeziona lo stack su [Python Tutor C++](https://pythontutor.com/cpp.html):
+> osserva saldo, importo e il ramo che viene eseguito.
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+if (saldoDisponibile >= importoSpesa) {
+    std::cout << "Approvato\n";
+} else {
+    std::cout << "Negato\n";
+}
+```
+
+</details>
+
 1. **Guardiano sottoscorta**  
    Aggiungi `int rotoloCartaTermica = 3;`.  
    Con un `if` **semplice** (senza else): se `< 5`, stampa un allarme per sostituire il rotolo.
@@ -1553,9 +1718,9 @@ Prova a cambiare `importoSpesa` in `30.00` e riesegui: ora si attiva il ramo `if
 2. **Micro-pagamento**  
    Se `importoSpesa < 10.00`, aggiungi una commissione fissa di `0.30` **prima** del controllo sul saldo.
 
-3. **Prova di scope**  
-   Prova a stampare `autorizzato` o `importoMancante` **dopo** la chiusura dell’`if-else`.  
-   Il compilatore deve rifiutare (variabile non dichiarata in quello scope).
+3. **Importo esatto**
+   Cambia `importoSpesa` in `45.00`. Prevedi e verifica quale ramo si attiva:
+   il confronto include anche il caso in cui saldo e importo sono uguali.
 
 #### 5. MAKE (Crea)
 **Scenario SIA — Controllo accessi al caveau**
@@ -1583,8 +1748,8 @@ Scrivi `controllo_caveau.cpp`:
 
 int main() {
     const int PIN_SEGRETO = 4821;
-    // dichiara pinInserito e badgeDirigente
-    // if-else con la regola di sicurezza
+    /// TODO: spiega perché servono due controlli di sicurezza.
+    // TODO: dichiara pinInserito e badgeDirigente, poi scrivi l'if-else
     return 0;
 }
 ```
@@ -1597,8 +1762,7 @@ int main() {
 - `if` = azione opzionale; `if-else` = bivio a due vie (un solo ramo eseguito).
 - **Mai** `;` subito dopo la condizione.
 - **Sempre** le graffe `{ }`, anche per una sola istruzione.
-- Variabili dichiarate dentro un blocco esistono **solo** lì (scope).
-- Condizioni complesse: combina con `&&` e `||` (già visti nel capitolo sulle espressioni).
+- `&&` richiede che entrambe le condizioni siano vere.
 
 ---
 
@@ -1610,7 +1774,7 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
 
 <!-- 
   NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: if e if-else + tranelli + scope
+  [x] Obiettivo: if e if-else con condizioni semplici o composte
   [x] Metafora tornello
   [x] Quiz sintassi corretta
   [x] Predict sulla trappola delle graffe mancanti
@@ -1621,30 +1785,27 @@ Passeremo a catene `if / else if / else` e alle regole per non perdere il contro
 
 
 
-## 🌲 Scaglioni e Labirinti: `if / else if / else` e if annidati
+## 🌲 Scaglioni Ordinati: `if / else if / else`
 
 > "La complessità di un problema si risolve dividendolo in livelli ordinati di decisioni."
 > — *Principio dell'Analisi dei Sistemi*
 
 Con `if-else` gestiamo un bivio a due strade.  
 Nei contesti aziendali le scelte sono spesso **a scaglioni**: fasce di sconto, livelli di fido, aliquote fiscali.  
-Servono la **scala** `if / else if / else` e, quando un controllo dipende da un altro, gli **`if` annidati**.
+Serve una **scala** `if / else if / else`, che controlla le fasce in ordine.
 
 > 💡 **Metafora: nastro di smistamento logistico**  
 > - **Scala `if / else if / else`** = sensori in sequenza sul nastro: il primo che “prende” il pacco lo devia e **i successivi non lo vedono più**.  
-> - **`if` annidato** = doppia porta di sicurezza: solo se apri la prima trovi la seconda. Se la prima resta chiusa, la seconda non la incontri.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere una catena `if / else if / else` per alternative mutuamente esclusive
-- Usare un `if` annidato quando un controllo ha senso solo dopo un altro
-- Scegliere tra scala, annidamento e `&&` senza creare rami morti o condizioni fuori ordine
+- Scrivere una scala `if / else if / else` ordinata per classificare un dato in fasce esclusive
 
 ---
 
-### 🪜 La scala `if / else if / else`
+### ⚙️ Prima del laboratorio: la scala `if / else if / else`
 
 Per alternative **disgiunte** (se ne vale una, le altre no):
 
@@ -1684,41 +1845,17 @@ stop
 
 ---
 
-### 🚪 L’`if` annidato
+### 🧭 Prima del laboratorio: l'ordine decide il risultato
 
-Quando la seconda domanda ha senso **solo se** la prima è vera:
-
-```cpp
-if (anniCollaborazione >= 3) {
-    if (fatturatoAnnuo >= 20000.0) {
-        std::cout << "Fido concesso\n";
-    } else {
-        std::cout << "Fatturato insufficiente per il fido\n";
-    }
-} else {
-    std::cout << "Anzianita insufficiente\n";
-}
-```
-
-A volte la stessa logica si scrive più corta con `&&` (un solo messaggio di esito).  
-L’annidamento resta utile quando i **messaggi di errore** devono essere distinti.
+Per una scala, chiedi prima la fascia più difficile da raggiungere. Se mettessi
+`>= 20000` prima di `>= 50000`, un cliente Platinum sarebbe fermato dal sensore
+Gold e non arriverebbe mai al successivo.
 
 ---
 
-### 🧭 Bussola: quale strumento usare?
+### 🔬 Laboratorio PRIMM: Fasce sconto cliente
 
-| Situazione | Strumento |
-|------------|-----------|
-| Due sole alternative | `if-else` |
-| Tre o più fasce mutuamente esclusive | scala `if / else if / else` |
-| Secondo controllo solo se il primo è superato, con messaggi diversi | `if` annidato |
-| Tutte le condizioni devono essere vere, un solo esito | `if (A && B)` |
-
----
-
-### 🔬 Laboratorio PRIMM: Fasce sconto e fido
-
-Assegniamo la fascia sconto del cliente e valutiamo un fido con controlli in sequenza.
+Assegniamo la fascia sconto del cliente con controlli in sequenza.
 
 #### 1. PREDICT (Prevedi)
 
@@ -1759,7 +1896,6 @@ double fatturato = 25000.0;
 int main() {
     std::string ragioneSociale = "Alpha Logistica Srl";
     double fatturato = 32500.0;
-    int anniCollaborazione = 4;
 
     double sconto = 0.0;
     std::string fascia = "Nessuna";
@@ -1782,17 +1918,6 @@ int main() {
     std::cout << "Fatturato: " << fatturato << " euro\n";
     std::cout << "Fascia   : " << fascia << " (sconto " << sconto * 100 << "%)\n";
 
-    // Fido: doppia porta (annidato) per messaggi distinti
-    if (anniCollaborazione >= 3) {
-        if (fatturato >= 20000.0) {
-            std::cout << "Fido: CONCESSO\n";
-        } else {
-            std::cout << "Fido: NEGATO (fatturato insufficiente)\n";
-        }
-    } else {
-        std::cout << "Fido: NEGATO (anzianita insufficiente)\n";
-    }
-
     return 0;
 }
 ```
@@ -1807,27 +1932,29 @@ Con `fatturato = 32500`:
 | `>= 20000` | vero | `sconto = 0.10`, fascia Gold |
 | resto della scala | — | **non eseguito** |
 
-Poi, con `anniCollaborazione = 4`, si entra nel primo `if` del fido e, poiché `32500 >= 20000`, il fido è concesso.
-
 > 🔗 Segui il flusso su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+if (fatturato >= 50000.0) {
+    sconto = 0.15;
+} else if (fatturato >= 20000.0) {
+    sconto = 0.10;
+} else {
+    sconto = 0.0;
+}
+```
+
+</details>
+
 1. **Fascia Diamond**  
    In cima alla scala: se `fatturato >= 100000` → sconto `0.20`.  
    Verifica con `120000` che non resti classificato Platinum.
 
-2. **Fido in una riga**  
-   Sostituisci l’annidamento con:
-   ```cpp
-   if (anniCollaborazione >= 3 && fatturato >= 20000.0) {
-       std::cout << "Fido: CONCESSO\n";
-   } else {
-       std::cout << "Fido: NEGATO\n";
-   }
-   ```
-   Più corto, ma perdi i messaggi distinti. Quando preferiresti l’annidamento?
-
-3. **Ordine sbagliato (esperimento)**  
+2. **Ordine sbagliato (esperimento)**
    Inverti temporaneamente le soglie Gold e Platinum e osserva cosa succede a un fatturato di `60000`.
 
 #### 5. MAKE (Crea)
@@ -1843,8 +1970,7 @@ Scrivi `imposte_reddito.cpp`:
   - ≤ 50000 → 35%
   - oltre → 43%
 - Imposta stimata = `redditoImponibile * aliquota`
-- `bool certificazioneGreen`: se `true`, detrai `1000` dall’imposta (non sotto zero)
-- Output: prospetto con fascia, aliquota, imposta, eventuale detrazione, totale
+- Output: prospetto con fascia, aliquota e imposta stimata
 
 **Requisiti:** Doxygen, `///` sulle aliquote, scala `if / else if / else` ordinata.
 
@@ -1859,7 +1985,8 @@ Scrivi `imposte_reddito.cpp`:
 #include <string>
 
 int main() {
-    // dichiara dati, scala aliquote, detrazione green, stampa prospetto
+    /// TODO: spiega perché la soglia più alta viene controllata per prima.
+    // TODO: dichiara dati, scala aliquote e stampa prospetto
     return 0;
 }
 ```
@@ -1871,8 +1998,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - Scala `if / else if / else` = alternative esclusive; **ordine delle soglie** decisivo.
 - Al primo ramo vero il resto della catena viene saltato.
-- `if` annidato = seconda domanda solo se la prima è superata (messaggi diversi).
-- `A && B` = stesso esito in forma compatta; meno flessibile sui messaggi.
 - Per molte costanti discrete (menu 1/2/3) nel prossimo capitolo useremo `switch`.
 
 ---
@@ -1885,7 +2010,7 @@ Entra in scena lo **`switch`**.
 
 <!-- 
   NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: scala else-if + annidamento + bussola di scelta
+  [x] Obiettivo: scala else-if ordinata
   [x] Metafora nastro logistico
   [x] Quiz sintassi corretta
   [x] Predict sull'esclusività dei rami
@@ -1912,13 +2037,11 @@ Per questi casi il C++ offre lo **`switch-case`**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere uno `switch` su `int` o `char` con `case`, `break` e `default`
-- Spiegare e usare (o evitare) il *fall-through*
-- Scegliere tra `switch` e scala `if / else if` in base al tipo di decisione
+- Scrivere uno `switch` su un codice discreto usando `case`, `break` e `default`
 
 ---
 
-### ⚙️ Anatomia
+### ⚙️ Prima del laboratorio: anatomia dello switch
 
 ```cpp
 switch (scelta) {
@@ -1968,7 +2091,7 @@ stop
 
 ---
 
-### 🧭 Bussola: `switch` o `if / else if`?
+### 🧭 Prima del laboratorio: quando usare switch
 
 | Situazione | Preferisci |
 |------------|------------|
@@ -2023,7 +2146,6 @@ Per fermarsi serve un <code>break</code> in ogni ramo (salvo quando il fall-thro
  * @return int 0 se ok.
  */
 int main() {
-    double saldo = 1250.00;
     int sceltaMenu = 2;   // simula il tasto premuto dal cliente
 
     std::cout << "=== SPORTELLO ATM ===\n";
@@ -2034,24 +2156,14 @@ int main() {
     std::cout << "Scelta: " << sceltaMenu << "\n\n";
 
     switch (sceltaMenu) {
-        case 1: {
-            const double PRELIEVO = 50.0;
-            if (saldo >= PRELIEVO) {
-                saldo -= PRELIEVO;
-                std::cout << "Prelievo effettuato. Nuovo saldo: " << saldo << " EUR\n";
-            } else {
-                std::cout << "Fondi insufficienti.\n";
-            }
+        case 1:
+            std::cout << "Prelievo selezionato.\n";
             break;
-        }
-        case 2: {
-            const double VERSAMENTO = 100.0;
-            saldo += VERSAMENTO;
-            std::cout << "Versamento effettuato. Nuovo saldo: " << saldo << " EUR\n";
+        case 2:
+            std::cout << "Versamento selezionato.\n";
             break;
-        }
         case 3:
-            std::cout << "Saldo disponibile: " << saldo << " EUR\n";
+            std::cout << "Visualizzazione saldo selezionata.\n";
             break;
         case 0:
             std::cout << "Arrivederci.\n";
@@ -2072,12 +2184,28 @@ Con `sceltaMenu = 2`:
 | Passo | Cosa succede |
 |-------|----------------|
 | `switch` valuta `2` | salta direttamente a `case 2` |
-| Versamento | `saldo` diventa `1350` |
+| `case 2` | stampa l'operazione selezionata |
 | `break` | esce dallo `switch` (non esegue case 3/default) |
 
 Prova a togliere il `break` del `case 2` e riesegui: vedrai anche l’output del saldo (fall-through).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+switch (sceltaMenu) {
+    case 1:
+        std::cout << "Prelievo\n";
+        break;
+    default:
+        std::cout << "Opzione non valida\n";
+        break;
+}
+```
+
+</details>
+
 1. **Ricarica telefonica**  
    Aggiungi `case 4:` con addebito fisso di `20.00` (se il saldo basta) e relativo `break`.
 
@@ -2092,6 +2220,12 @@ Prova a togliere il `break` del `case 2` e riesegui: vedrai anche l’output del
 
 3. **Tipo sbagliato**  
    Prova `double sceltaMenu = 2.0;` nello `switch`: il compilatore segnala che la quantità non è intera.
+
+   Un compilatore come g++ può segnalare:
+
+   ```text
+   error: switch quantity not an integer
+   ```
 
 #### 5. MAKE (Crea)
 **Scenario SIA — Convertitore valute al POS**
@@ -2108,7 +2242,8 @@ Scrivi `cambio_valute.cpp`:
 - Usa fall-through per maiuscole/minuscole
 - Se valida: stampa importo originale, tasso, controvalore in euro
 
-**Requisiti:** Doxygen, `///` sui tassi, `break` corretti.
+**Requisiti:** `///` sui tassi e `break` corretti; aggiungi Doxygen solo se il
+programma supera circa 15 righe.
 
 <details>
 <summary>💡 Scaffold</summary>
@@ -2120,7 +2255,8 @@ Scrivi `cambio_valute.cpp`:
 #include <iostream>
 
 int main() {
-    // dichiara importo e codice, switch sui char, stampa risultato
+    /// TODO: spiega perché ogni tasso dipende dalla valuta selezionata.
+    // TODO: dichiara importo e codice, poi scrivi lo switch
     return 0;
 }
 ```
@@ -2175,13 +2311,11 @@ La forma più essenziale di questa ripetizione è il ciclo **`while`**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `while` con i tre ingredienti (inizializzazione, condizione, aggiornamento)
-- Usare un **valore sentinella** per terminare l’input
-- Riconoscere e evitare il ciclo infinito
+- Scrivere un ciclo `while` che legge dati fino a una sentinella, aggiornando la condizione a ogni giro
 
 ---
 
-### ⚙️ Controllo in testa e tre ingredienti
+### ⚙️ Prima del laboratorio: controllo in testa e tre ingredienti
 
 Il `while` verifica la condizione **prima** di entrare nel corpo.
 
@@ -2218,6 +2352,18 @@ endwhile (no)
 stop
 @enduml
 ```
+
+---
+
+### 🧭 Prima del laboratorio: la sentinella ferma il nastro
+
+La sentinella è un valore che non rappresenta un articolo: è il separatore
+finale. Leggila prima del ciclo e alla fine di ogni giro, ma non sommarla mai.
+
+| Valore letto | Il ciclo continua? | Va nel totale? |
+|--------------|-------------------|----------------|
+| `12.50` | sì | sì |
+| `0.0` (sentinella) | no | no |
 
 ---
 
@@ -2267,24 +2413,17 @@ int main() {
     double totaleSpesa = 0.0;
     int numeroArticoli = 0;
 
-    /// Prima lettura (inizializzazione della condizione)
     double prezzoArticolo = 0.0;
     std::cout << "Prezzo articolo (0 per terminare): ";
-    // In questo laboratorio simuliamo tre letture fisse:
-    // 12.50, 3.20, 0  — in classe userai std::cin in loop
-
-    // Simulazione input per ambiente interattivo
-    double letture[] = {12.50, 3.20, 0.0};
-    int i = 0;
-    prezzoArticolo = letture[i++];
+    std::cin >> prezzoArticolo;
 
     while (prezzoArticolo != 0.0) {
         totaleSpesa += prezzoArticolo;
         numeroArticoli += 1;
         std::cout << "  + " << prezzoArticolo << " EUR (pezzi: " << numeroArticoli << ")\n";
 
-        /// Aggiornamento: prossimo prezzo (sentinella inclusa)
-        prezzoArticolo = letture[i++];
+        std::cout << "Prezzo articolo (0 per terminare): ";
+        std::cin >> prezzoArticolo;
     }
 
     std::cout << "=== SCONTRINO ===\n";
@@ -2296,14 +2435,8 @@ int main() {
 ```
 @LIA.cpp
 
-> In laboratorio con tastiera reale sostituisci l’array di simulazione con:
-> ```cpp
-> std::cin >> prezzoArticolo;
-> // ... nel while, di nuovo: std::cin >> prezzoArticolo;
-> ```
-
 #### 3. INVESTIGATE (Investiga)
-Sequenza simulata: `12.50` → `3.20` → `0.0`
+Sequenza di esempio: `12.50` → `3.20` → `0.0`
 
 | Iterazione | `prezzoArticolo` | Condizione | Totale dopo |
 |------------|------------------|------------|-------------|
@@ -2316,6 +2449,20 @@ La sentinella `0` **non** viene sommata: il controllo avviene prima del corpo.
 > 🔗 Osserva le variabili su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+double prezzoArticolo = 0.0;
+std::cin >> prezzoArticolo;
+
+while (prezzoArticolo != 0.0) {
+    std::cin >> prezzoArticolo;
+}
+```
+
+</details>
+
 1. **Media per articolo**  
    Dopo il ciclo, se `numeroArticoli > 0`, stampa `totaleSpesa / numeroArticoli`.  
    Altrimenti messaggio “nessun articolo”.
@@ -2411,13 +2558,11 @@ Il ciclo **`for`** li raccoglie in **una sola riga**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `for` con inizializzazione, condizione e aggiornamento nell’intestazione
-- Usarlo quando il numero di ripetizioni è noto a priori
-- Capire lo **scope** del contatore dichiarato nell’intestazione
+- Scrivere un `for` per ripetere un calcolo un numero noto di volte
 
 ---
 
-### 🔍 `for` = `while` in forma compatta
+### ⚙️ Prima del laboratorio: `for` = `while` in forma compatta
 
 ```cpp
 // while equivalente
@@ -2453,7 +2598,18 @@ stop
 @enduml
 ```
 
-**Scope:** se dichiari il contatore nell’intestazione (`for (int anno = …)`), `anno` **non esiste** fuori dal ciclo.
+---
+
+### 🧭 Prima del laboratorio: il timer conta prima di fermarsi
+
+L'intestazione del `for` dice alla macchina industriale quando partire, quando
+fermarsi e di quanto avanzare dopo ogni giro.
+
+| Parte | Domanda a cui risponde |
+|-------|-------------------------|
+| Inizializzazione | Da quale numero parto? |
+| Condizione | Posso fare un altro giro? |
+| Aggiornamento | Come preparo il giro successivo? |
 
 ---
 
@@ -2481,7 +2637,7 @@ for (int i = 0; i < 5; ++i) {
 <details>
 <summary>💡 Spiegazione</summary>
 <code>i</code> parte da <code>0</code>; la condizione è <code>i &lt; 5</code>; dopo ogni giro <code>++i</code>.  
-Valori stampati: 0, 1, 2, 3, 4 — cinque righe. In C++ i conteggi “da zero” sono la norma (come gli indici degli array che vedrai più avanti).
+Valori stampati: 0, 1, 2, 3, 4 — cinque righe.
 </details>
 
 #### 2. RUN (Esegui)
@@ -2527,11 +2683,20 @@ Con 5 anni e cespite 10000:
 | … | … | … |
 | 5 | 2000 | 0 |
 
-Il contatore `anno` nasce nell’intestazione del `for` e **muore** alla graffa di chiusura.
-
 > 🔗 Segui `anno` e `valoreResiduo` su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+for (int anno = 1; anno <= NUMERO_ANNI; ++anno) {
+    valoreResiduo -= QUOTA_ANNUA;
+}
+```
+
+</details>
+
 1. **Fondo ammortamento**  
    Prima del ciclo: `double fondo = 0.0;`.  
    A ogni giro: `fondo += QUOTA_ANNUA;` e stampalo in tabella.
@@ -2542,9 +2707,9 @@ Il contatore `anno` nasce nell’intestazione del `for` e **muore** alla graffa 
    ```
    Adatta la stampa in modo coerente.
 
-3. **Prova di scope**  
-   Dopo il `for`, prova `std::cout << anno;`.  
-   Il compilatore deve segnalare che `anno` non è dichiarato in quello scope.
+3. **Dodici mesi**
+   Imposta `NUMERO_ANNI` a `12` e interpreta ogni giro come un mese: verifica che
+   il timer esegua esattamente dodici scatti.
 
 #### 5. MAKE (Crea)
 **Scenario SIA — Interesse composto su deposito aziendale**
@@ -2572,7 +2737,8 @@ Scrivi `interesse_composto.cpp`:
 #include <iostream>
 
 int main() {
-    // capitale, tasso, anni; for; stampa guadagno netto
+    /// TODO: spiega perché il tasso resta costante per tutta la simulazione.
+    // TODO: capitale, tasso, anni; for; stampa guadagno netto
     return 0;
 }
 ```
@@ -2584,7 +2750,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - `for` = quando il numero di ripetizioni è **noto** (o facile da esprimere con un contatore).
 - Intestazione: `init; condizione; aggiornamento`.
-- Contatore dichiarato nel `for` → scope limitato al ciclo.
 - Stesso potere del `while`; forma più sicura per i conteggi regolari.
 - Per input a sentinella resta preferibile il `while`.
 
@@ -2598,7 +2763,7 @@ Entra in scena il **`do-while`**: controllo in coda.
 
 <!-- 
   NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: for, contatore, scope
+  [x] Obiettivo: for e conteggio noto
   [x] Metafora timer
   [x] Quiz sintassi corretta
   [x] Predict conteggio da 0
@@ -2630,13 +2795,11 @@ Per questo esiste il **`do-while`**: controllo **in coda**.
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `do-while` e spiegare la differenza con il `while`
-- Usarlo per **validare un input** (ripeti finché il dato non è accettabile)
-- Evitare la duplicazione di codice tipica del `while` “con lettura prima e dentro”
+- Scrivere un `do-while` per validare un input che deve essere richiesto almeno una volta
 
 ---
 
-### ⚙️ Anatomia e confronto con `while`
+### ⚙️ Prima del laboratorio: anatomia e confronto con `while`
 
 ```cpp
 // do-while: il corpo gira almeno una volta
@@ -2679,6 +2842,18 @@ endwhile (no)
 stop
 @enduml
 ```
+
+---
+
+### 🧭 Prima del laboratorio: il controllo arriva dopo il modulo
+
+Il form viene mostrato, l'utente prova a inviarlo e solo dopo il sistema decide
+se chiedere una nuova compilazione. Per questo il primo giro è garantito.
+
+| Ciclo | Quando controlla? | Giri minimi |
+|-------|------------------|-------------|
+| `while` | prima del corpo | 0 |
+| `do-while` | dopo il corpo | 1 |
 
 ---
 
@@ -2730,13 +2905,9 @@ int main() {
 
     double importo = 0.0;
 
-    // Sequenza simulata per demo: -10, 0, 250  (in classe usa cin nel loop)
-    double tentativi[] = {-10.0, 0.0, 250.0};
-    int t = 0;
-
     do {
-        importo = tentativi[t++];
-        std::cout << "Tentativo importo: " << importo << " EUR\n";
+        std::cout << "Importo bonifico: ";
+        std::cin >> importo;
         if (importo < MIN_BONIFICO || importo > MAX_BONIFICO) {
             std::cout << "  Non valido (ammessi " << MIN_BONIFICO
                       << " .. " << MAX_BONIFICO << ")\n";
@@ -2749,16 +2920,8 @@ int main() {
 ```
 @LIA.cpp
 
-> In laboratorio reale:
-> ```cpp
-> do {
->     std::cout << "Importo bonifico: ";
->     std::cin >> importo;
-> } while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
-> ```
-
 #### 3. INVESTIGATE (Investiga)
-Sequenza: `-10` → `0` → `250`
+Sequenza di esempio: `-10` → `0` → `250`
 
 | Giro | importo | Valido? | Continua? |
 |------|---------|---------|-----------|
@@ -2769,14 +2932,33 @@ Sequenza: `-10` → `0` → `250`
 Il controllo avviene **dopo** ogni tentativo: ecco perché il primo giro c’è sempre.
 
 #### 4. MODIFY (Modifica)
-1. **Limite 3 tentativi**  
-   Contatore `tentativi`. Se dopo 3 errori non è ancora valido, esci dal ciclo e stampa “sessione bloccata”.
+<details>
+<summary>💡 Scaffold di partenza</summary>
 
-2. **Menu “altra operazione?”**  
-   Dopo un bonifico accettato, chiedi `S/N` in un `do-while` esterno e ripeti finché la risposta è `S`/`s`.
+```cpp
+do {
+    std::cin >> importo;
+} while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
+```
 
-3. **Dimenticare il `;`**  
+</details>
+
+1. **Range più stretto**
+   Cambia l'intervallo ammesso da `[1, 5000]` a `[10, 1000]` e prova un importo
+   fuori range prima di uno valido.
+
+2. **Dimenticare il `;`**
    Togli il punto e virgola dopo `while (...)`: osserva l’errore del compilatore.
+
+   Un compilatore come g++ può segnalare:
+
+   ```text
+   error: expected ';' before 'return'
+   ```
+
+3. **Valido al primo invio**
+   Inserisci subito `250`: verifica che il corpo gira una volta e il controllo
+   permette subito l'uscita.
 
 #### 5. MAKE (Crea)
 **Scenario SIA — PIN sportello con tentativi limitati**
@@ -2803,7 +2985,8 @@ Scrivi `pin_sportello.cpp`:
 
 int main() {
     const int PIN_CORRETTO = 4821;
-    // tentativi, do-while, esiti
+    /// TODO: spiega perché i tentativi sono limitati.
+    // TODO: tentativi, do-while, esiti
     return 0;
 }
 ```
@@ -2840,20 +3023,16 @@ Chiudiamo il Blocco 1 con gli strumenti di “guida fine” del ciclo: **`break`
   [x] break/iomanip solo annunciati
 -->
 
-## 🎯 Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
+## 🎯 Il Cruscotto del Programmatore (`break` e `continue`)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
 > — *Principio dei Sistemi Contabili*
 
-Prima di salire al Blocco 2 (funzioni e strutture dati) chiudiamo il Blocco 1 con due strumenti da “cruscotto”:
+Prima di salire al Blocco 2 chiudiamo il Blocco 1 con due strumenti di controllo fine dei cicli.
 
-1. **Controllo fine dei cicli:** `break` e `continue`
-2. **Output contabile leggibile:** header `<iomanip>` (`fixed`, `setprecision`, `setw`)
-
-> 💡 **Metafore**  
+> 💡 **Metafora:**
 > - **`break`** = pulsante rosso di emergenza: il nastro si **ferma subito**.  
 > - **`continue`** = braccio di scarto: salta **quel** pezzo difettoso e passa al successivo.  
-> - **`<iomanip>`** = stampante fiscale: centesimi sempre a due cifre, colonne allineate.
 
 ---
 
@@ -2861,7 +3040,6 @@ Prima di salire al Blocco 2 (funzioni e strutture dati) chiudiamo il Blocco 1 co
 Alla fine di questa lezione sei in grado di:
 - Usare `break` per uscire anticipatamente da un ciclo
 - Usare `continue` per saltare il resto del corpo e passare all’iterazione successiva
-- Formattare importi e tabelle con `std::fixed`, `std::setprecision` e `std::setw`
 
 ---
 
@@ -2883,27 +3061,7 @@ for (int i = 1; i <= 10; ++i) {
 
 ---
 
-### 🖨️ Formattazione con `<iomanip>`
-
-```cpp
-#include <iomanip>
-
-std::cout << std::fixed << std::setprecision(2);
-std::cout << std::setw(10) << 19.5 << "\n";  // es. "     19.50"
-```
-
-| Manipolatore | Ruolo |
-|--------------|--------|
-| `std::fixed` | Notazione fissa (non scientifica) |
-| `std::setprecision(2)` | Cifre **dopo la virgola** (con `fixed`) |
-| `std::setw(n)` | Larghezza minima del **prossimo** campo |
-| `std::left` / `std::right` | Allineamento (testo a sx, importi a dx) |
-
-Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può produrre notazione scientifica: in ambito monetario **`fixed` è obbligatorio**.
-
----
-
-### 🔬 Laboratorio PRIMM: Report fiscale con scarti e stop
+### 🔬 Laboratorio PRIMM: Report con scarti e stop
 
 Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
 
@@ -2939,7 +3097,6 @@ for (int i = 1; i <= 5; ++i) {
  * @brief Report di transazioni con scarto, stop di sicurezza e formattazione.
  */
 #include <iostream>
-#include <iomanip>
 
 /**
  * @brief Elabora 6 transazioni simulate: continue se <=0, break se >50000.
@@ -2950,10 +3107,6 @@ int main() {
     const int N = 6;
 
     double totale = 0.0;
-
-    std::cout << std::fixed << std::setprecision(2);
-    std::cout << std::setw(4) << "ID" << std::setw(12) << "Importo" << "\n";
-    std::cout << "----  ----------\n";
 
     for (int id = 1; id <= N; ++id) {
         double importo = importi[id - 1];
@@ -2969,11 +3122,10 @@ int main() {
         }
 
         totale += importo;
-        std::cout << std::setw(4) << id << std::setw(12) << importo << "\n";
+        std::cout << "ID " << id << ": " << importo << "\n";
     }
 
-    std::cout << "----  ----------\n";
-    std::cout << std::setw(4) << "" << std::setw(12) << totale << "  TOTALE\n";
+    std::cout << "TOTALE: " << totale << "\n";
 
     return 0;
 }
@@ -2993,41 +3145,34 @@ int main() {
 > 🔗 Osserva il salto di `continue`/`break` su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
-1. **Colonna IVA**  
-   Per ogni riga valida stampa anche `importo * 0.22` con `setw`.
-
-2. **Soglia micro-pagamenti**  
+1. **Soglia micro-pagamenti**
    Con `continue`, scarta anche gli importi `< 5.00`.
 
-3. **Senza `fixed`**  
-   Rimuovi `std::fixed` e osserva come cambia la stampa con solo `setprecision(2)`.
+2. **Soglia di allarme**
+   Cambia l'allarme da `50000` a `1000` e verifica che `break` interrompa il report.
 
 #### 5. MAKE (Crea)
-**Scenario SIA — Liquidazione IVA trimestrale (semplificata)**
+**Scenario SIA — Controllo transazioni**
 
-Scrivi `liquidazione_iva.cpp`:
+Scrivi `controllo_transazioni.cpp`:
 
-- Ciclo su 6 fatture (ID 1…6) con imponibile e codice aliquota simulati in array (o costanti)
-- Aliquote: `'O'` 22%, `'R'` 10%, `'M'` 4%, `'E'` 0%
-- `continue` se imponibile `<= 0` (messaggio “fattura annullata”)
-- `break` se imponibile `> 50000` (alert)
-- Tabella formattata: `ID | Imponibile | Aliq. | IVA`
-- A fine ciclo (o allo stop): totale imponibile e totale IVA
+- Ciclo su sei ID di transazione.
+- `continue` per scartare un ID non valido.
+- `break` quando incontri un ID di allarme.
+- Stampa quali ID sono elaborati e il loro conteggio.
 
-**Requisiti:** `#include <iomanip>`, `fixed` + `setprecision(2)`, Doxygen, `///` sulle aliquote.
+**Requisiti:** Doxygen se superi 15 righe, graffe e messaggi chiari.
 
 <details>
 <summary>💡 Scaffold</summary>
 
 ```cpp
 /**
- * @brief Prospetto semplificato liquidazione IVA.
+ * @brief Controlla transazioni con scarti e allarmi.
  */
 #include <iostream>
-#include <iomanip>
-
 int main() {
-    // dati, ciclo, continue/break, tabella, totali
+    // dati, ciclo, continue/break, conteggio
     return 0;
 }
 ```
@@ -3039,8 +3184,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - `break` = esci dal ciclo; `continue` = salta al giro successivo.
 - In report contabili: scarti → `continue`; allarmi gravi → `break`.
-- `<iomanip>`: `fixed` + `setprecision(2)` per i soldi; `setw` per le colonne.
-- Senza `fixed`, `setprecision` non significa “due decimali monetari”.
 
 ---
 
@@ -3059,112 +3202,177 @@ Nel **Blocco 2** spezzeremo i programmi in **funzioni**, introdurremo **array** 
   [x] Make liquidazione IVA
   [x] Ponte esplicito a Blocco 2
 -->
+## 🖨️ La Stampante Fiscale: formattare importi con `<iomanip>`
 
-## 🎯 I Reparti dell'Azienda: Sviluppo Top-Down e la Funzione come Scatola Nera
+> 💡 **Metafora:** una stampante fiscale rende ogni importo leggibile: centesimi
+> sempre uguali e colonne allineate.
 
-> "Il dirigente non controlla come l'impiegato lavora, gli consegna i dati e attende il risultato."
->
-> — *Metafora applicata al design del software*
+### 🎯 Obiettivo
+Formattare importi monetari con `std::fixed`, `std::setprecision` e `std::setw`.
 
-### Obiettivo
-- Comprendere la scomposizione top‑down (divide et impera) nella progettazione di programmi.
-- Distinguere **parametro formale** da **argomento reale**.
-- Conoscere prototipo, definizione e `return` di una funzione.
-- Usare funzioni `void` per operazioni senza valore di ritorno.
-
----
-
-## 📚 Teoria
-1. **Principio top‑down**: Si parte da una funzionalità alta‑livello e la si suddivide in sotto‑funzioni più piccole.
-2. **Scatola Nera**: L’interfaccia (nome, parametri, valore di ritorno) è l’unica cosa che il chiamante conosce.
-3. **Parametri**:
-   - *Formale*: nella firma della funzione (`double oreLavorate`).
-   - *Reale*: valore passato alla chiamata (`calcolaLordo(40, 15.5)`).
-4. **Prototipo vs Definizione**.
-5. **`return`**: termina la funzione e restituisce un valore.
-6. **Funzioni `void`**: eseguono un’azione senza restituire dati.
-
----
-
-## 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-
-Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
+### ⚙️ Prima del laboratorio: due decimali
 
 ```cpp
-int esempio(int x) {
-    return x * 2;
-    // qui c'è codice inutilizzabile
-    int y = x + 1;
-    return y;
-}
+std::cout << std::fixed << std::setprecision(2);
 ```
 
-[( )] Il codice dopo `return` viene comunque eseguito
-[(X)] Il codice dopo `return` non viene mai eseguito (è inaccessibile)
-[( )] Il compilatore sposta il `return` alla fine del blocco
-[( )] Il programma crasha
-Cosa accade se una funzione ha istruzioni dopo la riga del `return`?
+`fixed` usa notazione decimale; `setprecision(2)` mostra due cifre dopo la virgola.
+
+### 🧭 Prima del laboratorio: colonne
+
+`std::setw(10)` riserva la larghezza minima del prossimo campo.
+
+### 🔬 Laboratorio PRIMM: mini prospetto
+
+#### 1. PREDICT
+
+Come viene stampato 19.5 con fixed e setprecision(2)?
+
 ```cpp
-int esempio(int x) {
-    return x * 2;
-    // qui c'è codice inutilizzabile
-    int y = x + 1;
-    return y;
-}
+std::cout << std::fixed << std::setprecision(2) << 19.5;
 ```
-- [( )] Il codice dopo `return` viene comunque eseguito
-- [(X)] Il codice dopo `return` non viene mai eseguito (è inaccessibile)
-- [( )] Il compilatore sposta il `return` alla fine del blocco
-- [( )] Il programma crasha
 
-<details>
-<summary>💡 Spiegazione</summary>
-Il `return` termina immediatamente la funzione; le istruzioni successive non sono raggiungibili e vengono scartate dal compilatore (se presenti, generano avviso di codice non usato).
-</details>
+[(X)] 19.50
+[( )] 19.5
+[( )] 20
 
-### 2. Run (Esegui)
+#### 2. RUN
+
 ```cpp
-/**
- * @file calcolo_stipendio.cpp
- * @brief Modulo di calcolo della busta paga.
- */
 #include <iostream>
-#include <string>
-
-// prototipo
-double calcolaLordo(double oreLavorate, double tariffaOraria);
-double calcolaRitenute(double lordo);
-void stampaCedolino(const std::string& nome, double lordo, double netto);
-
+#include <iomanip>
 int main() {
-    std::string dipendente = "Mario Rossi";
-    double ore = 40.0;
-    double tariffa = 15.5;
-    double lordo = calcolaLordo(ore, tariffa);
-    double ritenute = calcolaRitenute(lordo);
-    double netto = lordo - ritenute;
-    stampaCedolino(dipendente, lordo, netto);
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << std::setw(10) << 19.5 << "\n";
     return 0;
 }
 ```
 @LIA.cpp
 
-### 3. Investigate (Investiga)
-Usa Python Tutor per visualizzare lo stack frame quando `main` chiama `calcolaLordo` e `calcolaRitenute`. Nota come il frame di `main` è sospeso fino al ritorno.
+#### 3. INVESTIGATE
 
-### 4. Modify (Modifica)
-Aggiungi una funzione `double calcolaBonus(double netto, double percentuale)` e aggiorna `main` per applicare un bonus del 10% al netto.
+| Istruzione | Effetto |
+|---|---|
+| `fixed` | notazione decimale |
+| `setprecision(2)` | due centesimi |
+| `setw(10)` | colonna larga 10 |
 
-### 5. Make (Crea)
-**Scenario SIA — Calcolo busta paga con funzioni modulari**
+#### 4. MODIFY
+1. Stampa `1200.0` nella stessa colonna.
+2. Cambia la larghezza in `15`.
 
-Scrivi `calcolo_stipendio.cpp` con le funzioni richieste, includendo Doxygen (`@brief`, `@param`, `@return`). Il programma deve stampare tre scenari di stipendio (normale, straordinario, part‑time).
+#### 5. MAKE
+Scrivi `prospetto_importi.cpp` che stampa tre importi con due decimali e colonne allineate.
+
+### 📝 Riepilogo tascabile
+- `fixed` + `setprecision(2)` formatta i soldi.
+- `setw` allinea il campo successivo.
+
+## 🏢 Il Primo Reparto: una funzione che restituisce un valore
+
+> 💡 **Metafora:** una funzione è un reparto: riceve un ordine, svolge un lavoro
+> preciso e restituisce il risultato senza mostrare tutti i passaggi interni.
+
+### 🎯 Obiettivo
+Scrivere e chiamare una funzione che riceve un valore e ne restituisce uno.
 
 ---
 
+### ⚙️ Prima del laboratorio: ingresso e uscita
+
+```cpp
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
+}
+```
+
+`imponibile` è il dato che entra nel reparto; `return` consegna il valore
+calcolato a chi ha chiamato la funzione.
+
+---
+
+### 🧭 Prima del laboratorio: chiamare il reparto
+
+```cpp
+double iva = calcolaIva(100.0);
+```
+
+Il valore `100.0` entra nella funzione; `22.0` torna e viene salvato in `iva`.
+
+---
+
+### 🔬 Laboratorio PRIMM: IVA di una fattura
+
+#### 1. PREDICT
+
+Quale valore restituisce calcolaIva(100.0)?
+
+```cpp
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
+}
+```
+
+[(X)] 22
+[( )] 100
+[( )] 122
+
+#### 2. RUN
+
+```cpp
+#include <iostream>
+
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
+}
+
+int main() {
+    double iva = calcolaIva(100.0);
+    std::cout << "IVA: " << iva << "\n";
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE
+
+| Passo | Valore |
+|---|---|
+| Chiamata | `imponibile = 100.0` |
+| `return` | `22.0` |
+| In `main` | `iva = 22.0` |
+
+> 🔗 Osserva i due frame su [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+#### 4. MODIFY
+
+<details><summary>💡 Scaffold</summary>
+
+```cpp
+double calcolaIva(double imponibile) {
+    return imponibile * 0.22;
+}
+```
+
+</details>
+
+1. Calcola l'IVA di `250.0`.
+2. Sostituisci `0.22` con `0.10` e osserva il risultato.
+3. Rinomina `imponibile` in `importoNetto` in firma e corpo.
+
+#### 5. MAKE
+
+**Scenario SIA:** scrivi `commissione_pos.cpp` con una funzione
+`calcolaCommissione(double importo)` che restituisce l'1% dell'importo e stampa
+il risultato in `main`.
+
+### 📝 Riepilogo tascabile
+- Una funzione riceve dati, svolge un lavoro e può restituire un valore.
+- `return` termina la funzione e consegna il risultato.
+- La chiamata usa il valore restituito in un'espressione.
+
+### ➡️ Prossimo chunk
+Nel prossimo chunk separeremo programmi più grandi in più reparti.
 
 ## 🎯 La Fotocopia vs L'Originale: Scope e Passaggio per Riferimento (`&`)
 

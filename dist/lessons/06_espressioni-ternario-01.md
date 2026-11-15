@@ -31,13 +31,11 @@ Ora impariamo a **calcolare** e a **decidere in una riga**: IVA, sconti, spese d
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere espressioni aritmetiche, di confronto e logiche corrette
-- Evitare la trappola della **divisione intera**
-- Usare l’**operatore ternario** per assegnare un valore in base a una condizione
+- Scrivere un'espressione che calcola oppure sceglie un valore per uno scontrino
 
 ---
 
-### ⚙️ Gli operatori fondamentali
+### ⚙️ Prima del laboratorio: calcolare un valore
 
 Un’**espressione** combina valori, variabili e operatori e produce **un solo risultato**.
 
@@ -54,21 +52,13 @@ double a = pezzi / 2;      // 2  (divisione intera!)
 double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
 ```
 
-#### Confronto (producono `bool`)
-`==`  `!=`  `<`  `<=`  `>`  `>=`
-
-#### Logici
-| Operatore | Nome | Vero quando… | Esempio SIA |
-|-----------|------|--------------|-------------|
-| `&&` | AND | **entrambe** le condizioni sono vere | `haTessera && spesa >= 50` |
-| `||` | OR | **almeno una** è vera | `isStudente || isOver65` |
-| `!` | NOT | ribalta il valore | `!contoBloccato` |
-
 ---
 
-### ⚡ L’operatore ternario `?:`
+### 🧭 Prima del laboratorio: scegliere un valore
 
-Forma:
+Un confronto come `totaleSpesa >= 60.0` produce `true` o `false`. Il ternario
+usa quel risultato come un sensore alla cassa: sceglie uno dei due prezzi.
+
 ```text
 condizione ? valore_se_vero : valore_se_falso
 ```
@@ -79,8 +69,8 @@ condizione ? valore_se_vero : valore_se_falso
 double speseSpedizione = (totaleSpesa >= 60.0) ? 0.0 : 6.50;
 ```
 
-Utile quando la decisione è semplice e produce un valore.  
-Per logiche lunghe o con più rami useremo `if` / `else` nei prossimi capitoli.
+Usalo per una scelta semplice che restituisce un valore. Per logiche con più
+istruzioni useremo `if` / `else` nel prossimo capitolo.
 
 ---
 
@@ -130,11 +120,10 @@ int main() {
     const double COSTO_SPEDIZIONE_STANDARD = 6.50;
 
     double importoProdotti = 85.00;
-    bool isClienteFedelta = true;
 
-    /// 10% se tesserato e spesa >= 50, altrimenti 2%
+    /// La soglia premia un ordine abbastanza grande con lo sconto maggiore.
     double percentualeSconto =
-        (isClienteFedelta && importoProdotti >= 50.0) ? 0.10 : 0.02;
+        (importoProdotti >= 50.0) ? 0.10 : 0.02;
 
     double valoreSconto = importoProdotti * percentualeSconto;
     double nettoProdotti = importoProdotti - valoreSconto;
@@ -162,7 +151,7 @@ Segui il flusso dei valori (con i numeri dell’esempio).
 
 | Espressione | Risultato | Perché |
 |-------------|-----------|--------|
-| `isClienteFedelta && importoProdotti >= 50.0` | `true` | entrambe vere |
+| `importoProdotti >= 50.0` | `true` | 85 è maggiore della soglia |
 | percentuale sconto | `0.10` | ramo `?` del ternario |
 | `valoreSconto` | `8.5` | `85 * 0.10` |
 | `nettoProdotti` | `76.5` | `85 - 8.5` |
@@ -172,12 +161,29 @@ Segui il flusso dei valori (con i numeri dell’esempio).
 > 🔗 Esegui il programma passo-passo su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    double importoProdotti = 85.00;
+    double speseSpedizione = (importoProdotti >= 60.0) ? 0.0 : 6.50;
+    std::cout << speseSpedizione << "\n";
+    return 0;
+}
+```
+
+</details>
+
 1. **Promozione weekend**  
-   Concedi lo sconto del 10% se il cliente ha la tessera **oppure** la spesa (lordo) supera i 100€ (`||`).
+   Porta la soglia per lo sconto del 10% da `50.0` a `100.0`. Ricompila e
+   osserva quale valore sceglie il ternario.
 
 2. **Consegna express**  
-   Aggiungi `bool consegnaRapida = true;`.  
-   Se è `true`, aggiungi un supplemento fisso di `3.00` alle spese di spedizione (anche se erano gratis), usando un ternario.
+   Aggiungi `bool consegnaRapida = true;`. Con un ternario assegna un
+   supplemento di `3.00` se è vero, `0.0` altrimenti, poi sommalo alla spedizione.
 
 3. **Pari o dispari**  
    Con `int articoli = 14;` stampa se il numero è pari o dispari:
@@ -198,7 +204,8 @@ Scrivi `commissioni_pos.cpp` per un esercente:
 - **Commissione minima:** se la commissione calcolata è `< 0.15`, applica comunque `0.15` (secondo ternario)
 - Calcola e stampa l’**incasso netto** dell’esercente (`importo - commissioneFinale`)
 
-**Requisiti:** Doxygen, commenti `///` sulle aliquote, output chiaro tipo scontrino.
+**Requisiti:** commenti `///` sulle aliquote, output chiaro tipo scontrino;
+aggiungi Doxygen solo se il programma supera circa 15 righe.
 
 <details>
 <summary>💡 Scaffold</summary>
@@ -222,7 +229,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - Espressione = calcoli/confronti che producono **un** valore.
 - Divisione tra soli `int` → risultato intero (trappola classica).
-- `&&` = entrambe vere; `||` = almeno una vera; `!` = negazione.
 - Ternario: `condizione ? se_vero : se_falso` — ideale per scelte semplici che restituiscono un valore.
 - Per decisioni lunghe o a più rami → nei prossimi capitoli useremo `if` / `else`.
 

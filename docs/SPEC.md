@@ -24,7 +24,7 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | ID | Obiettivo | Priorità | Stato |
 |----|-----------|----------|--------|
 | O1 | Schema frontmatter + template lezione | Must | Fatto |
-| O2 | Template repo + assignment Classroom50 (1 assignment = 1 capitolo) | Must | Previsto (Slice C) |
+| O2 | Template repo + istruzioni assignment Classroom50 (1 assignment = 1 capitolo) | Must | Fatto (v1 semi-automatica) |
 | O3 | `dist/README.md` corso completo | Must | Fatto / in rifinitura |
 | O4 | `dist/lessons/*.md` lezioni autonome con prev/next | Must | Fatto / in rifinitura |
 | O5 | Post-scadenza: download repo + `validation_rules` base | Should | Previsto (Slice D) |
@@ -54,7 +54,7 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | US-D1 | Come docente, voglio creare un nuovo capitolo con frontmatter + corpo Markdown (template PRIMM/lab/guide/convention) e validarlo senza scrivere codice di tooling. |
 | US-D2 | Come docente, voglio eseguire `python -m tools.cipiupiu validate` e ricevere errori chiari su schema, Predict e `files[]`. |
 | US-D3 | Come docente, voglio eseguire `python -m tools.cipiupiu build` e ottenere `dist/README.md` + `dist/lessons/*` con header LiaScript e prev/next. |
-| US-D4 | Come docente, voglio, da un file di configurazione della classe, generare il repository template (solo `action: create`) e preparare l’assignment Classroom50, ricevendo il link di accettazione. |
+| US-D4 | Come docente, voglio, da un file di configurazione della classe, generare il repository template (solo `action: create`) e ricevere le istruzioni per creare l’assignment Classroom50. |
 | US-D5 | Come docente, voglio dopo la scadenza scaricare i repo studenti e applicare le `validation_rules` dichiarate, ottenendo un report leggibile. |
 | US-D6 | Come docente, voglio generare lezioni in modalità `dev` o `prod` (URL di navigazione) senza modifiche manuali. |
 
@@ -84,7 +84,7 @@ tools/cipiupiu         ← unica CLI (core.py)
 config compiti (YAML per classe)
         │
         ▼
-scaffold-assignment    ← template repo (solo action=create) + assignment Classroom50
+scaffold-assignment    ← template repo (solo action=create) + istruzioni Classroom50
         │
         ▼
 collect                ← download repo studenti + validation_rules
@@ -98,7 +98,7 @@ Entrypoint: `python -m tools.cipiupiu`.
 |-------|---------|--------|
 | A | `validate`, `list`, `render` | Operativa |
 | B | `build` (course + lessons, invalidazione su timestamp) | In corso |
-| C | `scaffold-assignment` | Previsto |
+| C | `scaffold-assignment` | Operativa (v1 semi-automatica) |
 | D | `collect` | Previsto |
 
 Nucleo condiviso: `tools/cipiupiu/core.py`  
@@ -191,6 +191,15 @@ Delimitatori che non collidono col C++:
 Macro tipiche: `[[ predict_block() ]]`, `[[ nav_prev_next() ]]`.  
 I quiz già scritti a mano con sintassi LiaScript restano validi.
 
+I file in `chapters/` sono sorgenti Jinja e **non** sono anteprime LiaScript
+autonome: una macro come `[[ predict_block() ]]` viene espansa solo dal render.
+Per vedere una lezione nel DevServer usa il file generato in `dist/lessons/`, per
+esempio:
+
+```text
+http://localhost:3000/liascript/index.html?http://localhost:3000/dist/lessons/03_ciao-mondo-01.md#4
+```
+
 ### 4.6 Merge metadati LiaScript
 
 1. Default globali (`course.yaml`)
@@ -204,7 +213,7 @@ I quiz già scritti a mano con sintassi LiaScript restano validi.
 
 File YAML separato, uno per classe. Dipende dai capitoli; i capitoli non dipendono da esso.
 
-**Campi minimi previsti** (schema formale da consolidare in Slice C):
+**Campi minimi supportati**:
 
 ```yaml
 classroom:                    # identificativo Classroom50 / org
@@ -219,7 +228,57 @@ assignments:
     # eventuali istruzioni aggiuntive
 ```
 
-Lo script `scaffold-assignment` legge questo file + i frontmatter dei capitoli indicati, crea il template repo (solo `files` con `action: create`) e prepara/crea l’assignment Classroom50.
+Lo script `scaffold-assignment` legge questo file + i frontmatter dei capitoli indicati, crea il template repo (solo `files` con `action: create`) e prepara le istruzioni per creare l’assignment Classroom50.
+
+### 5.1 `scaffold-assignment` v1
+
+```bash
+python -m tools.cipiupiu scaffold-assignment \
+  --config assignments/3sia-2026.yaml \
+  --activity ciao-mondo-01
+```
+
+In alternativa, per un primo esperimento:
+
+```bash
+python -m tools.cipiupiu scaffold-assignment \
+  --activity ciao-mondo-01 \
+  --org MIO-ORG \
+  --classroom 3sia
+```
+
+Il comando:
+
+1. trova il capitolo tramite `activity_id` e richiede almeno un `files[].action: create`;
+2. genera soltanto quei file in una directory temporanea, rifiutando percorsi non sicuri;
+3. crea o aggiorna `{org}/cpp-{activity_id}-template` (oppure `template_repo_name` della config), quindi abilita il flag GitHub **Template repository**;
+4. stampa URL del template, comando `gh teacher assignment add` e istruzioni web.
+
+`title`, `slug` e `deadline` nell’elemento `assignments[]` sono opzionali. Il titolo
+predefinito è quello del capitolo, lo slug è l'`activity_id` senza il suffisso numerico
+finale e, senza scadenza, l'output usa il segnaposto
+`YYYY-MM-DDTHH:MM:00+01:00`. La creazione effettiva dell'assignment e la restituzione
+dell'acceptance link restano fuori da v1.
+
+Precondizioni: `gh` installato e autenticato, diritti di creazione repository
+nell'organizzazione. Se l'attività non esiste, non contiene `action: create`, la
+configurazione è incompleta oppure un comando GitHub/Git fallisce, il comando termina
+con un errore esplicito senza stampare istruzioni di successo.
+
+Output previsto:
+
+```text
+Template repository creato: https://github.com/ORG/cpp-ciao-mondo-01-template
+Flag 'Template repository' attivato.
+
+A) CLI:
+   gh teacher assignment add ORG 3sia ciao-mondo \
+     --name "Il Primo Dialogo con la Macchina" \
+     --template ORG/cpp-ciao-mondo-01-template \
+     --due 2026-12-01T23:59:00+01:00
+
+B) Web: classroom50.org → classroom → New assignment → scegli il template sopra.
+```
 
 ---
 
@@ -241,8 +300,8 @@ Scaffold riutilizzabili per `template_from`: directory `scaffolds/`.
 
 1. **Schema frontmatter + validazione** — fatto
 2. **Preprocessor core** (`render`, `build` course/lessons, prev/next, macro Predict) — Slice A operativa, Slice B in corso
-3. **Esposizione `action: create` + generazione template repository** — Slice C
-4. **Config compiti per classe + interazione Classroom50/GitHub** — Slice C
+3. **Esposizione `action: create` + generazione template repository** — fatto (Slice C v1)
+4. **Creazione diretta assignment Classroom50 e acceptance link** — Slice C v1.1
 5. **Collect + validation_rules di base** — Slice D
 6. **Tracking opt-in** — Could
 

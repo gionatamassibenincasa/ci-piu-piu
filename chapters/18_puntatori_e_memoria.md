@@ -2,7 +2,7 @@
 activity_id: "puntatori-01"
 title: "Il Biglietto di Ritiro: Indirizzi di Memoria, Operatori & e * e Puntatori"
 methodology: PRIMM
-order: 18
+order: 19
 version: "2026-11-14"
 language: it
 components:

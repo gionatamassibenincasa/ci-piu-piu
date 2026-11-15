@@ -17,15 +17,59 @@ components:
         correct: true
       - text: "[sbagliata]"
         correct: false
-  make_instructions: "[Scenario Make in una frase]"
+  make_instructions: "[Scenario aziendale Make in una frase]"
 files:
+  - path: README.md
+    action: create
+    description: Istruzioni PRIMM della consegna
+    template_content: |
+      # [Titolo attività]
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      Scrivi le risposte nei file della fase corrispondente e fai push al termine.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    template_content: |
+      # Predict
+
+      Rispondi prima di eseguire il codice.
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    template_content: |
+      # Run
+
+      Quale output hai osservato? Corrisponde alla previsione?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    template_content: |
+      # Investigate
+
+      Cosa spiega il comportamento del programma?
+      >
+  - path: student_work/modify/esercizio_modificato.cpp
+    action: create
+    phase: modify
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          std::cout << "[output iniziale]\n";
+          return 0;
+      }
   - path: student_work/make/esercizio.cpp
     action: create
     phase: make
     template_content: |
       #include <iostream>
+
       int main() {
-          // TODO
+          /// TODO: spiega il perché economico o logico di una scelta.
+          // TODO: completa il programma
           return 0;
       }
     validation_rules:
@@ -53,31 +97,38 @@ Alla fine di questa lezione sei in grado di:
 
 ---
 
-### 💡 La Metafora Guida
-
 > 💡 **Metafora:**  
 > [Analogia; mappa concetto ↔ immagine.]
 
 ---
 
-### ⚙️ [Concetto in breve]
+### ⚙️ Prima del laboratorio: [mappa del concetto]
 
-[Tabella o 5–10 righe essenziali.]
+[Una slide breve di teoria. Presenta il vocabolario e le parti del costrutto che
+servono per affrontare il Predict; usa una tabella, un diagramma o 5–8 righe.
+Non anticipare la risposta del quiz.]
 
-### ⚠️ Tranelli tipici
-- [Errore classico]
+| Parte / parola | Idea pratica | Perché serve |
+|----------------|--------------|--------------|
+| `...` | ... | ... |
+
+---
+
+### 🧭 Prima del laboratorio: [sequenza o regola chiave]
+
+[Seconda slide opzionale. Mostra il flusso di esecuzione, una regola sintattica
+o una relazione causa-effetto necessaria al Predict.]
+
+| Passo | Cosa accade |
+|:-----:|-------------|
+| 1 | ... |
+| 2 | ... |
 
 ---
 
 ### 🔬 Laboratorio PRIMM: [Nome scenario]
 
 [1–2 frasi di contesto obbligatorie sotto il titolo — evitano slide LiaScript vuote.]
-
-**Codice da osservare (senza `@LIA.cpp`):**
-
-```cpp
-// snippet Predict
-```
 
 #### 1. PREDICT (Prevedi)
 
@@ -89,16 +140,14 @@ Alla fine di questa lezione sei in grado di:
 </details>
 
 #### 2. RUN (Esegui)
-Esegui il codice e premi **Run**.
+Digita il codice a mano, eseguilo e confronta l'output con la tua previsione.
 
 ```cpp
-/**
- * @file esempio.cpp
- * @brief [breve]
- */
 #include <iostream>
 
 int main() {
+    /// [Spiega il perché logico o economico dell'output.]
+    std::cout << "[output]\n";
     return 0;
 }
 ```
@@ -106,31 +155,57 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
+| Passo di esecuzione | Valori / output osservati |
+|---------------------|---------------------------|
+| [Passo 1] | [Osservazione] |
+| [Passo 2] | [Osservazione] |
+
 | Riga / Costrutto | Cosa fa | A cosa serve |
 |------------------|---------|--------------|
 | `...` | ... | ... |
 
-> 🔗 [Python Tutor C++](https://pythontutor.com/cpp.html)
+> 🔗 **Se il programma usa variabili o memoria:** aprilo in
+> [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva ogni passo.
 
 #### 4. MODIFY (Modifica)
-1. [Modifica semplice]
-2. [Modifica media]
-3. [Modifica impegnativa — solo costrutti già visti]
+1. [Modifica semplice, poi ricompila.]
+2. [Modifica intermedia, poi ricompila.]
+3. [Modifica impegnativa con soli costrutti già visti, poi ricompila.]
+
+Se introduci un errore intenzionale, mostra l'output del compilatore e spiega
+come leggere riga e parola `error`.
+
+<details>
+<summary>💡 Scaffold di partenza per Modify</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "[output iniziale]\n";
+    return 0;
+}
+```
+
+</details>
 
 #### 5. MAKE (Crea)
 **Scenario aziendale:** [problema piccolo e realistico]
 
 **Requisiti:**
-- [ ]
-- Documentazione Doxygen se > ~15 righe
+1. [3–5 requisiti osservabili.]
+2. [Riusa solo costrutti già introdotti.]
+3. [Documentazione Doxygen completa se il programma o una funzione supera ~15 righe.]
 
 <details>
 <summary>💡 Scaffold</summary>
 
 ```cpp
 #include <iostream>
+
 int main() {
-    // TODO
+    /// TODO: spiega il perché economico o logico di una scelta.
+    // TODO: completa il programma
     return 0;
 }
 ```
@@ -149,6 +224,8 @@ int main() {
 [Anteprima del concetto successivo.]
 
 <!--#
-  Checklist: un obiettivo; metafora; Predict prima di Run;
-  lab con testo sotto ###; @LIA.cpp solo sul Run; niente costrutti futuri.
+  Checklist: un obiettivo; metafora; 1–2 slide teoriche prima del laboratorio;
+  Predict prima di Run;
+  @LIA.cpp solo sul Run; tabella di traccia e Python Tutor se ci sono variabili;
+  scaffold in Modify; Make aziendale; niente costrutti futuri.
 #-->

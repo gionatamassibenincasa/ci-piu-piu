@@ -1,6 +1,6 @@
 ---
 activity_id: "break-continue-01"
-title: "Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>` )"
+title: "Il Cruscotto del Programmatore (`break` e `continue`)"
 methodology: PRIMM
 order: 13
 version: "2026-11-14"
@@ -23,7 +23,7 @@ components:
         correct: true
       - text: "1234"
         correct: false
-  make_instructions: "Scenario SIA — Liquidazione IVA trimestrale (semplificata)"
+  make_instructions: "Scenario SIA — Controllo transazioni con scarti e allarmi"
 files:
   - path: student_work/make/liquidazione_iva.cpp
     action: create
@@ -33,10 +33,8 @@ files:
        * @brief Liquidazione IVA trimestrale semplificata.
        */
       #include <iostream>
-      #include <iomanip>
-
       int main() {
-          // dati fatture, ciclo, continue/break, tabella, totali
+          // dati transazioni, ciclo, continue/break, totale
           return 0;
       }
     validation_rules:
@@ -44,20 +42,16 @@ files:
       must_contain: ["int main"]
 ---
 
-## 🎯 Il Cruscotto del Programmatore (`break`, `continue`, `<iomanip>`)
+## 🎯 Il Cruscotto del Programmatore (`break` e `continue`)
 
 > "La precisione nella presentazione dei numeri è l'abito formale con cui il software si presenta all'azienda."
 > — *Principio dei Sistemi Contabili*
 
-Prima di salire al Blocco 2 (funzioni e strutture dati) chiudiamo il Blocco 1 con due strumenti da “cruscotto”:
+Prima di salire al Blocco 2 chiudiamo il Blocco 1 con due strumenti di controllo fine dei cicli.
 
-1. **Controllo fine dei cicli:** `break` e `continue`
-2. **Output contabile leggibile:** header `<iomanip>` (`fixed`, `setprecision`, `setw`)
-
-> 💡 **Metafore**  
+> 💡 **Metafora:**
 > - **`break`** = pulsante rosso di emergenza: il nastro si **ferma subito**.  
 > - **`continue`** = braccio di scarto: salta **quel** pezzo difettoso e passa al successivo.  
-> - **`<iomanip>`** = stampante fiscale: centesimi sempre a due cifre, colonne allineate.
 
 ---
 
@@ -65,7 +59,6 @@ Prima di salire al Blocco 2 (funzioni e strutture dati) chiudiamo il Blocco 1 co
 Alla fine di questa lezione sei in grado di:
 - Usare `break` per uscire anticipatamente da un ciclo
 - Usare `continue` per saltare il resto del corpo e passare all’iterazione successiva
-- Formattare importi e tabelle con `std::fixed`, `std::setprecision` e `std::setw`
 
 ---
 
@@ -87,27 +80,7 @@ for (int i = 1; i <= 10; ++i) {
 
 ---
 
-### 🖨️ Formattazione con `<iomanip>`
-
-```cpp
-#include <iomanip>
-
-std::cout << std::fixed << std::setprecision(2);
-std::cout << std::setw(10) << 19.5 << "\n";  // es. "     19.50"
-```
-
-| Manipolatore | Ruolo |
-|--------------|--------|
-| `std::fixed` | Notazione fissa (non scientifica) |
-| `std::setprecision(2)` | Cifre **dopo la virgola** (con `fixed`) |
-| `std::setw(n)` | Larghezza minima del **prossimo** campo |
-| `std::left` / `std::right` | Allineamento (testo a sx, importi a dx) |
-
-Senza `fixed`, `setprecision(2)` conta le cifre significative totali e può produrre notazione scientifica: in ambito monetario **`fixed` è obbligatorio**.
-
----
-
-### 🔬 Laboratorio PRIMM: Report fiscale con scarti e stop
+### 🔬 Laboratorio PRIMM: Report con scarti e stop
 
 Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarmi.
 
@@ -130,7 +103,6 @@ Elaboriamo un elenco di transazioni: scartiamo le invalide e fermiamo gli allarm
  * @brief Report di transazioni con scarto, stop di sicurezza e formattazione.
  */
 #include <iostream>
-#include <iomanip>
 
 /**
  * @brief Elabora 6 transazioni simulate: continue se <=0, break se >50000.
@@ -141,10 +113,6 @@ int main() {
     const int N = 6;
 
     double totale = 0.0;
-
-    std::cout << std::fixed << std::setprecision(2);
-    std::cout << std::setw(4) << "ID" << std::setw(12) << "Importo" << "\n";
-    std::cout << "----  ----------\n";
 
     for (int id = 1; id <= N; ++id) {
         double importo = importi[id - 1];
@@ -160,11 +128,10 @@ int main() {
         }
 
         totale += importo;
-        std::cout << std::setw(4) << id << std::setw(12) << importo << "\n";
+        std::cout << "ID " << id << ": " << importo << "\n";
     }
 
-    std::cout << "----  ----------\n";
-    std::cout << std::setw(4) << "" << std::setw(12) << totale << "  TOTALE\n";
+    std::cout << "TOTALE: " << totale << "\n";
 
     return 0;
 }
@@ -184,41 +151,34 @@ int main() {
 > 🔗 Osserva il salto di `continue`/`break` su [Python Tutor C++](https://pythontutor.com/cpp.html).
 
 #### 4. MODIFY (Modifica)
-1. **Colonna IVA**  
-   Per ogni riga valida stampa anche `importo * 0.22` con `setw`.
-
-2. **Soglia micro-pagamenti**  
+1. **Soglia micro-pagamenti**
    Con `continue`, scarta anche gli importi `< 5.00`.
 
-3. **Senza `fixed`**  
-   Rimuovi `std::fixed` e osserva come cambia la stampa con solo `setprecision(2)`.
+2. **Soglia di allarme**
+   Cambia l'allarme da `50000` a `1000` e verifica che `break` interrompa il report.
 
 #### 5. MAKE (Crea)
-**Scenario SIA — Liquidazione IVA trimestrale (semplificata)**
+**Scenario SIA — Controllo transazioni**
 
-Scrivi `liquidazione_iva.cpp`:
+Scrivi `controllo_transazioni.cpp`:
 
-- Ciclo su 6 fatture (ID 1…6) con imponibile e codice aliquota simulati in array (o costanti)
-- Aliquote: `'O'` 22%, `'R'` 10%, `'M'` 4%, `'E'` 0%
-- `continue` se imponibile `<= 0` (messaggio “fattura annullata”)
-- `break` se imponibile `> 50000` (alert)
-- Tabella formattata: `ID | Imponibile | Aliq. | IVA`
-- A fine ciclo (o allo stop): totale imponibile e totale IVA
+- Ciclo su sei ID di transazione.
+- `continue` per scartare un ID non valido.
+- `break` quando incontri un ID di allarme.
+- Stampa quali ID sono elaborati e il loro conteggio.
 
-**Requisiti:** `#include <iomanip>`, `fixed` + `setprecision(2)`, Doxygen, `///` sulle aliquote.
+**Requisiti:** Doxygen se superi 15 righe, graffe e messaggi chiari.
 
 <details>
 <summary>💡 Scaffold</summary>
 
 ```cpp
 /**
- * @brief Prospetto semplificato liquidazione IVA.
+ * @brief Controlla transazioni con scarti e allarmi.
  */
 #include <iostream>
-#include <iomanip>
-
 int main() {
-    // dati, ciclo, continue/break, tabella, totali
+    // dati, ciclo, continue/break, conteggio
     return 0;
 }
 ```
@@ -230,8 +190,6 @@ int main() {
 ### 📝 Riepilogo tascabile
 - `break` = esci dal ciclo; `continue` = salta al giro successivo.
 - In report contabili: scarti → `continue`; allarmi gravi → `break`.
-- `<iomanip>`: `fixed` + `setprecision(2)` per i soldi; `setw` per le colonne.
-- Senza `fixed`, `setprecision` non significa “due decimali monetari”.
 
 ---
 

@@ -36,6 +36,12 @@ Questa guida raccoglie due strumenti metodologici complementari pensati per acco
 
 ---
 
+### 🎯 Obiettivo
+Alla fine della guida sai pianificare lo studio di un capitolo e affrontare un
+programma seguendo il ciclo PRIMM.
+
+---
+
 ### 📖 Consigli per ottenere il massimo da un testo tecnico
 
 > 💡 *Traduzione e adattamento per la classe del saggio di Sebastian Raschka: [How to Read Technical Books](https://sebastianraschka.com/blog/2025/reading-books.html).*
@@ -86,15 +92,18 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Prima di eseguire il programma, esamina attentamente il codice sorgente e **ipotizza cosa farà**.
 - Se il codice contiene condizioni, cicli o variabili che cambiano, costruisci sul quaderno una **tabella di traccia** (colonne con i valori assunti dalle variabili passo dopo passo).
 
+#### Prima del Predict: orientati
+- Leggi la breve teoria che presenta parole, struttura e regola indispensabili.
+- Non cercare ancora la risposta del quiz: prepara soltanto gli strumenti per ragionare sul codice.
+
 #### 2. RUN (Esegui)
 - Copia il programma nel tuo ambiente di sviluppo (VS Code o blocco interattivo `@LIA.cpp`).
 - **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
 - Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
 
 #### 3. INVESTIGATE (Investiga)
-- Copia il programma su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
-- Osserva visivamente come evolve lo stato della memoria (Stack, variabili locali, tipi) a ogni istruzione di assegnamento.
-- Confronta l'evoluzione effettiva con la tabella di traccia che hai disegnato sul quaderno.
+- Quando il programma usa variabili o memoria, copialo su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
+- Osserva come evolve lo stato della memoria e confrontalo con la tabella di traccia.
 
 #### 4. MODIFY (Modifica)
 - Modifica il codice sorgente procedendo a piccoli passi, per fare tuo il programma:
@@ -106,6 +115,14 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - Scrivi un **nuovo programma autonomo** partendo da zero.
 - Puoi prendere in prestito frammenti o strutture logiche dal programma appena studiato, applicandoli per risolvere un problema diverso o per realizzare una funzione nuova.
 - Questo è il momento in cui passi da "lettore di codice" a "creatore di software".
+
+---
+
+### 📝 Riepilogo tascabile
+- Prima leggi il contesto, l'obiettivo e la micro-teoria: poi fai una previsione.
+- Digita il codice a mano e confronta sempre output e Predict.
+- Usa una tabella di traccia e Python Tutor quando cambiano variabili o memoria.
+- Modifica poco alla volta; nel Make riusa l'idea in uno scenario nuovo.
 
 ---
 

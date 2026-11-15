@@ -16,10 +16,10 @@ components:
       - text: Compila il programma
         correct: false
   make_instructions: >
-    presentazione.cpp: tre std::cout (nome, classe, hobby),
-    commenti ///, return 0
+    presentazione.cpp: tre std::cout per una schermata di benvenuto
+    di un gestionale, commento /// sul perché, return 0
 files:
-  - path: student_work/README.md
+  - path: README.md
     action: create
     description: Istruzioni per svolgere gli esercizi del capitolo
     template_content: |
@@ -40,7 +40,7 @@ files:
          (modifiche A, B, C una alla volta)
 
       5. **Make** → `student_work/make/presentazione.cpp`
-         (nome, classe, hobby)
+         (schermata di benvenuto del gestionale)
 
   - path: student_work/predict/answers.md
     action: create
@@ -134,14 +134,14 @@ files:
     action: create
     phase: make
     description: >
-      Programma da zero: tre righe (nome, classe, hobby),
-      commenti ///, return 0.
+      Programma da zero: tre righe per la schermata di benvenuto
+      di un gestionale, commento /// sul perché, return 0.
     template_content: |
       #include <iostream>
 
       int main() {
-          // TODO: tre std::cout (nome, classe, hobby)
-          // usa commenti /// sul perché
+          /// TODO: spiega perché la prima riga aiuta chi usa il gestionale.
+          // TODO: tre std::cout per il messaggio di benvenuto
           return 0;
       }
     validation_rules:
@@ -166,15 +166,47 @@ Un linguaggio di programmazione è come un linguaggio straniero con una grammati
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video
-- Usare correttamente `#include <iostream>`, `std::cout`, `\n` e `return 0`
-- Leggere e interpretare i messaggi di errore più comuni legati a sintassi e namespace
+- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
+
+---
+
+### ⚙️ Prima del laboratorio: le quattro parti essenziali
+
+Un programma C++ minimo non è una frase isolata: è un messaggio con indirizzo,
+inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.
+
+| Parte | Idea pratica | Perché c'è |
+| :--- | :--- | :--- |
+| `#include <iostream>` | Prendi in prestito gli strumenti per parlare con lo schermo. | Senza questa libreria il compilatore non conosce `std::cout`. |
+| `int main() { ... }` | Apri l'ufficio principale del programma. | L'esecuzione parte sempre da qui. |
+| `std::cout << "..."` | Invia un messaggio al monitor. | `std::` indica che usi uno strumento della libreria standard. |
+| `return 0;` | Comunica che il lavoro è terminato bene. | Il sistema operativo riceve un esito di successo. |
+
+Non serve ancora capire ogni dettaglio di `std::`: per ora ricordati di copiarlo
+sempre insieme a `cout`.
+
+---
+
+### 🧭 Prima del laboratorio: come scorre l'esecuzione
+
+Immagina l'avvio di un piccolo gestionale: il sistema apre `main`, esegue le
+istruzioni dall'alto verso il basso, mostra il messaggio e poi chiude il lavoro.
+
+| Ordine | Cosa avviene |
+| :---: | :--- |
+| 1 | Il sistema operativo entra in `main`. |
+| 2 | `std::cout` invia i caratteri tra virgolette allo schermo. |
+| 3 | `\n` sposta il cursore alla riga successiva. |
+| 4 | `return 0;` conclude il programma senza errori. |
+
+Adesso puoi fare una previsione: se cambia il testo tra virgolette, quale parte
+del risultato cambierà a video?
 
 ---
 
 ### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
 
-```cpp[ciao.cpp]
+```cpp
 #include <iostream>
 
 int main() {
@@ -192,8 +224,8 @@ int main() {
 
 
 #### 2. RUN (Esegui)
-Analizza il codice sotto. Creati un modello di esecuzione e predici quello che verrà stampato. Non ti fidare dei commenti, potrebbero essere sbagliati! Eseguilo premendo il bottone.  
-Confronta l’output con la tua previsione.
+Digita il codice sotto nel tuo editor oppure eseguilo con il bottone.
+Confronta l'output con la previsione: la differenza, se c'è, ti dice cosa investigare.
 
 ```cpp
 /**
@@ -207,7 +239,7 @@ Confronta l’output con la tua previsione.
  * @return int 0 se tutto è andato bene.
  */
 int main() {
-    /// Stampa il messaggio di saluto e va a capo
+    /// Il saluto rende riconoscibile l'avvio del programma.
     std::cout << "Ciao, Mondo!\n";
 
     return 0; /// 0 = successo per il sistema operativo
@@ -217,6 +249,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 Analizziamo il codice riga per riga come detective.
+
+| Fase | Cosa osservi a video |
+| :--- | :--- |
+| Il sistema operativo avvia `main` | Ancora niente: il programma è pronto a eseguire. |
+| `std::cout` invia la stringa | Compare `Ciao, Mondo!` e `\n` porta il cursore alla riga successiva. |
+| `return 0;` termina `main` | Nessun nuovo testo: il sistema riceve il segnale di successo. |
 
 | Codice | Cosa fa (spiegazione brain-friendly) | A cosa serve |
 | :--- | :--- | :--- |
@@ -229,15 +267,23 @@ Analizziamo il codice riga per riga come detective.
 > 🔗 **Ispezione memoria (opzionale ma utile):**  
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
-> 💡 **Nota sui namespace (senza usarla ancora)**  
-> Un **namespace** è un “reparto” di nomi: evita che due cose diverse si chiamino uguali e si confondano.  
-> La libreria standard vive nel reparto `std`. Per questo scriviamo `std::cout` e non solo `cout`.  
-> Esiste anche la scorciatoia `using namespace std;` (dopo gli `#include`), che permette di scrivere `cout` da solo.  
-> **In questo corso, all’inizio, non la usiamo:** rende gli errori più chiari e ti abitua a vedere da dove arrivano i nomi. La rivedremo quando i programmi saranno più lunghi.
-
 #### 4. MODIFY (Modifica)
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
 Dopo ogni modifica ricompila/esegui.
+
+<details>
+<summary>💡 Scaffold di partenza per tutte le modifiche</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Ciao, Mondo!\n";
+    return 0;
+}
+```
+
+</details>
 
 **Modifica A — Il punto e virgola traditore**
 1. Togli il `;` alla fine della riga di `std::cout`.
@@ -250,9 +296,17 @@ Cosa ti aspetti?
 [( )] Il programma stampa comunque il messaggio
 [( )] Si crea un file eseguibile vuoto
 
+Un compilatore come g++ può segnalare:
+
+```text
+error: expected ';' before 'return'
+```
+
 <details>
 <summary>💡 Spiegazione</summary>
-Il punto e virgola è obbligatorio in C++ per terminare quasi tutte le istruzioni. Senza di esso il compilatore non sa dove finisce un’istruzione e dove ne inizia un’altra.
+Leggi la parola chiave `expected`: il compilatore si aspettava un punto e virgola
+prima di arrivare a `return`. Il testo preciso può cambiare, ma riga e parola
+`error` sono il punto da cui iniziare.
 </details>
 
 **Modifica B — Lo spazio dei nomi**
@@ -267,47 +321,52 @@ Cosa succede?
 [( )] Il programma stampa uno spazio vuoto
 [( )] Stampa “Ciao, Mondo!” due volte
 
+Un compilatore come g++ può segnalare:
+
+```text
+error: 'cout' was not declared in this scope; did you mean 'std::cout'?
+```
+
 <details>
 <summary>💡 Spiegazione</summary>
-Senza <code>std::</code> il compilatore cerca una cosa chiamata <code>cout</code> nel tuo programma e non la trova: non sa che intendevi quella della libreria standard. Per ora scriviamo sempre <code>std::cout</code> per intero.
+Senza <code>std::</code> il compilatore cerca <code>cout</code> nel tuo programma
+e non lo trova. Il suggerimento finale ti indica anche la correzione: per ora
+scrivi sempre <code>std::cout</code> per intero.
 </details>
 
 **Modifica C — Più messaggi**
-Aggiungi una seconda riga di output che stampa il tuo nome o la tua classe.  
+Aggiungi una seconda riga di output: `Gestionale ordini pronto`.
 Verifica che appaiano su due righe separate.
 
 #### 5. MAKE (Crea)
 Scrivi da zero un nuovo programma chiamato `presentazione.cpp`.
 
-**Scenario:** vuoi presentarti al computer (e a chi leggerà il codice).
+**Scenario aziendale:** la tua classe sta preparando la prima schermata di un
+piccolo gestionale ordini. Prima che l'operatore inizi a lavorare, il programma
+deve comunicare con chiarezza dove si trova.
 
 **Requisiti:**
 1. Includi la libreria corretta.
 2. Hai una funzione `main` ben formattata.
 3. Stampa **tre righe separate** con tre istruzioni `std::cout`:
-   - riga 1 → il tuo nome
-   - riga 2 → la tua classe (es. “3A SIA”)
-   - riga 3 → una tua passione o hobby
-4. Usa commenti `///` sul “perché” delle righe importanti.
+   - riga 1 → nome del gestionale;
+   - riga 2 → reparto o funzione, per esempio “Gestione ordini”;
+   - riga 3 → messaggio utile per l'operatore.
+4. Usa un commento `///` per spiegare **perché** una riga aiuta l'operatore.
 5. Termina con `return 0;`.
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
 ```cpp
-/**
- * @brief Programma di presentazione personale.
- */
 #include <iostream>
 
 int main() {
-    /// Stampa il nome
+    /// Fa capire subito all'operatore quale strumento sta usando.
     std::cout << "....................\n";
 
-    /// Stampa la classe
     std::cout << "....................\n";
 
-    /// Stampa l'hobby
     std::cout << "....................\n";
 
     return 0;
