@@ -1,138 +1,167 @@
 ---
 activity_id: "enum-01"
-title: "L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct` )"
+title: "Stati e Schede Anagrafiche: enum e struct"
 methodology: PRIMM
 order: 20
-version: "2026-11-14"
+version: "2026-11-16"
 language: it
 components:
   predict_quiz:
-    question: "Se assegno `Ordine o2 = o1;`, cosa succede alla memoria?"
+    question: "Con `enum class Stato { Attivo, Sospeso };`, cosa stampa il confronto tra due variabili entrambe `Attivo`?"
     code: |
-      enum class StatoOrdine { InAttesa, Confermato, Spedito, Annullato };
-      struct Ordine { int id; std::string cliente; double importo; StatoOrdine stato; };
-      Ordine o1{1,"Mario",100.0,StatoOrdine::InAttesa};
-      Ordine o2 = o1; // copia
+      enum class Stato { Attivo, Sospeso };
+      Stato a = Stato::Attivo;
+      Stato b = Stato::Attivo;
+      // a == b ?
     options:
-      - text: "Viene copiata campo per campo, occupa nuova memoria"
+      - text: "Sono uguali (true)"
         correct: true
-      - text: "Viene condivisa la stessa memoria (alias)"
+      - text: "Non si possono confrontare"
         correct: false
-      - text: "Compila con errore perché le struct non sono copiabili"
+      - text: "Sono sempre diversi"
         correct: false
-      - text: "Il programma crasha"
+      - text: "Compila solo con int"
         correct: false
-  make_instructions: "Scenario SIA — Definizione di struct Dipendente e stampa scheda ordine"
+  make_instructions: "Anagrafica articolo: struct + enum stato magazzino"
 files:
-  - path: student_work/make/enum_struct.cpp
+  - path: student_work/make/anagrafica_articolo.cpp
     action: create
     phase: make
     template_content: |
-      /**
-       * @brief Definisce enum class StatoOrdine e struct Ordine, stampa informazioni.
-       */
       #include <iostream>
       #include <string>
-
-      enum class StatoOrdine { InAttesa, Confermato, Spedito, Annullato };
-
-      struct Ordine {
-          int idOrdine;
-          std::string cliente;
-          double importoTotale;
-          StatoOrdine stato;
-      };
-
-      void stampaScheda(const Ordine& o) {
-          // TODO: formattare output con iomanip
-      }
-
-      int main() {
-          // esempio di creazione e stampa
-          return 0;
-      }
+      int main() { return 0; }
     validation_rules:
-      min_lines: 12
-      must_contain: ["int main"]
+      min_lines: 25
+      must_contain: ["struct", "enum"]
 ---
 
-## 🎯 L'Anagrafica Aziendale: Enumerazioni (`enum class`) e Strutture (`struct`)
+## 🏷️ Stati e Schede Anagrafiche: `enum` e `struct`
 
-> "Un enum è il timbro ufficiale dello stato pratica; una struct è la cartella anagrafica."
->
-> — *Metafora di dati aziendali*
+> "Un codice magazzino non è un intero a caso: è un *significato*."  
+> — *Disciplina dei dati master*
 
-### Obiettivo
-- Creare `enum class` per stati discreti.
-- Definire `struct` per raggruppare dati eterogenei.
-- Usare `const &` per passare struct a funzione di stampa.
-- Formattare output con `<iomanip>`.
+`int stato = 2` è opaco: 2 cosa?  
+Un **`enum class`** dà **nomi** agli stati.  
+Una **`struct`** unisce campi eterogenei in una **scheda** (come una riga di anagrafica).
 
----
-
-## 📚 Teoria
-1. Sintassi `enum class Nome { ... };` evita conflitti.
-2. `struct Nome { ... };` raggruppa campi.
-3. Accesso con `.` e `->`.
-4. Passaggio per riferimento costante per evitare copie.
-5. Doxygen per documentare enum e struct.
+> 💡 **Metafora: cartellino prodotto + semaforo stato**  
+> - `struct Articolo` = cartellino (codice, descrizione, prezzo)  
+> - `enum class Stato` = semaforo (`Disponibile`, `Esaurito`, `Sospeso`)
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Definire un `enum class` e una `struct` semplice
+- Creare variabili struct, assegnare campi e stamparli
+
+---
+
+### ⚙️ In breve
+
+```cpp
+enum class Stato { Disponibile, Esaurito, Sospeso };
+
+struct Articolo {
+    std::string codice;
+    std::string nome;
+    double prezzo;
+    Stato stato;
+};
+```
+
+Accesso ai campi: `a.prezzo`, `a.stato = Stato::Disponibile`.
+
+---
+
+### 🔬 Laboratorio PRIMM: Scheda articolo
 
 #### 1. PREDICT (Prevedi)
 
-
 [[ predict_block() ]]
 
-
-<details><summary>💡 Spiegazione</summary>La copia è profonda per i campi semplici; per campi `std::string` viene effettuata una copia della stringa.
+<details>
+<summary>💡 Spiegazione</summary>
+I valori dello stesso <code>enum class</code> si confrontano con <code>==</code>. Due variabili <code>Attivo</code> risultano uguali.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file enum_struct.cpp
- * @brief Esempio di enum class e struct per ordini.
+ * @file scheda_articolo.cpp
+ * @brief Struct + enum class per anagrafica di magazzino.
  */
 #include <iostream>
 #include <string>
-#include <iomanip>
 
-enum class StatoOrdine { InAttesa, Confermato, Spedito, Annullato };
+enum class Stato { Disponibile, Esaurito, Sospeso };
 
-struct Ordine {
-    int idOrdine;
-    std::string cliente;
-    double importoTotale;
-    StatoOrdine stato;
+struct Articolo {
+    std::string codice;
+    std::string nome;
+    double prezzo;
+    Stato stato;
 };
 
-void stampaScheda(const Ordine& o) {
-    std::cout << std::fixed << std::setprecision(2);
-    std::cout << "ID: " << o.idOrdine << " Cliente: " << o.cliente
-              << " Importo: " << o.importoTotale << " Stato: " << static_cast<int>(o.stato) << "\n";
-}
-
 int main() {
-    Ordine o{1, "Mario Rossi", 1234.56, StatoOrdine::InAttesa};
-    stampaScheda(o);
+    Articolo a;
+    a.codice = "A-100";
+    a.nome = "Carta A4";
+    a.prezzo = 4.50;
+    a.stato = Stato::Disponibile;
+
+    std::cout << a.codice << " — " << a.nome
+              << " — € " << a.prezzo << '\n';
+    if (a.stato == Stato::Disponibile) {
+        std::cout << "Stato: disponibile\n";
+    }
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Visualizza con Python Tutor l’allocazione di `Ordine` e la copia.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi funzione `void aggiornaStato(Ordine& o, StatoOrdine nuovo)`.
+| Costrutto | Perché usarlo |
+|-----------|----------------|
+| `enum class` | Evita numeri magici; scope proprio (`Stato::…`) |
+| `struct` | Un solo nome per più campi correlati |
+| `a.campo` | Accesso diretto al campo |
 
-### Make
-**Scenario SIA — Definizione di struct Dipendente e stampa scheda ordine**
+#### 4. MODIFY (Modifica)
+1. Aggiungi il campo `int giacenza`.
+2. Se `giacenza == 0`, imposta `stato = Stato::Esaurito`.
+3. Scrivi una funzione `void stampa(const Articolo& x)` (passaggio per riferimento const).
 
-Scrivi `enum_struct.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve creare un ordine, stamparne i dati e consentire aggiornamento stato.
+#### 5. MAKE (Crea)
+**Scenario SIA — Anagrafica articolo completa**
+
+`anagrafica_articolo.cpp`: `struct` + `enum class`, almeno due articoli in `main`, stampa formattata, stato coerente con la giacenza.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+enum class Stato { /* ... */ };
+struct Articolo { /* ... */ };
+void stampa(const Articolo& x) { /* ... */ }
+int main() { /* ... */ return 0; }
+```
+</details>
 
 ---
 
+### 📝 Riepilogo tascabile
+- `enum class` = stati con nome
+- `struct` = scheda con più campi
+- `oggetto.campo` per leggere/scrivere
+- Preferisci `const Struct&` in lettura (niente copia inutile)
+
+---
+
+### ➡️ Prossimo chunk
+Cercare un codice in un listino ordinato: **ricerca dicotomica**.

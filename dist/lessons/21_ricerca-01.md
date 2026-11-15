@@ -1,7 +1,7 @@
 <!--
 author:    Gionata Massi
 email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-14
+version:   2026-11-16
 language:  it
 narrator:  IT Italian Male
 comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
@@ -13,85 +13,138 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
-## 🎯 Il Dizionario Magico: La Ricerca Dicotomica (Binaria)
+## 🔍 Trovare il Codice nel Listino: ricerca dicotomica
 
-> "Il dizionario è un elenco ordinato: trovare una voce è una ricerca binaria."
->
-> — *Metafora di ricerca*
+> "Non sfogliare tutto il catalogo se è già in ordine alfabetico."  
+> — *Efficienza operativa*
 
-### Obiettivo
-- Comprendere i requisiti di un array ordinato.
-- Implementare l'algoritmo di ricerca binaria (indice iniziale, finale, medio).
-- Analizzare la complessità O(log n).
+Cercare un codice prodotto scorrendo **tutto** l’array funziona, ma su listini lunghi è costoso.  
+Se il listino è **ordinato**, possiamo usare la **ricerca dicotomica** (binaria): a ogni passo dimezziamo l’intervallo.
 
----
-
-## 📚 Teoria
-1. L'array deve essere **ordinato**.
-2. Algoritmo: confronta `target` con elemento medio, riduce intervallo a metà.
-3. Convergenza quando `inizio > fine` → valore non trovato.
+> 💡 **Metafora: elenco telefonico (o catalogo a pagine)**  
+> Apri a metà: il nome cercato è prima o dopo?  
+> Scarti metà elenco e ripeti.  
+> **Precondizione:** l’elenco deve essere **già ordinato**.
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Implementare una ricerca binaria su un array di interi **ordinato**
+- Spiegare perché l’ordine dei dati è obbligatorio
+
+---
+
+### ⚙️ Idea dell’algoritmo
+1. `low = 0`, `high = N - 1`
+2. Finché `low <= high`: guarda il centro `mid`
+3. Se `a[mid] == chiave` → trovato  
+4. Se `a[mid] < chiave` → cerca a destra (`low = mid + 1`)  
+5. Altrimenti cerca a sinistra (`high = mid - 1`)
+
+---
+
+### 🔬 Laboratorio PRIMM: Codici prodotto ordinati
 
 #### 1. PREDICT (Prevedi)
 
-
-Se l'array ha 1.024 elementi ordinati, quanti passi al massimo servono per trovare un valore con ricerca binaria?
+La ricerca binaria su un array disordinato è affidabile?
 
 ```cpp
-// array di 1024 elementi ordinati
-// ricerca binaria di un valore
+// array NON ordinato
+// binary_search(...)
 ```
 
-[(X)] 10
-[( )] 9
-[( )] 11
-[( )] 12
+[( )] Sì, sempre
+[(X)] No: richiede array ordinato
+[( )] Solo se tutti pari
+[( )] Solo su stringhe
 
-
-<details><summary>💡 Spiegazione</summary>2¹⁰ = 1024, quindi al massimo 10 confronti.
+<details>
+<summary>💡 Spiegazione</summary>
+La dicotomica assume ordinamento. Su dati disordinati può “perdere” elementi ancora presenti.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file ricerca_binaria.cpp
- * @brief Ricerca binaria su array ordinato.
+ * @file ricerca_codice.cpp
+ * @brief Ricerca binaria su codici prodotto ordinati.
  */
 #include <iostream>
 
-int ricercaBinaria(const double arr[], int n, double target) {
-    int inizio = 0, fine = n - 1;
-    while (inizio <= fine) {
-        int medio = (inizio + fine) / 2;
-        if (arr[medio] == target) return medio;
-        if (arr[medio] < target) inizio = medio + 1;
-        else fine = medio - 1;
-    }
-    return -1; // non trovato
-}
-
 int main() {
-    double dati[5] = {10, 20, 30, 40, 50};
-    int idx = ricercaBinaria(dati, 5, 30);
-    std::cout << "Indice: " << idx << std::endl;
+    int codici[8] = {100, 150, 200, 250, 300, 350, 400, 450};
+    int chiave = 300;
+    int low = 0;
+    int high = 7;
+    int trovato = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (codici[mid] == chiave) {
+            trovato = mid;
+            break;
+        } else if (codici[mid] < chiave) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    if (trovato >= 0) {
+        std::cout << "Trovato in posizione " << trovato << '\n';
+    } else {
+        std::cout << "Non presente\n";
+    }
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Visualizza con Python Tutor l'aggiornamento di `inizio` e `fine` ad ogni iterazione.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi parametro `bool verbose` per stampare i passi eseguiti.
+| Passo | Cosa osservare |
+|-------|----------------|
+| `mid` | Sempre un indice nell’intervallo corrente |
+| `low` / `high` | Si restringono; non devono “incrociarsi” senza uscita |
+| Array | Deve restare ordinato in modo non decrescente |
 
-### Make
-**Scenario SIA — Ricerca istantanea del prezzo di un articolo in un catalogo ordinato**
+Simula a mano 2–3 iterazioni su carta, poi [Python Tutor](https://pythontutor.com/cpp.html).
 
-Scrivi `ricerca_binaria.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve leggere un array, cercare un valore e stampare l'indice o -1.
+#### 4. MODIFY (Modifica)
+1. Cambia `chiave` in un valore assente e verifica il messaggio.
+2. Estrai una funzione `int cerca(const int a[], int n, int chiave)` che restituisce l’indice o `-1`.
+3. Conta quante volte si esegue il corpo del `while` (confronti).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Verifica codice EAN interno**
+
+`cerca_codice.cpp`: array ordinato di codici, input della chiave (o costante), stampa posizione o “non trovato”. Funzione dedicata alla ricerca.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+int cerca(const int a[], int n, int chiave) {
+    // binary search
+    return -1;
+}
+int main() { /* ... */ return 0; }
+```
+</details>
 
 ---
 
+### 📝 Riepilogo tascabile
+- Dicotomica = dimezza l’intervallo a ogni passo
+- **Solo** su sequenze ordinate
+- Restituisci indice o `-1`
+- Molto più scalabile della scansione lineare su listini lunghi
+
+---
+
+### ➡️ Prossimo chunk
+Per usare la ricerca binaria serve spesso **ordinare** prima i dati: selection sort.

@@ -1,122 +1,159 @@
 ---
 activity_id: "matrici-01"
-title: "Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili"
+title: "Il Foglio Excel in Memoria: array bidimensionali"
 methodology: PRIMM
 order: 18
-version: "2026-11-14"
+version: "2026-11-16"
 language: it
 components:
   predict_quiz:
-    question: "Se inverti l'ordine dei due cicli `for` annidati in una matrice 2×3, in che ordine vengono stampati gli elementi?"
+    question: "In `int m[2][3];`, quanti elementi ci sono e qual è l’ultimo indice di colonna?"
     code: |
-      int mat[2][3] = {{1,2,3},{4,5,6}};
-      // ciclo interno primo
-      for (int i=0;i<2;i++){
-        for (int j=0;j<3;j++){
-          std::cout << mat[i][j];
-        }
-      }
-      // ciclo esterno primo (invertito)
-      // ...
+      int m[2][3];
     options:
-      - text: "1 2 3 4 5 6"
+      - text: "6 elementi; colonne 0..2"
         correct: true
-      - text: "1 4 2 5 3 6"
+      - text: "5 elementi; colonne 1..3"
         correct: false
-      - text: "4 5 6 1 2 3"
+      - text: "6 elementi; colonne 1..3"
         correct: false
-      - text: "Errore di compilazione"
+      - text: "2 elementi in tutto"
         correct: false
-  make_instructions: "Scenario SIA — Griglia di fatturazione mensile"
+  make_instructions: "Tabella vendite 3 reparti × 4 trimestri"
 files:
-  - path: student_work/make/matrici_fatturazione.cpp
+  - path: student_work/make/vendite_reparti.cpp
     action: create
     phase: make
     template_content: |
-      /**
-       * @brief Analizza fatturazione mensile usando una matrice 4x12.
-       */
       #include <iostream>
-      #include <iomanip>
-
       int main() {
-          // TODO: implementare analisi matrice fatturazione
+          // TODO matrice 3x4
           return 0;
       }
     validation_rules:
-      min_lines: 8
-      must_contain: ["int main"]
+      min_lines: 18
+      must_contain: ["for"]
 ---
 
-## 🎯 Il Setaccio e la Griglia: Ricerca Lineare e Matrici Contabili
+## 📊 Il Foglio Excel in Memoria: array bidimensionali
 
-> "Una tabella Excel è una griglia di dati dove ogni cella ha riga e colonna."
->
-> — *Metafora di matrici* 
+> "Una tabella è il modo più naturale di organizzare dati aziendali."  
+> — *Pratica di reporting gestionale*
 
-### Obiettivo
-- Dichiarare e inizializzare matrici 2‑dimensionali.
-- Implementare ricerca lineare in una matrice.
-- Utilizzare cicli annidati per scorrere righe e colonne.
-- Formattare output con `<iomanip>`.
+Un array monodimensionale è una **riga**.  
+Spesso i report sono **griglie**: righe = reparti, colonne = mesi o trimestri.  
+In C++ usiamo un **array bidimensionale** (matrice).
 
----
-
-## 📚 Teoria
-1. Sintassi `tipo nome[RIGHE][COLONNE];`
-2. Inizializzazione con `{{...},{...}}`.
-3. Accesso `mat[r][c]`.
-4. Ricerca lineare su matrice.
-5. Formattazione con `std::setw`, `std::fixed`.
+> 💡 **Metafora: foglio Excel**  
+> - `vendite[r][c]` = cella all’incrocio **riga r**, **colonna c**  
+> - Prima dimensione = righe (reparti)  
+> - Seconda = colonne (periodi)  
+> - Anche qui gli indici partono da **0**
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare e scorrere un array `tipo nome[RIGHE][COLONNE]`
+- Calcolare totali per riga (o per colonna) su dati tabellari
+
+---
+
+### ⚙️ In breve
+
+```cpp
+// 2 reparti × 3 mesi
+double vendite[2][3] = {
+    {1000.0, 1200.0, 900.0},   // reparto 0
+    {800.0,  950.0,  1100.0}   // reparto 1
+};
+```
+
+Due cicli annidati: esterno sulle righe, interno sulle colonne.
+
+---
+
+### 🔬 Laboratorio PRIMM: Due reparti, tre mesi
 
 #### 1. PREDICT (Prevedi)
 
-
 [[ predict_block() ]]
 
-
-<details><summary>💡 Spiegazione</summary>Il ciclo interno stampa per ogni riga tutti gli elementi della colonna, quindi l'ordine naturale è riga‑per‑riga.
+<details>
+<summary>💡 Spiegazione</summary>
+<code>int m[2][3]</code> ha 2×3 = 6 elementi. Le colonne sono indicizzate 0, 1, 2.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file matrici_fatturazione.cpp
- * @brief Analisi fatturazione mensile usando una matrice 4×12.
+ * @file matrice_vendite.cpp
+ * @brief Totale per reparto su tre mesi.
  */
 #include <iostream>
-#include <iomanip>
 
 int main() {
-    const int R = 4, C = 12;
-    double fatt[R][C] = { /* dati simulati */ };
-    // stampa con formattazione
-    std::cout << std::fixed << std::setprecision(2);
-    for (int r=0; r<R; ++r) {
-        for (int c=0; c<C; ++c) {
-            std::cout << std::setw(8) << fatt[r][c];
+    double vendite[2][3] = {
+        {1000.0, 1200.0, 900.0},
+        {800.0, 950.0, 1100.0}
+    };
+
+    for (int r = 0; r < 2; ++r) {
+        double subtotale = 0.0;
+        for (int c = 0; c < 3; ++c) {
+            subtotale = subtotale + vendite[r][c];
         }
-        std::cout << "\n";
+        std::cout << "Reparto " << r << " totale: " << subtotale << '\n';
     }
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Usa Python Tutor per visualizzare la memoria lineare della matrice.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi ricerca di un valore soglia (es. fatturato > 50000) e stampa le coordinate (riga, colonna).
+| Variabile | Significato |
+|-----------|-------------|
+| `r` | Indice di riga (reparto) |
+| `c` | Indice di colonna (mese) |
+| `subtotale` | Si azzera a ogni nuova riga |
 
-### Make
-**Scenario SIA — Griglia di fatturazione mensile**
+Segui con [Python Tutor](https://pythontutor.com/cpp.html) l’ordine delle celle visitate.
 
-Scrivi `matrici_fatturazione.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve stampare la matrice formattata e individuare il valore massimo.
+#### 4. MODIFY (Modifica)
+1. Aggiungi un terzo reparto (matrice `3×3`) e aggiorna i cicli.
+2. Stampa anche il **totale generale** di tutta la matrice.
+3. Stampa i totali **per colonna** (per mese).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Vendite per reparto e trimestre**
+
+`vendite_reparti.cpp`: matrice **3 reparti × 4 trimestri**, totali per riga, per colonna e complessivo. Output leggibile.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+int main() {
+    const int R = 3, C = 4;
+    double v[R][C] = { /* ... */ };
+    // cicli annidati
+    return 0;
+}
+```
+</details>
 
 ---
 
+### 📝 Riepilogo tascabile
+- Matrice = foglio a righe e colonne
+- `m[i][j]`: prima riga, poi colonna
+- Quasi sempre **due** `for` annidati
+- Stessi pericoli di out-of-bounds, su due assi
+
+---
+
+### ➡️ Prossimo chunk
+Dietro ogni array c’è un indirizzo in memoria: introduciamo i **puntatori** in modo guidato e cauto.

@@ -1,127 +1,147 @@
 ---
-activity_id: db-memoria-01
-title: 'Database in memoria: progetto con array di struct'
+activity_id: "db-memoria-01"
+title: "Il Archivio in RAM: array di struct"
 methodology: PRIMM
 order: 24
-version: '2026-11-15'
+version: "2026-11-16"
 language: it
 components:
   predict_quiz:
-    question: Perché un array di struct può modellare una tabella in memoria?
-    code: 'struct Record { /* campi */ };
-
-      Record tabella[100];'
+    question: "Cosa rappresenta `Record tabella[100];` se Record è una struct?"
+    code: |
+      struct Record { int id; double importo; };
+      Record tabella[100];
     options:
-    - text: Perché ogni elemento è una riga con gli stessi campi
-      correct: true
-    - text: Perché gli array non hanno indici
-      correct: false
-    - text: Perché le struct non possono contenere stringhe
-      correct: false
+      - text: "Fino a 100 righe con gli stessi campi"
+        correct: true
+      - text: "Un solo record con 100 campi"
+        correct: false
+      - text: "Una matrice 100×100 di int"
+        correct: false
+      - text: "Un file su disco"
+        correct: false
+  make_instructions: "Mini-archivio movimenti: carica, elenca, totale"
+files:
+  - path: student_work/make/archivio_movimenti.cpp
+    action: create
+    phase: make
+    template_content: |
+      #include <iostream>
+      #include <string>
+      int main() { return 0; }
+    validation_rules:
+      min_lines: 30
+      must_contain: ["struct"]
 ---
 
+## 🗄️ L’Archivio in RAM: array di struct
 
+> "Una tabella è un insieme di righe con le stesse colonne."  
+> — *Modello relazionale in miniatura*
 
-## 🎯 Obiettivo di questo chunk
+Un database vero sta su disco e parla SQL.  
+In memoria, puoi simulare una **tabella** con un **array di struct**: ogni elemento è una riga; ogni campo della struct è una colonna.
+
+> 💡 **Metafora: foglio clienti / movimenti**  
+> - `struct Movimento` = colonne (id, descrizione, importo)  
+> - `Movimento tab[100]` = fino a 100 righe  
+> - `n` = quante righe sono **realmente** usate
+
+---
+
+### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Comprendere come rappresentare dati aziendali con array di struct in C++.
-- Implementare funzioni di caricamento, visualizzazione, ordinamento e ricerca su un vettore di strutture.
-- Realizzare un progetto mini‑ERP con menu interattivo.
+- Definire una struct-record e un array di record
+- Scorrere le righe “vive” (`0..n-1`) per elenchi e totali
 
 ---
 
-### 💡 La Metafora Guida
-> **Metafora:** *Il reparto amministrativo che gestisce migliaia di pratiche* – le pratiche sono i record dei prodotti, organizzati in un archivio (array di struct) e manipolati tramite funzioni modulari.
-
----
-
-### ⚙️ Concetto in breve
-| Aspetto | Dettaglio |
-|---------|-----------|
-| Dati | `struct Prodotto { int codice; std::string nome; double prezzo; int giacenza; }` |
-| Operazioni | Caricamento, stampa tabellare, ordinamento per campo, ricerca binaria, aggiornamento giacenza |
-| Complessità | Ordinamento `O(n log n)`, ricerca `O(log n)` su array ordinato |
-
----
-
-### ⚠️ Tranelli tipici
-- **Doxygen:** dimenticare di documentare le funzioni porta a mancanza di generazione automatica.
-- **Input:** non validare l’interazione `switch` può causare loop infiniti o crash.
-
----
-
-### 🔬 Laboratorio PRIMM: *Mini‑ERP di Magazzino*
+### 🔬 Laboratorio PRIMM: Tre movimenti di cassa
 
 #### 1. PREDICT (Prevedi)
 
 [[ predict_block() ]]
-> Quale struttura dati è più adatta per mantenere ordinato un archivio di prodotti grande?
-- [(X)] `std::vector` con `std::sort`
-- [( )] `std::list`
-- [( )] `std::queue`
 
-<details><summary>💡 Spiegazione</summary>
-`std::vector` permette accesso diretto e uso di `std::sort`, ideale per ordinamento rapido.
+<details>
+<summary>💡 Spiegazione</summary>
+Array di struct = molte righe, stesso schema di colonne. Non è un file: vive finché il programma è in esecuzione.
 </details>
 
 #### 2. RUN (Esegui)
-Esegui il codice base del progetto (caricamento, stampa, menu).
-```cpp
-#include <iostream>
-#include <vector>
-#include <iomanip>
 
-struct Prodotto {
-    int codice;
-    std::string nome;
-    double prezzo;
-    int giacenza;
+```cpp
+/**
+ * @file movimenti_cassa.cpp
+ * @brief Mini-archivio movimenti in RAM.
+ */
+#include <iostream>
+#include <string>
+
+struct Movimento {
+    int id;
+    std::string desc;
+    double importo;
 };
 
-// Funzioni prototype (da implementare) ...
-int main(){
-    std::vector<Prodotto> catalogo = {
-        {101, "Penna", 1.20, 100},
-        {102, "Quaderno", 2.50, 80},
-        {103, "Zaino", 45.00, 20}
-    };
-    // TODO: menu interattivo
-    for(const auto& p: catalogo)
-        std::cout << p.codice << " " << p.nome << " " << p.prezzo << " " << p.giacenza << '\n';
+int main() {
+    Movimento tab[10];
+    int n = 0;
+
+    tab[n++] = {1, "Vendita bancone", 25.0};
+    tab[n++] = {2, "Reso cliente", -5.0};
+    tab[n++] = {3, "Vendita online", 40.0};
+
+    double saldo = 0.0;
+    for (int i = 0; i < n; ++i) {
+        std::cout << tab[i].id << " | " << tab[i].desc
+                  << " | " << tab[i].importo << '\n';
+        saldo = saldo + tab[i].importo;
+    }
+    std::cout << "Saldo movimenti: " << saldo << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-| Riga / Costrutto | Cosa fa | A cosa serve |
-|------------------|---------|--------------|
-| `struct Prodotto` | definisce il record prodotto | raggruppa dati eterogenei |
-| `std::vector<Prodotto>` | contenitore dinamico | gestisce quantità variabile di record |
-| `std::sort` | ordina il vettore | permette ricerca binaria efficiente |
 
-🔗 [Python Tutor C++](https://pythontutor.com/cpp.html)
+| Simbolo | Significato |
+|---------|-------------|
+| `tab[i]` | Riga i-esima |
+| `tab[i].importo` | Campo della riga |
+| `n` | Numero di righe valide (non confonderlo con la capacità 10) |
 
 #### 4. MODIFY (Modifica)
-1. Aggiungi validazione dell’input per il menu.
-2. Implementa la ricerca binaria per codice prodotto.
-3. Inserisci la funzione di calcolo del valore patrimoniale totale.
+1. Aggiungi un quarto movimento e verifica `n` e il saldo.
+2. Funzione `double totale(const Movimento tab[], int n)`.
+3. Stampa solo i movimenti con `importo < 0` (uscite).
 
 #### 5. MAKE (Crea)
-**Scenario aziendale:** Un negozio deve gestire l’inventario di 20 articoli, consentendo stampa, ordinamento, ricerca e aggiornamento giacenza.
-**Requisiti:**
-- Documentazione Doxygen per ogni funzione.
-- Nessuna variabile globale.
-- Menu `switch` con loop principale.
-- Funzione `makeReport` che stampa il valore totale del magazzino.
+**Scenario SIA — Archivio movimenti contabili**
+
+`archivio_movimenti.cpp`: struct, array, almeno 5 movimenti di esempio, elenco completo, totale, conteggio positivi/negativi. Doxygen se il file cresce.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+struct Movimento { /* ... */ };
+double totale(const Movimento tab[], int n) { return 0.0; }
+int main() { return 0; }
+```
+</details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- Array di struct → modello di database in memoria.
-- Operazioni chiave: caricamento, visualizzazione, ordinamento, ricerca, aggiornamento.
-- Progetto mini‑ERP con menu interattivo e Doxygen.
+- Tabella in RAM ≈ array di struct
+- Capacità ≠ numero di righe usate (`n`)
+- Si scorre con `for` su `0..n-1`
+- È il ponte concettuale verso i database veri
 
 ---
 
-➡️ Prossimo chunk: *Ricorsione e strutture ricorsive* (Cap. 24)
+### ➡️ Prossimo chunk
+Quando un problema si definisce in termini di una versione più piccola di se stesso: **ricorsione**.

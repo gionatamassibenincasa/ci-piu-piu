@@ -1,7 +1,7 @@
 <!--
 author:    Gionata Massi
 email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-14
+version:   2026-11-16
 language:  it
 narrator:  IT Italian Male
 comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
@@ -13,83 +13,133 @@ import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master
 ---
 
 
-## 🎯 Il Biglietto di Ritiro: Indirizzi di Memoria, Operatori & e * e Puntatori
+## 🔑 Il Numero dello Sportello: puntatori e indirizzi
 
-> "Un puntatore è un biglietto che indica dove si trova la merce."
->
-> — *Metafora di memoria*
+> "Non ti do la merce: ti do la chiave del locker."  
+> — *Metafora operativa*
 
-### Obiettivo
-- Comprendere gli operatori `&` (indirizzo) e `*` (dereferenza).
-- Usare `nullptr` e verificare la validità del puntatore.
-- Visualizzare lo stack con Python Tutor per capire la relazione tra puntatore e variabile.
+Finora passavamo **valori** (copie) o **riferimenti** (`&` nei parametri).  
+Un **puntatore** è una variabile che memorizza l’**indirizzo** di un’altra variabile: il *numero dello sportello*, non la merce.
 
----
+> 💡 **Metafora**  
+> - `x` = merce nel locker  
+> - `&x` = numero civico dello sportello  
+> - `int* p` = foglietto su cui è scritto un numero di sportello  
+> - `p = &x` = “annota l’indirizzo di x”  
+> - `*p` = “apri lo sportello indicato e usa la merce”
 
-## 📚 Teoria
-1. `int* p;` dichiara un puntatore a `int`.
-2. `p = &var;` assegna l’indirizzo di `var`.
-3. `*p` accede al valore puntato.
-4. `nullptr` indica nessun puntatore valido.
-5. Puntatori a array e passaggio a funzioni.
+In questo chunk **non** usiamo ancora `new`/`delete`: solo puntatori a variabili automatiche.
 
 ---
 
-## 🔬 Laboratorio PRIMM
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare un puntatore, assegnargli `&variabile` e usare `*` per leggere/scrivere
+- Spiegare la differenza tra l’indirizzo (`p`) e il valore puntato (`*p`)
+
+---
+
+### ⚙️ In breve
+
+```cpp
+int giacenza = 40;
+int* p = &giacenza;   // p contiene l'indirizzo di giacenza
+std::cout << *p;      // 40
+*p = 35;              // modifica giacenza tramite il puntatore
+```
+
+---
+
+### 🔬 Laboratorio PRIMM: Aggiornare la giacenza via puntatore
 
 #### 1. PREDICT (Prevedi)
 
-
-Dati `int a = 10; int* p = &a; *p = 20;`, quanto vale `a`?
+Dopo `int x = 10; int* p = &x; *p = 25;`, quanto vale `x`?
 
 ```cpp
-int a = 10;
-int* p = &a;
-*p = 20; // modifica a
+int x = 10;
+int* p = &x;
+*p = 25;
 ```
 
-[(X)] 20
 [( )] 10
-[( )] Compila con errore
-[( )] Il programma crasha
+[(X)] 25
+[( )] Indefinito
+[( )] L’indirizzo di x
 
-
-<details><summary>💡 Spiegazione</summary>Il dereferenziamento `*p = 20` modifica direttamente la variabile `a`.
+<details>
+<summary>💡 Spiegazione</summary>
+<code>*p = 25</code> scrive nello sportello di <code>x</code>, perché <code>p</code> punta a <code>x</code>. Quindi <code>x</code> diventa 25.
 </details>
 
-### Run
+#### 2. RUN (Esegui)
+
 ```cpp
 /**
- * @file gestione_fido.cpp
- * @brief Gestione di un fido bancario tramite puntatore.
+ * @file puntatore_giacenza.cpp
+ * @brief Modifica di una variabile tramite puntatore.
  */
 #include <iostream>
 
-void aggiornaFido(double* fido, double importo) {
-    if (fido && importo > 0) {
-        *fido += importo;
-    }
-}
-
 int main() {
-    double fido = 5000.0;
-    aggiornaFido(&fido, 1200.0);
-    std::cout << "Fido aggiornato: " << fido << std::endl;
+    int giacenza = 40;
+    int* p = &giacenza;
+
+    std::cout << "Prima: " << giacenza << '\n';
+    *p = *p - 5;  // scarico 5 pezzi
+    std::cout << "Dopo:  " << giacenza << '\n';
     return 0;
 }
 ```
 @LIA.cpp
 
-### Investigate
-Usa Python Tutor per visualizzare il collegamento tra `a` e `p`.
+#### 3. INVESTIGATE (Investiga)
 
-### Modify
-Aggiungi una funzione `void resetFido(double* fido)` che imposta a zero, controllando `nullptr`.
+| Espressione | Cosa rappresenta |
+|-------------|------------------|
+| `giacenza` | Valore (merce) |
+| `&giacenza` | Indirizzo |
+| `p` | Copia dell’indirizzo |
+| `*p` | Merce nello sportello puntato |
 
-### Make
-**Scenario SIA — Gestione Fido Bancario tramite Puntatore**
+Osserva in [Python Tutor](https://pythontutor.com/cpp.html) le frecce tra `p` e `giacenza`.
 
-Scrivi `gestione_fido.cpp` con Doxygen (`@brief`, `@param`, `@return`). Il programma deve incrementare il fido e stampare il risultato.
+#### 4. MODIFY (Modifica)
+1. Stampa anche l’indirizzo con `std::cout << p;` (vedrai un hex).
+2. Crea `double prezzo` e un `double*` che lo aggiorna (+IVA 22%).
+3. Scrivi una funzione `void azzera(int* q)` che mette a 0 la variabile puntata.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scambio prezzi listino**
+
+`scambia_prezzi_ptr.cpp`: funzione `void scambia(double* a, double* b)` che scambia due prezzi **via puntatori**. In `main`, dimostra lo scambio su due variabili.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+void scambia(double* a, double* b) {
+    double tmp = *a;
+    // ...
+}
+int main() {
+    double p1 = 10.0, p2 = 20.0;
+    scambia(&p1, &p2);
+    return 0;
+}
+```
+</details>
 
 ---
 
+### 📝 Riepilogo tascabile
+- Puntatore = variabile che tiene un **indirizzo**
+- `&x` indirizzo; `*p` valore puntato
+- `*p = …` modifica la variabile originale
+- In questo corso: prima i puntatori “semplici”, allocazione dinamica più avanti se serve
+
+---
+
+### ➡️ Prossimo chunk
+Raggruppiamo dati eterogenei (`struct`) e stati discreti (`enum`) come in un record anagrafico.
