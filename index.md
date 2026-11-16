@@ -48,3 +48,15 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 #include <chapters/22_ordinamento_divide_et_impera.md>
 #include <chapters/23_database_in_memoria_progetto.md>
 #include <chapters/24_ricorsione_e_strutture_ricorsive.md>
+
+#include <chapters/26_da_struct_a_class.md>
+#include <chapters/27_costruttori_e_invarianti.md>
+#include <chapters/28_metodi_e_responsabilita.md>
+#include <chapters/29_const_correttezza_oggetti.md>
+#include <chapters/30_composizione_ha_un.md>
+#include <chapters/31_ereditarieta_essenziale.md>
+#include <chapters/32_polimorfismo_virtual.md>
+#include <chapters/33_overloading_operatori_essenziale.md>
+#include <chapters/34_funzioni_template.md>
+#include <chapters/35_vector_come_cliente.md>
+#include <chapters/36_progetto_oop_gestionale.md>
