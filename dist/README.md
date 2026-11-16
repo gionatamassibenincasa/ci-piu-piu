@@ -4737,3 +4737,1365 @@ int main() { /* ... */ return 0; }
 
 ### ➡️ Prossimo passo
 Con array, struct, ricerca, ordinamento e ricorsione hai gli strumenti del **secondo blocco** del corso: dati e algoritmi di base in chiave aziendale.
+
+
+
+## 🏢 Dal cartellino al reparto: `struct` → `class` e incapsulamento
+
+> "Non tutti possono modificare il listino: solo chi ha la responsabilità del reparto."  
+> — *Governance dei dati aziendali*
+
+Nel Blocco 2 l’`Articolo` era una **`struct`**: tutti i campi pubblici, come un cartellino lasciato sul bancone.  
+Funziona, ma chiunque può scrivere `prezzo = -10` e rompere le regole di business.
+
+Una **`class`** permette l’**incapsulamento**: stato **privato**, sportelli **pubblici** (metodi) che rispettano gli invarianti.
+
+> 💡 **Metafora: reparto a porta chiusa**  
+> - Dati `private` = archivio interno del reparto  
+> - Metodi `public` = sportello unico (chiedi, non frugare nei cassetti)  
+> - Invariante = “prezzo e giacenza non negativi”
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare una `class` con membri `private` e interfaccia `public`
+- Spiegare perché l’incapsulamento protegge le regole aziendali sui dati
+
+---
+
+### ⚙️ In breve
+
+```cpp
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    void setPrezzo(double p);
+    double getPrezzo() const;
+};
+```
+
+Fuori dalla classe: solo i metodi pubblici. Niente `a.prezzo = …`.
+
+---
+
+### 🔬 Laboratorio PRIMM: Articolo protetto
+
+#### 1. PREDICT (Prevedi)
+
+Se `prezzo` è `private` in una `class`, da `main` posso scrivere `a.prezzo = -5`?
+
+```cpp
+class Articolo {
+private:
+    double prezzo;
+public:
+    void setPrezzo(double p);
+};
+Articolo a;
+a.prezzo = -5;
+```
+
+[( )] Sì, sempre
+[(X)] No: accesso vietato fuori dalla classe
+[( )] Solo se il file si chiama main.cpp
+[( )] Sì, ma solo con double
+
+<details>
+<summary>💡 Spiegazione</summary>
+I membri private non sono accessibili da <code>main</code>. Serve un metodo pubblico che validi il valore.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file articolo_class.cpp
+ * @brief Incapsulamento minimo su un articolo di magazzino.
+ */
+#include <iostream>
+#include <string>
+
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    void setCodice(const std::string& c) { codice = c; }
+    void setPrezzo(double p) {
+        if (p < 0.0) {
+            prezzo = 0.0;
+        } else {
+            prezzo = p;
+        }
+    }
+    std::string getCodice() const { return codice; }
+    double getPrezzo() const { return prezzo; }
+};
+
+int main() {
+    Articolo a;
+    a.setCodice("A-100");
+    a.setPrezzo(12.5);
+    a.setPrezzo(-3.0);  // corretta a 0
+    std::cout << a.getCodice() << " → " << a.getPrezzo() << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Elemento | Ruolo |
+|----------|--------|
+| `private` | Stato interno |
+| `setPrezzo` | Unico punto che può cambiare il prezzo (con regola) |
+| `getPrezzo` | Lettura controllata |
+
+Prova a decommentare mentalmente `a.prezzo = 1`: non compila.
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `giacenza` privata con `setGiacenza` / `getGiacenza` (mai negativa).
+2. Metodo `void scheda()` che stampa codice, prezzo, giacenza.
+3. Se `giacenza == 0`, stampa anche `"ESAURITO"`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Articolo di magazzino a interfaccia chiusa**
+
+`articolo_classe.cpp`: classe `Articolo` completa (codice, prezzo, giacenza), setter con validazione, `scheda()`, dimostrazione in `main`.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Articolo {
+private:
+    // ...
+public:
+    // setter / getter / scheda
+};
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- `class` = dati privati + sportelli pubblici
+- Incapsulamento = proteggere gli invarianti
+- Fuori si usano i metodi, non i campi
+- Stesso dominio del `struct`, responsabilità diverse
+
+---
+
+### ➡️ Prossimo chunk
+Come nasce un oggetto **già valido**: i **costruttori**.
+
+## 📋 Assunzione in organico: costruttori e oggetto ben formato
+
+> "Non esiste un dipendente senza matricola: non dovrebbe esistere un articolo senza codice e prezzo coerente."  
+> — *Anagrafica e qualità del dato*
+
+Con soli setter, si può dimenticare di inizializzare.  
+Il **costruttore** è il contratto di **creazione**: quando l'oggetto nasce, è già in uno stato sensato.
+
+> 💡 **Metafora: assunzione**  
+> All'ingresso in azienda compili i dati obbligatori.  
+> Il costruttore fa lo stesso per l'oggetto: niente "mezze pratiche".
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare e usare un costruttore con parametri
+- Far nascere un oggetto già coerente con gli invarianti di base
+
+---
+
+### ⚙️ In breve
+
+```cpp
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    Articolo(const std::string& c, double p) {
+        codice = c;
+        setPrezzo(p);
+    }
+    void setPrezzo(double p);
+    double getPrezzo() const;
+};
+```
+
+Creazione: `Articolo a("A-100", 12.5);`
+
+---
+
+### 🔬 Laboratorio PRIMM: Articolo costruito bene
+
+#### 1. PREDICT (Prevedi)
+
+Dopo la costruzione di un Articolo con codice e prezzo tramite costruttore, i campi sono già impostati?
+
+
+```cpp
+class Articolo {
+public:
+    Articolo(const std::string& c, double p);
+};
+Articolo a("A-1", 10.0);
+```
+
+[(X)] Sì: il costruttore inizializza lo stato
+[( )] No: serve sempre setCodice dopo
+[( )] Solo se c'è anche il distruttore
+[( )] No: i private restano indefiniti
+
+<details>
+<summary>💡 Spiegazione</summary>
+Il costruttore viene eseguito alla creazione: codice e prezzo partono già impostati.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file articolo_ctor.cpp
+ * @brief Costruttore che impone uno stato iniziale.
+ */
+#include <iostream>
+#include <string>
+
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    Articolo(const std::string& c, double p) {
+        codice = c;
+        if (p < 0.0) prezzo = 0.0;
+        else prezzo = p;
+    }
+    double getPrezzo() const { return prezzo; }
+    std::string getCodice() const { return codice; }
+};
+
+int main() {
+    Articolo a("A-100", 12.5);
+    Articolo b("B-200", -4.0);
+    std::cout << a.getCodice() << " " << a.getPrezzo() << '\n';
+    std::cout << b.getCodice() << " " << b.getPrezzo() << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Momento | Cosa succede |
+|---------|----------------|
+| `Articolo a(...)` | Alloca l'oggetto e chiama il costruttore |
+| Corpo del ctor | Inizializza i campi private |
+| Dopo | `main` usa solo metodi pubblici |
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `giacenza` al costruttore (default 0).
+2. Costruttore a tre parametri: codice, prezzo, giacenza.
+3. Metodo `scheda()` e usalo in `main` su due articoli.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Conto corrente ben formato**
+
+`conto_costruttore.cpp`: classe `ContoCorrente` con IBAN, intestatario, saldo; costruttore che non lascia saldo iniziale negativo (o lo porta a 0); stampa riepilogo.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class ContoCorrente {
+private:
+    std::string iban;
+    double saldo;
+public:
+    ContoCorrente(const std::string& i, double s);
+};
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Costruttore = nascita controllata dell'oggetto
+- Meglio invarianti rispettati **subito**
+- Si può riusare la logica dei setter nel ctor
+- Nome uguale alla classe, niente tipo di ritorno
+
+---
+
+### ➡️ Prossimo chunk
+Cosa sa **fare** l'oggetto: metodi e responsabilità di reparto.
+
+
+## 🛠️ Cosa sa fare il reparto: metodi e responsabilità
+
+> "Il reparto non espone i cassetti: espone le *operazioni* consentite."  
+> — *Servizi applicativi*
+
+I **metodi** sono le mansioni dell’oggetto: caricare, scaricare, stampare la scheda.  
+`main` coordina; l’oggetto applica le regole sul proprio stato.
+
+> 💡 **Metafora: mansioni**  
+> `carica(n)` e `scarica(n)` sono procedure interne al magazzino articolo, non calcoli sparsi in `main`.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Aggiungere metodi di istanza che modificano o leggono lo stato privato
+- Assegnare responsabilità chiare all’oggetto (non al `main`)
+
+---
+
+### 🔬 Laboratorio PRIMM: Carico e scarico
+
+#### 1. PREDICT (Prevedi)
+
+Chi può chiamare un metodo public di Articolo?
+
+```cpp
+Articolo a("A", 1.0);
+a.scheda();
+```
+
+[( )] Solo codice dentro la class
+[(X)] Chiunque abbia un oggetto Articolo (es. main)
+[( )] Solo il costruttore
+[( )] Nessuno
+
+<details>
+<summary>💡 Spiegazione</summary>
+I metodi public sono l’interfaccia usabile da <code>main</code> e da altre funzioni.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file articolo_metodi.cpp
+ * @brief Metodi di business su Articolo.
+ */
+#include <iostream>
+#include <string>
+
+class Articolo {
+private:
+    std::string codice;
+    int giacenza;
+public:
+    Articolo(const std::string& c, int g) : codice(c), giacenza(g < 0 ? 0 : g) {}
+    void carica(int n) {
+        if (n > 0) giacenza += n;
+    }
+    bool scarica(int n) {
+        if (n <= 0 || n > giacenza) return false;
+        giacenza -= n;
+        return true;
+    }
+    void scheda() const {
+        std::cout << codice << " giacenza=" << giacenza << '\n';
+    }
+};
+
+int main() {
+    Articolo a("A-100", 10);
+    a.carica(5);
+    a.scarica(3);
+    a.scheda();
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Metodo | Responsabilità |
+|--------|----------------|
+| `carica` | Aumenta giacenza se n>0 |
+| `scarica` | Diminuisce solo se c’è disponibilità |
+| `scheda` | Presenta lo stato (sola lettura) |
+
+#### 4. MODIFY (Modifica)
+1. Fai restituire a `scarica` un messaggio stampato in `main` in base al `bool`.
+2. Aggiungi `int getGiacenza() const`.
+3. Impedisci `carica` oltre una soglia massima (es. 1000).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Articolo di magazzino operativo**
+
+`magazzino_articolo.cpp`: costruttore, `carica`, `scarica`, `scheda`; in `main` una piccola storia di movimenti.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Articolo { /* ... */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Metodi = operazioni sullo stato dell’oggetto
+- Regole di business vicino ai dati
+- `main` orchestra, non micromanage i campi
+- Nomi verbo+oggetto (`scarica`, `carica`)
+
+---
+
+### ➡️ Prossimo chunk
+Metodi che **non** modificano lo stato: `const`.
+
+
+## 👁️ Consultare senza modificare: metodi `const`
+
+> "In audit puoi leggere la pratica, non alterarla."  
+> — *Controllo interno*
+
+Alcune operazioni sono di **sola lettura**: scheda, getter, report.  
+In C++ si marca il metodo con **`const`**: promette di non modificare lo stato dell’oggetto.
+
+> 💡 **Metafora: badge visitatore**  
+> Entri in consultazione: vedi i documenti, non li firmi.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare metodi `const` per letture
+- Usare oggetti `const` e capire perché servono getter `const`
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
+
+```cpp
+void scheda() const { giacenza = 0; }
+```
+
+[( )] Sì
+[(X)] No: metodo const non modifica lo stato
+[( )] Solo se giacenza è public
+[( )] Solo in main
+
+<details>
+<summary>💡 Spiegazione</summary>
+Il <code>const</code> dopo i parametri vieta di modificare i membri non mutable dell’oggetto.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file scheda_const.cpp
+ * @brief Metodi const per sola lettura.
+ */
+#include <iostream>
+#include <string>
+
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    Articolo(const std::string& c, double p) : codice(c), prezzo(p < 0 ? 0 : p) {}
+    double getPrezzo() const { return prezzo; }
+    void scheda() const {
+        std::cout << codice << " € " << prezzo << '\n';
+    }
+};
+
+void stampa(const Articolo& a) {
+    a.scheda();  // ok: scheda è const
+}
+
+int main() {
+    const Articolo a("A-100", 9.5);
+    stampa(a);
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Situazione | Consentito? |
+|------------|-------------|
+| `getPrezzo() const` su oggetto `const` | Sì |
+| Metodo non-const su oggetto `const` | No |
+| `const Articolo&` in lettura | Preferibile (niente copia, niente modifica) |
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `getCodice() const`.
+2. Prova un metodo non-const su `const Articolo` e osserva l’errore del compilatore.
+3. Formatta il prezzo con `iomanip` dentro `scheda() const`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scheda articolo in sola lettura**
+
+`scheda_const.cpp`: classe con almeno due metodi `const`; funzione libera `stampa(const Articolo&)`.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Articolo { /* getters const, scheda const */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- `const` sul metodo = sola lettura
+- Getter e report devono essere `const`
+- Oggetti `const` e riferimenti `const&` collaborano
+- Errori di const-correttezza li segnala il compilatore
+
+---
+
+### ➡️ Prossimo chunk
+Oggetti fatti di altri oggetti: **composizione**.
+
+
+## 🧩 L’azienda è fatta di pezzi: composizione (“ha un”)
+
+> "Un ordine *ha un* cliente e *ha* delle righe: non *è un* cliente."  
+> — *Modellazione del dominio*
+
+La **composizione** collega oggetti per contenimento: la parte è un membro della classe.  
+È spesso più naturale dell’ereditarietà forzata.
+
+> 💡 **Metafora:** la pratica d’ordine nel faldone *include* la scheda cliente (copia di lavoro) e le righe.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare una classe che **ha** un’altra classe come membro
+- Costruire l’oggetto composto inizializzando le parti
+
+---
+
+### 🔬 Laboratorio PRIMM: Ordine con cliente
+
+#### 1. PREDICT (Prevedi)
+
+Se `Ordine` contiene un membro `Cliente cliente_`, la distruzione di `Ordine` coinvolge anche `cliente_`?
+
+```cpp
+class Ordine { Cliente cliente_; /* ... */ };
+```
+
+[(X)] Sì: il membro vive dentro l’oggetto composto
+[( )] No: Cliente è sempre indipendente sullo heap
+[( )] Solo con virtual
+[( )] Solo con template
+
+<details>
+<summary>💡 Spiegazione</summary>
+I membri oggetto hanno vita legata al contenitore: compositum e parte “value member”.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file ordine_composizione.cpp
+ * @brief Ordine ha un Cliente.
+ */
+#include <iostream>
+#include <string>
+
+class Cliente {
+private:
+    std::string nome;
+public:
+    Cliente(const std::string& n) : nome(n) {}
+    std::string getNome() const { return nome; }
+};
+
+class Ordine {
+private:
+    int id;
+    Cliente cliente;
+    double totale;
+public:
+    Ordine(int i, const Cliente& c, double t)
+        : id(i), cliente(c), totale(t < 0 ? 0 : t) {}
+    void scheda() const {
+        std::cout << "Ordine " << id << " — "
+                  << cliente.getNome() << " — € " << totale << '\n';
+    }
+};
+
+int main() {
+    Cliente cl("Rossi SRL");
+    Ordine o(1001, cl, 250.0);
+    o.scheda();
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Classe | Ruolo |
+|--------|--------|
+| `Cliente` | Parte riusabile |
+| `Ordine` | Composto: ha id, cliente, totale |
+| Costruttore di `Ordine` | Inizializza anche il membro `cliente` |
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `getTotale() const` su `Ordine`.
+2. Aggiungi un campo `std::string note` all’ordine.
+3. Crea due ordini per lo stesso cliente (due oggetti `Ordine`).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Ordine di vendita**
+
+`ordine_cliente.cpp`: `Cliente` + `Ordine` in composizione; scheda leggibile; `main` dimostrativo.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Cliente { /* ... */ };
+class Ordine { /* ... */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Composizione = “ha un”, non “è un”
+- Membri oggetto costruiti col contenitore
+- Preferisci composizione quando non c’è vera specializzazione
+- Basi solide prima dell’ereditarietà
+
+---
+
+### ➡️ Prossimo chunk
+Quando invece **è un** tipo specializzato: ereditarietà essenziale.
+
+
+## 🌳 Specializzazioni in organigramma: ereditarietà essenziale
+
+> "Entrata e uscita di cassa *sono* movimenti, con qualcosa in più."  
+> — *Tassonomie contabili*
+
+L’**ereditarietà** modellare il rapporto **“è un”**: la derivata riusa e specializza la base.  
+In 3ª SIA restiamo a **due livelli**, una sola gerarchia semplice.
+
+> 💡 **Metafora: organigramma**  
+> `Movimento` generico; `Entrata` e `Uscita` specializzano il segno o l’etichetta.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare una classe derivata `public` da una base
+- Riusare attributi/metodi comuni senza duplicarli
+
+---
+
+### 🔬 Laboratorio PRIMM: Movimenti
+
+#### 1. PREDICT (Prevedi)
+
+Una classe derivata public eredita i membri public della base?
+
+```cpp
+class Base { public: void f(); };
+class Der : public Base {};
+```
+
+[(X)] Sì, può usare f() su un oggetto Der
+[( )] No, mai
+[( )] Solo se virtual
+[( )] Solo nei template
+
+<details>
+<summary>💡 Spiegazione</summary>
+Con ereditarietà <code>public</code>, l’interfaccia public della base è usabile sulla derivata.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file movimenti_base.cpp
+ * @brief Ereditarietà a due livelli.
+ */
+#include <iostream>
+#include <string>
+
+class Movimento {
+protected:
+    std::string desc;
+    double importo;
+public:
+    Movimento(const std::string& d, double i) : desc(d), importo(i) {}
+    void scheda() const {
+        std::cout << desc << " " << importo << '\n';
+    }
+};
+
+class Entrata : public Movimento {
+public:
+    Entrata(const std::string& d, double i) : Movimento(d, i < 0 ? -i : i) {}
+};
+
+class Uscita : public Movimento {
+public:
+    Uscita(const std::string& d, double i) : Movimento(d, i > 0 ? -i : i) {}
+};
+
+int main() {
+    Entrata e("Vendita", 50);
+    Uscita u("Affitto", 20);
+    e.scheda();
+    u.scheda();
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Classe | “È un” Movimento? |
+|--------|-------------------|
+| `Entrata` | Sì |
+| `Uscita` | Sì |
+| `protected` in base | Visibile alle derivate, non a `main` |
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `getImporto() const` nella base.
+2. In `Uscita`, stampa prefisso `"USCITA"` sovrascrivendo `scheda` (senza virtual ancora: chiama solo su tipo statico Uscita).
+3. Crea un terzo movimento di prova.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Prima nota semplificata**
+
+`movimenti_ereditati.cpp`: base + due derivate; `main` elenca alcune entrate/uscite.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Movimento { /* ... */ };
+class Entrata : public Movimento { /* ... */ };
+class Uscita : public Movimento { /* ... */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Ereditarietà = “è un”
+- Una gerarchia poco profonda
+- `protected` per le derivate
+- Non usare ereditarietà al posto della composizione
+
+---
+
+### ➡️ Prossimo chunk
+Stesso sportello, comportamento diverso a runtime: `virtual`.
+
+
+## 🎭 Stesso sportello, comportamenti diversi: `virtual`
+
+> "Chiami ‘stampa movimento’ allo sportello unico: dietro, procedure diverse."  
+> — *Servizi uniformi, implementazioni specializzate*
+
+Il **polimorfismo** via `virtual` permette di usare un puntatore/riferimento alla **base** e ottenere il comportamento della **derivata**.
+
+> 💡 **Metafora:** un solo sportello “scheda”; ogni tipo di movimento risponde a modo suo.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare un metodo `virtual` e fare override nella derivata
+- Usare un puntatore alla base per invocare il comportamento dinamico
+
+*Nota:* esempio didattico con puntatori; la gestione avanzata della memoria non è il focus.
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+Con `scheda` virtuale e puntatore a Base che punta a Derivata, quale `scheda` viene chiamata?
+
+```cpp
+Base* p = new Derivata();
+p->scheda();
+```
+
+[(X)] Quella della Derivata se scheda è virtual
+[( )] Sempre e solo quella di Base
+[( )] Nessuna
+[( )] Solo se template
+
+<details>
+<summary>💡 Spiegazione</summary>
+Con <code>virtual</code>, il tipo dinamico dell’oggetto decide quale versione eseguire.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file virtual_scheda.cpp
+ * @brief Override virtuale di scheda().
+ */
+#include <iostream>
+#include <string>
+
+class Movimento {
+protected:
+    std::string desc;
+public:
+    Movimento(const std::string& d) : desc(d) {}
+    virtual void scheda() const {
+        std::cout << "MOV " << desc << '\n';
+    }
+};
+
+class Entrata : public Movimento {
+public:
+    Entrata(const std::string& d) : Movimento(d) {}
+    void scheda() const override {
+        std::cout << "ENTRATA " << desc << '\n';
+    }
+};
+
+int main() {
+    Entrata e("Vendita bancone");
+    Movimento* p = &e;
+    p->scheda();
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Tipo statico di `p` | Tipo dinamico | `scheda` chiamata |
+|---------------------|---------------|-------------------|
+| `Movimento*` | `Entrata` | `Entrata::scheda` se virtual |
+
+Togli `virtual` mentalmente: cosa cambierebbe?
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `Uscita` con override di `scheda`.
+2. Chiama `scheda` su due puntatori diversi.
+3. Aggiungi un campo importo e stampalo negli override.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Report eterogeneo**
+
+`report_movimenti_virtual.cpp`: base con `virtual scheda`, almeno due derivate, dimostrazione via puntatori alla base.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Movimento { public: virtual void scheda() const; /* ... */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- `virtual` abilita il binding dinamico
+- `override` rende esplicita l’intenzione
+- Utile per collezioni eterogenee di “stesso ruolo”
+- Restare su esempi piccoli in 3ª SIA
+
+---
+
+### ➡️ Prossimo chunk
+Far parlare il dominio con operatori (`+` o `<<`).
+
+
+## 💬 Linguaggio del dominio: overloading essenziale (`<<`)
+
+> "Meglio `std::cout << articolo` che quattro getter in fila."  
+> — *API leggibile*
+
+L’**overloading** degli operatori adatta la sintassi al dominio.  
+In questo chunk un solo focus: **`operator<<`** per l’output.
+
+> 💡 **Metafora:** il modulo di stampa dello scontrino sa come disporre i campi dell’articolo.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare `operator<<` per una classe semplice
+- Stampare un oggetto con `std::cout << obj`
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+A cosa serve tipicamente sovraccaricare `operator<<` per una classe?
+
+```cpp
+std::cout << articolo;
+```
+
+[(X)] Stampare l’oggetto in modo leggibile su uno stream
+[( )] Aprire un file in automatico
+[( )] Creare template
+[( )] Sostituire il costruttore
+
+<details>
+<summary>💡 Spiegazione</summary>
+<code>operator&lt;&lt;</code> definisce come inserire l’oggetto in uno <code>ostream</code>.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file articolo_ostream.cpp
+ * @brief operator<< per Articolo.
+ */
+#include <iostream>
+#include <string>
+
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    Articolo(const std::string& c, double p) : codice(c), prezzo(p) {}
+    friend std::ostream& operator<<(std::ostream& os, const Articolo& a) {
+        os << a.codice << " €" << a.prezzo;
+        return os;
+    }
+};
+
+int main() {
+    Articolo a("A-100", 12.5);
+    std::cout << a << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Elemento | Ruolo |
+|----------|--------|
+| `friend` | Accesso ai private per la stampa |
+| `return os` | Consente `cout << a << b` |
+| `const Articolo&` | Non modifica l’oggetto |
+
+#### 4. MODIFY (Modifica)
+1. Formatta il prezzo con due decimali (`iomanip`).
+2. Aggiungi la giacenza in stampa.
+3. Stampa due articoli in sequenza.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scheda stampabile**
+
+`stampa_articolo_op.cpp`: classe con `operator<<`; `main` dimostra almeno due stampe.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Articolo { /* friend operator<< */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Un operatore per chunk: qui solo `<<`
+- Restituisci lo stream
+- Preferisci `const&` sul parametro oggetto
+- Leggibilità del dominio > acrobazie
+
+---
+
+### ➡️ Prossimo chunk
+Procedure uguali su tipi diversi: **funzioni template**.
+
+
+## 🔧 Stessa procedura, tipi diversi: funzioni template
+
+> "Il confronto ‘chi è maggiore’ vale per pezzi e per prezzi."  
+> — *Riuso algoritmico*
+
+Una **funzione template** descrive un algoritmo **generico**: il compilatore genera le versioni per i tipi usati.
+
+> 💡 **Metafora:** modulo aziendale standard compilato per reparti diversi (stessa procedura, dati diversi).
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere una funzione `template <typename T>` semplice
+- Usarla con tipi diversi (`int`, `double`)
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
+
+```cpp
+massimo(3, 5);
+massimo(2.5, 2.7);
+```
+
+[(X)] Sì, il compilatore istanzia le versioni necessarie
+[( )] No, solo su int
+[( )] Solo se T è class
+[( )] No, serve virtual
+
+<details>
+<summary>💡 Spiegazione</summary>
+Il compilatore crea istanze distinte di <code>massimo</code> per i tipi dedotti dagli argomenti.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file massimo_template.cpp
+ * @brief Funzione template massimo.
+ */
+#include <iostream>
+
+template <typename T>
+T massimo(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    std::cout << massimo(3, 5) << '\n';
+    std::cout << massimo(2.5, 2.7) << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Chiamata | T dedotto |
+|----------|-----------|
+| `massimo(3, 5)` | `int` |
+| `massimo(2.5, 2.7)` | `double` |
+
+I tipi devono supportare `>`.
+
+#### 4. MODIFY (Modifica)
+1. Scrivi `template <typename T> void scambia(T& a, T& b)`.
+2. Usa `scambia` su due `double`.
+3. Prova `massimo` su due `char`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Utility generiche**
+
+`util_template.cpp`: `massimo` e `scambia` template; demo su quantità (`int`) e prezzi (`double`).
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+template <typename T>
+T massimo(T a, T b) { /* ... */ }
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Template = algoritmo generico
+- Istanziazione a compile-time
+- T deve offrire le operazioni usate
+- Non è magia runtime: è generazione di codice
+
+---
+
+### ➡️ Prossimo chunk
+Usare un contenitore template della libreria: `std::vector`.
+
+
+## 📦 Il magazzino elastico: usare `std::vector` (cliente del template)
+
+> "Non prenotare 100 scaffali se oggi ne bastano 3: lo scaffale cresce con la merce."  
+> — *Capacità operativa*
+
+`std::vector<T>` è un array **dinamico** offerto dalla libreria: classe **template** già pronta.  
+Qui sei **cliente**: la usi, non la riscrivi.
+
+> 💡 **Metafora:** magazzino elastico — `push_back` aggiunge un pezzo, `size` dice quanti ce ne sono.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare `std::vector<T>`, usare `push_back`, `size`, indice e range-for
+- Confrontare l’idea con l’array grezzo a dimensione fissa
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+Dopo `v.push_back(3); v.push_back(5);`, quanto vale `v.size()`?
+
+```cpp
+std::vector<int> v;
+v.push_back(3);
+v.push_back(5);
+```
+
+[(X)] 2
+[( )] 0
+[( )] 5
+[( )] Indefinito
+
+<details>
+<summary>💡 Spiegazione</summary>
+Ogni <code>push_back</code> aggiunge un elemento: la size diventa 2.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file vector_importi.cpp
+ * @brief vector di importi.
+ */
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<double> importi;
+    importi.push_back(10.0);
+    importi.push_back(25.5);
+    importi.push_back(7.0);
+
+    double somma = 0.0;
+    for (double x : importi) {
+        somma += x;
+    }
+    std::cout << "N=" << importi.size() << " somma=" << somma << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Operazione | Significato |
+|------------|-------------|
+| `push_back` | Aggiunge in coda |
+| `size()` | Quanti elementi |
+| `v[i]` | Accesso (attenzione ai bounds) |
+| range-for | Scorre tutti gli elementi |
+
+#### 4. MODIFY (Modifica)
+1. Stampa ogni importo su una riga.
+2. Calcola il massimo con un ciclo.
+3. Usa `std::vector<int>` per quantità pezzi.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Lista movimenti variabile**
+
+`movimenti_vector.cpp`: `vector<double>` (o di `struct`/`class` se vuoi collegare il Blocco 3), caricamento di almeno 5 valori, somma e media.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <vector>
+int main() {
+    std::vector<double> v;
+    // push_back ...
+    return 0;
+}
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- `vector` = sequenza dinamica
+- `push_back` / `size` / range-for
+- Preferibile all’array grezzo quando N non è fisso
+- Sei utente di un template della std library
+
+---
+
+### ➡️ Prossimo chunk
+Mettere insieme gli oggetti: **mini-progetto** gestionale.
+
+
+## 🏗️ Mini-progetto: gestionale a oggetti in memoria
+
+> "Chiudi il corso applicando reparti-oggetto a un caso aziendale completo (in RAM)."  
+> — *Obiettivo di sintesi Blocco 3*
+
+Questo capitolo è un **laboratorio di progetto**, non un nuovo costrutto isolato.  
+Integra: `class`, costruttori, metodi, (opzionale) composizione o ereditarietà leggera, `std::vector`, output leggibile.
+
+> 💡 **Metafora:** piccolo sistema informativo aziendale che vive mentre il programma è in esecuzione.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine del progetto sei in grado di:
+- Progettare almeno due classi coerenti con un dominio SIA
+- Usare una collezione dinamica di oggetti e produrre un report
+
+---
+
+### 📋 Rubrica minima (Must)
+
+| Requisito | Dettaglio |
+|-----------|-----------|
+| Classi | ≥ 2 classi con dati `private` e interfaccia `public` |
+| Costruzione | Almeno un costruttore con parametri su ciascuna classe principale |
+| Collezione | `std::vector` di oggetti (o di puntatori se usi polimorfismo) |
+| Report | Output formattato (anche semplice) di elenco + totale/i |
+| Documentazione | `@brief` sulle classi o sui metodi pubblici principali |
+
+**Plus (Should):** composizione *oppure* ereditarietà a 2 livelli; metodo `const`; `operator<<`.
+
+---
+
+### 🔬 Traccia consigliata (PRIMM leggero)
+
+#### 1. PREDICT (Prevedi)
+
+Nel mini-progetto, perché dati private + metodi public sono un requisito?
+
+```cpp
+// rubrica progetto OOP
+```
+
+[(X)] Per proteggere gli invarianti e definire un’interfaccia chiara
+[( )] Perché altrimenti non compila mai
+[( )] Solo per usare vector
+[( )] Solo per i template
+
+#### 2. RUN — scheletro di partenza
+
+```cpp
+/**
+ * @file gestionale_oop_stub.cpp
+ * @brief Punto di partenza progetto.
+ */
+#include <iostream>
+#include <string>
+#include <vector>
+
+// TODO: class Cliente / Articolo / Movimento ...
+
+int main() {
+    std::cout << "Gestionale OOP — in costruzione\n";
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE
+Definisci su carta: elenco classi, attributi private, metodi public, relazioni (ha-un / è-un).
+
+#### 4. MODIFY
+Implementa a incrementi: prima una classe, poi la seconda, poi il `vector`, poi i totali.
+
+#### 5. MAKE (consegna Classroom50)
+**Scenario a scelta (uno):**
+- Magazzino articoli + giacenze e valore inventario  
+- Prima nota: movimenti di cassa e saldo  
+- Listino clienti + ordini (composizione)
+
+File di consegna: `gestionale_oop.cpp` (e header se li separi).
+
+<details>
+<summary>💡 Scaffold minimo</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+class Articolo { /* ... */ };
+int main() {
+    std::vector<Articolo> magazzino;
+    // ...
+    return 0;
+}
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Il progetto **unisce** i chunk 26–35
+- Meglio poche classi chiare che tante vuote
+- Invarianti e interfaccia public prima della “fantasia”
+- Consegna = codice leggibile + report dimostrativo
+
+---
+
+### ➡️ Fine Blocco 3
+Hai un percorso da `struct` a oggetti, template da utente e un gestionale in memoria.  
+I prossimi passi “mondo reale” (file, GUI, DB) restano fuori da questo corso di base.
