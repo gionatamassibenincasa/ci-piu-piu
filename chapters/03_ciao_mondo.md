@@ -18,6 +18,50 @@ components:
   make_instructions: >
     presentazione.cpp: tre std::cout per una schermata di benvenuto
     di un gestionale, commento /// sul perché, return 0
+registro:
+  argomenti: >
+    Programma C++ minimo; direttiva #include <iostream>;
+    std::cout e sequenza di escape \n; funzione main e return 0;
+    introduzione al namespace std. Laboratorio PRIMM sul programma Ciao Mondo.
+  note: >
+    Verifica scritta in classe (Predict, Investigate, Modify, Make).
+    Compito digitale correlato su repository Classroom50.
+assessment:
+  duration_min: 50
+  total_points: 10
+  versions:
+    - "A"
+    - "B"
+  predict:
+    points: 2
+  investigate:
+    points: 3
+    questions:
+      - "A che serve `#include <iostream>`?"
+      - "Qual è il ruolo della funzione `main`? Cosa succede se manca?"
+      - "Cosa significa `std::` davanti a `cout`?"
+    typical_errors:
+      - "Descrive include come se venisse eseguita a runtime"
+      - "Ommette che main è il punto di ingresso obbligatorio"
+  modify:
+    points: 2
+    prompt: >
+      Partendo dal codice stampato sul foglio, aggiungi una seconda riga
+      di output con la tua classe. Lascia invariata la riga "Ciao, Mondo!".
+    typical_errors:
+      - "Rimuove la riga esistente invece di aggiungerne una"
+  make:
+    points: 3
+    prompt: >
+      Scrivi da zero un programma che stampi tre righe separate: nome,
+      classe, hobby (schermata di benvenuto di un gestionale).
+      Obbligatori: #include <iostream>, int main(), std::cout, \n, return 0.
+    must_include:
+      - "std::cout"
+      - "return 0"
+    typical_errors:
+      - "Manca return 0 o usa cout senza std::"
+
 files:
   - path: README.md
     action: create

@@ -292,11 +292,16 @@ def build_parser() -> argparse.ArgumentParser:
     pr.add_argument("chapter", help="order, activity_id oppure path del capitolo")
     pr.add_argument(
         "--template",
-        choices=("worksheet", "exam", "handout"),
+        choices=("worksheet", "exam", "handout", "paper", "registro"),
         default="worksheet",
+        help="worksheet/exam/handout: esercizi; paper: verifica formale; registro: solo testo argomenti",
     )
     pr.add_argument("--phases", default="predict,modify,make")
-    pr.add_argument("--emit", default="json,typ,pdf", help="Stadi da produrre: json,typ,pdf")
+    pr.add_argument(
+        "--emit",
+        default="json,typ,pdf",
+        help="Stadi: json,typ,pdf,text (text=registro.txt per template paper/registro)",
+    )
     pr.add_argument("--out-dir", default="output")
     pr.set_defaults(func=cmd_print)
 

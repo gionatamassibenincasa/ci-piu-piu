@@ -22,6 +22,7 @@ FIELD_PATHS = {
     "predict_option_text": ("components", "predict_quiz", "options", "*", "text"),
     "modify_instructions": ("components", "modify_instructions"),
     "make_instructions": ("components", "make_instructions"),
+    "investigate_questions": ("components", "investigate_questions"),
     "files": ("files",),
     "file_path": ("files", "*", "path"),
     "file_action": ("files", "*", "action"),
@@ -29,10 +30,28 @@ FIELD_PATHS = {
     "file_description": ("files", "*", "description"),
     "file_template_content": ("files", "*", "template_content"),
     "file_validation_rules": ("files", "*", "validation_rules"),
+    # Paper Pack / registro elettronico
+    "registro": ("registro",),
+    "registro_argomenti": ("registro", "argomenti"),
+    "registro_note": ("registro", "note"),
+    "assessment": ("assessment",),
+    "assessment_duration": ("assessment", "duration_min"),
+    "assessment_total_points": ("assessment", "total_points"),
+    "assessment_versions": ("assessment", "versions"),
+    "assessment_predict": ("assessment", "predict"),
+    "assessment_investigate": ("assessment", "investigate"),
+    "assessment_modify": ("assessment", "modify"),
+    "assessment_make": ("assessment", "make"),
 }
 
 PRINTABLE_PHASES = ("predict", "modify", "make")
-_PHASE_LABEL = {"predict": "Predict", "modify": "Modify", "make": "Make"}
+PAPER_PHASES = ("predict", "investigate", "modify", "make")
+_PHASE_LABEL = {
+    "predict": "Predict",
+    "investigate": "Investigate",
+    "modify": "Modify",
+    "make": "Make",
+}
 _STYLE_IMPORT = "/tools/cipiupiu/templates/stile_compito.typ"
 
 
@@ -121,6 +140,27 @@ def _phase_item(meta: dict[str, Any], phase: str) -> dict[str, Any] | None:
             "starter_files": [],
         }
 
+    if phase == "investigate":
+        questions = _field(meta, "investigate_questions") or []
+        assess = _field(meta, "assessment_investigate") or {}
+        if isinstance(assess, dict) and assess.get("questions"):
+            questions = assess["questions"]
+        if not questions:
+            return None
+        prompt = "\n".join(f"{i}. {q}" for i, q in enumerate(questions, 1))
+        return {
+            "id": f"{_field(meta, 'activity_id')}-investigate",
+            "phase": phase,
+            "prompt": prompt,
+            "code": None,
+            "choices": [],
+            "starter_files": [],
+            "points": assess.get("points") if isinstance(assess, dict) else None,
+            "typical_errors": list(assess.get("typical_errors") or [])
+            if isinstance(assess, dict)
+            else [],
+        }
+
     instructions = _field(meta, f"{phase}_instructions")
     starter_files = _starter_files(meta, phase)
     descriptions = [
@@ -164,6 +204,86 @@ def build_print_model(chapter_id: str, phases: tuple[str, ...]) -> dict[str, Any
     }
 
 
+def build_paper_model(chapter_id: str) -> dict[str, Any]:
+    """Modello Paper Pack: verifica formale + registro (solo frontmatter validato)."""
+    chapter = _validated_chapter(chapter_id)
+    meta = chapter.meta
+    assessment = _field(meta, "assessment") or {}
+    if not assessment:
+        raise ValueError(
+            "Paper Pack richiede il blocco frontmatter `assessment` "
+            "(vedi docs/paper_pack.md)"
+        )
+
+    versions = list(assessment.get("versions") or ["A"])
+    items: list[dict[str, Any]] = []
+
+    # Predict: assessment opzionale + components.predict_quiz
+    pred = assessment.get("predict") or {}
+    base_pred = _phase_item(meta, "predict")
+    if base_pred:
+        base_pred = {
+            **base_pred,
+            "points": pred.get("points"),
+            "typical_errors": list(pred.get("typical_errors") or []),
+        }
+        if pred.get("prompt"):
+            base_pred["prompt"] = pred["prompt"]
+        items.append(base_pred)
+
+    inv = _phase_item(meta, "investigate")
+    if inv:
+        items.append(inv)
+
+    for phase in ("modify", "make"):
+        block = assessment.get(phase) or {}
+        starters = _starter_files(meta, phase)
+        prompt = block.get("prompt") or ""
+        if not prompt:
+            fallback = _phase_item(meta, phase)
+            if fallback:
+                prompt = fallback["prompt"]
+                starters = fallback.get("starter_files") or starters
+        if not prompt and not starters:
+            continue
+        items.append(
+            {
+                "id": f"{_field(meta, 'activity_id')}-{phase}",
+                "phase": phase,
+                "prompt": prompt,
+                "code": None,
+                "choices": [],
+                "starter_files": starters,
+                "points": block.get("points"),
+                "must_include": list(block.get("must_include") or []),
+                "typical_errors": list(block.get("typical_errors") or []),
+            }
+        )
+
+    if not items:
+        raise ValueError("assessment presente ma nessuna sezione utilizzabile per la verifica")
+
+    return {
+        "format_version": 1,
+        "kind": "paper",
+        "chapter": {
+            "order": _field(meta, "chapter_order"),
+            "activity_id": _field(meta, "activity_id"),
+            "title": _field(meta, "chapter_title"),
+        },
+        "assessment": {
+            "duration_min": assessment.get("duration_min"),
+            "total_points": assessment.get("total_points"),
+            "versions": versions,
+        },
+        "registro": {
+            "argomenti": _field(meta, "registro_argomenti"),
+            "note": _field(meta, "registro_note"),
+        },
+        "items": items,
+    }
+
+
 def _typ_string(value: str | None) -> str:
     return json.dumps(value or "", ensure_ascii=False)
 
@@ -189,27 +309,136 @@ def render_typst(model: dict[str, Any], template: str) -> str:
                 "",
             ]
         )
-        if item["code"]:
+        if item.get("code"):
             out.extend([f"#codice({_typ_string(item['code'])})", ""])
-        for choice in item["choices"]:
+        for choice in item.get("choices") or []:
             out.append(f"#scelta({_typ_string(choice)})")
-        if item["choices"]:
+        if item.get("choices"):
             out.append("")
-        for starter in item["starter_files"]:
+        for starter in item.get("starter_files") or []:
             out.append(f"*File di partenza: `{starter['path']}`*")
-            if starter["code"]:
+            if starter.get("code"):
                 out.extend(["", f"#codice({_typ_string(starter['code'])})"])
-            rules = starter["validation_rules"] or {}
+            rules = starter.get("validation_rules") or {}
             requirements: list[str] = []
             if rules.get("min_lines") is not None:
                 requirements.append(f"almeno {rules['min_lines']} righe")
-            requirements.extend(f"contiene `{value}`" for value in rules.get("must_contain", []))
+            requirements.extend(f"contiene `{value}`" for value in rules.get("must_contain", []) or [])
             if requirements:
                 out.extend(["", "*Requisiti:*"])
                 out.extend(f"- {requirement}" for requirement in requirements)
             out.append("")
         out.extend([f'#spazio-risposta(fase: "{item["phase"]}")', ""])
     return "\n".join(out)
+
+
+def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
+    """Foglio studente Paper Pack (una versione)."""
+    chapter = model["chapter"]
+    assess = model.get("assessment") or {}
+    duration = assess.get("duration_min")
+    total = assess.get("total_points")
+    meta_line = f"Versione {version}"
+    if duration:
+        meta_line += f" · {duration} min"
+    if total is not None:
+        meta_line += f" · {total} punti"
+
+    out = [
+        f'#import "{_STYLE_IMPORT}": *',
+        (
+            "#compito-intestazione("
+            f"numero: {chapter['order']}, "
+            f"titolo: {_typ_string(chapter['title'])}, "
+            f"template: {_typ_string('paper')})"
+        ),
+        f"#testo({_typ_string(meta_line)})",
+        "",
+    ]
+    for number, item in enumerate(model["items"], 1):
+        pts = item.get("points")
+        heading = f"Esercizio {number} — {_PHASE_LABEL[item['phase']]}"
+        if pts is not None:
+            heading += f" ({pts} pt)"
+        out.extend([f"= {heading}", f"#testo({_typ_string(item['prompt'])})", ""])
+        if item.get("code"):
+            out.extend([f"#codice({_typ_string(item['code'])})", ""])
+        for choice in item.get("choices") or []:
+            out.append(f"#scelta({_typ_string(choice)})")
+        if item.get("choices"):
+            out.append("")
+        for starter in item.get("starter_files") or []:
+            if starter.get("code"):
+                out.extend(
+                    [
+                        f"*Codice di partenza (`{starter['path']}`):*",
+                        "",
+                        f"#codice({_typ_string(starter['code'])})",
+                        "",
+                    ]
+                )
+        must = item.get("must_include") or []
+        if must:
+            out.append("*Deve comparire nel codice:* " + ", ".join(f"`{m}`" for m in must))
+            out.append("")
+        phase = item["phase"] if item["phase"] in {"predict", "modify", "make"} else "predict"
+        out.extend([f'#spazio-risposta(fase: "{phase}")', ""])
+    return "\n".join(out)
+
+
+def render_paper_grid_typst(model: dict[str, Any]) -> str:
+    """Griglia docente: punti, indicazioni, errori tipici (niente spazio risposta)."""
+    chapter = model["chapter"]
+    assess = model.get("assessment") or {}
+    out = [
+        f'#import "{_STYLE_IMPORT}": *',
+        (
+            "#compito-intestazione("
+            f"numero: {chapter['order']}, "
+            f"titolo: {_typ_string(chapter['title'] + ' — GRIGLIA DOCENTE')}, "
+            f"template: {_typ_string('paper-grid')})"
+        ),
+        "",
+    ]
+    if assess.get("total_points") is not None:
+        total_label = f"Totale: {assess['total_points']} punti"
+        out.append("#testo(" + _typ_string(total_label) + ")")
+        out.append("")
+    for number, item in enumerate(model["items"], 1):
+        pts = item.get("points")
+        head = f"{number}. {_PHASE_LABEL[item['phase']]}"
+        if pts is not None:
+            head += f" — {pts} pt"
+        out.extend([f"= {head}", f"#testo({_typ_string(item['prompt'])})", ""])
+        errors = item.get("typical_errors") or []
+        if errors:
+            out.append("*Errori tipici:*")
+            out.extend(f"- {err}" for err in errors)
+            out.append("")
+        must = item.get("must_include") or []
+        if must:
+            out.append("*Deve includere:* " + ", ".join(f"`{m}`" for m in must))
+            out.append("")
+    return "\n".join(out)
+
+
+def render_registro_text(model: dict[str, Any]) -> str:
+    """Testo copia-incolla per il registro elettronico."""
+    reg = model.get("registro") or {}
+    argomenti = (reg.get("argomenti") or "").strip()
+    note = (reg.get("note") or "").strip()
+    chapter = model["chapter"]
+    lines = [
+        f"Capitolo {chapter.get('order')}: {chapter.get('title')}",
+        f"activity_id: {chapter.get('activity_id')}",
+        "",
+        "--- Argomenti (registro elettronico) ---",
+        argomenti or "(registro.argomenti non impostato)",
+    ]
+    if note:
+        lines.extend(["", "--- Note interne ---", note])
+    lines.append("")
+    return "\n".join(lines)
 
 
 def _parse_csv(value: str) -> tuple[str, ...]:
@@ -221,17 +450,124 @@ def _parse_csv(value: str) -> tuple[str, ...]:
 
 def _parse_emit(value: str) -> tuple[str, ...]:
     values = _parse_csv(value)
-    unknown = set(values) - {"json", "typ", "pdf"}
+    unknown = set(values) - {"json", "typ", "pdf", "text"}
     if unknown:
         raise ValueError(f"Formati emit non validi: {', '.join(sorted(unknown))}")
     return values
 
 
+def _compile_typst(typ_path: Path, pdf_path: Path) -> int | None:
+    typst = shutil.which("typst")
+    if typst is None:
+        print(
+            "Errore print: comando 'typst' non trovato; installa Typst per --emit pdf",
+            file=sys.stderr,
+        )
+        return 2
+    try:
+        subprocess.run(
+            [typst, "compile", "--root", str(core.ROOT), str(typ_path), str(pdf_path)],
+            check=True,
+        )
+    except subprocess.CalledProcessError as exc:
+        print(f"Errore print: Typst non ha compilato {typ_path}: {exc}", file=sys.stderr)
+        return exc.returncode or 1
+    return None
+
+
+def _cmd_print_paper(args: Any) -> int:
+    """Paper Pack: verifiche A/B, griglia, registro.txt."""
+    try:
+        emit = _parse_emit(args.emit)
+        model = build_paper_model(args.chapter)
+    except ValueError as exc:
+        print(f"Errore print: {exc}", file=sys.stderr)
+        return 2
+
+    outdir = Path(args.out_dir) / "paper" / str(model["chapter"]["activity_id"])
+    outdir.mkdir(parents=True, exist_ok=True)
+    emitted: list[Path] = []
+
+    if "json" in emit:
+        path = outdir / "pack.json"
+        path.write_text(json.dumps(model, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        emitted.append(path)
+
+    if "text" in emit or True:
+        # registro.txt sempre utile per il docente
+        reg_path = outdir / "registro.txt"
+        reg_path.write_text(render_registro_text(model), encoding="utf-8")
+        emitted.append(reg_path)
+
+    versions = model["assessment"]["versions"]
+    need_typ = "typ" in emit or "pdf" in emit
+    if need_typ:
+        for version in versions:
+            stem = f"verifica_{version}"
+            typ_path = outdir / f"{stem}.typ"
+            typ_path.write_text(render_paper_student_typst(model, version), encoding="utf-8")
+            emitted.append(typ_path)
+            if "pdf" in emit:
+                pdf_path = outdir / f"{stem}.pdf"
+                err = _compile_typst(typ_path, pdf_path)
+                if err is not None:
+                    return err
+                emitted.append(pdf_path)
+
+        grid_typ = outdir / "griglia.typ"
+        grid_typ.write_text(render_paper_grid_typst(model), encoding="utf-8")
+        emitted.append(grid_typ)
+        if "pdf" in emit:
+            grid_pdf = outdir / "griglia.pdf"
+            err = _compile_typst(grid_typ, grid_pdf)
+            if err is not None:
+                return err
+            emitted.append(grid_pdf)
+
+    print("Generati: " + ", ".join(str(path) for path in emitted))
+    return 0
+
+
+def _cmd_print_registro(args: Any) -> int:
+    """Solo testo argomenti/note per il registro elettronico."""
+    try:
+        chapter = _validated_chapter(args.chapter)
+        meta = chapter.meta
+        model = {
+            "chapter": {
+                "order": _field(meta, "chapter_order"),
+                "activity_id": _field(meta, "activity_id"),
+                "title": _field(meta, "chapter_title"),
+            },
+            "registro": {
+                "argomenti": _field(meta, "registro_argomenti"),
+                "note": _field(meta, "registro_note"),
+            },
+        }
+    except ValueError as exc:
+        print(f"Errore print: {exc}", file=sys.stderr)
+        return 2
+
+    outdir = Path(args.out_dir)
+    outdir.mkdir(parents=True, exist_ok=True)
+    path = outdir / f"registro_cap{model['chapter']['order']:02d}.txt"
+    path.write_text(render_registro_text(model), encoding="utf-8")
+    print(f"Generati: {path}")
+    return 0
+
+
 def cmd_print(args: Any) -> int:
     """Genera JSON, Typst e opzionalmente PDF dal modello validato."""
+    if args.template == "paper":
+        return _cmd_print_paper(args)
+    if args.template == "registro":
+        return _cmd_print_registro(args)
+
     try:
         phases = _parse_csv(args.phases)
         emit = _parse_emit(args.emit)
+        # worksheet path ignores "text"
+        emit = tuple(e for e in emit if e != "text") or ("json",)
         model = build_print_model(args.chapter, phases)
     except ValueError as exc:
         print(f"Errore print: {exc}", file=sys.stderr)
@@ -253,19 +589,10 @@ def cmd_print(args: Any) -> int:
         emitted.append(typ_path)
 
     if "pdf" in emit:
-        typst = shutil.which("typst")
-        if typst is None:
-            print("Errore print: comando 'typst' non trovato; installa Typst per --emit pdf", file=sys.stderr)
-            return 2
         pdf_path = outdir / f"{stem}.pdf"
-        try:
-            subprocess.run(
-                [typst, "compile", "--root", str(core.ROOT), str(typ_path), str(pdf_path)],
-                check=True,
-            )
-        except subprocess.CalledProcessError as exc:
-            print(f"Errore print: Typst non ha compilato {typ_path}: {exc}", file=sys.stderr)
-            return exc.returncode or 1
+        err = _compile_typst(typ_path, pdf_path)
+        if err is not None:
+            return err
         emitted.append(pdf_path)
 
     print("Generati: " + ", ".join(str(path) for path in emitted))

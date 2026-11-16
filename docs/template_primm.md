@@ -18,6 +18,37 @@ components:
       - text: "[sbagliata]"
         correct: false
   make_instructions: "[Scenario aziendale Make in una frase]"
+registro:
+  argomenti: >
+    [1–4 frasi per il campo Argomenti del registro elettronico:
+    costrutti trattati, contesto PRIMM del capitolo.]
+  note: >
+    [Opzionale: tipo di prova, collegamento al compito Classroom50.]
+assessment:
+  duration_min: 50
+  total_points: 10
+  versions: ["A", "B"]
+  predict:
+    points: 2
+  investigate:
+    points: 3
+    questions:
+      - "[Domanda investigate 1]"
+      - "[Domanda investigate 2]"
+    typical_errors:
+      - "[Errore tipico da attendersi in correzione]"
+  modify:
+    points: 2
+    prompt: >
+      [Consegna Modify per la verifica in classe, distinta dal lavoro sul repo.]
+  make:
+    points: 3
+    prompt: >
+      [Consegna Make chiusa, valutabile in 15–20 minuti.]
+    must_include:
+      - "std::cout"
+      - "return 0"
+
 files:
   - path: README.md
     action: create
@@ -231,7 +262,8 @@ int main() {
 [Anteprima del concetto successivo.]
 
 <!--#
-  Checklist: un obiettivo; metafora; 1–2 slide teoriche prima del laboratorio;
+  Checklist: registro.argomenti e assessment se serve verifica cartacea;
+   un obiettivo; metafora; 1–2 slide teoriche prima del laboratorio;
   Predict prima di Run;
   @LIA.cpp solo sul Run; tabella di traccia e Python Tutor se ci sono variabili;
   scaffold in Modify; Make aziendale; niente costrutti futuri.
