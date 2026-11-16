@@ -1,4 +1,4 @@
-# Specifiche tooling – ci-piu-piu (v0.4)
+# Specifiche tooling – ci-piu-piu (v0.5)
 
 Fonte di verità per preprocessor, frontmatter, template repository, configurazione compiti e integrazione Classroom50.
 
@@ -136,6 +136,17 @@ Usata da `build`. I campi scalari del capitolo sovrascrivono i default; `import`
 
 - Schema: `schemas/chapter-frontmatter.schema.json`
 - Validazione: `python -m tools.cipiupiu validate [path…]`
+
+### 4.0 Registro elettronico e Paper Pack
+
+Campi opzionali del frontmatter (dettaglio in [`docs/paper_pack.md`](paper_pack.md)):
+
+- `registro.argomenti` — testo per la sezione Argomenti/Contenuti del registro elettronico
+- `registro.note` — note interne (tipo di prova, collegamento al compito digitale)
+- `assessment` — verifica formale cartacea (punti, prompt Predict/Investigate/Modify/Make, versioni A/B, errori tipici)
+
+Il profilo `print --template paper` genera fogli studente, griglia docente e `registro.txt`.
+Il worksheet già supportato da Slice E resta disponibile; il Paper Pack è orientato alla **valutazione in classe**.
 
 ### 4.1 Campi principali
 
@@ -388,3 +399,7 @@ Scaffold riutilizzabili per `template_from`: directory `scaffolds/`.
 - Config corso: `course.yaml`
 - CLI: `python -m tools.cipiupiu`
 - Typst: https://typst.app/
+
+## Riferimento Paper Pack
+
+- [`docs/paper_pack.md`](paper_pack.md) — verifiche formali, griglia, testo registro elettronico
