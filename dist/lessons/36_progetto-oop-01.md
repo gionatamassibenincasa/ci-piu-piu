@@ -8,7 +8,7 @@ comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Sc
 import:    https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
 import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
-[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/35_vector-01.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · Succ. →
+[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/35_vector-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · Succ. →
 
 ---
 
