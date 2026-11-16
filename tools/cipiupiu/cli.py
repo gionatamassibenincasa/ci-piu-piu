@@ -9,6 +9,15 @@ from pathlib import Path
 
 from . import core
 from . import assignments
+from . import printing
+
+
+def _validation_errors(paths: list[Path], schema: dict | None) -> list[str]:
+    return [
+        error
+        for path in paths
+        for error in core.validate_chapter(path, schema)
+    ]
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
@@ -28,9 +37,7 @@ def cmd_validate(args: argparse.Namespace) -> int:
             else:
                 targets.append(path)
 
-    all_errors: list[str] = []
-    for path in targets:
-        all_errors.extend(core.validate_chapter(path, schema))
+    all_errors = _validation_errors(targets, schema)
 
     if all_errors:
         print(f"FAIL: {len(all_errors)} errore/i su {len(targets)} file", file=sys.stderr)
@@ -117,6 +124,16 @@ def cmd_render(args: argparse.Namespace) -> int:
 def cmd_build(args: argparse.Namespace) -> int:
     """build | build course | build lessons — timestamp-aware."""
     cfg = core.load_course_config(Path(args.config) if args.config else None)
+    chapters_dir = Path(cfg.get("chapters_dir") or "chapters")
+    if not chapters_dir.is_absolute():
+        chapters_dir = (core.ROOT / chapters_dir).resolve()
+    errors = _validation_errors(sorted(chapters_dir.glob("*.md")), core.load_schema())
+    if errors:
+        print(f"FAIL: {len(errors)} errore/i di frontmatter", file=sys.stderr)
+        for error in errors:
+            print(f"  - {error}", file=sys.stderr)
+        return 1
+
     force = bool(args.force)
     mode = args.mode
     target = args.target  # None, "course", "lessons"
@@ -202,12 +219,16 @@ def cmd_scaffold_assignment(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_print(args: argparse.Namespace) -> int:
+    return printing.cmd_print(args)
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="cipiupiu",
         description=(
             "CLI tooling OER ci-più-più "
-            "(validate, list, render, build, scaffold-assignment)."
+            "(validate, list, render, build, scaffold-assignment, print)."
         ),
     )
     sub = p.add_subparsers(dest="command", required=True)
@@ -263,6 +284,21 @@ def build_parser() -> argparse.ArgumentParser:
     sa.add_argument("--classroom", default=None, help="Nome classroom Classroom50 (se non in --config)")
     sa.add_argument("--chapters", default=None, help="Directory chapters/")
     sa.set_defaults(func=cmd_scaffold_assignment)
+
+    pr = sub.add_parser(
+        "print",
+        help="Genera esercizi stampabili dal frontmatter validato",
+    )
+    pr.add_argument("chapter", help="order, activity_id oppure path del capitolo")
+    pr.add_argument(
+        "--template",
+        choices=("worksheet", "exam", "handout"),
+        default="worksheet",
+    )
+    pr.add_argument("--phases", default="predict,modify,make")
+    pr.add_argument("--emit", default="json,typ,pdf", help="Stadi da produrre: json,typ,pdf")
+    pr.add_argument("--out-dir", default="output")
+    pr.set_defaults(func=cmd_print)
 
     return p
 

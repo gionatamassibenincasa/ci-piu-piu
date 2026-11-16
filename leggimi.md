@@ -21,6 +21,11 @@ python -m tools.cipiupiu build lessons      # solo dist/lessons/*.md
 python -m tools.cipiupiu build lessons --mode dev
 python -m tools.cipiupiu build --force
 
+# compito PRIMM stampabile: modello canonico + sorgente Typst
+python -m tools.cipiupiu print 03 --emit json,typ --out-dir output
+# aggiungi pdf se il comando `typst` è installato e disponibile nel PATH
+python -m tools.cipiupiu print 03 --template worksheet --emit json,typ,pdf
+
 # template repo GitHub per Classroom50 (un activity_id)
 python -m tools.cipiupiu scaffold-assignment \
   --activity ciao-mondo-01 \
@@ -37,6 +42,7 @@ python -m tools.cipiupiu scaffold-assignment \
 | `render` | Strip FM / `<!--#` / Jinja / include → stdout o `-o` |
 | `build course` | `dist/README.md` **senza** aggiungere commento HTML (usa quello di `index.md`) |
 | `build lessons` | `dist/lessons/{order}_{activity_id}.md` **con** commento LiaScript + prev/next |
+| `print` | Frontmatter validato → JSON canonico → Typst → PDF opzionale |
 | `scaffold-assignment` | Crea/aggiorna il **template repo** GitHub da `files[].action=create` |
 
 Wrapper legacy: `preprocess.py` → `render`; `tools/validate_chapters.py` → `validate`.
@@ -49,12 +55,33 @@ Per `methodology: PRIMM`:
 2. Nel corpo, sotto `#### 1. PREDICT`: solo **`[[ predict_block() ]]`**
 3. Niente opzioni `[(X)]` scritte a mano nel Predict
 
+## Compiti stampabili
+
+`print` usa esclusivamente il frontmatter già validato: non interpreta il
+Markdown del capitolo e non introduce chiavi nuove. Le fasi predefinite sono
+`predict,modify,make`; selezionane un sottoinsieme con
+`--phases predict,make`.
+
+| Contenuto del compito | Fonte condivisa con Classroom50 |
+|---|---|
+| Numero, titolo e quiz Predict senza soluzione | `order`, `title`, `components.predict_quiz` |
+| Consegne, codice iniziale e requisiti | `components.*_instructions`, `files[]` |
+
+L'output `json` è il modello macchina riusabile; l'output `typ` è rifinibile
+dal docente. Lo stile è `tools/cipiupiu/templates/stile_compito.typ`. Per il
+PDF installa [Typst](https://typst.app/) e usa `--emit pdf`.
+
+Punti, rubriche o righe di risposta su misura non vanno aggiunti localmente al
+frontmatter: richiedono un'estensione versionata dello schema, utile sia alla
+stampa sia a Classroom50.
+
 ## Struttura
 
 ```
 chapters/   sorgenti + frontmatter
 docs/       SPEC, template, metodologia
 tools/cipiupiu/  nucleo + CLI
+tools/cipiupiu/templates/  stile Typst dei compiti
 course.yaml metadati LiaScript e URL
 dist/       artefatti per LiaScript (in git)
 index.md    decide il contenuto del corso completo

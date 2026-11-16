@@ -106,6 +106,23 @@ Ogni nuovo concetto deve seguire questa sequenza:
 - Note autore/LLM: blocchi `<!--#` … `#-->` (strip da `preprocess.py`); non usare per dati strutturati.
 - Ordinamento corso: campo `order` (non il solo nome file).
 
+### Contratto `print` per compiti stampabili
+
+- `python -m tools.cipiupiu print` è un **consumatore del frontmatter corrente
+  già validato**: non rielabora il Markdown della lezione e non accetta nuove
+  chiavi frontmatter implicite.
+- Le fonti sono `order` e `title`; `components.predict_quiz`;
+  `components.*_instructions`; e, per i file, `files[].phase`,
+  `description`, `template_content` e `validation_rules` (oltre ai dati
+  necessari per selezionare il file). Mantieni questi dati completi e coerenti
+  quando devono comparire nel compito.
+- Le fasi predefinite sono `predict,modify,make`. Il comando genera il modello
+  JSON, lo rende in Typst e può compilare il PDF; per `--emit pdf` deve essere
+  installato il comando `typst`.
+- Per metadati destinati solo alla stampa, non aggiungere campi locali al
+  capitolo: proponi un'estensione **versionata** dello schema, utile sia a
+  Classroom50 sia al PDF.
+
 ## Regole di Generazione Output (LiaScript & Markdown)
 
 Quando generi contenuti, rispetta **tassativamente** queste regole:

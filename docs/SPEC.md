@@ -1,9 +1,9 @@
-# Specifiche tooling – ci-piu-piu (v0.3)
+# Specifiche tooling – ci-piu-piu (v0.4)
 
 Fonte di verità per preprocessor, frontmatter, template repository, configurazione compiti e integrazione Classroom50.
 
-**Stato**: base implementata (Slice A operativa, Slice B in corso).  
-**Data**: 2026-11-15
+**Stato**: Slice A, B, C ed E operative; D previsto.
+**Data**: 2026-11-16
 
 ---
 
@@ -29,6 +29,7 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | O4 | `dist/lessons/*.md` lezioni autonome con prev/next | Must | Fatto / in rifinitura |
 | O5 | Post-scadenza: download repo + `validation_rules` base | Should | Previsto (Slice D) |
 | O6 | Tracking visualizzazione opt-in | Could | Non iniziato |
+| O7 | Compito PRIMM stampabile dal frontmatter validato | Must | Fatto (JSON / Typst; PDF con Typst) |
 
 **Corso completo** = un unico Markdown amalgamato (`dist/README.md`) per la sequenza annuale.  
 **Lezione autonoma** = un capitolo in `dist/lessons/`, con link prev/next, per recupero e link diretti.
@@ -39,6 +40,8 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
   - **Capitolo** (frontmatter) = autoconsistente.
   - **Config compiti per classe** = dipende dai capitoli.
 - Un assignment Classroom50 = **un solo capitolo**.
+- La stampa è un consumatore: legge soltanto il modello di capitolo già
+  validato, come il build, e non interpreta di nuovo il Markdown.
 - Preferire standard esistenti (YAML frontmatter, Jinja2, JSON Schema).
 - Implementare prima i componenti a più alto rischio.
 - `dist/` resta versionato in git (consumo diretto da LiaScript).
@@ -57,6 +60,7 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | US-D4 | Come docente, voglio, da un file di configurazione della classe, generare il repository template (solo `action: create`) e ricevere le istruzioni per creare l’assignment Classroom50. |
 | US-D5 | Come docente, voglio dopo la scadenza scaricare i repo studenti e applicare le `validation_rules` dichiarate, ottenendo un report leggibile. |
 | US-D6 | Come docente, voglio generare lezioni in modalità `dev` o `prod` (URL di navigazione) senza modifiche manuali. |
+| US-D7 | Come docente, voglio stampare Predict, Modify e Make di un capitolo senza duplicare consegne o soluzioni nel Markdown. |
 
 ### Studente
 
@@ -67,6 +71,7 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | US-S3 | Come studente, voglio accettare l’assignment Classroom50 di un capitolo e ottenere un repository già strutturato con i file previsti. |
 | US-S4 | Come studente, voglio svolgere Predict / Investigate / Modify / Make e fare push, sapendo che esiste un primo filtro automatico. |
 | US-S5 | Come studente, voglio poter segnalare (opt-in, login GitHub) di aver visualizzato una lezione, senza obbligo e senza bloccare l’uso offline. |
+| US-S6 | Come studente, voglio ricevere un compito cartaceo coerente con le consegne PRIMM e il repository Classroom50. |
 
 ---
 
@@ -80,6 +85,8 @@ tools/cipiupiu         ← unica CLI (core.py)
         │
         ├── dist/README.md              (corso completo, da index.md)
         └── dist/lessons/<order>_<slug>.md
+        │
+        ├── print ──→ modello JSON ──→ Typst ──→ PDF
         │
 config compiti (YAML per classe)
         │
@@ -97,9 +104,10 @@ Entrypoint: `python -m tools.cipiupiu`.
 | Slice | Comandi | Stato |
 |-------|---------|--------|
 | A | `validate`, `list`, `render` | Operativa |
-| B | `build` (course + lessons, invalidazione su timestamp) | In corso |
+| B | `build` (course + lessons, invalidazione su timestamp) | Operativa |
 | C | `scaffold-assignment` | Operativa (v1 semi-automatica) |
 | D | `collect` | Previsto |
+| E | `print` (modello JSON → Typst → PDF) | Operativa, PDF se Typst è installato |
 
 Nucleo condiviso: `tools/cipiupiu/core.py`  
 (`load_frontmatter` / `split_frontmatter`, `strip_author_blocks`, `render_jinja`, `expand_includes`, `render_file`, `iter_chapters`, `validate_chapter`).
@@ -108,6 +116,8 @@ Regole:
 - `index.md` decide i capitoli del **corso completo**.
 - `order` decide ordinamento e prev/next delle **lezioni singole**.
 - `dist/` versionato in git.
+- `build` e `print` validano il frontmatter con lo stesso validatore prima di
+  produrre artefatti.
 
 Compatibilità:
 ```bash
@@ -178,7 +188,57 @@ Si mantengono. Sono note autore/LLM **non** destinate a LiaScript.
 Vengono eliminati interamente dal preprocessore. Non sono annidabili.  
 Non sostituiscono il frontmatter.
 
-### 4.5 Jinja nel corpo Markdown
+---
+
+### 4.5 Stampa degli esercizi PRIMM
+
+Il comando `print` è un **consumatore** del frontmatter validato. Non esegue
+parsing del corpo Markdown, non aggiunge chiavi e non modifica il capitolo.
+Il JSON prodotto è il modello canonico, indipendente dall'adapter Typst.
+
+```bash
+python -m tools.cipiupiu print 03 \
+  --template worksheet \
+  --emit json,typ,pdf \
+  --out-dir output
+```
+
+`chapter` può essere l'`order`, l'`activity_id` oppure il path del capitolo.
+Le fasi stampabili iniziali e predefinite sono `predict`, `modify` e `make`;
+si possono limitare, per esempio, con `--phases predict,make`. I template
+supportati sono `worksheet`, `exam` e `handout`.
+
+| Dato stampato | Nodo del contratto |
+|---|---|
+| Numero e titolo | `order`, `title` |
+| Quiz Predict senza soluzione | `components.predict_quiz` (`correct` non entra nel modello) |
+| Consegne Modify/Make | `components.*_instructions`, `files[].description` |
+| Codice di partenza e requisiti | `files[].template_content`, `files[].validation_rules` |
+
+Per il capitolo 03 e il template `worksheet` gli artefatti sono:
+
+```text
+output/compito_cap03_worksheet.json
+output/compito_cap03_worksheet.typ
+output/compito_cap03_worksheet.pdf
+```
+
+`--emit json,typ` non richiede dipendenze oltre a quelle Python del progetto.
+Per `--emit pdf` deve essere disponibile il binario
+[Typst](https://typst.app/) nel `PATH`; l'errore è esplicito se manca. Lo stile
+condiviso è `tools/cipiupiu/templates/stile_compito.typ`; il file Typst
+generato lo importa dal root del repository e viene compilato con
+`typst compile --root`.
+
+Punti, rubriche, righe di risposta personalizzate o esercizi strutturati oltre
+Predict non sono dedotti dal Markdown. Richiedono una successiva estensione
+versionata di `chapter-frontmatter.schema.json`, compatibile sia con
+Classroom50 sia con questo exporter. Il guard-test
+`tests/test_print_contract_guard.py` verifica che ogni percorso letto dal
+printer sia dichiarato nello schema; una futura CI dovrà eseguirlo. Una
+modifica dello schema deve quindi essere intenzionale e versionata.
+
+### 4.6 Jinja nel corpo Markdown
 
 Delimitatori che non collidono col C++:
 
@@ -200,7 +260,7 @@ esempio:
 http://localhost:3000/liascript/index.html?http://localhost:3000/dist/lessons/03_ciao-mondo-01.md#4
 ```
 
-### 4.6 Merge metadati LiaScript
+### 4.7 Merge metadati LiaScript
 
 1. Default globali (`course.yaml`)
 2. Campi scalari del capitolo sovrascrivono
@@ -303,9 +363,10 @@ Scaffold riutilizzabili per `template_from`: directory `scaffolds/`.
 1. **Schema frontmatter + validazione** — fatto
 2. **Preprocessor core** (`render`, `build` course/lessons, prev/next, macro Predict) — Slice A operativa, Slice B in corso
 3. **Esposizione `action: create` + generazione template repository** — fatto (Slice C v1)
-4. **Creazione diretta assignment Classroom50 e acceptance link** — Slice C v1.1
-5. **Collect + validation_rules di base** — Slice D
-6. **Tracking opt-in** — Could
+4. **Stampa dal modello validato (JSON → Typst → PDF)** — fatto (Slice E v1)
+5. **Creazione diretta assignment Classroom50 e acceptance link** — Slice C v1.1
+6. **Collect + validation_rules di base** — Slice D
+7. **Tracking opt-in** — Could
 
 ---
 
@@ -326,3 +387,4 @@ Scaffold riutilizzabili per `template_from`: directory `scaffolds/`.
 - Schema locale: `schemas/chapter-frontmatter.schema.json`
 - Config corso: `course.yaml`
 - CLI: `python -m tools.cipiupiu`
+- Typst: https://typst.app/

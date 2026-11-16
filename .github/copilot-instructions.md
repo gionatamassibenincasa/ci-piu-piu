@@ -36,6 +36,14 @@ Before creating or revising course material, read and apply these in order:
 3. `.agents/skills/liascript-syntax/` for supported LiaScript syntax. Do not invent LiaScript constructs.
 4. `.agents/skills/liascript-skill/` for general interactive-course patterns.
 
+## Printable-assignment metadata
+
+`python -m tools.cipiupiu print` consumes validated current frontmatter only;
+it never reparses lesson Markdown or recognizes ad-hoc keys. Follow the
+`print` contract in `SKILLS.md` when authoring `order`/`title`, PRIMM
+components, and phase files. Any print-only metadata needs a versioned schema
+extension that benefits both Classroom50 and PDF output.
+
 ## Lesson and content conventions
 
 - Write in Italian for C++ beginners transitioning from block programming. Use a direct, encouraging `tu` voice, concrete metaphors, and realistic SIA/business scenarios such as inventory, POS payments, invoices, and customer records.

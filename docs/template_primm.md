@@ -80,6 +80,13 @@ files:
 <!--
   Copia in chapters/XX_nome.md. Sostituisci i placeholder.
   Chunk 15–25 min. Vedi docs/SPEC.md, docs/primm.md, docs/quiz_liascript.md.
+
+  Il comando `python -m tools.cipiupiu print` usa solo questo frontmatter
+  validato: non legge di nuovo il Markdown. Le fasi predefinite stampabili sono
+  predict, modify e make; usa `components.*_instructions` e i dati `files`
+  della fase (description, template_content, validation_rules) come fonte.
+  Per nuovi metadati di stampa, estendi prima lo schema in modo versionato e
+  riusabile da Classroom50 e PDF.
 -->
 
 ## 📌 [Titolo concreto]: [sottotitolo sul costrutto del linguaggio]
