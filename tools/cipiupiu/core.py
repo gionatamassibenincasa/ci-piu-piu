@@ -489,6 +489,84 @@ def build_course(
     return out_path, True
 
 
+
+def liascript_viewer_url(resource_url: str) -> str:
+    """Avvolge un URL raw in liascript.github.io/course/? per apertura online."""
+    if not resource_url:
+        return resource_url
+    if resource_url.startswith("https://liascript.github.io/"):
+        return resource_url
+    if resource_url.startswith("http://") or resource_url.startswith("https://"):
+        return f"https://liascript.github.io/course/?{resource_url}"
+    return resource_url
+
+
+def build_lessons_index(
+    chapters: list[Chapter],
+    *,
+    lessons_dir: Path,
+    base: str,
+    course_link: str,
+    global_meta: dict[str, Any],
+    mode: str,
+    force: bool,
+) -> tuple[Path, bool]:
+    """Catalogo dist/lessons/index.md con link apribili in LiaScript."""
+    out = lessons_dir / "index.md"
+    sources = [ch.path for ch in chapters if ch.path.is_file()]
+    if DEFAULT_COURSE_YAML.is_file():
+        sources.append(DEFAULT_COURSE_YAML)
+    if not force and sources and not is_stale([out], sources):
+        return out, False
+
+    comment = str(global_meta.get("comment") or "").strip()
+    if "Catalogo lezioni" not in comment:
+        suffix = "Catalogo lezioni autonome"
+        comment = f"{comment} — {suffix}" if comment else suffix
+
+    header = format_liascript_header({**global_meta, "comment": comment})
+
+    def lesson_href(filename: str) -> str:
+        raw = f"{base}{filename}"
+        return raw if mode == "dev" else liascript_viewer_url(raw)
+
+    course_href = (
+        course_link if mode == "dev" else liascript_viewer_url(course_link)
+    )
+
+    lines = [
+        header.rstrip(),
+        "",
+        "# Catalogo lezioni — C++ 3ª SIA",
+        "",
+        f"Apri il [corso completo]({course_href}) in un unico file, "
+        "oppure una lezione alla volta dalla tabella.",
+        "",
+        "| # | Lezione | Metodo | Apri |",
+        "|---:|---------|--------|------|",
+    ]
+    for ch in chapters:
+        fn = lesson_filename(ch)
+        href = lesson_href(fn)
+        title = (ch.title or ch.activity_id).replace("|", r"\|")
+        method = ch.methodology or "—"
+        order = ch.order if ch.order is not None else "—"
+        lines.append(f"| {order} | {title} | `{method}` | [Apri]({href}) |")
+
+    lines.extend(
+        [
+            "",
+            "---",
+            "",
+            "*Generato da `cipiupiu build lessons`. "
+            "Non modificare a mano: sovrascritto al prossimo build.*",
+            "",
+        ]
+    )
+    out.write_text("\n".join(lines), encoding="utf-8")
+    return out, True
+
+
 def build_lessons(
     *,
     chapters_dir: Path | None = None,
@@ -549,11 +627,15 @@ def build_lessons(
         prev_link = f"{base}{lesson_filename(prev_c)}" if prev_c else None
         next_link = f"{base}{lesson_filename(next_c)}" if next_c else None
 
+        index_raw = f"{base}index.md"
+        index_link = index_raw if mode == "dev" else liascript_viewer_url(index_raw)
+
         nav_parts: list[str] = []
         if prev_link:
             nav_parts.append(f"[← Prec.]({prev_link})")
         else:
             nav_parts.append("← Prec.")
+        nav_parts.append(f"[Indice]({index_link})")
         nav_parts.append(f"[Corso]({course_link})")
         if next_link:
             nav_parts.append(f"[Succ. →]({next_link})")
@@ -566,5 +648,18 @@ def build_lessons(
             content += "\n"
         out.write_text(content, encoding="utf-8")
         results.append((out, True))
+
+    # Catalogo lezioni (sempre considerato; skip se up-to-date e non --force)
+    if not only:
+        index_path, index_written = build_lessons_index(
+            chapters,
+            lessons_dir=lessons_dir,
+            base=base,
+            course_link=course_link,
+            global_meta=global_meta,
+            mode=mode,
+            force=force,
+        )
+        results.append((index_path, index_written))
 
     return results
