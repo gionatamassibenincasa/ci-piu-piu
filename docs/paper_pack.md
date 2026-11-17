@@ -2,11 +2,20 @@
 
 Verifiche cartacee PRIMM allineate ai capitoli, stampabili e integrabili con registro elettronico e workflow Classroom50.
 
-**Stato**: specifica di prodotto  
+**Stato**: implementato (CLI `print --template paper|registro`)  
 **Dipende da**: frontmatter validato, Slice E (`print`), schema capitolo  
 **Non sostituisce**: il compito digitale (`scaffold-assignment`) né il worksheet già generato da `print`
 
 ---
+
+## 0. User Story (prodotto)
+
+| ID | Storia |
+|----|--------|
+| US-D8 | Come **docente**, voglio generare un Paper Pack (verifica A/B, griglia, registro) da un capitolo con `assessment` e `registro`, così posso verificare in classe le stesse competenze del laboratorio digitale. |
+| US-D9 | Come **docente**, voglio un file `registro.txt` con gli argomenti già formulati per il registro elettronico. |
+
+Criterio di accettazione: `python -m tools.cipiupiu print 03 --template paper --emit json,typ,pdf --out-dir output` produce `verifica_A.pdf`, `verifica_B.pdf`, `griglia.pdf`, `registro.txt` (PDF se Typst è disponibile).
 
 ## 1. Obiettivo
 

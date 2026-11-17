@@ -25,6 +25,9 @@ python -m tools.cipiupiu build --force
 python -m tools.cipiupiu print 03 --emit json,typ --out-dir output
 # aggiungi pdf se il comando `typst` è installato e disponibile nel PATH
 python -m tools.cipiupiu print 03 --template worksheet --emit json,typ,pdf
+# Paper Pack (verifica formale A/B + griglia + registro)
+python -m tools.cipiupiu print 03 --template paper --emit json,typ,pdf --out-dir output
+python -m tools.cipiupiu print 03 --template registro --out-dir output
 
 # template repo GitHub per Classroom50 (un activity_id)
 python -m tools.cipiupiu scaffold-assignment \

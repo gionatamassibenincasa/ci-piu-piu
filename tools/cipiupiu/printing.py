@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -20,6 +21,7 @@ FIELD_PATHS = {
     "predict_code": ("components", "predict_quiz", "code"),
     "predict_options": ("components", "predict_quiz", "options"),
     "predict_option_text": ("components", "predict_quiz", "options", "*", "text"),
+    "predict_option_correct": ("components", "predict_quiz", "options", "*", "correct"),
     "modify_instructions": ("components", "modify_instructions"),
     "make_instructions": ("components", "make_instructions"),
     "investigate_questions": ("components", "investigate_questions"),
@@ -52,7 +54,7 @@ _PHASE_LABEL = {
     "modify": "Modify",
     "make": "Make",
 }
-_STYLE_IMPORT = "/tools/cipiupiu/templates/stile_compito.typ"
+_STYLE_IMPORT = "stile_compito.typ"  # copiato in outdir da _ensure_style
 
 
 def _get(model: Any, path: tuple[str, ...]) -> Any:
@@ -222,10 +224,18 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
     pred = assessment.get("predict") or {}
     base_pred = _phase_item(meta, "predict")
     if base_pred:
+        texts = list(_field(meta, "predict_option_text") or [])
+        flags = list(_field(meta, "predict_option_correct") or [])
+        correct = [
+            str(text)
+            for text, flag in zip(texts, flags)
+            if text and flag
+        ]
         base_pred = {
             **base_pred,
             "points": pred.get("points"),
             "typical_errors": list(pred.get("typical_errors") or []),
+            "correct_choices": correct,
         }
         if pred.get("prompt"):
             base_pred["prompt"] = pred["prompt"]
@@ -381,8 +391,7 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
         if must:
             out.append("*Deve comparire nel codice:* " + ", ".join(f"`{m}`" for m in must))
             out.append("")
-        phase = item["phase"] if item["phase"] in {"predict", "modify", "make"} else "predict"
-        out.extend([f'#spazio-risposta(fase: "{phase}")', ""])
+        out.extend([f'#spazio-risposta(fase: "{item["phase"]}")', ""])
     return "\n".join(out)
 
 
@@ -410,6 +419,15 @@ def render_paper_grid_typst(model: dict[str, Any]) -> str:
         if pts is not None:
             head += f" — {pts} pt"
         out.extend([f"= {head}", f"#testo({_typ_string(item['prompt'])})", ""])
+        if item.get("code"):
+            out.extend([f"#codice({_typ_string(item['code'])})", ""])
+        correct = item.get("correct_choices") or []
+        if correct:
+            out.append("*Risposta/e attesa/e:* " + "; ".join(correct))
+            out.append("")
+        elif item.get("choices"):
+            out.append("*Opzioni:* " + " | ".join(item["choices"]))
+            out.append("")
         errors = item.get("typical_errors") or []
         if errors:
             out.append("*Errori tipici:*")
@@ -456,17 +474,41 @@ def _parse_emit(value: str) -> tuple[str, ...]:
     return values
 
 
+def _find_typst() -> str | None:
+    """Cerca typst nel PATH o in .tools/ tipico del repo."""
+    found = shutil.which("typst")
+    if found:
+        return found
+    candidate = core.ROOT / ".tools" / "typst"
+    if candidate.is_file() and os.access(candidate, os.X_OK):
+        return str(candidate)
+    return None
+
+
+def _ensure_style(outdir: Path) -> None:
+    """Copia lo stile accanto agli .typ generati (import relativo stabile)."""
+    src = core.ROOT / "tools" / "cipiupiu" / "templates" / "stile_compito.typ"
+    dst = outdir / "stile_compito.typ"
+    if not src.is_file():
+        raise FileNotFoundError(f"Stile Typst mancante: {src}")
+    if not dst.exists() or src.read_bytes() != dst.read_bytes():
+        dst.write_bytes(src.read_bytes())
+
+
 def _compile_typst(typ_path: Path, pdf_path: Path) -> int | None:
-    typst = shutil.which("typst")
+    typst = _find_typst()
     if typst is None:
         print(
-            "Errore print: comando 'typst' non trovato; installa Typst per --emit pdf",
+            "Errore print: comando 'typst' non trovato; installa Typst "
+            "(https://typst.app/) oppure metti il binario in .tools/typst",
             file=sys.stderr,
         )
         return 2
+    # Root = directory del .typ (contiene stile_compito.typ copiato)
+    root = typ_path.parent
     try:
         subprocess.run(
-            [typst, "compile", "--root", str(core.ROOT), str(typ_path), str(pdf_path)],
+            [typst, "compile", "--root", str(root), str(typ_path), str(pdf_path)],
             check=True,
         )
     except subprocess.CalledProcessError as exc:
@@ -502,6 +544,11 @@ def _cmd_print_paper(args: Any) -> int:
     versions = model["assessment"]["versions"]
     need_typ = "typ" in emit or "pdf" in emit
     if need_typ:
+        try:
+            _ensure_style(outdir)
+        except FileNotFoundError as exc:
+            print(f"Errore print: {exc}", file=sys.stderr)
+            return 2
         for version in versions:
             stem = f"verifica_{version}"
             typ_path = outdir / f"{stem}.typ"
@@ -577,6 +624,12 @@ def cmd_print(args: Any) -> int:
     outdir.mkdir(parents=True, exist_ok=True)
     stem = f"compito_cap{model['chapter']['order']:02d}_{args.template}"
     emitted: list[Path] = []
+    if "typ" in emit or "pdf" in emit:
+        try:
+            _ensure_style(outdir)
+        except FileNotFoundError as exc:
+            print(f"Errore print: {exc}", file=sys.stderr)
+            return 2
 
     if "json" in emit:
         json_path = outdir / f"{stem}.json"

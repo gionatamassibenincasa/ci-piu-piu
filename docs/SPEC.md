@@ -60,7 +60,9 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | US-D4 | Come docente, voglio, da un file di configurazione della classe, generare il repository template (solo `action: create`) e ricevere le istruzioni per creare l’assignment Classroom50. |
 | US-D5 | Come docente, voglio dopo la scadenza scaricare i repo studenti e applicare le `validation_rules` dichiarate, ottenendo un report leggibile. |
 | US-D6 | Come docente, voglio generare lezioni in modalità `dev` o `prod` (URL di navigazione) senza modifiche manuali. |
-| US-D7 | Come docente, voglio stampare Predict, Modify e Make di un capitolo senza duplicare consegne o soluzioni nel Markdown. |
+| US-D7 | Come docente, voglio stampare Predict, Modify e Make di un capitolo (worksheet) senza duplicare consegne o soluzioni nel Markdown. |
+| US-D8 | Come docente, voglio generare un **Paper Pack** (verifica A/B, griglia docente, testo registro) da un capitolo con `assessment` + `registro`, in JSON/Typst/PDF. |
+| US-D9 | Come docente, voglio copiare `registro.argomenti` nel registro elettronico senza riscrivere a mano gli argomenti della lezione. |
 
 ### Studente
 
