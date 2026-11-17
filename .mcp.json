@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "liascript": {
+      "type": "local",
+      "command": "liadev",
+      "args": ["--mcp", "--live", "-i", "README.md"]
+    }
+  }
+}
