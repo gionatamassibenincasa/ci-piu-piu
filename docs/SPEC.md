@@ -7,6 +7,22 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 
 ---
 
+## 0. Tre prodotti (OER / Classroom50 / Paper Pack)
+
+Vedi anche [`docs/products.md`](products.md).
+
+| ID | Prodotto | Cliente | Valore relativo |
+|----|----------|---------|-----------------|
+| P1 | OER online (LiaScript) | Studente | Alto per lo studente; scarsa disponibilità a pagare da solo |
+| P2 | Template esercizi Classroom50 | Docente di laboratorio | Alto (tempo) |
+| P3 | Paper Pack | Docente di teoria | Molto alto (verifiche in classe) |
+
+**Coesione:** un capitolo = un `activity_id` + un frontmatter; i tre prodotti sono *proiezioni* (`build`, `scaffold-assignment`, `print`), non alberi di file separati.
++
+**Non** si ristrutturano le lezioni in directory per prodotto (v1). Eventuale split solo di `assessment` in file affiancato resta opzionale e fuori scope finché il YAML resta gestibile.
+
+---
+
 ## 1. Contesto e obiettivi
 
 ### 1.1 Contesto operativo
@@ -60,9 +76,10 @@ Fonte di verità per preprocessor, frontmatter, template repository, configurazi
 | US-D4 | Come docente, voglio, da un file di configurazione della classe, generare il repository template (solo `action: create`) e ricevere le istruzioni per creare l’assignment Classroom50. |
 | US-D5 | Come docente, voglio dopo la scadenza scaricare i repo studenti e applicare le `validation_rules` dichiarate, ottenendo un report leggibile. |
 | US-D6 | Come docente, voglio generare lezioni in modalità `dev` o `prod` (URL di navigazione) senza modifiche manuali. |
-| US-D7 | Come docente, voglio stampare Predict, Modify e Make di un capitolo (worksheet) senza duplicare consegne o soluzioni nel Markdown. |
+| US-D7 | Come docente, voglio stampare un worksheet (Predict/Modify/Make) senza duplicare consegne nel Markdown. |
 | US-D8 | Come docente, voglio generare un **Paper Pack** (verifica A/B, griglia docente, testo registro) da un capitolo con `assessment` + `registro`, in JSON/Typst/PDF. |
-| US-D9 | Come docente, voglio copiare `registro.argomenti` nel registro elettronico senza riscrivere a mano gli argomenti della lezione. |
+| US-D9 | Come docente, voglio copiare `registro.argomenti` nel registro elettronico senza riscrivere gli argomenti. |
+  US-D10 | Come autore, voglio item con **id stabili** e domande di tipo tracing/perché, così posso confrontare classi e migliorare i chunk. |
 
 ### Studente
 
@@ -186,7 +203,40 @@ Il worksheet già supportato da Slice E resta disponibile; il Paper Pack è orie
 - Path con `action: create` univoci all’interno del capitolo.
 - `target` non usato in v1 (gli assignment li decide la config classe).
 
-### 4.3 Predict: unica fonte di verità
+### 4.3 Qualità delle domande (alta / media priorità)
+
+1. **Perché e tracing (alta)**  
+   Preferire item che chiedono *perché* un comportamento o *quale stato* dopo N passi, non solo l’output.  
+   Tipi ammessi in assessment/predict: `multiple_choice`, `short_answer`, `tracing` (codice + domanda sullo stato).
+
+2. **ID stabili (alta)**  
+   Ogni item valutativo ha un `id` stabile nel tempo (es. `ciao-mondo-01/predict`, `ciao-mondo-01/investigate/1`).  
+   L’`activity_id` non cambia se si rinomina il file. Gli id item non si riciclano con significato diverso.
+
+3. **Context in griglia (media)**  
+  Oltre a `typical_errors`, ogni sezione assessment può avere `context` (spiegazione della risposta corretta).  
+   `print --template paper` la include in `griglia` (non nel foglio studente).
+
+4. **Versioning A/B sostanziale (media)**  
+   Le versioni non sono solo etichette: per ogni versione si possono sovrascrivere `prompt`, `code` o dati numerici.  
+   Schema: `assessment.variants.A|B` (opzionale); default = contenuto base condiviso.
+
+5. **Checklist visualizzazione (media)**  
+   Se il chunk tratta memoria, alias, array, oggetti o flussi non banali, il corpo Investigate deve includere **almeno una** tra:  
+   tabella di traccia, Python Tutor (o equivalente), diagramma plantUML del processo.  
+   Opzionale in frontmatter: `components.visualization: { kind: table|pythontutor|plantuml, note: "..." }` a fini di lint futuro.
+
+### 4.4 Coesione P1–P2–P3
+
+| Dato | P1 OER | P2 Classroom | P3 Paper |
+|------|--------|--------------|----------|
+| `activity_id` | nav / metadata | nome template | path output |
+| `components.predict_quiz` | quiz LiaScript | — | Predict verifica |
+| `files[]` action create | — | repo studente | starter Modify/Make |
+| `assessment` | — | — | verifica + griglia |
+| `registro` | — | — | registro.txt |
+
+### 4.5 Predict: unica fonte di verità
 
 Per i capitoli `methodology: PRIMM`:
 
@@ -195,7 +245,7 @@ Per i capitoli `methodology: PRIMM`:
 3. Non duplicare opzioni `[(X)]` a mano nel Predict.
 4. `cipiupiu validate` verifica: heading PREDICT, presenza di `predict_quiz`, presenza della macro.
 
-### 4.4 Commenti `<!--#` … `#-->`
+### 4.5 Commenti `<!--#` … `#-->`
 
 Si mantengono. Sono note autore/LLM **non** destinate a LiaScript.  
 Vengono eliminati interamente dal preprocessore. Non sono annidabili.  
@@ -203,7 +253,7 @@ Non sostituiscono il frontmatter.
 
 ---
 
-### 4.5 Stampa degli esercizi PRIMM
+### 4.6 Stampa degli esercizi PRIMM
 
 Il comando `print` è un **consumatore** del frontmatter validato. Non esegue
 parsing del corpo Markdown, non aggiunge chiavi e non modifica il capitolo.
@@ -251,7 +301,7 @@ Classroom50 sia con questo exporter. Il guard-test
 printer sia dichiarato nello schema; una futura CI dovrà eseguirlo. Una
 modifica dello schema deve quindi essere intenzionale e versionata.
 
-### 4.6 Jinja nel corpo Markdown
+### 4.7 Jinja nel corpo Markdown
 
 Delimitatori che non collidono col C++:
 
@@ -273,7 +323,7 @@ esempio:
 http://localhost:3000/liascript/index.html?http://localhost:3000/dist/lessons/03_ciao-mondo-01.md#4
 ```
 
-### 4.7 Merge metadati LiaScript
+### 4.8 Merge metadati LiaScript
 
 1. Default globali (`course.yaml`)
 2. Campi scalari del capitolo sovrascrivono

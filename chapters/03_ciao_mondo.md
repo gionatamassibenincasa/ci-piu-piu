@@ -203,6 +203,7 @@ files:
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
 
 > 💡 **Metafora:** Scrivere codice è come scrivere una ricetta di cucina.  
+>
 > - Il **computer** è lo chef che la esegue alla lettera. Se dimentichi “aggiungi un pizzico di sale”, lui non lo indovina: si blocca o produce un risultato sbagliato.  
 > - L’**essere umano** (tu tra sei mesi, un collega, il docente) è l’altro lettore: deve poter capire, modificare e mantenere la ricetta. Per questo usiamo commenti e codice ordinato.
 
@@ -210,6 +211,7 @@ Un linguaggio di programmazione è come un linguaggio straniero con una grammati
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
+
 - Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
 
 ---
@@ -260,7 +262,6 @@ int main() {
 }
 ```
 
-
 #### 1. PREDICT (Prevedi)
 
 
@@ -268,6 +269,7 @@ int main() {
 
 
 #### 2. RUN (Esegui)
+
 Digita il codice sotto nel tuo editor oppure eseguilo con il bottone.
 Confronta l'output con la previsione: la differenza, se c'è, ti dice cosa investigare.
 
@@ -292,6 +294,7 @@ int main() {
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
+
 Analizziamo il codice riga per riga come detective.
 
 | Fase | Cosa osservi a video |

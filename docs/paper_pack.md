@@ -2,9 +2,10 @@
 
 Verifiche cartacee PRIMM allineate ai capitoli, stampabili e integrabili con registro elettronico e workflow Classroom50.
 
-**Stato**: implementato (CLI `print --template paper|registro`)  
+**Stato**: specifica di prodotto (parzialmente implementato in CLI `print --template paper|registro`)  
 **Dipende da**: frontmatter validato, Slice E (`print`), schema capitolo  
 **Non sostituisce**: il compito digitale (`scaffold-assignment`) né il worksheet già generato da `print`
++**Prodotto**: P3 — vedi `docs/products.md`  
 
 ---
 
@@ -272,3 +273,43 @@ Versione B: stessi punti e prompt; letterali e ordine delle domande Investigate 
 - `docs/SPEC.md` — pipeline `print`, principi “stampa = consumatore”
 - `schemas/chapter-frontmatter.schema.json`
 - Worksheet esistente (Slice E): non eliminato; il template `paper` è un profilo aggiuntivo orientato alla **valutazione formale**
+
+## 12. Qualità item e versioni A/B (obbligo di progetto)
+
+### 12.1 Tipi di domanda preferiti
+- **Tracing**: frammento di codice + domanda sullo stato (valori, quante copie, cosa punta dove).
+- **Perché**: “perché non compila / perché questo output / perché questo invariante”.
+- Evitare come unico item del pacchetto domande solo mnemonico-sintattiche.
+
+### 12.2 ID stabili
+Ogni item in `pack.json` espone `id` del tipo `{activity_id}/{phase}` o `{activity_id}/{phase}/{n}`.  
+Gli id restano stabili tra edizioni se il significato dell’item non cambia.
+
+### 12.3 Campo `context`
+In `assessment.predict|investigate|modify|make`:
+
+```yaml
+context: >
+  Spiegazione breve della risposta corretta (solo griglia docente).
+```
+
+La griglia mostra: risposta attesa (se nota), `context`, `typical_errors`.
+
+### 12.4 Varianti A/B con contenuto diverso
+
+```yaml
+assessment:
+  versions: ["A", "B"]
+  variants:
+    B:
+      predict:
+        prompt: "..."   # opzionale: override
+        # code/dati diversi ammessi
+      modify:
+        prompt: "Stessi obiettivi, letterali/numeri diversi da A"
+```
+
+Se `variants.B` è assente, B riusa il contenuto base (solo etichetta diversa) — accettabile in bozza, **non** come obiettivo finale di qualità.
+
+### 12.5 Visualizzazione processo
+Il Paper Pack non sostituisce Investigate online; in verifica si può chiedere di **completare una tabella di traccia** già impostata sul foglio (tracing cartaceo).

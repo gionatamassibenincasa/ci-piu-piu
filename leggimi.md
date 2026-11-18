@@ -106,3 +106,11 @@ Documentazione completa: **`docs/scaffold_assignment.md`**.
 - Un `activity_id` → un repository template → un assignment.
 - Solo i file `action: create` del frontmatter finiscono nel template.
 - La creazione dell’assignment su Classroom50 resta **manuale** in v1 (istruzioni stampate dal comando).
+
+## Tre prodotti
+
+1. **OER online** (`build`) — LiaScript  
+2. **Classroom50** (`scaffold-assignment`) — template esercizi  
+3. **Paper Pack** (`print --template paper`) — verifica cartacea  
+
+Un capitolo, un `activity_id`, tre proiezioni. Dettaglio: `docs/products.md`.
