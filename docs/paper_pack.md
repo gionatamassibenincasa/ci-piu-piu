@@ -2,7 +2,8 @@
 
 Verifiche cartacee PRIMM allineate ai capitoli, stampabili e integrabili con registro elettronico e workflow Classroom50.
 
-**Stato**: specifica di prodotto (parzialmente implementato in CLI `print --template paper|registro`)  
+**Stato**: specifica di prodotto (+ qualità item, A/B sostanziale, context)
+**Prodotto**: P3 — vedi `docs/products.md`  
 **Dipende da**: frontmatter validato, Slice E (`print`), schema capitolo  
 **Non sostituisce**: il compito digitale (`scaffold-assignment`) né il worksheet già generato da `print`
 +**Prodotto**: P3 — vedi `docs/products.md`  
@@ -274,6 +275,9 @@ Versione B: stessi punti e prompt; letterali e ordine delle domande Investigate 
 - `schemas/chapter-frontmatter.schema.json`
 - Worksheet esistente (Slice E): non eliminato; il template `paper` è un profilo aggiuntivo orientato alla **valutazione formale**
 
+
+---
+
 ## 12. Qualità item e versioni A/B (obbligo di progetto)
 
 ### 12.1 Tipi di domanda preferiti
@@ -313,3 +317,4 @@ Se `variants.B` è assente, B riusa il contenuto base (solo etichetta diversa) �
 
 ### 12.5 Visualizzazione processo
 Il Paper Pack non sostituisce Investigate online; in verifica si può chiedere di **completare una tabella di traccia** già impostata sul foglio (tracing cartaceo).
+

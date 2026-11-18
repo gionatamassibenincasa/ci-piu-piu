@@ -90,3 +90,10 @@ Prima di un concetto “potente” (array, funzioni, struct) si può inserire un
 - [ ] Modify ha almeno 2-3 modifiche progressive + scaffold
 - [ ] Make è uno scenario aziendale nuovo con requisiti espliciti
 - [ ] Nessuna fase introduce costrutti non ancora insegnati
+
+
+## Qualità Investigate e Predict (richiamo)
+
+- Predict: preferire **perché** e **tracing** rispetto al solo output (vedi `docs/SPEC.md` §4.2).
+- Investigate su memoria/processo: obbligatorio almeno uno tra tabella di traccia, Python Tutor, diagramma plantUML.
+- Item stabili e Paper Pack: `docs/products.md`, `docs/paper_pack.md`.

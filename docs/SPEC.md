@@ -23,6 +23,37 @@ Vedi anche [`docs/products.md`](products.md).
 
 ---
 
+## 0. Tre prodotti (OER / Classroom50 / Paper Pack)
+
+Vedi anche [`docs/products.md`](products.md).
+
+| ID | Prodotto | Cliente | Valore relativo |
+|----|----------|---------|-----------------|
+| P1 | OER online (LiaScript) | Studente | Alto per lo studente; scarsa disponibilità a pagare da solo |
+| P2 | Template esercizi Classroom50 | Docente di laboratorio | Alto (tempo) |
+| P3 | Paper Pack | Docente di teoria | Molto alto (verifiche in classe) |
+
+**Coesione:** un capitolo = un `activity_id` + un frontmatter; i tre prodotti sono *proiezioni* (`build`, `scaffold-assignment`, `print`), non alberi di file separati.
++
+**Non** si ristrutturano le lezioni in directory per prodotto (v1). Eventuale split solo di `assessment` in file affiancato resta opzionale e fuori scope finché il YAML resta gestibile.
+
+---
+
+
+## 0. Tre prodotti (OER / Classroom50 / Paper Pack)
+
+Vedi anche [`docs/products.md`](products.md).
+
+| ID | Prodotto | Cliente | Valore relativo |
+|----|----------|---------|-----------------|
+| P1 | OER online (LiaScript) | Studente | Alto per lo studente; scarsa disponibilità a pagare da solo |
+| P2 | Template esercizi Classroom50 | Docente di laboratorio | Alto (tempo) |
+| P3 | Paper Pack | Docente di teoria | Molto alto (verifiche in classe) |
+
+**Coesione:** un capitolo = un `activity_id` + un frontmatter; i tre prodotti sono *proiezioni* (`build`, `scaffold-assignment`, `print`), non alberi di file separati.
+
+**Non** si ristrutturano le lezioni in directory per prodotto (v1). Eventuale split solo di `assessment` in file affiancato resta opzionale e fuori scope finché il YAML resta gestibile.
+
 ## 1. Contesto e obiettivi
 
 ### 1.1 Contesto operativo
@@ -331,6 +362,41 @@ http://localhost:3000/liascript/index.html?http://localhost:3000/dist/lessons/03
 4. Frontmatter **non** compare nell’output LiaScript (solo metadati espansi nel formato atteso dal player)
 
 ---
+
+
+### 4.2 Qualità delle domande (alta / media priorità)
+
+1. **Perché e tracing (alta)**  
+   Preferire item che chiedono *perché* un comportamento o *quale stato* dopo N passi, non solo l’output.  
+   Tipi ammessi in assessment/predict: `multiple_choice`, `short_answer`, `tracing` (codice + domanda sullo stato).
+
+2. **ID stabili (alta)**  
+   Ogni item valutativo ha un `id` stabile nel tempo (es. `ciao-mondo-01/predict`, `ciao-mondo-01/investigate/1`).  
+   L’`activity_id` non cambia se si rinomina il file. Gli id item non si riciclano con significato diverso.
+
+3. **Context in griglia (media)**  
+   Oltre a `typical_errors`, ogni sezione assessment può avere `context` (spiegazione della risposta corretta).  
+   `print --template paper` la include in `griglia` (non nel foglio studente).
+
+4. **Versioning A/B sostanziale (media)**  
+   Le versioni non sono solo etichette: per ogni versione si possono sovrascrivere `prompt`, `code` o dati numerici.  
+   Schema: `assessment.variants.A|B` (opzionale); default = contenuto base condiviso.
+
+5. **Checklist visualizzazione (media)**  
+   Se il chunk tratta memoria, alias, array, oggetti o flussi non banali, il corpo Investigate deve includere **almeno una** tra:  
+   tabella di traccia, Python Tutor (o equivalente), diagramma plantUML del processo.  
+   Opzionale in frontmatter: `components.visualization: { kind: table|pythontutor|plantuml, note: "..." }` a fini di lint futuro.
+
+### 4.3 Coesione P1–P2–P3
+
+| Dato | P1 OER | P2 Classroom | P3 Paper |
+|------|--------|--------------|----------|
+| `activity_id` | nav / metadata | nome template | path output |
+| `components.predict_quiz` | quiz LiaScript | — | Predict verifica |
+| `files[]` action create | — | repo studente | starter Modify/Make |
+| `assessment` | — | — | verifica + griglia |
+| `registro` | — | — | registro.txt |
+
 
 ## 5. Configurazione dei compiti (per classe)
 
