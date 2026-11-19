@@ -334,6 +334,33 @@ python -m unittest tests.test_paper_pack_smoke -v   # regressione contratto v2 (
 Controllare a mano: `output/paper/<activity_id>/pack.json`, `verifica_A.typ`, `verifica_B.typ`, `griglia.typ`, `registro.txt`.
 
 
+
+
+---
+
+## 11. Golden sample (capitolo 03) — esito revisione tecnica
+
+Capitolo di riferimento: `chapters/03_ciao_mondo.md` (`activity_id: ciao-mondo-01`).
+
+| Controllo | Esito |
+|-----------|--------|
+| `format_version` 2, id `ciao-mondo-01/…` | OK |
+| Variante B ≠ A (Predict/Modify/Make) | OK |
+| Context e risposte in griglia | OK |
+| Compilazione PDF (Typst) | OK dopo escape `#` nei testi |
+| Layout | Intestazione a due livelli; Predict a scelta multipla con spazio ridotto; Investigate con a capo reali |
+
+**Limitazioni note (da rivedere in fase 1.0 con il docente):**
+- Il titolo lungo riempie l’intestazione: accettabile, non bloccante.
+- Make mostra ancora uno scaffold con commenti `TODO` (coerente col repo Classroom50).
+- Quantità/difficoltà domande: da validare in aula (fase **1.0**), non in questa revisione tecnica.
+
+Comando:
+
+```bash
+python -m tools.cipiupiu print 03 --template paper --emit json,typ,pdf --out-dir output
+```
+
 ## 12. Qualità item e versioni A/B (obbligo di progetto)
 
 ### 12.1 Tipi di domanda preferiti

@@ -346,9 +346,18 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
 
 
 def _typ_string(value: str | None) -> str:
+    """Literal Typst string (JSON-encoded)."""
     return json.dumps(value or "", ensure_ascii=False)
 
 
+def _typ_text(value: str | None) -> str:
+    """Typst content block for prose (preserves newlines)."""
+    raw = value or ""
+    # Escape Typst markup specials inside content blocks.
+    raw = raw.replace("\\", "\\\\")
+    raw = raw.replace("#", "\\#")
+    raw = raw.replace("[", "\\[").replace("]", "\\]")
+    return "[" + raw + "]"
 def render_typst(model: dict[str, Any], template: str) -> str:
     """Adatta il modello canonico worksheet a Typst."""
     chapter = model["chapter"]
@@ -366,7 +375,7 @@ def render_typst(model: dict[str, Any], template: str) -> str:
         out.extend(
             [
                 f"= Esercizio {number} — {_PHASE_LABEL[item['phase']]}",
-                f"#testo({_typ_string(item['prompt'])})",
+                f"#testo({_typ_text(item['prompt'])})",
                 "",
             ]
         )
@@ -396,7 +405,7 @@ def render_typst(model: dict[str, Any], template: str) -> str:
 
 
 def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
-    """Foglio studente Paper Pack (una versione)."""
+    """Foglio studente Paper Pack (una versione) — layout golden sample."""
     chapter = model["chapter"]
     assess = model.get("assessment") or {}
     duration = assess.get("duration_min")
@@ -417,7 +426,7 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
             f"titolo: {_typ_string(chapter['title'])}, "
             f"template: {_typ_string('paper')})"
         ),
-        f"#testo({_typ_string(meta_line)})",
+        f"#meta-riga({_typ_text(meta_line)})",
         "",
     ]
     for number, item in enumerate(items, 1):
@@ -425,11 +434,11 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
         heading = f"Esercizio {number} — {_PHASE_LABEL[item['phase']]}"
         if pts is not None:
             heading += f" ({pts} pt)"
-        out.extend([f"= {heading}", f"#testo({_typ_string(item['prompt'])})", ""])
+        out.extend([f"= {heading}", f"#testo({_typ_text(item['prompt'])})", ""])
         if item.get("code"):
             out.extend([f"#codice({_typ_string(item['code'])})", ""])
         for choice in item.get("choices") or []:
-            out.append(f"#scelta({_typ_string(choice)})")
+            out.append(f"#scelta({_typ_text(str(choice))})")
         if item.get("choices"):
             out.append("")
         for starter in item.get("starter_files") or []:
@@ -444,9 +453,14 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
                 )
         must = item.get("must_include") or []
         if must:
-            out.append("*Deve comparire nel codice:* " + ", ".join(f"`{m}`" for m in must))
+            out.append(
+                "*Deve comparire nel codice:* " + ", ".join(f"`{m}`" for m in must)
+            )
             out.append("")
-        out.extend([f'#spazio-risposta(fase: "{item["phase"]}")', ""])
+        phase = item["phase"]
+        if phase == "predict" and item.get("choices"):
+            phase = "predict-mc"
+        out.extend([f'#spazio-risposta(fase: "{phase}")', ""])
     return "\n".join(out)
 
 
@@ -465,7 +479,7 @@ def render_paper_grid_typst(model: dict[str, Any]) -> str:
         "",
     ]
     if assess.get("total_points") is not None:
-        out.append("#testo(" + _typ_string(f"Totale: {assess['total_points']} punti") + ")")
+        out.append(f"#meta-riga({_typ_text(f'Totale: {assess["total_points"]} punti')})")
         out.append("")
 
     versions = list(assess.get("versions") or ["A"])
@@ -480,8 +494,8 @@ def render_paper_grid_typst(model: dict[str, Any]) -> str:
             head = f"{number}. {_PHASE_LABEL[item['phase']]}"
             if pts is not None:
                 head += f" — {pts} pt"
-            out.extend([f"== {head}", f"#testo({_typ_string(item['prompt'])})", ""])
-            out.append(f"#testo({_typ_string('id: ' + str(item.get('id', '')))})")
+            out.extend([f"== {head}", f"#testo({_typ_text(item['prompt'])})", ""])
+            out.append(f"#item-id({_typ_text('id: ' + str(item.get('id', '')))})")
             out.append("")
             if item.get("code"):
                 out.extend([f"#codice({_typ_string(item['code'])})", ""])
@@ -492,7 +506,7 @@ def render_paper_grid_typst(model: dict[str, Any]) -> str:
             ctx = (item.get("context") or "").strip()
             if ctx:
                 out.append("*Spiegazione (context):*")
-                out.append(f"#testo({_typ_string(ctx)})")
+                out.append(f"#testo({_typ_text(ctx)})")
                 out.append("")
             errors = item.get("typical_errors") or []
             if errors:
@@ -503,6 +517,9 @@ def render_paper_grid_typst(model: dict[str, Any]) -> str:
             if must:
                 out.append("*Deve includere:* " + ", ".join(f"`{m}`" for m in must))
                 out.append("")
+        if ver != versions[-1]:
+            out.append("#pagebreak()")
+            out.append("")
     return "\n".join(out)
 
 
