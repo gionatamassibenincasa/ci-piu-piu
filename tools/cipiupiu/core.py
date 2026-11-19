@@ -404,6 +404,7 @@ def merge_liascript_meta(
             "narrator",
             "comment",
             "version",
+            "translateWithGoogle",
         }:
             out[key] = val
     imports: list[str] = []
@@ -420,7 +421,7 @@ def merge_liascript_meta(
 def format_liascript_header(meta: dict[str, Any]) -> str:
     """Commento HTML in testa richiesto dal player LiaScript (solo lezioni)."""
     lines = ["<!--"]
-    keys = ("author", "email", "version", "language", "narrator", "comment")
+    keys = ("author", "email", "version", "language", "narrator", "comment", "translateWithGoogle")
     width = max(len(k) for k in keys + ("import",))
     for key in keys:
         if not meta.get(key):

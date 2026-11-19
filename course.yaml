@@ -10,6 +10,8 @@ liascript:
   email: gionata.massi@savoiabenicasa.it
   version: "2026-11-12"
   language: it
+  # Disabilita il traduttore Google *integrato in LiaScript* (non è Chrome).
+  translateWithGoogle: false
   narrator: IT Italian Male
   comment: >
     Appunti delle lezioni di Informatica - Classi terze ITE SIA -
