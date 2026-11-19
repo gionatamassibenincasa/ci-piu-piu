@@ -206,8 +206,41 @@ def build_print_model(chapter_id: str, phases: tuple[str, ...]) -> dict[str, Any
     }
 
 
+
+def _stable_item_id(activity_id: str, phase: str, slot: int | None = None) -> str:
+    """Id stabile: activity_id/phase[/n]."""
+    if slot is None:
+        return f"{activity_id}/{phase}"
+    return f"{activity_id}/{phase}/{slot}"
+
+
+def _correct_choices(meta: dict[str, Any]) -> list[str]:
+    texts = list(_field(meta, "predict_option_text") or [])
+    flags = list(_field(meta, "predict_option_correct") or [])
+    return [str(t) for t, f in zip(texts, flags) if t and f]
+
+
+def _merge_variant(item: dict[str, Any], override: dict[str, Any] | None) -> dict[str, Any]:
+    """Applica override di variants.X sulla fase."""
+    if not override:
+        return dict(item)
+    out = dict(item)
+    for key in ("prompt", "code", "context", "points"):
+        if key in override and override[key] is not None:
+            out[key] = override[key]
+    if override.get("questions") is not None:
+        qs = list(override["questions"])
+        out["questions"] = qs
+        out["prompt"] = "\n".join(f"{i}. {q}" for i, q in enumerate(qs, 1))
+    if override.get("typical_errors") is not None:
+        out["typical_errors"] = list(override["typical_errors"])
+    if override.get("must_include") is not None:
+        out["must_include"] = list(override["must_include"])
+    return out
+
+
 def build_paper_model(chapter_id: str) -> dict[str, Any]:
-    """Modello Paper Pack: verifica formale + registro (solo frontmatter validato)."""
+    """Paper Pack model format_version 2: id stabili, context, items_by_version."""
     chapter = _validated_chapter(chapter_id)
     meta = chapter.meta
     assessment = _field(meta, "assessment") or {}
@@ -217,33 +250,42 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
             "(vedi docs/paper_pack.md)"
         )
 
+    activity_id = str(_field(meta, "activity_id"))
     versions = list(assessment.get("versions") or ["A"])
-    items: list[dict[str, Any]] = []
+    variants = assessment.get("variants") or {}
+    if not isinstance(variants, dict):
+        variants = {}
 
-    # Predict: assessment opzionale + components.predict_quiz
+    base_items: list[dict[str, Any]] = []
+
     pred = assessment.get("predict") or {}
     base_pred = _phase_item(meta, "predict")
     if base_pred:
-        texts = list(_field(meta, "predict_option_text") or [])
-        flags = list(_field(meta, "predict_option_correct") or [])
-        correct = [
-            str(text)
-            for text, flag in zip(texts, flags)
-            if text and flag
-        ]
-        base_pred = {
+        item = {
             **base_pred,
-            "points": pred.get("points"),
+            "id": pred.get("id") or _stable_item_id(activity_id, "predict"),
+            "points": pred.get("points", base_pred.get("points")),
             "typical_errors": list(pred.get("typical_errors") or []),
-            "correct_choices": correct,
+            "context": pred.get("context") or "",
+            "correct_choices": _correct_choices(meta),
         }
         if pred.get("prompt"):
-            base_pred["prompt"] = pred["prompt"]
-        items.append(base_pred)
+            item["prompt"] = pred["prompt"]
+        if pred.get("code"):
+            item["code"] = pred["code"]
+        base_items.append(item)
 
+    inv_block = assessment.get("investigate") or {}
     inv = _phase_item(meta, "investigate")
     if inv:
-        items.append(inv)
+        base_items.append(
+            {
+                **inv,
+                "id": inv_block.get("id") or _stable_item_id(activity_id, "investigate"),
+                "context": inv_block.get("context") or inv.get("context") or "",
+                "questions": list(inv_block.get("questions") or []),
+            }
+        )
 
     for phase in ("modify", "make"):
         block = assessment.get(phase) or {}
@@ -256,29 +298,37 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
                 starters = fallback.get("starter_files") or starters
         if not prompt and not starters:
             continue
-        items.append(
+        base_items.append(
             {
-                "id": f"{_field(meta, 'activity_id')}-{phase}",
+                "id": block.get("id") or _stable_item_id(activity_id, phase),
                 "phase": phase,
                 "prompt": prompt,
-                "code": None,
+                "code": block.get("code"),
                 "choices": [],
                 "starter_files": starters,
                 "points": block.get("points"),
                 "must_include": list(block.get("must_include") or []),
                 "typical_errors": list(block.get("typical_errors") or []),
+                "context": block.get("context") or "",
             }
         )
 
-    if not items:
+    if not base_items:
         raise ValueError("assessment presente ma nessuna sezione utilizzabile per la verifica")
 
+    items_by_version: dict[str, list[dict[str, Any]]] = {}
+    for ver in versions:
+        ver_over = variants.get(ver) if isinstance(variants.get(ver), dict) else {}
+        items_by_version[ver] = [
+            _merge_variant(item, ver_over.get(item["phase"])) for item in base_items
+        ]
+
     return {
-        "format_version": 1,
+        "format_version": 2,
         "kind": "paper",
         "chapter": {
             "order": _field(meta, "chapter_order"),
-            "activity_id": _field(meta, "activity_id"),
+            "activity_id": activity_id,
             "title": _field(meta, "chapter_title"),
         },
         "assessment": {
@@ -290,7 +340,8 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
             "argomenti": _field(meta, "registro_argomenti"),
             "note": _field(meta, "registro_note"),
         },
-        "items": items,
+        "items": items_by_version[versions[0]],
+        "items_by_version": items_by_version,
     }
 
 
@@ -299,7 +350,7 @@ def _typ_string(value: str | None) -> str:
 
 
 def render_typst(model: dict[str, Any], template: str) -> str:
-    """Adatta il modello canonico a Typst, senza leggere il frontmatter."""
+    """Adatta il modello canonico worksheet a Typst."""
     chapter = model["chapter"]
     out = [
         f'#import "{_STYLE_IMPORT}": *',
@@ -333,7 +384,9 @@ def render_typst(model: dict[str, Any], template: str) -> str:
             requirements: list[str] = []
             if rules.get("min_lines") is not None:
                 requirements.append(f"almeno {rules['min_lines']} righe")
-            requirements.extend(f"contiene `{value}`" for value in rules.get("must_contain", []) or [])
+            requirements.extend(
+                f"contiene `{value}`" for value in rules.get("must_contain", []) or []
+            )
             if requirements:
                 out.extend(["", "*Requisiti:*"])
                 out.extend(f"- {requirement}" for requirement in requirements)
@@ -354,6 +407,8 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
     if total is not None:
         meta_line += f" · {total} punti"
 
+    items = (model.get("items_by_version") or {}).get(version) or model.get("items") or []
+
     out = [
         f'#import "{_STYLE_IMPORT}": *',
         (
@@ -365,7 +420,7 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
         f"#testo({_typ_string(meta_line)})",
         "",
     ]
-    for number, item in enumerate(model["items"], 1):
+    for number, item in enumerate(items, 1):
         pts = item.get("points")
         heading = f"Esercizio {number} — {_PHASE_LABEL[item['phase']]}"
         if pts is not None:
@@ -396,7 +451,7 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
 
 
 def render_paper_grid_typst(model: dict[str, Any]) -> str:
-    """Griglia docente: punti, indicazioni, errori tipici (niente spazio risposta)."""
+    """Griglia docente: punti, context, risposte attese, errori tipici."""
     chapter = model["chapter"]
     assess = model.get("assessment") or {}
     out = [
@@ -410,33 +465,44 @@ def render_paper_grid_typst(model: dict[str, Any]) -> str:
         "",
     ]
     if assess.get("total_points") is not None:
-        total_label = f"Totale: {assess['total_points']} punti"
-        out.append("#testo(" + _typ_string(total_label) + ")")
+        out.append("#testo(" + _typ_string(f"Totale: {assess['total_points']} punti") + ")")
         out.append("")
-    for number, item in enumerate(model["items"], 1):
-        pts = item.get("points")
-        head = f"{number}. {_PHASE_LABEL[item['phase']]}"
-        if pts is not None:
-            head += f" — {pts} pt"
-        out.extend([f"= {head}", f"#testo({_typ_string(item['prompt'])})", ""])
-        if item.get("code"):
-            out.extend([f"#codice({_typ_string(item['code'])})", ""])
-        correct = item.get("correct_choices") or []
-        if correct:
-            out.append("*Risposta/e attesa/e:* " + "; ".join(correct))
+
+    versions = list(assess.get("versions") or ["A"])
+    by_ver = model.get("items_by_version") or {"A": model.get("items") or []}
+
+    for ver in versions:
+        items = by_ver.get(ver) or []
+        out.append(f"= Versione {ver}")
+        out.append("")
+        for number, item in enumerate(items, 1):
+            pts = item.get("points")
+            head = f"{number}. {_PHASE_LABEL[item['phase']]}"
+            if pts is not None:
+                head += f" — {pts} pt"
+            out.extend([f"== {head}", f"#testo({_typ_string(item['prompt'])})", ""])
+            out.append(f"#testo({_typ_string('id: ' + str(item.get('id', '')))})")
             out.append("")
-        elif item.get("choices"):
-            out.append("*Opzioni:* " + " | ".join(item["choices"]))
-            out.append("")
-        errors = item.get("typical_errors") or []
-        if errors:
-            out.append("*Errori tipici:*")
-            out.extend(f"- {err}" for err in errors)
-            out.append("")
-        must = item.get("must_include") or []
-        if must:
-            out.append("*Deve includere:* " + ", ".join(f"`{m}`" for m in must))
-            out.append("")
+            if item.get("code"):
+                out.extend([f"#codice({_typ_string(item['code'])})", ""])
+            correct = item.get("correct_choices") or []
+            if correct:
+                out.append("*Risposta/e attesa/e:* " + "; ".join(correct))
+                out.append("")
+            ctx = (item.get("context") or "").strip()
+            if ctx:
+                out.append("*Spiegazione (context):*")
+                out.append(f"#testo({_typ_string(ctx)})")
+                out.append("")
+            errors = item.get("typical_errors") or []
+            if errors:
+                out.append("*Errori tipici:*")
+                out.extend(f"- {err}" for err in errors)
+                out.append("")
+            must = item.get("must_include") or []
+            if must:
+                out.append("*Deve includere:* " + ", ".join(f"`{m}`" for m in must))
+                out.append("")
     return "\n".join(out)
 
 

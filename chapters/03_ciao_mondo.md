@@ -6,193 +6,238 @@ order: 3
 components:
   predict_quiz:
     question: Cosa fa std::cout << "Ciao, Mondo!\n"; ?
-    code: |
-      std::cout << "Ciao, Mondo!\n";
+    code: 'std::cout << "Ciao, Mondo!\n";
+
+      '
     options:
-      - text: Legge da tastiera
-        correct: false
-      - text: Stampa Ciao, Mondo! e va a capo
-        correct: true
-      - text: Compila il programma
-        correct: false
-  make_instructions: >
-    presentazione.cpp: tre std::cout per una schermata di benvenuto
+    - text: Legge da tastiera
+      correct: false
+    - text: Stampa Ciao, Mondo! e va a capo
+      correct: true
+    - text: Compila il programma
+      correct: false
+  make_instructions: 'presentazione.cpp: tre std::cout per una schermata di benvenuto
     di un gestionale, commento /// sul perché, return 0
+
+    '
+  visualization:
+    kind: pythontutor
+    note: Osservare il flusso fino a return 0 (nessuna variabile di stato).
 registro:
-  argomenti: >
-    Programma C++ minimo; direttiva #include <iostream>;
-    std::cout e sequenza di escape \n; funzione main e return 0;
-    introduzione al namespace std. Laboratorio PRIMM sul programma Ciao Mondo.
-  note: >
-    Verifica scritta in classe (Predict, Investigate, Modify, Make).
-    Compito digitale correlato su repository Classroom50.
+  argomenti: 'Programma C++ minimo; direttiva #include <iostream>; std::cout e sequenza
+    di escape \n; funzione main e return 0; introduzione al namespace std. Laboratorio
+    PRIMM sul programma Ciao Mondo.
+
+    '
+  note: 'Verifica scritta in classe (Predict, Investigate, Modify, Make). Compito
+    digitale correlato su repository Classroom50.
+
+    '
 assessment:
   duration_min: 50
   total_points: 10
   versions:
-    - "A"
-    - "B"
+  - A
+  - B
   predict:
     points: 2
+    context: std::cout invia caratteri sullo stream di output standard; \n va a capo.
+      Non legge da tastiera e non compila il programma.
   investigate:
     points: 3
     questions:
-      - "A che serve `#include <iostream>`?"
-      - "Qual è il ruolo della funzione `main`? Cosa succede se manca?"
-      - "Cosa significa `std::` davanti a `cout`?"
+    - A che serve `#include <iostream>`?
+    - Qual è il ruolo della funzione `main`? Cosa succede se manca?
+    - Cosa significa `std::` davanti a `cout`?
     typical_errors:
-      - "Descrive include come se venisse eseguita a runtime"
-      - "Ommette che main è il punto di ingresso obbligatorio"
+    - Descrive include come se venisse eseguita a runtime
+    - Ommette che main è il punto di ingresso obbligatorio
+    context: 'iostream dichiara gli stream; main è il punto di ingresso; std:: qualifica
+      i nomi del namespace standard.'
   modify:
     points: 2
-    prompt: >
-      Partendo dal codice stampato sul foglio, aggiungi una seconda riga
-      di output con la tua classe. Lascia invariata la riga "Ciao, Mondo!".
+    prompt: 'Partendo dal codice stampato sul foglio, aggiungi una seconda riga di
+      output con la tua classe. Lascia invariata la riga "Ciao, Mondo!".
+
+      '
     typical_errors:
-      - "Rimuove la riga esistente invece di aggiungerne una"
+    - Rimuove la riga esistente invece di aggiungerne una
+    context: Si aggiunge una seconda istruzione std::cout senza rimuovere la riga
+      esistente.
   make:
     points: 3
-    prompt: >
-      Scrivi da zero un programma che stampi tre righe separate: nome,
-      classe, hobby (schermata di benvenuto di un gestionale).
-      Obbligatori: #include <iostream>, int main(), std::cout, \n, return 0.
+    prompt: 'Scrivi da zero un programma che stampi tre righe separate: nome, classe,
+      hobby (schermata di benvenuto di un gestionale). Obbligatori: #include <iostream>,
+      int main(), std::cout, \n, return 0.
+
+      '
     must_include:
-      - "std::cout"
-      - "return 0"
+    - std::cout
+    - return 0
     typical_errors:
-      - "Manca return 0 o usa cout senza std::"
+    - 'Manca return 0 o usa cout senza std::'
+    context: Tre std::cout (o uno con più \n), include, main e return 0 sono obbligatori.
+  variants:
+    B:
+      predict:
+        prompt: 'Cosa fa questa istruzione?
 
+          std::cout << "Benvenuto nel gestionale\n";'
+      modify:
+        prompt: Partendo dal codice stampato sul foglio, aggiungi una seconda riga
+          di output con il nome della tua scuola. Lascia invariata la riga "Ciao,
+          Mondo!".
+      make:
+        prompt: 'Scrivi da zero un programma che stampi tre righe: cognome, sezione
+          (es. 3A SIA), città. Obbligatori: #include <iostream>, int main(), std::cout,
+          \n, return 0.'
 files:
-  - path: README.md
-    action: create
-    description: Istruzioni per svolgere gli esercizi del capitolo
-    template_content: |
-      # Istruzioni – Ciao Mondo
+- path: README.md
+  action: create
+  description: Istruzioni per svolgere gli esercizi del capitolo
+  template_content: "# Istruzioni – Ciao Mondo\n\nLavora **in ordine** (PRIMM). Ogni\
+    \ fase ha un file dedicato.\n\n1. **Predict** → `student_work/predict/answers.md`\n\
+    \   (prima di eseguire qualsiasi codice)\n\n2. **Run** → digita a mano il programma\
+    \ del capitolo,\n   poi rifletti in `student_work/run/answers.md`\n\n3. **Investigate**\
+    \ → debugger o Python Tutor,\n   poi `student_work/investigate/answers.md`\n\n\
+    4. **Modify** → `student_work/modify/ciao_modificato.cpp`\n   (modifiche A, B,\
+    \ C una alla volta)\n\n5. **Make** → `student_work/make/presentazione.cpp`\n \
+    \  (schermata di benvenuto del gestionale)\n"
+- path: student_work/predict/answers.md
+  action: create
+  phase: predict
+  template_content: '# Predict – Ciao Mondo
 
-      Lavora **in ordine** (PRIMM). Ogni fase ha un file dedicato.
 
-      1. **Predict** → `student_work/predict/answers.md`
-         (prima di eseguire qualsiasi codice)
+    Rispondi **prima** di compilare o eseguire.
 
-      2. **Run** → digita a mano il programma del capitolo,
-         poi rifletti in `student_work/run/answers.md`
 
-      3. **Investigate** → debugger o Python Tutor,
-         poi `student_work/investigate/answers.md`
+    Osserva il frammento:
 
-      4. **Modify** → `student_work/modify/ciao_modificato.cpp`
-         (modifiche A, B, C una alla volta)
+    ```cpp
 
-      5. **Make** → `student_work/make/presentazione.cpp`
-         (schermata di benvenuto del gestionale)
+    std::cout << "Ciao, Mondo!\n";
 
-  - path: student_work/predict/answers.md
-    action: create
-    phase: predict
-    template_content: |
-      # Predict – Ciao Mondo
+    ```
 
-      Rispondi **prima** di compilare o eseguire.
 
-      Osserva il frammento:
-      ```cpp
-      std::cout << "Ciao, Mondo!\n";
-      ```
+    1. Cosa fa questa istruzione? Cosa ti aspetti a video?
 
-      1. Cosa fa questa istruzione? Cosa ti aspetti a video?
-      >
+    >
 
-      2. Da dove inizia l'esecuzione di un programma C++?
-      >
 
-      3. In questo programma, quante volte viene eseguita ogni riga?
-      >
+    2. Da dove inizia l''esecuzione di un programma C++?
 
-      4. In quale ordine vengono eseguite le istruzioni?
-      >
+    >
 
-      5. C'è un output a video? Se sì, quale esattamente (includi eventuali andate a capo)?
-      >
 
-  - path: student_work/run/answers.md
-    action: create
-    phase: run
-    template_content: |
-      # Run – Ciao Mondo
+    3. In questo programma, quante volte viene eseguita ogni riga?
 
-      Digita a mano il programma del capitolo, compilalo ed eseguilo.
-      Poi rispondi.
+    >
 
-      1. Il programma compilava al primo tentativo o hai dovuto correggere qualcosa?
-      >
 
-      2. Quale output hai ottenuto?
-      >
+    4. In quale ordine vengono eseguite le istruzioni?
 
-      3. L'output corrisponde a quello che avevi previsto in Predict? Se no, cosa era diverso?
-      >
+    >
 
-  - path: student_work/investigate/answers.md
-    action: create
-    phase: investigate
-    template_content: |
-      # Investigate – Ciao Mondo
 
-      Prima di rispondere: esegui il programma col debugger oppure copialo su
-      [Python Tutor C++](https://pythontutor.com/cpp.html).
+    5. C''è un output a video? Se sì, quale esattamente (includi eventuali andate
+    a capo)?
 
-      1. A che serve `#include <iostream>`?
-      >
+    >
 
-      2. Qual è il ruolo della funzione `main`? Cosa succede se manca?
-      >
+    '
+- path: student_work/run/answers.md
+  action: create
+  phase: run
+  template_content: '# Run – Ciao Mondo
 
-      3. Cosa significa `std::` davanti a `cout`? Perché non scriviamo solo `cout`?
-      >
 
-      4. A che serve `\n` alla fine della stringa?
-      >
+    Digita a mano il programma del capitolo, compilalo ed eseguilo.
 
-      5. A che serve `return 0;`?
-      >
+    Poi rispondi.
 
-  - path: student_work/modify/ciao_modificato.cpp
-    action: create
-    phase: modify
-    description: >
-      Parti da questo file. Applica le modifiche A, B e C
-      descritte nel capitolo (una alla volta, ricompilando ogni volta).
-    template_content: |
-      #include <iostream>
 
-      int main() {
-          std::cout << "Ciao, Mondo!\n";
-          return 0;
-      }
-    validation_rules:
-      min_lines: 6
-      must_contain:
-        - std::cout
+    1. Il programma compilava al primo tentativo o hai dovuto correggere qualcosa?
 
-  - path: student_work/make/presentazione.cpp
-    action: create
-    phase: make
-    description: >
-      Programma da zero: tre righe per la schermata di benvenuto
-      di un gestionale, commento /// sul perché, return 0.
-    template_content: |
-      #include <iostream>
+    >
 
-      int main() {
-          /// TODO: spiega perché la prima riga aiuta chi usa il gestionale.
-          // TODO: tre std::cout per il messaggio di benvenuto
-          return 0;
-      }
-    validation_rules:
-      min_lines: 8
-      must_contain:
-        - std::cout
-        - return 0
+
+    2. Quale output hai ottenuto?
+
+    >
+
+
+    3. L''output corrisponde a quello che avevi previsto in Predict? Se no, cosa era
+    diverso?
+
+    >
+
+    '
+- path: student_work/investigate/answers.md
+  action: create
+  phase: investigate
+  template_content: '# Investigate – Ciao Mondo
+
+
+    Prima di rispondere: esegui il programma col debugger oppure copialo su
+
+    [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+
+    1. A che serve `#include <iostream>`?
+
+    >
+
+
+    2. Qual è il ruolo della funzione `main`? Cosa succede se manca?
+
+    >
+
+
+    3. Cosa significa `std::` davanti a `cout`? Perché non scriviamo solo `cout`?
+
+    >
+
+
+    4. A che serve `\n` alla fine della stringa?
+
+    >
+
+
+    5. A che serve `return 0;`?
+
+    >
+
+    '
+- path: student_work/modify/ciao_modificato.cpp
+  action: create
+  phase: modify
+  description: 'Parti da questo file. Applica le modifiche A, B e C descritte nel
+    capitolo (una alla volta, ricompilando ogni volta).
+
+    '
+  template_content: "#include <iostream>\n\nint main() {\n    std::cout << \"Ciao,\
+    \ Mondo!\\n\";\n    return 0;\n}\n"
+  validation_rules:
+    min_lines: 6
+    must_contain:
+    - std::cout
+- path: student_work/make/presentazione.cpp
+  action: create
+  phase: make
+  description: 'Programma da zero: tre righe per la schermata di benvenuto di un gestionale,
+    commento /// sul perché, return 0.
+
+    '
+  template_content: "#include <iostream>\n\nint main() {\n    /// TODO: spiega perché\
+    \ la prima riga aiuta chi usa il gestionale.\n    // TODO: tre std::cout per il\
+    \ messaggio di benvenuto\n    return 0;\n}\n"
+  validation_rules:
+    min_lines: 8
+    must_contain:
+    - std::cout
+    - return 0
 ---
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 

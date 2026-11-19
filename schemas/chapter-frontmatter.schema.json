@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/gionatamassibenincasa/ci-piu-piu/schemas/chapter-frontmatter.schema.json",
   "title": "ChapterFrontmatter",
-  "description": "Frontmatter YAML dei capitoli ci-piu-piu (v0.3). order è l'ordinamento canonico. Campi registro e assessment opzionali per Paper Pack.",
+  "description": "Frontmatter YAML dei capitoli ci-piu-piu (v0.4). assessment.context, assessment.variants, components.visualization per Paper Pack v2.",
   "type": "object",
   "required": [
     "activity_id",
@@ -120,6 +120,23 @@
         },
         "make_instructions": {
           "type": "string"
+        },
+        "visualization": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "table",
+                "pythontutor",
+                "plantuml"
+              ]
+            },
+            "note": {
+              "type": "string"
+            }
+          }
         }
       }
     },
@@ -231,6 +248,17 @@
             },
             "prompt": {
               "type": "string"
+            },
+            "context": {
+              "type": "string",
+              "description": "Spiegazione della risposta corretta (solo griglia docente)."
+            },
+            "id": {
+              "type": "string",
+              "description": "Override opzionale id stabile; default {activity_id}/{phase}."
+            },
+            "code": {
+              "type": "string"
             }
           }
         },
@@ -254,6 +282,14 @@
               "items": {
                 "type": "string"
               }
+            },
+            "context": {
+              "type": "string",
+              "description": "Spiegazione della risposta corretta (solo griglia docente)."
+            },
+            "id": {
+              "type": "string",
+              "description": "Override opzionale id stabile; default {activity_id}/{phase}."
             }
           }
         },
@@ -273,6 +309,17 @@
               "items": {
                 "type": "string"
               }
+            },
+            "context": {
+              "type": "string",
+              "description": "Spiegazione della risposta corretta (solo griglia docente)."
+            },
+            "id": {
+              "type": "string",
+              "description": "Override opzionale id stabile; default {activity_id}/{phase}."
+            },
+            "code": {
+              "type": "string"
             }
           }
         },
@@ -297,6 +344,179 @@
               "type": "array",
               "items": {
                 "type": "string"
+              }
+            },
+            "context": {
+              "type": "string",
+              "description": "Spiegazione della risposta corretta (solo griglia docente)."
+            },
+            "id": {
+              "type": "string",
+              "description": "Override opzionale id stabile; default {activity_id}/{phase}."
+            },
+            "code": {
+              "type": "string"
+            }
+          }
+        },
+        "variants": {
+          "type": "object",
+          "description": "Override per versione (A/B/...): prompt, code, questions, context diversi.",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "predict": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "typical_errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "must_include": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "points": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              },
+              "investigate": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "typical_errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "must_include": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "points": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              },
+              "modify": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "typical_errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "must_include": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "points": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              },
+              "make": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "questions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "context": {
+                    "type": "string"
+                  },
+                  "typical_errors": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "must_include": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "points": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
               }
             }
           }
