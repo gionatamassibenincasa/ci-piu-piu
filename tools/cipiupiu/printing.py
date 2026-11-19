@@ -298,14 +298,21 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
                 starters = fallback.get("starter_files") or starters
         if not prompt and not starters:
             continue
+        # Se assessment definisce "code" (anche per omettere lo scaffold Classroom), niente starter files sul foglio.
+        if "code" in block:
+            paper_code = block.get("code") or None
+            paper_starters = []
+        else:
+            paper_code = None
+            paper_starters = starters
         base_items.append(
             {
                 "id": block.get("id") or _stable_item_id(activity_id, phase),
                 "phase": phase,
                 "prompt": prompt,
-                "code": block.get("code"),
+                "code": paper_code,
                 "choices": [],
-                "starter_files": starters,
+                "starter_files": paper_starters,
                 "points": block.get("points"),
                 "must_include": list(block.get("must_include") or []),
                 "typical_errors": list(block.get("typical_errors") or []),
@@ -351,11 +358,10 @@ def _typ_string(value: str | None) -> str:
 
 
 def _typ_text(value: str | None) -> str:
-    """Typst content block for prose (preserves newlines)."""
+    """Typst content block; # becomes \\u{23} so no visible backslash."""
     raw = value or ""
-    # Escape Typst markup specials inside content blocks.
     raw = raw.replace("\\", "\\\\")
-    raw = raw.replace("#", "\\#")
+    raw = raw.replace("#", "\\u{23}")
     raw = raw.replace("[", "\\[").replace("]", "\\]")
     return "[" + raw + "]"
 def render_typst(model: dict[str, Any], template: str) -> str:
@@ -404,8 +410,9 @@ def render_typst(model: dict[str, Any], template: str) -> str:
     return "\n".join(out)
 
 
+
 def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
-    """Foglio studente Paper Pack (una versione) — layout golden sample."""
+    """Foglio studente Paper Pack (una versione)."""
     chapter = model["chapter"]
     assess = model.get("assessment") or {}
     duration = assess.get("duration_min")
@@ -417,6 +424,10 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
         meta_line += f" · {total} punti"
 
     items = (model.get("items_by_version") or {}).get(version) or model.get("items") or []
+    modify_hint = (
+        "Barra il codice che devi eliminare; scrivi il codice da inserire "
+        "nelle righe lasciate libere o sotto il listato."
+    )
 
     out = [
         f'#import "{_STYLE_IMPORT}": *',
@@ -441,6 +452,9 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
             out.append(f"#scelta({_typ_text(str(choice))})")
         if item.get("choices"):
             out.append("")
+        if item["phase"] == "modify":
+            out.append(f"#istruzione-modify({_typ_text(modify_hint)})")
+            out.append("")
         for starter in item.get("starter_files") or []:
             if starter.get("code"):
                 out.extend(
@@ -453,13 +467,12 @@ def render_paper_student_typst(model: dict[str, Any], version: str) -> str:
                 )
         must = item.get("must_include") or []
         if must:
-            out.append(
-                "*Deve comparire nel codice:* " + ", ".join(f"`{m}`" for m in must)
-            )
+            out.append("*Deve comparire nel codice:* " + ", ".join(f"`{m}`" for m in must))
             out.append("")
         phase = item["phase"]
         if phase == "predict" and item.get("choices"):
-            phase = "predict-mc"
+            # Nessun box vuoto sotto le sole scelte multiple (niente "run" su carta)
+            continue
         out.extend([f'#spazio-risposta(fase: "{phase}")', ""])
     return "\n".join(out)
 

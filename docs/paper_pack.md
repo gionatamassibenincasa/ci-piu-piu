@@ -350,6 +350,8 @@ Capitolo di riferimento: `chapters/03_ciao_mondo.md` (`activity_id: ciao-mondo-0
 | Compilazione PDF (Typst) | OK dopo escape `#` nei testi |
 | Layout | Intestazione a due livelli; Predict a scelta multipla con spazio ridotto; Investigate con a capo reali |
 
+**Revisioni da feedback stampa (2026-11-19):** intestazione solo titolo + nome/classe/data; niente box sotto Predict a scelta multipla; Modify con righe libere + istruzione “barra/scrivi”; durata tipica prova breve 10 min; `#` reso con `\u{23}` (niente backslash visibile).
+
 **Limitazioni note (da rivedere in fase 1.0 con il docente):**
 - Il titolo lungo riempie l’intestazione: accettabile, non bloccante.
 - Make mostra ancora uno scaffold con commenti `TODO` (coerente col repo Classroom50).

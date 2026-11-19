@@ -5,16 +5,27 @@ methodology: PRIMM
 order: 3
 components:
   predict_quiz:
-    question: Cosa fa std::cout << "Ciao, Mondo!\n"; ?
+    question: 'Osserva il frammento:
+
+      std::cout << "Ciao, Mondo!\n";
+
+
+      1) Cosa fa questa istruzione?
+
+      2) Il listato, così com''è, è un programma C++ completo e sintatticamente corretto?
+
+      3) Per compilarlo e ottenerne un eseguibile, serve altro codice oltre a questa
+      riga?'
     code: 'std::cout << "Ciao, Mondo!\n";
 
       '
     options:
-    - text: Legge da tastiera
-      correct: false
-    - text: Stampa Ciao, Mondo! e va a capo
+    - text: Stampa Ciao, Mondo! e va a capo; da sola non è un programma completo (mancano
+        include e main)
       correct: true
-    - text: Compila il programma
+    - text: Legge da tastiera la stringa Ciao, Mondo!
+      correct: false
+    - text: 'È già un programma completo: basta salvarlo e compilarlo così com''è'
       correct: false
   make_instructions: 'presentazione.cpp: tre std::cout per una schermata di benvenuto
     di un gestionale, commento /// sul perché, return 0
@@ -34,63 +45,67 @@ registro:
 
     '
 assessment:
-  duration_min: 50
-  total_points: 10
+  duration_min: 10
+  total_points: 6
   versions:
   - A
   - B
   predict:
     points: 2
-    context: std::cout invia caratteri sullo stream di output standard; \n va a capo.
-      Non legge da tastiera e non compila il programma.
+    context: 'std::cout stampa su stdout e \n va a capo. La riga da sola non è un
+      programma completo: servono almeno #include <iostream>, int main() e return.'
   investigate:
-    points: 3
+    points: 1
     questions:
-    - A che serve `#include <iostream>`?
-    - Qual è il ruolo della funzione `main`? Cosa succede se manca?
-    - Cosa significa `std::` davanti a `cout`?
+    - 'A che serve #include <iostream> nel programma completo?'
+    - Perché senza la funzione main il programma non parte?
     typical_errors:
     - Descrive include come se venisse eseguita a runtime
     - Ommette che main è il punto di ingresso obbligatorio
-    context: 'iostream dichiara gli stream; main è il punto di ingresso; std:: qualifica
-      i nomi del namespace standard.'
+    context: iostream dichiara gli stream; main è il punto di ingresso richiesto dal
+      runtime.
   modify:
     points: 2
-    prompt: 'Partendo dal codice stampato sul foglio, aggiungi una seconda riga di
-      output con la tua classe. Lascia invariata la riga "Ciao, Mondo!".
-
-      '
+    prompt: Nel listato sotto, aggiungi una seconda riga di output con la tua classe.
+      Non cancellare la riga "Ciao, Mondo!".
+    code: "#include <iostream>\n\nint main() {\n    std::cout << \"Ciao, Mondo!\\\
+      n\";\n\n    // scrivi qui la nuova riga di output\n\n\n    return 0;\n}\n"
     typical_errors:
     - Rimuove la riga esistente invece di aggiungerne una
-    context: Si aggiunge una seconda istruzione std::cout senza rimuovere la riga
-      esistente.
+    context: Si aggiunge una seconda istruzione std::cout nelle righe libere, senza
+      togliere la prima.
   make:
-    points: 3
-    prompt: 'Scrivi da zero un programma che stampi tre righe separate: nome, classe,
-      hobby (schermata di benvenuto di un gestionale). Obbligatori: #include <iostream>,
-      int main(), std::cout, \n, return 0.
-
-      '
-    must_include:
-    - std::cout
-    - return 0
+    points: 1
+    prompt: In non più di cinque righe utili, completa mentalmente (poi scrivi) cosa
+      manca al frammento std::cout per diventare un programma minimo compilabile.
+      Elenca solo i pezzi obbligatori (include, main, return), senza scrivere un saggio.
     typical_errors:
-    - 'Manca return 0 o usa cout senza std::'
-    context: Tre std::cout (o uno con più \n), include, main e return 0 sono obbligatori.
+    - Dimentica return 0 o include
+    context: 'Obbligatori: #include <iostream>, int main(), return 0; il cout sta
+      nel corpo di main.'
+    must_include: []
+    code: ''
   variants:
     B:
       predict:
-        prompt: 'Cosa fa questa istruzione?
+        prompt: 'Osserva il frammento:
 
-          std::cout << "Benvenuto nel gestionale\n";'
+          std::cout << "Benvenuto nel gestionale\n";
+
+
+          1) Cosa stampa?
+
+          2) È un programma completo così com''è?
+
+          3) Cosa va aggiunto per poterlo compilare?'
       modify:
-        prompt: Partendo dal codice stampato sul foglio, aggiungi una seconda riga
-          di output con il nome della tua scuola. Lascia invariata la riga "Ciao,
-          Mondo!".
+        prompt: Nel listato sotto, aggiungi una seconda riga di output con il nome
+          della scuola. Non cancellare la riga "Ciao, Mondo!".
+        code: "#include <iostream>\n\nint main() {\n    std::cout << \"Ciao, Mondo!\\\
+          n\";\n\n    // scrivi qui la nuova riga di output\n\n\n    return 0;\n}\n"
       make:
-        prompt: 'Scrivi da zero un programma che stampi tre righe: cognome, sezione
-          (es. 3A SIA), città. Obbligatori: #include <iostream>, int main(), std::cout,
-          \n, return 0.'
+        prompt: Elenca in tre bullet i pezzi minimi che mancano a una sola istruzione
+          std::cout per avere un programma C++ compilabile.
 files:
 - path: README.md
   action: create

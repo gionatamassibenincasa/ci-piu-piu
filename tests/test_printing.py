@@ -27,7 +27,8 @@ class PrintingTests(unittest.TestCase):
             rendered.splitlines()[0] if rendered else "empty",
         )
         self.assertIn("Esercizio 1 — Predict", rendered)
-        self.assertIn('#scelta("Stampa Ciao, Mondo! e va a capo")', rendered)
+        self.assertIn("Stampa Ciao, Mondo! e va a capo", rendered)
+        self.assertIn("#scelta(", rendered)
         self.assertNotIn("correct", rendered)
 
     def test_json_model_is_serializable(self) -> None:

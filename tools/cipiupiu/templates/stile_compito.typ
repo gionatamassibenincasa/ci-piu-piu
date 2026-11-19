@@ -4,16 +4,14 @@
 #set par(justify: false, leading: 0.65em)
 
 #let compito-intestazione(numero: none, titolo: "", template: "worksheet") = {
-  set text(size: 13pt, weight: "bold")
-  [Compito — Cap. #numero]
-  set text(size: 11pt, weight: "bold")
+  set text(size: 12pt, weight: "bold")
   [#titolo]
-  v(0.35em)
-  set text(size: 9pt, weight: "regular", fill: luma(80))
-  [Template: #template · Nome: ........................ Classe: ...... Data: ............]
-  v(0.25em)
-  line(length: 100%, stroke: 0.8pt)
   v(0.4em)
+  set text(size: 9.5pt, weight: "regular")
+  [Nome: ................................  Classe: ........  Data: ................]
+  v(0.3em)
+  line(length: 100%, stroke: 0.8pt)
+  v(0.45em)
 }
 
 #let testo(contenuto) = {
@@ -24,12 +22,18 @@
 #let meta-riga(contenuto) = {
   set text(size: 9.5pt, fill: luma(60))
   [#contenuto]
-  v(0.5em)
+  v(0.45em)
 }
 
 #let item-id(contenuto) = {
   set text(size: 8pt, fill: luma(120))
   [#contenuto]
+}
+
+#let istruzione-modify(contenuto) = {
+  set text(size: 9.5pt, style: "italic")
+  [#contenuto]
+  v(0.25em)
 }
 
 #let codice(contenuto) = {
@@ -49,17 +53,19 @@
 
 #let spazio-risposta(fase: "predict") = {
   let altezza = if fase == "make" {
-    8cm
+    7cm
   } else if fase == "modify" {
-    5.5cm
+    3.5cm
   } else if fase == "investigate" {
-    4.5cm
+    3.5cm
   } else if fase == "predict-mc" {
-    1.2cm
+    0cm
   } else {
-    2.5cm
+    2cm
   }
-  v(0.3em)
-  block(width: 100%, height: altezza, stroke: 0.6pt + luma(160), fill: rgb("#fafafa"))
-  v(0.4em)
+  if altezza > 0cm {
+    v(0.25em)
+    block(width: 100%, height: altezza, stroke: 0.6pt + luma(160), fill: rgb("#fafafa"))
+    v(0.35em)
+  }
 }
