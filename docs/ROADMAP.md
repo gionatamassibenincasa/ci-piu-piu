@@ -7,7 +7,7 @@
 Questo file è il **piano di esecuzione** (cosa fare dopo).  
 La SPEC resta il **contratto di prodotto**. Non duplicare qui i dettagli di schema/CLI.
 
-**Stato aggiornato:** 2026-11-19
+**Stato aggiornato:** 2026-11-19 (fase 0.2 checklist)
 
 ---
 
@@ -29,7 +29,7 @@ Chiudere i buchi che farebbero divergere i tre prodotti prima di allargare i con
 | ID | Lavoro | Stato | Note |
 |----|--------|-------|------|
 | **0.1** | Smoke test regressione Paper Pack v2 | `[x]` 2026-11-19 | `tests/test_paper_pack_smoke.py` |
-| **0.2** | Checklist autore in `docs/paper_pack.md` (id, context, variants B ≠ solo etichetta) | `[ ]` | |
+| **0.2** | Checklist autore in `docs/paper_pack.md` (id, context, variants B ≠ solo etichetta) | `[x]` 2026-11-19 | §10 checklist in `paper_pack.md` |
 | **0.3** | Cap. 03 golden sample: griglia leggibile, PDF se Typst disponibile | `[ ]` | Revisione umana del PDF/typ |
 
 **Exit fase 0:** un test automatico fallisce se Paper Pack v2 regredisce; checklist e campione 03 usabili dal docente.
@@ -89,9 +89,9 @@ Chiudere i buchi che farebbero divergere i tre prodotti prima di allargare i con
 ## Sequenza operativa (iterazioni git am + push)
 
 ```text
-0.1 smoke test          ← fatto in questa iterazione
-0.2 checklist paper_pack
-0.3 golden sample 03 (revisione artefatti)
+0.1 smoke test          ← fatto
+0.2 checklist paper_pack ← fatto
+0.3 golden sample 03 (revisione artefatti)  ← prossima
 1.0 review assessment 03 (tipo/qualità/quantità domande)  ← proposta utente
 1.1 set capitoli verifica
 1.2+ assessment a ondate

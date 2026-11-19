@@ -2,7 +2,7 @@
 
 Verifiche cartacee PRIMM allineate ai capitoli, stampabili e integrabili con registro elettronico e workflow Classroom50.
 
-**Stato**: specifica di prodotto (+ qualità item, A/B sostanziale, context)
+**Stato**: specifica di prodotto + checklist autore (fase 0.2) (+ qualità item, A/B sostanziale, context)
 **Prodotto**: P3 — vedi `docs/products.md`  
 **Dipende da**: frontmatter validato, Slice E (`print`), schema capitolo  
 **Non sostituisce**: il compito digitale (`scaffold-assignment`) né il worksheet già generato da `print`
@@ -277,6 +277,62 @@ Versione B: stessi punti e prompt; letterali e ordine delle domande Investigate 
 
 
 ---
+
+
+
+---
+
+## 10. Checklist autore (prima di dichiarare un Paper Pack “pronto”)
+
+Usare questa lista per **ogni** capitolo con `assessment`. Destinatari: docente autore e LLM di supporto.
+
+### 10.1 Contratto dati
+
+- [ ] Esistono `registro.argomenti` (testo registro) e, se utile, `registro.note`
+- [ ] `assessment.duration_min` e `assessment.total_points` valorizzati (tipico: 45–60 min, 10 pt)
+- [ ] `assessment.versions` include almeno `A` e `B` se si stampano due versioni
+- [ ] La somma dei `points` di predict + investigate + modify + make ≈ `total_points`
+- [ ] `cipiupiu validate` sul capitolo è OK
+
+### 10.2 Id stabili e coerenza P1–P3
+
+- [ ] `activity_id` non cambierà di significato tra edizioni
+- [ ] Gli item generati avranno id `{activity_id}/{phase}` (assegnati dal printer; override solo se necessario)
+- [ ] Predict della verifica riusa o allinea il lessico di `components.predict_quiz` (stessi obiettivi del chunk OER)
+- [ ] Modify/Make citano requisiti coerenti con `files[]` phase modify/make (starter sul foglio = template Classroom50)
+
+### 10.3 Qualità delle domande (SPEC §4.3)
+
+- [ ] Almeno un item è di tipo **perché** o **tracing** (stato / perché non compila / quante copie…), non solo “cosa stampa”
+- [ ] Investigate: 1–3 domande chiuse o a risposta breve, non un tema libero
+- [ ] Modify: codice di partenza sul foglio + modifica guidata (uno o pochi passi)
+- [ ] Make: requisiti chiusi (`must_include` se utile); realizzabile in 15–20 min
+- [ ] Nessun costrutto **non ancora insegnato** nel capitolo (e nei precedenti)
+
+### 10.4 Griglia docente
+
+- [ ] Ogni sezione ha `context` (spiegazione della risposta corretta, solo griglia)
+- [ ] `typical_errors` elenca 1–3 errori reali d’aula, non generici
+- [ ] Predict: le opzioni corrette restano in `components.predict_quiz` (la griglia le mostra come risposte attese)
+- [ ] Verificato con `print --template paper --emit typ` che la griglia contenga context e id
+
+### 10.5 Variante B sostanziale
+
+- [ ] Esiste `assessment.variants.B` (o equivalente) con **almeno un** override di prompt/code/dati
+- [ ] B misura gli **stessi obiettivi** di A (stessi punti e fasi), non un altro argomento
+- [ ] B non è solo l’etichetta “Versione B” a parità di testo (accettabile solo in bozza)
+- [ ] Smoke: Predict o Modify di A e B differiscono nel `pack.json`
+
+### 10.6 Comando di controllo
+
+```bash
+python -m tools.cipiupiu validate chapters/NN_….md
+python -m tools.cipiupiu print <order|activity_id> --template paper --emit json,typ --out-dir output
+python -m unittest tests.test_paper_pack_smoke -v   # regressione contratto v2 (cap. 03)
+```
+
+Controllare a mano: `output/paper/<activity_id>/pack.json`, `verifica_A.typ`, `verifica_B.typ`, `griglia.typ`, `registro.txt`.
+
 
 ## 12. Qualità item e versioni A/B (obbligo di progetto)
 
