@@ -3,7 +3,7 @@
 Open Educational Resource sul linguaggio **C++** per studenti di **3ª ITE SIA**.
 
 Fruizione: **LiaScript**. Consegne: **GitHub** + **Classroom50**.  
-Tooling: CLI unica **`cipiupiu`**.
+Tooling: CLI unica **`cipiupiu`**. Piano lavoro: [`docs/ROADMAP.md`](docs/ROADMAP.md).
 
 ## CLI
 

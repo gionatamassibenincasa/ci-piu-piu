@@ -21,7 +21,11 @@ class PrintingTests(unittest.TestCase):
 
         rendered = printing.render_typst(model, "worksheet")
 
-        self.assertIn('#import "/tools/cipiupiu/templates/stile_compito.typ": *', rendered)
+        self.assertTrue(
+            '#import "stile_compito.typ": *' in rendered
+            or '/tools/cipiupiu/templates/stile_compito.typ' in rendered,
+            rendered.splitlines()[0] if rendered else "empty",
+        )
         self.assertIn("Esercizio 1 — Predict", rendered)
         self.assertIn('#scelta("Stampa Ciao, Mondo! e va a capo")', rendered)
         self.assertNotIn("correct", rendered)

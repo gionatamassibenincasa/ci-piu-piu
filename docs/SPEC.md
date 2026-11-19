@@ -245,6 +245,9 @@ Scaffold: `scaffolds/`.
 
 ## 7. Roadmap
 
+Piano di esecuzione vivo: [`docs/ROADMAP.md`](ROADMAP.md).
+
+
 1. Schema + validate — fatto  
 2. `render` / `build` — fatto  
 3. `scaffold-assignment` — fatto v1  
