@@ -358,12 +358,15 @@ def _typ_string(value: str | None) -> str:
 
 
 def _typ_text(value: str | None) -> str:
-    """Typst content block; # becomes \\u{23} so no visible backslash."""
+    """Typst content: newline → linebreak(); # → unicode hash."""
     raw = value or ""
     raw = raw.replace("\\", "\\\\")
     raw = raw.replace("#", "\\u{23}")
     raw = raw.replace("[", "\\[").replace("]", "\\]")
-    return "[" + raw + "]"
+    parts = raw.split("\n")
+    # A capo forzati così le domande 1) 2) 3) non restano su una riga sola.
+    joined = " #linebreak() ".join(parts)
+    return "[" + joined + "]"
 def render_typst(model: dict[str, Any], template: str) -> str:
     """Adatta il modello canonico worksheet a Typst."""
     chapter = model["chapter"]

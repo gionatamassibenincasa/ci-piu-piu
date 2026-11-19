@@ -16,7 +16,7 @@
 
 #let testo(contenuto) = {
   set text(size: 10.5pt)
-  [#contenuto]
+  block(width: 100%, [#contenuto])
 }
 
 #let meta-riga(contenuto) = {
@@ -46,9 +46,17 @@
   )
 }
 
+// Quadrato e testo sempre sulla stessa riga (testo lungo va a capo nella colonna destra)
 #let scelta(contenuto) = {
-  v(0.15em)
-  box(square(size: 9pt) + h(6pt) + contenuto)
+  v(0.12em)
+  grid(
+    columns: (11pt, 1fr),
+    column-gutter: 8pt,
+    rows: (auto,),
+    align: (horizon, top),
+    square(size: 9pt, stroke: 0.75pt + luma(30)),
+    contenuto,
+  )
 }
 
 #let spazio-risposta(fase: "predict") = {
