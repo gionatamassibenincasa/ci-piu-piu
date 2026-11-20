@@ -175,6 +175,154 @@
               "type": "string"
             }
           }
+        },
+        "investigate_quiz": {
+          "type": "object",
+          "description": "Quiz Investigate (dopo Run): preferire perché / tracing / misconception.",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Frammento condiviso (opzionale)"
+            },
+            "question": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "object",
+                "required": [
+                  "text",
+                  "correct"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "correct": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "question",
+                  "options"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "text",
+                        "correct"
+                      ],
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "correct": {
+                          "type": "boolean"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "modify_quiz": {
+          "type": "object",
+          "description": "Quiz Modify: effetto di una modifica o quale modifica ottenere un risultato.",
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "Frammento condiviso (opzionale)"
+            },
+            "question": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "type": "object",
+                "required": [
+                  "text",
+                  "correct"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "correct": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "question",
+                  "options"
+                ],
+                "properties": {
+                  "question": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "text",
+                        "correct"
+                      ],
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "correct": {
+                          "type": "boolean"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
         }
       }
     },

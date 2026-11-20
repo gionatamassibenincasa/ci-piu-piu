@@ -9,31 +9,48 @@ components:
 
       '
     items:
-    - question: Cosa fa questa istruzione?
+    - question: Cosa fa l’istruzione `std::cout << "Ciao, Mondo!\n";` quando viene
+        eseguita all’interno di un programma completo?
       options:
-      - text: Stampa Ciao, Mondo! e va a capo
+      - text: Scrive il testo Ciao, Mondo! sullo schermo e va a capo
         correct: true
       - text: Legge da tastiera la stringa Ciao, Mondo!
         correct: false
-      - text: Compila e avvia il programma
+      - text: Compila il file sorgente in un eseguibile
         correct: false
-    - question: Il frammento, così com'è, è un programma C++ completo e sintatticamente
-        corretto?
+    - question: Perché questo frammento, da solo, non è un programma C++ completo?
       options:
-      - text: 'No: manca almeno la struttura di un programma (include, main, …)'
+      - text: Manca il punto di ingresso (`main`) e in genere le dichiarazioni necessarie
+          (es. `#include`)
         correct: true
-      - text: 'Sì: una sola istruzione basta se il file si chiama main.cpp'
+      - text: Perché non usa la parola chiave `program`
         correct: false
-      - text: Sì, purché si usi un IDE come Visual Studio Code
+      - text: Perché il testo non è in inglese
         correct: false
-    - question: Per ottenere un eseguibile da compilare, serve altro codice oltre
-        a questa riga?
+    - question: Cosa fa il carattere speciale `\n` all’interno della stringa?
       options:
-      - text: 'Sì: servono almeno #include <iostream>, int main() e in genere return'
+      - text: Inserisce un’andata a capo nell’output
         correct: true
-      - text: 'No: il compilatore aggiunge da solo main e le librerie'
+      - text: Termina il programma
         correct: false
-      - text: Solo se si compila con g++; con clang non serve altro
+      - text: Apre una nuova finestra del terminale
+        correct: false
+    - question: Quale affermazione spiega meglio il ruolo di `std::` davanti a `cout`?
+      options:
+      - text: '`std::` indica il namespace della libreria standard dove si trova `cout`'
+        correct: true
+      - text: '`std::` è obbligatorio solo in Windows'
+        correct: false
+      - text: '`std::` converte il testo in maiuscolo'
+        correct: false
+    - question: Se togli le virgolette e scrivi `std::cout << Ciao, Mondo!\n;` (senza
+        `"`), perché il programma non è accettabile?
+      options:
+      - text: Senza virgolette il compilatore non tratta il testo come stringa letterale
+        correct: true
+      - text: Perché `\n` non può stare fuori dalle virgolette mai
+        correct: false
+      - text: Perché `cout` funziona solo con numeri
         correct: false
   make_instructions: 'presentazione.cpp: tre std::cout per una schermata di benvenuto
     di un gestionale, commento /// sul perché, return 0
@@ -42,6 +59,103 @@ components:
   visualization:
     kind: pythontutor
     note: Osservare il flusso fino a return 0.
+  investigate_quiz:
+    code: "#include <iostream>\n\nint main() {\n    std::cout << \"Ciao, Mondo!\\\
+      n\";\n    return 0;\n}\n"
+    items:
+    - question: Perché serve `#include <iostream>` in questo programma?
+      options:
+      - text: Perché dichiara gli strumenti di input/output (come `std::cout`) usati
+          dopo
+        correct: true
+      - text: Perché avvia automaticamente la funzione `main`
+        correct: false
+      - text: Perché stampa da sola “Ciao, Mondo!”
+        correct: false
+    - question: Perché ogni programma eseguibile ha bisogno di una funzione `main`?
+      options:
+      - text: 'Perché è il punto di ingresso: da lì parte l’esecuzione'
+        correct: true
+      - text: Perché è solo un commento per il programmatore
+        correct: false
+      - text: Perché sostituisce il compilatore
+        correct: false
+    - question: Osserva l’ordine di esecuzione. Quale sequenza è corretta?
+      options:
+      - text: Entra in `main` → esegue `std::cout` → esegue `return 0;`
+        correct: true
+      - text: Esegue `return 0;` → poi stampa → poi entra in `main`
+        correct: false
+      - text: Stampa prima ancora di entrare in `main`
+        correct: false
+    - question: Cosa comunica `return 0;` al sistema operativo?
+      options:
+      - text: Che il programma è terminato con successo (codice di uscita 0)
+        correct: true
+      - text: Che deve stampare il numero 0 a video
+        correct: false
+      - text: Che deve riavviare `main` da capo
+        correct: false
+    - question: Se scrivi `cout` senza `std::`, perché compare un errore del tipo
+        `cout was not declared in this scope`?
+      options:
+      - text: Il nome `cout` non è visibile senza indicare il namespace `std` (o un
+          using)
+        correct: true
+      - text: Perché `cout` esiste solo in Python
+        correct: false
+      - text: Perché manca il file `main.cpp`
+        correct: false
+  modify_quiz:
+    code: "#include <iostream>\n\nint main() {\n    std::cout << \"Ciao, Mondo!\\\
+      n\";\n    return 0;\n}\n"
+    items:
+    - question: Cosa succede all’output se cambi solo il testo tra virgolette in `"Gestionale
+        pronto\n"`?
+      options:
+      - text: A video compare Gestionale pronto (e va a capo); il resto della struttura
+          resta valido
+        correct: true
+      - text: Il programma non compila più
+        correct: false
+      - text: Viene stampato due volte Ciao, Mondo!
+        correct: false
+    - question: Se rimuovi `\n` dalla stringa, quale effetto osservi?
+      options:
+      - text: Il testo appare, ma il cursore non va a capo dopo il messaggio
+        correct: true
+      - text: Il programma non parte
+        correct: false
+      - text: Viene aggiunto automaticamente un secondo messaggio
+        correct: false
+    - question: Vuoi una seconda riga di output. Quale modifica è corretta?
+      options:
+      - text: Aggiungere un’altra istruzione `std::cout << "...\n";` dentro `main`,
+          senza togliere la prima
+        correct: true
+      - text: Scrivere il secondo messaggio fuori da `main`
+        correct: false
+      - text: Sostituire `#include` con il secondo messaggio
+        correct: false
+    - question: Se cancelli la riga `return 0;`, in un programma così semplice cosa
+        succede di solito?
+      options:
+      - text: Spesso compila comunque (return implicito da `main` in C++), ma è buona
+          pratica lasciare `return 0;` esplicito
+        correct: true
+      - text: È sempre un errore di compilazione obbligatorio
+        correct: false
+      - text: Il programma stampa necessariamente “errore”
+        correct: false
+    - question: Perché, in Modify, conviene cambiare **una cosa alla volta** e ricompilare?
+      options:
+      - text: 'Per isolare causa ed effetto: se qualcosa si rompe, sai quale modifica
+          l’ha provocato'
+        correct: true
+      - text: Perché il compilatore accetta al massimo una modifica al giorno
+        correct: false
+      - text: Perché altrimenti `std::cout` smette di funzionare
+        correct: false
 registro:
   argomenti: 'Programma C++ minimo; direttiva #include <iostream>; std::cout e sequenza
     di escape \n; funzione main e return 0; introduzione al namespace std. Laboratorio
@@ -53,25 +167,29 @@ registro:
 
     '
 assessment:
-  duration_min: 10
+  duration_min: 15
   total_points: 6
   versions:
   - A
   - B
   predict:
-    points: 3
-    context: 1) std::cout stampa e \n va a capo. 2) Una sola istruzione non è un programma
-      completo. 3) Servono include, main (e di regola return) per compilare un eseguibile.
+    points: 2
+    context: 'Domande sul ruolo di cout, completezza del frammento, \n, std:: e stringhe
+      letterali.'
   investigate:
-    points: 1
+    points: 2
     questions:
-    - 'A che serve #include <iostream> nel programma completo?'
-    - Perché senza la funzione main il programma non parte?
+    - Perché serve `#include <iostream>` in questo programma?
+    - Perché ogni programma eseguibile ha bisogno di una funzione `main`?
+    - Osserva l’ordine di esecuzione. Quale sequenza è corretta?
+    - Cosa comunica `return 0;` al sistema operativo?
+    - Se scrivi `cout` senza `std::`, perché compare un errore del tipo `cout was
+      not declared in this scope`?
     typical_errors:
     - Descrive include come se venisse eseguita a runtime
     - Ommette che main è il punto di ingresso obbligatorio
-    context: iostream dichiara gli stream; main è il punto di ingresso richiesto dal
-      runtime.
+    context: Perché include e main; ordine di esecuzione; significato di return 0;
+      errore senza std::.
   modify:
     points: 1
     prompt: Nel listato sotto, aggiungi una seconda riga di output con la tua classe.
@@ -351,6 +469,13 @@ int main() {
 
 #### 3. INVESTIGATE (Indaga)
 
+Dopo aver eseguito il programma, rispondi a queste domande (*perché* e *ordine*, non solo “cosa stampa”).
+
+[[ investigate_block() ]]
+
+Poi rivedi le tabelle di traccia qui sotto e confrontale con le tue risposte.
+
+
 Analizziamo il codice riga per riga come detective.
 
 | Fase | Cosa osservi a video |
@@ -371,6 +496,13 @@ Analizziamo il codice riga per riga come detective.
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
 #### 4. MODIFY (Modifica)
+
+Prima di mettere mano al codice, verifica di saper prevedere **l’effetto di una modifica** (stesso spirito del Predict, ma sul cambiamento).
+
+[[ modify_block() ]]
+
+Ora applica **una modifica alla volta** sul programma completo e ricompila.
+
 
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
 Dopo ogni modifica ricompila/esegui.

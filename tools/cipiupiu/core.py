@@ -102,7 +102,9 @@ def strip_author_blocks(body: str) -> str:
 
 
 
-def normalize_predict_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
+def normalize_quiz_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
+    """Lista di {question, code?, options} da un blocco quiz (items[] o legacy)."""
+
     """Lista di {question, code?, options} da predict_quiz (items[] o legacy)."""
     if not pq:
         return []
@@ -133,6 +135,10 @@ def normalize_predict_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
     return []
 
 
+def normalize_predict_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
+    return normalize_quiz_items(pq)
+
+
 def _make_jinja_env(meta: dict[str, Any]) -> Environment:
     env = Environment(
         loader=BaseLoader(),
@@ -147,22 +153,24 @@ def _make_jinja_env(meta: dict[str, Any]) -> Environment:
         keep_trailing_newline=True,
     )
 
-    def predict_block() -> str:
-        components = meta.get("components") or {}
-        pq = components.get("predict_quiz")
-        items = normalize_predict_items(pq if isinstance(pq, dict) else None)
+    def _format_quiz_block(pq: dict | None, label: str = "Domanda") -> str:
+        items = normalize_quiz_items(pq if isinstance(pq, dict) else None)
         if not items:
-            return "<!-- predict_block: nessun components.predict_quiz -->"
+            return f"<!-- nessun quiz {label} -->"
+        codes = [it.get("code") for it in items if it.get("code")]
+        shared = codes[0] if codes and len(set(codes)) == 1 else None
         blocks: list[str] = []
+        if shared:
+            blocks.append("\n".join(["```cpp", str(shared).rstrip(), "```"]))
         for idx, item in enumerate(items, 1):
             lines: list[str] = []
             if len(items) > 1:
-                lines.append(f"**Domanda {idx}**")
+                lines.append(f"**{label} {idx}**")
                 lines.append("")
             lines.append(str(item.get("question") or "Cosa succede?"))
             lines.append("")
             code = item.get("code")
-            if code:
+            if code and code != shared:
                 lines.extend(["```cpp", str(code).rstrip(), "```", ""])
             for opt in item.get("options") or []:
                 mark = "X" if opt.get("correct") else " "
@@ -170,7 +178,21 @@ def _make_jinja_env(meta: dict[str, Any]) -> Environment:
             blocks.append("\n".join(lines))
         return "\n\n".join(blocks)
 
+    def predict_block() -> str:
+        components = meta.get("components") or {}
+        return _format_quiz_block(components.get("predict_quiz"), "Domanda")
+
+    def investigate_block() -> str:
+        components = meta.get("components") or {}
+        return _format_quiz_block(components.get("investigate_quiz"), "Domanda")
+
+    def modify_block() -> str:
+        components = meta.get("components") or {}
+        return _format_quiz_block(components.get("modify_quiz"), "Domanda")
+
     env.globals["predict_block"] = predict_block
+    env.globals["investigate_block"] = investigate_block
+    env.globals["modify_block"] = modify_block
     return env
 
 
@@ -282,20 +304,22 @@ def validate_chapter(path: Path, schema: dict | None = None) -> list[str]:
         errors.append(f"{path.name}: order deve essere intero >= 0")
 
     components = meta.get("components") or {}
-    if "predict_quiz" in components:
-        pq = components["predict_quiz"] or {}
-        items = normalize_predict_items(pq if isinstance(pq, dict) else None)
+    for qkey in ("predict_quiz", "investigate_quiz", "modify_quiz"):
+        if qkey not in components:
+            continue
+        pq = components[qkey] or {}
+        items = normalize_quiz_items(pq if isinstance(pq, dict) else None)
         if not items:
             errors.append(
-                f"{path.name}: predict_quiz: serve question+options oppure items[] non vuoto"
+                f"{path.name}: {qkey}: serve question+options oppure items[] non vuoto"
             )
         for j, item in enumerate(items):
             opts = item.get("options") or []
             if not any(isinstance(o, dict) and o.get("correct") for o in opts):
                 errors.append(
-                    f"{path.name}: predict_quiz item[{j}]: nessuna option con correct=true"
+                    f"{path.name}: {qkey} item[{j}]: nessuna option con correct=true"
                 )
-
+    
     create_paths: set[str] = set()
     for i, item in enumerate(meta.get("files") or []):
         if not isinstance(item, dict):
