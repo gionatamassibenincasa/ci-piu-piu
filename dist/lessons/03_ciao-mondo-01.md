@@ -1,12 +1,12 @@
 <!--
-author:    Gionata Massi
-email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-12
-language:  it
-narrator:  IT Italian Male
-comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
-import:    https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
-import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+author:               Gionata Massi
+email:                gionata.massi@savoiabenicasa.it
+version:              2026-11-12
+language:             it
+narrator:             IT Italian Male
+comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
+import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
+import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
 [← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/02_motore-compilazione-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/04_doxygen-01.md)
 
@@ -42,7 +42,7 @@ inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.
 | Parte | Idea pratica | Perché c'è |
 | :--- | :--- | :--- |
 | `#include <iostream>` | Prendi in prestito gli strumenti per parlare con lo schermo. | Senza questa libreria il compilatore non conosce `std::cout`. |
-| `int main() { ... }` | Apri l'ufficio principale del programma. | L'esecuzione parte sempre da qui. |
+| `int main() { ... }` | Il punto d'ingresso del programma. | L'esecuzione parte sempre da qui. |
 | `std::cout << "..."` | Invia un messaggio al monitor. | `std::` indica che usi uno strumento della libreria standard. |
 | `return 0;` | Comunica che il lavoro è terminato bene. | Il sistema operativo riceve un esito di successo. |
 
@@ -82,17 +82,19 @@ int main() {
 
 #### 1. PREDICT (Prevedi)
 
+Osserva il frammento: `std::cout << "Ciao, Mondo!\n";`
 
-Cosa fa std::cout << "Ciao, Mondo!\n"; ?
+1) Cosa fa questa istruzione?
+2) Il listato, così com'è, è un programma C++ completo e sintatticamente corretto?
+3) Per compilarlo e ottenerne un eseguibile, serve altro codice oltre a questa riga?
 
 ```cpp
 std::cout << "Ciao, Mondo!\n";
 ```
 
-[( )] Legge da tastiera
-[(X)] Stampa Ciao, Mondo! e va a capo
-[( )] Compila il programma
-
+[(X)] Stampa Ciao, Mondo! e va a capo; da sola non è un programma completo (mancano include e main)
+[( )] Legge da tastiera la stringa Ciao, Mondo!
+[( )] È già un programma completo: basta salvarlo e compilarlo così com'è
 
 #### 2. RUN (Esegui)
 
@@ -119,7 +121,7 @@ int main() {
 ```
 @LIA.cpp
 
-#### 3. INVESTIGATE (Investiga)
+#### 3. INVESTIGATE (Indaga)
 
 Analizziamo il codice riga per riga come detective.
 
@@ -141,6 +143,7 @@ Analizziamo il codice riga per riga come detective.
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
 #### 4. MODIFY (Modifica)
+
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
 Dopo ogni modifica ricompila/esegui.
 
@@ -212,6 +215,7 @@ Aggiungi una seconda riga di output: `Gestionale ordini pronto`.
 Verifica che appaiano su due righe separate.
 
 #### 5. MAKE (Crea)
+
 Scrivi da zero un nuovo programma chiamato `presentazione.cpp`.
 
 **Scenario aziendale:** la tua classe sta preparando la prima schermata di un
@@ -251,6 +255,7 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
+
 - Ogni programma C++ parte da `int main()`.
 - `#include <iostream>` è il passaporto per l’input/output.
 - `std::cout <<` scrive sullo schermo; `\n` va a capo.
@@ -262,6 +267,6 @@ int main() {
 ---
 
 ### ➡️ Prossimo chunk
-Finora il computer ha solo *parlato*.  
-Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
+Finora il computer ha solo *parlato*.  
+Nella prossima lezione gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).

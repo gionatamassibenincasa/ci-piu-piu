@@ -1,12 +1,12 @@
 <!--
-author:    Gionata Massi
-email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-14
-language:  it
-narrator:  IT Italian Male
-comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
-import:    https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
-import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+author:               Gionata Massi
+email:                gionata.massi@savoiabenicasa.it
+version:              2026-11-14
+language:             it
+narrator:             IT Italian Male
+comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
+import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
+import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
 ← Prec. · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/01_ambiente-sviluppo-01.md)
 
@@ -95,19 +95,19 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
  (Prevedi & Traccia)  (Digita a mano)    (Debug & Memoria)     (Piccoli cambi)   (Crea da zero)
 ```
 
+#### Prima del Predict: orientati
+
+- Leggi la teoria che presenta parole, struttura e regole indispensabili.
+- Non cercare ancora la risposta del quiz: prepara soltanto gli strumenti per ragionare sul codice.
+
 #### 1. PREDICT (Prevedi)
 
 - Prima di eseguire il programma, esamina attentamente il codice sorgente e **ipotizza cosa farà**.
 - Se il codice contiene condizioni, cicli o variabili che cambiano, costruisci sul quaderno una **tabella di traccia** (colonne con i valori assunti dalle variabili passo dopo passo).
 
-#### Prima del Predict: orientati
-
-- Leggi la breve teoria che presenta parole, struttura e regola indispensabili.
-- Non cercare ancora la risposta del quiz: prepara soltanto gli strumenti per ragionare sul codice.
-
 #### 2. RUN (Esegui)
 
-- Copia il programma nel tuo ambiente di sviluppo (VS Code o blocco interattivo `@LIA.cpp`).
+- Copia il programma nel tuo ambiente di sviluppo (VS Code o un IDE online).
 - **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
 - Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
 
@@ -133,9 +133,9 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 
 ### 📝 Riepilogo tascabile
 
-- Prima leggi il contesto, l'obiettivo e la micro-teoria: poi fai una previsione.
-- Digita il codice a mano e confronta sempre output e Predict.
-- Usa una tabella di traccia e Python Tutor quando cambiano variabili o memoria.
+- Prima leggi il contesto, l'obiettivo e la teoria: poi fai una previsione.
+- Digita il codice a mano, senza *copia-e-incolla*, e confronta sempre output e Predict.
+- Usa una tabella di traccia e [Python Tutor](https://pythontutor.com/cpp.html#mode=edit) quando cambiano variabili o memoria.
 - Modifica poco alla volta; nel Make riusa l'idea in uno scenario nuovo.
 
 ---

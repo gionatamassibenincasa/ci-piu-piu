@@ -1,12 +1,12 @@
 <!--
-author:    Gionata Massi
-email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-16
-language:  it
-narrator:  IT Italian Male
-comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
-import:    https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
-import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+author:               Gionata Massi
+email:                gionata.massi@savoiabenicasa.it
+version:              2026-11-16
+language:             it
+narrator:             IT Italian Male
+comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
+import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
+import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
 [← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/30_composizione-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/32_virtual-01.md)
 

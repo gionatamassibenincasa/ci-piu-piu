@@ -105,19 +105,19 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
  (Prevedi & Traccia)  (Digita a mano)    (Debug & Memoria)     (Piccoli cambi)   (Crea da zero)
 ```
 
+#### Prima del Predict: orientati
+
+- Leggi la teoria che presenta parole, struttura e regole indispensabili.
+- Non cercare ancora la risposta del quiz: prepara soltanto gli strumenti per ragionare sul codice.
+
 #### 1. PREDICT (Prevedi)
 
 - Prima di eseguire il programma, esamina attentamente il codice sorgente e **ipotizza cosa farà**.
 - Se il codice contiene condizioni, cicli o variabili che cambiano, costruisci sul quaderno una **tabella di traccia** (colonne con i valori assunti dalle variabili passo dopo passo).
 
-#### Prima del Predict: orientati
-
-- Leggi la breve teoria che presenta parole, struttura e regola indispensabili.
-- Non cercare ancora la risposta del quiz: prepara soltanto gli strumenti per ragionare sul codice.
-
 #### 2. RUN (Esegui)
 
-- Copia il programma nel tuo ambiente di sviluppo (VS Code o blocco interattivo `@LIA.cpp`).
+- Copia il programma nel tuo ambiente di sviluppo (VS Code o un IDE online).
 - **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
 - Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
 
@@ -143,9 +143,9 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 
 ### 📝 Riepilogo tascabile
 
-- Prima leggi il contesto, l'obiettivo e la micro-teoria: poi fai una previsione.
-- Digita il codice a mano e confronta sempre output e Predict.
-- Usa una tabella di traccia e Python Tutor quando cambiano variabili o memoria.
+- Prima leggi il contesto, l'obiettivo e la teoria: poi fai una previsione.
+- Digita il codice a mano, senza *copia-e-incolla*, e confronta sempre output e Predict.
+- Usa una tabella di traccia e [Python Tutor](https://pythontutor.com/cpp.html#mode=edit) quando cambiano variabili o memoria.
 - Modifica poco alla volta; nel Make riusa l'idea in uno scenario nuovo.
 
 ---
@@ -164,6 +164,7 @@ Questo non è un capitolo da leggere in 20 minuti.
 È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.
 
 Alla fine di questa sessione avrai:
+
 - Visual Studio Code (il banco di lavoro)
 - l’estensione C/C++ (gli utensili specializzati)
 - il compilatore **g++** e il debugger **gdb** (tramite MSYS2 + MinGW-w64)
@@ -171,6 +172,7 @@ Alla fine di questa sessione avrai:
 - un programma di prova compilato, eseguito e debuggato con successo
 
 > 💡 **Metafora:**  
+>
 > - **VS Code** = il tuo banco di lavoro (dove organizzi i pezzi e lavori)  
 > - **Estensione C/C++** = le lampade e gli utensili specifici per il C++  
 > - **MSYS2 + MinGW-w64** = il magazzino di pezzi di ricambio e il banco prove  
@@ -181,6 +183,7 @@ Alla fine di questa sessione avrai:
 ---
 
 ### 🎯 Obiettivo di questa sessione
+
 Alla fine sei in grado di configurare e verificare un ambiente C++ che compila,
 esegue e fa il debug di un programma minimo.
 
@@ -192,6 +195,7 @@ esegue e fa il debug di un programma minimo.
 salta i passi di installazione e vai direttamente al **Passo 6** (programma di prova). Chiedi al docente il percorso corretto se `g++` non viene riconosciuto.
 
 **Se a casa non hai diritti di amministratore** o l’antivirus / le policy bloccano l’installazione:
+
 1. Prova comunque i passi (molte operazioni non richiedono admin).
 2. Se fallisci, usa temporaneamente un compilatore online (es. [Compiler Explorer](https://godbolt.org/) o [OnlineGDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
 3. Segnala il problema al docente: troveremo una soluzione (immagine di laboratorio, chiavetta, ecc.).
@@ -736,15 +740,20 @@ int main() {
 #### 1. PREDICT (Prevedi)
 
 
-Cosa fa std::cout << "Ciao, Mondo!\n"; ?
+Osserva il frammento:
+code: std::cout << "Ciao, Mondo!\n";
+
+1) Cosa fa questa istruzione?
+2) Il listato, così com'è, è un programma C++ completo e sintatticamente corretto?
+3) Per compilarlo e ottenerne un eseguibile, serve altro codice oltre a questa riga?
 
 ```cpp
 std::cout << "Ciao, Mondo!\n";
 ```
 
-[( )] Legge da tastiera
-[(X)] Stampa Ciao, Mondo! e va a capo
-[( )] Compila il programma
+[(X)] Stampa Ciao, Mondo! e va a capo; da sola non è un programma completo (mancano include e main)
+[( )] Legge da tastiera la stringa Ciao, Mondo!
+[( )] È già un programma completo: basta salvarlo e compilarlo così com'è
 
 
 #### 2. RUN (Esegui)

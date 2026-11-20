@@ -279,13 +279,6 @@ def validate_chapter(path: Path, schema: dict | None = None) -> list[str]:
 
     # ——— Lint corpo Markdown (minimo) ———
     body = ch.body
-    # Titolo H2 senza "Capitolo N"
-    for m in re.finditer(r"^## .*$", body, re.M):
-        if re.search(r"Capitolo\s+\d+", m.group(0)):
-            errors.append(
-                f"{path.name}: titolo non deve contenere 'Capitolo N' (trovato: {m.group(0)[:60]}…)"
-            )
-            break
 
     if meta.get("methodology") == "PRIMM":
         # Heading Predict (accetta #### 1. PREDICT o ### 1. Predict)

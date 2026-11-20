@@ -1,12 +1,12 @@
 <!--
-author:    Gionata Massi
-email:     gionata.massi@savoiabenicasa.it
-version:   2026-11-12
-language:  it
-narrator:  IT Italian Male
-comment:   Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
-import:    https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
-import:    https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+author:               Gionata Massi
+email:                gionata.massi@savoiabenicasa.it
+version:              2026-11-12
+language:             it
+narrator:             IT Italian Male
+comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
+import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
+import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
 [← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/00_guida-studio-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/02_motore-compilazione-01.md)
 
@@ -22,6 +22,7 @@ Questo non è un capitolo da leggere in 20 minuti.
 È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.
 
 Alla fine di questa sessione avrai:
+
 - Visual Studio Code (il banco di lavoro)
 - l’estensione C/C++ (gli utensili specializzati)
 - il compilatore **g++** e il debugger **gdb** (tramite MSYS2 + MinGW-w64)
@@ -29,6 +30,7 @@ Alla fine di questa sessione avrai:
 - un programma di prova compilato, eseguito e debuggato con successo
 
 > 💡 **Metafora:**  
+>
 > - **VS Code** = il tuo banco di lavoro (dove organizzi i pezzi e lavori)  
 > - **Estensione C/C++** = le lampade e gli utensili specifici per il C++  
 > - **MSYS2 + MinGW-w64** = il magazzino di pezzi di ricambio e il banco prove  
@@ -39,6 +41,7 @@ Alla fine di questa sessione avrai:
 ---
 
 ### 🎯 Obiettivo di questa sessione
+
 Alla fine sei in grado di configurare e verificare un ambiente C++ che compila,
 esegue e fa il debug di un programma minimo.
 
@@ -50,6 +53,7 @@ esegue e fa il debug di un programma minimo.
 salta i passi di installazione e vai direttamente al **Passo 6** (programma di prova). Chiedi al docente il percorso corretto se `g++` non viene riconosciuto.
 
 **Se a casa non hai diritti di amministratore** o l’antivirus / le policy bloccano l’installazione:
+
 1. Prova comunque i passi (molte operazioni non richiedono admin).
 2. Se fallisci, usa temporaneamente un compilatore online (es. [Compiler Explorer](https://godbolt.org/) o [OnlineGDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
 3. Segnala il problema al docente: troveremo una soluzione (immagine di laboratorio, chiavetta, ecc.).
