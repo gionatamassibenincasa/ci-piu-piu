@@ -28,6 +28,7 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 #include <chapters/03_ciao_mondo.md>
 #include <chapters/04_documentazione_doxygen.md>
 #include <chapters/05_variabili_costanti_tipi.md>
+#include <chapters/06_chiedere_informazioni.md>
 #include <chapters/06_espressioni_e_operatore_ternario.md>
 #include <chapters/07_bivi_semplici_if_else.md>
 #include <chapters/08_bivi_complessi_e_regole_if.md>

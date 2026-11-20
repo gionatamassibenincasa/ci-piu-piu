@@ -1,29 +1,217 @@
 ---
-activity_id: "do-while-01"
-title: "Garantire l'Azione (Il Ciclo `do-while` )"
+activity_id: do-while-01
+title: 'Garantire l''azione: validare con il ciclo do-while'
 methodology: PRIMM
 order: 12
-version: "2026-11-14"
+version: '2026-11-20'
+last_update: '2026-11-20'
 language: it
 components:
   predict_quiz:
-    question: "Quante volte viene eseguito il corpo?"
     code: |
       int n = 10;
+
       do {
           std::cout << "giro\n";
           n = n + 1;
       } while (n < 5);
-    options:
-      - text: "0 volte"
-        correct: false
-      - text: "1 volta"
-        correct: true
-      - text: "5 volte"
-        correct: false
-      - text: "Infinito"
-        correct: false
-  make_instructions: "Scenario SIA — PIN sportello con tentativi limitati"
+    items:
+      - question: 'Quante volte viene eseguito il corpo?'
+        options:
+          - text: 'Una volta, perché il corpo viene eseguito prima del controllo'
+            correct: true
+          - text: 'Zero volte, perché `10 < 5` è falso'
+            correct: false
+          - text: 'Cinque volte, perché il ciclo arriva fino a 5'
+            correct: false
+      - question: 'Perché il `do-while` è utile per chiedere un dato valido?'
+        options:
+          - text: 'Permette di chiedere il dato almeno una volta prima di controllarlo'
+            correct: true
+          - text: 'Impedisce all''utente di inserire più di un valore'
+            correct: false
+          - text: 'Controlla sempre la condizione prima della prima lettura'
+            correct: false
+      - question: 'Dove viene controllata la condizione nel `do-while`?'
+        options:
+          - text: 'Dopo il corpo del ciclo'
+            correct: true
+          - text: 'Prima del corpo, come nel `while`'
+            correct: false
+          - text: 'Solo quando il programma arriva a `return 0`'
+            correct: false
+      - question: 'Quale elemento sintattico chiude il `do-while`?'
+        options:
+          - text: 'Il punto e virgola dopo `while (condizione)`'
+            correct: true
+          - text: 'Un secondo `else` dopo la condizione'
+            correct: false
+          - text: 'La parola `break` obbligatoria fuori dalle graffe'
+            correct: false
+      - question: 'Quale situazione richiede più naturalmente un `do-while` che un `while`?'
+        options:
+          - text: 'Un modulo che deve essere mostrato e compilato almeno una volta'
+            correct: true
+          - text: 'Un conteggio noto da 1 a 12'
+            correct: false
+          - text: 'Una classificazione tra fasce di fatturato'
+            correct: false
+  investigate_quiz:
+    code: |
+      const double MIN_BONIFICO = 1.0;
+      const double MAX_BONIFICO = 5000.0;
+      double importo = 0.0;
+
+      do {
+          std::cin >> importo;
+      } while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
+    items:
+      - question: 'Qual è il primo passaggio eseguito dal programma?'
+        options:
+          - text: 'Legge un importo dentro il corpo del `do`'
+            correct: true
+          - text: 'Controlla subito se `importo` è già valido'
+            correct: false
+          - text: 'Confronta prima le due costanti tra loro'
+            correct: false
+      - question: 'Perché con input `250` il ciclo termina dopo il primo giro?'
+        options:
+          - text: '250 non è minore di 1 e non è maggiore di 5000, quindi la condizione è falsa'
+            correct: true
+          - text: 'Il primo valore inserito viene sempre considerato valido'
+            correct: false
+          - text: 'Il `do-while` termina quando incontra un numero pari'
+            correct: false
+      - question: 'Che cosa succede con input `-10` seguito da `250`?'
+        options:
+          - text: 'Il primo valore mantiene la condizione vera, quindi il programma ripete la lettura e poi accetta 250'
+            correct: true
+          - text: 'Il programma accetta subito -10 perché è un numero inserito'
+            correct: false
+          - text: 'Il programma esegue il corpo solo una volta e ignora 250'
+            correct: false
+      - question: 'Perché l''operatore `||` mantiene il ciclo per un importo fuori intervallo?'
+        options:
+          - text: 'Basta che sia vera una delle due condizioni di errore: troppo piccolo o troppo grande'
+            correct: true
+          - text: 'Richiede che l''importo sia contemporaneamente minore e maggiore'
+            correct: false
+          - text: 'Converte l''importo in un valore booleano senza confrontarlo'
+            correct: false
+      - question: 'Che errore sintattico può nascere se togli il `;` dopo `while (...)`?'
+        options:
+          - text: 'Il compilatore segnala che manca il punto e virgola prima dell''istruzione successiva'
+            correct: true
+          - text: 'Il ciclo diventa automaticamente un `while` con controllo in testa'
+            correct: false
+          - text: 'Il programma accetta tutti gli importi senza controllarli'
+            correct: false
+  modify_quiz:
+    code: |
+      double importo = 0.0;
+
+      do {
+          std::cin >> importo;
+      } while (importo <= 0.0);
+    items:
+      - question: 'Quale modifica restringe l''intervallo agli importi tra 10 e 1000?'
+        options:
+          - text: 'Usare `importo < 10.0 || importo > 1000.0` nella condizione'
+            correct: true
+          - text: 'Usare `importo > 10.0 || importo < 1000.0`'
+            correct: false
+          - text: 'Sostituire la condizione con `importo == 10.0`'
+            correct: false
+      - question: 'Quale modifica permette al PIN di essere provato al massimo tre volte?'
+        options:
+          - text: 'Aggiungere un contatore e continuare finché PIN errato e tentativi minori di 3'
+            correct: true
+          - text: 'Rimuovere il controllo del PIN e usare solo `break`'
+            correct: false
+          - text: 'Inserire tre `do` uno dentro l''altro senza contatore'
+            correct: false
+      - question: 'Che effetto ha cambiare `importo <= 0.0` in `importo < 0.0`?'
+        options:
+          - text: 'L''importo 0.0 viene accettato, perché non è minore di zero'
+            correct: true
+          - text: 'L''importo 0.0 viene sempre rifiutato come prima'
+            correct: false
+          - text: 'Il ciclo non esegue più il primo giro'
+            correct: false
+      - question: 'Quale modifica mantiene il messaggio di errore solo per valori non validi?'
+        options:
+          - text: 'Mettere un `if` nel corpo che controlla lo stesso intervallo'
+            correct: true
+          - text: 'Mettere il messaggio dopo `return 0`'
+            correct: false
+          - text: 'Sostituire `std::cin` con `std::cout` nel corpo'
+            correct: false
+      - question: 'Perché conviene modificare una sola parte del ciclo alla volta?'
+        options:
+          - text: 'Per capire se il problema riguarda il corpo, la condizione o il punto e virgola finale'
+            correct: true
+          - text: 'Perché un `do-while` può contenere una sola lettura in assoluto'
+            correct: false
+          - text: 'Perché ogni modifica elimina la prima iterazione'
+            correct: false
+  make_instructions: >
+    Crea `pin_sportello.cpp`: chiedi un PIN almeno una volta, ripeti al massimo
+    tre tentativi quando è errato, stampa accesso consentito se corretto e carta
+    bloccata dopo il terzo errore.
+  visualization:
+    kind: pythontutor
+    note: 'Osservare il primo tentativo garantito e il controllo della condizione dopo ogni lettura.'
+registro:
+  argomenti: 'Ciclo `do-while`; controllo in coda; almeno una iterazione; validazione di intervalli con `||`; gestione di tentativi limitati.'
+  note: 'Laboratorio PRIMM sulla validazione di un importo di bonifico.'
+assessment:
+  duration_min: 15
+  total_points: 6
+  versions: ['A', 'B']
+  predict:
+    points: 2
+    context: 'Distinguere controllo in coda e primo giro garantito.'
+  investigate:
+    points: 2
+    questions:
+      - 'Perché il corpo viene eseguito anche con una condizione inizialmente falsa?'
+      - 'Quando un importo valido fa terminare il ciclo?'
+      - 'Perché serve il punto e virgola dopo il while finale?'
+    typical_errors:
+      - 'Trattare do-while come un while con controllo in testa'
+      - 'Dimenticare il controllo dell''intervallo su uno dei due lati'
+    context: 'Seguire il flusso di validazione e riconoscere la sintassi del costrutto.'
+  modify:
+    points: 1
+    prompt: 'Modifica l''intervallo accettato da `1..5000` a `10..1000`, mantenendo il primo tentativo obbligatorio.'
+    code: |
+      do {
+          std::cin >> importo;
+      } while (importo < 1.0 || importo > 5000.0);
+    typical_errors:
+      - 'Usare `&&` e rendere impossibile la condizione di errore'
+      - 'Dimenticare il punto e virgola finale'
+    context: 'Adattare i limiti di validazione senza cambiare il controllo in coda.'
+  make:
+    points: 1
+    prompt: 'Crea la validazione di un PIN con massimo tre tentativi e due messaggi finali distinti.'
+    must_include:
+      - 'do'
+      - 'while'
+      - 'const int'
+      - 'std::cin'
+    typical_errors:
+      - 'Permettere tentativi illimitati'
+      - 'Mostrare accesso consentito anche dopo tre errori'
+    context: 'Trasferire il pattern del primo tentativo garantito alla sicurezza di uno sportello.'
+  variants:
+    B:
+      modify:
+        prompt: 'Accetta solo importi tra 50 e 2000 euro, mantenendo la lettura almeno una volta.'
+        code: |
+          do {
+              std::cin >> importo;
+          } while (importo <= 0.0);
 files:
   - path: README.md
     action: create
@@ -39,7 +227,12 @@ files:
     template_content: |
       # Predict – Do-while
 
+      Rispondi prima di eseguire il programma.
+
       1. Quante volte gira il corpo se la condizione è già falsa?
+      >
+
+      2. Quando viene controllata la condizione?
       >
   - path: student_work/run/answers.md
     action: create
@@ -49,6 +242,9 @@ files:
 
       1. Quanti tentativi hai inserito prima dell'importo valido?
       >
+
+      2. Quale importo è stato accettato?
+      >
   - path: student_work/investigate/answers.md
     action: create
     phase: investigate
@@ -56,6 +252,9 @@ files:
       # Investigate – Controllo in coda
 
       1. Quando viene controllato l'intervallo ammesso?
+      >
+
+      2. Perché il primo tentativo è garantito?
       >
   - path: student_work/modify/valida_bonifico.cpp
     action: create
@@ -70,150 +269,149 @@ files:
           } while (importo <= 0.0);
           return 0;
       }
+    validation_rules:
+      min_lines: 8
+      must_contain:
+        - do
+        - while
+        - std::cin
   - path: student_work/make/pin_sportello.cpp
     action: create
     phase: make
+    description: Validazione PIN con massimo tre tentativi.
     template_content: |
       /**
-       * @brief Validazione PIN sportello con massimo 3 tentativi.
+       * @brief Validazione PIN sportello con massimo tre tentativi.
        */
       #include <iostream>
 
       int main() {
-          // PIN corretto, tentativi, loop do-while, risultati
+          const int PIN_CORRETTO = 4821;
+          /// TODO: spiega perché i tentativi devono essere limitati.
+          // TODO: dichiara PIN e contatore, poi scrivi il do-while.
           return 0;
       }
     validation_rules:
-      min_lines: 8
-      must_contain: ["int main"]
+      min_lines: 10
+      must_contain:
+        - do
+        - while
+        - const int
 ---
 
-## 🔁 Garantire l'Azione (Il Ciclo `do-while`)
+## 🔁 Garantire l'azione: validare con il ciclo `do-while`
 
-> "Fidarsi è bene, validare l'input prima di registrarlo è sicurezza informatica."
-> — *Regola Aurea dello Sviluppo Software*
+Il `while` e il `for` controllano la condizione prima di entrare nel corpo.
+A volte, però, devi compiere un'azione almeno una volta prima di poterla
+controllare: mostrare un modulo, chiedere un importo o leggere un PIN.
 
-`while` e `for` hanno il **controllo in testa**: se la condizione è già falsa, il corpo non gira **mai**.
+Il `do-while` serve proprio a questo: esegue il corpo e controlla la condizione
+alla fine.
 
-A volte però un’azione deve avvenire **almeno una volta** prima di poter controllare:
-- chiedere un importo (non puoi validarlo prima che esista);
-- mostrare un menu e poi decidere se uscire.
-
-Per questo esiste il **`do-while`**: controllo **in coda**.
-
-> 💡 **Metafora: modulo online con campi obbligatori**  
-> 1. La pagina ti mostra il form e tu compili (**il `do` gira almeno una volta**).  
-> 2. Premi “Invia”: il sistema controlla (*controllo in coda*).  
-> 3. Se c’è un errore, il form torna indietro e riprovi.  
-> 4. Si ripete **finché** i dati non sono validi.
+> 💡 **Metafora:** Immagina un modulo online con campi obbligatori. Prima devi
+> visualizzarlo e compilare una risposta; solo dopo puoi premere “Invia” e
+> controllare se i dati sono validi. Se c'è un errore, il modulo torna indietro
+> e lo compili di nuovo.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
+
 Alla fine di questa lezione sei in grado di:
-- Scrivere un `do-while` per validare un input che deve essere richiesto almeno una volta
+
+- scrivere un `do-while` per validare un input che deve essere richiesto almeno una volta.
 
 ---
 
-### ⚙️ Prima del laboratorio: anatomia e confronto con `while`
+### ⚙️ Prima del laboratorio: controllo in coda
 
 ```cpp
-// do-while: il corpo gira almeno una volta
 double importo;
+
 do {
     std::cout << "Importo (> 0): ";
     std::cin >> importo;
 } while (importo <= 0.0);
 ```
 
-Equivalente scomodo con `while` (codice di lettura **duplicato**):
+| Costrutto | Quando controlla? | Iterazioni minime |
+| :--- | :--- | :---: |
+| `while` | Prima del corpo | 0 |
+| `for` | Prima del corpo | 0 |
+| `do-while` | Dopo il corpo | 1 |
 
-```cpp
-std::cout << "Importo (> 0): ";
-std::cin >> importo;
-while (importo <= 0.0) {
-    std::cout << "Importo (> 0): ";
-    std::cin >> importo;
-}
-```
+Il punto e virgola dopo `while (importo <= 0.0);` è obbligatorio: chiude la
+struttura completa del `do-while`.
 
-| | `while` / `for` | `do-while` |
-|--|-----------------|------------|
-| Controllo | in **testa** | in **coda** |
-| Iterazioni minime | 0 | **1** |
-| Uso tipico | conteggi, sentinella già nota | validazione input, menu “almeno una volta” |
+---
 
-**Attenzione alla sintassi:** dopo il `while (...)` del `do-while` serve il **`;`**.
+### 🧭 Prima del laboratorio: il modulo e la verifica
 
 ```text @plantUML
 @startuml
 skinparam monochrome true
 skinparam shadowing false
+skinparam defaultTextAlignment center
 start
-:Esegui corpo (do);
-while (Condizione ancora vera?) is (sì)
-  :Esegui di nuovo il corpo;
+:Mostra la richiesta;
+:Leggi il dato;
+while (Dato ancora non valido?) is (sì)
+  :Mostra errore;
+  :Leggi un nuovo dato;
 endwhile (no)
-:Esci;
+:Accetta il dato;
 stop
 @enduml
 ```
 
----
+Per un importo ammesso tra `1.0` e `5000.0`, il ciclo deve continuare quando
+l'importo è troppo piccolo **oppure** troppo grande:
 
-### 🧭 Prima del laboratorio: il controllo arriva dopo il modulo
+```cpp
+importo < MIN_BONIFICO || importo > MAX_BONIFICO
+```
 
-Il form viene mostrato, l'utente prova a inviarlo e solo dopo il sistema decide
-se chiedere una nuova compilazione. Per questo il primo giro è garantito.
-
-| Ciclo | Quando controlla? | Giri minimi |
-|-------|------------------|-------------|
-| `while` | prima del corpo | 0 |
-| `do-while` | dopo il corpo | 1 |
+Quando entrambe le condizioni di errore sono false, l'importo è valido e il
+programma esce.
 
 ---
 
-### 🔬 Laboratorio PRIMM: Validazione importo bonifico
+### 🔬 Laboratorio PRIMM: validazione di un bonifico
 
-Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo).
+L'ufficio pagamenti deve accettare un bonifico solo se l'importo è compreso
+nell'intervallo ammesso.
 
 #### 1. PREDICT (Prevedi)
 
-
 [[ predict_block() ]]
 
-
-<details>
-<summary>💡 Spiegazione</summary>
-Il corpo viene eseguito <strong>prima</strong> del controllo.  
-Anche se <code>n &lt; 5</code> è già falso (10 &lt; 5), stampi comunque una volta <code>giro</code>, poi la condizione fallisce e usci.
-</details>
-
 #### 2. RUN (Esegui)
+
+Digita il programma completo. Prova con `-10`, poi `0`, infine `250`.
 
 ```cpp
 /**
  * @file valida_bonifico.cpp
- * @brief Chiede un importo di bonifico finché non e' nel range ammesso.
+ * @brief Richiede un importo finché non rientra nel range ammesso.
  */
 #include <iostream>
 
 /**
- * @brief Valida importo in [1, 5000] con do-while.
- * @return int 0 se ok.
+ * @brief Valida un importo compreso tra uno e cinquemila euro.
+ * @return int Codice di uscita: 0 indica terminazione corretta.
  */
 int main() {
+    /// Il limite minimo impedisce bonifici nulli o negativi.
     const double MIN_BONIFICO = 1.0;
+    /// Il limite massimo mantiene il controllo entro la procedura aziendale.
     const double MAX_BONIFICO = 5000.0;
-
     double importo = 0.0;
 
     do {
         std::cout << "Importo bonifico: ";
         std::cin >> importo;
         if (importo < MIN_BONIFICO || importo > MAX_BONIFICO) {
-            std::cout << "  Non valido (ammessi " << MIN_BONIFICO
-                      << " .. " << MAX_BONIFICO << ")\n";
+            std::cout << "Importo non valido. Riprova.\n";
         }
     } while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
 
@@ -223,105 +421,130 @@ int main() {
 ```
 @LIA.cpp
 
-#### 3. INVESTIGATE (Investiga)
-Sequenza di esempio: `-10` → `0` → `250`
+Il corpo viene eseguito almeno una volta. Con `250`, il controllo finale è
+falso e il programma stampa il messaggio di accettazione.
 
-| Giro | importo | Valido? | Continua? |
-|------|---------|---------|-----------|
-| 1 | -10 | no | sì |
-| 2 | 0 | no | sì |
-| 3 | 250 | sì | **no** (esce) |
+#### 3. INVESTIGATE (Indaga)
 
-Il controllo avviene **dopo** ogni tentativo: ecco perché il primo giro c’è sempre.
+Dopo il Run, ricostruisci il percorso di ogni tentativo.
+
+[[ investigate_block() ]]
+
+| Giro | `importo` | Condizione di errore | Azione |
+| :---: | :---: | :---: | :--- |
+| 1 | `-10` | vera | Mostra errore e ripete |
+| 2 | `0` | vera | Mostra errore e ripete |
+| 3 | `250` | falsa | Esce e accetta |
+
+Il controllo arriva dopo la lettura: per questo il primo tentativo esiste anche
+se il valore iniziale fosse già fuori intervallo.
+
+Se togli il punto e virgola finale, il compilatore può segnalare un errore
+simile a:
+
+```text
+error: expected ';' before 'return'
+```
+
+> 🔗 **Ispezione facoltativa:** copia il programma in
+> [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva il primo
+> tentativo garantito.
 
 #### 4. MODIFY (Modifica)
+
+Prima di modificare, prevedi l'effetto di una sola modifica per volta.
+
+[[ modify_block() ]]
+
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
 ```cpp
 do {
     std::cin >> importo;
-} while (importo < MIN_BONIFICO || importo > MAX_BONIFICO);
+} while (importo <= 0.0);
 ```
 
 </details>
 
-1. **Range più stretto**
-   Cambia l'intervallo ammesso da `[1, 5000]` a `[10, 1000]` e prova un importo
-   fuori range prima di uno valido.
+**Modifica A — restringi l'intervallo**
 
-2. **Dimenticare il `;`**
-   Togli il punto e virgola dopo `while (...)`: osserva l’errore del compilatore.
+Cambia l'intervallo ammesso da `[1, 5000]` a `[10, 1000]`. Aggiorna entrambe
+le condizioni necessarie.
 
-   Un compilatore come g++ può segnalare:
+**Modifica B — prova un valore valido al primo tentativo**
 
-   ```text
-   error: expected ';' before 'return'
-   ```
+Inserisci subito `250`. Verifica che il corpo giri una volta e che il controllo
+permetta immediatamente l'uscita.
 
-3. **Valido al primo invio**
-   Inserisci subito `250`: verifica che il corpo gira una volta e il controllo
-   permette subito l'uscita.
+**Modifica C — osserva la sintassi**
+
+Rimuovi temporaneamente il punto e virgola dopo la condizione finale, compila e
+leggi il messaggio del compilatore. Poi ripristinalo.
 
 #### 5. MAKE (Crea)
-**Scenario SIA — PIN sportello con tentativi limitati**
 
-Scrivi `pin_sportello.cpp`:
+**Scenario aziendale:** uno sportello deve verificare un PIN prima di
+permettere l'accesso, limitando i tentativi per sicurezza.
 
-- `const int PIN_CORRETTO = 4821`
-- L’utente inserisce un PIN (`int`)
-- `do-while`: ripeti finché il PIN è sbagliato **e** i tentativi sono `< 3`
-- Se indovina entro 3 prove → “Accesso consentito”
-- Se esaurisce i tentativi → “Carta bloccata”
-- Non rivelare il PIN corretto nei messaggi di errore
+Crea `pin_sportello.cpp` rispettando tutti i requisiti:
 
-**Requisiti:** Doxygen, messaggi chiari, niente ciclo infinito.
+1. Dichiara `const int PIN_CORRETTO = 4821`.
+2. Dichiara un `int pinInserito` e un contatore dei tentativi.
+3. Chiedi il PIN almeno una volta con un `do-while`.
+4. Continua se il PIN è errato e i tentativi sono minori di `3`.
+5. Se il PIN è corretto entro tre prove, stampa `Accesso consentito`.
+6. Dopo tre errori, stampa `Carta bloccata`.
+7. Non rivelare il PIN corretto nei messaggi di errore.
+8. Inserisci un commento `///` che spieghi perché il numero di tentativi è limitato.
 
 <details>
-<summary>💡 Scaffold</summary>
+<summary>💡 Scaffold di partenza</summary>
 
 ```cpp
 /**
- * @brief Validazione PIN sportello con massimo 3 tentativi.
+ * @brief Validazione PIN sportello con massimo tre tentativi.
  */
 #include <iostream>
 
 int main() {
     const int PIN_CORRETTO = 4821;
-    /// TODO: spiega perché i tentativi sono limitati.
-    // TODO: tentativi, do-while, esiti
+    /// TODO: spiega perché i tentativi devono essere limitati.
+    // TODO: dichiara PIN e contatore, poi scrivi il do-while.
     return 0;
 }
 ```
 
 </details>
 
-**Variante di sintesi (opzionale, se avete tempo in lab):**  
-un mini menu cassa con `do-while` esterno + `switch` (nuova spesa / uscita), riusando sentinella e scaglioni già visti. Non è obbligatorio per chiudere il capitolo.
-
 ---
 
 ### 📝 Riepilogo tascabile
-- `do-while` = esegui **poi** controlla → **almeno un** giro.
-- Ideale per validare input e menu che devono apparire subito.
-- Dopo `while (...)` del `do-while` non dimenticare il **`;`**.
-- `while`/`for` restano la scelta giusta quando 0 iterazioni è accettabile.
+
+- `do-while` esegue il corpo e poi controlla la condizione.
+- Il corpo viene eseguito almeno una volta.
+- È adatto alla validazione di input e ai menu che devono apparire subito.
+- Dopo `while (condizione)` del `do-while` serve `;`.
+- Usa `while` o `for` quando zero iterazioni è un caso accettabile.
 
 ---
 
 ### ➡️ Prossimo chunk
-Chiudiamo il Blocco 1 con gli strumenti di “guida fine” del ciclo: **`break`**, **`continue`** e la formattazione professionale dei numeri con **`<iomanip>`**.
 
----
+Ora conosci i tre cicli fondamentali. Nel prossimo capitolo userai `break` e
+`continue` per guidare con maggiore precisione il flusso dentro un ciclo.
 
-<!-- 
-  NOTE PER L'AUTORE / LLM
-  [x] Obiettivo: do-while, validazione, almeno una iterazione
-  [x] Metafora form online
-  [x] Quiz sintassi corretta
-  [x] Predict: una iterazione anche se condizione già falsa
-  [x] PRIMM validazione bonifico
-  [x] Make PIN con 3 tentativi (più mirato del mega-terminale)
-  [x] Sintesi menu lasciata opzionale
-  [x] break/iomanip solo annunciati
--->
+<!--#
+  Checklist autore / LLM
+  [x] Un solo obiettivo osservabile
+  [x] Metafora esplicita con mapping tra modulo e do-while
+  [x] predict_quiz.items ~5, concettuali, con distrattori da misconception
+  [x] investigate_quiz.items ~5, perché / tracing / errori
+  [x] modify_quiz.items ~5, effetto della modifica
+  [x] Macro [[ predict_block() ]], [[ investigate_block() ]], [[ modify_block() ]]
+  [x] Run con programma completo e @LIA.cpp
+  [x] Make con scenario SIA, requisiti chiusi e scaffold
+  [x] Commenti /// usati solo per il perché
+  [x] Nessun costrutto oltre quelli già introdotti
+  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/12_ciclo_do_while.md
+#-->

@@ -1,7 +1,7 @@
 <!--
 author:               Gionata Massi
 email:                gionata.massi@savoiabenicasa.it
-version:              2026-11-12
+version:              2026-11-20
 language:             it
 narrator:             IT Italian Male
 comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
@@ -14,36 +14,59 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 ---
 
 
-## ⚙️ Il Motore Sotto il Cofano: dalla sorgente all'eseguibile
+## ⚙️ Il motore sotto il cofano: dalla sorgente all'eseguibile
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 >
-> — Bjarne Stroustrup
+> — *Bjarne Stroustrup*
 
-Hai appena allestito l’officina (VS Code + g++).  
-Ora apriamo il cofano e guardiamo **cosa succede davvero** quando premi il pulsante di compilazione.
+Hai appena allestito l'officina con VS Code e `g++`. Ora apri il cofano: quando
+premi il pulsante di compilazione, il file che scrivi non diventa subito un
+programma. Attraversa più stazioni, proprio come un ordine che passa da
+controllo, preparazione e spedizione.
 
-Il computer non capisce il C++. Capisce solo istruzioni macchina (sequenze di 0 e 1).  
-Tra il file che scrivi tu (`.cpp`) e il programma che gira (`.exe`) c’è una **catena di montaggio** con quattro stazioni.
-
-> 💡 **Metafora:**  
-> Pensa a una **fabbrica di auto**.  
-> - Il progetto su carta = il tuo file `.cpp`  
-> - I reparti della fabbrica = pre-elaboratore, compilatore, assemblatore, linker  
-> - L’auto finita che esce dal cancello = il file eseguibile  
-> Ogni reparto fa un lavoro preciso. Se un pezzo è sbagliato, la catena si ferma e ti arriva una “notifica” (errore di compilazione).
+> 💡 **Metafora:** Immagina una catena di montaggio aziendale. Il file `.cpp` è
+> il progetto dell'ordine; pre-elaboratore, compilatore, assemblatore e linker
+> sono reparti specializzati; il file `.exe` è il prodotto finito pronto per il
+> cliente. Se un reparto trova un problema, la catena si ferma e ricevi un
+> messaggio d'errore.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
+
 Alla fine di questa lezione sei in grado di:
-- Seguire il percorso di un programma C++ dal sorgente all'eseguibile e ispezionarne i file intermedi con `g++ -save-temps`
+
+- seguire il percorso di un programma C++ dal file `.cpp` all'eseguibile e
+  riconoscere il ruolo dei file intermedi creati da `g++ -save-temps`.
 
 ---
 
-### ⚙️ Prima del laboratorio: dal sorgente all'eseguibile
+### ⚙️ Prima del laboratorio: le stazioni essenziali
 
-Il percorso essenziale è questo:
+| Stazione | Che cosa trasforma | File tipico |
+| :--- | :--- | :--- |
+| Pre-elaboratore | Espande le direttive `#include` e prepara il sorgente | `.ii` |
+| Compilatore | Traduce il C++ in Assembly | `.s` |
+| Assemblatore | Traduce l'Assembly in codice oggetto | `.o` |
+| Linker | Collega codice oggetto, librerie e codice di avvio | `.exe` |
+
+Il comando che useremo è:
+
+```bat
+g++ -save-temps -O0 -fverbose-asm ridotto.cpp -o ridotto.exe
+```
+
+| Opzione | Effetto pratico |
+| :--- | :--- |
+| `-save-temps` | Conserva i file intermedi invece di eliminarli |
+| `-O0` | Riduce le ottimizzazioni: l'Assembly è più facile da leggere |
+| `-fverbose-asm` | Aggiunge indicazioni utili per collegare Assembly e C++ |
+| `-o ridotto.exe` | Sceglie il nome dell'eseguibile finale |
+
+---
+
+### 🧭 Prima del laboratorio: il flusso
 
 ```text @plantUML
 @startuml
@@ -51,76 +74,30 @@ skinparam monochrome true
 skinparam shadowing false
 skinparam defaultTextAlignment center
 skinparam ArrowColor #000000
-skinparam rectangle {
-  BackgroundColor #DDDDDD
-  BorderColor #000000
-}
 top to bottom direction
 
-rectangle "ridotto.cpp\n(codice sorgente)" as SRC
-rectangle "Compilatore" as COMP
-rectangle "ridotto.o\n(codice oggetto)" as OBJ
-rectangle "Linker" as LINK
-rectangle "ridotto.exe\n(codice eseguibile)" as EXE
+rectangle "ridotto.cpp\nsorgente" as SRC
+rectangle "Pre-elaboratore\nridotto.ii" as PRE
+rectangle "Compilatore\nridotto.s" as COMP
+rectangle "Assemblatore\nridotto.o" as ASM
+rectangle "Linker + librerie\nridotto.exe" as LINK
 
-rectangle "codice di libreria" as LIB
-rectangle "codice di avvio\n(start-up)" as START
-
-SRC --> COMP
-COMP --> OBJ
-OBJ --> LINK
-LIB --> LINK
-START --> LINK
-LINK --> EXE
-
-SRC -[hidden]right-> LIB
-COMP -[hidden]right-> START
+SRC --> PRE
+PRE --> COMP
+COMP --> ASM
+ASM --> LINK
 @enduml
 ```
 
-Il file `.cpp` che scrivi non viene eseguito direttamente: il compilatore e il
-linker lo trasformano in un `.exe` pronto per Windows.
+Prima dell'esecuzione, prova a prevedere che cosa troverai nella cartella e
+perché il file `.o` non può ancora essere avviato da solo.
 
 ---
 
-### 🧭 Prima del laboratorio: le quattro stazioni
+### 🔬 Laboratorio PRIMM: l'ordine notturno
 
-Dentro la fase di traduzione ci sono quattro stazioni. Con `g++` le vediamo così:
-
-```text @plantUML
-@startuml
-skinparam monochrome true
-skinparam shadowing false
-skinparam defaultTextAlignment center
-
-rectangle ".cpp\nsorgente" as S
-rectangle "Pre-elaboratore\n(.ii)" as P
-rectangle "Compilatore\n(.s Assembly)" as C
-rectangle "Assemblatore\n(.o oggetto)" as A
-rectangle "Linker\n(+ librerie)\n.exe" as L
-
-S -right-> P
-P -right-> C
-C -right-> A
-A -right-> L
-@enduml
-```
-
-| Stazione | Cosa fa | File tipico |
-|----------|---------|-------------|
-| **Pre-elaboratore** | Espande le direttive `#include`, rimuove i commenti, gestisce le macro | `.ii` |
-| **Compilatore** | Controlla la sintassi e traduce il C++ in **Assembly** (linguaggio a basso livello ma ancora leggibile) | `.s` |
-| **Assemblatore** | Traduce l’Assembly in codice macchina (oggetti non ancora eseguibili da soli) | `.o` |
-| **Linker** | Unisce i file oggetto con le librerie (es. la parte di sistema che serve per `main`) e produce l’eseguibile finale | `.exe` |
-
-> 💡 **Brain-friendly tip:** Il compilatore è un controllore pedante, non un indovino. Se dimentichi un punto e virgola, si ferma e ti segnala l’errore. Non cerca di “capire cosa volevi dire”.
-
----
-
-### 🔬 Laboratorio PRIMM: Guarda sotto il cofano
-
-Useremo il programma **più piccolo possibile** (senza ancora stampare nulla).  
-Così concentriamo l’attenzione sulla catena di montaggio, non sull’output a video.
+Un importatore di ordini deve comunicare al sistema operativo se il lavoro è
+terminato correttamente. Per ora non stampa nulla: osserviamo solo la catena.
 
 ```cpp
 int main() {
@@ -130,22 +107,54 @@ int main() {
 
 #### 1. PREDICT (Prevedi)
 
-
 ```cpp
-int main() { return 0; }
+g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
 ```
 
-Dopo g++ -save-temps, quale file contiene il codice senza commenti?
+**Domanda 1**
 
-[( )] ridotto.o
-[(X)] ridotto.ii
-[( )] ridotto.exe
-[( )] ridotto.s
+Quale risultato principale vuoi ottenere con questo comando?
 
+[(X)] Un eseguibile `ridotto.exe` pronto da avviare
+[( )] Un file `.cpp` con il programma scritto automaticamente
+[( )] Solo una stampa a video, senza creare file
+
+**Domanda 2**
+
+Perché `-save-temps` è utile mentre studi la compilazione?
+
+[(X)] Chiede a `g++` di conservare i file temporanei intermedi
+[( )] Rende il programma più veloce durante l'esecuzione
+[( )] Salva automaticamente una copia del programma su Internet
+
+**Domanda 3**
+
+Dopo la pre-elaborazione, quale file contiene ancora codice testuale vicino al C++?
+
+[(X)] Il file `.ii`, con direttive espanse e commenti rimossi
+[( )] Il file `.o`, già composto solo da testo Assembly
+[( )] Il file `.exe`, che contiene il sorgente originale leggibile
+
+**Domanda 4**
+
+Quale sequenza descrive meglio il percorso verso l'eseguibile?
+
+[(X)] `.cpp` → `.ii` → `.s` → `.o` → `.exe`
+[( )] `.cpp` → `.exe` → `.ii` → `.o` → `.s`
+[( )] `.cpp` → `.o` → `.ii` → `.exe` → `.s`
+
+**Domanda 5**
+
+Perché il linker deve intervenire anche dopo la traduzione del tuo file?
+
+[(X)] Per collegare il codice oggetto con librerie e codice di avvio
+[( )] Per correggere i punti e virgola dimenticati nel C++
+[( )] Per trasformare l'eseguibile di nuovo nel file sorgente
 
 #### 2. RUN (Esegui)
-Prima esegui il programma minimo nel blocco, poi ripeti l'esperimento dal
-terminale per lasciare visibili i file intermedi.
+
+Digita il programma nel tuo editor oppure usa il bottone. Poi esegui il comando
+dal terminale nella cartella del file:
 
 ```cpp
 int main() {
@@ -154,49 +163,154 @@ int main() {
 ```
 @LIA.cpp
 
-Nella cartella del progetto digita:
-
 ```bat
 g++ -save-temps -O0 -fverbose-asm ridotto.cpp -o ridotto.exe
+ridotto.exe
+echo %ERRORLEVEL%
 ```
 
-Il flag `-save-temps` dice a g++: “non cancellare i file intermedi”.  
-`-O0` disattiva le ottimizzazioni, così l’Assembly resta più leggibile.
-`-fverbose-asm` annota ogni riga rilevante per mostrare la corrispondenza tra il codice assembly prodotto e quello C++ _sorgente_.
+Con `-save-temps` dovresti trovare almeno:
 
-
-**Controllo:** nella cartella devono comparire almeno:
 - `ridotto.ii`
 - `ridotto.s`
 - `ridotto.o`
 - `ridotto.exe`
 
-Prova anche:
+Confronta il valore mostrato da `echo %ERRORLEVEL%` con la tua previsione.
 
-```bat
-ridotto.exe
-echo %ERRORLEVEL%
+#### 3. INVESTIGATE (Indaga)
+
+Ora che hai eseguito il comando, rispondi alle domande sul *perché* e
+sull'ordine, non soltanto sull'elenco dei file.
+
+```cpp
+int main() {
+    return 0;
+}
 ```
 
-(Su Windows `ERRORLEVEL` mostra il valore restituito da `main`. Dovresti vedere `0`.)
+**Domanda 1**
 
-#### 3. INVESTIGATE (Investiga)
-Apri i file intermedi con un editor di testo (o con `type ridotto.ii` / `type ridotto.s` nel Prompt).
+Perché `ridotto.o` non è ancora l'eseguibile finale?
 
-| File | Cosa ci trovi | Perché è importante |
-|------|---------------|---------------------|
-| `ridotto.ii` | Codice "pulito" dopo il pre-elaboratore | Vedi cosa resta quando spariscono i commenti |
-| `ridotto.s` | Assembly (ancora leggibile) | Colleghi una riga C++ a un'istruzione macchina |
-| `ridotto.o` | Codice oggetto (binario) | Non è ancora un programma completo da solo |
-| `ridotto.exe` | Eseguibile finale | È il prodotto della fabbrica, pronto da lanciare |
+[(X)] È codice oggetto: può avere ancora collegamenti da risolvere con librerie e avvio
+[( )] È soltanto una copia del file `.cpp` con un'altra estensione
+[( )] È già l'eseguibile, ma Windows gli nasconde l'estensione
 
-Nel file `.s` noterai istruzioni del tipo:
-```asm
-movl $0, %eax
-```
-Che, in pratica, prepara il valore di ritorno `0` (successo).
+**Domanda 2**
+
+Quale trasformazione avviene quando il compilatore produce il file `.s`?
+
+[(X)] Il C++ viene tradotto in Assembly, un linguaggio a basso livello ancora leggibile
+[( )] Il programma viene eseguito e il risultato viene salvato in `.s`
+[( )] I file `.cpp` vengono compressi in un archivio di testo
+
+**Domanda 3**
+
+Quale ordine di osservazione è coerente con la catena di compilazione?
+
+[(X)] Prima `.ii`, poi `.s`, poi `.o`, infine `.exe`
+[( )] Prima `.exe`, poi `.o`, poi `.s`, infine `.ii`
+[( )] `.ii` e `.exe` vengono creati soltanto dopo l'esecuzione
+
+**Domanda 4**
+
+Nel file Assembly, perché puoi trovare un'istruzione che prepara il valore `0`?
+
+[(X)] Perché `return 0;` deve consegnare al sistema operativo un codice di uscita
+[( )] Perché ogni programma deve stampare almeno uno zero
+[( )] Perché `-save-temps` sostituisce ogni istruzione con il numero zero
+
+**Domanda 5**
+
+Se il compilatore segnala un errore di sintassi nel `.cpp`, perché la catena non arriva al linker?
+
+[(X)] Senza una traduzione valida non esiste un file oggetto affidabile da collegare
+[( )] Il linker lavora solo sui commenti e quindi ignora il programma
+[( )] Il linker viene eseguito prima del compilatore e non può ripartire
+
+| File | Che cosa contiene | Perché ti serve |
+| :--- | :--- | :--- |
+| `ridotto.ii` | Sorgente preparato dal pre-elaboratore | Mostra il risultato delle direttive iniziali |
+| `ridotto.s` | Istruzioni Assembly testuali | Fa vedere una traduzione a basso livello |
+| `ridotto.o` | Codice oggetto binario | È un pezzo compilato, ma non ancora completo |
+| `ridotto.exe` | Programma eseguibile | È il prodotto finale della catena |
+
+Apri `ridotto.s` con un editor. Cerca un'istruzione che prepara il valore
+`0`: è il collegamento visibile tra `return 0;` e il codice di uscita che hai
+letto con `echo %ERRORLEVEL%`.
+
+> 🔗 **Ispezione facoltativa:** puoi incollare il programma in
+> [Python Tutor C++](https://pythontutor.com/cpp.html) per seguire l'ingresso in
+> `main` e l'esecuzione di `return`.
 
 #### 4. MODIFY (Modifica)
+
+Prima di modificare, prevedi l'effetto di una sola modifica per volta.
+
+```cpp
+int main() {
+    return 0;
+}
+```
+
+**Domanda 1**
+
+Se cambi `return 0;` in `return 7;`, quale effetto vuoi verificare?
+
+[(X)] Il codice di uscita del programma cambia da `0` a `7`
+[( )] Il programma stampa automaticamente il numero `7`
+[( )] Il compilatore salta la fase di assemblaggio
+
+**Domanda 2**
+
+Quale modifica permette di ottenere il file finale con il nome `importazione.exe`?
+
+[(X)] Sostituire il nome dopo `-o` con `importazione.exe`
+[( )] Cambiare l'estensione di `ridotto.cpp` in `.exe` prima di compilare
+[( )] Scrivere `importazione.exe` dentro `return`
+
+**Domanda 3**
+
+Se togli `-save-temps`, quale cambiamento è più probabile?
+
+[(X)] Ottieni comunque l'eseguibile, ma i file intermedi possono essere rimossi
+[( )] Il C++ non può più essere compilato
+[( )] Il programma viene trasformato direttamente in Assembly e non in `.exe`
+
+**Domanda 4**
+
+Quale modifica rende l'Assembly più facile da collegare al sorgente durante l'ispezione?
+
+[(X)] Aggiungere `-fverbose-asm` al comando
+[( )] Sostituire `-O0` con `return 0`
+[( )] Rinominare il file `.o` in `.cpp` dopo la compilazione
+
+**Domanda 5**
+
+Perché conviene modificare una sola cosa alla volta nel comando o nel codice?
+
+[(X)] Per collegare con chiarezza ogni effetto alla modifica che lo ha causato
+[( )] Perché `g++` accetta una sola modifica per ogni esecuzione
+[( )] Perché i file intermedi non possono contenere più di una riga cambiata
+
+Applica ora le modifiche in ordine e ricompila ogni volta.
+
+**Modifica A — cambia il codice di uscita**
+
+Sostituisci `return 0;` con `return 7;`. Esegui di nuovo il programma e
+controlla `echo %ERRORLEVEL%`. Cerca nel file `.s` il nuovo valore.
+
+**Modifica B — cambia il nome del prodotto**
+
+Ricompila con:
+
+```bat
+g++ -save-temps -O0 -fverbose-asm ridotto.cpp -o importazione.exe
+```
+
+Controlla che l'eseguibile finale si chiami `importazione.exe`.
+
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
@@ -208,78 +322,45 @@ int main() {
 
 </details>
 
-1. Cambia il programma in:
-   ```cpp
-   int main() {
-       return 42;
-   }
-   ```
-2. Ricompila con lo stesso comando:
-   ```bat
-   g++ -save-temps -O0 -fverbose-asm ridotto.cpp -o ridotto.exe
-   ```
-3. Riapri `ridotto.s` e cerca di nuovo l’istruzione `movl` / `mov`.
-
-Cosa è cambiato?
-
-[( )] È scomparsa l’istruzione di movimento
-[(X)] Il valore letterale è passato da `$0` a `$42`
-[( )] Il file `.s` è diventato molto più grande
-[( )] Non viene più generato il file `.s`
-
-<details>
-<summary>💡 Spiegazione</summary>
-Hai visto con i tuoi occhi la traduzione: una riga C++ ad alto livello (<code>return 42;</code>) diventa una precisa istruzione Assembly. Il compilatore non fa magia: fa <strong>traduzione</strong>.
-</details>
-
-Esegui di nuovo il programma e controlla il codice di uscita:
-
-```bat
-ridotto.exe
-echo %ERRORLEVEL%
-```
-
-Dovresti vedere `42`.
-
 #### 5. MAKE (Crea)
-**Scenario aziendale:** un programma automatico importa gli ordini notturni.
-Non deve ancora stampare nulla, ma deve restituire un codice di esito che un
-altro programma possa leggere.
 
-Crea `codice_uscita.cpp` che:
-1. Contiene solo `main` e restituisce un codice tra 1 e 99 (diverso da 0 e 42).
-2. Usa un commento `///` per spiegare cosa rappresenta il codice scelto.
-3. Viene compilato con `-save-temps -fverbose-asm`.
-4. Ti permette di verificare nel `.s` il numero scelto.
-5. Mostra lo stesso numero con `echo %ERRORLEVEL%` dopo l'esecuzione.
+**Scenario aziendale:** un programma automatico importa gli ordini notturni.
+Un altro programma deve poter leggere un codice numerico per capire l'esito.
+
+Crea `codice_uscita.cpp` rispettando tutti i requisiti:
+
+1. Usa solo `main`; non aggiungere ancora `#include` o `std::cout`.
+2. Restituisci un codice tra `1` e `99`, diverso da `0` e `42`.
+3. Inserisci un commento `///` che spieghi il significato aziendale del codice.
+4. Compila con `-save-temps -O0 -fverbose-asm`.
+5. Verifica lo stesso numero con `echo %ERRORLEVEL%`.
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
 ```cpp
 int main() {
-    /// TODO: spiega l'esito dell'importazione.
+    /// TODO: spiega l'esito dell'importazione per il sistema che lo riceve.
     return 7;
 }
 ```
 
 </details>
 
-**Non** usare ancora `#include <iostream>` né `std::cout`: restiamo concentrati sulla catena di compilazione.  
-La stampa a video arriverà nel prossimo capitolo.
-
 ---
 
 ### 📝 Riepilogo tascabile
-- C++ è un linguaggio **compilato**: il sorgente viene tradotto in eseguibile attraverso più stazioni.
-- Le quattro fasi: **Pre-elaboratore → Compilatore → Assemblatore → Linker**.
-- `g++ -save-temps` lascia i file intermedi (`.ii`, `.s`, `.o`) così puoi ispezionarli.
-- `return N;` in `main` diventa, in Assembly, un’istruzione che mette `N` nel registro di ritorno.
-- Gli errori di compilazione sono segnalazioni precise della fabbrica: imparare a leggerli è una competenza chiave.
+
+- Il file `.cpp` è il progetto; il `.exe` è il prodotto eseguibile.
+- Il percorso osservabile è `.cpp` → `.ii` → `.s` → `.o` → `.exe`.
+- Il linker collega il codice oggetto con librerie e codice di avvio.
+- `-save-temps` conserva i file intermedi per poterli ispezionare.
+- `return N;` comunica un codice di uscita al sistema operativo: non stampa `N`.
 
 ---
 
 ### ➡️ Prossimo chunk
-Finora il nostro programma non ha ancora *parlato* con noi.  
-Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo vero dialogo: **Ciao, Mondo!**.
+
+Il programma sa già comunicare un esito al sistema, ma non parla ancora con la
+persona che lo usa. Nel prossimo capitolo gli daremo un megafono: `std::cout`.
 
