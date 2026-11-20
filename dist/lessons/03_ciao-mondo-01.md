@@ -7,6 +7,7 @@ narrator:             IT Italian Male
 comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
 import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
 [← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/02_motore-compilazione-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/04_doxygen-01.md)
 
@@ -16,7 +17,7 @@ import:               https://raw.githubusercontent.com/liascript-templates/plan
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 >
-> — *Brian Kernighan*
+> -- *Brian Kernighan*
 
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
 
@@ -28,6 +29,7 @@ Un linguaggio di programmazione è come un linguaggio straniero con una grammati
 ---
 
 ### 🎯 Obiettivo di questo chunk
+
 Alla fine di questa lezione sei in grado di:
 
 - Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
@@ -162,6 +164,7 @@ int main() {
 </details>
 
 **Modifica A — Il punto e virgola traditore**
+
 1. Togli il `;` alla fine della riga di `std::cout`.
 2. Compila.
 
@@ -186,6 +189,7 @@ prima di arrivare a `return`. Il testo preciso può cambiare, ma riga e parola
 </details>
 
 **Modifica B — Lo spazio dei nomi**
+
 1. Ripristina il `;`.
 2. Cambia `std::cout` in solo `cout` (togli `std::`).
 3. Compila.
@@ -223,6 +227,7 @@ piccolo gestionale ordini. Prima che l'operatore inizi a lavorare, il programma
 deve comunicare con chiarezza dove si trova.
 
 **Requisiti:**
+
 1. Includi la libreria corretta.
 2. Hai una funzione `main` ben formattata.
 3. Stampa **tre righe separate** con tre istruzioni `std::cout`:

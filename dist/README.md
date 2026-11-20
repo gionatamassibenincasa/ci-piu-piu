@@ -673,7 +673,7 @@ Nel prossimo capitolo gli daremo il megafono (`std::cout`) e scriveremo il primo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 >
-> — *Brian Kernighan*
+> -- *Brian Kernighan*
 
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
 
@@ -685,6 +685,7 @@ Un linguaggio di programmazione è come un linguaggio straniero con una grammati
 ---
 
 ### 🎯 Obiettivo di questo chunk
+
 Alla fine di questa lezione sei in grado di:
 
 - Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
@@ -699,7 +700,7 @@ inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.
 | Parte | Idea pratica | Perché c'è |
 | :--- | :--- | :--- |
 | `#include <iostream>` | Prendi in prestito gli strumenti per parlare con lo schermo. | Senza questa libreria il compilatore non conosce `std::cout`. |
-| `int main() { ... }` | Apri l'ufficio principale del programma. | L'esecuzione parte sempre da qui. |
+| `int main() { ... }` | Il punto d'ingresso del programma. | L'esecuzione parte sempre da qui. |
 | `std::cout << "..."` | Invia un messaggio al monitor. | `std::` indica che usi uno strumento della libreria standard. |
 | `return 0;` | Comunica che il lavoro è terminato bene. | Il sistema operativo riceve un esito di successo. |
 
@@ -739,9 +740,7 @@ int main() {
 
 #### 1. PREDICT (Prevedi)
 
-
-Osserva il frammento:
-code: std::cout << "Ciao, Mondo!\n";
+Osserva il frammento: `std::cout << "Ciao, Mondo!\n";`
 
 1) Cosa fa questa istruzione?
 2) Il listato, così com'è, è un programma C++ completo e sintatticamente corretto?
@@ -754,7 +753,6 @@ std::cout << "Ciao, Mondo!\n";
 [(X)] Stampa Ciao, Mondo! e va a capo; da sola non è un programma completo (mancano include e main)
 [( )] Legge da tastiera la stringa Ciao, Mondo!
 [( )] È già un programma completo: basta salvarlo e compilarlo così com'è
-
 
 #### 2. RUN (Esegui)
 
@@ -781,7 +779,7 @@ int main() {
 ```
 @LIA.cpp
 
-#### 3. INVESTIGATE (Investiga)
+#### 3. INVESTIGATE (Indaga)
 
 Analizziamo il codice riga per riga come detective.
 
@@ -803,6 +801,7 @@ Analizziamo il codice riga per riga come detective.
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
 #### 4. MODIFY (Modifica)
+
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
 Dopo ogni modifica ricompila/esegui.
 
@@ -821,6 +820,7 @@ int main() {
 </details>
 
 **Modifica A — Il punto e virgola traditore**
+
 1. Togli il `;` alla fine della riga di `std::cout`.
 2. Compila.
 
@@ -845,6 +845,7 @@ prima di arrivare a `return`. Il testo preciso può cambiare, ma riga e parola
 </details>
 
 **Modifica B — Lo spazio dei nomi**
+
 1. Ripristina il `;`.
 2. Cambia `std::cout` in solo `cout` (togli `std::`).
 3. Compila.
@@ -874,6 +875,7 @@ Aggiungi una seconda riga di output: `Gestionale ordini pronto`.
 Verifica che appaiano su due righe separate.
 
 #### 5. MAKE (Crea)
+
 Scrivi da zero un nuovo programma chiamato `presentazione.cpp`.
 
 **Scenario aziendale:** la tua classe sta preparando la prima schermata di un
@@ -881,6 +883,7 @@ piccolo gestionale ordini. Prima che l'operatore inizi a lavorare, il programma
 deve comunicare con chiarezza dove si trova.
 
 **Requisiti:**
+
 1. Includi la libreria corretta.
 2. Hai una funzione `main` ben formattata.
 3. Stampa **tre righe separate** con tre istruzioni `std::cout`:
@@ -913,6 +916,7 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
+
 - Ogni programma C++ parte da `int main()`.
 - `#include <iostream>` è il passaporto per l’input/output.
 - `std::cout <<` scrive sullo schermo; `\n` va a capo.
@@ -924,9 +928,9 @@ int main() {
 ---
 
 ### ➡️ Prossimo chunk
-Finora il computer ha solo *parlato*.  
-Nel prossimo capitolo gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
+Finora il computer ha solo *parlato*.  
+Nella prossima lezione gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
 
 ## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
 
