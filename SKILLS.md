@@ -160,6 +160,25 @@ Quando generi contenuti, rispetta **tassativamente** queste regole:
 
 ---
 
+## Golden sample e standard di revisione
+
+**Riferimento obbligatorio per lezioni PRIMM:** [`chapters/03_ciao_mondo.md`](chapters/03_ciao_mondo.md)
+
+Documenti collegati:
+
+- [`docs/GOLDEN_SAMPLE.md`](docs/GOLDEN_SAMPLE.md) — cosa copiare e come revisionare
+- [`docs/template_primm.md`](docs/template_primm.md) — scheletro da clonare
+- [`docs/quiz_design.md`](docs/quiz_design.md) — tipo e qualità delle domande (Predict / Investigate / Modify)
+
+Quando **generi** o **revidi** un file in `chapters/`:
+
+1. Rispetta la struttura del golden sample (metafora → obiettivo → pre-lab → PRIMM completo → riepilogo).
+2. Usa `predict_quiz` / `investigate_quiz` / `modify_quiz` con `items[]` e macro `[[ *_block() ]]`.
+3. Domande concettuali (*perché*, tracing, misconception), non solo “cosa stampa?”.
+4. Target ~5+5+5 MC in OER (o 3+3+3 se il chunk è più corto); Paper Pack resta un subset.
+5. Esegui `python -m tools.cipiupiu validate` sul file toccato.
+6. Non applicare il 5+5+5 PRIMM a `methodology: guide|lab|convention` (cap. 0–1 e simili).
+
 ## Cosa NON fare
 - Non generare blocchi di codice lunghi più di 30-40 righe senza una suddivisione logica.
 - Non usare terminologia gergale senza averla prima definita con una metafora.
