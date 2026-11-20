@@ -345,6 +345,7 @@ DEFAULT_LIASCRIPT_META: dict[str, Any] = {
     "import": [
         "https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md",
         "https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md",
+        "https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md",
     ],
 }
 
