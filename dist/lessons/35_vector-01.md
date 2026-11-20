@@ -38,13 +38,13 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Dopo `v.push_back(3); v.push_back(5);`, quanto vale `v.size()`?
-
 ```cpp
 std::vector<int> v;
 v.push_back(3);
 v.push_back(5);
 ```
+
+Dopo `v.push_back(3); v.push_back(5);`, quanto vale `v.size()`?
 
 [(X)] 2
 [( )] 0

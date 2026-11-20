@@ -38,11 +38,11 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Se `Ordine` contiene un membro `Cliente cliente_`, la distruzione di `Ordine` coinvolge anche `cliente_`?
-
 ```cpp
 class Ordine { Cliente cliente_; /* ... */ };
 ```
+
+Se `Ordine` contiene un membro `Cliente cliente_`, la distruzione di `Ordine` coinvolge anche `cliente_`?
 
 [(X)] Sì: il membro vive dentro l’oggetto composto
 [( )] No: Cliente è sempre indipendente sullo heap

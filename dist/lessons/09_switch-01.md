@@ -103,8 +103,6 @@ Un menu a tasti fissi smista prelievo, versamento e saldo.
 #### 1. PREDICT (Prevedi)
 
 
-Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
-
 ```cpp
 switch (tasto) {
     case 1:
@@ -115,6 +113,8 @@ switch (tasto) {
         std::cout << "Errore";
 }
 ```
+
+Con `tasto = 1`, cosa stampa questo frammento **senza** `break` dopo il primo case?
 
 [( )] Stampa solo `Saldo `
 [(X)] Stampa `Saldo Estratto Conto Errore`

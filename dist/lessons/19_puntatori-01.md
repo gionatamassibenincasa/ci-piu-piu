@@ -55,13 +55,13 @@ std::cout << *p;      // 40
 
 #### 1. PREDICT (Prevedi)
 
-Dopo `int x = 10; int* p = &x; *p = 25;`, quanto vale `x`?
-
 ```cpp
 int x = 10;
 int* p = &x;
 *p = 25;
 ```
+
+Dopo `int x = 10; int* p = &x; *p = 25;`, quanto vale `x`?
 
 [( )] 10
 [(X)] 25

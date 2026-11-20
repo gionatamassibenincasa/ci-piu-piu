@@ -89,12 +89,12 @@ Assegniamo la fascia sconto del cliente con controlli in sequenza.
 #### 1. PREDICT (Prevedi)
 
 
-Con fatturato = 25000, quale fascia assegna la scala corretta (≥50000 / ≥20000 / ≥5000)?
-
 ```cpp
 double fatturato = 25000.0;
 // if / else if / else sulle soglie
 ```
+
+Con fatturato = 25000, quale fascia assegna la scala corretta (≥50000 / ≥20000 / ≥5000)?
 
 [( )] Platinum 15%
 [(X)] Gold 10%

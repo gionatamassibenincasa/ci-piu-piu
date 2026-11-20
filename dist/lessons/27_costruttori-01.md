@@ -60,9 +60,6 @@ Creazione: `Articolo a("A-100", 12.5);`
 
 #### 1. PREDICT (Prevedi)
 
-Dopo la costruzione di un Articolo con codice e prezzo tramite costruttore, i campi sono già impostati?
-
-
 ```cpp
 class Articolo {
 public:
@@ -70,6 +67,9 @@ public:
 };
 Articolo a("A-1", 10.0);
 ```
+
+Dopo la costruzione di un Articolo con codice e prezzo tramite costruttore, i campi sono già impostati?
+
 
 [(X)] Sì: il costruttore inizializza lo stato
 [( )] No: serve sempre setCodice dopo

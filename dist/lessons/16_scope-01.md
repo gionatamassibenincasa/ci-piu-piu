@@ -55,13 +55,13 @@ aumentaRef(x);    // x diventa 15
 
 #### 1. PREDICT (Prevedi)
 
-Dopo `aumenta(x)` con parametro per valore, quanto vale `x` se partiva da 10?
-
 ```cpp
 void aumenta(int valore) { valore += 5; }
 int x = 10;
 aumenta(x);
 ```
+
+Dopo `aumenta(x)` con parametro per valore, quanto vale `x` se partiva da 10?
 
 [(X)] 10 (non modificato)
 [( )] 15

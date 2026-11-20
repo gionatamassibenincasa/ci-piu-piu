@@ -65,12 +65,12 @@ Registriamo 6 mesi di fatturato e calcoliamo un totale.
 
 #### 1. PREDICT (Prevedi)
 
-Con `double vendite[30];`, cosa succede leggendo `vendite[30]`?
-
 ```cpp
 double vendite[30];
 double x = vendite[30];
 ```
+
+Con `double vendite[30];`, cosa succede leggendo `vendite[30]`?
 
 [( )] Compila e legge 0
 [(X)] Compila ma comportamento indefinito (indice fuori range)

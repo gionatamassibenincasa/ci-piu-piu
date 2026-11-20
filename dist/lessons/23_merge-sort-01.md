@@ -40,11 +40,11 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Qual è il ruolo principale della fase di merge?
-
 ```cpp
 // due metà già ordinate → una sequenza ordinata
 ```
+
+Qual è il ruolo principale della fase di merge?
 
 [(X)] Fondere due sottosequenze già ordinate
 [( )] Mescolare a caso gli elementi

@@ -40,12 +40,12 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Cosa rappresenta `Record tabella[100];` se Record è una struct?
-
 ```cpp
 struct Record { int id; double importo; };
 Record tabella[100];
 ```
+
+Cosa rappresenta `Record tabella[100];` se Record è una struct?
 
 [(X)] Fino a 100 righe con gli stessi campi
 [( )] Un solo record con 100 campi

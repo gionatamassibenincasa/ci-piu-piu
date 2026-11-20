@@ -42,14 +42,14 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Cosa deve avere ogni funzione ricorsiva corretta?
-
 ```cpp
 int f(int n) {
     if (n <= 0) return 1; // ?
     return n * f(n - 1);
 }
 ```
+
+Cosa deve avere ogni funzione ricorsiva corretta?
 
 [( )] Solo chiamate ricorsive, senza mai fermarsi
 [(X)] Almeno un caso base che interrompe la ricorsione

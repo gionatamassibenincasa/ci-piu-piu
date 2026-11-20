@@ -60,8 +60,6 @@ Fuori dalla classe: solo i metodi pubblici. Niente `a.prezzo = …`.
 
 #### 1. PREDICT (Prevedi)
 
-Se `prezzo` è `private` in una `class`, da `main` posso scrivere `a.prezzo = -5`?
-
 ```cpp
 class Articolo {
 private:
@@ -72,6 +70,8 @@ public:
 Articolo a;
 a.prezzo = -5;
 ```
+
+Se `prezzo` è `private` in una `class`, da `main` posso scrivere `a.prezzo = -5`?
 
 [( )] Sì, sempre
 [(X)] No: accesso vietato fuori dalla classe

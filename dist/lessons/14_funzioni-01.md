@@ -64,13 +64,13 @@ double iva = calcolaIva(100.0);
 
 #### 1. PREDICT (Prevedi)
 
-Quanto vale `calcolaIva(100.0)` con aliquota 0.22?
-
 ```cpp
 double calcolaIva(double imponibile) {
     return imponibile * 0.22;
 }
 ```
+
+Quanto vale `calcolaIva(100.0)` con aliquota 0.22?
 
 [(X)] 22
 [( )] 100

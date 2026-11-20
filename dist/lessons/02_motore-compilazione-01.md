@@ -131,11 +131,11 @@ int main() {
 #### 1. PREDICT (Prevedi)
 
 
-Dopo g++ -save-temps, quale file contiene il codice senza commenti?
-
 ```cpp
 int main() { return 0; }
 ```
+
+Dopo g++ -save-temps, quale file contiene il codice senza commenti?
 
 [( )] ridotto.o
 [(X)] ridotto.ii

@@ -84,41 +84,49 @@ int main() {
 
 #### 1. PREDICT (Prevedi)
 
-**Domanda 1**
-
-Cosa fa questa istruzione?
-
 ```cpp
 std::cout << "Ciao, Mondo!\n";
 ```
 
-[(X)] Stampa Ciao, Mondo! e va a capo
+**Domanda 1**
+
+Cosa fa l’istruzione `std::cout << "Ciao, Mondo!\n";` quando viene eseguita all’interno di un programma completo?
+
+[(X)] Scrive il testo Ciao, Mondo! sullo schermo e va a capo
 [( )] Legge da tastiera la stringa Ciao, Mondo!
-[( )] Compila e avvia il programma
+[( )] Compila il file sorgente in un eseguibile
 
 **Domanda 2**
 
-Il frammento, così com'è, è un programma C++ completo e sintatticamente corretto?
+Perché questo frammento, da solo, non è un programma C++ completo?
 
-```cpp
-std::cout << "Ciao, Mondo!\n";
-```
-
-[(X)] No: manca almeno la struttura di un programma (include, main, …)
-[( )] Sì: una sola istruzione basta se il file si chiama main.cpp
-[( )] Sì, purché si usi un IDE come Visual Studio Code
+[(X)] Manca il punto di ingresso (`main`) e in genere le dichiarazioni necessarie (es. `#include`)
+[( )] Perché non usa la parola chiave `program`
+[( )] Perché il testo non è in inglese
 
 **Domanda 3**
 
-Per ottenere un eseguibile da compilare, serve altro codice oltre a questa riga?
+Cosa fa il carattere speciale `\n` all’interno della stringa?
 
-```cpp
-std::cout << "Ciao, Mondo!\n";
-```
+[(X)] Inserisce un’andata a capo nell’output
+[( )] Termina il programma
+[( )] Apre una nuova finestra del terminale
 
-[(X)] Sì: servono almeno #include <iostream>, int main() e in genere return
-[( )] No: il compilatore aggiunge da solo main e le librerie
-[( )] Solo se si compila con g++; con clang non serve altro
+**Domanda 4**
+
+Quale affermazione spiega meglio il ruolo di `std::` davanti a `cout`?
+
+[(X)] `std::` indica il namespace della libreria standard dove si trova `cout`
+[( )] `std::` è obbligatorio solo in Windows
+[( )] `std::` converte il testo in maiuscolo
+
+**Domanda 5**
+
+Se togli le virgolette e scrivi `std::cout << Ciao, Mondo!\n;` (senza `"`), perché il programma non è accettabile?
+
+[(X)] Senza virgolette il compilatore non tratta il testo come stringa letterale
+[( )] Perché `\n` non può stare fuori dalle virgolette mai
+[( )] Perché `cout` funziona solo con numeri
 
 #### 2. RUN (Esegui)
 
@@ -147,6 +155,60 @@ int main() {
 
 #### 3. INVESTIGATE (Indaga)
 
+Dopo aver eseguito il programma, rispondi a queste domande (*perché* e *ordine*, non solo “cosa stampa”).
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Ciao, Mondo!\n";
+    return 0;
+}
+```
+
+**Domanda 1**
+
+Perché serve `#include <iostream>` in questo programma?
+
+[(X)] Perché dichiara gli strumenti di input/output (come `std::cout`) usati dopo
+[( )] Perché avvia automaticamente la funzione `main`
+[( )] Perché stampa da sola “Ciao, Mondo!”
+
+**Domanda 2**
+
+Perché ogni programma eseguibile ha bisogno di una funzione `main`?
+
+[(X)] Perché è il punto di ingresso: da lì parte l’esecuzione
+[( )] Perché è solo un commento per il programmatore
+[( )] Perché sostituisce il compilatore
+
+**Domanda 3**
+
+Osserva l’ordine di esecuzione. Quale sequenza è corretta?
+
+[(X)] Entra in `main` → esegue `std::cout` → esegue `return 0;`
+[( )] Esegue `return 0;` → poi stampa → poi entra in `main`
+[( )] Stampa prima ancora di entrare in `main`
+
+**Domanda 4**
+
+Cosa comunica `return 0;` al sistema operativo?
+
+[(X)] Che il programma è terminato con successo (codice di uscita 0)
+[( )] Che deve stampare il numero 0 a video
+[( )] Che deve riavviare `main` da capo
+
+**Domanda 5**
+
+Se scrivi `cout` senza `std::`, perché compare un errore del tipo `cout was not declared in this scope`?
+
+[(X)] Il nome `cout` non è visibile senza indicare il namespace `std` (o un using)
+[( )] Perché `cout` esiste solo in Python
+[( )] Perché manca il file `main.cpp`
+
+Poi rivedi le tabelle di traccia qui sotto e confrontale con le tue risposte.
+
+
 Analizziamo il codice riga per riga come detective.
 
 | Fase | Cosa osservi a video |
@@ -167,6 +229,60 @@ Analizziamo il codice riga per riga come detective.
 > Copia il codice su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva come viene eseguita riga per riga.
 
 #### 4. MODIFY (Modifica)
+
+Prima di mettere mano al codice, verifica di saper prevedere **l’effetto di una modifica** (stesso spirito del Predict, ma sul cambiamento).
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Ciao, Mondo!\n";
+    return 0;
+}
+```
+
+**Domanda 1**
+
+Cosa succede all’output se cambi solo il testo tra virgolette in `"Gestionale pronto\n"`?
+
+[(X)] A video compare Gestionale pronto (e va a capo); il resto della struttura resta valido
+[( )] Il programma non compila più
+[( )] Viene stampato due volte Ciao, Mondo!
+
+**Domanda 2**
+
+Se rimuovi `\n` dalla stringa, quale effetto osservi?
+
+[(X)] Il testo appare, ma il cursore non va a capo dopo il messaggio
+[( )] Il programma non parte
+[( )] Viene aggiunto automaticamente un secondo messaggio
+
+**Domanda 3**
+
+Vuoi una seconda riga di output. Quale modifica è corretta?
+
+[(X)] Aggiungere un’altra istruzione `std::cout << "...\n";` dentro `main`, senza togliere la prima
+[( )] Scrivere il secondo messaggio fuori da `main`
+[( )] Sostituire `#include` con il secondo messaggio
+
+**Domanda 4**
+
+Se cancelli la riga `return 0;`, in un programma così semplice cosa succede di solito?
+
+[(X)] Spesso compila comunque (return implicito da `main` in C++), ma è buona pratica lasciare `return 0;` esplicito
+[( )] È sempre un errore di compilazione obbligatorio
+[( )] Il programma stampa necessariamente “errore”
+
+**Domanda 5**
+
+Perché, in Modify, conviene cambiare **una cosa alla volta** e ricompilare?
+
+[(X)] Per isolare causa ed effetto: se qualcosa si rompe, sai quale modifica l’ha provocato
+[( )] Perché il compilatore accetta al massimo una modifica al giorno
+[( )] Perché altrimenti `std::cout` smette di funzionare
+
+Ora applica **una modifica alla volta** sul programma completo e ricompila.
+
 
 Apporta queste modifiche **una alla volta** e osserva cosa succede.  
 Dopo ogni modifica ricompila/esegui.

@@ -52,11 +52,11 @@ Alla fine del progetto sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Nel mini-progetto, perché dati private + metodi public sono un requisito?
-
 ```cpp
 // rubrica progetto OOP
 ```
+
+Nel mini-progetto, perché dati private + metodi public sono un requisito?
 
 [(X)] Per proteggere gli invarianti e definire un’interfaccia chiara
 [( )] Perché altrimenti non compila mai

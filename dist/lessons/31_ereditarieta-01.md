@@ -39,12 +39,12 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Una classe derivata public eredita i membri public della base?
-
 ```cpp
 class Base { public: void f(); };
 class Der : public Base {};
 ```
+
+Una classe derivata public eredita i membri public della base?
 
 [(X)] Sì, può usare f() su un oggetto Der
 [( )] No, mai

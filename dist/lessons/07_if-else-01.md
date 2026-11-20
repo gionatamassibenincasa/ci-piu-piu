@@ -122,13 +122,13 @@ Il terminale decide se autorizzare un pagamento confrontando saldo e importo.
 #### 1. PREDICT (Prevedi)
 
 
-Senza graffe, quante righe controlla l'if?
-
 ```cpp
 if (scorte < 5)
     std::cout << "1\n";
     std::cout << "2\n";
 ```
+
+Senza graffe, quante righe controlla l'if?
 
 [( )] Entrambe le cout
 [(X)] Solo la prima cout

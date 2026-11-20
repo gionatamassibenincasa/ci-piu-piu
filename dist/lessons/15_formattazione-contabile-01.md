@@ -55,11 +55,11 @@ La manipolazione resta attiva sulle stampe successive dello stesso stream finch√
 
 #### 1. PREDICT (Prevedi)
 
-Come appare 19.5 con `std::fixed` e `std::setprecision(2)`?
-
 ```cpp
 std::cout << std::fixed << std::setprecision(2) << 19.5;
 ```
+
+Come appare 19.5 con `std::fixed` e `std::setprecision(2)`?
 
 [(X)] 19.50
 [( )] 19.5

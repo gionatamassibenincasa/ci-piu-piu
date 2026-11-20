@@ -97,8 +97,6 @@ Accumuiamo i prezzi finché non arriva la sentinella di fine spesa.
 #### 1. PREDICT (Prevedi)
 
 
-Quante volte viene stampata la parola "Elaborazione"?
-
 ```cpp
 int n = 0;
 while (n > 5) {
@@ -106,6 +104,8 @@ while (n > 5) {
     n = n + 1;
 }
 ```
+
+Quante volte viene stampata la parola "Elaborazione"?
 
 [(X)] 0 volte (non viene mai stampata)
 [( )] 1 volta

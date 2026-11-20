@@ -38,11 +38,11 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-A cosa serve tipicamente sovraccaricare `operator<<` per una classe?
-
 ```cpp
 std::cout << articolo;
 ```
+
+A cosa serve tipicamente sovraccaricare `operator<<` per una classe?
 
 [(X)] Stampare l’oggetto in modo leggibile su uno stream
 [( )] Aprire un file in automatico

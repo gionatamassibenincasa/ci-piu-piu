@@ -39,11 +39,11 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
-
 ```cpp
 void scheda() const { giacenza = 0; }
 ```
+
+Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
 
 [( )] Sì
 [(X)] No: metodo const non modifica lo stato

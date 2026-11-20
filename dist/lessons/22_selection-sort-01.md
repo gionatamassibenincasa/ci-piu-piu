@@ -41,13 +41,13 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Selection sort, a ogni passo esterno, cosa fa?
-
 ```cpp
 // for i ...
 //   cerca minimo in i..n-1
 //   scambia con posizione i
 ```
+
+Selection sort, a ogni passo esterno, cosa fa?
 
 [(X)] Sceglie il minimo della parte non ordinata e lo mette in posizione i
 [( )] Divide sempre a metà l’array

@@ -56,11 +56,11 @@ Due cicli annidati: esterno sulle righe, interno sulle colonne.
 
 #### 1. PREDICT (Prevedi)
 
-In `int m[2][3];`, quanti elementi ci sono e qual è l’ultimo indice di colonna?
-
 ```cpp
 int m[2][3];
 ```
+
+In `int m[2][3];`, quanti elementi ci sono e qual è l’ultimo indice di colonna?
 
 [(X)] 6 elementi; colonne 0..2
 [( )] 5 elementi; colonne 1..3

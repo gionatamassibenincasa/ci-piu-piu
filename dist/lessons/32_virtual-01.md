@@ -39,12 +39,12 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Con `scheda` virtuale e puntatore a Base che punta a Derivata, quale `scheda` viene chiamata?
-
 ```cpp
 Base* p = new Derivata();
 p->scheda();
 ```
+
+Con `scheda` virtuale e puntatore a Base che punta a Derivata, quale `scheda` viene chiamata?
 
 [(X)] Quella della Derivata se scheda è virtual
 [( )] Sempre e solo quella di Base

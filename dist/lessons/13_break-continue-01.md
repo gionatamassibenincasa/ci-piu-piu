@@ -59,8 +59,6 @@ for (int i = 1; i <= 5; ++i) {
 
 #### 1. PREDICT (Prevedi)
 
-Cosa stampa il ciclo?
-
 ```cpp
 for (int i = 1; i <= 5; ++i) {
     if (i == 2) continue;
@@ -68,6 +66,8 @@ for (int i = 1; i <= 5; ++i) {
     std::cout << i;
 }
 ```
+
+Cosa stampa il ciclo?
 
 [( )] 12345
 [( )] 1345

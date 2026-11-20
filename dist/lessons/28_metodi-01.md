@@ -39,12 +39,12 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Chi può chiamare un metodo public di Articolo?
-
 ```cpp
 Articolo a("A", 1.0);
 a.scheda();
 ```
+
+Chi può chiamare un metodo public di Articolo?
 
 [( )] Solo codice dentro la class
 [(X)] Chiunque abbia un oggetto Articolo (es. main)

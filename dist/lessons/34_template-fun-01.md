@@ -37,12 +37,12 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
-
 ```cpp
 massimo(3, 5);
 massimo(2.5, 2.7);
 ```
+
+Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
 
 [(X)] Sì, il compilatore istanzia le versioni necessarie
 [( )] No, solo su int

@@ -106,8 +106,6 @@ Chiediamo un importo finché non rientra nel range ammesso (almeno un tentativo)
 #### 1. PREDICT (Prevedi)
 
 
-Quante volte viene eseguito il corpo?
-
 ```cpp
 int n = 10;
 do {
@@ -115,6 +113,8 @@ do {
     n = n + 1;
 } while (n < 5);
 ```
+
+Quante volte viene eseguito il corpo?
 
 [( )] 0 volte
 [(X)] 1 volta

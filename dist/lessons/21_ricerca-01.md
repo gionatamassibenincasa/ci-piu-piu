@@ -49,12 +49,12 @@ Alla fine di questa lezione sei in grado di:
 
 #### 1. PREDICT (Prevedi)
 
-La ricerca binaria su un array disordinato è affidabile?
-
 ```cpp
 // array NON ordinato
 // binary_search(...)
 ```
+
+La ricerca binaria su un array disordinato è affidabile?
 
 [( )] Sì, sempre
 [(X)] No: richiede array ordinato

@@ -86,12 +86,12 @@ Memorizziamo i dati di un articolo e li stampiamo: tipi diversi, uno sportello c
 #### 1. PREDICT (Prevedi)
 
 
-Cosa stampa int pezzi = 7.85?
-
 ```cpp
 int pezzi = 7.85;
 std::cout << pezzi;
 ```
+
+Cosa stampa int pezzi = 7.85?
 
 [( )] 7.85
 [(X)] 7 (troncamento)

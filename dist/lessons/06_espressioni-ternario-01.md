@@ -82,13 +82,13 @@ Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e op
 #### 1. PREDICT (Prevedi)
 
 
-Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
-
 ```cpp
 int pezzi = 5;
 double t = pezzi / 2 * 10.0;
 std::cout << t;
 ```
+
+Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
 
 [( )] 25
 [(X)] 20
