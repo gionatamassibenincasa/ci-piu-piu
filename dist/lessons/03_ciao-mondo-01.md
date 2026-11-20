@@ -84,19 +84,41 @@ int main() {
 
 #### 1. PREDICT (Prevedi)
 
-Osserva il frammento: `std::cout << "Ciao, Mondo!\n";`
+**Domanda 1**
 
-1) Cosa fa questa istruzione?
-2) Il listato, così com'è, è un programma C++ completo e sintatticamente corretto?
-3) Per compilarlo e ottenerne un eseguibile, serve altro codice oltre a questa riga?
+Cosa fa questa istruzione?
 
 ```cpp
 std::cout << "Ciao, Mondo!\n";
 ```
 
-[(X)] Stampa Ciao, Mondo! e va a capo; da sola non è un programma completo (mancano include e main)
+[(X)] Stampa Ciao, Mondo! e va a capo
 [( )] Legge da tastiera la stringa Ciao, Mondo!
-[( )] È già un programma completo: basta salvarlo e compilarlo così com'è
+[( )] Compila e avvia il programma
+
+**Domanda 2**
+
+Il frammento, così com'è, è un programma C++ completo e sintatticamente corretto?
+
+```cpp
+std::cout << "Ciao, Mondo!\n";
+```
+
+[(X)] No: manca almeno la struttura di un programma (include, main, …)
+[( )] Sì: una sola istruzione basta se il file si chiama main.cpp
+[( )] Sì, purché si usi un IDE come Visual Studio Code
+
+**Domanda 3**
+
+Per ottenere un eseguibile da compilare, serve altro codice oltre a questa riga?
+
+```cpp
+std::cout << "Ciao, Mondo!\n";
+```
+
+[(X)] Sì: servono almeno #include <iostream>, int main() e in genere return
+[( )] No: il compilatore aggiunge da solo main e le librerie
+[( )] Solo se si compila con g++; con clang non serve altro
 
 #### 2. RUN (Esegui)
 

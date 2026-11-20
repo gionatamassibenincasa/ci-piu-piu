@@ -7,6 +7,7 @@ narrator:             IT Italian Male
 comment:              Appunti delle lezioni di Informatica - Classi terze ITE SIA - Anno Scolastico 26/27
 import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
+import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
 [← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/16_scope-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/18_matrici-01.md)
 
