@@ -101,6 +101,38 @@ def strip_author_blocks(body: str) -> str:
     return "".join(out)
 
 
+
+def normalize_predict_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
+    """Lista di {question, code?, options} da predict_quiz (items[] o legacy)."""
+    if not pq:
+        return []
+    shared_code = pq.get("code")
+    items = pq.get("items")
+    if isinstance(items, list) and items:
+        out: list[dict[str, Any]] = []
+        for it in items:
+            if not isinstance(it, dict):
+                continue
+            entry = {
+                "question": it.get("question") or "",
+                "options": list(it.get("options") or []),
+            }
+            code = it.get("code", shared_code)
+            if code:
+                entry["code"] = code
+            out.append(entry)
+        return out
+    if pq.get("question") and pq.get("options"):
+        entry = {
+            "question": pq.get("question") or "",
+            "options": list(pq.get("options") or []),
+        }
+        if shared_code:
+            entry["code"] = shared_code
+        return [entry]
+    return []
+
+
 def _make_jinja_env(meta: dict[str, Any]) -> Environment:
     env = Environment(
         loader=BaseLoader(),
@@ -118,16 +150,25 @@ def _make_jinja_env(meta: dict[str, Any]) -> Environment:
     def predict_block() -> str:
         components = meta.get("components") or {}
         pq = components.get("predict_quiz")
-        if not pq:
+        items = normalize_predict_items(pq if isinstance(pq, dict) else None)
+        if not items:
             return "<!-- predict_block: nessun components.predict_quiz -->"
-        lines: list[str] = [str(pq.get("question") or "Cosa succede?"), ""]
-        code = pq.get("code")
-        if code:
-            lines.extend(["```cpp", str(code).rstrip(), "```", ""])
-        for opt in pq.get("options") or []:
-            mark = "X" if opt.get("correct") else " "
-            lines.append(f"[({mark})] {opt.get('text', '')}")
-        return "\n".join(lines)
+        blocks: list[str] = []
+        for idx, item in enumerate(items, 1):
+            lines: list[str] = []
+            if len(items) > 1:
+                lines.append(f"**Domanda {idx}**")
+                lines.append("")
+            lines.append(str(item.get("question") or "Cosa succede?"))
+            lines.append("")
+            code = item.get("code")
+            if code:
+                lines.extend(["```cpp", str(code).rstrip(), "```", ""])
+            for opt in item.get("options") or []:
+                mark = "X" if opt.get("correct") else " "
+                lines.append(f"[({mark})] {opt.get('text', '')}")
+            blocks.append("\n".join(lines))
+        return "\n\n".join(blocks)
 
     env.globals["predict_block"] = predict_block
     return env
@@ -243,9 +284,17 @@ def validate_chapter(path: Path, schema: dict | None = None) -> list[str]:
     components = meta.get("components") or {}
     if "predict_quiz" in components:
         pq = components["predict_quiz"] or {}
-        opts = pq.get("options") or []
-        if opts and not any(isinstance(o, dict) and o.get("correct") for o in opts):
-            errors.append(f"{path.name}: predict_quiz: nessuna option con correct=true")
+        items = normalize_predict_items(pq if isinstance(pq, dict) else None)
+        if not items:
+            errors.append(
+                f"{path.name}: predict_quiz: serve question+options oppure items[] non vuoto"
+            )
+        for j, item in enumerate(items):
+            opts = item.get("options") or []
+            if not any(isinstance(o, dict) and o.get("correct") for o in opts):
+                errors.append(
+                    f"{path.name}: predict_quiz item[{j}]: nessuna option con correct=true"
+                )
 
     create_paths: set[str] = set()
     for i, item in enumerate(meta.get("files") or []):

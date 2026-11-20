@@ -5,26 +5,36 @@ methodology: PRIMM
 order: 3
 components:
   predict_quiz:
-    question: 'Osserva il frammento: `std::cout << "Ciao, Mondo!\n";`
-
-
-      1) Cosa fa questa istruzione?
-
-      2) Il listato, così com''è, è un programma C++ completo e sintatticamente corretto?
-
-      3) Per compilarlo e ottenerne un eseguibile, serve altro codice oltre a questa
-      riga?'
     code: 'std::cout << "Ciao, Mondo!\n";
 
       '
-    options:
-    - text: Stampa Ciao, Mondo! e va a capo; da sola non è un programma completo (mancano
-        include e main)
-      correct: true
-    - text: Legge da tastiera la stringa Ciao, Mondo!
-      correct: false
-    - text: 'È già un programma completo: basta salvarlo e compilarlo così com''è'
-      correct: false
+    items:
+    - question: Cosa fa questa istruzione?
+      options:
+      - text: Stampa Ciao, Mondo! e va a capo
+        correct: true
+      - text: Legge da tastiera la stringa Ciao, Mondo!
+        correct: false
+      - text: Compila e avvia il programma
+        correct: false
+    - question: Il frammento, così com'è, è un programma C++ completo e sintatticamente
+        corretto?
+      options:
+      - text: 'No: manca almeno la struttura di un programma (include, main, …)'
+        correct: true
+      - text: 'Sì: una sola istruzione basta se il file si chiama main.cpp'
+        correct: false
+      - text: Sì, purché si usi un IDE come Visual Studio Code
+        correct: false
+    - question: Per ottenere un eseguibile da compilare, serve altro codice oltre
+        a questa riga?
+      options:
+      - text: 'Sì: servono almeno #include <iostream>, int main() e in genere return'
+        correct: true
+      - text: 'No: il compilatore aggiunge da solo main e le librerie'
+        correct: false
+      - text: Solo se si compila con g++; con clang non serve altro
+        correct: false
   make_instructions: 'presentazione.cpp: tre std::cout per una schermata di benvenuto
     di un gestionale, commento /// sul perché, return 0
 
@@ -49,9 +59,9 @@ assessment:
   - A
   - B
   predict:
-    points: 2
-    context: 'std::cout stampa su stdout e \n va a capo. La riga da sola non è un
-      programma completo: servono almeno #include <iostream>, int main() e return.'
+    points: 3
+    context: 1) std::cout stampa e \n va a capo. 2) Una sola istruzione non è un programma
+      completo. 3) Servono include, main (e di regola return) per compilare un eseguibile.
   investigate:
     points: 1
     questions:
@@ -63,7 +73,7 @@ assessment:
     context: iostream dichiara gli stream; main è il punto di ingresso richiesto dal
       runtime.
   modify:
-    points: 2
+    points: 1
     prompt: Nel listato sotto, aggiungi una seconda riga di output con la tua classe.
       Non cancellare la riga "Ciao, Mondo!".
     code: "#include <iostream>\n\nint main() {\n    std::cout << \"Ciao, Mondo!\\\
@@ -85,17 +95,6 @@ assessment:
     code: ''
   variants:
     B:
-      predict:
-        prompt: 'Osserva il frammento:
-
-          std::cout << "Benvenuto nel gestionale\n";
-
-
-          1) Cosa stampa?
-
-          2) È un programma completo così com''è?
-
-          3) Cosa va aggiunto per poterlo compilare?'
       modify:
         prompt: Nel listato sotto, aggiungi una seconda riga di output con il nome
           della scuola. Non cancellare la riga "Ciao, Mondo!".

@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from . import core
+from .core import normalize_predict_items
 
 
 FIELD_PATHS = {
@@ -130,16 +131,23 @@ def _starter_files(meta: dict[str, Any], phase: str) -> list[dict[str, Any]]:
 
 def _phase_item(meta: dict[str, Any], phase: str) -> dict[str, Any] | None:
     if phase == "predict":
-        question = _field(meta, "predict_question")
-        if not question:
+        components = meta.get("components") or {}
+        items = normalize_predict_items(components.get("predict_quiz"))
+        if not items:
             return None
+        # Un solo item modello legacy; se multipli, prompt concatenato + choices del primo
+        # (gli item multipli sono gestiti in build_paper_model).
+        first = items[0]
         return {
             "id": f"{_field(meta, 'activity_id')}-predict",
             "phase": phase,
-            "prompt": question,
-            "code": _field(meta, "predict_code"),
-            "choices": [text for text in (_field(meta, "predict_option_text") or []) if text],
+            "prompt": first.get("question") or "",
+            "code": first.get("code"),
+            "choices": [
+                o.get("text") for o in (first.get("options") or []) if o.get("text")
+            ],
             "starter_files": [],
+            "_predict_items": items,
         }
 
     if phase == "investigate":
@@ -261,19 +269,49 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
     pred = assessment.get("predict") or {}
     base_pred = _phase_item(meta, "predict")
     if base_pred:
-        item = {
-            **base_pred,
-            "id": pred.get("id") or _stable_item_id(activity_id, "predict"),
-            "points": pred.get("points", base_pred.get("points")),
-            "typical_errors": list(pred.get("typical_errors") or []),
-            "context": pred.get("context") or "",
-            "correct_choices": _correct_choices(meta),
-        }
-        if pred.get("prompt"):
-            item["prompt"] = pred["prompt"]
-        if pred.get("code"):
-            item["code"] = pred["code"]
-        base_items.append(item)
+        items = list(base_pred.pop("_predict_items", None) or [])
+        if not items:
+            items = [
+                {
+                    "question": base_pred.get("prompt"),
+                    "code": base_pred.get("code"),
+                    "options": [
+                        {"text": c, "correct": False}
+                        for c in (base_pred.get("choices") or [])
+                    ],
+                }
+            ]
+        n = max(len(items), 1)
+        points_each = pred.get("points")
+        if points_each is not None and n > 1:
+            # ripartisci i punti in modo uniforme se multi-item
+            try:
+                points_each = float(points_each) / n
+            except (TypeError, ValueError):
+                points_each = pred.get("points")
+        for j, pit in enumerate(items, 1):
+            opts = pit.get("options") or []
+            correct = [str(o.get("text")) for o in opts if o.get("correct") and o.get("text")]
+            choices = [str(o.get("text")) for o in opts if o.get("text")]
+            base_items.append(
+                {
+                    "id": pred.get("id")
+                    or (
+                        _stable_item_id(activity_id, "predict", j)
+                        if n > 1
+                        else _stable_item_id(activity_id, "predict")
+                    ),
+                    "phase": "predict",
+                    "prompt": pit.get("question") or "",
+                    "code": pit.get("code") or base_pred.get("code"),
+                    "choices": choices,
+                    "starter_files": [],
+                    "points": points_each,
+                    "typical_errors": list(pred.get("typical_errors") or []),
+                    "context": pred.get("context") or "",
+                    "correct_choices": correct,
+                }
+            )
 
     inv_block = assessment.get("investigate") or {}
     inv = _phase_item(meta, "investigate")
