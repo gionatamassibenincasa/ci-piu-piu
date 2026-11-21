@@ -2033,152 +2033,289 @@ due percorsi con `if`, così il gestionale potrà reagire ai valori inseriti.
 
 ## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
-> "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
-> — *Principio dell'Elaborazione Dati*
+> "La semplicità è la sofisticazione suprema."
+>
+> — *Leonardo da Vinci*
 
-Nel capitolo precedente abbiamo riempito gli sportelli della memoria.  
-Ora impariamo a **calcolare** e a **decidere in una riga**: IVA, sconti, spese di spedizione, commissioni POS.
+Quando prepari uno scontrino, non fai un solo calcolo: parti dall'importo,
+applichi uno sconto e poi decidi se la spedizione è gratuita. In C++ puoi
+scrivere questi passaggi come **espressioni** e usare il ternario per una
+scelta semplice che restituisce direttamente un valore.
 
-> 💡 **Metafora: la cassa automatica**  
-> - **Operatori aritmetici** = i calcoli sul nastro (somme, sconti %, quantità × prezzo)  
-> - **Operatori di confronto e logici** = i sensori (“spesa > 50?”, “ha tessera E spesa alta?”)  
-> - **Operatore ternario `?:`** = il display che decide all’istante:  
->   *“Spesa ≥ 60€ ? Spedizione gratis : paghi 6,50€”*
+> 💡 **Metafora:**  
+> Un'espressione è una riga della calcolatrice della cassa: combina numeri,
+> variabili e operatori e restituisce un risultato. Il ternario è il sensore
+> della cassa: legge una condizione e apre uno dei due cassetti, quello del
+> valore vero oppure quello del valore falso.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
+
 Alla fine di questa lezione sei in grado di:
-- Scrivere un'espressione che calcola oppure sceglie un valore per uno scontrino
+
+- scrivere un'espressione che calcola un importo e usa l'operatore ternario per scegliere un valore.
 
 ---
 
-### ⚙️ Prima del laboratorio: calcolare un valore
+### ⚙️ Prima del laboratorio: costruire un'espressione
 
-Un’**espressione** combina valori, variabili e operatori e produce **un solo risultato**.
+Un'espressione combina valori, variabili e operatori e produce **un solo
+risultato**.
 
-#### Aritmetici
 | Operatore | Significato | Attenzione |
-|-----------|-------------|------------|
-| `+` `-` `*` | somma, sottrazione, moltiplicazione | — |
-| `/` | divisione | Se **entrambi** gli operandi sono `int` → **divisione intera** (i decimali si perdono) |
-| `%` | resto (modulo) | Solo su interi: `14 % 2 == 0` → pari |
+| :--- | :--- | :--- |
+| `+`, `-`, `*` | somma, differenza, prodotto | il risultato dipende dai tipi |
+| `/` | divisione | tra soli `int` perde la parte decimale |
+| `%` | resto della divisione | utile per controllare pari/dispari |
+| `>=`, `==` | confronto | producono `true` oppure `false` |
 
 ```cpp
 int pezzi = 5;
-double a = pezzi / 2;      // 2  (divisione intera!)
-double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
+double a = pezzi / 2;   // 2.0: la divisione è già stata fatta tra int
+double b = pezzi / 2.0; // 2.5: almeno un operando è double
 ```
-
----
 
 ### 🧭 Prima del laboratorio: scegliere un valore
 
-Un confronto come `totaleSpesa >= 60.0` produce `true` o `false`. Il ternario
-usa quel risultato come un sensore alla cassa: sceglie uno dei due prezzi.
+La forma del ternario è:
 
 ```text
 condizione ? valore_se_vero : valore_se_falso
 ```
 
-È un’**espressione**: calcola e restituisce un valore, pronto per essere assegnato o stampato.
+Il programma valuta prima la condizione e poi sceglie **un solo** ramo:
 
 ```cpp
-double speseSpedizione = (totaleSpesa >= 60.0) ? 0.0 : 6.50;
+double spedizione = (totale >= 60.0) ? 0.0 : 6.50;
 ```
 
-Usalo per una scelta semplice che restituisce un valore. Per logiche con più
-istruzioni useremo `if` / `else` nel prossimo capitolo.
+Il ternario è adatto a una scelta breve che produce un valore da assegnare,
+stampare o usare in un altro calcolo. Le decisioni con più istruzioni
+arriveranno con `if` / `else`.
 
 ---
 
 ### 🔬 Laboratorio PRIMM: Scontrino e-commerce
 
-Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
+Calcolerai lo sconto e le spese di spedizione di un ordine online.
 
 #### 1. PREDICT (Prevedi)
 
+Prima di eseguire, osserva l'esempio e scegli la spiegazione più convincente:
 
 ```cpp
-int pezzi = 5;
-double t = pezzi / 2 * 10.0;
-std::cout << t;
+double importoProdotti = 85.00;
+double sconto = (importoProdotti >= 50.0) ? 0.10 : 0.02;
+double netto = importoProdotti - importoProdotti * sconto;
+double spedizione = (netto >= 60.0) ? 0.0 : 6.50;
 ```
 
-Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
+**Domanda 1**
 
-[( )] 25
-[(X)] 20
-[( )] 2.5
+Perché `importoProdotti >= 50.0` è utile dentro il ternario?
 
+[(X)] Produce una condizione `true` o `false` che permette di scegliere un valore
+[( )] Converte automaticamente l’importo in euro interi
+[( )] Ripete il calcolo finché l’importo raggiunge 50 euro
 
-<details>
-<summary>💡 Spiegazione</summary>
-<code>pezzi / 2</code> è divisione tra interi → risultato <code>2</code> (troncato).  
-Poi <code>2 * 10.0</code> → <code>20.0</code>.  
-Con <code>pezzi / 2.0 * 10.0</code> otterresti <code>25.0</code>.
-</details>
+**Domanda 2**
+
+Quale valore assume `sconto` con `importoProdotti = 85.00`?
+
+[(X)] `0.10`, perché 85 soddisfa la condizione e viene scelto il valore dopo `?`
+[( )] `0.02`, perché il ternario sceglie sempre il valore dopo `:`
+[( )] `10.00`, perché il numero 10 rappresenta direttamente gli euro di sconto
+
+**Domanda 3**
+
+Perché `importoProdotti / 2 * 10.0` con `int importoProdotti = 5` non dà 25.0?
+
+[(X)] La divisione tra due `int` viene eseguita prima e perde la parte decimale: 5 / 2 vale 2
+[( )] Il simbolo `*` viene ignorato quando compare dopo `/`
+[( )] Un `int` non può essere usato in nessuna espressione con `double`
+
+**Domanda 4**
+
+Quale valore completo restituisce `netto >= 60.0 ? 0.0 : 6.50` quando `netto` vale 76.50?
+
+[(X)] `0.0`, perché la condizione è vera e si sceglie il primo valore
+[( )] `6.50`, perché le spese standard vengono calcolate per prime
+[( )] `true`, perché un confronto restituisce sempre un booleano stampabile
+
+**Domanda 5**
+
+Quale forma assegna correttamente al netto il prezzo lordo meno lo sconto?
+
+[(X)] `netto = lordo - lordo * percentualeSconto;`
+[( )] `netto = lordo - percentualeSconto;`
+[( )] `netto = lordo * percentualeSconto - lordo;`
 
 #### 2. RUN (Esegui)
-Digita e esegui:
+
+Digita il programma, eseguilo e confronta l'output con le tue previsioni.
 
 ```cpp
 /**
- * @file cassa_fiscale.cpp
- * @brief Scontrino con sconto fedeltà e spese di spedizione (ternario).
+ * @file scontrino_ecommerce.cpp
+ * @brief Calcola sconto, spedizione e totale di un ordine online.
+ * @return int Codice di uscita del programma.
  */
 #include <iostream>
 
-/**
- * @brief Calcola totale carrello, sconto e spedizione.
- * @return int 0 se successo.
- */
 int main() {
     const double SOGLIA_SPEDIZIONE_GRATIS = 60.0;
     const double COSTO_SPEDIZIONE_STANDARD = 6.50;
-
     double importoProdotti = 85.00;
 
-    /// La soglia premia un ordine abbastanza grande con lo sconto maggiore.
+    /// La soglia collega il vantaggio fedeltà al valore dell'ordine.
     double percentualeSconto =
         (importoProdotti >= 50.0) ? 0.10 : 0.02;
-
     double valoreSconto = importoProdotti * percentualeSconto;
     double nettoProdotti = importoProdotti - valoreSconto;
 
-    /// Spedizione gratis oltre soglia
+    /// La consegna gratuita riduce il costo per ordini abbastanza grandi.
     double speseSpedizione =
-        (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS) ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
-
+        (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS)
+            ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
     double totaleDaPagare = nettoProdotti + speseSpedizione;
 
     std::cout << "=== SCONTRINO E-COMMERCE ===\n";
-    std::cout << "Prodotti (lordo) : " << importoProdotti << " euro\n";
-    std::cout << "Sconto applicato : " << valoreSconto << " euro\n";
-    std::cout << "Prodotti (netto) : " << nettoProdotti << " euro\n";
-    std::cout << "Spedizione       : " << speseSpedizione << " euro\n";
-    std::cout << "TOTALE DA PAGARE : " << totaleDaPagare << " euro\n";
-
+    std::cout << "Prodotti (lordo): " << importoProdotti << " euro\n";
+    std::cout << "Sconto: " << valoreSconto << " euro\n";
+    std::cout << "Prodotti (netto): " << nettoProdotti << " euro\n";
+    std::cout << "Spedizione: " << speseSpedizione << " euro\n";
+    std::cout << "TOTALE: " << totaleDaPagare << " euro\n";
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-Segui il flusso dei valori (con i numeri dell’esempio).
 
-| Espressione | Risultato | Perché |
-|-------------|-----------|--------|
-| `importoProdotti >= 50.0` | `true` | 85 è maggiore della soglia |
-| percentuale sconto | `0.10` | ramo `?` del ternario |
-| `valoreSconto` | `8.5` | `85 * 0.10` |
-| `nettoProdotti` | `76.5` | `85 - 8.5` |
-| `nettoProdotti >= 60` | `true` | soglia superata |
-| `speseSpedizione` | `0.0` | ramo `?` del secondo ternario |
+Dopo il Run, ricostruisci l'ordine dei valori:
 
-> 🔗 Esegui il programma passo-passo su [Python Tutor C++](https://pythontutor.com/cpp.html).
+```cpp
+const double SOGLIA_SPEDIZIONE_GRATIS = 60.0;
+const double COSTO_SPEDIZIONE_STANDARD = 6.50;
+double importoProdotti = 85.00;
+double percentualeSconto =
+    (importoProdotti >= 50.0) ? 0.10 : 0.02;
+double valoreSconto = importoProdotti * percentualeSconto;
+double nettoProdotti = importoProdotti - valoreSconto;
+double speseSpedizione =
+    (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS)
+        ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
+double totaleDaPagare = nettoProdotti + speseSpedizione;
+```
+
+**Domanda 1**
+
+Quale ordine descrive correttamente il calcolo del totale?
+
+[(X)] Prima si sceglie la percentuale, poi si calcola lo sconto, poi il netto e infine la spedizione
+[( )] Prima si calcola il totale, poi si decide quale percentuale usare
+[( )] I due ternari vengono eseguiti dopo la stampa, perché assegnano solo etichette
+
+**Domanda 2**
+
+Perché `valoreSconto` vale `8.5` in questo esempio?
+
+[(X)] Perché l’espressione moltiplica 85.0 per 0.10, cioè il 10% scritto in forma decimale
+[( )] Perché 0.10 viene interpretato come 10 euro fissi
+[( )] Perché il programma divide 85 per 10 prima di moltiplicare
+
+**Domanda 3**
+
+Quale ramo del secondo ternario viene scelto?
+
+[(X)] Il ramo `0.0`, perché `nettoProdotti` vale 76.5 ed è almeno 60.0
+[( )] Il ramo `6.50`, perché il prezzo lordo è diverso dalla soglia
+[( )] Nessun ramo, perché un `double` non può essere confrontato con una costante
+
+**Domanda 4**
+
+Perché il totale viene calcolato con `nettoProdotti + speseSpedizione` e non con l’importo lordo?
+
+[(X)] Perché lo sconto è già stato sottratto e il cliente deve pagare il netto più l’eventuale spedizione
+[( )] Perché il lordo contiene sempre un errore di divisione intera
+[( )] Perché il ternario può sommare soltanto variabili chiamate `netto`
+
+**Domanda 5**
+
+Se il codice usa `nettoProdotti` prima della sua dichiarazione, perché il compilatore segnala un errore?
+
+[(X)] Una variabile deve essere dichiarata e inizializzata prima di poter essere usata
+[( )] Il compilatore esegue le righe in ordine alfabetico
+[( )] I nomi con la parola `netto` sono riservati e non ammessi
+
+| Passo | Espressione o variabile | Valore | Perché |
+| :---: | :--- | ---: | :--- |
+| 1 | `importoProdotti >= 50.0` | `true` | 85 è almeno 50 |
+| 2 | `percentualeSconto` | `0.10` | viene scelto il ramo dopo `?` |
+| 3 | `valoreSconto` | `8.5` | `85.0 * 0.10` |
+| 4 | `nettoProdotti` | `76.5` | `85.0 - 8.5` |
+| 5 | `nettoProdotti >= 60.0` | `true` | 76.5 supera la soglia |
+| 6 | `speseSpedizione` | `0.0` | viene scelto il ramo dopo `?` |
+| 7 | `totaleDaPagare` | `76.5` | netto più spedizione |
+
+Apri il programma in [Python Tutor C++](https://pythontutor.com/cpp.html):
+osserva come ogni assegnazione crea o aggiorna una variabile prima della
+stampa finale.
 
 #### 4. MODIFY (Modifica)
+
+Prima di cambiare il codice, prevedi l'effetto delle modifiche:
+
+```cpp
+double importoProdotti = 85.00;
+double speseSpedizione =
+    (importoProdotti >= 60.0) ? 0.0 : 6.50;
+std::cout << speseSpedizione << "\n";
+```
+
+**Domanda 1**
+
+Quale modifica fa pagare la spedizione gratis solo da 100 euro in su?
+
+[(X)] Cambiare `importoProdotti >= 60.0` in `importoProdotti >= 100.0`
+[( )] Cambiare `0.0` in `100.0`
+[( )] Cambiare il simbolo `?` in `:`
+
+**Domanda 2**
+
+Con `importoProdotti = 45.00`, quale modifica produce 3.00 euro di supplemento express?
+
+[(X)] Aggiungere `double supplemento = consegnaRapida ? 3.00 : 0.0;` e sommarlo alla spedizione
+[( )] Sostituire la condizione con `consegnaRapida + 3.00`
+[( )] Moltiplicare `speseSpedizione` per `consegnaRapida`
+
+**Domanda 3**
+
+Se sostituisci `0.0` con `0`, quale effetto corretto osservi?
+
+[(X)] La scelta continua a funzionare e il risultato numerico è zero; `0.0` rende però esplicito il tipo decimale
+[( )] Il ternario non compila perché il valore vero deve avere sempre due decimali
+[( )] La condizione diventa automaticamente falsa
+
+**Domanda 4**
+
+Quale modifica stampa `"pari"` quando `articoli` vale 14?
+
+[(X)] `std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");`
+[( )] `std::cout << ((articoli / 2 == 0) ? "pari" : "dispari");`
+[( )] `std::cout << (articoli % 2 ? "pari" : "dispari");`
+
+**Domanda 5**
+
+Perché in Modify conviene cambiare una sola soglia o un solo valore alla volta?
+
+[(X)] Per collegare ogni differenza nell’output alla modifica che l’ha provocata
+[( )] Perché C++ permette una sola assegnazione per programma
+[( )] Perché il ternario non può comparire due volte nello stesso file
+
+Parti da questo scaffold:
+
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
@@ -2187,7 +2324,8 @@ Segui il flusso dei valori (con i numeri dell’esempio).
 
 int main() {
     double importoProdotti = 85.00;
-    double speseSpedizione = (importoProdotti >= 60.0) ? 0.0 : 6.50;
+    double speseSpedizione =
+        (importoProdotti >= 60.0) ? 0.0 : 6.50;
     std::cout << speseSpedizione << "\n";
     return 0;
 }
@@ -2195,47 +2333,50 @@ int main() {
 
 </details>
 
-1. **Promozione weekend**  
-   Porta la soglia per lo sconto del 10% da `50.0` a `100.0`. Ricompila e
-   osserva quale valore sceglie il ternario.
+**Modifica A — nuova soglia**  
+Porta la soglia della spedizione gratuita a `100.0`. Cambia una sola parte,
+ricompila e spiega perché ora compare il costo standard.
 
-2. **Consegna express**  
-   Aggiungi `bool consegnaRapida = true;`. Con un ternario assegna un
-   supplemento di `3.00` se è vero, `0.0` altrimenti, poi sommalo alla spedizione.
+**Modifica B — consegna express**  
+Aggiungi `bool consegnaRapida = true;`. Usa un ternario per calcolare un
+supplemento di `3.00` se è vero e `0.0` altrimenti; somma il supplemento alla
+spedizione.
 
-3. **Pari o dispari**  
-   Con `int articoli = 14;` stampa se il numero è pari o dispari:
-   ```cpp
-   std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");
-   ```
+**Modifica C — pari o dispari**  
+Con `int articoli = 14;`, usa `%` e un ternario per stampare `"pari"` oppure
+`"dispari"`.
 
 #### 5. MAKE (Crea)
-**Scenario SIA — Commissione transazione POS**
 
-Scrivi `commissioni_pos.cpp` per un esercente:
+**Scenario aziendale — Commissione transazione POS**
 
-- `double importoPagamento` (es. `45.00`)
-- `bool circuitoInternazionale` (`true` = Visa/MC estera, `false` = PagoBANCOMAT)
-- **Regola con ternario:**
-  - circuito internazionale → commissione **1,8%** (`0.018`)
-  - altrimenti → **0,7%** (`0.007`)
-- **Commissione minima:** se la commissione calcolata è `< 0.15`, applica comunque `0.15` (secondo ternario)
-- Calcola e stampa l’**incasso netto** dell’esercente (`importo - commissioneFinale`)
+Scrivi `commissioni_pos.cpp` per un esercente. I requisiti sono chiusi:
 
-**Requisiti:** commenti `///` sulle aliquote, output chiaro tipo scontrino;
-aggiungi Doxygen solo se il programma supera circa 15 righe.
+1. Dichiara `double importoPagamento = 45.00;`.
+2. Dichiara `bool circuitoInternazionale = true;`.
+3. Usa un ternario: circuito internazionale → aliquota `0.018`, altrimenti
+   aliquota `0.007`.
+4. Calcola la commissione; con un secondo ternario, se è minore di `0.15`,
+   usa `0.15` come commissione finale.
+5. Stampa commissione finale e incasso netto
+   (`importoPagamento - commissioneFinale`) in un output leggibile.
 
 <details>
-<summary>💡 Scaffold</summary>
+<summary>💡 Scaffold di partenza</summary>
 
 ```cpp
-/**
- * @brief Calcolo commissione POS e incasso netto esercente.
- */
 #include <iostream>
 
 int main() {
-    // dichiara importo, flag circuito, calcola commissione e netto
+    double importoPagamento = 45.00;
+    bool circuitoInternazionale = true;
+    /// L'aliquota varia perché i circuiti applicano costi diversi.
+    double aliquota = 0.0; // TODO: ternario sulle due aliquote
+    double commissione = 0.0; // TODO: importo per aliquota
+    double commissioneFinale = 0.0; // TODO: ternario sulla soglia minima
+    double incassoNetto = 0.0; // TODO: importo meno commissione finale
+    std::cout << "Commissione: " << commissioneFinale << " euro\n";
+    std::cout << "Incasso netto: " << incassoNetto << " euro\n";
     return 0;
 }
 ```
@@ -2245,20 +2386,20 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Espressione = calcoli/confronti che producono **un** valore.
-- Divisione tra soli `int` → risultato intero (trappola classica).
-- Ternario: `condizione ? se_vero : se_falso` — ideale per scelte semplici che restituiscono un valore.
-- Per decisioni lunghe o a più rami → nei prossimi capitoli useremo `if` / `else`.
+
+- Un'espressione produce un valore usando variabili, letterali e operatori.
+- Tra soli `int`, `/` esegue una divisione intera: la parte decimale si perde.
+- Un confronto come `totale >= 60.0` produce `true` o `false`.
+- Il ternario ha la forma `condizione ? se_vero : se_falso` e restituisce un valore.
+- Cambia una sola cosa alla volta: così colleghi l'output alla causa.
 
 ---
 
 ### ➡️ Prossimo chunk
-Finora le decisioni tengono in una riga.
-Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni per ramo), entra in scena il costrutto `if` / `else`.
 
----
-
-
+Quando una scelta deve eseguire più istruzioni, una riga non basta più.
+Nel prossimo chunk userai `if` / `else` per costruire un vero bivio nel
+programma.
 
 
 ## 🚦 Bivi e decisioni: scegliere con `if` e `if-else`
@@ -4691,48 +4832,35 @@ Ora conosci i tre cicli fondamentali. Nel prossimo capitolo userai `break` e
 
 ## ⏹️ Uscite Anticipate: `break` e `continue` nei cicli
 
-> "Non tutte le iterazioni vanno completate: a volte si salta, a volte si chiude il banco."  
-> — *Controllo operativo dei processi*
+> "La semplicità è la massima raffinatezza."
+>
+> — *Leonardo da Vinci*
 
-Nei cicli a volte serve **interrompere tutto** (`break`) o **saltare solo il giro corrente** (`continue`).  
-Sono il cruscotto fine del programmatore: da usare con chiarezza, non per nascondere logica confusa.
+In un controllo aziendale non tutti i dati meritano lo stesso trattamento:
+un movimento vuoto può essere ignorato, mentre un importo anomalo può rendere
+inutile continuare. In C++ puoi esprimere queste due decisioni dentro un ciclo.
 
-> 💡 **Metafora: nastro di controllo fatture**  
-> - **`continue`** = “questa fattura è a zero: **saltala**, passa alla successiva”  
-> - **`break`** = “importo anomalo: **ferma** l’intero controllo e segnala”
-
-In questo chunk **non** trattiamo la formattazione monetari (`iomanip`): ha un capitolo dedicato.
+> 💡 **Metafora:**  
+> Immagina un nastro che trasporta fatture. `continue` è il pulsante
+> **“salta questa fattura”**: il nastro riparte con la successiva. `break` è
+> il pulsante **“ferma il nastro”**: il controllo del lotto termina subito.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
+
 Alla fine di questa lezione sei in grado di:
-- Usare `break` e `continue` in un `for`/`while` con intento chiaro
-- Prevedere l’output di un ciclo che li combina
+
+- usare `continue` per saltare un’iterazione e `break` per terminare un ciclo in base a una regola aziendale.
 
 ---
 
-### ⚙️ In breve
+### ⚙️ Prima del laboratorio: due uscite diverse
 
-| Parola | Effetto |
-|--------|---------|
-| `continue` | Salta al **prossimo** giro del ciclo più interno |
-| `break` | Esce **subito** dal ciclo più interno |
-
-```cpp
-for (int i = 1; i <= 5; ++i) {
-    if (i == 2) continue;  // non stampare 2
-    if (i == 4) break;     // stop prima di 4,5
-    std::cout << i;
-}
-// stampa: 13
-```
-
----
-
-### 🔬 Laboratorio PRIMM: Controllo scarti
-
-#### 1. PREDICT (Prevedi)
+| Istruzione | Effetto nel ciclo | Regola tipica |
+| :--- | :--- | :--- |
+| `continue` | salta il resto del giro corrente e passa al prossimo | ignora un dato vuoto o non interessante |
+| `break` | esce subito dal ciclo più interno | ferma l’analisi davanti a un dato anomalo |
 
 ```cpp
 for (int i = 1; i <= 5; ++i) {
@@ -4742,24 +4870,92 @@ for (int i = 1; i <= 5; ++i) {
 }
 ```
 
-Cosa stampa il ciclo?
+Nel `for`, dopo `continue` viene comunque eseguito l’aggiornamento `++i`.
+Dopo `break`, invece, il ciclo è terminato: non esiste un giro successivo.
 
-[( )] 12345
-[( )] 1345
-[(X)] 13
-[( )] 1234
+---
 
-<details>
-<summary>💡 Spiegazione</summary>
-<code>i==2</code> → <code>continue</code> (niente stampa). <code>i==3</code> stampa. <code>i==4</code> → <code>break</code> (il 5 non si raggiunge). Resta <code>13</code>.
-</details>
+### 🧭 Prima del laboratorio: leggere il flusso
+
+Per ogni valore di `i`, il programma legge le condizioni dall’alto verso il
+basso:
+
+1. se `i == 2`, salta la stampa e passa al prossimo giro;
+2. altrimenti, se `i == 4`, esce dal ciclo;
+3. altrimenti, stampa `i`.
+
+Il punto importante è **dove** si trova l’istruzione: un `continue` prima
+della stampa impedisce a quella stampa di essere raggiunta.
+
+---
+
+### 🔬 Laboratorio PRIMM: Controllo scarti
+
+Il ciclo simula una prima scansione di dati: alcuni valori vengono saltati,
+un valore anomalo chiude il controllo.
+
+#### 1. PREDICT (Prevedi)
+
+Prima di eseguire il codice, scegli le risposte e spiega a parole la
+differenza tra saltare un giro e terminare il ciclo:
+
+```cpp
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;
+    if (i == 4) break;
+    std::cout << i;
+}
+```
+
+**Domanda 1**
+
+Qual è l’effetto di `continue` quando `i` vale 2?
+
+[(X)] Salta il resto del giro corrente e passa al giro successivo
+[( )] Esce definitivamente dal ciclo
+[( )] Ripete il giro corrente senza aggiornare `i`
+
+**Domanda 2**
+
+Qual è l’effetto di `break` quando `i` vale 4?
+
+[(X)] Esce subito dal ciclo e non raggiunge il giro con `i` uguale a 5
+[( )] Salta solo la stampa di 4 e continua con 5
+[( )] Riporta `i` a 1 e ricomincia il ciclo
+
+**Domanda 3**
+
+Quale output è più coerente con il flusso del ciclo?
+
+[(X)] `13`, perché 2 viene saltato e il ciclo termina quando arriva a 4
+[( )] `1345`, perché `break` salta soltanto il numero 4
+[( )] `12345`, perché i due comandi non cambiano l’output
+
+**Domanda 4**
+
+Perché il ciclo non stampa `2`?
+
+[(X)] Perché `continue` viene eseguito prima di `std::cout` nel giro con `i == 2`
+[( )] Perché `i` diventa automaticamente uguale a 0
+[( )] Perché `break` viene eseguito due volte nello stesso giro
+
+**Domanda 5**
+
+In quale situazione aziendale è più adatto `break`?
+
+[(X)] Quando un dato anomalo rende inutile o rischiosa l’analisi dei dati successivi
+[( )] Quando vuoi ignorare un solo dato ma continuare con tutti gli altri
+[( )] Quando vuoi aumentare automaticamente il valore del contatore
 
 #### 2. RUN (Esegui)
 
+Digita il programma, eseguilo e confronta l’output con la tua previsione.
+
 ```cpp
 /**
- * @file scarti_ciclo.cpp
- * @brief continue salta, break interrompe.
+ * @file controllo_scarti.cpp
+ * @brief Mostra come saltare un giro e terminare un controllo.
+ * @return int Codice di uscita del programma.
  */
 #include <iostream>
 
@@ -4781,51 +4977,206 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| `i` | Azione | Output accumulato |
-|-----|--------|-------------------|
-| 1 | stampa | `1` |
-| 2 | `continue` | `1` |
-| 3 | stampa | `13` |
-| 4 | `break` | fine |
+Dopo il Run, ricostruisci il percorso di ogni iterazione:
+
+```cpp
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;
+    if (i == 4) break;
+    std::cout << i;
+}
+```
+
+**Domanda 1**
+
+Quale sequenza di azioni avviene quando `i` vale 2?
+
+[(X)] La prima condizione è vera, parte `continue`, non si stampa 2 e il `for` aggiorna il contatore
+[( )] Si stampa 2, poi la seconda condizione interrompe il ciclo
+[( )] Il ciclo termina e il valore 3 non viene mai controllato
+
+**Domanda 2**
+
+Perché il valore 3 viene stampato?
+
+[(X)] Entrambe le condizioni sono false, quindi il flusso raggiunge `std::cout`
+[( )] `continue` stampa automaticamente il valore che segue quello saltato
+[( )] `break` trasforma 3 in un valore valido da stampare
+
+**Domanda 3**
+
+Dopo `continue` in questo `for`, cosa succede normalmente?
+
+[(X)] Viene eseguita l’espressione di aggiornamento `++i`, poi si controlla la condizione del ciclo
+[( )] Il programma torna alla dichiarazione di `i` e la reinizializza a 1
+[( )] Il programma salta direttamente alla riga dopo tutto il ciclo
+
+**Domanda 4**
+
+Perché il valore 5 non viene mai stampato?
+
+[(X)] Con `i == 4` viene eseguito `break`, che termina il ciclo prima del giro successivo
+[( )] Il `for` arriva solo fino a 4 anche se la condizione dice `i <= 5`
+[( )] Il compilatore considera 5 un valore non stampabile dopo un `continue`
+
+**Domanda 5**
+
+Se sostituisci `continue` con `break` nella condizione `i == 2`, perché l’output diventa `1`?
+
+[(X)] Il ciclo termina già al secondo giro, prima di poter controllare 3 e 4
+[( )] Il secondo comando `break` viene ignorato perché ce n’è già uno
+[( )] Il primo giro viene annullato insieme a tutti i valori già stampati
+
+| Valore di `i` | Istruzione decisiva | Effetto | Output |
+| :---: | :--- | :--- | :--- |
+| 1 | nessuna condizione vera | raggiunge la stampa | `1` |
+| 2 | `continue` | salta la stampa e passa a `++i` | `1` |
+| 3 | nessuna condizione vera | raggiunge la stampa | `13` |
+| 4 | `break` | esce subito dal ciclo | `13` |
+| 5 | nessun giro | il ciclo è già terminato | `13` |
+
+Apri il programma in [Python Tutor C++](https://pythontutor.com/cpp.html):
+osserva che dopo `continue` il contatore del `for` avanza, mentre dopo
+`break` il flusso va direttamente alla riga dopo il ciclo.
 
 #### 4. MODIFY (Modifica)
-1. Inverti: `break` su 2 e `continue` su 4 — cosa cambia?
-2. Sostituisci il `for` con un `while` equivalente.
-3. Conta quanti numeri **effettivamente stampati** con un contatore.
 
-#### 5. MAKE (Crea)
-**Scenario SIA — Analisi movimenti di cassa**
+Prima di modificare il listato, prevedi l’effetto di ogni cambiamento:
 
-Sequenza fissa di importi (array piccolo o elenco in variabili).  
-- `continue` se importo `== 0`  
-- `break` se importo `> 10000` (outlier)  
-- Stampa quanti movimenti validi sono stati elaborati prima dello stop  
+```cpp
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;
+    if (i == 4) break;
+    std::cout << i;
+}
+```
+
+**Domanda 1**
+
+Quale modifica stampa `124` e termina il ciclo dopo 4?
+
+[(X)] Spostare `std::cout << i;` prima dei due controlli e lasciare `break` su 4
+[( )] Sostituire `continue` su 2 con `break` e lasciare tutto il resto invariato
+[( )] Cambiare `i == 4` in `i == 5` senza spostare la stampa
+
+**Domanda 2**
+
+Quale modifica salta gli importi pari ma continua a controllare gli altri?
+
+[(X)] Usare `if (importo % 2 == 0) continue;` dentro il ciclo
+[( )] Usare `if (importo % 2 == 0) break;` per ogni importo pari
+[( )] Usare `if (importo / 2 == 0) continue;`
+
+**Domanda 3**
+
+Quale modifica fa terminare il ciclo quando trova un valore maggiore di 10000?
+
+[(X)] Inserire `if (importo > 10000) break;` prima dell’elaborazione dell’importo
+[( )] Inserire `if (importo > 10000) continue;` se vuoi fermare il ciclo
+[( )] Cambiare il contatore in `importo > 10000`
+
+**Domanda 4**
+
+Per contare solo i movimenti effettivamente elaborati, dove conviene incrementare `validi`?
+
+[(X)] Dopo i controlli `continue` e `break`, nel punto in cui il movimento viene elaborato
+[( )] Prima di `continue`, così anche gli importi scartati vengono contati
+[( )] Dopo il ciclo, una sola volta, perché il contatore si aggiorna da solo
+
+**Domanda 5**
+
+Perché conviene provare una modifica alla volta?
+
+[(X)] Per capire se il cambiamento ha alterato il salto, l’uscita o il conteggio previsto
+[( )] Perché in un ciclo può esistere una sola istruzione `if`
+[( )] Perché `continue` e `break` funzionano solo nel primo tentativo
+
+Parti da questo scaffold:
 
 <details>
-<summary>💡 Scaffold</summary>
+<summary>💡 Scaffold di partenza</summary>
 
 ```cpp
 #include <iostream>
+
 int main() {
-    double mov[] = {100.0, 0.0, 250.0, 12000.0, 80.0};
-    // for + continue + break
+    for (int i = 1; i <= 5; ++i) {
+        if (i == 2) continue;
+        if (i == 4) break;
+        std::cout << i;
+    }
     return 0;
 }
 ```
+
+</details>
+
+**Modifica A — cambia il punto di stop**  
+Cambia solo la condizione di `break` per terminare quando `i` vale `3`.
+
+**Modifica B — conta i dati elaborati**  
+Aggiungi `int elaborati = 0;`. Incrementalo solo dopo i due controlli,
+nel punto in cui il valore viene davvero elaborato e stampato.
+
+**Modifica C — ciclo sui movimenti**  
+Usa una sequenza di importi e sostituisci le condizioni su `i` con:
+`continue` per `importo == 0` e `break` per `importo > 10000`.
+
+---
+
+### 5. MAKE (Crea)
+
+**Scenario aziendale — Analisi movimenti di cassa**
+
+Scrivi `analizza_movimenti.cpp` con i seguenti requisiti chiusi:
+
+1. Usa la sequenza `100.0, 0.0, 250.0, 12000.0, 80.0`.
+2. Scorri i cinque importi con un ciclo.
+3. Se l’importo vale `0.0`, usa `continue`: non stamparlo e non contarlo.
+4. Se l’importo è maggiore di `10000.0`, usa `break`: interrompi l’analisi
+   prima di elaborare quel movimento e quelli successivi.
+5. Conta e stampa quanti movimenti validi sono stati elaborati prima dello stop.
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    double movimenti[] = {100.0, 0.0, 250.0, 12000.0, 80.0};
+    int validi = 0;
+
+    /// Gli zeri non rappresentano movimenti da registrare.
+    // TODO: ciclo sui cinque elementi
+    // TODO: continue per gli zeri
+    // TODO: break per l'outlier
+    // TODO: conta e stampa i movimenti validi
+
+    return 0;
+}
+```
+
 </details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- `continue` = salta **questo** giro
-- `break` = esci dal ciclo
-- Usali quando la regola di business è chiara (scarto / stop)
-- Non sostituiscono una buona condizione di ciclo
+
+- `continue` salta il resto dell’iterazione corrente.
+- `break` termina subito il ciclo più interno.
+- In un `for`, `continue` porta comunque all’aggiornamento del contatore.
+- La posizione del comando rispetto alla stampa cambia il flusso osservato.
+- Usa i due comandi per regole di business chiare, non per nascondere codice confuso.
 
 ---
 
 ### ➡️ Prossimo chunk
-Dal ciclo al **reparto**: introduciamo le **funzioni** che restituiscono un valore.
+
+Ora sai controllare il flusso dentro un ciclo. Nel prossimo chunk sposterai
+un’elaborazione in una **funzione**, un reparto specializzato che puoi
+richiamare quando serve.
+
 
 ## 🖨️ La stampante fiscale: `std::fixed` e `std::setprecision`
 
