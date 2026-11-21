@@ -36,7 +36,7 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 > di scriverne il programma.
 > Altrimenti non si ha una vera comprensione, si crede soltanto di capire.
 >
-> — Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
+> -- Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
 
 Imparare a programmare non significa memorizzare comandi a memoria: significa sviluppare un **metodo di lavoro mentale**.
 
@@ -158,7 +158,7 @@ Prima di scrivere programmi, allestiamo l’**officina**: editor, compilatore e 
 ## 🛠️ Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64
 
 > "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
-> — Donald Knuth
+> -- Donald Knuth
 
 Questo non è un capitolo da leggere in 20 minuti.  
 È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.
@@ -404,7 +404,7 @@ Nel prossimo capitolo entreremo nella “fabbrica del codice”.
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 >
-> — *Bjarne Stroustrup*
+> -- Bjarne Stroustrup
 
 Hai appena allestito l'officina con VS Code e `g++`. Ora apri il cofano: quando
 premi il pulsante di compilazione, il file che scrivi non diventa subito un
@@ -754,7 +754,7 @@ persona che lo usa. Nel prossimo capitolo gli daremo un megafono: `std::cout`.
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 >
-> -- *Brian Kernighan*
+> -- Brian Kernighan
 
 Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
 
@@ -1155,7 +1155,7 @@ Nella prossima lezione gli daremo le **scatole** (le variabili) per ricordare i 
 
 > "Il codice non mente mai, i commenti sì."
 >
-> — *Ron Jeffries*
+> —- Ron Jeffries
 
 Hai già scritto `Ciao, Mondo!` e presto i programmi si allungheranno.  
 Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente. In azienda, un collega che non eri tu.
@@ -1280,6 +1280,11 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 
 ## 📦 Gli sportelli della memoria: variabili, costanti e tipi
+
+> "Chi controlla il passato controlla il futuro.
+> Chi controlla il presente controlla il passato."
+>
+> -- George Orwell
 
 Finora hai stampato testi fissi. Un software gestionale, però, deve ricordare
 dati che cambiano: prezzo di un articolo, giacenza di magazzino, saldo di un

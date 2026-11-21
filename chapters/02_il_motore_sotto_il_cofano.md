@@ -273,7 +273,7 @@ files:
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 >
-> — *Bjarne Stroustrup*
+> -- Bjarne Stroustrup
 
 Hai appena allestito l'officina con VS Code e `g++`. Ora apri il cofano: quando
 premi il pulsante di compilazione, il file che scrivi non diventa subito un

@@ -9,7 +9,7 @@ files: []
 ## 🛠️ Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64
 
 > "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
-> — Donald Knuth
+> -- Donald Knuth
 
 Questo non è un capitolo da leggere in 20 minuti.  
 È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.

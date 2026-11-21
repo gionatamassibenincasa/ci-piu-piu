@@ -16,6 +16,11 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 ## 📦 Gli sportelli della memoria: variabili, costanti e tipi
 
+> "Chi controlla il passato controlla il futuro.
+> Chi controlla il presente controlla il passato."
+>
+> -- George Orwell
+
 Finora hai stampato testi fissi. Un software gestionale, però, deve ricordare
 dati che cambiano: prezzo di un articolo, giacenza di magazzino, saldo di un
 conto.

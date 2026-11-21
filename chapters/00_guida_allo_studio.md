@@ -22,7 +22,7 @@ files: []
 > di scriverne il programma.
 > Altrimenti non si ha una vera comprensione, si crede soltanto di capire.
 >
-> — Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
+> -- Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
 
 Imparare a programmare non significa memorizzare comandi a memoria: significa sviluppare un **metodo di lavoro mentale**.
 

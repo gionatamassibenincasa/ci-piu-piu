@@ -18,7 +18,7 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 > "Il codice non mente mai, i commenti sì."
 >
-> — *Ron Jeffries*
+> —- Ron Jeffries
 
 Hai già scritto `Ciao, Mondo!` e presto i programmi si allungheranno.  
 Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente. In azienda, un collega che non eri tu.
