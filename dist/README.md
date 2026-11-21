@@ -2253,7 +2253,7 @@ int main() {
 ---
 
 ### ➡️ Prossimo chunk
-Finora le decisioni tengono in una riga.  
+Finora le decisioni tengono in una riga.
 Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni per ramo), entra in scena il costrutto `if` / `else`.
 
 ---
@@ -6595,7 +6595,6 @@ int main() { /* ... */ return 0; }
 Con array, struct, ricerca, ordinamento e ricorsione hai gli strumenti del **secondo blocco** del corso: dati e algoritmi di base in chiave aziendale.
 
 
-
 ## 🏢 Dal cartellino al reparto: `struct` → `class` e incapsulamento
 
 > "Non tutti possono modificare il listino: solo chi ha la responsabilità del reparto."  
@@ -7955,3 +7954,4 @@ int main() {
 ### ➡️ Fine Blocco 3
 Hai un percorso da `struct` a oggetti, template da utente e un gestionale in memoria.  
 I prossimi passi “mondo reale” (file, GUI, DB) restano fuori da questo corso di base.
+
