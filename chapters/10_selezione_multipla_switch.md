@@ -2,6 +2,7 @@
 activity_id: switch-01
 title: 'Lo smistatore di sportello: scegliere con switch e case'
 methodology: PRIMM
+assignment_profile: full
 order: 10
 version: '2026-11-20'
 last_update: '2026-11-20'
@@ -296,10 +297,15 @@ files:
     template_content: |
       # Investigate – Switch
 
-      1. Che cosa succede dopo un `break`?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Perché `case 2` viene selezionato quando la scelta vale 2?
       >
 
-      2. Quando viene eseguito `default`?
+      2. Che cosa succede se manca break?
+      >
+
+      3. Perché un double non può essere usato come scelta dello switch?
       >
   - path: student_work/modify/menu_atm.cpp
     action: create

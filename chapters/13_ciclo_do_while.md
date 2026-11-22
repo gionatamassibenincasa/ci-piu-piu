@@ -2,6 +2,7 @@
 activity_id: do-while-01
 title: 'Garantire l''azione: validare con il ciclo do-while'
 methodology: PRIMM
+assignment_profile: full
 order: 13
 version: '2026-11-20'
 last_update: '2026-11-20'
@@ -251,10 +252,15 @@ files:
     template_content: |
       # Investigate – Controllo in coda
 
-      1. Quando viene controllato l'intervallo ammesso?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Perché il corpo viene eseguito anche con una condizione inizialmente falsa?
       >
 
-      2. Perché il primo tentativo è garantito?
+      2. Quando un importo valido fa terminare il ciclo?
+      >
+
+      3. Perché serve il punto e virgola dopo il while finale?
       >
   - path: student_work/modify/valida_bonifico.cpp
     action: create

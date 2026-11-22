@@ -2,6 +2,7 @@
 activity_id: break-continue-01
 title: 'Uscite Anticipate: `break` e `continue` nei cicli'
 methodology: PRIMM
+assignment_profile: full
 order: 14
 version: '2026-11-22'
 language: it
@@ -291,13 +292,13 @@ files:
 
       Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-      1. Cosa succede al contatore dopo `continue`?
+      1. Quali istruzioni vengono eseguite quando il contatore vale 2?
       >
 
-      2. Perché il valore successivo a quello di `break` non viene controllato?
+      2. Perché il valore 5 non viene controllato dopo `break`?
       >
 
-      3. Completa la traccia: `i = 1` → `i = 2` → `i = 3` → `i = 4`.
+      3. Che cosa succede al contatore dopo `continue` in un `for`?
       >
   - path: student_work/modify/controllo_modificato.cpp
     action: create

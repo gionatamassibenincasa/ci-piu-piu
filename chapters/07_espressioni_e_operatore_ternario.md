@@ -2,6 +2,7 @@
 activity_id: espressioni-ternario-01
 title: 'La Calcolatrice Fiscale: espressioni e operatore ternario'
 methodology: PRIMM
+assignment_profile: full
 order: 7
 version: '2026-11-22'
 language: it
@@ -298,13 +299,13 @@ files:
 
       Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-      1. Quali valori assumono percentuale di sconto, sconto e netto?
+      1. Perché viene scelto il 10% di sconto?
       >
 
-      2. Perché la spedizione vale zero?
+      2. Quale ordine seguono sconto, netto, spedizione e totale?
       >
 
-      3. In quale ordine vengono calcolati netto, spedizione e totale?
+      3. Perché la spedizione vale zero?
       >
   - path: student_work/modify/cassa_fiscale.cpp
     action: create

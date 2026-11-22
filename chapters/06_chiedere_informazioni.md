@@ -2,6 +2,7 @@
 activity_id: chiedere-informazioni-01
 title: 'Chiedere informazioni: leggere dati con std::cin'
 methodology: PRIMM
+assignment_profile: full
 order: 6
 version: '2026-11-20'
 language: it
@@ -258,10 +259,15 @@ files:
     template_content: |
       # Investigate – Flusso dell'input
 
-      1. Qual è la differenza tra `std::cout` e `std::cin`?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Perché `std::cout` e `std::cin` svolgono ruoli diversi?
       >
 
-      2. In quale momento le variabili ricevono i dati?
+      2. Quale valore riceve ciascuna variabile se l'utente inserisce `3` e `12.50`?
+      >
+
+      3. Perché inserire testo in una lettura `int` rende il calcolo inaffidabile?
       >
   - path: student_work/modify/ordine_pos.cpp
     action: create

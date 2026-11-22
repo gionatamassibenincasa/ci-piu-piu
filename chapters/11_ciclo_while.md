@@ -2,6 +2,7 @@
 activity_id: while-01
 title: 'Il nastro della cassa: ripetere con il ciclo while'
 methodology: PRIMM
+assignment_profile: full
 order: 11
 version: '2026-11-20'
 last_update: '2026-11-20'
@@ -263,10 +264,15 @@ files:
     template_content: |
       # Investigate – Ciclo
 
-      1. Quale valore cambia a ogni giro?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Perché il corpo viene eseguito con il primo prezzo?
       >
 
-      2. Quando la condizione diventa falsa?
+      2. Perché la sentinella non entra nel totale?
+      >
+
+      3. Che cosa succede senza aggiornamento della variabile di controllo?
       >
   - path: student_work/modify/scontrino_nastro.cpp
     action: create

@@ -2,6 +2,7 @@
 activity_id: bivi-complessi-01
 title: 'Scaglioni ordinati: if, else if ed else'
 methodology: PRIMM
+assignment_profile: full
 order: 9
 version: '2026-11-20'
 last_update: '2026-11-20'
@@ -271,10 +272,15 @@ files:
     template_content: |
       # Investigate – Ordine delle soglie
 
-      1. Perché i rami dopo quello vero non vengono eseguiti?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Qual è il primo confronto per un fatturato di 32500?
       >
 
-      2. Che cosa cambia se inverti due soglie?
+      2. Perché il ramo Silver viene saltato dopo Gold vero?
+      >
+
+      3. Che cosa accade se una soglia più bassa viene scritta prima?
       >
   - path: student_work/modify/fasce_sconto.cpp
     action: create

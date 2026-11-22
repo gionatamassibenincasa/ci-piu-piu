@@ -2,6 +2,7 @@
 activity_id: motore-compilazione-01
 title: 'Il motore sotto il cofano: dalla sorgente all''eseguibile'
 methodology: PRIMM
+assignment_profile: full
 order: 2
 version: '2026-11-20'
 language: it
@@ -237,10 +238,15 @@ files:
     template_content: |
       # Investigate – Catena di compilazione
 
-      1. Che differenza c'è tra `.ii`, `.s`, `.o` ed `.exe`?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Perché il file `.o` non è ancora l'eseguibile finale?
       >
 
-      2. Perché il valore di `return` può comparire nell'Assembly?
+      2. Quale trasformazione produce il file `.s`?
+      >
+
+      3. Perché `return 0;` compare come valore di ritorno nell'Assembly?
       >
   - path: student_work/modify/ridotto.cpp
     action: create

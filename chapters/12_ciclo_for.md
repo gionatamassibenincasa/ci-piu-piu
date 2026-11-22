@@ -2,6 +2,7 @@
 activity_id: for-01
 title: 'Il contatore compatto: ripetere con il ciclo for'
 methodology: PRIMM
+assignment_profile: full
 order: 12
 version: '2026-11-20'
 last_update: '2026-11-20'
@@ -246,10 +247,15 @@ files:
     template_content: |
       # Investigate – Contatore
 
-      1. Quando viene eseguito `++anno`?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Qual è l'ordine tra condizione, corpo e aggiornamento?
       >
 
-      2. Come cambia il valore residuo a ogni giro?
+      2. Perché il contatore assume i valori da 1 a 5?
+      >
+
+      3. Che cosa accade quando il contatore supera il limite?
       >
   - path: student_work/modify/ammortamento_cespite.cpp
     action: create

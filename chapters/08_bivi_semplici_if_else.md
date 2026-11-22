@@ -2,6 +2,7 @@
 activity_id: if-else-01
 title: 'Bivi e decisioni: scegliere con if e if-else'
 methodology: PRIMM
+assignment_profile: full
 order: 8
 version: '2026-11-20'
 language: it
@@ -269,10 +270,15 @@ files:
     template_content: |
       # Investigate – Bivio POS
 
-      1. Quale confronto decide il ramo?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Qual è il primo passaggio eseguito quando il programma incontra `if`?
       >
 
-      2. Perché il saldo viene aggiornato solo in un ramo?
+      2. Perché il saldo non viene sottratto quando il ramo è `else`?
+      >
+
+      3. Che cosa accade con il punto e virgola dopo la condizione?
       >
   - path: student_work/modify/autorizzazione_pos.cpp
     action: create

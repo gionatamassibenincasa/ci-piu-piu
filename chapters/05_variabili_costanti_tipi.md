@@ -2,6 +2,7 @@
 activity_id: variabili-tipi-01
 title: 'Gli sportelli della memoria: variabili, costanti e tipi'
 methodology: PRIMM
+assignment_profile: full
 order: 5
 version: '2026-11-20'
 language: it
@@ -240,10 +241,15 @@ files:
     template_content: |
       # Investigate – Sportelli della memoria
 
-      1. Quali variabili vedi nello stack?
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Perché `pezziInMagazzino` è un `int` e `prezzoNetto` un `double`?
       >
 
-      2. Perché `ALIQUOTA_IVA` non può cambiare?
+      2. Perché una variabile `const` non può essere assegnata di nuovo?
+      >
+
+      3. Quale valore viene memorizzato in `int pezzi = 7.85;`?
       >
   - path: student_work/modify/scheda_articolo.cpp
     action: create

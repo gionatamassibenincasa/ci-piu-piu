@@ -2,6 +2,7 @@
 activity_id: "formattazione-contabile-01"
 title: "La stampante fiscale: formattare importi con `<iomanip>`"
 methodology: PRIMM
+assignment_profile: full
 order: 15
 version: "2026-11-20"
 language: it
@@ -246,16 +247,12 @@ files:
     template_content: |
       # Investigate – Formato dello stream
 
-      Analizza il programma con il debugger oppure confronta le stampe in
-      [Python Tutor C++](https://pythontutor.com/cpp.html).
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
 
-      1. Il formato cambia il valore memorizzato o solo la sua rappresentazione?
+      1. Perché il formato resta attivo nelle stampe successive dello stesso std::cout?
       >
 
-      2. Perché IVA e totale ricevono lo stesso formato?
-      >
-
-      3. Che cosa succede a una stampa successiva se non cambi il formato?
+      2. Che errore può comparire se manca #include <iomanip>?
       >
   - path: "student_work/modify/prospetto_modificato.cpp"
     action: create
