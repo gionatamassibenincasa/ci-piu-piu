@@ -9,7 +9,7 @@ import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/mas
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
-[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/12_for-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/14_break-continue-01.md)
+[← Prec.](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/12_for-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/14_break-continue-01.md)
 
 ---
 
@@ -390,3 +390,12 @@ int main() {
 Ora conosci i tre cicli fondamentali. Nel prossimo capitolo userai `break` e
 `continue` per guidare con maggiore precisione il flusso dentro un ciclo.
 
+---
+
+# Navigazione
+
+Continua da qui:
+
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md">Indice delle lezioni</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/12_for-01.md">Lezione precedente (12 — Il contatore compatto: ripetere con il ciclo for)</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/14_break-continue-01.md">Lezione successiva (14 — Uscite Anticipate: `break` e `continue` nei cicli)</a>

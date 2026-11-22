@@ -9,7 +9,7 @@ import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/mas
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
-[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/29_costruttori-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/31_const-metodi-01.md)
+[← Prec.](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/29_costruttori-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/31_const-metodi-01.md)
 
 ---
 
@@ -136,3 +136,13 @@ int main() { return 0; }
 
 ### ➡️ Prossimo chunk
 Metodi che **non** modificano lo stato: `const`.
+
+---
+
+# Navigazione
+
+Continua da qui:
+
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md">Indice delle lezioni</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/29_costruttori-01.md">Lezione precedente (29 — Assunzione in organico: costruttori e oggetto ben formato)</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/31_const-metodi-01.md">Lezione successiva (31 — Consultare senza modificare: metodi const)</a>

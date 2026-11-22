@@ -9,7 +9,7 @@ import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/mas
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
-[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/31_const-metodi-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/33_ereditarieta-01.md)
+[← Prec.](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/31_const-metodi-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/33_ereditarieta-01.md)
 
 ---
 
@@ -137,3 +137,13 @@ int main() { return 0; }
 
 ### ➡️ Prossimo chunk
 Quando invece **è un** tipo specializzato: ereditarietà essenziale.
+
+---
+
+# Navigazione
+
+Continua da qui:
+
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md">Indice delle lezioni</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/31_const-metodi-01.md">Lezione precedente (31 — Consultare senza modificare: metodi const)</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/33_ereditarieta-01.md">Lezione successiva (33 — Specializzazioni in organigramma: ereditarietà essenziale)</a>

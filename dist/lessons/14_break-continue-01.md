@@ -9,7 +9,7 @@ import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/mas
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
-[← Prec.](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/13_do-while-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/15_formattazione-contabile-01.md)
+[← Prec.](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/13_do-while-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/15_formattazione-contabile-01.md)
 
 ---
 
@@ -361,3 +361,12 @@ Ora sai controllare il flusso dentro un ciclo. Nel prossimo chunk sposterai
 un’elaborazione in una **funzione**, un reparto specializzato che puoi
 richiamare quando serve.
 
+---
+
+# Navigazione
+
+Continua da qui:
+
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md">Indice delle lezioni</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/13_do-while-01.md">Lezione precedente (13 — Garantire l'azione: validare con il ciclo do-while)</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/15_formattazione-contabile-01.md">Lezione successiva (15 — La stampante fiscale: formattare importi con `<iomanip>`)</a>
