@@ -255,6 +255,57 @@ files:
 
       Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
       Cambia una sola cosa alla volta e ricompila dopo ogni modifica.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    description: Previsioni sulla divisione intera e sui rami del ternario
+    template_content: |
+      # Predict – Espressioni e ternario
+
+      Rispondi prima di compilare o eseguire il programma.
+
+      1. Quale percentuale di sconto prevedi per un importo di 85 euro?
+      >
+
+      2. Perché `5 / 2 * 10.0` non produce 25.0?
+      >
+
+      3. Quale ramo del ternario sceglie la spedizione?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    description: Confronto tra previsione e scontrino eseguito
+    template_content: |
+      # Run – Scontrino e-commerce
+
+      Digita a mano il programma, compilalo ed eseguilo.
+
+      1. Quale output hai ottenuto?
+      >
+
+      2. L'output corrisponde alla previsione? Quale passaggio avevi interpretato diversamente?
+      >
+
+      3. Quale valore viene calcolato prima del totale?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    description: Traccia dei valori e dei rami scelti dai ternari
+    template_content: |
+      # Investigate – Traccia dello scontrino
+
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Quali valori assumono percentuale di sconto, sconto e netto?
+      >
+
+      2. Perché la spedizione vale zero?
+      >
+
+      3. In quale ordine vengono calcolati netto, spedizione e totale?
+      >
   - path: student_work/modify/cassa_fiscale.cpp
     action: create
     phase: modify

@@ -197,6 +197,85 @@ assessment:
       - "Dimenticare di impostare il formato prima delle stampe."
     context: "Il prospetto deve essere leggibile e coerente come un documento contabile."
 files:
+  - path: "README.md"
+    action: create
+    description: Istruzioni per svolgere la consegna PRIMM
+    template_content: |
+      # La stampante fiscale
+
+      Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
+      Cambia una sola impostazione alla volta e ricompila dopo ogni modifica.
+  - path: "student_work/predict/answers.md"
+    action: create
+    phase: predict
+    description: Previsioni sul formato decimale dell'output
+    template_content: |
+      # Predict – Formattazione contabile
+
+      Rispondi prima di compilare o eseguire il programma.
+
+      1. Quale output prevedi per `19.5` con `fixed` e `setprecision(2)`?
+      >
+
+      2. Perché serve `#include <iomanip>`?
+      >
+
+      3. Che differenza prevedi togliendo `std::fixed`?
+      >
+  - path: "student_work/run/answers.md"
+    action: create
+    phase: run
+    description: Confronto tra previsione e prospetto eseguito
+    template_content: |
+      # Run – Prospetto contabile
+
+      Digita a mano il programma, compilalo ed eseguilo.
+
+      1. Quale output hai ottenuto?
+      >
+
+      2. L'output corrisponde alla previsione? Quale cifra è stata arrotondata?
+      >
+
+      3. Quale errore hai incontrato, se hai dimenticato un include?
+      >
+  - path: "student_work/investigate/answers.md"
+    action: create
+    phase: investigate
+    description: Analisi dello stato di formattazione di std::cout
+    template_content: |
+      # Investigate – Formato dello stream
+
+      Analizza il programma con il debugger oppure confronta le stampe in
+      [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Il formato cambia il valore memorizzato o solo la sua rappresentazione?
+      >
+
+      2. Perché IVA e totale ricevono lo stesso formato?
+      >
+
+      3. Che cosa succede a una stampa successiva se non cambi il formato?
+      >
+  - path: "student_work/modify/prospetto_modificato.cpp"
+    action: create
+    phase: modify
+    description: Modifiche progressive a fixed e setprecision
+    template_content: |
+      #include <iostream>
+      #include <iomanip>
+
+      int main() {
+          double totale = 23.4567;
+          std::cout << std::fixed << std::setprecision(2);
+          std::cout << "Totale: " << totale << '\n';
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain:
+        - std::fixed
+        - std::setprecision
   - path: "student_work/make/prospetto_preventivo.cpp"
     action: create
     phase: make

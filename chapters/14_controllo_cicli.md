@@ -251,6 +251,74 @@ files:
 
       Lavora nell'ordine Predict → Run → Investigate → Modify → Make.
       Cambia una sola regola alla volta e ricompila dopo ogni modifica.
+  - path: student_work/predict/answers.md
+    action: create
+    phase: predict
+    description: Risposte alle previsioni sul flusso di break e continue
+    template_content: |
+      # Predict – Uscite anticipate
+
+      Rispondi prima di compilare o eseguire il programma.
+
+      1. Quale valore viene saltato da `continue`?
+      >
+
+      2. Quando termina il ciclo?
+      >
+
+      3. Quale output prevedi?
+      >
+  - path: student_work/run/answers.md
+    action: create
+    phase: run
+    description: Confronto tra previsione e output osservato
+    template_content: |
+      # Run – Controllo scarti
+
+      Digita a mano il programma, compilalo ed eseguilo.
+
+      1. Quale output hai ottenuto?
+      >
+
+      2. L'output corrisponde alla previsione? Se no, quale passaggio avevi interpretato diversamente?
+      >
+  - path: student_work/investigate/answers.md
+    action: create
+    phase: investigate
+    description: Traccia del flusso del ciclo con Python Tutor
+    template_content: |
+      # Investigate – Flusso del ciclo
+
+      Usa il debugger oppure [Python Tutor C++](https://pythontutor.com/cpp.html).
+
+      1. Cosa succede al contatore dopo `continue`?
+      >
+
+      2. Perché il valore successivo a quello di `break` non viene controllato?
+      >
+
+      3. Completa la traccia: `i = 1` → `i = 2` → `i = 3` → `i = 4`.
+      >
+  - path: student_work/modify/controllo_modificato.cpp
+    action: create
+    phase: modify
+    description: Modifiche progressive alle condizioni di salto e di uscita
+    template_content: |
+      #include <iostream>
+
+      int main() {
+          for (int i = 1; i <= 5; ++i) {
+              if (i == 2) continue;
+              if (i == 4) break;
+              std::cout << i;
+          }
+          return 0;
+      }
+    validation_rules:
+      min_lines: 8
+      must_contain:
+        - break
+        - continue
   - path: student_work/make/analizza_movimenti.cpp
     action: create
     phase: make
