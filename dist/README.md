@@ -8305,4 +8305,3 @@ int main() {
 ### ➡️ Fine Blocco 3
 Hai un percorso da `struct` a oggetti, template da utente e un gestionale in memoria.  
 I prossimi passi “mondo reale” (file, GUI, DB) restano fuori da questo corso di base.
-

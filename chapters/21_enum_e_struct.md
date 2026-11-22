@@ -1,0 +1,167 @@
+---
+activity_id: "enum-01"
+title: "Stati e Schede Anagrafiche: enum e struct"
+methodology: PRIMM
+order: 21
+version: "2026-11-16"
+language: it
+components:
+  predict_quiz:
+    question: "Con `enum class Stato { Attivo, Sospeso };`, cosa stampa il confronto tra due variabili entrambe `Attivo`?"
+    code: |
+      enum class Stato { Attivo, Sospeso };
+      Stato a = Stato::Attivo;
+      Stato b = Stato::Attivo;
+      // a == b ?
+    options:
+      - text: "Sono uguali (true)"
+        correct: true
+      - text: "Non si possono confrontare"
+        correct: false
+      - text: "Sono sempre diversi"
+        correct: false
+      - text: "Compila solo con int"
+        correct: false
+  make_instructions: "Anagrafica articolo: struct + enum stato magazzino"
+files:
+  - path: student_work/make/anagrafica_articolo.cpp
+    action: create
+    phase: make
+    template_content: |
+      #include <iostream>
+      #include <string>
+      int main() { return 0; }
+    validation_rules:
+      min_lines: 25
+      must_contain: ["struct", "enum"]
+---
+
+## 🏷️ Stati e Schede Anagrafiche: `enum` e `struct`
+
+> "Un codice magazzino non è un intero a caso: è un *significato*."  
+> — *Disciplina dei dati master*
+
+`int stato = 2` è opaco: 2 cosa?  
+Un **`enum class`** dà **nomi** agli stati.  
+Una **`struct`** unisce campi eterogenei in una **scheda** (come una riga di anagrafica).
+
+> 💡 **Metafora: cartellino prodotto + semaforo stato**  
+> - `struct Articolo` = cartellino (codice, descrizione, prezzo)  
+> - `enum class Stato` = semaforo (`Disponibile`, `Esaurito`, `Sospeso`)
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Definire un `enum class` e una `struct` semplice
+- Creare variabili struct, assegnare campi e stamparli
+
+---
+
+### ⚙️ In breve
+
+```cpp
+enum class Stato { Disponibile, Esaurito, Sospeso };
+
+struct Articolo {
+    std::string codice;
+    std::string nome;
+    double prezzo;
+    Stato stato;
+};
+```
+
+Accesso ai campi: `a.prezzo`, `a.stato = Stato::Disponibile`.
+
+---
+
+### 🔬 Laboratorio PRIMM: Scheda articolo
+
+#### 1. PREDICT (Prevedi)
+
+[[ predict_block() ]]
+
+<details>
+<summary>💡 Spiegazione</summary>
+I valori dello stesso <code>enum class</code> si confrontano con <code>==</code>. Due variabili <code>Attivo</code> risultano uguali.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file scheda_articolo.cpp
+ * @brief Struct + enum class per anagrafica di magazzino.
+ */
+#include <iostream>
+#include <string>
+
+enum class Stato { Disponibile, Esaurito, Sospeso };
+
+struct Articolo {
+    std::string codice;
+    std::string nome;
+    double prezzo;
+    Stato stato;
+};
+
+int main() {
+    Articolo a;
+    a.codice = "A-100";
+    a.nome = "Carta A4";
+    a.prezzo = 4.50;
+    a.stato = Stato::Disponibile;
+
+    std::cout << a.codice << " — " << a.nome
+              << " — € " << a.prezzo << '\n';
+    if (a.stato == Stato::Disponibile) {
+        std::cout << "Stato: disponibile\n";
+    }
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Costrutto | Perché usarlo |
+|-----------|----------------|
+| `enum class` | Evita numeri magici; scope proprio (`Stato::…`) |
+| `struct` | Un solo nome per più campi correlati |
+| `a.campo` | Accesso diretto al campo |
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi il campo `int giacenza`.
+2. Se `giacenza == 0`, imposta `stato = Stato::Esaurito`.
+3. Scrivi una funzione `void stampa(const Articolo& x)` (passaggio per riferimento const).
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Anagrafica articolo completa**
+
+`anagrafica_articolo.cpp`: `struct` + `enum class`, almeno due articoli in `main`, stampa formattata, stato coerente con la giacenza.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+enum class Stato { /* ... */ };
+struct Articolo { /* ... */ };
+void stampa(const Articolo& x) { /* ... */ }
+int main() { /* ... */ return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- `enum class` = stati con nome
+- `struct` = scheda con più campi
+- `oggetto.campo` per leggere/scrivere
+- Preferisci `const Struct&` in lettura (niente copia inutile)
+
+---
+
+### ➡️ Prossimo chunk
+Cercare un codice in un listino ordinato: **ricerca dicotomica**.
