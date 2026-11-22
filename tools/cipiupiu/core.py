@@ -692,11 +692,18 @@ def build_lessons(
 
         prev_c = chapters[i - 1] if i > 0 else None
         next_c = chapters[i + 1] if i + 1 < len(chapters) else None
-        prev_link = f"{base}{lesson_filename(prev_c)}" if prev_c else None
-        next_link = f"{base}{lesson_filename(next_c)}" if next_c else None
+        prev_raw = f"{base}{lesson_filename(prev_c)}" if prev_c else None
+        next_raw = f"{base}{lesson_filename(next_c)}" if next_c else None
 
+        def _href(raw: str | None) -> str | None:
+            if not raw:
+                return None
+            return raw if mode == "dev" else liascript_viewer_url(raw)
+
+        prev_link = _href(prev_raw)
+        next_link = _href(next_raw)
         index_raw = f"{base}index.md"
-        index_link = index_raw if mode == "dev" else liascript_viewer_url(index_raw)
+        index_link = _href(index_raw) or index_raw
 
         nav_parts: list[str] = []
         if prev_link:
@@ -711,7 +718,39 @@ def build_lessons(
             nav_parts.append("Succ. →")
         nav = " · ".join(nav_parts)
 
-        content = f"{header}{nav}\n\n---\n\n{body}"
+        # Ultima slide LiaScript (#) con link espliciti href a indice / prec / succ
+        footer_lines = [
+            "",
+            "---",
+            "",
+            "# Navigazione",
+            "",
+            "Continua da qui:",
+            "",
+            f'- <a href="{index_link}">Indice delle lezioni</a>',
+        ]
+        if prev_link and prev_c is not None:
+            prev_ord = prev_c.order if prev_c.order is not None else "?"
+            prev_title = (prev_c.title or prev_c.activity_id).replace('"', "'")
+            footer_lines.append(
+                f'- <a href="{prev_link}">Lezione precedente ' 
+                f"({prev_ord} — {prev_title})</a>"
+            )
+        else:
+            footer_lines.append("- Lezione precedente: — (sei all'inizio)")
+        if next_link and next_c is not None:
+            next_ord = next_c.order if next_c.order is not None else "?"
+            next_title = (next_c.title or next_c.activity_id).replace('"', "'")
+            footer_lines.append(
+                f'- <a href="{next_link}">Lezione successiva ' 
+                f"({next_ord} — {next_title})</a>"
+            )
+        else:
+            footer_lines.append("- Lezione successiva: — (sei alla fine)")
+        footer_lines.append("")
+        footer = "\n".join(footer_lines)
+
+        content = f"{header}{nav}\n\n---\n\n{body.rstrip()}\n{footer}"
         if not content.endswith("\n"):
             content += "\n"
         out.write_text(content, encoding="utf-8")
