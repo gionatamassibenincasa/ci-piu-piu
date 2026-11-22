@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/gionatamassibenincasa/ci-piu-piu/schemas/chapter-frontmatter.schema.json",
   "title": "ChapterFrontmatter",
-  "description": "Frontmatter YAML dei capitoli ci-piu-piu (v0.4). assessment.context, assessment.variants, components.visualization per Paper Pack v2.",
+  "description": "Frontmatter YAML dei capitoli ci-piu-piu (v0.5). Investigate: unica fonte assessment.investigate.questions. assignment_profile: full | code_only | none.",
   "type": "object",
   "required": [
     "activity_id",
@@ -151,7 +151,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "DEPRECATED: non usare. Fonte unica: assessment.investigate.questions (SPEC §4.2.1)."
         },
         "modify_instructions": {
           "type": "string"
@@ -708,6 +709,15 @@
           }
         }
       }
+    },
+    "assignment_profile": {
+      "type": "string",
+      "enum": [
+        "full",
+        "code_only",
+        "none"
+      ],
+      "description": "Profilo assignment Classroom50. full = checklist PRIMM completa; code_only = solo modify/make in repo; none = niente repo studente."
     }
   }
 }

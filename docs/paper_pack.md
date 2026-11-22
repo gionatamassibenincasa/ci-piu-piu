@@ -19,6 +19,16 @@ Verifiche cartacee PRIMM allineate ai capitoli, stampabili e integrabili con reg
 
 Criterio di accettazione: `python -m tools.cipiupiu print 03 --template paper --emit json,typ,pdf --out-dir output` produce `verifica_A.pdf`, `verifica_B.pdf`, `griglia.pdf`, `registro.txt` (PDF se Typst è disponibile).
 
+## 0. Fonte domande Investigate
+
+Le domande della fase Investigate hanno **un’unica fonte di verità**:
+
+`assessment.investigate.questions`
+
+- Paper Pack (foglio studente e griglia) le legge solo da lì.
+- Eventuali file repo `phase: investigate` sono una **proiezione** di quella lista (generata o allineata), non un secondo testo redazionale.
+- `components.investigate_questions` è deprecato (SPEC v0.7 §4.2.1).
+
 ## 1. Obiettivo
 
 Fornire al docente, per ogni capitolo PRIMM rilevante:

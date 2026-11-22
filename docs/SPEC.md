@@ -1,4 +1,4 @@
-# Specifiche tooling – ci-piu-piu (v0.6)
+# Specifiche tooling – ci-piu-piu (v0.7)
 
 Fonte di verità per CLI, frontmatter, Classroom50 e Paper Pack.
 
@@ -118,22 +118,82 @@ Metadati LiaScript globali e URL dev/prod. Scalari del capitolo sovrascrivono; `
 **Opzionali:** `version`, `last_update`; metadati LiaScript (`author`, `email`, `language`, `narrator`, `comment`, `import`, `liascript_extra`).
 
 **`components`** (PRIMM):
-- `predict_quiz`: `{ question, code?, options: [{text, correct}] }`
-- `investigate_questions`, `modify_instructions`, `make_instructions`
+- `predict_quiz`: `{ question, code?, options: [{text, correct}] }` — **unica fonte** del quiz Predict
+- `modify_instructions`, `make_instructions` (testo consegna; possono alimentare scaffold/print)
 - `visualization?`: `{ kind: table|pythontutor|plantuml, note? }` (lint futuro)
+- ~~`investigate_questions`~~ — **non usare** (rimosso dal contratto; vedi §4.2.1)
 
-**`files[]`:** `path`, `action` (`create`|`reference`), `phase?`, `description?`, `template_content` **xor** `template_from` se `create`, `validation_rules?` (`min_lines`, `must_contain`).
+**`assignment_profile?`:** `full` | `code_only` | `none` (default implicito: vedi §4.2.2).
+
+**`files[]`:** `path`, `action` (`create`|`reference`), `phase?`, `description?`,  
+`template_content` **xor** `template_from` se `create`, `validation_rules?` (`min_lines`, `must_contain`).  
+Per `phase: investigate` in profilo `full`, il contenuto del file risposta è una **proiezione** di `assessment.investigate.questions` (non una seconda redazione).
 
 **`registro?`:** `argomenti`, `note` → testo registro elettronico (P3).
 
-**`assessment?`:** verifica formale (P3). Vedi §4.4 e [`paper_pack.md`](paper_pack.md).
+**`assessment?`:** verifica formale (P3). Vedi §4.4 e [`paper_pack.md`](paper_pack.md).  
+**Investigate: unica fonte** = `assessment.investigate.questions`.
 
 ### 4.2 Regole generali
 
 - Non-PRIMM: `components` vuoto/assente; `files` può essere `[]`.
 - Path `create` univoci nel capitolo.
 - Predict **unica fonte:** quiz solo in `components.predict_quiz`; nel corpo solo `[[ predict_block() ]]` sotto `#### 1. PREDICT`.
+- Investigate **unica fonte:** solo `assessment.investigate.questions` (opzione A). Nessun elenco parallelo in `components`.
 - Commenti `<!--#` … `#-->`: note autore/LLM, strippati dal preprocessore; non annidabili.
+
+#### 4.2.1 Investigate — policy (opzione A)
+
+| Artefatto | Fonte domande Investigate |
+|-----------|---------------------------|
+| Paper Pack (foglio + griglia) | `assessment.investigate.questions` (+ `context`, `typical_errors`, `points`) |
+| Repo studente `phase: investigate` | **Proiezione** della stessa lista (template generato da scaffold/build helper) |
+| Corpo LiaScript | Spiegazione / tabella / tracing — **non** ridichiarare le domande di consegna |
+
+Regole:
+
+1. È vietato mantenere un secondo elenco in `components.investigate_questions`.
+2. Se `template_content` di un file `phase: investigate` è presente a mano, deve coincidere con `assessment.investigate.questions` (stesso ordine e testo). Preferire generazione automatica.
+3. Il validate (evoluzione) segnala divergenza assessment vs template investigate, oppure assenza di `assessment.investigate.questions` su PRIMM con `assignment_profile: full` o con `assessment` presente.
+4. Non è richiesta una macro `[[ investigate_block() ]]` in v1.
+
+#### 4.2.2 `assignment_profile` e checklist `files[]`
+
+Profili ammessi:
+
+| Valore | Uso | `files[]` minimi (`action: create`) |
+|--------|-----|-------------------------------------|
+| `full` | Assignment Classroom50 completo PRIMM | Vedi checklist sotto |
+| `code_only` | Solo Modify/Make in repo (risposte aperte solo su carta) | `modify` + `make` (path codice); README consigliato |
+| `none` | Nessun repo studente (guide/lab/convention tipici) | `files: []` o assente |
+
+Se `assignment_profile` è omesso:
+
+- `methodology: PRIMM` → si assume `full` per validate rigoroso (warning se incompleto);
+- altrimenti → `none`.
+
+**Checklist minima — `assignment_profile: full`**
+
+Obbligatori:
+
+1. `README.md` — istruzioni PRIMM e path dei file (`action: create`, senza `phase` o `phase` assente)
+2. `phase: predict` — file risposte (tipicamente `student_work/predict/answers.md`)
+3. `phase: run` — file riflessione post-esecuzione
+4. `phase: investigate` — file risposte; contenuto allineato a `assessment.investigate.questions`
+5. `phase: modify` — uno o più file codice starter (+ `validation_rules` consigliate)
+6. `phase: make` — uno o più file codice da completare/scrivere (+ `validation_rules` consigliate)
+
+Inoltre per PRIMM `full`:
+
+- `components.predict_quiz` presente
+- `components.make_instructions` presente (o prompt Make solo in `assessment.make.prompt` se si documenta eccezione)
+- `assessment.investigate.questions` non vuoto se è presente il blocco `assessment`
+
+Anti-duplicazione:
+
+- Non copiare il quiz Predict nel `template_content` di predict (riferimento: “rispondi al quiz in LiaScript / sul foglio”; eventuali domande aperte extra vanno solo in assessment se servono in verifica).
+- Non riscrivere le domande Investigate nel corpo Markdown del capitolo.
+- `modify_instructions` / `make_instructions` in `components` e `assessment.*.prompt` possono coesistere in transizione; a regime il prompt della verifica può specializzarsi (tempo chiuso) mentre `make_instructions` resta la consegna repo.
 
 ### 4.3 Qualità delle domande
 
@@ -280,3 +340,59 @@ Piano di esecuzione vivo: [`docs/ROADMAP.md`](ROADMAP.md).
 | LiaScript | https://liascript.github.io/ |
 | Classroom50 | https://classroom50.org |
 | Typst | https://typst.app/ |
+
+
+---
+
+## 9. Migrazione — Investigate opzione A e `assignment_profile`
+
+Obiettivo: una sola fonte per Investigate, meno testo duplicato, profili assignment espliciti.
+
+### 9.1 Principio anti-duplicazione
+
+| Contenuto | Dove vive | Dove non vive |
+|-----------|-----------|---------------|
+| Quiz Predict | `components.predict_quiz` + macro | Corpo MD, `files[]` predict |
+| Domande Investigate | `assessment.investigate.questions` | `components`, corpo MD (come lista consegna) |
+| Starter Modify/Make | `files[]` `template_content` / `template_from` | Duplicati nel corpo oltre agli esempi didattici |
+| Consegna repo Make | `components.make_instructions` | — |
+| Consegna verifica Make | `assessment.make.prompt` (può essere più chiusa) | Copia identica obbligatoria della consegna repo |
+
+### 9.2 Fasi
+
+**Fase 0 — SPEC e schema (questa revisione)**  
+- Documentare policy A e checklist `full`.  
+- Schema: aggiungere `assignment_profile`; deprecare `components.investigate_questions` (campo assente o `deprecated` in descrizione).  
+- Nessuna rottura immediata dei capitoli esistenti.
+
+**Fase 1 — Capitoli già `full` di fatto (02–03, 05–06, 08–13)**  
+- Verificare che ogni `phase: investigate` rifletta `assessment.investigate.questions`.  
+- Se il template diverte: **riscrivere il template** dalla lista assessment (non il contrario, salvo correzione didattica consapevole).  
+- Rimuovere eventuali `components.investigate_questions` se presenti.  
+- Impostare `assignment_profile: full` esplicito (opzionale ma consigliato).
+
+**Fase 2 — Capitoli `code_only` o incompleti (07, 14, 15 al momento del audit)**  
+- Scelta per capitolo:
+  - **A:** portare a `full` aggiungendo predict/run/investigate answers (template investigate generato da assessment);
+  - **B:** dichiarare `assignment_profile: code_only` e non pretendere i file risposta.  
+- Preferire B se le risposte aperte restano solo sul Paper Pack.
+
+**Fase 3 — Tooling**  
+- `validate`:  
+  - warning se PRIMM senza `assignment_profile` e `files` incompleti rispetto a `full`;  
+  - errore se esistono sia `components.investigate_questions` sia `assessment.investigate.questions` e differiscono;  
+  - errore/warning se template investigate non allineato (normalizzazione whitespace).  
+- `scaffold-assignment`: se `phase: investigate` senza `template_content` (o con flag), generare markdown domande da assessment.  
+- Opzionale: helper `cipiupiu sync-investigate` che riscrive i template investigate da assessment.
+
+**Fase 4 — Pulizia**  
+- Eliminare `investigate_questions` dallo schema e dai template lezione.  
+- Documentare in `template_primm.md` solo assessment per Investigate.
+
+### 9.3 Criteri di accettazione migrazione
+
+1. Nessun capitolo in `chapters/` con `components.investigate_questions`.  
+2. Ogni PRIMM con `assignment_profile: full` passa la checklist §4.2.2.  
+3. `print --template paper` e scaffold non leggono altro che `assessment.investigate` per le domande Investigate.  
+4. Audit manuale a campione: testo domande cartaceo = testo file repo investigate.
+
