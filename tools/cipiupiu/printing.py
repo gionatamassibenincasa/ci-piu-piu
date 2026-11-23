@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from . import core
-from .core import normalize_predict_items
+from .core import normalize_predict_items, shuffle_quiz_options
 
 
 FIELD_PATHS = {
@@ -290,9 +290,11 @@ def build_paper_model(chapter_id: str) -> dict[str, Any]:
             except (TypeError, ValueError):
                 points_each = pred.get("points")
         for j, pit in enumerate(items, 1):
-            opts = pit.get("options") or []
+            opts = [o for o in (pit.get("options") or []) if isinstance(o, dict)]
             correct = [str(o.get("text")) for o in opts if o.get("correct") and o.get("text")]
-            choices = [str(o.get("text")) for o in opts if o.get("text")]
+            seed_key = f"{pit.get('question', '')}|{'|'.join(sorted(str(o.get('text', '')) for o in opts))}"
+            shuffled = shuffle_quiz_options(opts, seed_key=seed_key)
+            choices = [str(o.get("text")) for o in shuffled if o.get("text")]
             base_items.append(
                 {
                     "id": pred.get("id")

@@ -66,3 +66,9 @@ Legacy ammesso: una sola `question` + `options` a root (una MC). **Non** mettere
 **Evitare come unica domanda del blocco**
 
 > Cosa stampa il programma? (senza alternativa concettuale)
+
+
+## Ordine delle opzioni
+
+In frontmatter l’ordine di `options` è libero (spesso la corretta è in cima per comodità d’autore).  
+In **LiaScript** e nel **foglio studente** Paper Pack le opzioni vengono **rimescolate in modo deterministico** in fase di render (`shuffle_quiz_options`): la chiave è il flag `correct: true` / testo della risposta, **non** la posizione.

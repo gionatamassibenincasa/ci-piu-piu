@@ -138,6 +138,30 @@ def normalize_quiz_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
 def normalize_predict_items(pq: dict[str, Any] | None) -> list[dict[str, Any]]:
     return normalize_quiz_items(pq)
 
+def shuffle_quiz_options(
+    options: list[dict[str, Any]],
+    *,
+    seed_key: str,
+) -> list[dict[str, Any]]:
+    """Permuta le option in modo deterministico (stesso seed → stesso ordine).
+
+    La posizione di ``correct: true`` non deve codificare la chiave: in LiaScript
+    [(X)] marca la risposta esatta ovunque si trovi nella lista.
+    """
+    if len(options) <= 1:
+        return list(options)
+    # Hash stabile cross-process (evita hash() salato di Python)
+    import hashlib
+
+    digest = hashlib.sha256(seed_key.encode("utf-8")).hexdigest()
+    seed = int(digest[:16], 16)
+    rng = __import__("random").Random(seed)
+    out = list(options)
+    rng.shuffle(out)
+    return out
+
+
+
 
 def _make_jinja_env(meta: dict[str, Any]) -> Environment:
     env = Environment(
@@ -172,7 +196,9 @@ def _make_jinja_env(meta: dict[str, Any]) -> Environment:
             code = item.get("code")
             if code and code != shared:
                 lines.extend(["```cpp", str(code).rstrip(), "```", ""])
-            for opt in item.get("options") or []:
+            raw_opts = [o for o in (item.get("options") or []) if isinstance(o, dict)]
+            seed_key = f"{item.get('question', '')}|{'|'.join(sorted(str(o.get('text', '')) for o in raw_opts))}"
+            for opt in shuffle_quiz_options(raw_opts, seed_key=seed_key):
                 mark = "X" if opt.get("correct") else " "
                 lines.append(f"[({mark})] {opt.get('text', '')}")
             blocks.append("\n".join(lines))
