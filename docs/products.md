@@ -9,6 +9,7 @@ Il corso non è un unico artefatto. Sono **tre prodotti** con acquirenti e utili
 | **P1 – OER online** | Studente (auto-studio, recupero assenze) | Alto per lo studente; **bassa disponibilità a pagare** come prodotto isolato | `build` → LiaScript (`dist/`) |
 | **P2 – Classroom50** | Insegnante di **laboratorio** | **Alto** (risparmio tempo su consegne, clone, scadenze) | `scaffold-assignment` → template repo |
 | **P3 – Paper Pack** | Insegnante di **teoria** | **Ancora più alto** in contesti con verifiche scritte | `print --template paper` → PDF + griglia + registro |
+| **P4 - Materiale docente** | Insegnante | Alto: programmazione didattica, soluzioni, griglie di valutazione estese, guida docente | |
 
 ```text
                     ┌─────────────────────────┐

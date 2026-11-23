@@ -16,17 +16,15 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 ## 🧭 Guida allo Studio: come imparare a programmare
 
-> Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
+> [...] il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto *filosofico*
 > e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
 > congegno pratico che modifica la società -- e tutti sappiamo quanto abbia
 > cambiato la nostra vita.
->
 > Perché lo dico? Perché il calcolatore cambia l'epistemologia, modifica il
 > significato del verbo «comprendere».
 > A mio giudizio, si capisce qualcosa solo se si è capaci -- noi, non altri! --
 > di scriverne il programma.
-> Altrimenti non si ha una vera comprensione, si crede soltanto di capire.
->
+> Altrimenti non si ha una vera comprensione, si *crede* soltanto di capire.
 > -- Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
 
 Imparare a programmare non significa memorizzare comandi a memoria: significa sviluppare un **metodo di lavoro mentale**.
