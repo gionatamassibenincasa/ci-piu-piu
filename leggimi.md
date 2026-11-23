@@ -114,3 +114,6 @@ Documentazione completa: **`docs/scaffold_assignment.md`**.
 3. **Paper Pack** (`print --template paper`) — verifica cartacea  
 
 Un capitolo, un `activity_id`, tre proiezioni. Dettaglio: `docs/products.md`.
+
+
+Didattica: ruoli e pattern — [`docs/semantic_labels.md`](docs/semantic_labels.md).

@@ -25,6 +25,11 @@ Questo file è lo **standard di qualità** per:
 | Make | Scenario SIA, requisiti chiusi, scaffold in `<details>` |
 | Registro / assessment | Presenti se c’è verifica o compito |
 
+## Etichette semantiche (progressivo)
+
+Da variabili/cicli/funzioni in poi, le domande possono usare i **ruoli** e i **pattern di ciclo** in italiano ([`semantic_labels.md`](semantic_labels.md), fonti [UniBo CSEd](https://csed-unibo.github.io/#!pages/ruoli_variabili.md)).  
+Il golden sample 03 non le richiede (ancora niente cicli/parametri).
+
 ## Qualità delle domande (obbligatoria)
 
 Vedi [`quiz_design.md`](quiz_design.md). Sintesi:

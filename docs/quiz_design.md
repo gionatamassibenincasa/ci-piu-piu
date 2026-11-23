@@ -4,6 +4,8 @@
 
 ## Riferimenti
 
+- Etichette semantiche (ruoli / pattern, termini IT UniBo): [`semantic_labels.md`](semantic_labels.md)
+
 - Crichton & Krishnamurthi, *Profiling Programming Language Learning* (PACMPL OOPSLA 2024), https://doi.org/10.1145/3649812  
   Domande più discriminative = **concettuali** (perché non compila / perché questo comportamento), non solo riconoscimento sintattico.
 - Quiz del [Rust Book](https://github.com/cognitive-engineering-lab/rust-book/tree/main/quizzes): MC con **distrattori da misconception**, tracing, `context` per la spiegazione.

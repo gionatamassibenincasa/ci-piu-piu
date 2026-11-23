@@ -178,6 +178,7 @@ Quando **generi** o **revidi** un file in `chapters/`:
 4. Target ~5+5+5 MC in OER (o 3+3+3 se il chunk è più corto); Paper Pack resta un subset.
 5. Esegui `python -m tools.cipiupiu validate` sul file toccato.
 6. Non applicare il 5+5+5 PRIMM a `methodology: guide|lab|convention` (cap. 0–1 e simili).
+7. Da variabili/cicli in poi: se utile, usa ruoli e pattern in italiano (`docs/semantic_labels.md`, termini UniBo); non imporre etichette sul solo Hello World.
 
 ## Cosa NON fare
 - Non generare blocchi di codice lunghi più di 30-40 righe senza una suddivisione logica.
