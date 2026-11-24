@@ -18,7 +18,7 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 Nel capitolo precedente hai imparato a scegliere tra due strade. Nei contesti
 aziendali, però, le alternative possono essere più di due: fasce di sconto,
-livelli di fido, classi di rischio o aliquote didattiche.
+livelli di fido, classi di rischio o aliquote fiscali.
 
 Una catena `if / else if / else` permette di controllare più fasce in ordine e
 di sceglierne una sola.
@@ -381,7 +381,7 @@ Crea `imposte_reddito.cpp` rispettando tutti i requisiti:
 
 1. Dichiara `std::string nomeDitta` e `double redditoImponibile`.
 2. Usa una catena `if / else if / else`.
-3. Usa queste fasce didattiche con aliquota unica:
+3. Usa queste fasce fiscali con aliquota unica:
    - fino a `15000`: `23%`;
    - fino a `28000`: `25%`;
    - fino a `50000`: `35%`;
@@ -400,7 +400,7 @@ progressivo.
 
 ```cpp
 /**
- * @brief Stima un'imposta con scaglioni didattici.
+ * @brief Stima un'imposta con scaglioni fiscali.
  */
 #include <iostream>
 #include <string>

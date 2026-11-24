@@ -468,9 +468,9 @@ int main() {
 
 ### ➡️ Prossimo passo nel percorso
 
-Ora che sai presentare bene un risultato, nel prossimo capitolo oltre il
-Modulo Fondamenti, `16_funzioni_scomposizione_top_down`, organizzerai il
-calcolo in funzioni riutilizzabili.
+Ora che sai presentare bene un risultato, nel prossimo capitolo del percorso
+Fondamenti, `16_ruoli_variabili_pattern_cicli`, imparerai a dare un ruolo
+preciso alle variabili e a riconoscere uno schema stabile nei cicli.
 
 <!--#
   Checklist autore / LLM (golden sample = chapters/03_ciao_mondo.md)

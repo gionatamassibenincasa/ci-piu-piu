@@ -110,7 +110,7 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
 - Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
 
-#### 3. INVESTIGATE (Investiga)
+#### 3. INVESTIGATE (Indaga)
 
 - Quando il programma usa variabili o memoria, copialo su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
 - Osserva come evolve lo stato della memoria e confrontalo con la tabella di traccia.

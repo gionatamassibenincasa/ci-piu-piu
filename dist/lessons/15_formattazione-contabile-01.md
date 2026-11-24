@@ -9,7 +9,7 @@ import:               https://raw.githubusercontent.com/LiaScript/CodeRunner/mas
 import:               https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 import:               https://raw.githubusercontent.com/gionata/PythonTutor/main/README.md
 -->
-[← Prec.](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/14_break-continue-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/16_funzioni-01.md)
+[← Prec.](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/14_break-continue-01.md) · [Indice](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md) · [Corso](https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/README.md) · [Succ. →](https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/16_ruoli-pattern-cicli-16.md)
 
 ---
 
@@ -335,9 +335,9 @@ int main() {
 
 ### ➡️ Prossimo passo nel percorso
 
-Ora che sai presentare bene un risultato, nel prossimo capitolo oltre il
-Modulo Fondamenti, `16_funzioni_scomposizione_top_down`, organizzerai il
-calcolo in funzioni riutilizzabili.
+Ora che sai presentare bene un risultato, nel prossimo capitolo del percorso
+Fondamenti, `16_ruoli_variabili_pattern_cicli`, imparerai a dare un ruolo
+preciso alle variabili e a riconoscere uno schema stabile nei cicli.
 
 ---
 
@@ -347,4 +347,4 @@ Continua da qui:
 
 - <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/index.md">Indice delle lezioni</a>
 - <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/14_break-continue-01.md">Lezione precedente (14 — Uscite Anticipate: `break` e `continue` nei cicli)</a>
-- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/16_funzioni-01.md">Lezione successiva (16 — Il Primo Reparto: funzioni che restituiscono un valore)</a>
+- <a href="https://liascript.github.io/course/?https://raw.githubusercontent.com/gionatamassibenincasa/ci-piu-piu/main/dist/lessons/16_ruoli-pattern-cicli-16.md">Lezione successiva (16 — Un ruolo per ogni variabile, uno schema per ogni ciclo)</a>

@@ -34,11 +34,19 @@ Questo non è un laboratorio PRIMM “classico”: è una **convenzione di lavor
 
 ---
 
-### 🎯 Obiettivo
+**In questa lezione non** generiamo la documentazione HTML, non descriviamo
+ogni tag Doxygen esistente e non introduciamo parametri o funzioni. Ci limitiamo
+all'intestazione essenziale dei programmi brevi del Modulo Fondamenti.
+
+---
+
+### 🎯 Obiettivi di apprendimento
+
 Alla fine di questa lezione sei in grado di:
-- Scrivere un’intestazione di **file** e di **`main`** in stile Doxygen
-- Usare `///` per spiegare il **perché** (non il cosa ovvio)
-- Applicare la **regola di proporzionalità** del corso
+
+- scrivere un'intestazione di **file** e di **`main`** in stile Doxygen;
+- usare `///` per spiegare il **perché**, non il comportamento già evidente dal codice;
+- scegliere tra intestazione completa e commento breve secondo la proporzionalità del corso.
 
 ---
 
@@ -126,16 +134,19 @@ Compila ed esegui: i commenti non cambiano l’output, ma cambiano quanto il cod
 ---
 
 ### 📝 Riepilogo tascabile
-- Doxygen = etichette standard per file e funzioni.
-- Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
-- `///` = perché / vincolo / regola di business, non il cosa ovvio.
-- Proporzionalità: completo sopra ~15 righe, leggero sotto.
-- Da qui in poi i Make “ufficiali” si aspettano questi standard.
+- [ ] Doxygen = etichette standard per file e funzioni.
+- [ ] Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
+- [ ] `///` = perché / vincolo / regola di business, non il cosa ovvio.
+- [ ] Applico la documentazione completa sopra ~15 righe e uso `///` per gli snippet brevi.
+- [ ] Nei Make uso questa convenzione senza commenti tautologici.
 
 ---
 
-### ➡️ Prossimo passo
-Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
+### ➡️ Prossimo passo nel percorso
+
+Con officina, motore, primo dialogo e etichette chiare, nel prossimo capitolo
+del percorso Fondamenti, `05_variabili_costanti_tipi`, aprirai gli sportelli
+della memoria con variabili, tipi e costanti.
 
 ---
 

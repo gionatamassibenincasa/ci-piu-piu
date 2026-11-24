@@ -25,18 +25,16 @@ Se non vedi le animazioni o i blocchi di codice eseguibili, assicurati di visual
 
 ## 🧭 Guida allo Studio: come imparare a programmare
 
-> Il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto filosofico
+> [...] il calcolatore era (ed è ancora) un nuovo e meraviglioso concetto *filosofico*
 > e matematico. Il calcolatore è ancora più rivoluzionario come idea che come
 > congegno pratico che modifica la società -- e tutti sappiamo quanto abbia
 > cambiato la nostra vita.
->
 > Perché lo dico? Perché il calcolatore cambia l'epistemologia, modifica il
 > significato del verbo «comprendere».
 > A mio giudizio, si capisce qualcosa solo se si è capaci -- noi, non altri! --
 > di scriverne il programma.
-> Altrimenti non si ha una vera comprensione, si crede soltanto di capire.
->
-> — Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
+> Altrimenti non si ha una vera comprensione, si *crede* soltanto di capire.
+> -- Gregory Chaitin, *Alla ricerca di Omega*, Adelphi Edizioni
 
 Imparare a programmare non significa memorizzare comandi a memoria: significa sviluppare un **metodo di lavoro mentale**.
 
@@ -121,7 +119,7 @@ Ogni volta che incontri un programma nel libro di testo, negli appunti o durante
 - **Attenzione:** **non fare copia e incolla!** Digitare il codice parola per parola è indispensabile per memorizzare la sintassi e accorgersi dei dettagli.
 - Esegui il programma e confronta l'output ottenuto con la previsione che avevi fatto al passo 1.
 
-#### 3. INVESTIGATE (Investiga)
+#### 3. INVESTIGATE (Indaga)
 
 - Quando il programma usa variabili o memoria, copialo su [Python Tutor (C++ Visualizer)](https://pythontutor.com/cpp.html) ed eseguilo **passo dopo passo**.
 - Osserva come evolve lo stato della memoria e confrontalo con la tabella di traccia.
@@ -158,18 +156,17 @@ Prima di scrivere programmi, allestiamo l’**officina**: editor, compilatore e 
 ## 🛠️ Prepara la tua Officina di Sviluppo: VS Code, MSYS2 e MinGW-w64
 
 > "I programmi sono fatti per essere letti dagli esseri umani e solo incidentalmente per essere eseguiti dai computer."
-> — Donald Knuth
+> -- Donald Knuth
 
 Questo non è un capitolo da leggere in 20 minuti.  
 È una **sessione di laboratorio**: allestire l’officina richiede tempo, pazienza e qualche tentativo. In classe può occupare un’ora intera (o più, se qualcuno ha imprevisti). Non correre.
 
 Alla fine di questa sessione avrai:
 
-- Visual Studio Code (il banco di lavoro)
-- l’estensione C/C++ (gli utensili specializzati)
-- il compilatore **g++** e il debugger **gdb** (tramite MSYS2 + MinGW-w64)
-- la variabile PATH impostata correttamente
-- un programma di prova compilato, eseguito e debuggato con successo
+- Visual Studio Code configurato come banco di lavoro;
+- l'estensione C/C++ installata e riconosciuta;
+- il compilatore **g++** e il debugger **gdb** disponibili nel PATH;
+- un programma minimo compilato, eseguito e fermato su un breakpoint.
 
 > 💡 **Metafora:**  
 >
@@ -182,10 +179,20 @@ Alla fine di questa sessione avrai:
 
 ---
 
-### 🎯 Obiettivo di questa sessione
+**In questa sessione non** studiamo ancora la sintassi dei costrutti C++, la
+catena di compilazione né la correzione degli algoritmi. Il risultato è avere
+un ambiente verificato e un flusso di lavoro pronto per il laboratorio.
 
-Alla fine sei in grado di configurare e verificare un ambiente C++ che compila,
-esegue e fa il debug di un programma minimo.
+---
+
+### 🎯 Obiettivi di questa sessione
+
+Alla fine sei in grado di:
+
+- installare e verificare VS Code, MSYS2, MinGW-w64, `g++` e `gdb`;
+- configurare il PATH di Windows e leggere gli errori quando il terminale non trova un comando;
+- compilare ed eseguire `prova.cpp` da terminale;
+- avviare il debug in VS Code e fermare il programma su un breakpoint.
 
 ---
 
@@ -197,7 +204,7 @@ salta i passi di installazione e vai direttamente al **Passo 6** (programma di p
 **Se a casa non hai diritti di amministratore** o l’antivirus / le policy bloccano l’installazione:
 
 1. Prova comunque i passi (molte operazioni non richiedono admin).
-2. Se fallisci, usa temporaneamente un compilatore online (es. [Compiler Explorer](https://godbolt.org/) o [OnlineGDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
+2. Se fallisci, usa temporaneamente un compilatore online (es. [Online CPPC](https://www.online-cpp.com/) o [Online GDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
 3. Segnala il problema al docente: troveremo una soluzione (immagine di laboratorio, chiavetta, ecc.).
 
 Hai bisogno di **connessione Internet** per i download iniziali.
@@ -279,7 +286,7 @@ Devi vedere le versioni. Se compare “non è riconosciuto come comando…” il
 
 #### Passo 7 — Primo programma di prova
 
-Crea il file `prova.cpp` nella cartella del corso (`Documenti\Ci-Piu-Piu`) con questo contenuto:
+Crea il file `prova.cpp` nella cartella del corso (`Documenti\Cpp-3SIA`) con questo contenuto:
 
 ```cpp
 #include <iostream>
@@ -373,12 +380,12 @@ Se sì, l’officina è completamente operativa.
 ---
 
 ### 📝 Riepilogo tascabile
-- Questa è una **sessione di laboratorio**, non una lettura veloce.
-- Senza compilatore non esiste programma eseguibile.
-- Il PATH deve contenere `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
-- `g++` traduce il codice sorgente in eseguibile; `gdb` ti fa guardare dentro mentre gira.
-- Il programma `prova.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
-- Da ora in poi lavorerai quasi sempre da VS Code, ma sapere usare il terminale ti salva quando qualcosa non va.
+- [ ] Questa è una **sessione di laboratorio**, non una lettura veloce.
+- [ ] Senza compilatore non esiste programma eseguibile.
+- [ ] Il PATH contiene `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
+- [ ] `g++` traduce il codice sorgente in eseguibile; `gdb` permette il debug.
+- [ ] `prova.cpp` compila, stampa il messaggio atteso e si ferma su un breakpoint.
+- [ ] Il terminale resta utile anche quando VS Code o l'estensione non trovano il toolchain.
 
 ---
 
@@ -395,16 +402,19 @@ Se sì, l’officina è completamente operativa.
 
 ---
 
-### ➡️ Prossimo chunk
-Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
-Nel prossimo capitolo entreremo nella “fabbrica del codice”.
+### ➡️ Prossimo passo nel percorso
+
+Ora che l'officina è allestita e collaudata, nel prossimo capitolo del
+percorso Fondamenti, `02_il_motore_sotto_il_cofano`, seguirai la trasformazione
+da sorgente C++ a eseguibile: pre-elaborazione, compilazione, assemblaggio e
+linking.
 
 
 ## ⚙️ Il motore sotto il cofano: dalla sorgente all'eseguibile
 
 > "La programmazione è l'arte di esprimere soluzioni ai problemi in modo che un computer possa eseguirle."
 >
-> — *Bjarne Stroustrup*
+> -- Bjarne Stroustrup
 
 Hai appena allestito l'officina con VS Code e `g++`. Ora apri il cofano: quando
 premi il pulsante di compilazione, il file che scrivi non diventa subito un
@@ -417,14 +427,21 @@ controllo, preparazione e spedizione.
 > cliente. Se un reparto trova un problema, la catena si ferma e ricevi un
 > messaggio d'errore.
 
+**In questa lezione non** correggiamo ancora gli errori del sorgente né
+entriamo in dettagli sul linguaggio Assembly. Osserviamo la catena di
+compilazione e il codice di uscita restituito da `main`.
+
 ---
 
 ### 🎯 Obiettivo di questo chunk
 
 Alla fine di questa lezione sei in grado di:
 
-- seguire il percorso di un programma C++ dal file `.cpp` all'eseguibile e
+- seguire il percorso di un programma C++ dal file `.cpp` all'eseguibile,
   riconoscere il ruolo dei file intermedi creati da `g++ -save-temps`.
+- distinguere pre-elaborazione, compilazione, assemblaggio e linking;
+- spiegare perché `return N;` comunica un codice al sistema operativo senza
+  stampare `N` a video.
 
 ---
 
@@ -501,25 +518,25 @@ g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
 
 Quale risultato principale vuoi ottenere con questo comando?
 
-[(X)] Un eseguibile `ridotto.exe` pronto da avviare
 [( )] Un file `.cpp` con il programma scritto automaticamente
 [( )] Solo una stampa a video, senza creare file
+[(X)] Un eseguibile `ridotto.exe` pronto da avviare
 
 **Domanda 2**
 
 Perché `-save-temps` è utile mentre studi la compilazione?
 
-[(X)] Chiede a `g++` di conservare i file temporanei intermedi
 [( )] Rende il programma più veloce durante l'esecuzione
 [( )] Salva automaticamente una copia del programma su Internet
+[(X)] Chiede a `g++` di conservare i file temporanei intermedi
 
 **Domanda 3**
 
 Dopo la pre-elaborazione, quale file contiene ancora codice testuale vicino al C++?
 
-[(X)] Il file `.ii`, con direttive espanse e commenti rimossi
 [( )] Il file `.o`, già composto solo da testo Assembly
 [( )] Il file `.exe`, che contiene il sorgente originale leggibile
+[(X)] Il file `.ii`, con direttive espanse e commenti rimossi
 
 **Domanda 4**
 
@@ -533,9 +550,9 @@ Quale sequenza descrive meglio il percorso verso l'eseguibile?
 
 Perché il linker deve intervenire anche dopo la traduzione del tuo file?
 
-[(X)] Per collegare il codice oggetto con librerie e codice di avvio
 [( )] Per correggere i punti e virgola dimenticati nel C++
 [( )] Per trasformare l'eseguibile di nuovo nel file sorgente
+[(X)] Per collegare il codice oggetto con librerie e codice di avvio
 
 #### 2. RUN (Esegui)
 
@@ -588,16 +605,16 @@ Perché `ridotto.o` non è ancora l'eseguibile finale?
 Quale trasformazione avviene quando il compilatore produce il file `.s`?
 
 [(X)] Il C++ viene tradotto in Assembly, un linguaggio a basso livello ancora leggibile
-[( )] Il programma viene eseguito e il risultato viene salvato in `.s`
 [( )] I file `.cpp` vengono compressi in un archivio di testo
+[( )] Il programma viene eseguito e il risultato viene salvato in `.s`
 
 **Domanda 3**
 
 Quale ordine di osservazione è coerente con la catena di compilazione?
 
+[( )] `.ii` e `.exe` vengono creati soltanto dopo l'esecuzione
 [(X)] Prima `.ii`, poi `.s`, poi `.o`, infine `.exe`
 [( )] Prima `.exe`, poi `.o`, poi `.s`, infine `.ii`
-[( )] `.ii` e `.exe` vengono creati soltanto dopo l'esecuzione
 
 **Domanda 4**
 
@@ -611,8 +628,8 @@ Nel file Assembly, perché puoi trovare un'istruzione che prepara il valore `0`?
 
 Se il compilatore segnala un errore di sintassi nel `.cpp`, perché la catena non arriva al linker?
 
-[(X)] Senza una traduzione valida non esiste un file oggetto affidabile da collegare
 [( )] Il linker lavora solo sui commenti e quindi ignora il programma
+[(X)] Senza una traduzione valida non esiste un file oggetto affidabile da collegare
 [( )] Il linker viene eseguito prima del compilatore e non può ripartire
 
 | File | Che cosa contiene | Perché ti serve |
@@ -644,25 +661,25 @@ int main() {
 
 Se cambi `return 0;` in `return 7;`, quale effetto vuoi verificare?
 
-[(X)] Il codice di uscita del programma cambia da `0` a `7`
-[( )] Il programma stampa automaticamente il numero `7`
 [( )] Il compilatore salta la fase di assemblaggio
+[( )] Il programma stampa automaticamente il numero `7`
+[(X)] Il codice di uscita del programma cambia da `0` a `7`
 
 **Domanda 2**
 
 Quale modifica permette di ottenere il file finale con il nome `importazione.exe`?
 
 [(X)] Sostituire il nome dopo `-o` con `importazione.exe`
-[( )] Cambiare l'estensione di `ridotto.cpp` in `.exe` prima di compilare
 [( )] Scrivere `importazione.exe` dentro `return`
+[( )] Cambiare l'estensione di `ridotto.cpp` in `.exe` prima di compilare
 
 **Domanda 3**
 
 Se togli `-save-temps`, quale cambiamento è più probabile?
 
-[(X)] Ottieni comunque l'eseguibile, ma i file intermedi possono essere rimossi
-[( )] Il C++ non può più essere compilato
 [( )] Il programma viene trasformato direttamente in Assembly e non in `.exe`
+[( )] Il C++ non può più essere compilato
+[(X)] Ottieni comunque l'eseguibile, ma i file intermedi possono essere rimossi
 
 **Domanda 4**
 
@@ -676,8 +693,8 @@ Quale modifica rende l'Assembly più facile da collegare al sorgente durante l'i
 
 Perché conviene modificare una sola cosa alla volta nel comando o nel codice?
 
-[(X)] Per collegare con chiarezza ogni effetto alla modifica che lo ha causato
 [( )] Perché `g++` accetta una sola modifica per ogni esecuzione
+[(X)] Per collegare con chiarezza ogni effetto alla modifica che lo ha causato
 [( )] Perché i file intermedi non possono contenere più di una riga cambiata
 
 Applica ora le modifiche in ordine e ricompila ogni volta.
@@ -737,43 +754,52 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Il file `.cpp` è il progetto; il `.exe` è il prodotto eseguibile.
-- Il percorso osservabile è `.cpp` → `.ii` → `.s` → `.o` → `.exe`.
-- Il linker collega il codice oggetto con librerie e codice di avvio.
-- `-save-temps` conserva i file intermedi per poterli ispezionare.
-- `return N;` comunica un codice di uscita al sistema operativo: non stampa `N`.
+- [ ] Il file `.cpp` è il progetto; il `.exe` è il prodotto eseguibile.
+- [ ] Il percorso osservabile è `.cpp` → `.ii` → `.s` → `.o` → `.exe`.
+- [ ] Il linker collega il codice oggetto con librerie e codice di avvio.
+- [ ] `-save-temps` conserva i file intermedi per poterli ispezionare.
+- [ ] `return N;` comunica un codice di uscita al sistema operativo: non stampa `N`.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Il programma sa già comunicare un esito al sistema, ma non parla ancora con la
-persona che lo usa. Nel prossimo capitolo gli daremo un megafono: `std::cout`.
+persona che lo usa. Il prossimo capitolo del percorso Fondamenti,
+`03_ciao_mondo`, introduce il primo output testuale con `std::cout` e completa
+il programma minimo con `#include <iostream>`.
 
 ## 💬 Il Primo Dialogo con la Macchina: `std::cout` e il programma minimo
 
 > "L'unico modo per imparare un nuovo linguaggio di programmazione è scrivere programmi in quel linguaggio."
 >
-> -- *Brian Kernighan*
+> -- Brian Kernighan
 
-Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
+Questa lezione apre il **modulo Fondamenti**: impariamo a far comunicare un programma C++ con chi lo usa, in modo controllato e ripetibile. Il computer non indovina: esegue **esattamente** quello che gli scrivi, con una grammatica rigida.
 
-> 💡 **Metafora:** Scrivere codice è come scrivere una ricetta di cucina.  
+In laboratorio e in verifica ti chiederemo le stesse cose in forme diverse (codice da prevedere, da modificare, da scrivere; domande sul *perché*). L'obiettivo non è memorizzare una ricetta, ma riconoscere le parti di un programma minimo e usarle con intenzione.
+
+> 💡 **Metafora: messaggio all'operatore**
 >
-> - Il **computer** è lo chef che la esegue alla lettera. Se dimentichi “aggiungi un pizzico di sale”, lui non lo indovina: si blocca o produce un risultato sbagliato.  
-> - L’**essere umano** (tu tra sei mesi, un collega, il docente) è l’altro lettore: deve poter capire, modificare e mantenere la ricetta. Per questo usiamo commenti e codice ordinato.
+> - Il **programma** è la prima schermata di un piccolo gestionale: deve dire *cosa sta facendo* e *che il sistema è pronto*.
+> - Il **computer** esegue le istruzioni nell'ordine scritto; se manca un pezzo obbligatorio, non "completa lui" il messaggio: segnala errore o si ferma.
+> - L'**essere umano** (tu tra sei mesi, un collega, il docente) legge lo stesso codice: serve ordine e commenti per poterlo mantenere.
+
+**In questa lezione non** introduciamo ancora variabili, input da tastiera né decisioni. Solo output testuale e struttura minima del programma.
 
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
+- scrivere un programma C++ minimo con `#include <iostream>`, `main`, `std::cout` e `return 0;`;
+- compilare ed eseguire il programma e riconoscere un messaggio di errore di sintassi frequente (punto e virgola, nome non dichiarato);
+- spiegare, a parole tue, il ruolo di ciascuna delle quattro parti del programma minimo.
 
 ---
 
-### ⚙️ Prima del laboratorio: le quattro parti essenziali
+### 📚 Idea chiave
 
 Un programma C++ minimo non è una frase isolata: è un messaggio con indirizzo,
 inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.
@@ -809,6 +835,9 @@ del risultato cambierà a video?
 
 ### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
 
+Il laboratorio segue il metodo **PRIMM** (Predict → Run → Investigate → Modify → Make).
+Le stesse abilità possono ripresentarsi nel compito su GitHub e in una verifica scritta: allenati a *prevedere*, *spiegare* e *modificare*, non solo a far comparire una riga a schermo.
+
 ```cpp
 #include <iostream>
 
@@ -837,9 +866,9 @@ Cosa fa l’istruzione `std::cout << "Ciao, Mondo!\n";` quando viene eseguita al
 
 Perché questo frammento, da solo, non è un programma C++ completo?
 
-[(X)] Manca il punto di ingresso (`main`) e in genere le dichiarazioni necessarie (es. `#include`)
-[( )] Perché non usa la parola chiave `program`
 [( )] Perché il testo non è in inglese
+[( )] Perché non usa la parola chiave `program`
+[(X)] Manca il punto di ingresso (`main`) e in genere le dichiarazioni necessarie (es. `#include`)
 
 **Domanda 3**
 
@@ -853,17 +882,17 @@ Cosa fa il carattere speciale `\n` all’interno della stringa?
 
 Quale affermazione spiega meglio il ruolo di `std::` davanti a `cout`?
 
-[(X)] `std::` indica il namespace della libreria standard dove si trova `cout`
 [( )] `std::` è obbligatorio solo in Windows
+[(X)] `std::` indica il namespace della libreria standard dove si trova `cout`
 [( )] `std::` converte il testo in maiuscolo
 
 **Domanda 5**
 
 Se togli le virgolette e scrivi `std::cout << Ciao, Mondo!\n;` (senza `"`), perché il programma non è accettabile?
 
+[( )] Perché `cout` funziona solo con numeri
 [(X)] Senza virgolette il compilatore non tratta il testo come stringa letterale
 [( )] Perché `\n` non può stare fuori dalle virgolette mai
-[( )] Perché `cout` funziona solo con numeri
 
 #### 2. RUN (Esegui)
 
@@ -907,33 +936,33 @@ int main() {
 
 Perché serve `#include <iostream>` in questo programma?
 
+[( )] Perché stampa da sola “Ciao, Mondo!”
 [(X)] Perché dichiara gli strumenti di input/output (come `std::cout`) usati dopo
 [( )] Perché avvia automaticamente la funzione `main`
-[( )] Perché stampa da sola “Ciao, Mondo!”
 
 **Domanda 2**
 
 Perché ogni programma eseguibile ha bisogno di una funzione `main`?
 
-[(X)] Perché è il punto di ingresso: da lì parte l’esecuzione
 [( )] Perché è solo un commento per il programmatore
+[(X)] Perché è il punto di ingresso: da lì parte l’esecuzione
 [( )] Perché sostituisce il compilatore
 
 **Domanda 3**
 
 Osserva l’ordine di esecuzione. Quale sequenza è corretta?
 
-[(X)] Entra in `main` → esegue `std::cout` → esegue `return 0;`
 [( )] Esegue `return 0;` → poi stampa → poi entra in `main`
 [( )] Stampa prima ancora di entrare in `main`
+[(X)] Entra in `main` → esegue `std::cout` → esegue `return 0;`
 
 **Domanda 4**
 
 Cosa comunica `return 0;` al sistema operativo?
 
+[( )] Che deve riavviare `main` da capo
 [(X)] Che il programma è terminato con successo (codice di uscita 0)
 [( )] Che deve stampare il numero 0 a video
-[( )] Che deve riavviare `main` da capo
 
 **Domanda 5**
 
@@ -982,17 +1011,17 @@ int main() {
 
 Cosa succede all’output se cambi solo il testo tra virgolette in `"Gestionale pronto\n"`?
 
+[( )] Viene stampato due volte Ciao, Mondo!
 [(X)] A video compare Gestionale pronto (e va a capo); il resto della struttura resta valido
 [( )] Il programma non compila più
-[( )] Viene stampato due volte Ciao, Mondo!
 
 **Domanda 2**
 
 Se rimuovi `\n` dalla stringa, quale effetto osservi?
 
-[(X)] Il testo appare, ma il cursore non va a capo dopo il messaggio
 [( )] Il programma non parte
 [( )] Viene aggiunto automaticamente un secondo messaggio
+[(X)] Il testo appare, ma il cursore non va a capo dopo il messaggio
 
 **Domanda 3**
 
@@ -1006,17 +1035,17 @@ Vuoi una seconda riga di output. Quale modifica è corretta?
 
 Se cancelli la riga `return 0;`, in un programma così semplice cosa succede di solito?
 
-[(X)] Spesso compila comunque (return implicito da `main` in C++), ma è buona pratica lasciare `return 0;` esplicito
-[( )] È sempre un errore di compilazione obbligatorio
 [( )] Il programma stampa necessariamente “errore”
+[( )] È sempre un errore di compilazione obbligatorio
+[(X)] Spesso compila comunque (return implicito da `main` in C++), ma è buona pratica lasciare `return 0;` esplicito
 
 **Domanda 5**
 
 Perché, in Modify, conviene cambiare **una cosa alla volta** e ricompilare?
 
-[(X)] Per isolare causa ed effetto: se qualcosa si rompe, sai quale modifica l’ha provocato
 [( )] Perché il compilatore accetta al massimo una modifica al giorno
 [( )] Perché altrimenti `std::cout` smette di funzionare
+[(X)] Per isolare causa ed effetto: se qualcosa si rompe, sai quale modifica l’ha provocato
 
 Ora applica **una modifica alla volta** sul programma completo e ricompila.
 
@@ -1136,26 +1165,28 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Ogni programma C++ parte da `int main()`.
-- `#include <iostream>` è il passaporto per l’input/output.
-- `std::cout <<` scrive sullo schermo; `\n` va a capo.
-- `std::` indica il namespace della libreria standard; per ora lo scriviamo sempre esplicito (niente `using namespace std;` ancora).
-- `return 0;` comunica “successo” al sistema operativo.
-- Il codice ha **due lettori**: il compilatore (sintassi) e l’essere umano (chiarezza). I commenti servono al secondo.
-- Gli errori di compilazione sono messaggi utili: imparare a leggerli è una competenza fondamentale.
+Prima di chiudere, verifica di saper fare (o spiegare) quanto segue:
+
+- [ ] Ogni programma eseguibile parte da `int main()`.
+- [ ] `#include <iostream>` abilita l'input/output a console.
+- [ ] `std::cout <<` scrive sullo schermo; `\n` va a capo.
+- [ ] Scrivo sempre `std::cout` per intero (niente `using namespace std;` in questo modulo).
+- [ ] `return 0;` comunica esito di successo al sistema operativo.
+- [ ] Il codice ha **due lettori**: compilatore (sintassi) e essere umano (chiarezza); i commenti servono al secondo.
+- [ ] Un messaggio di errore di compilazione si legge da riga e parola `error`, non si ignora.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Finora il computer ha solo *parlato*.  
-Nella prossima lezione gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
+Dopo questa lezione, nel percorso Fondamenti, si lavora sulla **qualità del codice leggibile** (documentazione leggera con Doxygen) e poi sulle **variabili** e sull'input (`std::cin`): il programma non si limita a parlare, ma inizia a ricordare e ad ascoltare dati di lavoro.
+
 
 ## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
 
 > "Il codice non mente mai, i commenti sì."
 >
-> — *Ron Jeffries*
+> —- Ron Jeffries
 
 Hai già scritto `Ciao, Mondo!` e presto i programmi si allungheranno.  
 Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente. In azienda, un collega che non eri tu.
@@ -1171,11 +1202,19 @@ Questo non è un laboratorio PRIMM “classico”: è una **convenzione di lavor
 
 ---
 
-### 🎯 Obiettivo
+**In questa lezione non** generiamo la documentazione HTML, non descriviamo
+ogni tag Doxygen esistente e non introduciamo parametri o funzioni. Ci limitiamo
+all'intestazione essenziale dei programmi brevi del Modulo Fondamenti.
+
+---
+
+### 🎯 Obiettivi di apprendimento
+
 Alla fine di questa lezione sei in grado di:
-- Scrivere un’intestazione di **file** e di **`main`** in stile Doxygen
-- Usare `///` per spiegare il **perché** (non il cosa ovvio)
-- Applicare la **regola di proporzionalità** del corso
+
+- scrivere un'intestazione di **file** e di **`main`** in stile Doxygen;
+- usare `///` per spiegare il **perché**, non il comportamento già evidente dal codice;
+- scegliere tra intestazione completa e commento breve secondo la proporzionalità del corso.
 
 ---
 
@@ -1263,16 +1302,19 @@ Compila ed esegui: i commenti non cambiano l’output, ma cambiano quanto il cod
 ---
 
 ### 📝 Riepilogo tascabile
-- Doxygen = etichette standard per file e funzioni.
-- Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
-- `///` = perché / vincolo / regola di business, non il cosa ovvio.
-- Proporzionalità: completo sopra ~15 righe, leggero sotto.
-- Da qui in poi i Make “ufficiali” si aspettano questi standard.
+- [ ] Doxygen = etichette standard per file e funzioni.
+- [ ] Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
+- [ ] `///` = perché / vincolo / regola di business, non il cosa ovvio.
+- [ ] Applico la documentazione completa sopra ~15 righe e uso `///` per gli snippet brevi.
+- [ ] Nei Make uso questa convenzione senza commenti tautologici.
 
 ---
 
-### ➡️ Prossimo passo
-Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli della memoria**: variabili, tipi e costanti.
+### ➡️ Prossimo passo nel percorso
+
+Con officina, motore, primo dialogo e etichette chiare, nel prossimo capitolo
+del percorso Fondamenti, `05_variabili_costanti_tipi`, aprirai gli sportelli
+della memoria con variabili, tipi e costanti.
 
 ---
 
@@ -1281,11 +1323,12 @@ Con officina, motore, primo dialogo e etichette chiare, apriamo gli **sportelli 
 
 ## 📦 Gli sportelli della memoria: variabili, costanti e tipi
 
-Finora hai stampato testi fissi. Un software gestionale, però, deve ricordare
-dati che cambiano: prezzo di un articolo, giacenza di magazzino, saldo di un
-conto.
+Finora hai scritto programmi con messaggi fissi. Nel laboratorio di oggi
+configuri uno sportello per ogni dato gestito da un programma: il prezzo di
+un articolo, la sua giacenza o il saldo di un conto.
 
-Per farlo usi variabili e costanti.
+Userai variabili e costanti per ricordare dati diversi senza confonderne il
+tipo o il significato.
 
 > 💡 **Metafora:** Immagina la memoria RAM come una parete di sportelli
 > automatici. Il nome della variabile è l'etichetta che leggi tu; il tipo
@@ -1293,16 +1336,22 @@ Per farlo usi variabili e costanti.
 > conservata. Uno sportello `const` è sigillato: dopo averlo riempito non puoi
 > cambiare il contenuto.
 
+**In questa lezione non** leggiamo ancora dati dalla tastiera e non introduciamo
+operatori aritmetici avanzati o strutture dati: ci concentriamo sulla
+dichiarazione, inizializzazione e modifica controllata dei singoli dati.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- dichiarare variabili e costanti scegliendo il tipo adatto a un dato aziendale.
-
-In questo chunk non chiediamo ancora dati da tastiera con `std::cin`: ci
-concentriamo sul ricordare, mostrare e modificare valori già scritti nel codice.
+- scegliere `int`, `double`, `char`, `bool` o `std::string` in base al significato
+  di un dato aziendale;
+- dichiarare e inizializzare una variabile o una costante con una sintassi valida;
+- distinguere troncamento da arrotondamento quando assegnazioni e tipi sono incompatibili;
+- modificare un dato a una volta e riconoscere l'errore prodotto da una
+  successiva assegnazione a `const`.
 
 ---
 
@@ -1357,17 +1406,17 @@ const double IVA = 0.22;
 
 Perché `int pezzi = 7.85;` non conserva tutti i decimali?
 
-[(X)] Perché `int` rappresenta numeri interi e la parte decimale viene troncata
-[( )] Perché il compilatore arrotonda sempre i prezzi per difetto
 [( )] Perché ogni numero con la virgola produce un errore obbligatorio
+[( )] Perché il compilatore arrotonda sempre i prezzi per difetto
+[(X)] Perché `int` rappresenta numeri interi e la parte decimale viene troncata
 
 **Domanda 2**
 
 Quale tipo è più adatto per memorizzare un prezzo con i centesimi?
 
-[(X)] `double`, perché può rappresentare valori con parte decimale
-[( )] `int`, perché i prezzi sono sempre conteggi di pezzi
 [( )] `char`, perché ogni prezzo è una singola cifra
+[( )] `int`, perché i prezzi sono sempre conteggi di pezzi
+[(X)] `double`, perché può rappresentare valori con parte decimale
 
 **Domanda 3**
 
@@ -1382,16 +1431,16 @@ Perché `IVA` dovrebbe essere dichiarata `const`?
 Quale tipo descrive meglio il codice di reparto `'A'`?
 
 [(X)] `char`, perché contiene un solo carattere
-[( )] `std::string`, perché ogni carattere è sempre una frase
 [( )] `bool`, perché il reparto può essere vero o falso
+[( )] `std::string`, perché ogni carattere è sempre una frase
 
 **Domanda 5**
 
 Che cosa indica la dichiarazione `bool haFido = true;`?
 
 [(X)] Un dato con due stati possibili, qui impostato sul valore vero
-[( )] Un testo composto dalle lettere `true`
 [( )] Un numero decimale uguale a 1.0
+[( )] Un testo composto dalle lettere `true`
 
 #### 2. RUN (Esegui)
 
@@ -1452,41 +1501,41 @@ double prezzoNetto = 19.50;
 
 Perché `pezzi` è un `int` mentre `prezzoNetto` è un `double`?
 
+[( )] `double` serve solo per dati più importanti di `int`
 [(X)] I pezzi sono conteggi interi, mentre il prezzo può contenere centesimi
 [( )] I nomi delle variabili decidono automaticamente il tipo
-[( )] `double` serve solo per dati più importanti di `int`
 
 **Domanda 2**
 
 Quale sequenza descrive la dichiarazione `double prezzoNetto = 19.50;`?
 
-[(X)] Il compilatore riserva un dato decimale, gli assegna un nome e gli dà un valore iniziale
 [( )] Il programma stampa subito 19.50 senza bisogno di `std::cout`
 [( )] Il valore viene sigillato e non potrà mai cambiare
+[(X)] Il compilatore riserva un dato decimale, gli assegna un nome e gli dà un valore iniziale
 
 **Domanda 3**
 
 Perché `ALIQUOTA_IVA` non può essere assegnata di nuovo?
 
+[( )] Un `double` può essere assegnato una sola volta
 [(X)] La parola `const` la rende di sola lettura dopo l'inizializzazione
 [( )] I nomi scritti in maiuscolo sono sempre immutabili in C++
-[( )] Un `double` può essere assegnato una sola volta
 
 **Domanda 4**
 
 Quale valore viene memorizzato in `int pezzi = 7.85;`?
 
+[( )] `7.85`, perché il tipo dichiarato non influenza il valore
 [(X)] `7`, perché la parte decimale non appartiene al tipo `int`
 [( )] `8`, perché C++ arrotonda al numero intero più vicino
-[( )] `7.85`, perché il tipo dichiarato non influenza il valore
 
 **Domanda 5**
 
 Perché il programma ha bisogno di `#include <string>` quando usa `std::string`?
 
-[(X)] Per rendere disponibile la definizione del tipo per il testo
-[( )] Per convertire automaticamente tutti i numeri in testo
 [( )] Per permettere a `int` di contenere più cifre
+[( )] Per convertire automaticamente tutti i numeri in testo
+[(X)] Per rendere disponibile la definizione del tipo per il testo
 
 | Nome | Tipo | Perché quel tipo? | Si può cambiare? |
 | :--- | :--- | :--- | :--- |
@@ -1517,24 +1566,24 @@ double prezzoNetto = 19.50;
 Quale modifica permette di calcolare l'importo dell'IVA?
 
 [(X)] Dichiarare `double importoIva = prezzoNetto * ALIQUOTA_IVA;`
-[( )] Dichiarare `int importoIva = prezzoNetto + ALIQUOTA_IVA;`
 [( )] Cambiare `const` in `std::string` senza eseguire un calcolo
+[( )] Dichiarare `int importoIva = prezzoNetto + ALIQUOTA_IVA;`
 
 **Domanda 2**
 
 Che cosa succede se aggiungi `ALIQUOTA_IVA = 0.10;`?
 
+[( )] Il programma ignora sempre la nuova assegnazione e compila
 [(X)] Il compilatore segnala un errore perché la costante è di sola lettura
 [( )] L'aliquota cambia solo per la riga successiva
-[( )] Il programma ignora sempre la nuova assegnazione e compila
 
 **Domanda 3**
 
 Quale modifica è corretta se la giacenza deve diventare 100 pezzi?
 
-[(X)] Cambiare il valore iniziale in `int pezziInMagazzino = 100;`
 [( )] Cambiare il tipo in `char` e lasciare il valore `100`
 [( )] Dichiarare la giacenza come `const` per poterla aggiornare
+[(X)] Cambiare il valore iniziale in `int pezziInMagazzino = 100;`
 
 **Domanda 4**
 
@@ -1548,9 +1597,9 @@ Quale effetto ha cambiare `bool haGaranziaEstesa = true;` in `false`?
 
 Perché conviene modificare un tipo o un valore alla volta?
 
+[( )] Perché il compilatore non sa leggere due righe consecutive
 [(X)] Per distinguere quale modifica ha prodotto il nuovo comportamento o l'errore
 [( )] Perché ogni programma C++ può avere una sola variabile
-[( )] Perché il compilatore non sa leggere due righe consecutive
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -1639,18 +1688,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Una variabile è uno sportello con nome, tipo e valore.
-- `int` serve per conteggi interi; `double` per valori con decimali.
-- `char` contiene un carattere; `bool` rappresenta due stati; `std::string` contiene testo.
-- `const` sigilla un valore dopo l'inizializzazione.
-- Scegli il tipo in base al significato aziendale del dato.
+- [ ] Una variabile è uno sportello con nome, tipo e valore.
+- [ ] `int` serve per conteggi interi; `double` per valori con decimali.
+- [ ] `char` contiene un carattere; `bool` rappresenta due stati; `std::string` contiene testo.
+- [ ] `const` sigilla un valore dopo l'inizializzazione.
+- [ ] Scegli il tipo in base al significato aziendale del dato.
+- [ ] Prima di modificare una dichiarazione, prevevo l'effetto e ricompilo.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora che sai memorizzare dati con il tipo corretto, userai operatori ed
-espressioni per calcolare totali, IVA e differenze in modo controllato.
+Ora che sai memorizzare dati con il tipo corretto, il prossimo capitolo
+introduce `std::cin` per ricevere valori dall'operatore e usare quelli
+memorizzati in un programma interattivo.
 
 
 ## 🧾 Chiedere informazioni: leggere dati con `std::cin`
@@ -1668,13 +1719,21 @@ conservarlo in una variabile.
 > chiedi prima la quantità e poi il prezzo, devi registrare le risposte nello
 > stesso ordine.
 
+**In questa lezione non** correggiamo ancora gli input errati, non controlliamo
+se i dati appartengono a un intervallo valido e non prendiamo decisioni con
+`if`. Prima impariamo il percorso normale dalla tastiera alle variabili e al
+calcolo.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- leggere da tastiera quantità e prezzi con `std::cin` e usarli in un calcolo.
+- usare `std::cin >>` per assegnare dati inseriti dall'operatore alle variabili;
+- coordinare prompt `std::cout`, ordine delle letture e tipi delle variabili;
+- distinguere la direzione dei dati con `std::cin`, `std::cout`, `>>` e `<<`;
+- calcolare un totale solo dopo aver letto quantità e prezzo unitario.
 
 ---
 
@@ -1732,40 +1791,40 @@ std::cin >> prezzo;
 Che cosa fa `std::cin >> quantita;` quando il programma arriva a questa riga?
 
 [(X)] Attende un valore da tastiera e lo memorizza nella variabile `quantita`
-[( )] Stampa il nome `quantita` sullo schermo
 [( )] Assegna automaticamente a `quantita` il valore zero
+[( )] Stampa il nome `quantita` sullo schermo
 
 **Domanda 2**
 
 Perché una variabile deve essere dichiarata prima di essere usata con `std::cin`?
 
-[(X)] Il compilatore deve conoscere nome e tipo dello spazio in cui conservare il dato
 [( )] La tastiera può inviare dati solo a variabili dichiarate come `const`
 [( )] Senza dichiarazione `std::cin` stampa sempre un messaggio di errore a video
+[(X)] Il compilatore deve conoscere nome e tipo dello spazio in cui conservare il dato
 
 **Domanda 3**
 
 Se il programma esegue prima `std::cin >> quantita;` e poi `std::cin >> prezzo;`, che cosa deve inserire l'utente?
 
+[( )] Prima il prezzo, perché `double` viene sempre letto per primo
 [(X)] Prima un valore compatibile con `quantita`, poi uno compatibile con `prezzo`
 [( )] Un solo testo che contiene contemporaneamente nome e prezzo
-[( )] Prima il prezzo, perché `double` viene sempre letto per primo
 
 **Domanda 4**
 
 Perché il messaggio `Inserisci la quantità:` va scritto prima di `std::cin`?
 
 [(X)] Per spiegare all'utente quale dato deve digitare prima che il programma attenda
-[( )] Perché `std::cin` legge solo dopo aver stampato almeno tre righe
 [( )] Per trasformare automaticamente un intero in una stringa
+[( )] Perché `std::cin` legge solo dopo aver stampato almeno tre righe
 
 **Domanda 5**
 
 Quale tipo è coerente con una quantità intera di prodotti?
 
-[(X)] `int`, perché una quantità di confezioni può essere un numero intero
-[( )] `double`, perché ogni dato inserito da tastiera contiene decimali
 [( )] `char`, perché la quantità è sempre un singolo carattere
+[( )] `double`, perché ogni dato inserito da tastiera contiene decimali
+[(X)] `int`, perché una quantità di confezioni può essere un numero intero
 
 #### 2. RUN (Esegui)
 
@@ -1839,32 +1898,32 @@ Qual è l'ordine corretto quando l'utente inserisce `3` e poi `12.50`?
 
 Perché `std::cin` non mostra da solo la richiesta "Quantita:"?
 
-[(X)] `std::cin` legge dati; il messaggio per l'utente deve essere scritto con `std::cout`
 [( )] La tastiera non permette di visualizzare messaggi
 [( )] Ogni variabile deve contenere il testo della richiesta
+[(X)] `std::cin` legge dati; il messaggio per l'utente deve essere scritto con `std::cout`
 
 **Domanda 3**
 
 Che cosa succede se inserisci `3` quando `std::cin` sta leggendo un `double`?
 
-[(X)] Il valore può essere letto come `3.0`, perché un intero è compatibile con un numero decimale
 [( )] Il programma si chiude sempre senza leggere nulla
 [( )] Il numero viene trasformato in una parola composta da tre caratteri
+[(X)] Il valore può essere letto come `3.0`, perché un intero è compatibile con un numero decimale
 
 **Domanda 4**
 
 Perché l'istruzione `double totale = quantita * prezzoUnitario;` deve venire dopo le due letture?
 
+[( )] `std::cin` cancella i valori se il calcolo viene scritto prima
 [(X)] Prima di quel punto le variabili potrebbero non contenere ancora i dati inseriti dall'utente
 [( )] Le moltiplicazioni in C++ sono permesse solo nell'ultima riga di `main`
-[( )] `std::cin` cancella i valori se il calcolo viene scritto prima
 
 **Domanda 5**
 
 Se inserisci testo come `tre` quando `std::cin` attende un `int`, perché il calcolo successivo è inaffidabile?
 
-[(X)] La lettura fallisce e la variabile non riceve il numero atteso
 [( )] C++ converte sempre automaticamente ogni parola nel numero corretto
+[(X)] La lettura fallisce e la variabile non riceve il numero atteso
 [( )] Il testo viene memorizzato nell'intero come se fosse un carattere
 
 | Passo | Istruzione | Stato importante |
@@ -1904,41 +1963,41 @@ std::cin >> prezzoUnitario;
 
 Quale modifica permette di leggere anche uno sconto percentuale?
 
+[( )] Cambiare `quantita` in `const double` per ricevere un nuovo dato
 [(X)] Dichiarare `double sconto;` e aggiungere `std::cin >> sconto;` dopo il prezzo
 [( )] Scrivere `std::cin << sconto;` senza dichiarare la variabile
-[( )] Cambiare `quantita` in `const double` per ricevere un nuovo dato
 
 **Domanda 2**
 
 Se vuoi leggere prima il prezzo e poi la quantità, quale modifica è necessaria?
 
-[(X)] Invertire sia i messaggi sia l'ordine delle due istruzioni `std::cin`
 [( )] Cambiare solo i nomi delle variabili, lasciando invariato il codice
 [( )] Usare `std::cout` al posto di entrambe le istruzioni di lettura
+[(X)] Invertire sia i messaggi sia l'ordine delle due istruzioni `std::cin`
 
 **Domanda 3**
 
 Che effetto ha aggiungere `std::cout << " euro\n";` dopo il totale?
 
-[(X)] Aggiunge l'unità di misura all'output, senza cambiare il calcolo
 [( )] Converte il totale in un intero arrotondato
+[(X)] Aggiunge l'unità di misura all'output, senza cambiare il calcolo
 [( )] Fa inserire un altro prezzo all'utente
 
 **Domanda 4**
 
 Quale modifica conserva i centesimi del prezzo inserito?
 
-[(X)] Dichiarare il prezzo come `double` e leggerlo con `std::cin`
-[( )] Dichiarare il prezzo come `int` perché è più semplice
 [( )] Leggere il prezzo in un `char` e poi moltiplicarlo
+[( )] Dichiarare il prezzo come `int` perché è più semplice
+[(X)] Dichiarare il prezzo come `double` e leggerlo con `std::cin`
 
 **Domanda 5**
 
 Perché conviene aggiungere una sola lettura o modifica alla volta?
 
-[(X)] Per capire quale passaggio ha causato un errore o un ordine di input inatteso
 [( )] Perché `std::cin` può leggere una sola variabile in tutta la funzione
 [( )] Perché ogni nuova variabile cancella automaticamente la precedente
+[(X)] Per capire quale passaggio ha causato un errore o un ordine di input inatteso
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -2012,168 +2071,311 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `std::cout <<` porta dati dal programma allo schermo.
-- `std::cin >>` porta dati dalla tastiera a una variabile.
-- Dichiara una variabile prima di usarla per la lettura.
-- L'ordine di prompt e letture deve corrispondere all'ordine degli input.
-- Usa `int` per quantità intere e `double` per prezzi con centesimi.
+- [ ] `std::cout <<` porta dati dal programma allo schermo.
+- [ ] `std::cin >>` porta dati dalla tastiera a una variabile.
+- [ ] Dichiaro una variabile prima di usarla per la lettura.
+- [ ] L'ordine di prompt e letture corrisponde all'ordine degli input.
+- [ ] Uso `int` per quantità intere e `double` per prezzi con centesimi.
+- [ ] Calcolo il totale solo dopo aver letto i dati necessari.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora il programma sa chiedere dati. Nel prossimo chunk imparerai a scegliere tra
-due percorsi con `if`, così il gestionale potrà reagire ai valori inseriti.
+Ora il programma sa chiedere dati. Nel prossimo capitolo del percorso
+Fondamenti, `07_espressioni_e_operatore_ternario`, trasformi i valori letti in
+risultati intermedi con espressioni aritmetiche e operatori. La selezione con
+`if` e `else` viene affrontata nel capitolo successivo.
 
 
 ## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
-> "I computer non sono intelligenti: sono solo calcolatori incredibilmente veloci e obbedienti."
-> — *Principio dell'Elaborazione Dati*
+Quando prepari uno scontrino, non fai un solo calcolo: parti dall'importo,
+applichi uno sconto e poi decidi se la spedizione è gratuita. In C++ puoi
+scrivere questi passaggi come **espressioni** e usare il ternario per una
+scelta semplice che restituisce direttamente un valore.
 
-Nel capitolo precedente abbiamo riempito gli sportelli della memoria.  
-Ora impariamo a **calcolare** e a **decidere in una riga**: IVA, sconti, spese di spedizione, commissioni POS.
+> 💡 **Metafora:**  
+> Un'espressione è una riga della calcolatrice della cassa: combina numeri,
+> variabili e operatori e restituisce un risultato. Il ternario è il sensore
+> della cassa: legge una condizione e apre uno dei due cassetti, quello del
+> valore vero oppure quello del valore falso.
 
-> 💡 **Metafora: la cassa automatica**  
-> - **Operatori aritmetici** = i calcoli sul nastro (somme, sconti %, quantità × prezzo)  
-> - **Operatori di confronto e logici** = i sensori (“spesa > 50?”, “ha tessera E spesa alta?”)  
-> - **Operatore ternario `?:`** = il display che decide all’istante:  
->   *“Spesa ≥ 60€ ? Spedizione gratis : paghi 6,50€”*
+**In questa lezione non** introduciamo ancora `if` / `else`, strutture o cicli.
+Ci limitiamo ad espressioni che producono un valore e a scelte brevi tra due
+risultati, senza gestire più casi o ripetizioni.
 
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
+
 Alla fine di questa lezione sei in grado di:
-- Scrivere un'espressione che calcola oppure sceglie un valore per uno scontrino
+
+- distinguere il ruolo di operatori aritmetici e confronti dentro un'espressione;
+- prevedere l'effetto di una divisione intera tra due valori `int`;
+- usare l'operatore ternario per scegliere un risultato in base a una condizione;
+- tracciare l'ordine dei calcoli dello sconto, del netto e della spedizione.
 
 ---
 
-### ⚙️ Prima del laboratorio: calcolare un valore
+### ⚙️ Prima del laboratorio: costruire un'espressione
 
-Un’**espressione** combina valori, variabili e operatori e produce **un solo risultato**.
+Un'espressione combina valori, variabili e operatori e produce **un solo
+risultato**.
 
-#### Aritmetici
 | Operatore | Significato | Attenzione |
-|-----------|-------------|------------|
-| `+` `-` `*` | somma, sottrazione, moltiplicazione | — |
-| `/` | divisione | Se **entrambi** gli operandi sono `int` → **divisione intera** (i decimali si perdono) |
-| `%` | resto (modulo) | Solo su interi: `14 % 2 == 0` → pari |
+| :--- | :--- | :--- |
+| `+`, `-`, `*` | somma, differenza, prodotto | il risultato dipende dai tipi |
+| `/` | divisione | tra soli `int` perde la parte decimale |
+| `%` | resto della divisione | utile per controllare pari/dispari |
+| `>=`, `==` | confronto | producono `true` oppure `false` |
 
 ```cpp
 int pezzi = 5;
-double a = pezzi / 2;      // 2  (divisione intera!)
-double b = pezzi / 2.0;    // 2.5 (almeno un operando double)
+double a = pezzi / 2;   // 2.0: la divisione è già stata fatta tra int
+double b = pezzi / 2.0; // 2.5: almeno un operando è double
 ```
-
----
 
 ### 🧭 Prima del laboratorio: scegliere un valore
 
-Un confronto come `totaleSpesa >= 60.0` produce `true` o `false`. Il ternario
-usa quel risultato come un sensore alla cassa: sceglie uno dei due prezzi.
+La forma del ternario è:
 
 ```text
 condizione ? valore_se_vero : valore_se_falso
 ```
 
-È un’**espressione**: calcola e restituisce un valore, pronto per essere assegnato o stampato.
+Il programma valuta prima la condizione e poi sceglie **un solo** ramo:
 
 ```cpp
-double speseSpedizione = (totaleSpesa >= 60.0) ? 0.0 : 6.50;
+double spedizione = (totale >= 60.0) ? 0.0 : 6.50;
 ```
 
-Usalo per una scelta semplice che restituisce un valore. Per logiche con più
-istruzioni useremo `if` / `else` nel prossimo capitolo.
+Il ternario è adatto a una scelta breve che produce un valore da assegnare,
+stampare o usare in un altro calcolo. Le decisioni con più istruzioni
+arriveranno con `if` / `else`.
 
 ---
 
 ### 🔬 Laboratorio PRIMM: Scontrino e-commerce
 
-Calcoliamo sconto e spese di spedizione di un ordine online con espressioni e operatore ternario.
+Calcolerai lo sconto e le spese di spedizione di un ordine online.
 
 #### 1. PREDICT (Prevedi)
 
+Prima di eseguire, osserva l'esempio e scegli la spiegazione più convincente:
 
 ```cpp
-int pezzi = 5;
-double t = pezzi / 2 * 10.0;
-std::cout << t;
+double importoProdotti = 85.00;
+double sconto = (importoProdotti >= 50.0) ? 0.10 : 0.02;
+double netto = importoProdotti - importoProdotti * sconto;
+double spedizione = (netto >= 60.0) ? 0.0 : 6.50;
 ```
 
-Cosa stampa int pezzi = 5; double t = pezzi / 2 * 10.0; ?
+**Domanda 1**
 
-[( )] 25
-[(X)] 20
-[( )] 2.5
+Perché `importoProdotti >= 50.0` è utile dentro il ternario?
 
+[( )] Ripete il calcolo finché l’importo raggiunge 50 euro
+[( )] Converte automaticamente l’importo in euro interi
+[(X)] Produce una condizione `true` o `false` che permette di scegliere un valore
 
-<details>
-<summary>💡 Spiegazione</summary>
-<code>pezzi / 2</code> è divisione tra interi → risultato <code>2</code> (troncato).  
-Poi <code>2 * 10.0</code> → <code>20.0</code>.  
-Con <code>pezzi / 2.0 * 10.0</code> otterresti <code>25.0</code>.
-</details>
+**Domanda 2**
+
+Quale valore assume `sconto` con `importoProdotti = 85.00`?
+
+[( )] `0.02`, perché il ternario sceglie sempre il valore dopo `:`
+[( )] `10.00`, perché il numero 10 rappresenta direttamente gli euro di sconto
+[(X)] `0.10`, perché 85 soddisfa la condizione e viene scelto il valore dopo `?`
+
+**Domanda 3**
+
+Perché `importoProdotti / 2 * 10.0` con `int importoProdotti = 5` non dà 25.0?
+
+[( )] Un `int` non può essere usato in nessuna espressione con `double`
+[(X)] La divisione tra due `int` viene eseguita prima e perde la parte decimale: 5 / 2 vale 2
+[( )] Il simbolo `*` viene ignorato quando compare dopo `/`
+
+**Domanda 4**
+
+Quale valore completo restituisce `netto >= 60.0 ? 0.0 : 6.50` quando `netto` vale 76.50?
+
+[( )] `true`, perché un confronto restituisce sempre un booleano stampabile
+[( )] `6.50`, perché le spese standard vengono calcolate per prime
+[(X)] `0.0`, perché la condizione è vera e si sceglie il primo valore
+
+**Domanda 5**
+
+Quale forma assegna correttamente al netto il prezzo lordo meno lo sconto?
+
+[( )] `netto = lordo * percentualeSconto - lordo;`
+[( )] `netto = lordo - percentualeSconto;`
+[(X)] `netto = lordo - lordo * percentualeSconto;`
 
 #### 2. RUN (Esegui)
-Digita e esegui:
+
+Digita il programma, eseguilo e confronta l'output con le tue previsioni.
 
 ```cpp
 /**
- * @file cassa_fiscale.cpp
- * @brief Scontrino con sconto fedeltà e spese di spedizione (ternario).
+ * @file scontrino_ecommerce.cpp
+ * @brief Calcola sconto, spedizione e totale di un ordine online.
+ * @return int Codice di uscita del programma.
  */
 #include <iostream>
 
-/**
- * @brief Calcola totale carrello, sconto e spedizione.
- * @return int 0 se successo.
- */
 int main() {
     const double SOGLIA_SPEDIZIONE_GRATIS = 60.0;
     const double COSTO_SPEDIZIONE_STANDARD = 6.50;
-
     double importoProdotti = 85.00;
 
-    /// La soglia premia un ordine abbastanza grande con lo sconto maggiore.
+    /// La soglia collega il vantaggio fedeltà al valore dell'ordine.
     double percentualeSconto =
         (importoProdotti >= 50.0) ? 0.10 : 0.02;
-
     double valoreSconto = importoProdotti * percentualeSconto;
     double nettoProdotti = importoProdotti - valoreSconto;
 
-    /// Spedizione gratis oltre soglia
+    /// La consegna gratuita riduce il costo per ordini abbastanza grandi.
     double speseSpedizione =
-        (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS) ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
-
+        (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS)
+            ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
     double totaleDaPagare = nettoProdotti + speseSpedizione;
 
     std::cout << "=== SCONTRINO E-COMMERCE ===\n";
-    std::cout << "Prodotti (lordo) : " << importoProdotti << " euro\n";
-    std::cout << "Sconto applicato : " << valoreSconto << " euro\n";
-    std::cout << "Prodotti (netto) : " << nettoProdotti << " euro\n";
-    std::cout << "Spedizione       : " << speseSpedizione << " euro\n";
-    std::cout << "TOTALE DA PAGARE : " << totaleDaPagare << " euro\n";
-
+    std::cout << "Prodotti (lordo): " << importoProdotti << " euro\n";
+    std::cout << "Sconto: " << valoreSconto << " euro\n";
+    std::cout << "Prodotti (netto): " << nettoProdotti << " euro\n";
+    std::cout << "Spedizione: " << speseSpedizione << " euro\n";
+    std::cout << "TOTALE: " << totaleDaPagare << " euro\n";
     return 0;
 }
 ```
 @LIA.cpp
 
 #### 3. INVESTIGATE (Investiga)
-Segui il flusso dei valori (con i numeri dell’esempio).
 
-| Espressione | Risultato | Perché |
-|-------------|-----------|--------|
-| `importoProdotti >= 50.0` | `true` | 85 è maggiore della soglia |
-| percentuale sconto | `0.10` | ramo `?` del ternario |
-| `valoreSconto` | `8.5` | `85 * 0.10` |
-| `nettoProdotti` | `76.5` | `85 - 8.5` |
-| `nettoProdotti >= 60` | `true` | soglia superata |
-| `speseSpedizione` | `0.0` | ramo `?` del secondo ternario |
+Dopo il Run, ricostruisci l'ordine dei valori:
 
-> 🔗 Esegui il programma passo-passo su [Python Tutor C++](https://pythontutor.com/cpp.html).
+```cpp
+const double SOGLIA_SPEDIZIONE_GRATIS = 60.0;
+const double COSTO_SPEDIZIONE_STANDARD = 6.50;
+double importoProdotti = 85.00;
+double percentualeSconto =
+    (importoProdotti >= 50.0) ? 0.10 : 0.02;
+double valoreSconto = importoProdotti * percentualeSconto;
+double nettoProdotti = importoProdotti - valoreSconto;
+double speseSpedizione =
+    (nettoProdotti >= SOGLIA_SPEDIZIONE_GRATIS)
+        ? 0.0 : COSTO_SPEDIZIONE_STANDARD;
+double totaleDaPagare = nettoProdotti + speseSpedizione;
+```
+
+**Domanda 1**
+
+Quale ordine descrive correttamente il calcolo del totale?
+
+[(X)] Prima si sceglie la percentuale, poi si calcola lo sconto, poi il netto e infine la spedizione
+[( )] I due ternari vengono eseguiti dopo la stampa, perché assegnano solo etichette
+[( )] Prima si calcola il totale, poi si decide quale percentuale usare
+
+**Domanda 2**
+
+Perché `valoreSconto` vale `8.5` in questo esempio?
+
+[(X)] Perché l’espressione moltiplica 85.0 per 0.10, cioè il 10% scritto in forma decimale
+[( )] Perché 0.10 viene interpretato come 10 euro fissi
+[( )] Perché il programma divide 85 per 10 prima di moltiplicare
+
+**Domanda 3**
+
+Quale ramo del secondo ternario viene scelto?
+
+[(X)] Il ramo `0.0`, perché `nettoProdotti` vale 76.5 ed è almeno 60.0
+[( )] Nessun ramo, perché un `double` non può essere confrontato con una costante
+[( )] Il ramo `6.50`, perché il prezzo lordo è diverso dalla soglia
+
+**Domanda 4**
+
+Perché il totale viene calcolato con `nettoProdotti + speseSpedizione` e non con l’importo lordo?
+
+[(X)] Perché lo sconto è già stato sottratto e il cliente deve pagare il netto più l’eventuale spedizione
+[( )] Perché il lordo contiene sempre un errore di divisione intera
+[( )] Perché il ternario può sommare soltanto variabili chiamate `netto`
+
+**Domanda 5**
+
+Se il codice usa `nettoProdotti` prima della sua dichiarazione, perché il compilatore segnala un errore?
+
+[( )] Il compilatore esegue le righe in ordine alfabetico
+[(X)] Una variabile deve essere dichiarata e inizializzata prima di poter essere usata
+[( )] I nomi con la parola `netto` sono riservati e non ammessi
+
+| Passo | Espressione o variabile | Valore | Perché |
+| :---: | :--- | ---: | :--- |
+| 1 | `importoProdotti >= 50.0` | `true` | 85 è almeno 50 |
+| 2 | `percentualeSconto` | `0.10` | viene scelto il ramo dopo `?` |
+| 3 | `valoreSconto` | `8.5` | `85.0 * 0.10` |
+| 4 | `nettoProdotti` | `76.5` | `85.0 - 8.5` |
+| 5 | `nettoProdotti >= 60.0` | `true` | 76.5 supera la soglia |
+| 6 | `speseSpedizione` | `0.0` | viene scelto il ramo dopo `?` |
+| 7 | `totaleDaPagare` | `76.5` | netto più spedizione |
+
+Apri il programma in [Python Tutor C++](https://pythontutor.com/cpp.html):
+osserva come ogni assegnazione crea o aggiorna una variabile prima della
+stampa finale.
 
 #### 4. MODIFY (Modifica)
+
+Prima di cambiare il codice, prevedi l'effetto delle modifiche:
+
+```cpp
+double importoProdotti = 85.00;
+double speseSpedizione =
+    (importoProdotti >= 60.0) ? 0.0 : 6.50;
+std::cout << speseSpedizione << "\n";
+```
+
+**Domanda 1**
+
+Quale modifica fa pagare la spedizione gratis solo da 100 euro in su?
+
+[( )] Cambiare `0.0` in `100.0`
+[( )] Cambiare il simbolo `?` in `:`
+[(X)] Cambiare `importoProdotti >= 60.0` in `importoProdotti >= 100.0`
+
+**Domanda 2**
+
+Con `importoProdotti = 45.00`, quale modifica produce 3.00 euro di supplemento express?
+
+[(X)] Aggiungere `double supplemento = consegnaRapida ? 3.00 : 0.0;` e sommarlo alla spedizione
+[( )] Sostituire la condizione con `consegnaRapida + 3.00`
+[( )] Moltiplicare `speseSpedizione` per `consegnaRapida`
+
+**Domanda 3**
+
+Se sostituisci `0.0` con `0`, quale effetto corretto osservi?
+
+[( )] La condizione diventa automaticamente falsa
+[(X)] La scelta continua a funzionare e il risultato numerico è zero; `0.0` rende però esplicito il tipo decimale
+[( )] Il ternario non compila perché il valore vero deve avere sempre due decimali
+
+**Domanda 4**
+
+Quale modifica stampa `"pari"` quando `articoli` vale 14?
+
+[( )] `std::cout << ((articoli / 2 == 0) ? "pari" : "dispari");`
+[( )] `std::cout << (articoli % 2 ? "pari" : "dispari");`
+[(X)] `std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");`
+
+**Domanda 5**
+
+Perché in Modify conviene cambiare una sola soglia o un solo valore alla volta?
+
+[( )] Perché C++ permette una sola assegnazione per programma
+[( )] Perché il ternario non può comparire due volte nello stesso file
+[(X)] Per collegare ogni differenza nell’output alla modifica che l’ha provocata
+
+Parti da questo scaffold:
+
 <details>
 <summary>💡 Scaffold di partenza</summary>
 
@@ -2182,7 +2384,8 @@ Segui il flusso dei valori (con i numeri dell’esempio).
 
 int main() {
     double importoProdotti = 85.00;
-    double speseSpedizione = (importoProdotti >= 60.0) ? 0.0 : 6.50;
+    double speseSpedizione =
+        (importoProdotti >= 60.0) ? 0.0 : 6.50;
     std::cout << speseSpedizione << "\n";
     return 0;
 }
@@ -2190,47 +2393,50 @@ int main() {
 
 </details>
 
-1. **Promozione weekend**  
-   Porta la soglia per lo sconto del 10% da `50.0` a `100.0`. Ricompila e
-   osserva quale valore sceglie il ternario.
+**Modifica A — nuova soglia**  
+Porta la soglia della spedizione gratuita a `100.0`. Cambia una sola parte,
+ricompila e spiega perché ora compare il costo standard.
 
-2. **Consegna express**  
-   Aggiungi `bool consegnaRapida = true;`. Con un ternario assegna un
-   supplemento di `3.00` se è vero, `0.0` altrimenti, poi sommalo alla spedizione.
+**Modifica B — consegna express**  
+Aggiungi `bool consegnaRapida = true;`. Usa un ternario per calcolare un
+supplemento di `3.00` se è vero e `0.0` altrimenti; somma il supplemento alla
+spedizione.
 
-3. **Pari o dispari**  
-   Con `int articoli = 14;` stampa se il numero è pari o dispari:
-   ```cpp
-   std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");
-   ```
+**Modifica C — pari o dispari**  
+Con `int articoli = 14;`, usa `%` e un ternario per stampare `"pari"` oppure
+`"dispari"`.
 
 #### 5. MAKE (Crea)
-**Scenario SIA — Commissione transazione POS**
 
-Scrivi `commissioni_pos.cpp` per un esercente:
+**Scenario aziendale — Commissione transazione POS**
 
-- `double importoPagamento` (es. `45.00`)
-- `bool circuitoInternazionale` (`true` = Visa/MC estera, `false` = PagoBANCOMAT)
-- **Regola con ternario:**
-  - circuito internazionale → commissione **1,8%** (`0.018`)
-  - altrimenti → **0,7%** (`0.007`)
-- **Commissione minima:** se la commissione calcolata è `< 0.15`, applica comunque `0.15` (secondo ternario)
-- Calcola e stampa l’**incasso netto** dell’esercente (`importo - commissioneFinale`)
+Scrivi `commissioni_pos.cpp` per un esercente. I requisiti sono chiusi:
 
-**Requisiti:** commenti `///` sulle aliquote, output chiaro tipo scontrino;
-aggiungi Doxygen solo se il programma supera circa 15 righe.
+1. Dichiara `double importoPagamento = 45.00;`.
+2. Dichiara `bool circuitoInternazionale = true;`.
+3. Usa un ternario: circuito internazionale → aliquota `0.018`, altrimenti
+   aliquota `0.007`.
+4. Calcola la commissione; con un secondo ternario, se è minore di `0.15`,
+   usa `0.15` come commissione finale.
+5. Stampa commissione finale e incasso netto
+   (`importoPagamento - commissioneFinale`) in un output leggibile.
 
 <details>
-<summary>💡 Scaffold</summary>
+<summary>💡 Scaffold di partenza</summary>
 
 ```cpp
-/**
- * @brief Calcolo commissione POS e incasso netto esercente.
- */
 #include <iostream>
 
 int main() {
-    // dichiara importo, flag circuito, calcola commissione e netto
+    double importoPagamento = 45.00;
+    bool circuitoInternazionale = true;
+    /// L'aliquota varia perché i circuiti applicano costi diversi.
+    double aliquota = 0.0; // TODO: ternario sulle due aliquote
+    double commissione = 0.0; // TODO: importo per aliquota
+    double commissioneFinale = 0.0; // TODO: ternario sulla soglia minima
+    double incassoNetto = 0.0; // TODO: importo meno commissione finale
+    std::cout << "Commissione: " << commissioneFinale << " euro\n";
+    std::cout << "Incasso netto: " << incassoNetto << " euro\n";
     return 0;
 }
 ```
@@ -2240,20 +2446,20 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Espressione = calcoli/confronti che producono **un** valore.
-- Divisione tra soli `int` → risultato intero (trappola classica).
-- Ternario: `condizione ? se_vero : se_falso` — ideale per scelte semplici che restituiscono un valore.
-- Per decisioni lunghe o a più rami → nei prossimi capitoli useremo `if` / `else`.
+
+- [ ] Un'espressione produce un valore usando variabili, letterali e operatori.
+- [ ] Tra soli `int`, `/` esegue una divisione intera: la parte decimale si perde.
+- [ ] Un confronto come `totale >= 60.0` produce `true` o `false`.
+- [ ] Il ternario ha la forma `condizione ? se_vero : se_falso` e restituisce un valore.
+- [ ] Cambio una sola cosa alla volta: così collego l'output alla causa.
 
 ---
 
-### ➡️ Prossimo chunk
-Finora le decisioni tengono in una riga.  
-Quando la logica diventa un **bivio** (fare A oppure fare B, con più istruzioni per ramo), entra in scena il costrutto `if` / `else`.
+### ➡️ Prossimo passo nel percorso
 
----
-
-
+Quando una scelta deve eseguire più istruzioni, una riga non basta più.
+Nel prossimo capitolo del percorso Fondamenti, `08_bivi_semplici_if_else`,
+userai `if` / `else` per costruire un vero bivio nel programma.
 
 
 ## 🚦 Bivi e decisioni: scegliere con `if` e `if-else`
@@ -2269,13 +2475,20 @@ Con `if` e `if-else` insegni al programma a scegliere un percorso.
 > è vera; il blocco `else` è il passaggio rosso quando la regola è falsa. Con
 > `if-else` passa un solo percorso, mai entrambi.
 
+**In questa lezione non** gestiamo ancora catene con più alternative, cicli
+o selezioni tramite `switch`. Impariamo prima a controllare un singolo bivio
+e a seguire il ramo realmente eseguito.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un `if` o un `if-else` con graffe per scegliere il ramo corretto in base a una condizione.
+- distinguere l'esecuzione di un blocco `if` semplice da quella di un `if-else`;
+- scrivere una condizione con gli operatori relazionali e organizzare i rami con le graffe;
+- prevedere quale ramo viene attraversato e tracciare lo stato delle variabili;
+- riconoscere l'errore causato da un punto e virgola subito dopo la condizione.
 
 ---
 
@@ -2362,24 +2575,24 @@ if (saldoDisponibile >= importoSpesa) {
 
 Quale ramo viene eseguito con saldo `45.00` e spesa `62.50`?
 
-[(X)] Il ramo `else`, perché il saldo non è sufficiente
-[( )] Il ramo `if`, perché ogni pagamento viene approvato
 [( )] Entrambi i rami, uno dopo l'altro
+[( )] Il ramo `if`, perché ogni pagamento viene approvato
+[(X)] Il ramo `else`, perché il saldo non è sufficiente
 
 **Domanda 2**
 
 Perché `saldoDisponibile >= importoSpesa` è una condizione utile per il POS?
 
 [(X)] Confronta i due importi e produce vero solo quando il saldo basta
-[( )] Somma automaticamente il saldo e la spesa
 [( )] Trasforma i due importi in messaggi di testo
+[( )] Somma automaticamente il saldo e la spesa
 
 **Domanda 3**
 
 Che cosa succede se saldo e importo valgono entrambi `45.00`?
 
-[(X)] La condizione è vera perché `>=` include anche l'uguaglianza
 [( )] La condizione è falsa perché due valori uguali non possono essere confrontati
+[(X)] La condizione è vera perché `>=` include anche l'uguaglianza
 [( )] Il programma esegue sempre il ramo `else` in caso di parità
 
 **Domanda 4**
@@ -2387,16 +2600,16 @@ Che cosa succede se saldo e importo valgono entrambi `45.00`?
 Perché le graffe sono importanti nell'esempio?
 
 [(X)] Raggruppano tutte le istruzioni che appartengono a ciascun ramo
-[( )] Servono solo a rendere il codice più colorato nell'editor
 [( )] Sostituiscono la condizione tra parentesi
+[( )] Servono solo a rendere il codice più colorato nell'editor
 
 **Domanda 5**
 
 Quale risultato produce un `if` semplice quando la condizione è falsa?
 
-[(X)] Salta il suo blocco e continua con l'istruzione successiva
-[( )] Esegue automaticamente il blocco `else`, anche se non esiste
 [( )] Ripete la condizione finché diventa vera
+[( )] Esegue automaticamente il blocco `else`, anche se non esiste
+[(X)] Salta il suo blocco e continua con l'istruzione successiva
 
 #### 2. RUN (Esegui)
 
@@ -2462,25 +2675,25 @@ if (saldoDisponibile >= importoSpesa) {
 
 Qual è il primo passaggio eseguito quando il programma arriva all'if?
 
+[( )] Esegue prima tutte le istruzioni dentro le graffe
 [(X)] Confronta `saldoDisponibile` con `importoSpesa`
 [( )] Sottrae sempre la spesa dal saldo
-[( )] Esegue prima tutte le istruzioni dentro le graffe
 
 **Domanda 2**
 
 Perché il saldo non viene sottratto nel caso `45.00` contro `62.50`?
 
-[(X)] La sottrazione si trova nel ramo `if`, che non viene eseguito quando la condizione è falsa
-[( )] I numeri decimali non possono essere sottratti in C++
 [( )] Il ramo `else` annulla sempre tutte le variabili del programma
+[( )] I numeri decimali non possono essere sottratti in C++
+[(X)] La sottrazione si trova nel ramo `if`, che non viene eseguito quando la condizione è falsa
 
 **Domanda 3**
 
 Quale valore viene calcolato dall'espressione `importoSpesa - saldoDisponibile`?
 
+[( )] `-17.50`, perché il saldo viene sempre scritto per primo
 [(X)] `17.50`, cioè l'importo ancora mancante
 [( )] `107.50`, perché i due importi vengono sommati
-[( )] `-17.50`, perché il saldo viene sempre scritto per primo
 
 **Domanda 4**
 
@@ -2495,8 +2708,8 @@ Perché, dopo il blocco `if-else`, il programma può eseguire altre istruzioni?
 Che cosa accade con questo codice? `if (saldoDisponibile >= importoSpesa); { std::cout << "Approvato"; }`
 
 [(X)] Il punto e virgola chiude subito l'if, quindi il blocco successivo non è più controllato
-[( )] Il punto e virgola rende la condizione più precisa
 [( )] Il compilatore interpreta il punto e virgola come un ramo `else`
+[( )] Il punto e virgola rende la condizione più precisa
 
 | Passo | Cosa osservi | Stato |
 | :---: | :--- | :--- |
@@ -2545,9 +2758,9 @@ if (saldoDisponibile >= importoSpesa) {
 
 Quale modifica fa approvare la spesa di `62.50` con saldo `100.00`?
 
+[( )] Spostare il messaggio "Negato" dentro il ramo `if`
 [(X)] Cambiare `saldoDisponibile` in `100.00`
 [( )] Cambiare `>=` in `<=`
-[( )] Spostare il messaggio "Negato" dentro il ramo `if`
 
 **Domanda 2**
 
@@ -2561,8 +2774,8 @@ Quale modifica permette di mostrare anche il nuovo saldo dopo un pagamento appro
 
 Che effetto ha cambiare `>=` in `>` quando saldo e spesa sono uguali?
 
-[(X)] Il pagamento diventa negato, perché l'uguaglianza non soddisfa più la condizione
 [( )] Il pagamento resta approvato perché i due operatori sono equivalenti
+[(X)] Il pagamento diventa negato, perché l'uguaglianza non soddisfa più la condizione
 [( )] Il programma esegue entrambi i rami
 
 **Domanda 4**
@@ -2570,16 +2783,16 @@ Che effetto ha cambiare `>=` in `>` quando saldo e spesa sono uguali?
 Quale modifica aggiunge un avviso per una scorta sotto cinque pezzi senza creare un secondo ramo obbligatorio?
 
 [(X)] Aggiungere un secondo `if` semplice con condizione `scorte < 5`
-[( )] Aggiungere sempre `else` al primo `if` del pagamento
 [( )] Mettere la quantità dentro una stringa stampata
+[( )] Aggiungere sempre `else` al primo `if` del pagamento
 
 **Domanda 5**
 
 Perché conviene modificare una sola condizione alla volta?
 
-[(X)] Per capire quale cambiamento ha prodotto il nuovo ramo eseguito
-[( )] Perché un programma C++ può contenere una sola condizione
 [( )] Perché `if` funziona soltanto prima della prima modifica
+[( )] Perché un programma C++ può contenere una sola condizione
+[(X)] Per capire quale cambiamento ha prodotto il nuovo ramo eseguito
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -2656,27 +2869,28 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `if` esegue un blocco solo quando la condizione è vera.
-- `if-else` sceglie un solo ramo tra vero e falso.
-- Usa sempre le graffe per rendere chiaro il blocco controllato.
-- `==` confronta; `=` assegna.
-- Non mettere `;` subito dopo la condizione.
-- Dopo il ramo scelto, il flusso continua con le istruzioni successive.
+- [ ] `if` esegue un blocco solo quando la condizione è vera.
+- [ ] `if-else` sceglie un solo ramo tra vero e falso.
+- [ ] Uso sempre le graffe per rendere chiaro il blocco controllato.
+- [ ] `==` confronta; `=` assegna.
+- [ ] Non metto `;` subito dopo la condizione.
+- [ ] Dopo il ramo scelto, il flusso continua con le istruzioni successive.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando le alternative diventano più di due, un solo bivio non basta. Nel
-prossimo chunk userai catene `if / else if / else` per gestire fasce di
-sconto e stati diversi di un ordine.
+prossimo capitolo del percorso Fondamenti, `09_bivi_complessi_e_regole_if`,
+costruirai catene `if / else if / else` per gestire fasce di sconto e stati
+diversi di un ordine.
 
 
 ## 🌲 Scaglioni ordinati: `if`, `else if` ed `else`
 
 Nel capitolo precedente hai imparato a scegliere tra due strade. Nei contesti
 aziendali, però, le alternative possono essere più di due: fasce di sconto,
-livelli di fido, classi di rischio o aliquote didattiche.
+livelli di fido, classi di rischio o aliquote fiscali.
 
 Una catena `if / else if / else` permette di controllare più fasce in ordine e
 di sceglierne una sola.
@@ -2686,13 +2900,20 @@ di sceglierne una sola.
 > la sua corsia. I sensori successivi non vedono più quel pacco: per questo
 > l'ordine delle soglie decide il risultato.
 
+**In questa lezione non** gestiamo ancora cicli o ripetizioni e non introduciamo
+`switch`. Ci concentriamo su una sola classificazione ordinata, controllata
+dall'alto verso il basso.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere una catena `if / else if / else` ordinata per classificare un dato in fasce esclusive.
+- ordinare soglie in una catena `if / else if / else` dalla più alta alla più bassa;
+- prevedere quale sia il primo ramo vero e tracciare i rami saltati;
+- assegnare un solo risultato esclusivo a un dato in una fascia;
+- verificare il comportamento ai confini delle soglie.
 
 ---
 
@@ -2777,16 +2998,16 @@ if (fatturato >= 50000.0) {
 
 Quale fascia viene scelta con `fatturato = 25000.0`?
 
-[(X)] Gold, perché il fatturato non raggiunge 50000 ma supera 20000
-[( )] Platinum, perché ogni valore positivo entra nella fascia più alta
 [( )] Silver, perché il programma sceglie sempre l'ultima condizione vera
+[( )] Platinum, perché ogni valore positivo entra nella fascia più alta
+[(X)] Gold, perché il fatturato non raggiunge 50000 ma supera 20000
 
 **Domanda 2**
 
 Perché la soglia `50000.0` deve essere controllata prima di `20000.0`?
 
-[(X)] Un fatturato di 60000 deve fermarsi nella fascia Platinum prima di raggiungere Gold
 [( )] Le soglie più piccole non possono essere scritte dopo quelle grandi
+[(X)] Un fatturato di 60000 deve fermarsi nella fascia Platinum prima di raggiungere Gold
 [( )] Il compilatore esegue sempre le condizioni dall'alto verso il basso numerico
 
 **Domanda 3**
@@ -2794,24 +3015,24 @@ Perché la soglia `50000.0` deve essere controllata prima di `20000.0`?
 Che cosa succede dopo che una condizione della catena risulta vera?
 
 [(X)] Viene eseguito quel ramo e le condizioni successive vengono saltate
-[( )] Vengono eseguiti anche tutti gli `else if` successivi
 [( )] Il programma torna alla prima condizione per controllarla di nuovo
+[( )] Vengono eseguiti anche tutti gli `else if` successivi
 
 **Domanda 4**
 
 Quale ruolo ha l'ultimo `else` nella scala?
 
+[( )] Rende vere tutte le condizioni precedenti
 [(X)] Gestisce il caso in cui nessuna soglia precedente sia stata raggiunta
 [( )] Ripete il controllo della soglia più alta
-[( )] Rende vere tutte le condizioni precedenti
 
 **Domanda 5**
 
 Perché le fasce di sconto sono un buon esempio di `else if`?
 
+[( )] Le fasce non hanno bisogno di confronti tra numeri
 [(X)] Un cliente deve ricevere una sola fascia tra quelle definite
 [( )] Ogni cliente deve ricevere tutti gli sconti contemporaneamente
-[( )] Le fasce non hanno bisogno di confronti tra numeri
 
 #### 2. RUN (Esegui)
 
@@ -2896,33 +3117,33 @@ Qual è il primo confronto eseguito con `fatturato = 32500.0`?
 
 Perché il valore finale di `sconto` è `0.10`?
 
-[(X)] La prima condizione è falsa e la seconda è vera, quindi il ramo Gold assegna 0.10
-[( )] Tutte le percentuali vengono sommate e il risultato diventa 0.10
 [( )] Il valore iniziale 0.0 viene trasformato automaticamente in 0.10
+[( )] Tutte le percentuali vengono sommate e il risultato diventa 0.10
+[(X)] La prima condizione è falsa e la seconda è vera, quindi il ramo Gold assegna 0.10
 
 **Domanda 3**
 
 Quale ordine di verifica è corretto per `fatturato = 32500.0`?
 
-[(X)] Platinum falso → Gold vero → Silver e `else` saltati
 [( )] Silver vero → Gold vero → Platinum falso
 [( )] Gold vero → Silver vero → `else` eseguito
+[(X)] Platinum falso → Gold vero → Silver e `else` saltati
 
 **Domanda 4**
 
 Che cosa accade se il fatturato vale `3000.0`?
 
 [(X)] Tutte le soglie sono false e viene eseguito l'ultimo `else`
-[( )] Viene scelta Silver perché è la fascia più bassa
 [( )] Il programma non esegue nessuna istruzione della catena, compreso `else`
+[( )] Viene scelta Silver perché è la fascia più bassa
 
 **Domanda 5**
 
 Perché mettere `fatturato >= 20000.0` prima di `fatturato >= 50000.0` crea un errore logico?
 
+[( )] La condizione 50000 diventerebbe automaticamente falsa
 [(X)] Un fatturato di 60000 soddisfa subito 20000 e viene classificato Gold
 [( )] Il compilatore rifiuta sempre le soglie scritte in ordine crescente
-[( )] La condizione 50000 diventerebbe automaticamente falsa
 
 | Passo | Condizione | Esito | Azione |
 | :---: | :--- | :---: | :--- |
@@ -2957,41 +3178,41 @@ if (fatturato >= 50000.0) {
 
 Quale modifica aggiunge una fascia Diamond per fatturati da `100000.0` in su?
 
-[(X)] Inserire un nuovo `if (fatturato >= 100000.0)` prima del controllo Platinum
-[( )] Aggiungere Diamond dopo l'ultimo `else`
 [( )] Sostituire `else if` con un secondo `else`
+[( )] Aggiungere Diamond dopo l'ultimo `else`
+[(X)] Inserire un nuovo `if (fatturato >= 100000.0)` prima del controllo Platinum
 
 **Domanda 2**
 
 Che effetto ha mettere il controllo `>= 20000.0` prima di `>= 50000.0`?
 
+[( )] Il programma corregge automaticamente l'ordine
 [(X)] I valori da 50000 in su vengono intercettati troppo presto e classificati Gold
 [( )] Le due fasce vengono assegnate insieme
-[( )] Il programma corregge automaticamente l'ordine
 
 **Domanda 3**
 
 Quale modifica assegna Silver anche al valore esattamente uguale a `5000.0`?
 
+[( )] Spostare Silver nel ramo `else` senza una condizione
 [(X)] Usare `fatturato >= 5000.0` nella condizione Silver
 [( )] Usare `fatturato > 5000.0` nella condizione Silver
-[( )] Spostare Silver nel ramo `else` senza una condizione
 
 **Domanda 4**
 
 Quale modifica calcola l'importo dello sconto dopo aver scelto la fascia?
 
-[(X)] Moltiplicare il fatturato per `sconto` dopo la catena
 [( )] Moltiplicare ogni soglia prima di sapere quale ramo è vero
 [( )] Usare `std::cin` al posto della variabile `sconto`
+[(X)] Moltiplicare il fatturato per `sconto` dopo la catena
 
 **Domanda 5**
 
 Perché conviene modificare una soglia alla volta?
 
 [(X)] Per capire quale cambiamento ha alterato la classificazione ai confini
-[( )] Perché una catena può contenere una sola soglia in assoluto
 [( )] Perché `else if` funziona soltanto con valori non decimali
+[( )] Perché una catena può contenere una sola soglia in assoluto
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -3032,7 +3253,7 @@ Crea `imposte_reddito.cpp` rispettando tutti i requisiti:
 
 1. Dichiara `std::string nomeDitta` e `double redditoImponibile`.
 2. Usa una catena `if / else if / else`.
-3. Usa queste fasce didattiche con aliquota unica:
+3. Usa queste fasce fiscali con aliquota unica:
    - fino a `15000`: `23%`;
    - fino a `28000`: `25%`;
    - fino a `50000`: `35%`;
@@ -3051,7 +3272,7 @@ progressivo.
 
 ```cpp
 /**
- * @brief Stima un'imposta con scaglioni didattici.
+ * @brief Stima un'imposta con scaglioni fiscali.
  */
 #include <iostream>
 #include <string>
@@ -3069,19 +3290,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `if / else if / else` classifica un dato in alternative esclusive.
-- La catena si ferma al primo ramo vero.
-- Con soglie `>=`, ordina i controlli dalla soglia più alta alla più bassa.
-- L'ultimo `else` gestisce tutti i valori rimasti.
-- Testa sempre i confini: esattamente soglia, appena sotto e appena sopra.
+- [ ] `if / else if / else` classifica un dato in alternative esclusive.
+- [ ] La catena si ferma al primo ramo vero.
+- [ ] Con soglie `>=`, ordino i controlli dalla soglia più alta alla più bassa.
+- [ ] L'ultimo `else` gestisce tutti i valori rimasti.
+- [ ] Testo sempre i confini: esattamente soglia, appena sotto e appena sopra.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando la decisione dipende da un valore discreto, come un codice menu o uno
 stato numerico, una lunga catena può diventare difficile da leggere. Nel
-prossimo chunk userai `switch` per organizzare questi casi.
+prossimo capitolo del percorso Fondamenti, `10_selezione_multipla_switch`,
+organizzerai questi casi con `switch`.
 
 
 ## 🎛️ Lo smistatore di sportello: scegliere con `switch`
@@ -3099,13 +3321,20 @@ In questi casi puoi usare `switch`: confronta un valore discreto con diversi
 > `break` è il freno che chiude lo sportello dopo l'erogazione; `default` è il
 > messaggio “codice non valido” quando nessuno sportello corrisponde.
 
+**In questa lezione non** usiamo `switch` per intervalli o confronti tra numeri
+decimali, né introduciamo cicli. Limitiamo la scelta a valori discreti già
+identificabili da `int` o `char`.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere uno `switch` su un codice discreto usando `case`, `break` e `default`.
+- distinguere una selezione discreta da una classificazione per intervalli;
+- scrivere uno `switch` con `case`, `break` e `default`;
+- prevedere il caso eseguito e riconoscere il fall-through;
+- usare due codici distinti per attivare lo stesso blocco quando il fall-through è intenzionale.
 
 ---
 
@@ -3202,17 +3431,17 @@ switch (sceltaMenu) {
 
 Quale `case` viene selezionato con `sceltaMenu = 2`?
 
-[(X)] `case 2`, perché il valore coincide con la sua costante
 [( )] `case 1`, perché è il primo caso scritto
 [( )] `default`, perché ogni scelta deve passare dall'alternativa finale
+[(X)] `case 2`, perché il valore coincide con la sua costante
 
 **Domanda 2**
 
 Perché `break` è importante dopo il messaggio del `case 2`?
 
+[( )] Fa ripartire lo switch dal primo case
 [(X)] Ferma lo switch e impedisce di eseguire i case successivi
 [( )] Rende uguale il valore di tutti i case
-[( )] Fa ripartire lo switch dal primo case
 
 **Domanda 3**
 
@@ -3234,8 +3463,8 @@ Per quale tipo di dato è adatto questo `switch`?
 
 Che cosa può accadere se togli il `break` da `case 2`?
 
-[(X)] L'esecuzione può continuare nel `case` successivo: è il fall-through
 [( )] Il programma torna automaticamente a `case 1`
+[(X)] L'esecuzione può continuare nel `case` successivo: è il fall-through
 [( )] Il compilatore cancella il messaggio del `case 2`
 
 #### 2. RUN (Esegui)
@@ -3318,8 +3547,8 @@ switch (sceltaMenu) {
 Qual è il primo passaggio eseguito quando il programma arriva allo `switch`?
 
 [(X)] Confronta il valore di `sceltaMenu` con i valori dei `case`
-[( )] Esegue sempre il primo blocco e poi cerca il valore
 [( )] Esegue prima `default` come controllo di sicurezza
+[( )] Esegue sempre il primo blocco e poi cerca il valore
 
 **Domanda 2**
 
@@ -3333,25 +3562,25 @@ Perché con `sceltaMenu = 2` non viene eseguito `case 3`?
 
 Che cosa succede senza `break` alla fine di `case 2`?
 
-[(X)] Dopo il messaggio di `case 2`, l'esecuzione continua nel case successivo
 [( )] Il programma si ferma sempre con un errore di compilazione
 [( )] Viene eseguito soltanto `default`
+[(X)] Dopo il messaggio di `case 2`, l'esecuzione continua nel case successivo
 
 **Domanda 4**
 
 Perché `default` non viene eseguito con `sceltaMenu = 2`?
 
 [(X)] Esiste già un case corrispondente e il suo `break` chiude lo switch
-[( )] `default` funziona soltanto con valori negativi
 [( )] Il compilatore elimina sempre `default` quando ci sono tre case
+[( )] `default` funziona soltanto con valori negativi
 
 **Domanda 5**
 
 Perché `double sceltaMenu = 2.0;` non è adatto come espressione dello switch?
 
 [(X)] Lo switch richiede un valore intero o carattere, non un numero decimale
-[( )] Un double può essere usato solo per stampare prezzi
 [( )] I numeri con decimali non possono essere assegnati a variabili
+[( )] Un double può essere usato solo per stampare prezzi
 
 | Passo | Cosa accade | Risultato |
 | :---: | :--- | :--- |
@@ -3396,33 +3625,33 @@ switch (sceltaMenu) {
 
 Quale modifica aggiunge una voce per la visualizzazione del saldo?
 
-[(X)] Aggiungere `case 3`, stampare il messaggio e chiudere con `break`
 [( )] Aggiungere `default 3:` dopo il case 2
+[(X)] Aggiungere `case 3`, stampare il messaggio e chiudere con `break`
 [( )] Cambiare `switch` in `std::cout`
 
 **Domanda 2**
 
 Quale modifica fa eseguire lo stesso messaggio sia con codice `0` sia con codice `9`?
 
-[(X)] Scrivere `case 0:` seguito da `case 9:` prima delle stesse istruzioni
-[( )] Scrivere `case 0 || 9:` come se fosse una condizione booleana
 [( )] Duplicare `default` due volte
+[( )] Scrivere `case 0 || 9:` come se fosse una condizione booleana
+[(X)] Scrivere `case 0:` seguito da `case 9:` prima delle stesse istruzioni
 
 **Domanda 3**
 
 Che effetto ha aggiungere `break` dopo `default`?
 
-[(X)] Rende esplicita l'uscita dallo switch anche quando nessun case coincide
-[( )] Fa eseguire di nuovo il case precedente
 [( )] Trasforma `default` in un ciclo
+[( )] Fa eseguire di nuovo il case precedente
+[(X)] Rende esplicita l'uscita dallo switch anche quando nessun case coincide
 
 **Domanda 4**
 
 Quale modifica mantiene il prezzo di una ricarica con i centesimi?
 
-[(X)] Usare una variabile `double` per l'importo dentro il case, senza usarla come scelta
-[( )] Usare un `double` come espressione dello switch
 [( )] Memorizzare l'importo nel nome del `case`
+[( )] Usare un `double` come espressione dello switch
+[(X)] Usare una variabile `double` per l'importo dentro il case, senza usarla come scelta
 
 **Domanda 5**
 
@@ -3514,19 +3743,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `switch` seleziona valori discreti, come `int` e `char`.
-- `case` rappresenta un valore preciso, non un intervallo.
-- `break` chiude il ramo e previene il fall-through involontario.
-- `default` gestisce i codici non previsti.
-- Il fall-through può essere intenzionale, per esempio per `U` e `u`.
-- Per soglie, intervalli, `double` e `std::string` usa `if / else if`.
+- [ ] `switch` seleziona valori discreti, come `int` e `char`.
+- [ ] `case` rappresenta un valore preciso, non un intervallo.
+- [ ] `break` chiude il ramo e previene il fall-through involontario.
+- [ ] `default` gestisce i codici non previsti.
+- [ ] Il fall-through può essere intenzionale, per esempio per `U` e `u`.
+- [ ] Per soglie, intervalli, `double` e `std::string` uso `if / else if`.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Finora il programma ha seguito un percorso oppure ha scelto un caso. Nel
-prossimo capitolo imparerai a ripetere un'azione con il ciclo `while`.
+prossimo capitolo del percorso Fondamenti, `11_ciclo_while`, imparerai a
+ripetere un'azione finché una condizione resta vera.
 
 
 ## 🔄 Il nastro della cassa: ripetere con il ciclo `while`
@@ -3543,13 +3773,20 @@ rimane vera.
 > sentinella, il nastro si ferma e viene emesso lo scontrino. Se il carrello è
 > già vuoto all'inizio, il nastro non fa neppure un giro.
 
+**In questa lezione non** introduciamo ancora `for`, `do-while` o strumenti
+per interrompere manualmente un ciclo con `break`. Ci concentriamo sul ciclo
+controllato in testa da una sentinella.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un ciclo `while` che legge dati fino a una sentinella e aggiorna la condizione a ogni giro.
+- distinguere inizializzazione, condizione e aggiornamento di un ciclo `while`;
+- tracciare il valore della condizione prima e dopo ogni iterazione;
+- leggere dati fino a una sentinella senza elaborarla;
+- riconoscere i rischi di un ciclo infinito quando la variabile controllata non viene aggiornata.
 
 ---
 
@@ -3627,41 +3864,41 @@ while (n > 5) {
 
 Quante volte viene stampata la parola `Elaborazione`?
 
+[( )] Cinque volte, perché il ciclo arriva fino a 5
 [(X)] Zero volte, perché la condizione `0 > 5` è falsa già all'inizio
 [( )] Una volta, perché ogni `while` esegue almeno un giro
-[( )] Cinque volte, perché il ciclo arriva fino a 5
 
 **Domanda 2**
 
 Perché il corpo del `while` non viene eseguito in questo esempio?
 
-[(X)] Il `while` controlla la condizione prima di entrare nel corpo
 [( )] La stampa dentro il ciclo è vietata
 [( )] La variabile `n` viene automaticamente cancellata
+[(X)] Il `while` controlla la condizione prima di entrare nel corpo
 
 **Domanda 3**
 
 Quale ruolo ha `n = n + 1;` dentro il ciclo?
 
-[(X)] Fa evolvere la variabile che può rendere falsa la condizione
 [( )] Riporta sempre `n` al valore iniziale
 [( )] Decide da sola quale testo stampare
+[(X)] Fa evolvere la variabile che può rendere falsa la condizione
 
 **Domanda 4**
 
 Quale elemento serve per fermare un ciclo che legge articoli fino a `0`?
 
-[(X)] Un valore sentinella e una condizione che lo riconosce
-[( )] Un `switch` dentro ogni iterazione
 [( )] Una costante che deve essere sempre uguale a 1
+[( )] Un `switch` dentro ogni iterazione
+[(X)] Un valore sentinella e una condizione che lo riconosce
 
 **Domanda 5**
 
 Perché un `while` può eseguire zero iterazioni?
 
-[(X)] La condizione può essere falsa prima del primo ingresso nel corpo
-[( )] Il compilatore sceglie casualmente se saltare il primo giro
 [( )] Un ciclo esegue il corpo solo quando contiene `std::cin`
+[( )] Il compilatore sceglie casualmente se saltare il primo giro
+[(X)] La condizione può essere falsa prima del primo ingresso nel corpo
 
 #### 2. RUN (Esegui)
 
@@ -3734,41 +3971,41 @@ while (prezzoArticolo != 0.0) {
 
 Quale condizione permette al ciclo di entrare nel corpo al primo controllo?
 
-[(X)] `12.50 != 0.0`, che è vera
-[( )] `0.0 != 12.50`, che viene controllata dopo il corpo
 [( )] La condizione non viene controllata al primo giro
+[( )] `0.0 != 12.50`, che viene controllata dopo il corpo
+[(X)] `12.50 != 0.0`, che è vera
 
 **Domanda 2**
 
 Perché dopo il giro il totale vale `12.50`?
 
-[(X)] Il prezzo viene sommato prima che la variabile sia aggiornata a `0.0`
 [( )] Il ciclo aggiunge sempre due volte il primo prezzo
 [( )] La sentinella `0.0` viene conteggiata come prezzo
+[(X)] Il prezzo viene sommato prima che la variabile sia aggiornata a `0.0`
 
 **Domanda 3**
 
 Perché il secondo controllo non entra nel corpo?
 
-[(X)] L'aggiornamento porta `prezzoArticolo` alla sentinella e rende falsa la condizione
-[( )] Il ciclo si ferma dopo un giro indipendentemente dalla condizione
 [( )] Il totale non può essere aggiornato più di una volta
+[( )] Il ciclo si ferma dopo un giro indipendentemente dalla condizione
+[(X)] L'aggiornamento porta `prezzoArticolo` alla sentinella e rende falsa la condizione
 
 **Domanda 4**
 
 Quale valore non deve essere sommato in un ciclo con sentinella `0.0`?
 
-[(X)] La sentinella `0.0`, perché serve solo a indicare la fine
-[( )] Ogni prezzo maggiore di zero
 [( )] Il primo prezzo valido inserito
+[( )] Ogni prezzo maggiore di zero
+[(X)] La sentinella `0.0`, perché serve solo a indicare la fine
 
 **Domanda 5**
 
 Che cosa rischi se rimuovi l'aggiornamento di `prezzoArticolo`?
 
-[(X)] La condizione può restare vera e il ciclo può diventare infinito
 [( )] Il ciclo esegue automaticamente il ramo `else`
 [( )] La variabile diventa subito uguale alla sentinella
+[(X)] La condizione può restare vera e il ciclo può diventare infinito
 
 | Momento | `prezzoArticolo` | Condizione | Totale |
 | :--- | :---: | :---: | :---: |
@@ -3819,25 +4056,25 @@ Dove devi inserire la nuova lettura se vuoi continuare a chiedere prezzi?
 
 Che cosa succede se cambi la sentinella da `0.0` a `-1.0`?
 
-[(X)] Il ciclo continua finché il prezzo non diventa `-1.0`, che non viene sommato
-[( )] Il ciclo termina sempre dopo il primo prezzo positivo
 [( )] Il valore `-1.0` viene automaticamente trasformato in `0.0`
+[( )] Il ciclo termina sempre dopo il primo prezzo positivo
+[(X)] Il ciclo continua finché il prezzo non diventa `-1.0`, che non viene sommato
 
 **Domanda 4**
 
 Quale modifica evita di sommare un prezzo negativo ma permette di continuare?
 
-[(X)] Aggiungere un controllo nel corpo e aggiornare comunque il prossimo prezzo
-[( )] Usare `-1.0` come totale iniziale
 [( )] Mettere la lettura del prezzo fuori da `main`
+[( )] Usare `-1.0` come totale iniziale
+[(X)] Aggiungere un controllo nel corpo e aggiornare comunque il prossimo prezzo
 
 **Domanda 5**
 
 Perché conviene modificare una sola parte del ciclo alla volta?
 
+[( )] Perché il compilatore impedisce di cambiare due righe consecutive
 [(X)] Per distinguere se l'errore riguarda condizione, corpo o aggiornamento
 [( )] Perché un `while` può contenere una sola istruzione
-[( )] Perché il compilatore impedisce di cambiare due righe consecutive
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -3915,19 +4152,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `while` ripete il corpo mentre la condizione è vera.
-- Il controllo è in testa: sono possibili zero iterazioni.
-- Ogni ciclo ha inizializzazione, condizione e aggiornamento.
-- Una sentinella ferma il ciclo e non va elaborata.
-- Senza aggiornamento della variabile controllata può nascere un ciclo infinito.
+- [ ] `while` ripete il corpo mentre la condizione è vera.
+- [ ] Il controllo è in testa: sono possibili zero iterazioni.
+- [ ] Ogni ciclo ha inizializzazione, condizione e aggiornamento.
+- [ ] Una sentinella ferma il ciclo e non va elaborata.
+- [ ] Senza aggiornamento della variabile controllata può nascere un ciclo infinito.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando sai già quante volte ripetere, per esempio dodici mesi o trenta righe,
-`while` può diventare verboso. Nel prossimo capitolo userai `for` per raccogliere
-inizializzazione, condizione e aggiornamento in una sola riga.
+`while` può diventare verboso. Nel prossimo capitolo del percorso Fondamenti,
+`12_ciclo_for`, raccoglierai inizializzazione, condizione e aggiornamento in
+una sola riga.
 
 
 ## ⏳ Il contatore compatto: ripetere con il ciclo `for`
@@ -3944,13 +4182,21 @@ aggiornamento del contatore.
 > “parti da 1, fermati a 5, avanza di 1 a ogni scatto”. La macchina ripete il
 > lavoro senza che tu debba ricordarti di aggiornare manualmente il contatore.
 
+**In questa lezione non** introduciamo ancora il ciclo `do-while`, l'uscita
+forzata con `break` o l'uso del contatore per accedere agli elementi di un
+array. Ci concentriamo su ripetizioni con numero noto e sulle tre parti
+dell'intestazione `for`.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un `for` per ripetere un calcolo un numero noto di volte.
+- distinguere inizializzazione, condizione e aggiornamento nell'intestazione `for`;
+- prevedere i valori prodotti da un contatore e il numero delle iterazioni;
+- scrivere un `for` per ripetere un calcolo un numero noto di volte;
+- tracciare il contatore e una quantità aggiornata dopo ogni iterazione.
 
 ---
 
@@ -4027,16 +4273,16 @@ for (int i = 0; i < 5; ++i) {
 
 Quali valori vengono stampati dal ciclo?
 
-[(X)] `0, 1, 2, 3, 4`, perché il ciclo si ferma prima di 5
 [( )] `1, 2, 3, 4, 5`, perché il contatore parte sempre da 1
+[(X)] `0, 1, 2, 3, 4`, perché il ciclo si ferma prima di 5
 [( )] `0, 1, 2, 3`, perché il ciclo esegue quattro giri
 
 **Domanda 2**
 
 Quante volte viene eseguito il corpo del `for`?
 
-[(X)] Cinque volte, per i valori da 0 a 4
 [( )] Sei volte, perché il valore 5 viene incluso
+[(X)] Cinque volte, per i valori da 0 a 4
 [( )] Una sola volta, perché `i` viene dichiarata nell'intestazione
 
 **Domanda 3**
@@ -4044,24 +4290,24 @@ Quante volte viene eseguito il corpo del `for`?
 Perché la condizione è `i < 5` e non `i <= 5` se vuoi cinque iterazioni?
 
 [(X)] Con `i < 5` i valori validi sono 0, 1, 2, 3 e 4
-[( )] Perché `<=` non può mai essere usato in un ciclo
 [( )] Perché il contatore viene aggiornato prima del primo giro
+[( )] Perché `<=` non può mai essere usato in un ciclo
 
 **Domanda 4**
 
 Quale ruolo ha `++i` nell'intestazione?
 
-[(X)] Aumenta il contatore dopo ogni esecuzione del corpo
 [( )] Imposta `i` a zero prima di ogni giro
 [( )] Decide quale testo deve stampare `std::cout`
+[(X)] Aumenta il contatore dopo ogni esecuzione del corpo
 
 **Domanda 5**
 
 Perché un `for` è adatto a dodici mesi di un report?
 
 [(X)] Il numero di ripetizioni è noto e il contatore può avanzare da 1 a 12
-[( )] Un `for` è obbligatorio ogni volta che si usano numeri interi
 [( )] Il `for` serve soltanto per leggere dati fino a una sentinella
+[( )] Un `for` è obbligatorio ogni volta che si usano numeri interi
 
 #### 2. RUN (Esegui)
 
@@ -4121,9 +4367,9 @@ for (int anno = 1; anno <= NUMERO_ANNI; ++anno) {
 
 Quando viene eseguita l'inizializzazione `int anno = 1`?
 
-[(X)] Una sola volta, prima del primo controllo della condizione
-[( )] Dopo ogni iterazione, per riportare l'anno a 1
 [( )] Solo quando il valore residuo diventa zero
+[( )] Dopo ogni iterazione, per riportare l'anno a 1
+[(X)] Una sola volta, prima del primo controllo della condizione
 
 **Domanda 2**
 
@@ -4137,25 +4383,25 @@ Quale sequenza descrive correttamente un giro del `for`?
 
 Perché dopo cinque iterazioni `valoreResiduo` vale `0.0`?
 
+[( )] La costante `QUOTA_ANNUA` viene sottratta due volte al primo giro
 [(X)] Ogni giro sottrae 2000 dal valore iniziale di 10000
 [( )] Il `for` azzera automaticamente tutte le variabili alla fine
-[( )] La costante `QUOTA_ANNUA` viene sottratta due volte al primo giro
 
 **Domanda 4**
 
 Che cosa succede quando `anno` diventa `6`?
 
+[( )] Il contatore torna automaticamente a 1
 [(X)] La condizione `anno <= 5` è falsa e il ciclo termina
 [( )] Il corpo viene eseguito ancora una volta per il valore finale
-[( )] Il contatore torna automaticamente a 1
 
 **Domanda 5**
 
 Perché il numero di iterazioni è prevedibile in `for (int anno = 1; anno <= 5; ++anno)`?
 
-[(X)] Inizializzazione, limite e aggiornamento definiscono un percorso chiuso
 [( )] Il compilatore conta le righe stampate invece dei valori di `anno`
 [( )] Il ciclo termina quando una variabile decimale diventa negativa
+[(X)] Inizializzazione, limite e aggiornamento definiscono un percorso chiuso
 
 | Anno | Quota sottratta | Residuo dopo il giro |
 | :---: | :---: | :---: |
@@ -4187,41 +4433,41 @@ for (int anno = 1; anno <= 5; ++anno) {
 
 Quale modifica stampa dodici mesi invece di cinque anni?
 
-[(X)] Sostituire il limite `5` con `12` mantenendo `anno = 1` e `++anno`
 [( )] Cambiare `++anno` in `--anno`
 [( )] Spostare `anno = 1` dentro il corpo
+[(X)] Sostituire il limite `5` con `12` mantenendo `anno = 1` e `++anno`
 
 **Domanda 2**
 
 Quale modifica fa partire il conteggio da 0 e arrivare fino a 4?
 
+[( )] Usare `int anno = 5; anno < 0; ++anno`
 [(X)] Usare `int anno = 0; anno < 5; ++anno`
 [( )] Usare `int anno = 1; anno <= 4; --anno`
-[( )] Usare `int anno = 5; anno < 0; ++anno`
 
 **Domanda 3**
 
 Che effetto ha cambiare `anno <= 5` in `anno < 5` in un ciclo che parte da 1?
 
-[(X)] Il ciclo esegue gli anni da 1 a 4, quindi una iterazione in meno
 [( )] Il ciclo esegue gli anni da 1 a 5 come prima
 [( )] Il ciclo parte da zero senza modificare l'inizializzazione
+[(X)] Il ciclo esegue gli anni da 1 a 4, quindi una iterazione in meno
 
 **Domanda 4**
 
 Quale modifica permette un conto alla rovescia da 5 a 1?
 
+[( )] Usare `int anno = 5; anno <= 1; ++anno`
 [(X)] Usare `int anno = 5; anno >= 1; --anno`
 [( )] Usare `int anno = 1; anno <= 5; ++anno`
-[( )] Usare `int anno = 5; anno <= 1; ++anno`
 
 **Domanda 5**
 
 Perché conviene modificare una sola parte dell'intestazione alla volta?
 
-[(X)] Per capire se il risultato è cambiato per inizializzazione, condizione o aggiornamento
 [( )] Perché un `for` può contenere una sola modifica in tutto il programma
 [( )] Perché il corpo del ciclo non può essere eseguito dopo una modifica
+[(X)] Per capire se il risultato è cambiato per inizializzazione, condizione o aggiornamento
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -4292,19 +4538,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Usa `for` quando il numero di ripetizioni è noto.
-- L'intestazione contiene inizializzazione, condizione e aggiornamento.
-- La condizione viene controllata prima di ogni iterazione.
-- Con `<` il valore limite non viene incluso; con `<=` può essere incluso.
-- Per dati a sentinella e numero di giri sconosciuto resta adatto il `while`.
+- [ ] Uso `for` quando il numero di ripetizioni è noto.
+- [ ] L'intestazione contiene inizializzazione, condizione e aggiornamento.
+- [ ] La condizione viene controllata prima di ogni iterazione.
+- [ ] Con `<` il valore limite non viene incluso; con `<=` può essere incluso.
+- [ ] Per dati a sentinella e numero di giri sconosciuto resta adatto il `while`.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 A volte il corpo deve essere eseguito almeno una volta, per esempio quando
 chiedi un dato prima di poter controllare se è valido. Nel prossimo capitolo
-userai il ciclo `do-while`, con il controllo in coda.
+del percorso Fondamenti, `13_ciclo_do_while`, userai il ciclo `do-while`, con
+il controllo in coda.
 
 
 ## 🔁 Garantire l'azione: validare con il ciclo `do-while`
@@ -4321,13 +4568,20 @@ alla fine.
 > controllare se i dati sono validi. Se c'è un errore, il modulo torna indietro
 > e lo compili di nuovo.
 
+**In questa lezione non** introduciamo ancora `break` e `continue` per guidare
+internamente il ciclo, né array o funzioni. Ci concentriamo sul controllo in
+coda e sulla validazione di un singolo dato.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un `do-while` per validare un input che deve essere richiesto almeno una volta.
+- distinguere il controllo in coda del `do-while` dal controllo in testa;
+- prevedere il numero minimo di iterazioni di un `do-while`;
+- costruire una condizione di validazione con `||` per due limiti;
+- riconoscere la sintassi necessaria per chiudere il costrutto.
 
 ---
 
@@ -4404,41 +4658,41 @@ do {
 
 Quante volte viene eseguito il corpo?
 
+[( )] Cinque volte, perché il ciclo arriva fino a 5
 [(X)] Una volta, perché il corpo viene eseguito prima del controllo
 [( )] Zero volte, perché `10 < 5` è falso
-[( )] Cinque volte, perché il ciclo arriva fino a 5
 
 **Domanda 2**
 
 Perché il `do-while` è utile per chiedere un dato valido?
 
+[( )] Controlla sempre la condizione prima della prima lettura
 [(X)] Permette di chiedere il dato almeno una volta prima di controllarlo
 [( )] Impedisce all'utente di inserire più di un valore
-[( )] Controlla sempre la condizione prima della prima lettura
 
 **Domanda 3**
 
 Dove viene controllata la condizione nel `do-while`?
 
+[( )] Solo quando il programma arriva a `return 0`
 [(X)] Dopo il corpo del ciclo
 [( )] Prima del corpo, come nel `while`
-[( )] Solo quando il programma arriva a `return 0`
 
 **Domanda 4**
 
 Quale elemento sintattico chiude il `do-while`?
 
+[( )] La parola `break` obbligatoria fuori dalle graffe
 [(X)] Il punto e virgola dopo `while (condizione)`
 [( )] Un secondo `else` dopo la condizione
-[( )] La parola `break` obbligatoria fuori dalle graffe
 
 **Domanda 5**
 
 Quale situazione richiede più naturalmente un `do-while` che un `while`?
 
-[(X)] Un modulo che deve essere mostrato e compilato almeno una volta
 [( )] Un conteggio noto da 1 a 12
 [( )] Una classificazione tra fasce di fatturato
+[(X)] Un modulo che deve essere mostrato e compilato almeno una volta
 
 #### 2. RUN (Esegui)
 
@@ -4497,40 +4751,40 @@ do {
 
 Qual è il primo passaggio eseguito dal programma?
 
-[(X)] Legge un importo dentro il corpo del `do`
 [( )] Controlla subito se `importo` è già valido
+[(X)] Legge un importo dentro il corpo del `do`
 [( )] Confronta prima le due costanti tra loro
 
 **Domanda 2**
 
 Perché con input `250` il ciclo termina dopo il primo giro?
 
-[(X)] 250 non è minore di 1 e non è maggiore di 5000, quindi la condizione è falsa
 [( )] Il primo valore inserito viene sempre considerato valido
+[(X)] 250 non è minore di 1 e non è maggiore di 5000, quindi la condizione è falsa
 [( )] Il `do-while` termina quando incontra un numero pari
 
 **Domanda 3**
 
 Che cosa succede con input `-10` seguito da `250`?
 
-[(X)] Il primo valore mantiene la condizione vera, quindi il programma ripete la lettura e poi accetta 250
-[( )] Il programma accetta subito -10 perché è un numero inserito
 [( )] Il programma esegue il corpo solo una volta e ignora 250
+[( )] Il programma accetta subito -10 perché è un numero inserito
+[(X)] Il primo valore mantiene la condizione vera, quindi il programma ripete la lettura e poi accetta 250
 
 **Domanda 4**
 
 Perché l'operatore `||` mantiene il ciclo per un importo fuori intervallo?
 
 [(X)] Basta che sia vera una delle due condizioni di errore: troppo piccolo o troppo grande
-[( )] Richiede che l'importo sia contemporaneamente minore e maggiore
 [( )] Converte l'importo in un valore booleano senza confrontarlo
+[( )] Richiede che l'importo sia contemporaneamente minore e maggiore
 
 **Domanda 5**
 
 Che errore sintattico può nascere se togli il `;` dopo `while (...)`?
 
-[(X)] Il compilatore segnala che manca il punto e virgola prima dell'istruzione successiva
 [( )] Il ciclo diventa automaticamente un `while` con controllo in testa
+[(X)] Il compilatore segnala che manca il punto e virgola prima dell'istruzione successiva
 [( )] Il programma accetta tutti gli importi senza controllarli
 
 | Giro | `importo` | Condizione di errore | Azione |
@@ -4569,41 +4823,41 @@ do {
 
 Quale modifica restringe l'intervallo agli importi tra 10 e 1000?
 
+[( )] Sostituire la condizione con `importo == 10.0`
 [(X)] Usare `importo < 10.0 || importo > 1000.0` nella condizione
 [( )] Usare `importo > 10.0 || importo < 1000.0`
-[( )] Sostituire la condizione con `importo == 10.0`
 
 **Domanda 2**
 
 Quale modifica permette al PIN di essere provato al massimo tre volte?
 
-[(X)] Aggiungere un contatore e continuare finché PIN errato e tentativi minori di 3
 [( )] Rimuovere il controllo del PIN e usare solo `break`
+[(X)] Aggiungere un contatore e continuare finché PIN errato e tentativi minori di 3
 [( )] Inserire tre `do` uno dentro l'altro senza contatore
 
 **Domanda 3**
 
 Che effetto ha cambiare `importo <= 0.0` in `importo < 0.0`?
 
+[( )] Il ciclo non esegue più il primo giro
 [(X)] L'importo 0.0 viene accettato, perché non è minore di zero
 [( )] L'importo 0.0 viene sempre rifiutato come prima
-[( )] Il ciclo non esegue più il primo giro
 
 **Domanda 4**
 
 Quale modifica mantiene il messaggio di errore solo per valori non validi?
 
-[(X)] Mettere un `if` nel corpo che controlla lo stesso intervallo
 [( )] Mettere il messaggio dopo `return 0`
 [( )] Sostituire `std::cin` con `std::cout` nel corpo
+[(X)] Mettere un `if` nel corpo che controlla lo stesso intervallo
 
 **Domanda 5**
 
 Perché conviene modificare una sola parte del ciclo alla volta?
 
 [(X)] Per capire se il problema riguarda il corpo, la condizione o il punto e virgola finale
-[( )] Perché un `do-while` può contenere una sola lettura in assoluto
 [( )] Perché ogni modifica elimina la prima iterazione
+[( )] Perché un `do-while` può contenere una sola lettura in assoluto
 
 <details>
 <summary>💡 Scaffold di partenza</summary>
@@ -4670,64 +4924,55 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `do-while` esegue il corpo e poi controlla la condizione.
-- Il corpo viene eseguito almeno una volta.
-- È adatto alla validazione di input e ai menu che devono apparire subito.
-- Dopo `while (condizione)` del `do-while` serve `;`.
-- Usa `while` o `for` quando zero iterazioni è un caso accettabile.
+- [ ] `do-while` esegue il corpo e poi controlla la condizione.
+- [ ] Il corpo viene eseguito almeno una volta.
+- [ ] È adatto alla validazione di input e ai menu che devono apparire subito.
+- [ ] Dopo `while (condizione)` del `do-while` metto `;`.
+- [ ] Uso `while` o `for` quando zero iterazioni è un caso accettabile.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora conosci i tre cicli fondamentali. Nel prossimo capitolo userai `break` e
-`continue` per guidare con maggiore precisione il flusso dentro un ciclo.
+Ora conosci i tre cicli fondamentali. Nel prossimo capitolo del percorso
+Fondamenti, `14_controllo_cicli`, userai `break` e `continue` per guidare con
+maggiore precisione il flusso dentro un ciclo.
 
 
 ## ⏹️ Uscite Anticipate: `break` e `continue` nei cicli
 
-> "Non tutte le iterazioni vanno completate: a volte si salta, a volte si chiude il banco."  
-> — *Controllo operativo dei processi*
+In un controllo aziendale non tutti i dati meritano lo stesso trattamento:
+un movimento vuoto può essere ignorato, mentre un importo anomalo può rendere
+inutile continuare. In C++ puoi esprimere queste due decisioni dentro un ciclo.
 
-Nei cicli a volte serve **interrompere tutto** (`break`) o **saltare solo il giro corrente** (`continue`).  
-Sono il cruscotto fine del programmatore: da usare con chiarezza, non per nascondere logica confusa.
+> 💡 **Metafora:**  
+> Immagina un nastro che trasporta fatture. `continue` è il pulsante
+> **“salta questa fattura”**: il nastro riparte con la successiva. `break` è
+> il pulsante **“ferma il nastro”**: il controllo del lotto termina subito.
 
-> 💡 **Metafora: nastro di controllo fatture**  
-> - **`continue`** = “questa fattura è a zero: **saltala**, passa alla successiva”  
-> - **`break`** = “importo anomalo: **ferma** l’intero controllo e segnala”
-
-In questo chunk **non** trattiamo la formattazione monetari (`iomanip`): ha un capitolo dedicato.
+**In questa lezione non** introduciamo ancora funzioni, array di grandi
+dimensioni o cicli annidati. Ci concentriamo sul flusso di un singolo ciclo e
+sulla differenza tra saltare un giro e terminare il controllo.
 
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
+
 Alla fine di questa lezione sei in grado di:
-- Usare `break` e `continue` in un `for`/`while` con intento chiaro
-- Prevedere l’output di un ciclo che li combina
+
+- distinguere l'effetto di `continue` da quello di `break`;
+- prevedere il percorso di un ciclo dopo un salto o un'uscita anticipata;
+- tracciare il contatore e i dati elaborati nei due casi;
+- usare `continue` e `break` in un controllo di movimenti con regole esplicite.
 
 ---
 
-### ⚙️ In breve
+### ⚙️ Prima del laboratorio: due uscite diverse
 
-| Parola | Effetto |
-|--------|---------|
-| `continue` | Salta al **prossimo** giro del ciclo più interno |
-| `break` | Esce **subito** dal ciclo più interno |
-
-```cpp
-for (int i = 1; i <= 5; ++i) {
-    if (i == 2) continue;  // non stampare 2
-    if (i == 4) break;     // stop prima di 4,5
-    std::cout << i;
-}
-// stampa: 13
-```
-
----
-
-### 🔬 Laboratorio PRIMM: Controllo scarti
-
-#### 1. PREDICT (Prevedi)
+| Istruzione | Effetto nel ciclo | Regola tipica |
+| :--- | :--- | :--- |
+| `continue` | salta il resto del giro corrente e passa al prossimo | ignora un dato vuoto o non interessante |
+| `break` | esce subito dal ciclo più interno | ferma l’analisi davanti a un dato anomalo |
 
 ```cpp
 for (int i = 1; i <= 5; ++i) {
@@ -4737,24 +4982,92 @@ for (int i = 1; i <= 5; ++i) {
 }
 ```
 
-Cosa stampa il ciclo?
+Nel `for`, dopo `continue` viene comunque eseguito l’aggiornamento `++i`.
+Dopo `break`, invece, il ciclo è terminato: non esiste un giro successivo.
 
-[( )] 12345
-[( )] 1345
-[(X)] 13
-[( )] 1234
+---
 
-<details>
-<summary>💡 Spiegazione</summary>
-<code>i==2</code> → <code>continue</code> (niente stampa). <code>i==3</code> stampa. <code>i==4</code> → <code>break</code> (il 5 non si raggiunge). Resta <code>13</code>.
-</details>
+### 🧭 Prima del laboratorio: leggere il flusso
+
+Per ogni valore di `i`, il programma legge le condizioni dall’alto verso il
+basso:
+
+1. se `i == 2`, salta la stampa e passa al prossimo giro;
+2. altrimenti, se `i == 4`, esce dal ciclo;
+3. altrimenti, stampa `i`.
+
+Il punto importante è **dove** si trova l’istruzione: un `continue` prima
+della stampa impedisce a quella stampa di essere raggiunta.
+
+---
+
+### 🔬 Laboratorio PRIMM: Controllo scarti
+
+Il ciclo simula una prima scansione di dati: alcuni valori vengono saltati,
+un valore anomalo chiude il controllo.
+
+#### 1. PREDICT (Prevedi)
+
+Prima di eseguire il codice, scegli le risposte e spiega a parole la
+differenza tra saltare un giro e terminare il ciclo:
+
+```cpp
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;
+    if (i == 4) break;
+    std::cout << i;
+}
+```
+
+**Domanda 1**
+
+Qual è l’effetto di `continue` quando `i` vale 2?
+
+[(X)] Salta il resto del giro corrente e passa al giro successivo
+[( )] Ripete il giro corrente senza aggiornare `i`
+[( )] Esce definitivamente dal ciclo
+
+**Domanda 2**
+
+Qual è l’effetto di `break` quando `i` vale 4?
+
+[(X)] Esce subito dal ciclo e non raggiunge il giro con `i` uguale a 5
+[( )] Riporta `i` a 1 e ricomincia il ciclo
+[( )] Salta solo la stampa di 4 e continua con 5
+
+**Domanda 3**
+
+Quale output è più coerente con il flusso del ciclo?
+
+[(X)] `13`, perché 2 viene saltato e il ciclo termina quando arriva a 4
+[( )] `1345`, perché `break` salta soltanto il numero 4
+[( )] `12345`, perché i due comandi non cambiano l’output
+
+**Domanda 4**
+
+Perché il ciclo non stampa `2`?
+
+[( )] Perché `break` viene eseguito due volte nello stesso giro
+[( )] Perché `i` diventa automaticamente uguale a 0
+[(X)] Perché `continue` viene eseguito prima di `std::cout` nel giro con `i == 2`
+
+**Domanda 5**
+
+In quale situazione aziendale è più adatto `break`?
+
+[(X)] Quando un dato anomalo rende inutile o rischiosa l’analisi dei dati successivi
+[( )] Quando vuoi aumentare automaticamente il valore del contatore
+[( )] Quando vuoi ignorare un solo dato ma continuare con tutti gli altri
 
 #### 2. RUN (Esegui)
 
+Digita il programma, eseguilo e confronta l’output con la tua previsione.
+
 ```cpp
 /**
- * @file scarti_ciclo.cpp
- * @brief continue salta, break interrompe.
+ * @file controllo_scarti.cpp
+ * @brief Mostra come saltare un giro e terminare un controllo.
+ * @return int Codice di uscita del programma.
  */
 #include <iostream>
 
@@ -4776,51 +5089,206 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| `i` | Azione | Output accumulato |
-|-----|--------|-------------------|
-| 1 | stampa | `1` |
-| 2 | `continue` | `1` |
-| 3 | stampa | `13` |
-| 4 | `break` | fine |
+Dopo il Run, ricostruisci il percorso di ogni iterazione:
+
+```cpp
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;
+    if (i == 4) break;
+    std::cout << i;
+}
+```
+
+**Domanda 1**
+
+Quale sequenza di azioni avviene quando `i` vale 2?
+
+[(X)] La prima condizione è vera, parte `continue`, non si stampa 2 e il `for` aggiorna il contatore
+[( )] Si stampa 2, poi la seconda condizione interrompe il ciclo
+[( )] Il ciclo termina e il valore 3 non viene mai controllato
+
+**Domanda 2**
+
+Perché il valore 3 viene stampato?
+
+[( )] `break` trasforma 3 in un valore valido da stampare
+[(X)] Entrambe le condizioni sono false, quindi il flusso raggiunge `std::cout`
+[( )] `continue` stampa automaticamente il valore che segue quello saltato
+
+**Domanda 3**
+
+Dopo `continue` in questo `for`, cosa succede normalmente?
+
+[( )] Il programma torna alla dichiarazione di `i` e la reinizializza a 1
+[( )] Il programma salta direttamente alla riga dopo tutto il ciclo
+[(X)] Viene eseguita l’espressione di aggiornamento `++i`, poi si controlla la condizione del ciclo
+
+**Domanda 4**
+
+Perché il valore 5 non viene mai stampato?
+
+[(X)] Con `i == 4` viene eseguito `break`, che termina il ciclo prima del giro successivo
+[( )] Il compilatore considera 5 un valore non stampabile dopo un `continue`
+[( )] Il `for` arriva solo fino a 4 anche se la condizione dice `i <= 5`
+
+**Domanda 5**
+
+Se sostituisci `continue` con `break` nella condizione `i == 2`, perché l’output diventa `1`?
+
+[( )] Il primo giro viene annullato insieme a tutti i valori già stampati
+[( )] Il secondo comando `break` viene ignorato perché ce n’è già uno
+[(X)] Il ciclo termina già al secondo giro, prima di poter controllare 3 e 4
+
+| Valore di `i` | Istruzione decisiva | Effetto | Output |
+| :---: | :--- | :--- | :--- |
+| 1 | nessuna condizione vera | raggiunge la stampa | `1` |
+| 2 | `continue` | salta la stampa e passa a `++i` | `1` |
+| 3 | nessuna condizione vera | raggiunge la stampa | `13` |
+| 4 | `break` | esce subito dal ciclo | `13` |
+| 5 | nessun giro | il ciclo è già terminato | `13` |
+
+Apri il programma in [Python Tutor C++](https://pythontutor.com/cpp.html):
+osserva che dopo `continue` il contatore del `for` avanza, mentre dopo
+`break` il flusso va direttamente alla riga dopo il ciclo.
 
 #### 4. MODIFY (Modifica)
-1. Inverti: `break` su 2 e `continue` su 4 — cosa cambia?
-2. Sostituisci il `for` con un `while` equivalente.
-3. Conta quanti numeri **effettivamente stampati** con un contatore.
 
-#### 5. MAKE (Crea)
-**Scenario SIA — Analisi movimenti di cassa**
+Prima di modificare il listato, prevedi l’effetto di ogni cambiamento:
 
-Sequenza fissa di importi (array piccolo o elenco in variabili).  
-- `continue` se importo `== 0`  
-- `break` se importo `> 10000` (outlier)  
-- Stampa quanti movimenti validi sono stati elaborati prima dello stop  
+```cpp
+for (int i = 1; i <= 5; ++i) {
+    if (i == 2) continue;
+    if (i == 4) break;
+    std::cout << i;
+}
+```
+
+**Domanda 1**
+
+Quale modifica stampa `124` e termina il ciclo dopo 4?
+
+[( )] Cambiare `i == 4` in `i == 5` senza spostare la stampa
+[(X)] Spostare `std::cout << i;` prima dei due controlli e lasciare `break` su 4
+[( )] Sostituire `continue` su 2 con `break` e lasciare tutto il resto invariato
+
+**Domanda 2**
+
+Quale modifica salta gli importi pari ma continua a controllare gli altri?
+
+[( )] Usare `if (importo % 2 == 0) break;` per ogni importo pari
+[(X)] Usare `if (importo % 2 == 0) continue;` dentro il ciclo
+[( )] Usare `if (importo / 2 == 0) continue;`
+
+**Domanda 3**
+
+Quale modifica fa terminare il ciclo quando trova un valore maggiore di 10000?
+
+[( )] Inserire `if (importo > 10000) continue;` se vuoi fermare il ciclo
+[(X)] Inserire `if (importo > 10000) break;` prima dell’elaborazione dell’importo
+[( )] Cambiare il contatore in `importo > 10000`
+
+**Domanda 4**
+
+Per contare solo i movimenti effettivamente elaborati, dove conviene incrementare `validi`?
+
+[( )] Prima di `continue`, così anche gli importi scartati vengono contati
+[( )] Dopo il ciclo, una sola volta, perché il contatore si aggiorna da solo
+[(X)] Dopo i controlli `continue` e `break`, nel punto in cui il movimento viene elaborato
+
+**Domanda 5**
+
+Perché conviene provare una modifica alla volta?
+
+[(X)] Per capire se il cambiamento ha alterato il salto, l’uscita o il conteggio previsto
+[( )] Perché in un ciclo può esistere una sola istruzione `if`
+[( )] Perché `continue` e `break` funzionano solo nel primo tentativo
+
+Parti da questo scaffold:
 
 <details>
-<summary>💡 Scaffold</summary>
+<summary>💡 Scaffold di partenza</summary>
 
 ```cpp
 #include <iostream>
+
 int main() {
-    double mov[] = {100.0, 0.0, 250.0, 12000.0, 80.0};
-    // for + continue + break
+    for (int i = 1; i <= 5; ++i) {
+        if (i == 2) continue;
+        if (i == 4) break;
+        std::cout << i;
+    }
     return 0;
 }
 ```
+
+</details>
+
+**Modifica A — cambia il punto di stop**  
+Cambia solo la condizione di `break` per terminare quando `i` vale `3`.
+
+**Modifica B — conta i dati elaborati**  
+Aggiungi `int elaborati = 0;`. Incrementalo solo dopo i due controlli,
+nel punto in cui il valore viene davvero elaborato e stampato.
+
+**Modifica C — ciclo sui movimenti**  
+Usa una sequenza di importi e sostituisci le condizioni su `i` con:
+`continue` per `importo == 0` e `break` per `importo > 10000`.
+
+---
+
+#### 5. MAKE (Crea)
+
+**Scenario aziendale — Analisi movimenti di cassa**
+
+Scrivi `analizza_movimenti.cpp` con i seguenti requisiti chiusi:
+
+1. Usa la sequenza `100.0, 0.0, 250.0, 12000.0, 80.0`.
+2. Scorri i cinque importi con un ciclo.
+3. Se l’importo vale `0.0`, usa `continue`: non stamparlo e non contarlo.
+4. Se l’importo è maggiore di `10000.0`, usa `break`: interrompi l’analisi
+   prima di elaborare quel movimento e quelli successivi.
+5. Conta e stampa quanti movimenti validi sono stati elaborati prima dello stop.
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    double movimenti[] = {100.0, 0.0, 250.0, 12000.0, 80.0};
+    int validi = 0;
+
+    /// Gli zeri non rappresentano movimenti da registrare.
+    // TODO: ciclo sui cinque elementi
+    // TODO: continue per gli zeri
+    // TODO: break per l'outlier
+    // TODO: conta e stampa i movimenti validi
+
+    return 0;
+}
+```
+
 </details>
 
 ---
 
 ### 📝 Riepilogo tascabile
-- `continue` = salta **questo** giro
-- `break` = esci dal ciclo
-- Usali quando la regola di business è chiara (scarto / stop)
-- Non sostituiscono una buona condizione di ciclo
+
+- [ ] `continue` salta il resto dell’iterazione corrente.
+- [ ] `break` termina subito il ciclo più interno.
+- [ ] In un `for`, `continue` porta comunque all’aggiornamento del contatore.
+- [ ] La posizione del comando rispetto alla stampa cambia il flusso osservato.
+- [ ] Uso i due comandi per regole di business chiare, non per nascondere codice confuso.
 
 ---
 
-### ➡️ Prossimo chunk
-Dal ciclo al **reparto**: introduciamo le **funzioni** che restituiscono un valore.
+### ➡️ Prossimo passo nel percorso
+
+Ora sai controllare il flusso dentro un ciclo. Il prossimo capitolo del
+percorso Fondamenti, `15_formattazione_contabile`, consolida presentazione dei
+dati e output prima della successiva estensione sulle funzioni.
+
 
 ## 🖨️ La stampante fiscale: `std::fixed` e `std::setprecision`
 
@@ -4829,11 +5297,18 @@ Quando stampi un importo, `std::cout` mostra il valore in una forma tecnica. In 
 > 💡 **Metafora:**  
 > Immagina una stampante fiscale. `std::fixed` seleziona la modalità “importo decimale”; `std::setprecision(2)` imposta due caselle per i centesimi. La stampante non cambia il valore del calcolo: cambia il modo in cui lo presenta.
 
-### 🎯 Obiettivo di questo chunk
+**In questa lezione non** modifichiamo la precisione interna dei calcoli né
+introduciamo arrotondamento monetario, funzioni o strutture dati. Ci limitiamo
+alla rappresentazione dei valori già calcolati nello stream `std::cout`.
+
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- formattare un prospetto di importi con `std::fixed` e `std::setprecision(2)`.
+- distinguere il valore calcolato dalla forma in cui viene visualizzato;
+- configurare `std::cout` con `std::fixed` e `std::setprecision`;
+- prevedere l'effetto di due, tre o zero cifre decimali;
+- produrre un prospetto leggibile con imponibile, IVA e totale.
 
 ---
 
@@ -4875,41 +5350,41 @@ int main() {
 
 Perché `std::fixed` è utile quando stampi un importo?
 
-[(X)] Chiede di rappresentare il numero in forma decimale fissa, adatta a un prospetto
-[( )] Trasforma automaticamente l'importo da euro a centesimi
 [( )] Arrotonda sempre il valore memorizzato nella variabile
+[( )] Trasforma automaticamente l'importo da euro a centesimi
+[(X)] Chiede di rappresentare il numero in forma decimale fissa, adatta a un prospetto
 
 **Domanda 2**
 
 Che cosa indica `std::setprecision(2)` insieme a `std::fixed`?
 
 [(X)] Mostrare due cifre dopo il punto decimale
-[( )] Moltiplicare il numero per 2
 [( )] Mostrare al massimo due cifre complessive
+[( )] Moltiplicare il numero per 2
 
 **Domanda 3**
 
 Prima del Run, quale output prevedi per `19.5`?
 
 [(X)] 19.50
-[( )] 19.5
 [( )] 20.00
+[( )] 19.5
 
 **Domanda 4**
 
 Perché nel programma serve `#include <iomanip>`?
 
 [(X)] Per rendere disponibili `std::fixed` e `std::setprecision`
-[( )] Per dichiarare automaticamente tutte le variabili `double`
 [( )] Per sostituire `#include <iostream>` nelle stampe
+[( )] Per dichiarare automaticamente tutte le variabili `double`
 
 **Domanda 5**
 
 Se scrivi `std::setprecision(2)` senza `std::fixed`, quale previsione è più corretta?
 
+[( )] L'output avrà sempre esattamente due cifre dopo il punto
 [(X)] La precisione riguarda le cifre significative, quindi non garantisce sempre due decimali
 [( )] Il programma non può compilare perché `setprecision` richiede un intero positivo diverso da 2
-[( )] L'output avrà sempre esattamente due cifre dopo il punto
 
 Completa prima il quiz: concentrati sulla differenza tra **valore calcolato** e **valore visualizzato**.
 
@@ -4962,41 +5437,41 @@ int main() {
 
 Perché anche `iva` e `totale` vengono stampate con due decimali?
 
+[( )] La variabile `imponibile` trasferisce il suo formato alle altre variabili
 [(X)] I manipolatori restano attivi per le stampe successive dello stesso `std::cout`
 [( )] Ogni `double` viene sempre stampato con due decimali in C++
-[( )] La variabile `imponibile` trasferisce il suo formato alle altre variabili
 
 **Domanda 2**
 
 Qual è l'ordine corretto nella riga di configurazione?
 
+[( )] Prima `std::setprecision(2)`, poi si chiude `std::cout` con un punto e virgola
 [(X)] Prima `std::fixed`, poi `std::setprecision(2)`, quindi il valore da stampare
 [( )] Prima il valore, poi `std::fixed` e infine `std::setprecision(2)`
-[( )] Prima `std::setprecision(2)`, poi si chiude `std::cout` con un punto e virgola
 
 **Domanda 3**
 
 Perché il risultato di `19.5 * 0.22` può essere visualizzato come `4.29`?
 
-[(X)] Il formato mostra due decimali e arrotonda la rappresentazione visualizzata
-[( )] Il programma sostituisce sempre il valore con il numero intero più vicino
 [( )] La moltiplicazione viene eseguita come testo e non come numero
+[( )] Il programma sostituisce sempre il valore con il numero intero più vicino
+[(X)] Il formato mostra due decimali e arrotonda la rappresentazione visualizzata
 
 **Domanda 4**
 
 Che cosa succede se togli `#include <iomanip>` ma lasci `std::setprecision(2)`?
 
-[(X)] Il compilatore può segnalare che `setprecision` non è dichiarata
 [( )] Il programma compila, ma `std::cout` ignora soltanto la precisione
 [( )] Il valore viene automaticamente stampato come intero
+[(X)] Il compilatore può segnalare che `setprecision` non è dichiarata
 
 **Domanda 5**
 
 Se aggiungi una stampa dopo il prospetto senza cambiare il formato, che cosa accade?
 
-[(X)] Anche quella stampa usa il formato corrente di `std::cout`, finché non lo modifichi
 [( )] Il formato si annulla automaticamente dopo ogni riga
 [( )] Il formato si applica solo alla variabile `imponibile`
+[(X)] Anche quella stampa usa il formato corrente di `std::cout`, finché non lo modifichi
 
 Perché l'impostazione compare una sola volta ma vale per tre stampe? Segui l'ordine delle istruzioni:
 
@@ -5030,32 +5505,32 @@ Quale modifica fa apparire tre cifre dopo il punto decimale?
 Che effetto ha togliere `std::fixed` lasciando `std::setprecision(2)`?
 
 [(X)] La precisione può indicare due cifre significative, non necessariamente due decimali
-[( )] Il programma stampa sempre due zeri in più
 [( )] Il valore di `totale` viene cancellato
+[( )] Il programma stampa sempre due zeri in più
 
 **Domanda 3**
 
 Quale modifica mantiene il prospetto a due decimali ma stampa prima l'etichetta `Totale`?
 
-[(X)] Spostare l'etichetta nella stessa espressione di output, prima di `totale`
 [( )] Mettere `std::fixed` dopo `totale` e prima dell'etichetta
 [( )] Cambiare `totale` in una variabile `int`
+[(X)] Spostare l'etichetta nella stessa espressione di output, prima di `totale`
 
 **Domanda 4**
 
 Se sostituisci `std::setprecision(2)` con `std::setprecision(0)`, quale effetto prevedi?
 
-[(X)] La stampa usa zero cifre dopo il punto e può arrotondare il valore visualizzato
 [( )] La stampa usa automaticamente due cifre perché gli importi sono monetari
+[(X)] La stampa usa zero cifre dopo il punto e può arrotondare il valore visualizzato
 [( )] Il programma entra in un ciclo infinito
 
 **Domanda 5**
 
 Quale modifica formatta anche la nuova variabile `sconto` con due decimali?
 
-[(X)] Stampare `sconto` con lo stesso `std::cout` dopo aver impostato `fixed` e `setprecision(2)`
-[( )] Dichiarare `sconto` come `char`
 [( )] Inserire `std::setprecision(2)` solo dopo la stampa di `sconto`
+[( )] Dichiarare `sconto` come `char`
+[(X)] Stampare `sconto` con lo stesso `std::cout` dopo aver impostato `fixed` e `setprecision(2)`
 
 Apporta una modifica alla volta e riesegui.
 
@@ -5126,17 +5601,441 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `#include <iomanip>` rende disponibili i manipolatori di formattazione.
-- `std::fixed` imposta la notazione decimale fissa.
-- Con `std::fixed`, `std::setprecision(2)` mostra due cifre dopo il punto.
-- La configurazione resta attiva per le stampe successive dello stesso `std::cout`.
-- Il formato cambia la rappresentazione visualizzata, non il valore memorizzato.
+- [ ] `#include <iomanip>` rende disponibili i manipolatori di formattazione.
+- [ ] `std::fixed` imposta la notazione decimale fissa.
+- [ ] Con `std::fixed`, `std::setprecision(2)` mostra due cifre dopo il punto.
+- [ ] La configurazione resta attiva per le stampe successive dello stesso `std::cout`.
+- [ ] Il formato cambia la rappresentazione visualizzata, non il valore memorizzato.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora che sai presentare bene un risultato, puoi imparare a organizzare il calcolo in **funzioni** riutilizzabili.
+Ora che sai presentare bene un risultato, nel prossimo capitolo del percorso
+Fondamenti, `16_ruoli_variabili_pattern_cicli`, imparerai a dare un ruolo
+preciso alle variabili e a riconoscere uno schema stabile nei cicli.
+
+
+## 🧭 Un ruolo per ogni variabile, uno schema per ogni ciclo
+
+In un gestionale molte parti del codice sembrano ripetizioni. In realtà ogni
+variabile svolge un lavoro preciso: sommare, contare, conservare l'ultimo dato,
+tenere il migliore trovato finora o confrontare lo stato precedente.
+
+Riconoscere questi ruoli ti permette di leggere una soluzione già nota e
+riutilizzare lo schema corretto invece di partire ogni volta da zero.
+
+> 💡 **Metafora:**  
+> Immagina una scrivania di controllo fatture. Il **contatore** annota quante
+> righe sono state esaminate; l'**accumulatore** tiene il totale aperto; il
+> **valore più recente** registra l'ultima fattura letta; il **valore più
+> desiderato** conserva il massimo; il **precedente** serve a confrontare due
+> fatture consecutive. La sentinella è il segnale rosso che chiude la serie.
+
+**In questa lezione non** introduciamo funzioni, array o puntatori. I pattern
+sono applicati a dati letti in sequenza con `while`, `for`, `if` e `do-while`.
+
+---
+
+### 🎯 Obiettivi di apprendimento
+
+Alla fine di questa lezione sei in grado di:
+
+- assegnare un ruolo osservabile a variabili che accumulano, contano, conservano il valore recente o scelgono un massimo;
+- riconoscere uno schema di ciclo con sentinella, accumulo, filtro o confronto adiacente;
+- tracciare i valori delle variabili prima e dopo ogni iterazione;
+- adattare uno schema noto a un problema gestionale diverso.
+
+---
+
+### ⚙️ Prima del laboratorio: ruoli e pattern
+
+| Ruolo | Domanda guida | Aggiornamento tipico |
+| :--- | :--- | :--- |
+| Valore fissato | Quale dato resta invariato durante la sequenza? | `const` o inizializzazione |
+| Contatore | Quante volte o quanti elementi sono stati osservati? | `++numero` |
+| Accumulatore | Qual è il risultato aggregato finora? | `totale += importo` |
+| Valore più recente | Qual è stato l'ultimo dato letto? | assegnazione dalla lettura |
+| Valore più desiderato | Qual è il massimo o il minimo finora? | aggiornamento condizionale |
+| Precedente | Quale valore è stato letto nel passo precedente? | salva dopo il confronto |
+| Flag unidirezionale | Qualcosa è accaduto almeno una volta? | da `false` a `true` |
+
+I pattern non sono nuovi costrutti: sono combinazioni ricorrenti di variabili
+e istruzioni già conosciute.
+
+| Pattern | Controllo del ciclo | Stato principale |
+| :--- | :--- | :--- |
+| Conteggio noto | `for` con un contatore | contatore / accumulatore |
+| Scansione fino a sentinella | `while` finché il dato non è speciale | valore più recente |
+| Accumulazione | ciclo + aggiornamento dipendente dallo stato precedente | accumulatore |
+| Filtro e conteggio | ciclo + `if` | contatore filtrato |
+| Selezione dell'estremo | ciclo + confronto condizionale | valore più desiderato |
+| Confronto adiacente | ciclo + dato precedente | precedente |
+| Ricerca lineare | ciclo + arresto o flag | trovato / indice |
+
+---
+
+### 🧭 Prima del laboratorio: stato per stato
+
+```text @plantUML
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+start
+:Inizializza totale, numero, massimo;
+:Leggi il primo importo;
+while (importo != sentinella?) is (sì)
+  :Aggiorna totale;
+  :Conta la fattura;
+  if (è il primo o è maggiore del massimo?) then (sì)
+    :Aggiorna massimo;
+  endif
+  :Leggi il prossimo importo;
+endwhile (no)
+:Stampa il riepilogo;
+stop
+@enduml
+```
+
+L'ordine delle inizializzazioni è parte del pattern. Un accumulatore deve partire
+da zero prima del ciclo; un massimo può partire dal primo dato valido o usare
+una condizione esplicita con la bandiera `primo`.
+
+---
+
+### 🔬 Laboratorio PRIMM: Registro fatture fornitore
+
+Il programma legge importi fino alla sentinella `-1.0`. Per ogni fattura registra
+il totale, il numero dei dati validi e il massimo ricevuto finora.
+
+#### 1. PREDICT (Prevedi)
+
+```cpp
+double totale = 0.0;
+double massimo = 0.0;
+int numero = 0;
+double importo;
+bool primo = true;
+
+std::cin >> importo;
+while (importo != -1.0) {
+    totale += importo;
+    ++numero;
+    if (primo || importo > massimo) {
+        massimo = importo;
+        primo = false;
+    }
+    std::cin >> importo;
+}
+```
+
+**Domanda 1**
+
+Quale ruolo ha `totale` nel codice?
+
+[( )] Contatore: cambia un passo alla volta indipendentemente dagli importi
+[(X)] Accumulatore: dipende dal suo valore precedente e da ogni nuovo importo
+[( )] Sentinella: indica con quale valore termina il ciclo
+
+**Domanda 2**
+
+Perché `numero` viene incrementato con `++numero`?
+
+[( )] È un accumulatore: somma gli importi inseriti
+[(X)] È un contatore: conta quante fatture valide sono state elaborate
+[( )] È una sentinella: termina il ciclo quando arriva a meno uno
+
+**Domanda 3**
+
+Quale ruolo ha `importo` prima di ogni lettura?
+
+[(X)] Valore più recente: conserva l'ultimo dato letto
+[( )] Valore fissato: non può cambiare dopo l'inizializzazione
+[( )] Precedente: conserva sempre il dato letto due passi fa
+
+**Domanda 4**
+
+Perché `massimo` cambia solo in alcuni passaggi?
+
+[(X)] È un valore più desiderato: conserva il candidato migliore trovato finora
+[( )] È un contatore: avanza fino al limite della sequenza
+[( )] È un accumulatore: somma tutti i valori confrontati
+
+**Domanda 5**
+
+Che cosa rende questo ciclo uno schema di scansione fino a sentinella?
+
+[( )] `primo` viene controllato solo una volta
+[( )] Il ciclo usa un numero fisso di iterazioni
+[(X)] `-1.0` termina la lettura e non viene elaborato come fattura
+
+Prima di eseguire, indovina il ruolo di ogni variabile; non limitarti a
+prevedere il risultato numerico.
+
+#### 2. RUN (Esegui)
+
+Digita il programma completo e prova con `120.0`, `80.0`, `150.0`, `-1.0`.
+
+```cpp
+/**
+ * @file registro_fatture.cpp
+ * @brief Analizza una sequenza di fatture fino alla sentinella -1.0.
+ * @return int 0 se il programma termina correttamente.
+ */
+#include <iostream>
+
+int main() {
+    /// Il totale aggrega solo gli importi letti prima della sentinella.
+    double totale = 0.0;
+    /// Il contatore registra il numero di fatture valide.
+    int numero = 0;
+    /// Il massimo viene aggiornato solo quando trova un candidato migliore.
+    double massimo = 0.0;
+    double importo = 0.0;
+    bool primo = true;
+
+    std::cout << "Importo fattura (-1 per terminare): ";
+    std::cin >> importo;
+
+    while (importo != -1.0) {
+        totale += importo;
+        ++numero;
+
+        if (primo || importo > massimo) {
+            massimo = importo;
+            primo = false;
+        }
+
+        std::cout << "Importo fattura (-1 per terminare): ";
+        std::cin >> importo;
+    }
+
+    std::cout << "Totale: " << totale << " euro\n";
+    std::cout << "Numero fatture: " << numero << "\n";
+    std::cout << "Massimo: " << massimo << " euro\n";
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Indaga)
+
+Dopo il Run, confronta stato e ruolo di ogni variabile.
+
+```cpp
+double totale = 0.0;
+double massimo = 0.0;
+int numero = 0;
+double importo;
+bool primo = true;
+
+std::cin >> importo;
+while (importo != -1.0) {
+    totale += importo;
+    ++numero;
+    if (primo || importo > massimo) {
+        massimo = importo;
+        primo = false;
+    }
+    std::cin >> importo;
+}
+```
+
+**Domanda 1**
+
+Con input `120.0`, `80.0`, `-1.0`, quale stato assume `totale` alla fine?
+
+[( )] `-1.0`, perché è l'ultimo valore letto
+[( )] `201.0`, perché vengono conteggiati due dati e la sentinella
+[(X)] `200.0`, perché la sentinella non viene sommata
+
+**Domanda 2**
+
+Perché `massimo` vale `120.0` dopo i due importi?
+
+[( )] Il ciclo sostituisce sempre il massimo con il dato successivo
+[(X)] Il primo importo lo inizializza e il secondo non lo supera
+[( )] Il contatore `numero` restituisce direttamente il valore massimo
+
+**Domanda 3**
+
+Che cosa accade se sposti `totale = 0.0` dentro il ciclo?
+
+[(X)] Ogni importo cancella il totale precedente e il risultato finale è incompleto
+[( )] Il totale viene sommato una volta in più alla fine
+[( )] La sentinella viene contata come fattura
+
+**Domanda 4**
+
+Perché `primo` è una bandiera unidirezionale utile in questo esempio?
+
+[( )] Deve tornare vera dopo ogni nuovo massimo
+[( )] Serve a sommare due volte il primo importo
+[(X)] Serve solo finché il primo candidato non è stato fissato
+
+**Domanda 5**
+
+Quale schema descrive meglio il ciclo completo?
+
+[( )] Ricerca certa dopo un ordinamento
+[(X)] Scansione fino a sentinella con accumulo e selezione del massimo
+[( )] Scansione con conteggio noto tramite `for`
+
+| Input | `totale` | `numero` | `massimo` | Ruolo visibile |
+| :---: | :---: | :---: | :---: | :--- |
+| `120.0` | `120.0` | `1` | `120.0` | primo candidato |
+| `80.0` | `200.0` | `2` | `120.0` | accumulo + massimo invariato |
+| `150.0` | `350.0` | `3` | `150.0` | nuovo valore più desiderato |
+| `-1.0` | `350.0` | `3` | `150.0` | sentinella, non elaborata |
+
+Apri il programma in [Python Tutor C++](https://pythontutor.com/cpp.html):
+osserva in quale momento `totale`, `numero`, `massimo` e `primo` cambiano.
+
+#### 4. MODIFY (Modifica)
+
+Prima di modificare, usa il quiz per prevedere la nuova organizzazione dello stato.
+
+```cpp
+double totale = 0.0;
+double massimo = 0.0;
+int numero = 0;
+double importo;
+bool primo = true;
+```
+
+**Domanda 1**
+
+Quale modifica conta solo le fatture almeno pari a 100 euro?
+
+[( )] Cambiare la sentinella da `-1.0` a `100.0`
+[( )] Aumentare `massimo` dentro ogni iterazione
+[(X)] Dentro il ciclo, usare `if (importo >= 100.0)` prima di totale e contatore
+
+**Domanda 2**
+
+Quale modifica trasforma il valore massimo in minimo mantenendo il primo candidato?
+
+[( )] Dichiarare `minimo` dentro il ciclo
+[( )] Sostituire la sentinella con `0.0`
+[(X)] Confrontare `importo < minimo` e aggiornare il minimo nel ramo vero
+
+**Domanda 3**
+
+Come puoi tracciare una diminuzione rispetto all'importo precedente?
+
+[(X)] Mantenere `precedente`, confrontare `importo < precedente` e aggiornarlo alla fine
+[( )] Usare `massimo` al posto di `precedente` senza aggiornamenti
+[( )] Sommare `precedente` al totale ad ogni giro
+
+**Domanda 4**
+
+Quale modifica rende `trovato` vero una sola volta senza annullarlo nei successivi giri?
+
+[( )] Porre `trovato = false` dopo ogni importo valido
+[(X)] Usare `if (importo >= soglia) trovato = true;` senza assegnazioni false successive
+[( )] Azzerare `trovato` appena la sentinella viene letta
+
+**Domanda 5**
+
+Perché conviene modificare una sola parte del tracciare?
+
+[(X)] Per collegare il nuovo stato osservato al ruolo modificato: accumulatore, massimo o precedente
+[( )] Perché il compilatore accetta al massimo un aggiornamento per prova
+[( )] Perché una sola variabile può esistere in un ciclo
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+int main() {
+    double totale = 0.0;
+    double massimo = 0.0;
+    int numero = 0;
+    double importo = 0.0;
+    bool primo = true;
+
+    // TODO: leggi fino a -1.0
+    // TODO: aggiorna totale, numero e massimo
+    // TODO: stampa il riepilogo
+    return 0;
+}
+```
+
+</details>
+
+**Modifica A — filtro sulle fatture rilevanti**
+
+Conta e somma solo gli importi almeno pari a `100.0`. Il massimo deve essere
+calcolato sugli stessi dati filtrati.
+
+**Modifica B — minimo invece di massimo**
+
+Trasforma il valore più desiderato in un minimo. Mantieni la bandiera `primo`
+finché non hai osservato il primo candidato.
+
+**Modifica C — confronto tra fatture adiacenti**
+
+Aggiungi `double precedente = 0.0;` e un contatore delle diminuzioni
+consecutive. Aggiorna `precedente` solo dopo aver confrontato l'importo
+corrente.
+
+#### 5. MAKE (Crea)
+
+**Scenario aziendale:** l'ufficio fornitori controlla una sequenza di fatture
+senza sapere in anticipo quante righe saranno inserite.
+
+Crea `registro_fatture.cpp` rispettando tutti i requisiti:
+
+1. Leggi importi finché l'utente inserisce `-1.0`.
+2. Non sommare né conteggiare la sentinella.
+3. Usa un accumulatore per il totale.
+4. Usa un contatore per il numero di fatture valide.
+5. Usa un valore più desiderato per conservare il massimo.
+6. Usa un precedente per riconoscere una diminuzione rispetto alla fattura precedente.
+7. Conta quante diminuzioni consecutive sono state rilevate.
+8. Stampa totale, numero, massimo e numero di diminuzioni.
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+/**
+ * @brief Riassume importi fatture con accumulo e confronto adiacente.
+ */
+#include <iostream>
+
+int main() {
+    /// TODO: spiega perché la sentinella non rappresenta una fattura.
+    // TODO: inizializza totale, numero, massimo, precedente e lettura
+    // TODO: scansione fino a -1.0
+    // TODO: aggiorna i ruoli e stampa il riepilogo
+    return 0;
+}
+```
+
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+
+- [ ] Valore fissato, contatore e accumulatore hanno responsabilita diverse.
+- [ ] Il valore più recente conserva l'ultimo dato letto.
+- [ ] Il valore più desiderato viene aggiornato solo da un candidato migliore.
+- [ ] Il precedente serve a confrontare dati adiacenti.
+- [ ] Un accumulatore si inizializza fuori dal ciclo e viene aggiornato dentro.
+- [ ] Una sentinella termina la scansione e non viene elaborata.
+- [ ] Chiamare una sequenza con il suo pattern rende il codice leggibile e prevedibile.
+
+---
+
+### ➡️ Prossimo passo nel percorso
+
+Ora sai riconoscere il ruolo di ogni variabile e scegliere uno schema di ciclo.
+Nel prossimo capitolo del percorso Fondamenti, `17_funzioni_scomposizione_top_down`,
+metterai questa capacità dentro reparti software riutilizzabili: le funzioni.
 
 
 ## 🏢 Il Primo Reparto: funzioni che restituiscono un valore
@@ -5197,9 +6096,9 @@ double calcolaIva(double imponibile) {
 
 Quanto vale `calcolaIva(100.0)` con aliquota 0.22?
 
-[(X)] 22
 [( )] 100
 [( )] 122
+[(X)] 22
 [( )] 0.22
 
 <details>
@@ -5280,8 +6179,11 @@ int main() {
 
 ---
 
-### ➡️ Prossimo chunk
-Come far sì che una funzione **modifichi** le variabili del chiamante: passaggio per **riferimento**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai assegnato ai dati ruoli precisi e riconosciuto
+schemi ricorrenti nei cicli. Nel prossimo capitolo,
+`18_scope_e_passaggio_parametri`, vedrai come una funzione modifica o osserva
+le variabili del chiamante tramite il passaggio per riferimento.
 
 ## 📄 Fotocopia o Originale: passaggio per valore e per riferimento
 
@@ -5332,10 +6234,10 @@ aumenta(x);
 
 Dopo `aumenta(x)` con parametro per valore, quanto vale `x` se partiva da 10?
 
-[(X)] 10 (non modificato)
 [( )] 15
-[( )] Errore di compilazione
 [( )] Crash
+[( )] Errore di compilazione
+[(X)] 10 (non modificato)
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -5414,8 +6316,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Sequenze di dati dello stesso tipo: gli **array**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai visto funzioni per valore e per riferimento.
+Nel prossimo capitolo, `19_array_sequenze_dati`, userai le sequenze dello
+stesso tipo: gli **array**.
 
 ## 📦 La Batteria di Locker: gli array e le sequenze di dati
 
@@ -5475,10 +6379,10 @@ double x = vendite[30];
 
 Con `double vendite[30];`, cosa succede leggendo `vendite[30]`?
 
-[( )] Compila e legge 0
+[( )] Il programma non parte
 [(X)] Compila ma comportamento indefinito (indice fuori range)
 [( )] Errore di compilazione obbligatorio
-[( )] Il programma non parte
+[( )] Compila e legge 0
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -5557,8 +6461,10 @@ int main() {
 
 ---
 
-### ➡️ Prossimo chunk
-Quando i dati sono a **griglia** (reparti × mesi), serve un array a **due dimensioni**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai gestito una sequenza lineare di dati.
+Nel prossimo capitolo, `20_array_bidimensionali_matrici`, organizzerai dati a
+**griglia** (reparti × mesi) con array bidimensionali.
 
 ## 📊 Il Foglio Excel in Memoria: array bidimensionali
 
@@ -5608,10 +6514,10 @@ int m[2][3];
 
 In `int m[2][3];`, quanti elementi ci sono e qual è l’ultimo indice di colonna?
 
+[( )] 2 elementi in tutto
+[( )] 6 elementi; colonne 1..3
 [(X)] 6 elementi; colonne 0..2
 [( )] 5 elementi; colonne 1..3
-[( )] 6 elementi; colonne 1..3
-[( )] 2 elementi in tutto
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -5689,8 +6595,10 @@ int main() {
 
 ---
 
-### ➡️ Prossimo chunk
-Dietro ogni array c’è un indirizzo in memoria: introduciamo i **puntatori** in modo guidato e cauto.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai organizzato dati in righe e colonne.
+Nel prossimo capitolo, `21_puntatori_e_memoria`, seguirai gli indirizzi in
+memoria con i **puntatori**, in modo guidato e cauto.
 
 ## 🔑 Il Numero dello Sportello: puntatori e indirizzi
 
@@ -5741,10 +6649,10 @@ int* p = &x;
 
 Dopo `int x = 10; int* p = &x; *p = 25;`, quanto vale `x`?
 
+[( )] L’indirizzo di x
+[( )] Indefinito
 [( )] 10
 [(X)] 25
-[( )] Indefinito
-[( )] L’indirizzo di x
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -5820,8 +6728,10 @@ int main() {
 
 ---
 
-### ➡️ Prossimo chunk
-Raggruppiamo dati eterogenei (`struct`) e stati discreti (`enum`) come in un record anagrafico.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai osservato indirizzi e memoria.
+Nel prossimo capitolo, `22_enum_e_struct`, raggrupperai dati eterogenei e stati
+discreti in un record anagrafico.
 
 ## 🏷️ Stati e Schede Anagrafiche: `enum` e `struct`
 
@@ -5875,10 +6785,10 @@ Stato b = Stato::Attivo;
 
 Con `enum class Stato { Attivo, Sospeso };`, cosa stampa il confronto tra due variabili entrambe `Attivo`?
 
-[(X)] Sono uguali (true)
-[( )] Non si possono confrontare
 [( )] Sono sempre diversi
 [( )] Compila solo con int
+[(X)] Sono uguali (true)
+[( )] Non si possono confrontare
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -5962,8 +6872,10 @@ int main() { /* ... */ return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Cercare un codice in un listino ordinato: **ricerca dicotomica**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai composto record con `enum` e `struct`.
+Nel prossimo capitolo, `23_ricerca_dicotomica`, cercherai un codice in un
+listino ordinato con la ricerca dicotomica.
 
 ## 🔍 Trovare il Codice nel Listino: ricerca dicotomica
 
@@ -6007,10 +6919,10 @@ Alla fine di questa lezione sei in grado di:
 
 La ricerca binaria su un array disordinato è affidabile?
 
-[( )] Sì, sempre
 [(X)] No: richiede array ordinato
-[( )] Solo se tutti pari
+[( )] Sì, sempre
 [( )] Solo su stringhe
+[( )] Solo se tutti pari
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -6098,8 +7010,10 @@ int main() { /* ... */ return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Per usare la ricerca binaria serve spesso **ordinare** prima i dati: selection sort.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai cercato dividendo ripetutamente l'intervallo.
+Nel prossimo capitolo, `24_ordinamento_selection_sort`, ordinerai i dati con
+selection sort prima di nuove ricerche.
 
 ## 🗂️ Riordinare il Listino: selection sort
 
@@ -6136,9 +7050,9 @@ Alla fine di questa lezione sei in grado di:
 
 Selection sort, a ogni passo esterno, cosa fa?
 
+[( )] Ordina solo i numeri pari
 [(X)] Sceglie il minimo della parte non ordinata e lo mette in posizione i
 [( )] Divide sempre a metà l’array
-[( )] Ordina solo i numeri pari
 [( )] Usa obbligatoriamente un secondo array
 
 <details>
@@ -6222,8 +7136,10 @@ int main() { /* ... */ return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Strategie *divide et impera* (merge sort) per ordinamenti più scalabili.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai ordinato dati con selection sort.
+Nel prossimo capitolo, `25_ordinamento_divide_et_impera`, userai una strategia
+divide et impera per ordinamenti più scalabili.
 
 ## 🧩 Dividere per Ordinare: idea del merge sort
 
@@ -6257,9 +7173,9 @@ Alla fine di questa lezione sei in grado di:
 
 Qual è il ruolo principale della fase di merge?
 
-[(X)] Fondere due sottosequenze già ordinate
 [( )] Mescolare a caso gli elementi
 [( )] Eliminare i duplicati obbligatoriamente
+[(X)] Fondere due sottosequenze già ordinate
 [( )] Ordinare solo con scambi adiacenti
 
 <details>
@@ -6346,8 +7262,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Mettiamo insieme `struct` e array: un piccolo **database in memoria**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai confrontato strategie di ordinamento.
+Nel prossimo capitolo, `26_database_in_memoria_progetto`, metterai insieme
+`struct` e array in un piccolo database in memoria.
 
 ## 🗄️ L’Archivio in RAM: array di struct
 
@@ -6384,8 +7302,8 @@ Cosa rappresenta `Record tabella[100];` se Record è una struct?
 
 [(X)] Fino a 100 righe con gli stessi campi
 [( )] Un solo record con 100 campi
-[( )] Una matrice 100×100 di int
 [( )] Un file su disco
+[( )] Una matrice 100×100 di int
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -6468,8 +7386,11 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Quando un problema si definisce in termini di una versione più piccola di se stesso: **ricorsione**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai integrato dati e algoritmi in un database in memoria.
+Nel prossimo capitolo, `27_ricorsione_e_strutture_ricorsive`, affronti i
+problemi definiti in termini di una versione più piccola di se stessi:
+**ricorsione**.
 
 ## 🔁 Il Problema che Chiama Se Stesso: ricorsione
 
@@ -6508,10 +7429,10 @@ int f(int n) {
 
 Cosa deve avere ogni funzione ricorsiva corretta?
 
-[( )] Solo chiamate ricorsive, senza mai fermarsi
-[(X)] Almeno un caso base che interrompe la ricorsione
 [( )] Obbligo di variabili globali
 [( )] Niente `return`
+[(X)] Almeno un caso base che interrompe la ricorsione
+[( )] Solo chiamate ricorsive, senza mai fermarsi
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -6586,9 +7507,10 @@ int main() { /* ... */ return 0; }
 
 ---
 
-### ➡️ Prossimo passo
-Con array, struct, ricerca, ordinamento e ricorsione hai gli strumenti del **secondo blocco** del corso: dati e algoritmi di base in chiave aziendale.
-
+### ➡️ Prossimo passo nel percorso
+Nel precedente blocco hai consolidato array, struct, ricerca, ordinamento e
+ricorsione. Nel prossimo capitolo, `29_da_struct_a_class`, inizierai il passaggio
+da dati raggruppati a oggetti con responsabilità.
 
 
 ## 🏢 Dal cartellino al reparto: `struct` → `class` e incapsulamento
@@ -6649,10 +7571,10 @@ a.prezzo = -5;
 
 Se `prezzo` è `private` in una `class`, da `main` posso scrivere `a.prezzo = -5`?
 
-[( )] Sì, sempre
-[(X)] No: accesso vietato fuori dalla classe
-[( )] Solo se il file si chiama main.cpp
 [( )] Sì, ma solo con double
+[(X)] No: accesso vietato fuori dalla classe
+[( )] Sì, sempre
+[( )] Solo se il file si chiama main.cpp
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -6743,8 +7665,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Come nasce un oggetto **già valido**: i **costruttori**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai visto il passaggio da `struct` a `class`.
+Nel prossimo capitolo, `30_costruttori_e_invarianti`, costruirai oggetti
+**già validi** con i costruttori.
 
 ## 📋 Assunzione in organico: costruttori e oggetto ben formato
 
@@ -6804,9 +7728,9 @@ Dopo la costruzione di un Articolo con codice e prezzo tramite costruttore, i ca
 
 
 [(X)] Sì: il costruttore inizializza lo stato
-[( )] No: serve sempre setCodice dopo
-[( )] Solo se c'è anche il distruttore
 [( )] No: i private restano indefiniti
+[( )] Solo se c'è anche il distruttore
+[( )] No: serve sempre setCodice dopo
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -6892,8 +7816,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Cosa sa **fare** l'oggetto: metodi e responsabilità di reparto.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai creato oggetti coerenti con i costruttori.
+Nel prossimo capitolo, `31_metodi_e_responsabilita`, definirai cosa sa fare
+l'oggetto attraverso metodi e responsabilità.
 
 
 ## 🛠️ Cosa sa fare il reparto: metodi e responsabilità
@@ -6927,10 +7853,10 @@ a.scheda();
 
 Chi può chiamare un metodo public di Articolo?
 
-[( )] Solo codice dentro la class
 [(X)] Chiunque abbia un oggetto Articolo (es. main)
-[( )] Solo il costruttore
+[( )] Solo codice dentro la class
 [( )] Nessuno
+[( )] Solo il costruttore
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -7015,8 +7941,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Metodi che **non** modificano lo stato: `const`.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai assegnato responsabilità ai metodi.
+Nel prossimo capitolo, `32_const_correttezza_oggetti`, distinguerai metodi che
+**non** modificano lo stato usando `const`.
 
 
 ## 👁️ Consultare senza modificare: metodi `const`
@@ -7049,8 +7977,8 @@ void scheda() const { giacenza = 0; }
 
 Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
 
-[( )] Sì
 [(X)] No: metodo const non modifica lo stato
+[( )] Sì
 [( )] Solo se giacenza è public
 [( )] Solo in main
 
@@ -7132,8 +8060,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Oggetti fatti di altri oggetti: **composizione**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai protetto lo stato con `const`.
+Nel prossimo capitolo, `33_composizione_ha_un`, costruirai oggetti composti da
+altri oggetti: **composizione**.
 
 
 ## 🧩 L’azienda è fatta di pezzi: composizione (“ha un”)
@@ -7165,10 +8095,10 @@ class Ordine { Cliente cliente_; /* ... */ };
 
 Se `Ordine` contiene un membro `Cliente cliente_`, la distruzione di `Ordine` coinvolge anche `cliente_`?
 
+[( )] Solo con template
+[( )] Solo con virtual
 [(X)] Sì: il membro vive dentro l’oggetto composto
 [( )] No: Cliente è sempre indipendente sullo heap
-[( )] Solo con virtual
-[( )] Solo con template
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -7256,8 +8186,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Quando invece **è un** tipo specializzato: ereditarietà essenziale.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai composto oggetti con la relazione *ha un*.
+Nel prossimo capitolo, `34_ereditarieta_essenziale`, affronterai la relazione
+*è un* con l'ereditarietà essenziale.
 
 
 ## 🌳 Specializzazioni in organigramma: ereditarietà essenziale
@@ -7292,9 +8224,9 @@ class Der : public Base {};
 Una classe derivata public eredita i membri public della base?
 
 [(X)] Sì, può usare f() su un oggetto Der
-[( )] No, mai
 [( )] Solo se virtual
 [( )] Solo nei template
+[( )] No, mai
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -7383,8 +8315,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Stesso sportello, comportamento diverso a runtime: `virtual`.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai definito gerarchie con l'ereditarietà.
+Nel prossimo capitolo, `35_polimorfismo_virtual`, otterrai comportamenti diversi
+a runtime nello stesso sportello con `virtual`.
 
 
 ## 🎭 Stesso sportello, comportamenti diversi: `virtual`
@@ -7418,9 +8352,9 @@ p->scheda();
 
 Con `scheda` virtuale e puntatore a Base che punta a Derivata, quale `scheda` viene chiamata?
 
-[(X)] Quella della Derivata se scheda è virtual
-[( )] Sempre e solo quella di Base
 [( )] Nessuna
+[( )] Sempre e solo quella di Base
+[(X)] Quella della Derivata se scheda è virtual
 [( )] Solo se template
 
 <details>
@@ -7504,8 +8438,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Far parlare il dominio con operatori (`+` o `<<`).
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai separato comportamento comune e speciale a runtime.
+Nel prossimo capitolo, `36_overloading_operatori_essenziale`, farai parlare il
+dominio con operatori come `+` e `<<`.
 
 
 ## 💬 Linguaggio del dominio: overloading essenziale (`<<`)
@@ -7538,8 +8474,8 @@ std::cout << articolo;
 A cosa serve tipicamente sovraccaricare `operator<<` per una classe?
 
 [(X)] Stampare l’oggetto in modo leggibile su uno stream
-[( )] Aprire un file in automatico
 [( )] Creare template
+[( )] Aprire un file in automatico
 [( )] Sostituire il costruttore
 
 <details>
@@ -7616,8 +8552,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Procedure uguali su tipi diversi: **funzioni template**.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai personalizzato operatori per un tipo.
+Nel prossimo capitolo, `37_funzioni_template`, definirai procedure uguali
+che funzionano su tipi diversi.
 
 
 ## 🔧 Stessa procedura, tipi diversi: funzioni template
@@ -7649,10 +8587,10 @@ massimo(2.5, 2.7);
 
 Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
 
-[(X)] Sì, il compilatore istanzia le versioni necessarie
-[( )] No, solo su int
 [( )] Solo se T è class
+[(X)] Sì, il compilatore istanzia le versioni necessarie
 [( )] No, serve virtual
+[( )] No, solo su int
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -7721,8 +8659,10 @@ int main() { return 0; }
 
 ---
 
-### ➡️ Prossimo chunk
-Usare un contenitore template della libreria: `std::vector`.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai scritto funzioni generiche con i template.
+Nel prossimo capitolo, `38_vector_come_cliente`, userai il contenitore template
+standard `std::vector`.
 
 
 ## 📦 Il magazzino elastico: usare `std::vector` (cliente del template)
@@ -7756,10 +8696,10 @@ v.push_back(5);
 
 Dopo `v.push_back(3); v.push_back(5);`, quanto vale `v.size()`?
 
-[(X)] 2
 [( )] 0
 [( )] 5
 [( )] Indefinito
+[(X)] 2
 
 <details>
 <summary>💡 Spiegazione</summary>
@@ -7835,8 +8775,10 @@ int main() {
 
 ---
 
-### ➡️ Prossimo chunk
-Mettere insieme gli oggetti: **mini-progetto** gestionale.
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai gestito collezioni con `std::vector`.
+Nel prossimo capitolo, `39_progetto_oop_gestionale`, metterai insieme gli
+oggetti in un mini-progetto gestionale.
 
 
 ## 🏗️ Mini-progetto: gestionale a oggetti in memoria
@@ -7882,10 +8824,10 @@ Alla fine del progetto sei in grado di:
 
 Nel mini-progetto, perché dati private + metodi public sono un requisito?
 
-[(X)] Per proteggere gli invarianti e definire un’interfaccia chiara
-[( )] Perché altrimenti non compila mai
-[( )] Solo per usare vector
 [( )] Solo per i template
+[(X)] Per proteggere gli invarianti e definire un’interfaccia chiara
+[( )] Solo per usare vector
+[( )] Perché altrimenti non compila mai
 
 #### 2. RUN — scheletro di partenza
 

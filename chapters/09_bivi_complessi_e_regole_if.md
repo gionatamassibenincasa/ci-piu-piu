@@ -171,12 +171,12 @@ components:
     Crea `imposte_reddito.cpp` per una ditta: leggi un reddito imponibile già
     assegnato al codice, scegli una sola aliquota con una catena ordinata
     `if / else if / else` e stampa reddito, fascia, aliquota e imposta stimata.
-    Usa le soglie didattiche indicate nel capitolo.
+    Usa le soglie fiscali indicate nel capitolo.
   visualization:
     kind: plantuml
     note: 'Seguire la catena dall''alto verso il basso e fermarsi al primo ramo vero.'
 registro:
-  argomenti: 'Catene `if / else if / else`; fasce esclusive; ordine delle soglie; classificazione di fatturato e aliquote didattiche in uno scenario aziendale.'
+  argomenti: 'Catene `if / else if / else`; fasce esclusive; ordine delle soglie; classificazione di fatturato e aliquote fiscali in uno scenario aziendale.'
   note: 'Laboratorio PRIMM su fasce sconto e scaglioni ordinati.'
 assessment:
   duration_min: 15
@@ -212,7 +212,7 @@ assessment:
     context: 'Inserire una fascia più restrittiva nel punto corretto della catena.'
   make:
     points: 1
-    prompt: 'Crea la classificazione di un reddito imponibile con quattro scaglioni didattici e stampa aliquota e imposta stimata.'
+    prompt: 'Crea la classificazione di un reddito imponibile con quattro scaglioni fiscali e stampa aliquota e imposta stimata.'
     must_include:
       - 'else if'
       - 'double'
@@ -307,10 +307,10 @@ files:
   - path: student_work/make/scaglioni_imposta.cpp
     action: create
     phase: make
-    description: Prospetto di imposta con scaglioni didattici ordinati.
+    description: Prospetto di imposta con scaglioni fiscali  ordinati.
     template_content: |
       /**
-       * @brief Stima un'imposta con scaglioni didattici.
+       * @brief Stima un'imposta con scaglioni fiscali.
        */
       #include <iostream>
 
@@ -334,7 +334,7 @@ files:
 
 Nel capitolo precedente hai imparato a scegliere tra due strade. Nei contesti
 aziendali, però, le alternative possono essere più di due: fasce di sconto,
-livelli di fido, classi di rischio o aliquote didattiche.
+livelli di fido, classi di rischio o aliquote fiscali.
 
 Una catena `if / else if / else` permette di controllare più fasce in ordine e
 di sceglierne una sola.
@@ -544,7 +544,7 @@ Crea `imposte_reddito.cpp` rispettando tutti i requisiti:
 
 1. Dichiara `std::string nomeDitta` e `double redditoImponibile`.
 2. Usa una catena `if / else if / else`.
-3. Usa queste fasce didattiche con aliquota unica:
+3. Usa queste fasce fiscali con aliquota unica:
    - fino a `15000`: `23%`;
    - fino a `28000`: `25%`;
    - fino a `50000`: `35%`;
@@ -563,7 +563,7 @@ progressivo.
 
 ```cpp
 /**
- * @brief Stima un'imposta con scaglioni didattici.
+ * @brief Stima un'imposta con scaglioni fiscali.
  */
 #include <iostream>
 #include <string>

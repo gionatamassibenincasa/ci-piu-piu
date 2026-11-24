@@ -24,11 +24,10 @@ Questo non è un capitolo da leggere in 20 minuti.
 
 Alla fine di questa sessione avrai:
 
-- Visual Studio Code (il banco di lavoro)
-- l’estensione C/C++ (gli utensili specializzati)
-- il compilatore **g++** e il debugger **gdb** (tramite MSYS2 + MinGW-w64)
-- la variabile PATH impostata correttamente
-- un programma di prova compilato, eseguito e debuggato con successo
+- Visual Studio Code configurato come banco di lavoro;
+- l'estensione C/C++ installata e riconosciuta;
+- il compilatore **g++** e il debugger **gdb** disponibili nel PATH;
+- un programma minimo compilato, eseguito e fermato su un breakpoint.
 
 > 💡 **Metafora:**  
 >
@@ -41,10 +40,20 @@ Alla fine di questa sessione avrai:
 
 ---
 
-### 🎯 Obiettivo di questa sessione
+**In questa sessione non** studiamo ancora la sintassi dei costrutti C++, la
+catena di compilazione né la correzione degli algoritmi. Il risultato è avere
+un ambiente verificato e un flusso di lavoro pronto per il laboratorio.
 
-Alla fine sei in grado di configurare e verificare un ambiente C++ che compila,
-esegue e fa il debug di un programma minimo.
+---
+
+### 🎯 Obiettivi di questa sessione
+
+Alla fine sei in grado di:
+
+- installare e verificare VS Code, MSYS2, MinGW-w64, `g++` e `gdb`;
+- configurare il PATH di Windows e leggere gli errori quando il terminale non trova un comando;
+- compilare ed eseguire `prova.cpp` da terminale;
+- avviare il debug in VS Code e fermare il programma su un breakpoint.
 
 ---
 
@@ -56,7 +65,7 @@ salta i passi di installazione e vai direttamente al **Passo 6** (programma di p
 **Se a casa non hai diritti di amministratore** o l’antivirus / le policy bloccano l’installazione:
 
 1. Prova comunque i passi (molte operazioni non richiedono admin).
-2. Se fallisci, usa temporaneamente un compilatore online (es. [Compiler Explorer](https://godbolt.org/) o [OnlineGDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
+2. Se fallisci, usa temporaneamente un compilatore online (es. [Online CPPC](https://www.online-cpp.com/) o [Online GDB](https://www.onlinegdb.com/)) per seguire le lezioni successive.
 3. Segnala il problema al docente: troveremo una soluzione (immagine di laboratorio, chiavetta, ecc.).
 
 Hai bisogno di **connessione Internet** per i download iniziali.
@@ -138,7 +147,7 @@ Devi vedere le versioni. Se compare “non è riconosciuto come comando…” il
 
 #### Passo 7 — Primo programma di prova
 
-Crea il file `prova.cpp` nella cartella del corso (`Documenti\Ci-Piu-Piu`) con questo contenuto:
+Crea il file `prova.cpp` nella cartella del corso (`Documenti\Cpp-3SIA`) con questo contenuto:
 
 ```cpp
 #include <iostream>
@@ -232,12 +241,12 @@ Se sì, l’officina è completamente operativa.
 ---
 
 ### 📝 Riepilogo tascabile
-- Questa è una **sessione di laboratorio**, non una lettura veloce.
-- Senza compilatore non esiste programma eseguibile.
-- Il PATH deve contenere `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
-- `g++` traduce il codice sorgente in eseguibile; `gdb` ti fa guardare dentro mentre gira.
-- Il programma `prova.cpp` è il tuo banco di prova: se compila, stampa e si debugga, l’officina è pronta.
-- Da ora in poi lavorerai quasi sempre da VS Code, ma sapere usare il terminale ti salva quando qualcosa non va.
+- [ ] Questa è una **sessione di laboratorio**, non una lettura veloce.
+- [ ] Senza compilatore non esiste programma eseguibile.
+- [ ] Il PATH contiene `C:\msys64\ucrt64\bin` e va verificato in un **nuovo** terminale.
+- [ ] `g++` traduce il codice sorgente in eseguibile; `gdb` permette il debug.
+- [ ] `prova.cpp` compila, stampa il messaggio atteso e si ferma su un breakpoint.
+- [ ] Il terminale resta utile anche quando VS Code o l'estensione non trovano il toolchain.
 
 ---
 
@@ -254,9 +263,12 @@ Se sì, l’officina è completamente operativa.
 
 ---
 
-### ➡️ Prossimo chunk
-Ora che l’officina è allestita e collaudata, possiamo finalmente aprire il cofano e capire **come** il codice sorgente diventa un programma eseguibile (pre-processore, compilatore, linker).  
-Nel prossimo capitolo entreremo nella “fabbrica del codice”.
+### ➡️ Prossimo passo nel percorso
+
+Ora che l'officina è allestita e collaudata, nel prossimo capitolo del
+percorso Fondamenti, `02_il_motore_sotto_il_cofano`, seguirai la trasformazione
+da sorgente C++ a eseguibile: pre-elaborazione, compilazione, assemblaggio e
+linking.
 
 ---
 
