@@ -1,15 +1,15 @@
-# Tre prodotti, una sorgente
+# Prodotti – ci-piu-piu
 
-**Stato:** decisione architetturale (2026-11-18)
+**Stato:** allineato a SPEC v0.8 (2026-11-24)
 
-Il corso non è un unico artefatto. Sono **tre prodotti** con acquirenti e utilità diverse, generati dallo stesso modello di capitolo.
+Il corso non è un unico artefatto. Sono **prodotti** con consumatori diversi, generati dallo stesso modello di capitolo (`activity_id` + frontmatter + Markdown).
 
-| Prodotto | Consumatore principale | Valore percepito | Comando / output |
-|----------|------------------------|------------------|------------------|
-| **P1 – OER online** | Studente (auto-studio, recupero assenze) | Alto per lo studente; **bassa disponibilità a pagare** come prodotto isolato | `build` → LiaScript (`dist/`) |
-| **P2 – Classroom50** | Insegnante di **laboratorio** | **Alto** (risparmio tempo su consegne, clone, scadenze) | `scaffold-assignment` → template repo |
-| **P3 – Paper Pack** | Insegnante di **teoria** | **Ancora più alto** in contesti con verifiche scritte | `print --template paper` → PDF + griglia + registro |
-| **P4 - Materiale docente** | Insegnante | Alto: programmazione didattica, soluzioni, griglie di valutazione estese, guida docente | |
+| ID | Prodotto | Consumatore principale | Valore percepito | Comando / output |
+|----|----------|------------------------|------------------|------------------|
+| **P1** | OER online | Studente (studio, recupero) | Alto per lo studente; bassa disponibilità a pagare come prodotto isolato | `build` → LiaScript (`dist/`) |
+| **P2** | Classroom50 | Docente di **laboratorio** | Alto (consegne, clone, scadenze) | `scaffold-assignment` → template repo |
+| **P3** | Paper Pack | Docente di **teoria / valutazione** | Molto alto dove servono verifiche scritte | `print --template paper` → PDF + griglia + registro |
+| **P4** | Materiale docente | Docente; eventuale interlocutore editoriale | Alto (soluzioni, griglie estese, guida) | Non nel `build` studente; path riservati se presenti |
 
 ```text
                     ┌─────────────────────────┐
@@ -23,18 +23,47 @@ Il corso non è un unico artefatto. Sono **tre prodotti** con acquirenti e utili
      (LiaScript)          (repo template)     (verifica A/B)
 ```
 
+P4 non compare nel diagramma delle proiezioni pubbliche: è materiale di supporto (e, se si dialoga con un editore, parte del pack docente), non una quarta cartella parallela di lezioni.
+
 La **coesione** non si ottiene duplicando file per prodotto, ma con:
 
 1. **`activity_id`** come chiave primaria condivisa;
-2. **frontmatter** come contratto dati (components, files, assessment, registro);
-3. **item stabili** (`items[].id`) per Predict / Paper Pack / analisi errori;
+2. **frontmatter** come contratto dati (`components`, `files`, `assessment`, `registro`);
+3. **item stabili** per Predict / Paper Pack;
 4. generatori (`build`, `scaffold-assignment`, `print`) come *proiezioni* del modello.
+
+---
+
+## Modulo Fondamenti (`order` 0–15)
+
+Unità di riferimento per completezza didattica e per eventuali interlocutori esterni (scuole, editori).
+
+| Voce | Contenuto |
+|------|-----------|
+| **Cosa è** | Percorso lab di base in C++ (ambiente, programma minimo, I/O, selezione, cicli, formattazione essenziale), con PRIMM e verifiche allineabili |
+| **Cosa non è** | Corso annuale completo, manuale universitario, piattaforma LMS dell’editore |
+| **Prerequisiti** | PC in lab, toolchain C++ come nelle lezioni 0–1; account GitHub se si usa P2 |
+| **Esiti attesi** | Studente scrive/compila programmi minimi, usa selezione e cicli su casi semplici di contesto lavorativo leggero, affronta una verifica PRIMM |
+
+I capitoli oltre `order` 15 sono **estensione** del percorso scuola, non parte del perimetro Fondamenti finché `products.md` non viene aggiornato.
+
+---
+
+## Scopo editoriale (senza dossier)
+
+Senza sostituire un pack editoriale dedicato, il repository si orienta così:
+
+- **campione di qualità** = lezioni Fondamenti usabili in autonomia (P1) + compito (P2) + verifica (P3) sullo stesso `activity_id`;
+- **linguaggio** dei capitoli campione: obiettivi osservabili, confini di lezione, scenari coerenti (gestionale / operatore), non metafore scollegate dall’indirizzo;
+- **promesse sobrie**: modulo lab + valutazione, non “adozione di volume” né copertura di tutto il piano di studi.
+
+Dettaglio normativo tooling: [`SPEC.md`](SPEC.md) §0 e §8.
 
 ---
 
 ## Decisione: separare le lezioni in directory per prodotto?
 
-### Opzione A — Un file capitolo, tre proiezioni (scelta adottata)
+### Opzione A — Un file capitolo, tre proiezioni pubbliche (scelta adottata)
 
 ```text
 chapters/03_ciao_mondo.md     # narrativo + frontmatter completo
@@ -73,14 +102,12 @@ con merge obbligatorio in `cipiupiu` e **stesso** `activity_id`. Non è richiest
 
 ## Qualità delle domande (priorità alta/media)
 
-Ispirato al profiling del [CEL rust-book](https://github.com/cognitive-engineering-lab/rust-book), senza importare la piattaforma mdBook.
-
 | Priorità | Regola | Dove si applica |
 |----------|--------|-----------------|
 | **Alta** | Domande sul **perché** e sullo **stato** (tracing), non solo sull’output | `components.predict_quiz`, `assessment.*`, Investigate |
-| **Alta** | **ID stabili** per ogni item valutativo | `items[].id` / `predict` id derivato da `activity_id` + phase + slot |
-| **Media** | **`context`**: spiegazione della risposta corretta anche in griglia | `assessment.*.context` o `typical_errors` + risposta attesa |
-| **Media** | **A/B** con prompt e/o **dati diversi** (non solo etichetta) | `assessment.versions` + `assessment.variants` |
-| **Media** | **Checklist visualizzazione** memoria/processo | corpo PRIMM Investigate + opzionale `components.visualization` |
+| **Alta** | **ID stabili** per ogni item valutativo | `items[].id` / id derivato da `activity_id` + phase |
+| **Media** | **`context`**: spiegazione della risposta corretta in griglia | `assessment.*.context` / `typical_errors` |
+| **Media** | **A/B** con prompt e/o **dati diversi** | `assessment.versions` + `variants` |
+| **Media** | Visualizzazione memoria/processo dove serve | corpo Investigate |
 
-Dettaglio normativo: `docs/SPEC.md` §4.1–4.3 e `docs/paper_pack.md`.
+Dettaglio: `docs/SPEC.md` §4 e `docs/paper_pack.md`.

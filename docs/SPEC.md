@@ -1,23 +1,33 @@
-# Specifiche tooling – ci-piu-piu (v0.7)
+# Specifiche tooling – ci-piu-piu (v0.8)
 
 Fonte di verità per CLI, frontmatter, Classroom50 e Paper Pack.
 
 **Stato:** Slice A–C ed E operative; D previsto. Paper Pack v2 (id stabili, context, varianti A/B).  
-**Data:** 2026-11-18
+**Data:** 2026-11-24
 
 ---
 
-## 0. Tre prodotti
+## 0. Prodotti e ambito
 
-Vedi anche [`docs/products.md`](products.md).
+Vedi anche [`docs/products.md`](products.md) (posizionamento e modulo Fondamenti).
+Questa SPEC disciplina le **proiezioni tecniche** (`build`, `scaffold-assignment`, `print`), non il piano commerciale verso terzi.
 
 | ID | Prodotto | Cliente | Valore relativo |
 |----|----------|---------|-----------------|
 | P1 | OER online (LiaScript) | Studente | Alto per lo studente; poca disponibilità a pagare da solo |
 | P2 | Template esercizi Classroom50 | Docente laboratorio | Alto (tempo) |
 | P3 | Paper Pack | Docente teoria | Molto alto (verifiche in classe) |
+| P4 | Materiale docente (soluzioni, griglie estese, guida) | Docente / eventuale edizione | Alto; **non** emesso dal `build` studente |
 
-Un capitolo = un `activity_id` + un frontmatter. I tre prodotti sono **proiezioni** (`build`, `scaffold-assignment`, `print`), non alberi di file separati. Non si ristrutturano le lezioni per prodotto in v1.
+Un capitolo = un `activity_id` + un frontmatter. P1–P3 sono **proiezioni** dello stesso modello, non alberi di file separati. Non si ristrutturano le lezioni per prodotto in v1.
+
+### 0.1 Modulo Fondamenti (ambito editoriale di riferimento)
+
+Finché non diversamente versionato in `docs/products.md`, il **modulo Fondamenti** è l'insieme dei capitoli con `order` **0–15** (guide, lab, convention e PRIMM).
+
+- È l'unità coerente da presentare come percorso lab + verifica, non il corso triennale intero.
+- I capitoli del modulo devono restare **autoconsistenti** e usabili in sequenza (prev/next, catalogo lezioni).
+- P4 (soluzioni riservate, guida docente estesa) è descritto in `products.md`; resta fuori dal contratto obbligatorio della CLI pubblica.
 
 ---
 
@@ -343,6 +353,35 @@ Piano di esecuzione vivo: [`docs/ROADMAP.md`](ROADMAP.md).
 
 
 ---
+
+
+## 8. Completezza del modulo Fondamenti (criteri repo)
+
+Criteri **verificabili** per uno stato presentabile del modulo `order` 0–15. Non sostituiscono un dossier editoriale esterno.
+
+### 8.1 Capitolo PRIMM con `assignment_profile: full`
+
+- `components.predict_quiz` e macro Predict nel corpo;
+- checklist `files[]` full (README + predict / run / investigate / modify / make);
+- Investigate allineato a `assessment.investigate.questions`;
+- `registro` e `assessment` valorizzati se si offre Paper Pack su quel capitolo.
+
+### 8.2 Modulo nel complesso
+
+- `order` univoci; `index.md` allineato alla sequenza;
+- `dist/lessons/` generabile con navigazione (indice, precedente, successiva);
+- almeno un sottoinsieme di capitoli “vetrina” con `print --template paper` end-to-end;
+- in `docs/products.md`: prerequisiti del modulo, cosa è incluso / escluso, rapporto P1–P4.
+
+### 8.3 Qualità narrativa (P1, campione editoriale)
+
+Sui capitoli usati come campione (es. `03`):
+
+- obiettivi di apprendimento **osservabili**;
+- confine esplicito (“in questa lezione non…”);
+- metafora e scenari allineati all’indirizzo (lab / contesto lavorativo leggero), non generici;
+- riepilogo usabile come autovalutazione;
+- raccordi al passo successivo del percorso coerenti con `index.md`.
 
 ## 9. Migrazione — Investigate opzione A e `assignment_profile`
 
