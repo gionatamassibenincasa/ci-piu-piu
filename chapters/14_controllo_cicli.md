@@ -343,10 +343,6 @@ files:
 
 ## ⏹️ Uscite Anticipate: `break` e `continue` nei cicli
 
-> "La semplicità è la massima raffinatezza."
->
-> — *Leonardo da Vinci*
-
 In un controllo aziendale non tutti i dati meritano lo stesso trattamento:
 un movimento vuoto può essere ignorato, mentre un importo anomalo può rendere
 inutile continuare. In C++ puoi esprimere queste due decisioni dentro un ciclo.
@@ -356,13 +352,20 @@ inutile continuare. In C++ puoi esprimere queste due decisioni dentro un ciclo.
 > **“salta questa fattura”**: il nastro riparte con la successiva. `break` è
 > il pulsante **“ferma il nastro”**: il controllo del lotto termina subito.
 
+**In questa lezione non** introduciamo ancora funzioni, array di grandi
+dimensioni o cicli annidati. Ci concentriamo sul flusso di un singolo ciclo e
+sulla differenza tra saltare un giro e terminare il controllo.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- usare `continue` per saltare un’iterazione e `break` per terminare un ciclo in base a una regola aziendale.
+- distinguere l'effetto di `continue` da quello di `break`;
+- prevedere il percorso di un ciclo dopo un salto o un'uscita anticipata;
+- tracciare il contatore e i dati elaborati nei due casi;
+- usare `continue` e `break` in un controllo di movimenti con regole esplicite.
 
 ---
 
@@ -497,7 +500,7 @@ Usa una sequenza di importi e sostituisci le condizioni su `i` con:
 
 ---
 
-### 5. MAKE (Crea)
+#### 5. MAKE (Crea)
 
 **Scenario aziendale — Analisi movimenti di cassa**
 
@@ -536,19 +539,19 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `continue` salta il resto dell’iterazione corrente.
-- `break` termina subito il ciclo più interno.
-- In un `for`, `continue` porta comunque all’aggiornamento del contatore.
-- La posizione del comando rispetto alla stampa cambia il flusso osservato.
-- Usa i due comandi per regole di business chiare, non per nascondere codice confuso.
+- [ ] `continue` salta il resto dell’iterazione corrente.
+- [ ] `break` termina subito il ciclo più interno.
+- [ ] In un `for`, `continue` porta comunque all’aggiornamento del contatore.
+- [ ] La posizione del comando rispetto alla stampa cambia il flusso osservato.
+- [ ] Uso i due comandi per regole di business chiare, non per nascondere codice confuso.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora sai controllare il flusso dentro un ciclo. Nel prossimo chunk sposterai
-un’elaborazione in una **funzione**, un reparto specializzato che puoi
-richiamare quando serve.
+Ora sai controllare il flusso dentro un ciclo. Il prossimo capitolo del
+percorso Fondamenti, `15_formattazione_contabile`, consolida presentazione dei
+dati e output prima della successiva estensione sulle funzioni.
 
 <!--#
   Checklist autore / LLM (golden sample = chapters/03_ciao_mondo.md)

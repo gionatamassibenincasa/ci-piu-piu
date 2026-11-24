@@ -323,13 +323,21 @@ conservarlo in una variabile.
 > chiedi prima la quantità e poi il prezzo, devi registrare le risposte nello
 > stesso ordine.
 
+**In questa lezione non** correggiamo ancora gli input errati, non controlliamo
+se i dati appartengono a un intervallo valido e non prendiamo decisioni con
+`if`. Prima impariamo il percorso normale dalla tastiera alle variabili e al
+calcolo.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- leggere da tastiera quantità e prezzi con `std::cin` e usarli in un calcolo.
+- usare `std::cin >>` per assegnare dati inseriti dall'operatore alle variabili;
+- coordinare prompt `std::cout`, ordine delle letture e tipi delle variabili;
+- distinguere la direzione dei dati con `std::cin`, `std::cout`, `>>` e `<<`;
+- calcolare un totale solo dopo aver letto quantità e prezzo unitario.
 
 ---
 
@@ -526,18 +534,21 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `std::cout <<` porta dati dal programma allo schermo.
-- `std::cin >>` porta dati dalla tastiera a una variabile.
-- Dichiara una variabile prima di usarla per la lettura.
-- L'ordine di prompt e letture deve corrispondere all'ordine degli input.
-- Usa `int` per quantità intere e `double` per prezzi con centesimi.
+- [ ] `std::cout <<` porta dati dal programma allo schermo.
+- [ ] `std::cin >>` porta dati dalla tastiera a una variabile.
+- [ ] Dichiaro una variabile prima di usarla per la lettura.
+- [ ] L'ordine di prompt e letture corrisponde all'ordine degli input.
+- [ ] Uso `int` per quantità intere e `double` per prezzi con centesimi.
+- [ ] Calcolo il totale solo dopo aver letto i dati necessari.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora il programma sa chiedere dati. Nel prossimo chunk imparerai a scegliere tra
-due percorsi con `if`, così il gestionale potrà reagire ai valori inseriti.
+Ora il programma sa chiedere dati. Nel prossimo capitolo del percorso
+Fondamenti, `07_espressioni_e_operatore_ternario`, trasformi i valori letti in
+risultati intermedi con espressioni aritmetiche e operatori. La selezione con
+`if` e `else` viene affrontata nel capitolo successivo.
 
 <!--#
   Checklist autore / LLM

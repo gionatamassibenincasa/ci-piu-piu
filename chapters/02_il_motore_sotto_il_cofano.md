@@ -292,14 +292,21 @@ controllo, preparazione e spedizione.
 > cliente. Se un reparto trova un problema, la catena si ferma e ricevi un
 > messaggio d'errore.
 
+**In questa lezione non** correggiamo ancora gli errori del sorgente né
+entriamo in dettagli sul linguaggio Assembly. Osserviamo la catena di
+compilazione e il codice di uscita restituito da `main`.
+
 ---
 
 ### 🎯 Obiettivo di questo chunk
 
 Alla fine di questa lezione sei in grado di:
 
-- seguire il percorso di un programma C++ dal file `.cpp` all'eseguibile e
+- seguire il percorso di un programma C++ dal file `.cpp` all'eseguibile,
   riconoscere il ruolo dei file intermedi creati da `g++ -save-temps`.
+- distinguere pre-elaborazione, compilazione, assemblaggio e linking;
+- spiegare perché `return N;` comunica un codice al sistema operativo senza
+  stampare `N` a video.
 
 ---
 
@@ -482,18 +489,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Il file `.cpp` è il progetto; il `.exe` è il prodotto eseguibile.
-- Il percorso osservabile è `.cpp` → `.ii` → `.s` → `.o` → `.exe`.
-- Il linker collega il codice oggetto con librerie e codice di avvio.
-- `-save-temps` conserva i file intermedi per poterli ispezionare.
-- `return N;` comunica un codice di uscita al sistema operativo: non stampa `N`.
+- [ ] Il file `.cpp` è il progetto; il `.exe` è il prodotto eseguibile.
+- [ ] Il percorso osservabile è `.cpp` → `.ii` → `.s` → `.o` → `.exe`.
+- [ ] Il linker collega il codice oggetto con librerie e codice di avvio.
+- [ ] `-save-temps` conserva i file intermedi per poterli ispezionare.
+- [ ] `return N;` comunica un codice di uscita al sistema operativo: non stampa `N`.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Il programma sa già comunicare un esito al sistema, ma non parla ancora con la
-persona che lo usa. Nel prossimo capitolo gli daremo un megafono: `std::cout`.
+persona che lo usa. Il prossimo capitolo del percorso Fondamenti,
+`03_ciao_mondo`, introduce il primo output testuale con `std::cout` e completa
+il programma minimo con `#include <iostream>`.
 
 <!--#
   Checklist autore / LLM

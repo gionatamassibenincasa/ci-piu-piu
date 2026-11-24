@@ -16,16 +16,12 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 ## 📦 Gli sportelli della memoria: variabili, costanti e tipi
 
-> "Chi controlla il passato controlla il futuro.
-> Chi controlla il presente controlla il passato."
->
-> -- George Orwell
+Finora hai scritto programmi con messaggi fissi. Nel laboratorio di oggi
+configuri uno sportello per ogni dato gestito da un programma: il prezzo di
+un articolo, la sua giacenza o il saldo di un conto.
 
-Finora hai stampato testi fissi. Un software gestionale, però, deve ricordare
-dati che cambiano: prezzo di un articolo, giacenza di magazzino, saldo di un
-conto.
-
-Per farlo usi variabili e costanti.
+Userai variabili e costanti per ricordare dati diversi senza confonderne il
+tipo o il significato.
 
 > 💡 **Metafora:** Immagina la memoria RAM come una parete di sportelli
 > automatici. Il nome della variabile è l'etichetta che leggi tu; il tipo
@@ -33,16 +29,22 @@ Per farlo usi variabili e costanti.
 > conservata. Uno sportello `const` è sigillato: dopo averlo riempito non puoi
 > cambiare il contenuto.
 
+**In questa lezione non** leggiamo ancora dati dalla tastiera e non introduciamo
+operatori aritmetici avanzati o strutture dati: ci concentriamo sulla
+dichiarazione, inizializzazione e modifica controllata dei singoli dati.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- dichiarare variabili e costanti scegliendo il tipo adatto a un dato aziendale.
-
-In questo chunk non chiediamo ancora dati da tastiera con `std::cin`: ci
-concentriamo sul ricordare, mostrare e modificare valori già scritti nel codice.
+- scegliere `int`, `double`, `char`, `bool` o `std::string` in base al significato
+  di un dato aziendale;
+- dichiarare e inizializzare una variabile o una costante con una sintassi valida;
+- distinguere troncamento da arrotondamento quando assegnazioni e tipi sono incompatibili;
+- modificare un dato a una volta e riconoscere l'errore prodotto da una
+  successiva assegnazione a `const`.
 
 ---
 
@@ -379,18 +381,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Una variabile è uno sportello con nome, tipo e valore.
-- `int` serve per conteggi interi; `double` per valori con decimali.
-- `char` contiene un carattere; `bool` rappresenta due stati; `std::string` contiene testo.
-- `const` sigilla un valore dopo l'inizializzazione.
-- Scegli il tipo in base al significato aziendale del dato.
+- [ ] Una variabile è uno sportello con nome, tipo e valore.
+- [ ] `int` serve per conteggi interi; `double` per valori con decimali.
+- [ ] `char` contiene un carattere; `bool` rappresenta due stati; `std::string` contiene testo.
+- [ ] `const` sigilla un valore dopo l'inizializzazione.
+- [ ] Scegli il tipo in base al significato aziendale del dato.
+- [ ] Prima di modificare una dichiarazione, prevevo l'effetto e ricompilo.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora che sai memorizzare dati con il tipo corretto, userai operatori ed
-espressioni per calcolare totali, IVA e differenze in modo controllato.
+Ora che sai memorizzare dati con il tipo corretto, il prossimo capitolo
+introduce `std::cin` per ricevere valori dall'operatore e usare quelli
+memorizzati in un programma interattivo.
 
 ---
 

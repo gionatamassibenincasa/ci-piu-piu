@@ -372,13 +372,20 @@ In questi casi puoi usare `switch`: confronta un valore discreto con diversi
 > `break` è il freno che chiude lo sportello dopo l'erogazione; `default` è il
 > messaggio “codice non valido” quando nessuno sportello corrisponde.
 
+**In questa lezione non** usiamo `switch` per intervalli o confronti tra numeri
+decimali, né introduciamo cicli. Limitiamo la scelta a valori discreti già
+identificabili da `int` o `char`.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere uno `switch` su un codice discreto usando `case`, `break` e `default`.
+- distinguere una selezione discreta da una classificazione per intervalli;
+- scrivere uno `switch` con `case`, `break` e `default`;
+- prevedere il caso eseguito e riconoscere il fall-through;
+- usare due codici distinti per attivare lo stesso blocco quando il fall-through è intenzionale.
 
 ---
 
@@ -622,19 +629,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `switch` seleziona valori discreti, come `int` e `char`.
-- `case` rappresenta un valore preciso, non un intervallo.
-- `break` chiude il ramo e previene il fall-through involontario.
-- `default` gestisce i codici non previsti.
-- Il fall-through può essere intenzionale, per esempio per `U` e `u`.
-- Per soglie, intervalli, `double` e `std::string` usa `if / else if`.
+- [ ] `switch` seleziona valori discreti, come `int` e `char`.
+- [ ] `case` rappresenta un valore preciso, non un intervallo.
+- [ ] `break` chiude il ramo e previene il fall-through involontario.
+- [ ] `default` gestisce i codici non previsti.
+- [ ] Il fall-through può essere intenzionale, per esempio per `U` e `u`.
+- [ ] Per soglie, intervalli, `double` e `std::string` uso `if / else if`.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Finora il programma ha seguito un percorso oppure ha scelto un caso. Nel
-prossimo capitolo imparerai a ripetere un'azione con il ciclo `while`.
+prossimo capitolo del percorso Fondamenti, `11_ciclo_while`, imparerai a
+ripetere un'azione finché una condizione resta vera.
 
 <!--#
   Checklist autore / LLM
@@ -648,5 +656,5 @@ prossimo capitolo imparerai a ripetere un'azione con il ciclo `while`.
   [x] Make con scenario SIA, requisiti chiusi e scaffold
   [x] Commenti /// usati solo per il perché
   [x] Nessun costrutto oltre quelli già introdotti
-  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/09_selezione_multipla_switch.md
+  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/10_selezione_multipla_switch.md
 #-->

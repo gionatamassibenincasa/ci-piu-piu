@@ -28,13 +28,20 @@ rimane vera.
 > sentinella, il nastro si ferma e viene emesso lo scontrino. Se il carrello è
 > già vuoto all'inizio, il nastro non fa neppure un giro.
 
+**In questa lezione non** introduciamo ancora `for`, `do-while` o strumenti
+per interrompere manualmente un ciclo con `break`. Ci concentriamo sul ciclo
+controllato in testa da una sentinella.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un ciclo `while` che legge dati fino a una sentinella e aggiorna la condizione a ogni giro.
+- distinguere inizializzazione, condizione e aggiornamento di un ciclo `while`;
+- tracciare il valore della condizione prima e dopo ogni iterazione;
+- leggere dati fino a una sentinella senza elaborarla;
+- riconoscere i rischi di un ciclo infinito quando la variabile controllata non viene aggiornata.
 
 ---
 
@@ -400,19 +407,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `while` ripete il corpo mentre la condizione è vera.
-- Il controllo è in testa: sono possibili zero iterazioni.
-- Ogni ciclo ha inizializzazione, condizione e aggiornamento.
-- Una sentinella ferma il ciclo e non va elaborata.
-- Senza aggiornamento della variabile controllata può nascere un ciclo infinito.
+- [ ] `while` ripete il corpo mentre la condizione è vera.
+- [ ] Il controllo è in testa: sono possibili zero iterazioni.
+- [ ] Ogni ciclo ha inizializzazione, condizione e aggiornamento.
+- [ ] Una sentinella ferma il ciclo e non va elaborata.
+- [ ] Senza aggiornamento della variabile controllata può nascere un ciclo infinito.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando sai già quante volte ripetere, per esempio dodici mesi o trenta righe,
-`while` può diventare verboso. Nel prossimo capitolo userai `for` per raccogliere
-inizializzazione, condizione e aggiornamento in una sola riga.
+`while` può diventare verboso. Nel prossimo capitolo del percorso Fondamenti,
+`12_ciclo_for`, raccoglierai inizializzazione, condizione e aggiornamento in
+una sola riga.
 
 ---
 

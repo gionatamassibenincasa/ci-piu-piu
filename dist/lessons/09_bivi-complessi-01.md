@@ -28,13 +28,20 @@ di sceglierne una sola.
 > la sua corsia. I sensori successivi non vedono più quel pacco: per questo
 > l'ordine delle soglie decide il risultato.
 
+**In questa lezione non** gestiamo ancora cicli o ripetizioni e non introduciamo
+`switch`. Ci concentriamo su una sola classificazione ordinata, controllata
+dall'alto verso il basso.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere una catena `if / else if / else` ordinata per classificare un dato in fasce esclusive.
+- ordinare soglie in una catena `if / else if / else` dalla più alta alla più bassa;
+- prevedere quale sia il primo ramo vero e tracciare i rami saltati;
+- assegnare un solo risultato esclusivo a un dato in una fascia;
+- verificare il comportamento ai confini delle soglie.
 
 ---
 
@@ -411,19 +418,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `if / else if / else` classifica un dato in alternative esclusive.
-- La catena si ferma al primo ramo vero.
-- Con soglie `>=`, ordina i controlli dalla soglia più alta alla più bassa.
-- L'ultimo `else` gestisce tutti i valori rimasti.
-- Testa sempre i confini: esattamente soglia, appena sotto e appena sopra.
+- [ ] `if / else if / else` classifica un dato in alternative esclusive.
+- [ ] La catena si ferma al primo ramo vero.
+- [ ] Con soglie `>=`, ordino i controlli dalla soglia più alta alla più bassa.
+- [ ] L'ultimo `else` gestisce tutti i valori rimasti.
+- [ ] Testo sempre i confini: esattamente soglia, appena sotto e appena sopra.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando la decisione dipende da un valore discreto, come un codice menu o uno
 stato numerico, una lunga catena può diventare difficile da leggere. Nel
-prossimo chunk userai `switch` per organizzare questi casi.
+prossimo capitolo del percorso Fondamenti, `10_selezione_multipla_switch`,
+organizzerai questi casi con `switch`.
 
 ---
 

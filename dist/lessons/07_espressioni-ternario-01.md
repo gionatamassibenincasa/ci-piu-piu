@@ -16,10 +16,6 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 ## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
-> "La semplicità è la sofisticazione suprema."
->
-> — *Leonardo da Vinci*
-
 Quando prepari uno scontrino, non fai un solo calcolo: parti dall'importo,
 applichi uno sconto e poi decidi se la spedizione è gratuita. In C++ puoi
 scrivere questi passaggi come **espressioni** e usare il ternario per una
@@ -31,13 +27,20 @@ scelta semplice che restituisce direttamente un valore.
 > della cassa: legge una condizione e apre uno dei due cassetti, quello del
 > valore vero oppure quello del valore falso.
 
+**In questa lezione non** introduciamo ancora `if` / `else`, strutture o cicli.
+Ci limitiamo ad espressioni che producono un valore e a scelte brevi tra due
+risultati, senza gestire più casi o ripetizioni.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un'espressione che calcola un importo e usa l'operatore ternario per scegliere un valore.
+- distinguere il ruolo di operatori aritmetici e confronti dentro un'espressione;
+- prevedere l'effetto di una divisione intera tra due valori `int`;
+- usare l'operatore ternario per scegliere un risultato in base a una condizione;
+- tracciare l'ordine dei calcoli dello sconto, del netto e della spedizione.
 
 ---
 
@@ -370,19 +373,19 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Un'espressione produce un valore usando variabili, letterali e operatori.
-- Tra soli `int`, `/` esegue una divisione intera: la parte decimale si perde.
-- Un confronto come `totale >= 60.0` produce `true` o `false`.
-- Il ternario ha la forma `condizione ? se_vero : se_falso` e restituisce un valore.
-- Cambia una sola cosa alla volta: così colleghi l'output alla causa.
+- [ ] Un'espressione produce un valore usando variabili, letterali e operatori.
+- [ ] Tra soli `int`, `/` esegue una divisione intera: la parte decimale si perde.
+- [ ] Un confronto come `totale >= 60.0` produce `true` o `false`.
+- [ ] Il ternario ha la forma `condizione ? se_vero : se_falso` e restituisce un valore.
+- [ ] Cambio una sola cosa alla volta: così collego l'output alla causa.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando una scelta deve eseguire più istruzioni, una riga non basta più.
-Nel prossimo chunk userai `if` / `else` per costruire un vero bivio nel
-programma.
+Nel prossimo capitolo del percorso Fondamenti, `08_bivi_semplici_if_else`,
+userai `if` / `else` per costruire un vero bivio nel programma.
 
 ---
 

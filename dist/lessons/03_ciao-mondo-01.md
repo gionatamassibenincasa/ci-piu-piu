@@ -19,20 +19,27 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 >
 > -- Brian Kernighan
 
-Un linguaggio di programmazione è come un linguaggio straniero con una grammatica rigidissima. Il computer non indovina: esegue **esattamente** quello che gli scrivi.
+Questa lezione apre il **modulo Fondamenti**: impariamo a far comunicare un programma C++ con chi lo usa, in modo controllato e ripetibile. Il computer non indovina: esegue **esattamente** quello che gli scrivi, con una grammatica rigida.
 
-> 💡 **Metafora:** Scrivere codice è come scrivere una ricetta di cucina.  
+In laboratorio e in verifica ti chiederemo le stesse cose in forme diverse (codice da prevedere, da modificare, da scrivere; domande sul *perché*). L'obiettivo non è memorizzare una ricetta, ma riconoscere le parti di un programma minimo e usarle con intenzione.
+
+> 💡 **Metafora: messaggio all'operatore**
 >
-> - Il **computer** è lo chef che la esegue alla lettera. Se dimentichi “aggiungi un pizzico di sale”, lui non lo indovina: si blocca o produce un risultato sbagliato.  
-> - L’**essere umano** (tu tra sei mesi, un collega, il docente) è l’altro lettore: deve poter capire, modificare e mantenere la ricetta. Per questo usiamo commenti e codice ordinato.
+> - Il **programma** è la prima schermata di un piccolo gestionale: deve dire *cosa sta facendo* e *che il sistema è pronto*.
+> - Il **computer** esegue le istruzioni nell'ordine scritto; se manca un pezzo obbligatorio, non "completa lui" il messaggio: segnala errore o si ferma.
+> - L'**essere umano** (tu tra sei mesi, un collega, il docente) legge lo stesso codice: serve ordine e commenti per poterlo mantenere.
+
+**In questa lezione non** introduciamo ancora variabili, input da tastiera né decisioni. Solo output testuale e struttura minima del programma.
 
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- Scrivere, compilare ed eseguire un programma C++ minimo che stampa testo a video con `std::cout`
+- scrivere un programma C++ minimo con `#include <iostream>`, `main`, `std::cout` e `return 0;`;
+- compilare ed eseguire il programma e riconoscere un messaggio di errore di sintassi frequente (punto e virgola, nome non dichiarato);
+- spiegare, a parole tue, il ruolo di ciascuna delle quattro parti del programma minimo.
 
 ---
 
@@ -71,6 +78,9 @@ del risultato cambierà a video?
 ---
 
 ### 🔬 Laboratorio PRIMM: Il Programma “Ciao, Mondo!”
+
+Il laboratorio segue il metodo **PRIMM** (Predict → Run → Investigate → Modify → Make).
+Le stesse abilità possono ripresentarsi nel compito su GitHub e in una verifica scritta: allenati a *prevedere*, *spiegare* e *modificare*, non solo a far comparire una riga a schermo.
 
 ```cpp
 #include <iostream>
@@ -399,20 +409,21 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Ogni programma C++ parte da `int main()`.
-- `#include <iostream>` è il passaporto per l’input/output.
-- `std::cout <<` scrive sullo schermo; `\n` va a capo.
-- `std::` indica il namespace della libreria standard; per ora lo scriviamo sempre esplicito (niente `using namespace std;` ancora).
-- `return 0;` comunica “successo” al sistema operativo.
-- Il codice ha **due lettori**: il compilatore (sintassi) e l’essere umano (chiarezza). I commenti servono al secondo.
-- Gli errori di compilazione sono messaggi utili: imparare a leggerli è una competenza fondamentale.
+Prima di chiudere, verifica di saper fare (o spiegare) quanto segue:
+
+- [ ] Ogni programma eseguibile parte da `int main()`.
+- [ ] `#include <iostream>` abilita l'input/output a console.
+- [ ] `std::cout <<` scrive sullo schermo; `\n` va a capo.
+- [ ] Scrivo sempre `std::cout` per intero (niente `using namespace std;` in questo modulo).
+- [ ] `return 0;` comunica esito di successo al sistema operativo.
+- [ ] Il codice ha **due lettori**: compilatore (sintassi) e essere umano (chiarezza); i commenti servono al secondo.
+- [ ] Un messaggio di errore di compilazione si legge da riga e parola `error`, non si ignora.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Finora il computer ha solo *parlato*.  
-Nella prossima lezione gli daremo le **scatole** (le variabili) per ricordare i dati e gli insegneremo ad *ascoltare* (`std::cin`).
+Dopo questa lezione, nel percorso Fondamenti, si lavora sulla **qualità del codice leggibile** (documentazione leggera con Doxygen) e poi sulle **variabili** e sull'input (`std::cin`): il programma non si limita a parlare, ma inizia a ricordare e ad ascoltare dati di lavoro.
 
 ---
 

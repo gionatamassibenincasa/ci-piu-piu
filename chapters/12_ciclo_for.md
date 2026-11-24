@@ -310,13 +310,21 @@ aggiornamento del contatore.
 > “parti da 1, fermati a 5, avanza di 1 a ogni scatto”. La macchina ripete il
 > lavoro senza che tu debba ricordarti di aggiornare manualmente il contatore.
 
+**In questa lezione non** introduciamo ancora il ciclo `do-while`, l'uscita
+forzata con `break` o l'uso del contatore per accedere agli elementi di un
+array. Ci concentriamo su ripetizioni con numero noto e sulle tre parti
+dell'intestazione `for`.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un `for` per ripetere un calcolo un numero noto di volte.
+- distinguere inizializzazione, condizione e aggiornamento nell'intestazione `for`;
+- prevedere i valori prodotti da un contatore e il numero delle iterazioni;
+- scrivere un `for` per ripetere un calcolo un numero noto di volte;
+- tracciare il contatore e una quantità aggiornata dopo ogni iterazione.
 
 ---
 
@@ -522,19 +530,20 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- Usa `for` quando il numero di ripetizioni è noto.
-- L'intestazione contiene inizializzazione, condizione e aggiornamento.
-- La condizione viene controllata prima di ogni iterazione.
-- Con `<` il valore limite non viene incluso; con `<=` può essere incluso.
-- Per dati a sentinella e numero di giri sconosciuto resta adatto il `while`.
+- [ ] Uso `for` quando il numero di ripetizioni è noto.
+- [ ] L'intestazione contiene inizializzazione, condizione e aggiornamento.
+- [ ] La condizione viene controllata prima di ogni iterazione.
+- [ ] Con `<` il valore limite non viene incluso; con `<=` può essere incluso.
+- [ ] Per dati a sentinella e numero di giri sconosciuto resta adatto il `while`.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 A volte il corpo deve essere eseguito almeno una volta, per esempio quando
 chiedi un dato prima di poter controllare se è valido. Nel prossimo capitolo
-userai il ciclo `do-while`, con il controllo in coda.
+del percorso Fondamenti, `13_ciclo_do_while`, userai il ciclo `do-while`, con
+il controllo in coda.
 
 <!--#
   Checklist autore / LLM
@@ -548,5 +557,5 @@ userai il ciclo `do-while`, con il controllo in coda.
   [x] Make con scenario SIA, requisiti chiusi e scaffold
   [x] Commenti /// usati solo per il perché
   [x] Nessun costrutto oltre quelli già introdotti
-  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/11_ciclo_for.md
+  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/12_ciclo_for.md
 #-->

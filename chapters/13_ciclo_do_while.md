@@ -319,13 +319,20 @@ alla fine.
 > controllare se i dati sono validi. Se c'è un errore, il modulo torna indietro
 > e lo compili di nuovo.
 
+**In questa lezione non** introduciamo ancora `break` e `continue` per guidare
+internamente il ciclo, né array o funzioni. Ci concentriamo sul controllo in
+coda e sulla validazione di un singolo dato.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un `do-while` per validare un input che deve essere richiesto almeno una volta.
+- distinguere il controllo in coda del `do-while` dal controllo in testa;
+- prevedere il numero minimo di iterazioni di un `do-while`;
+- costruire una condizione di validazione con `||` per due limiti;
+- riconoscere la sintassi necessaria per chiudere il costrutto.
 
 ---
 
@@ -527,18 +534,19 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `do-while` esegue il corpo e poi controlla la condizione.
-- Il corpo viene eseguito almeno una volta.
-- È adatto alla validazione di input e ai menu che devono apparire subito.
-- Dopo `while (condizione)` del `do-while` serve `;`.
-- Usa `while` o `for` quando zero iterazioni è un caso accettabile.
+- [ ] `do-while` esegue il corpo e poi controlla la condizione.
+- [ ] Il corpo viene eseguito almeno una volta.
+- [ ] È adatto alla validazione di input e ai menu che devono apparire subito.
+- [ ] Dopo `while (condizione)` del `do-while` metto `;`.
+- [ ] Uso `while` o `for` quando zero iterazioni è un caso accettabile.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora conosci i tre cicli fondamentali. Nel prossimo capitolo userai `break` e
-`continue` per guidare con maggiore precisione il flusso dentro un ciclo.
+Ora conosci i tre cicli fondamentali. Nel prossimo capitolo del percorso
+Fondamenti, `14_controllo_cicli`, userai `break` e `continue` per guidare con
+maggiore precisione il flusso dentro un ciclo.
 
 <!--#
   Checklist autore / LLM
@@ -552,5 +560,5 @@ Ora conosci i tre cicli fondamentali. Nel prossimo capitolo userai `break` e
   [x] Make con scenario SIA, requisiti chiusi e scaffold
   [x] Commenti /// usati solo per il perché
   [x] Nessun costrutto oltre quelli già introdotti
-  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/12_ciclo_do_while.md
+  [ ] validate da eseguire: python -m tools.cipiupiu validate chapters/13_ciclo_do_while.md
 #-->

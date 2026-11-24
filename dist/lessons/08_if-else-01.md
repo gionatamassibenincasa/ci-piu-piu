@@ -27,13 +27,20 @@ Con `if` e `if-else` insegni al programma a scegliere un percorso.
 > è vera; il blocco `else` è il passaggio rosso quando la regola è falsa. Con
 > `if-else` passa un solo percorso, mai entrambi.
 
+**In questa lezione non** gestiamo ancora catene con più alternative, cicli
+o selezioni tramite `switch`. Impariamo prima a controllare un singolo bivio
+e a seguire il ramo realmente eseguito.
+
 ---
 
-### 🎯 Obiettivo di questo chunk
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- scrivere un `if` o un `if-else` con graffe per scegliere il ramo corretto in base a una condizione.
+- distinguere l'esecuzione di un blocco `if` semplice da quella di un `if-else`;
+- scrivere una condizione con gli operatori relazionali e organizzare i rami con le graffe;
+- prevedere quale ramo viene attraversato e tracciare lo stato delle variabili;
+- riconoscere l'errore causato da un punto e virgola subito dopo la condizione.
 
 ---
 
@@ -414,20 +421,21 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `if` esegue un blocco solo quando la condizione è vera.
-- `if-else` sceglie un solo ramo tra vero e falso.
-- Usa sempre le graffe per rendere chiaro il blocco controllato.
-- `==` confronta; `=` assegna.
-- Non mettere `;` subito dopo la condizione.
-- Dopo il ramo scelto, il flusso continua con le istruzioni successive.
+- [ ] `if` esegue un blocco solo quando la condizione è vera.
+- [ ] `if-else` sceglie un solo ramo tra vero e falso.
+- [ ] Uso sempre le graffe per rendere chiaro il blocco controllato.
+- [ ] `==` confronta; `=` assegna.
+- [ ] Non metto `;` subito dopo la condizione.
+- [ ] Dopo il ramo scelto, il flusso continua con le istruzioni successive.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
 Quando le alternative diventano più di due, un solo bivio non basta. Nel
-prossimo chunk userai catene `if / else if / else` per gestire fasce di
-sconto e stati diversi di un ordine.
+prossimo capitolo del percorso Fondamenti, `09_bivi_complessi_e_regole_if`,
+costruirai catene `if / else if / else` per gestire fasce di sconto e stati
+diversi di un ordine.
 
 ---
 

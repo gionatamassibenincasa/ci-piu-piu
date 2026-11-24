@@ -21,11 +21,18 @@ Quando stampi un importo, `std::cout` mostra il valore in una forma tecnica. In 
 > 💡 **Metafora:**  
 > Immagina una stampante fiscale. `std::fixed` seleziona la modalità “importo decimale”; `std::setprecision(2)` imposta due caselle per i centesimi. La stampante non cambia il valore del calcolo: cambia il modo in cui lo presenta.
 
-### 🎯 Obiettivo di questo chunk
+**In questa lezione non** modifichiamo la precisione interna dei calcoli né
+introduciamo arrotondamento monetario, funzioni o strutture dati. Ci limitiamo
+alla rappresentazione dei valori già calcolati nello stream `std::cout`.
+
+### 🎯 Obiettivi di apprendimento
 
 Alla fine di questa lezione sei in grado di:
 
-- formattare un prospetto di importi con `std::fixed` e `std::setprecision(2)`.
+- distinguere il valore calcolato dalla forma in cui viene visualizzato;
+- configurare `std::cout` con `std::fixed` e `std::setprecision`;
+- prevedere l'effetto di due, tre o zero cifre decimali;
+- produrre un prospetto leggibile con imponibile, IVA e totale.
 
 ---
 
@@ -318,17 +325,19 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- `#include <iomanip>` rende disponibili i manipolatori di formattazione.
-- `std::fixed` imposta la notazione decimale fissa.
-- Con `std::fixed`, `std::setprecision(2)` mostra due cifre dopo il punto.
-- La configurazione resta attiva per le stampe successive dello stesso `std::cout`.
-- Il formato cambia la rappresentazione visualizzata, non il valore memorizzato.
+- [ ] `#include <iomanip>` rende disponibili i manipolatori di formattazione.
+- [ ] `std::fixed` imposta la notazione decimale fissa.
+- [ ] Con `std::fixed`, `std::setprecision(2)` mostra due cifre dopo il punto.
+- [ ] La configurazione resta attiva per le stampe successive dello stesso `std::cout`.
+- [ ] Il formato cambia la rappresentazione visualizzata, non il valore memorizzato.
 
 ---
 
-### ➡️ Prossimo chunk
+### ➡️ Prossimo passo nel percorso
 
-Ora che sai presentare bene un risultato, puoi imparare a organizzare il calcolo in **funzioni** riutilizzabili.
+Ora che sai presentare bene un risultato, nel prossimo capitolo oltre il
+Modulo Fondamenti, `16_funzioni_scomposizione_top_down`, organizzerai il
+calcolo in funzioni riutilizzabili.
 
 ---
 
