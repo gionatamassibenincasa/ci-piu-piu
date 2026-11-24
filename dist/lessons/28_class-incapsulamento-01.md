@@ -73,10 +73,10 @@ a.prezzo = -5;
 
 Se `prezzo` è `private` in una `class`, da `main` posso scrivere `a.prezzo = -5`?
 
-[( )] Sì, sempre
-[(X)] No: accesso vietato fuori dalla classe
-[( )] Solo se il file si chiama main.cpp
 [( )] Sì, ma solo con double
+[(X)] No: accesso vietato fuori dalla classe
+[( )] Sì, sempre
+[( )] Solo se il file si chiama main.cpp
 
 <details>
 <summary>💡 Spiegazione</summary>

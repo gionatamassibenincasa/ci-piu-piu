@@ -46,9 +46,9 @@ p->scheda();
 
 Con `scheda` virtuale e puntatore a Base che punta a Derivata, quale `scheda` viene chiamata?
 
-[(X)] Quella della Derivata se scheda è virtual
-[( )] Sempre e solo quella di Base
 [( )] Nessuna
+[( )] Sempre e solo quella di Base
+[(X)] Quella della Derivata se scheda è virtual
 [( )] Solo se template
 
 <details>

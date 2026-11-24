@@ -72,9 +72,9 @@ Dopo la costruzione di un Articolo con codice e prezzo tramite costruttore, i ca
 
 
 [(X)] Sì: il costruttore inizializza lo stato
-[( )] No: serve sempre setCodice dopo
-[( )] Solo se c'è anche il distruttore
 [( )] No: i private restano indefiniti
+[( )] Solo se c'è anche il distruttore
+[( )] No: serve sempre setCodice dopo
 
 <details>
 <summary>💡 Spiegazione</summary>

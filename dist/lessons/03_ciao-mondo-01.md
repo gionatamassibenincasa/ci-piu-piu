@@ -36,7 +36,7 @@ Alla fine di questa lezione sei in grado di:
 
 ---
 
-### ⚙️ Prima del laboratorio: le quattro parti essenziali
+### 📚 Idea chiave
 
 Un programma C++ minimo non è una frase isolata: è un messaggio con indirizzo,
 inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.
@@ -100,9 +100,9 @@ Cosa fa l’istruzione `std::cout << "Ciao, Mondo!\n";` quando viene eseguita al
 
 Perché questo frammento, da solo, non è un programma C++ completo?
 
-[(X)] Manca il punto di ingresso (`main`) e in genere le dichiarazioni necessarie (es. `#include`)
-[( )] Perché non usa la parola chiave `program`
 [( )] Perché il testo non è in inglese
+[( )] Perché non usa la parola chiave `program`
+[(X)] Manca il punto di ingresso (`main`) e in genere le dichiarazioni necessarie (es. `#include`)
 
 **Domanda 3**
 
@@ -116,17 +116,17 @@ Cosa fa il carattere speciale `\n` all’interno della stringa?
 
 Quale affermazione spiega meglio il ruolo di `std::` davanti a `cout`?
 
-[(X)] `std::` indica il namespace della libreria standard dove si trova `cout`
 [( )] `std::` è obbligatorio solo in Windows
+[(X)] `std::` indica il namespace della libreria standard dove si trova `cout`
 [( )] `std::` converte il testo in maiuscolo
 
 **Domanda 5**
 
 Se togli le virgolette e scrivi `std::cout << Ciao, Mondo!\n;` (senza `"`), perché il programma non è accettabile?
 
+[( )] Perché `cout` funziona solo con numeri
 [(X)] Senza virgolette il compilatore non tratta il testo come stringa letterale
 [( )] Perché `\n` non può stare fuori dalle virgolette mai
-[( )] Perché `cout` funziona solo con numeri
 
 #### 2. RUN (Esegui)
 
@@ -170,33 +170,33 @@ int main() {
 
 Perché serve `#include <iostream>` in questo programma?
 
+[( )] Perché stampa da sola “Ciao, Mondo!”
 [(X)] Perché dichiara gli strumenti di input/output (come `std::cout`) usati dopo
 [( )] Perché avvia automaticamente la funzione `main`
-[( )] Perché stampa da sola “Ciao, Mondo!”
 
 **Domanda 2**
 
 Perché ogni programma eseguibile ha bisogno di una funzione `main`?
 
-[(X)] Perché è il punto di ingresso: da lì parte l’esecuzione
 [( )] Perché è solo un commento per il programmatore
+[(X)] Perché è il punto di ingresso: da lì parte l’esecuzione
 [( )] Perché sostituisce il compilatore
 
 **Domanda 3**
 
 Osserva l’ordine di esecuzione. Quale sequenza è corretta?
 
-[(X)] Entra in `main` → esegue `std::cout` → esegue `return 0;`
 [( )] Esegue `return 0;` → poi stampa → poi entra in `main`
 [( )] Stampa prima ancora di entrare in `main`
+[(X)] Entra in `main` → esegue `std::cout` → esegue `return 0;`
 
 **Domanda 4**
 
 Cosa comunica `return 0;` al sistema operativo?
 
+[( )] Che deve riavviare `main` da capo
 [(X)] Che il programma è terminato con successo (codice di uscita 0)
 [( )] Che deve stampare il numero 0 a video
-[( )] Che deve riavviare `main` da capo
 
 **Domanda 5**
 
@@ -245,17 +245,17 @@ int main() {
 
 Cosa succede all’output se cambi solo il testo tra virgolette in `"Gestionale pronto\n"`?
 
+[( )] Viene stampato due volte Ciao, Mondo!
 [(X)] A video compare Gestionale pronto (e va a capo); il resto della struttura resta valido
 [( )] Il programma non compila più
-[( )] Viene stampato due volte Ciao, Mondo!
 
 **Domanda 2**
 
 Se rimuovi `\n` dalla stringa, quale effetto osservi?
 
-[(X)] Il testo appare, ma il cursore non va a capo dopo il messaggio
 [( )] Il programma non parte
 [( )] Viene aggiunto automaticamente un secondo messaggio
+[(X)] Il testo appare, ma il cursore non va a capo dopo il messaggio
 
 **Domanda 3**
 
@@ -269,17 +269,17 @@ Vuoi una seconda riga di output. Quale modifica è corretta?
 
 Se cancelli la riga `return 0;`, in un programma così semplice cosa succede di solito?
 
-[(X)] Spesso compila comunque (return implicito da `main` in C++), ma è buona pratica lasciare `return 0;` esplicito
-[( )] È sempre un errore di compilazione obbligatorio
 [( )] Il programma stampa necessariamente “errore”
+[( )] È sempre un errore di compilazione obbligatorio
+[(X)] Spesso compila comunque (return implicito da `main` in C++), ma è buona pratica lasciare `return 0;` esplicito
 
 **Domanda 5**
 
 Perché, in Modify, conviene cambiare **una cosa alla volta** e ricompilare?
 
-[(X)] Per isolare causa ed effetto: se qualcosa si rompe, sai quale modifica l’ha provocato
 [( )] Perché il compilatore accetta al massimo una modifica al giorno
 [( )] Perché altrimenti `std::cout` smette di funzionare
+[(X)] Per isolare causa ed effetto: se qualcosa si rompe, sai quale modifica l’ha provocato
 
 Ora applica **una modifica alla volta** sul programma completo e ricompila.
 

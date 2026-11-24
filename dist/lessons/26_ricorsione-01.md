@@ -51,10 +51,10 @@ int f(int n) {
 
 Cosa deve avere ogni funzione ricorsiva corretta?
 
-[( )] Solo chiamate ricorsive, senza mai fermarsi
-[(X)] Almeno un caso base che interrompe la ricorsione
 [( )] Obbligo di variabili globali
 [( )] Niente `return`
+[(X)] Almeno un caso base che interrompe la ricorsione
+[( )] Solo chiamate ricorsive, senza mai fermarsi
 
 <details>
 <summary>💡 Spiegazione</summary>

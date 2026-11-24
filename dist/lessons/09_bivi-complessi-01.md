@@ -119,16 +119,16 @@ if (fatturato >= 50000.0) {
 
 Quale fascia viene scelta con `fatturato = 25000.0`?
 
-[(X)] Gold, perché il fatturato non raggiunge 50000 ma supera 20000
-[( )] Platinum, perché ogni valore positivo entra nella fascia più alta
 [( )] Silver, perché il programma sceglie sempre l'ultima condizione vera
+[( )] Platinum, perché ogni valore positivo entra nella fascia più alta
+[(X)] Gold, perché il fatturato non raggiunge 50000 ma supera 20000
 
 **Domanda 2**
 
 Perché la soglia `50000.0` deve essere controllata prima di `20000.0`?
 
-[(X)] Un fatturato di 60000 deve fermarsi nella fascia Platinum prima di raggiungere Gold
 [( )] Le soglie più piccole non possono essere scritte dopo quelle grandi
+[(X)] Un fatturato di 60000 deve fermarsi nella fascia Platinum prima di raggiungere Gold
 [( )] Il compilatore esegue sempre le condizioni dall'alto verso il basso numerico
 
 **Domanda 3**
@@ -136,24 +136,24 @@ Perché la soglia `50000.0` deve essere controllata prima di `20000.0`?
 Che cosa succede dopo che una condizione della catena risulta vera?
 
 [(X)] Viene eseguito quel ramo e le condizioni successive vengono saltate
-[( )] Vengono eseguiti anche tutti gli `else if` successivi
 [( )] Il programma torna alla prima condizione per controllarla di nuovo
+[( )] Vengono eseguiti anche tutti gli `else if` successivi
 
 **Domanda 4**
 
 Quale ruolo ha l'ultimo `else` nella scala?
 
+[( )] Rende vere tutte le condizioni precedenti
 [(X)] Gestisce il caso in cui nessuna soglia precedente sia stata raggiunta
 [( )] Ripete il controllo della soglia più alta
-[( )] Rende vere tutte le condizioni precedenti
 
 **Domanda 5**
 
 Perché le fasce di sconto sono un buon esempio di `else if`?
 
+[( )] Le fasce non hanno bisogno di confronti tra numeri
 [(X)] Un cliente deve ricevere una sola fascia tra quelle definite
 [( )] Ogni cliente deve ricevere tutti gli sconti contemporaneamente
-[( )] Le fasce non hanno bisogno di confronti tra numeri
 
 #### 2. RUN (Esegui)
 
@@ -238,33 +238,33 @@ Qual è il primo confronto eseguito con `fatturato = 32500.0`?
 
 Perché il valore finale di `sconto` è `0.10`?
 
-[(X)] La prima condizione è falsa e la seconda è vera, quindi il ramo Gold assegna 0.10
-[( )] Tutte le percentuali vengono sommate e il risultato diventa 0.10
 [( )] Il valore iniziale 0.0 viene trasformato automaticamente in 0.10
+[( )] Tutte le percentuali vengono sommate e il risultato diventa 0.10
+[(X)] La prima condizione è falsa e la seconda è vera, quindi il ramo Gold assegna 0.10
 
 **Domanda 3**
 
 Quale ordine di verifica è corretto per `fatturato = 32500.0`?
 
-[(X)] Platinum falso → Gold vero → Silver e `else` saltati
 [( )] Silver vero → Gold vero → Platinum falso
 [( )] Gold vero → Silver vero → `else` eseguito
+[(X)] Platinum falso → Gold vero → Silver e `else` saltati
 
 **Domanda 4**
 
 Che cosa accade se il fatturato vale `3000.0`?
 
 [(X)] Tutte le soglie sono false e viene eseguito l'ultimo `else`
-[( )] Viene scelta Silver perché è la fascia più bassa
 [( )] Il programma non esegue nessuna istruzione della catena, compreso `else`
+[( )] Viene scelta Silver perché è la fascia più bassa
 
 **Domanda 5**
 
 Perché mettere `fatturato >= 20000.0` prima di `fatturato >= 50000.0` crea un errore logico?
 
+[( )] La condizione 50000 diventerebbe automaticamente falsa
 [(X)] Un fatturato di 60000 soddisfa subito 20000 e viene classificato Gold
 [( )] Il compilatore rifiuta sempre le soglie scritte in ordine crescente
-[( )] La condizione 50000 diventerebbe automaticamente falsa
 
 | Passo | Condizione | Esito | Azione |
 | :---: | :--- | :---: | :--- |
@@ -299,41 +299,41 @@ if (fatturato >= 50000.0) {
 
 Quale modifica aggiunge una fascia Diamond per fatturati da `100000.0` in su?
 
-[(X)] Inserire un nuovo `if (fatturato >= 100000.0)` prima del controllo Platinum
-[( )] Aggiungere Diamond dopo l'ultimo `else`
 [( )] Sostituire `else if` con un secondo `else`
+[( )] Aggiungere Diamond dopo l'ultimo `else`
+[(X)] Inserire un nuovo `if (fatturato >= 100000.0)` prima del controllo Platinum
 
 **Domanda 2**
 
 Che effetto ha mettere il controllo `>= 20000.0` prima di `>= 50000.0`?
 
+[( )] Il programma corregge automaticamente l'ordine
 [(X)] I valori da 50000 in su vengono intercettati troppo presto e classificati Gold
 [( )] Le due fasce vengono assegnate insieme
-[( )] Il programma corregge automaticamente l'ordine
 
 **Domanda 3**
 
 Quale modifica assegna Silver anche al valore esattamente uguale a `5000.0`?
 
+[( )] Spostare Silver nel ramo `else` senza una condizione
 [(X)] Usare `fatturato >= 5000.0` nella condizione Silver
 [( )] Usare `fatturato > 5000.0` nella condizione Silver
-[( )] Spostare Silver nel ramo `else` senza una condizione
 
 **Domanda 4**
 
 Quale modifica calcola l'importo dello sconto dopo aver scelto la fascia?
 
-[(X)] Moltiplicare il fatturato per `sconto` dopo la catena
 [( )] Moltiplicare ogni soglia prima di sapere quale ramo è vero
 [( )] Usare `std::cin` al posto della variabile `sconto`
+[(X)] Moltiplicare il fatturato per `sconto` dopo la catena
 
 **Domanda 5**
 
 Perché conviene modificare una soglia alla volta?
 
 [(X)] Per capire quale cambiamento ha alterato la classificazione ai confini
-[( )] Perché una catena può contenere una sola soglia in assoluto
 [( )] Perché `else if` funziona soltanto con valori non decimali
+[( )] Perché una catena può contenere una sola soglia in assoluto
 
 <details>
 <summary>💡 Scaffold di partenza</summary>

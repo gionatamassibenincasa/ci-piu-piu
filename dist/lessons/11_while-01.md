@@ -112,41 +112,41 @@ while (n > 5) {
 
 Quante volte viene stampata la parola `Elaborazione`?
 
+[( )] Cinque volte, perché il ciclo arriva fino a 5
 [(X)] Zero volte, perché la condizione `0 > 5` è falsa già all'inizio
 [( )] Una volta, perché ogni `while` esegue almeno un giro
-[( )] Cinque volte, perché il ciclo arriva fino a 5
 
 **Domanda 2**
 
 Perché il corpo del `while` non viene eseguito in questo esempio?
 
-[(X)] Il `while` controlla la condizione prima di entrare nel corpo
 [( )] La stampa dentro il ciclo è vietata
 [( )] La variabile `n` viene automaticamente cancellata
+[(X)] Il `while` controlla la condizione prima di entrare nel corpo
 
 **Domanda 3**
 
 Quale ruolo ha `n = n + 1;` dentro il ciclo?
 
-[(X)] Fa evolvere la variabile che può rendere falsa la condizione
 [( )] Riporta sempre `n` al valore iniziale
 [( )] Decide da sola quale testo stampare
+[(X)] Fa evolvere la variabile che può rendere falsa la condizione
 
 **Domanda 4**
 
 Quale elemento serve per fermare un ciclo che legge articoli fino a `0`?
 
-[(X)] Un valore sentinella e una condizione che lo riconosce
-[( )] Un `switch` dentro ogni iterazione
 [( )] Una costante che deve essere sempre uguale a 1
+[( )] Un `switch` dentro ogni iterazione
+[(X)] Un valore sentinella e una condizione che lo riconosce
 
 **Domanda 5**
 
 Perché un `while` può eseguire zero iterazioni?
 
-[(X)] La condizione può essere falsa prima del primo ingresso nel corpo
-[( )] Il compilatore sceglie casualmente se saltare il primo giro
 [( )] Un ciclo esegue il corpo solo quando contiene `std::cin`
+[( )] Il compilatore sceglie casualmente se saltare il primo giro
+[(X)] La condizione può essere falsa prima del primo ingresso nel corpo
 
 #### 2. RUN (Esegui)
 
@@ -219,41 +219,41 @@ while (prezzoArticolo != 0.0) {
 
 Quale condizione permette al ciclo di entrare nel corpo al primo controllo?
 
-[(X)] `12.50 != 0.0`, che è vera
-[( )] `0.0 != 12.50`, che viene controllata dopo il corpo
 [( )] La condizione non viene controllata al primo giro
+[( )] `0.0 != 12.50`, che viene controllata dopo il corpo
+[(X)] `12.50 != 0.0`, che è vera
 
 **Domanda 2**
 
 Perché dopo il giro il totale vale `12.50`?
 
-[(X)] Il prezzo viene sommato prima che la variabile sia aggiornata a `0.0`
 [( )] Il ciclo aggiunge sempre due volte il primo prezzo
 [( )] La sentinella `0.0` viene conteggiata come prezzo
+[(X)] Il prezzo viene sommato prima che la variabile sia aggiornata a `0.0`
 
 **Domanda 3**
 
 Perché il secondo controllo non entra nel corpo?
 
-[(X)] L'aggiornamento porta `prezzoArticolo` alla sentinella e rende falsa la condizione
-[( )] Il ciclo si ferma dopo un giro indipendentemente dalla condizione
 [( )] Il totale non può essere aggiornato più di una volta
+[( )] Il ciclo si ferma dopo un giro indipendentemente dalla condizione
+[(X)] L'aggiornamento porta `prezzoArticolo` alla sentinella e rende falsa la condizione
 
 **Domanda 4**
 
 Quale valore non deve essere sommato in un ciclo con sentinella `0.0`?
 
-[(X)] La sentinella `0.0`, perché serve solo a indicare la fine
-[( )] Ogni prezzo maggiore di zero
 [( )] Il primo prezzo valido inserito
+[( )] Ogni prezzo maggiore di zero
+[(X)] La sentinella `0.0`, perché serve solo a indicare la fine
 
 **Domanda 5**
 
 Che cosa rischi se rimuovi l'aggiornamento di `prezzoArticolo`?
 
-[(X)] La condizione può restare vera e il ciclo può diventare infinito
 [( )] Il ciclo esegue automaticamente il ramo `else`
 [( )] La variabile diventa subito uguale alla sentinella
+[(X)] La condizione può restare vera e il ciclo può diventare infinito
 
 | Momento | `prezzoArticolo` | Condizione | Totale |
 | :--- | :---: | :---: | :---: |
@@ -304,25 +304,25 @@ Dove devi inserire la nuova lettura se vuoi continuare a chiedere prezzi?
 
 Che cosa succede se cambi la sentinella da `0.0` a `-1.0`?
 
-[(X)] Il ciclo continua finché il prezzo non diventa `-1.0`, che non viene sommato
-[( )] Il ciclo termina sempre dopo il primo prezzo positivo
 [( )] Il valore `-1.0` viene automaticamente trasformato in `0.0`
+[( )] Il ciclo termina sempre dopo il primo prezzo positivo
+[(X)] Il ciclo continua finché il prezzo non diventa `-1.0`, che non viene sommato
 
 **Domanda 4**
 
 Quale modifica evita di sommare un prezzo negativo ma permette di continuare?
 
-[(X)] Aggiungere un controllo nel corpo e aggiornare comunque il prossimo prezzo
-[( )] Usare `-1.0` come totale iniziale
 [( )] Mettere la lettura del prezzo fuori da `main`
+[( )] Usare `-1.0` come totale iniziale
+[(X)] Aggiungere un controllo nel corpo e aggiornare comunque il prossimo prezzo
 
 **Domanda 5**
 
 Perché conviene modificare una sola parte del ciclo alla volta?
 
+[( )] Perché il compilatore impedisce di cambiare due righe consecutive
 [(X)] Per distinguere se l'errore riguarda condizione, corpo o aggiornamento
 [( )] Perché un `while` può contenere una sola istruzione
-[( )] Perché il compilatore impedisce di cambiare due righe consecutive
 
 <details>
 <summary>💡 Scaffold di partenza</summary>

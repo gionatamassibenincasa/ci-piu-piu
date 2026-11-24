@@ -46,10 +46,10 @@ v.push_back(5);
 
 Dopo `v.push_back(3); v.push_back(5);`, quanto vale `v.size()`?
 
-[(X)] 2
 [( )] 0
 [( )] 5
 [( )] Indefinito
+[(X)] 2
 
 <details>
 <summary>💡 Spiegazione</summary>

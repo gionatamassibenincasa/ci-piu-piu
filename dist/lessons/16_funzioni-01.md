@@ -72,9 +72,9 @@ double calcolaIva(double imponibile) {
 
 Quanto vale `calcolaIva(100.0)` con aliquota 0.22?
 
-[(X)] 22
 [( )] 100
 [( )] 122
+[(X)] 22
 [( )] 0.22
 
 <details>

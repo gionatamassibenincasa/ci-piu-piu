@@ -62,10 +62,10 @@ int m[2][3];
 
 In `int m[2][3];`, quanti elementi ci sono e qual è l’ultimo indice di colonna?
 
+[( )] 2 elementi in tutto
+[( )] 6 elementi; colonne 1..3
 [(X)] 6 elementi; colonne 0..2
 [( )] 5 elementi; colonne 1..3
-[( )] 6 elementi; colonne 1..3
-[( )] 2 elementi in tutto
 
 <details>
 <summary>💡 Spiegazione</summary>

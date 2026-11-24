@@ -63,10 +63,10 @@ aumenta(x);
 
 Dopo `aumenta(x)` con parametro per valore, quanto vale `x` se partiva da 10?
 
-[(X)] 10 (non modificato)
 [( )] 15
-[( )] Errore di compilazione
 [( )] Crash
+[( )] Errore di compilazione
+[(X)] 10 (non modificato)
 
 <details>
 <summary>💡 Spiegazione</summary>

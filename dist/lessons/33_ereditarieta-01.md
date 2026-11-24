@@ -47,9 +47,9 @@ class Der : public Base {};
 Una classe derivata public eredita i membri public della base?
 
 [(X)] Sì, può usare f() su un oggetto Der
-[( )] No, mai
 [( )] Solo se virtual
 [( )] Solo nei template
+[( )] No, mai
 
 <details>
 <summary>💡 Spiegazione</summary>

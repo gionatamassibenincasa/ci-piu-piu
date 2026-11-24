@@ -98,41 +98,41 @@ double spedizione = (netto >= 60.0) ? 0.0 : 6.50;
 
 Perché `importoProdotti >= 50.0` è utile dentro il ternario?
 
-[(X)] Produce una condizione `true` o `false` che permette di scegliere un valore
-[( )] Converte automaticamente l’importo in euro interi
 [( )] Ripete il calcolo finché l’importo raggiunge 50 euro
+[( )] Converte automaticamente l’importo in euro interi
+[(X)] Produce una condizione `true` o `false` che permette di scegliere un valore
 
 **Domanda 2**
 
 Quale valore assume `sconto` con `importoProdotti = 85.00`?
 
-[(X)] `0.10`, perché 85 soddisfa la condizione e viene scelto il valore dopo `?`
 [( )] `0.02`, perché il ternario sceglie sempre il valore dopo `:`
 [( )] `10.00`, perché il numero 10 rappresenta direttamente gli euro di sconto
+[(X)] `0.10`, perché 85 soddisfa la condizione e viene scelto il valore dopo `?`
 
 **Domanda 3**
 
 Perché `importoProdotti / 2 * 10.0` con `int importoProdotti = 5` non dà 25.0?
 
+[( )] Un `int` non può essere usato in nessuna espressione con `double`
 [(X)] La divisione tra due `int` viene eseguita prima e perde la parte decimale: 5 / 2 vale 2
 [( )] Il simbolo `*` viene ignorato quando compare dopo `/`
-[( )] Un `int` non può essere usato in nessuna espressione con `double`
 
 **Domanda 4**
 
 Quale valore completo restituisce `netto >= 60.0 ? 0.0 : 6.50` quando `netto` vale 76.50?
 
-[(X)] `0.0`, perché la condizione è vera e si sceglie il primo valore
-[( )] `6.50`, perché le spese standard vengono calcolate per prime
 [( )] `true`, perché un confronto restituisce sempre un booleano stampabile
+[( )] `6.50`, perché le spese standard vengono calcolate per prime
+[(X)] `0.0`, perché la condizione è vera e si sceglie il primo valore
 
 **Domanda 5**
 
 Quale forma assegna correttamente al netto il prezzo lordo meno lo sconto?
 
-[(X)] `netto = lordo - lordo * percentualeSconto;`
-[( )] `netto = lordo - percentualeSconto;`
 [( )] `netto = lordo * percentualeSconto - lordo;`
+[( )] `netto = lordo - percentualeSconto;`
+[(X)] `netto = lordo - lordo * percentualeSconto;`
 
 #### 2. RUN (Esegui)
 
@@ -197,8 +197,8 @@ double totaleDaPagare = nettoProdotti + speseSpedizione;
 Quale ordine descrive correttamente il calcolo del totale?
 
 [(X)] Prima si sceglie la percentuale, poi si calcola lo sconto, poi il netto e infine la spedizione
-[( )] Prima si calcola il totale, poi si decide quale percentuale usare
 [( )] I due ternari vengono eseguiti dopo la stampa, perché assegnano solo etichette
+[( )] Prima si calcola il totale, poi si decide quale percentuale usare
 
 **Domanda 2**
 
@@ -213,8 +213,8 @@ Perché `valoreSconto` vale `8.5` in questo esempio?
 Quale ramo del secondo ternario viene scelto?
 
 [(X)] Il ramo `0.0`, perché `nettoProdotti` vale 76.5 ed è almeno 60.0
-[( )] Il ramo `6.50`, perché il prezzo lordo è diverso dalla soglia
 [( )] Nessun ramo, perché un `double` non può essere confrontato con una costante
+[( )] Il ramo `6.50`, perché il prezzo lordo è diverso dalla soglia
 
 **Domanda 4**
 
@@ -228,8 +228,8 @@ Perché il totale viene calcolato con `nettoProdotti + speseSpedizione` e non co
 
 Se il codice usa `nettoProdotti` prima della sua dichiarazione, perché il compilatore segnala un errore?
 
-[(X)] Una variabile deve essere dichiarata e inizializzata prima di poter essere usata
 [( )] Il compilatore esegue le righe in ordine alfabetico
+[(X)] Una variabile deve essere dichiarata e inizializzata prima di poter essere usata
 [( )] I nomi con la parola `netto` sono riservati e non ammessi
 
 | Passo | Espressione o variabile | Valore | Perché |
@@ -261,9 +261,9 @@ std::cout << speseSpedizione << "\n";
 
 Quale modifica fa pagare la spedizione gratis solo da 100 euro in su?
 
-[(X)] Cambiare `importoProdotti >= 60.0` in `importoProdotti >= 100.0`
 [( )] Cambiare `0.0` in `100.0`
 [( )] Cambiare il simbolo `?` in `:`
+[(X)] Cambiare `importoProdotti >= 60.0` in `importoProdotti >= 100.0`
 
 **Domanda 2**
 
@@ -277,25 +277,25 @@ Con `importoProdotti = 45.00`, quale modifica produce 3.00 euro di supplemento e
 
 Se sostituisci `0.0` con `0`, quale effetto corretto osservi?
 
+[( )] La condizione diventa automaticamente falsa
 [(X)] La scelta continua a funzionare e il risultato numerico è zero; `0.0` rende però esplicito il tipo decimale
 [( )] Il ternario non compila perché il valore vero deve avere sempre due decimali
-[( )] La condizione diventa automaticamente falsa
 
 **Domanda 4**
 
 Quale modifica stampa `"pari"` quando `articoli` vale 14?
 
-[(X)] `std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");`
 [( )] `std::cout << ((articoli / 2 == 0) ? "pari" : "dispari");`
 [( )] `std::cout << (articoli % 2 ? "pari" : "dispari");`
+[(X)] `std::cout << ((articoli % 2 == 0) ? "pari" : "dispari");`
 
 **Domanda 5**
 
 Perché in Modify conviene cambiare una sola soglia o un solo valore alla volta?
 
-[(X)] Per collegare ogni differenza nell’output alla modifica che l’ha provocata
 [( )] Perché C++ permette una sola assegnazione per programma
 [( )] Perché il ternario non può comparire due volte nello stesso file
+[(X)] Per collegare ogni differenza nell’output alla modifica che l’ha provocata
 
 Parti da questo scaffold:
 

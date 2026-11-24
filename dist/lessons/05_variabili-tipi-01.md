@@ -97,17 +97,17 @@ const double IVA = 0.22;
 
 Perché `int pezzi = 7.85;` non conserva tutti i decimali?
 
-[(X)] Perché `int` rappresenta numeri interi e la parte decimale viene troncata
-[( )] Perché il compilatore arrotonda sempre i prezzi per difetto
 [( )] Perché ogni numero con la virgola produce un errore obbligatorio
+[( )] Perché il compilatore arrotonda sempre i prezzi per difetto
+[(X)] Perché `int` rappresenta numeri interi e la parte decimale viene troncata
 
 **Domanda 2**
 
 Quale tipo è più adatto per memorizzare un prezzo con i centesimi?
 
-[(X)] `double`, perché può rappresentare valori con parte decimale
-[( )] `int`, perché i prezzi sono sempre conteggi di pezzi
 [( )] `char`, perché ogni prezzo è una singola cifra
+[( )] `int`, perché i prezzi sono sempre conteggi di pezzi
+[(X)] `double`, perché può rappresentare valori con parte decimale
 
 **Domanda 3**
 
@@ -122,16 +122,16 @@ Perché `IVA` dovrebbe essere dichiarata `const`?
 Quale tipo descrive meglio il codice di reparto `'A'`?
 
 [(X)] `char`, perché contiene un solo carattere
-[( )] `std::string`, perché ogni carattere è sempre una frase
 [( )] `bool`, perché il reparto può essere vero o falso
+[( )] `std::string`, perché ogni carattere è sempre una frase
 
 **Domanda 5**
 
 Che cosa indica la dichiarazione `bool haFido = true;`?
 
 [(X)] Un dato con due stati possibili, qui impostato sul valore vero
-[( )] Un testo composto dalle lettere `true`
 [( )] Un numero decimale uguale a 1.0
+[( )] Un testo composto dalle lettere `true`
 
 #### 2. RUN (Esegui)
 
@@ -192,41 +192,41 @@ double prezzoNetto = 19.50;
 
 Perché `pezzi` è un `int` mentre `prezzoNetto` è un `double`?
 
+[( )] `double` serve solo per dati più importanti di `int`
 [(X)] I pezzi sono conteggi interi, mentre il prezzo può contenere centesimi
 [( )] I nomi delle variabili decidono automaticamente il tipo
-[( )] `double` serve solo per dati più importanti di `int`
 
 **Domanda 2**
 
 Quale sequenza descrive la dichiarazione `double prezzoNetto = 19.50;`?
 
-[(X)] Il compilatore riserva un dato decimale, gli assegna un nome e gli dà un valore iniziale
 [( )] Il programma stampa subito 19.50 senza bisogno di `std::cout`
 [( )] Il valore viene sigillato e non potrà mai cambiare
+[(X)] Il compilatore riserva un dato decimale, gli assegna un nome e gli dà un valore iniziale
 
 **Domanda 3**
 
 Perché `ALIQUOTA_IVA` non può essere assegnata di nuovo?
 
+[( )] Un `double` può essere assegnato una sola volta
 [(X)] La parola `const` la rende di sola lettura dopo l'inizializzazione
 [( )] I nomi scritti in maiuscolo sono sempre immutabili in C++
-[( )] Un `double` può essere assegnato una sola volta
 
 **Domanda 4**
 
 Quale valore viene memorizzato in `int pezzi = 7.85;`?
 
+[( )] `7.85`, perché il tipo dichiarato non influenza il valore
 [(X)] `7`, perché la parte decimale non appartiene al tipo `int`
 [( )] `8`, perché C++ arrotonda al numero intero più vicino
-[( )] `7.85`, perché il tipo dichiarato non influenza il valore
 
 **Domanda 5**
 
 Perché il programma ha bisogno di `#include <string>` quando usa `std::string`?
 
-[(X)] Per rendere disponibile la definizione del tipo per il testo
-[( )] Per convertire automaticamente tutti i numeri in testo
 [( )] Per permettere a `int` di contenere più cifre
+[( )] Per convertire automaticamente tutti i numeri in testo
+[(X)] Per rendere disponibile la definizione del tipo per il testo
 
 | Nome | Tipo | Perché quel tipo? | Si può cambiare? |
 | :--- | :--- | :--- | :--- |
@@ -257,24 +257,24 @@ double prezzoNetto = 19.50;
 Quale modifica permette di calcolare l'importo dell'IVA?
 
 [(X)] Dichiarare `double importoIva = prezzoNetto * ALIQUOTA_IVA;`
-[( )] Dichiarare `int importoIva = prezzoNetto + ALIQUOTA_IVA;`
 [( )] Cambiare `const` in `std::string` senza eseguire un calcolo
+[( )] Dichiarare `int importoIva = prezzoNetto + ALIQUOTA_IVA;`
 
 **Domanda 2**
 
 Che cosa succede se aggiungi `ALIQUOTA_IVA = 0.10;`?
 
+[( )] Il programma ignora sempre la nuova assegnazione e compila
 [(X)] Il compilatore segnala un errore perché la costante è di sola lettura
 [( )] L'aliquota cambia solo per la riga successiva
-[( )] Il programma ignora sempre la nuova assegnazione e compila
 
 **Domanda 3**
 
 Quale modifica è corretta se la giacenza deve diventare 100 pezzi?
 
-[(X)] Cambiare il valore iniziale in `int pezziInMagazzino = 100;`
 [( )] Cambiare il tipo in `char` e lasciare il valore `100`
 [( )] Dichiarare la giacenza come `const` per poterla aggiornare
+[(X)] Cambiare il valore iniziale in `int pezziInMagazzino = 100;`
 
 **Domanda 4**
 
@@ -288,9 +288,9 @@ Quale effetto ha cambiare `bool haGaranziaEstesa = true;` in `false`?
 
 Perché conviene modificare un tipo o un valore alla volta?
 
+[( )] Perché il compilatore non sa leggere due righe consecutive
 [(X)] Per distinguere quale modifica ha prodotto il nuovo comportamento o l'errore
 [( )] Perché ogni programma C++ può avere una sola variabile
-[( )] Perché il compilatore non sa leggere due righe consecutive
 
 <details>
 <summary>💡 Scaffold di partenza</summary>

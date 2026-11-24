@@ -45,8 +45,8 @@ std::cout << articolo;
 A cosa serve tipicamente sovraccaricare `operator<<` per una classe?
 
 [(X)] Stampare l’oggetto in modo leggibile su uno stream
-[( )] Aprire un file in automatico
 [( )] Creare template
+[( )] Aprire un file in automatico
 [( )] Sostituire il costruttore
 
 <details>

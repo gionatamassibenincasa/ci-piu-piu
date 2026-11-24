@@ -96,16 +96,16 @@ for (int i = 1; i <= 5; ++i) {
 Qual è l’effetto di `continue` quando `i` vale 2?
 
 [(X)] Salta il resto del giro corrente e passa al giro successivo
-[( )] Esce definitivamente dal ciclo
 [( )] Ripete il giro corrente senza aggiornare `i`
+[( )] Esce definitivamente dal ciclo
 
 **Domanda 2**
 
 Qual è l’effetto di `break` quando `i` vale 4?
 
 [(X)] Esce subito dal ciclo e non raggiunge il giro con `i` uguale a 5
-[( )] Salta solo la stampa di 4 e continua con 5
 [( )] Riporta `i` a 1 e ricomincia il ciclo
+[( )] Salta solo la stampa di 4 e continua con 5
 
 **Domanda 3**
 
@@ -119,17 +119,17 @@ Quale output è più coerente con il flusso del ciclo?
 
 Perché il ciclo non stampa `2`?
 
-[(X)] Perché `continue` viene eseguito prima di `std::cout` nel giro con `i == 2`
-[( )] Perché `i` diventa automaticamente uguale a 0
 [( )] Perché `break` viene eseguito due volte nello stesso giro
+[( )] Perché `i` diventa automaticamente uguale a 0
+[(X)] Perché `continue` viene eseguito prima di `std::cout` nel giro con `i == 2`
 
 **Domanda 5**
 
 In quale situazione aziendale è più adatto `break`?
 
 [(X)] Quando un dato anomalo rende inutile o rischiosa l’analisi dei dati successivi
-[( )] Quando vuoi ignorare un solo dato ma continuare con tutti gli altri
 [( )] Quando vuoi aumentare automaticamente il valore del contatore
+[( )] Quando vuoi ignorare un solo dato ma continuare con tutti gli altri
 
 #### 2. RUN (Esegui)
 
@@ -183,33 +183,33 @@ Quale sequenza di azioni avviene quando `i` vale 2?
 
 Perché il valore 3 viene stampato?
 
+[( )] `break` trasforma 3 in un valore valido da stampare
 [(X)] Entrambe le condizioni sono false, quindi il flusso raggiunge `std::cout`
 [( )] `continue` stampa automaticamente il valore che segue quello saltato
-[( )] `break` trasforma 3 in un valore valido da stampare
 
 **Domanda 3**
 
 Dopo `continue` in questo `for`, cosa succede normalmente?
 
-[(X)] Viene eseguita l’espressione di aggiornamento `++i`, poi si controlla la condizione del ciclo
 [( )] Il programma torna alla dichiarazione di `i` e la reinizializza a 1
 [( )] Il programma salta direttamente alla riga dopo tutto il ciclo
+[(X)] Viene eseguita l’espressione di aggiornamento `++i`, poi si controlla la condizione del ciclo
 
 **Domanda 4**
 
 Perché il valore 5 non viene mai stampato?
 
 [(X)] Con `i == 4` viene eseguito `break`, che termina il ciclo prima del giro successivo
-[( )] Il `for` arriva solo fino a 4 anche se la condizione dice `i <= 5`
 [( )] Il compilatore considera 5 un valore non stampabile dopo un `continue`
+[( )] Il `for` arriva solo fino a 4 anche se la condizione dice `i <= 5`
 
 **Domanda 5**
 
 Se sostituisci `continue` con `break` nella condizione `i == 2`, perché l’output diventa `1`?
 
-[(X)] Il ciclo termina già al secondo giro, prima di poter controllare 3 e 4
-[( )] Il secondo comando `break` viene ignorato perché ce n’è già uno
 [( )] Il primo giro viene annullato insieme a tutti i valori già stampati
+[( )] Il secondo comando `break` viene ignorato perché ce n’è già uno
+[(X)] Il ciclo termina già al secondo giro, prima di poter controllare 3 e 4
 
 | Valore di `i` | Istruzione decisiva | Effetto | Output |
 | :---: | :--- | :--- | :--- |
@@ -239,33 +239,33 @@ for (int i = 1; i <= 5; ++i) {
 
 Quale modifica stampa `124` e termina il ciclo dopo 4?
 
+[( )] Cambiare `i == 4` in `i == 5` senza spostare la stampa
 [(X)] Spostare `std::cout << i;` prima dei due controlli e lasciare `break` su 4
 [( )] Sostituire `continue` su 2 con `break` e lasciare tutto il resto invariato
-[( )] Cambiare `i == 4` in `i == 5` senza spostare la stampa
 
 **Domanda 2**
 
 Quale modifica salta gli importi pari ma continua a controllare gli altri?
 
-[(X)] Usare `if (importo % 2 == 0) continue;` dentro il ciclo
 [( )] Usare `if (importo % 2 == 0) break;` per ogni importo pari
+[(X)] Usare `if (importo % 2 == 0) continue;` dentro il ciclo
 [( )] Usare `if (importo / 2 == 0) continue;`
 
 **Domanda 3**
 
 Quale modifica fa terminare il ciclo quando trova un valore maggiore di 10000?
 
-[(X)] Inserire `if (importo > 10000) break;` prima dell’elaborazione dell’importo
 [( )] Inserire `if (importo > 10000) continue;` se vuoi fermare il ciclo
+[(X)] Inserire `if (importo > 10000) break;` prima dell’elaborazione dell’importo
 [( )] Cambiare il contatore in `importo > 10000`
 
 **Domanda 4**
 
 Per contare solo i movimenti effettivamente elaborati, dove conviene incrementare `validi`?
 
-[(X)] Dopo i controlli `continue` e `break`, nel punto in cui il movimento viene elaborato
 [( )] Prima di `continue`, così anche gli importi scartati vengono contati
 [( )] Dopo il ciclo, una sola volta, perché il contatore si aggiorna da solo
+[(X)] Dopo i controlli `continue` e `break`, nel punto in cui il movimento viene elaborato
 
 **Domanda 5**
 

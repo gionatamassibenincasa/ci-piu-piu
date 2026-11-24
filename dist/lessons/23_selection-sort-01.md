@@ -49,9 +49,9 @@ Alla fine di questa lezione sei in grado di:
 
 Selection sort, a ogni passo esterno, cosa fa?
 
+[( )] Ordina solo i numeri pari
 [(X)] Sceglie il minimo della parte non ordinata e lo mette in posizione i
 [( )] Divide sempre a metà l’array
-[( )] Ordina solo i numeri pari
 [( )] Usa obbligatoriamente un secondo array
 
 <details>

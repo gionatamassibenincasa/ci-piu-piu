@@ -46,10 +46,10 @@ a.scheda();
 
 Chi può chiamare un metodo public di Articolo?
 
-[( )] Solo codice dentro la class
 [(X)] Chiunque abbia un oggetto Articolo (es. main)
-[( )] Solo il costruttore
+[( )] Solo codice dentro la class
 [( )] Nessuno
+[( )] Solo il costruttore
 
 <details>
 <summary>💡 Spiegazione</summary>

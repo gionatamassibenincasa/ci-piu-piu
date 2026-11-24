@@ -58,10 +58,10 @@ Alla fine del progetto sei in grado di:
 
 Nel mini-progetto, perché dati private + metodi public sono un requisito?
 
-[(X)] Per proteggere gli invarianti e definire un’interfaccia chiara
-[( )] Perché altrimenti non compila mai
-[( )] Solo per usare vector
 [( )] Solo per i template
+[(X)] Per proteggere gli invarianti e definire un’interfaccia chiara
+[( )] Solo per usare vector
+[( )] Perché altrimenti non compila mai
 
 #### 2. RUN — scheletro di partenza
 

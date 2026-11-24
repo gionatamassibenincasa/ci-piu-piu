@@ -115,25 +115,25 @@ g++ -save-temps -O0 ridotto.cpp -o ridotto.exe
 
 Quale risultato principale vuoi ottenere con questo comando?
 
-[(X)] Un eseguibile `ridotto.exe` pronto da avviare
 [( )] Un file `.cpp` con il programma scritto automaticamente
 [( )] Solo una stampa a video, senza creare file
+[(X)] Un eseguibile `ridotto.exe` pronto da avviare
 
 **Domanda 2**
 
 Perché `-save-temps` è utile mentre studi la compilazione?
 
-[(X)] Chiede a `g++` di conservare i file temporanei intermedi
 [( )] Rende il programma più veloce durante l'esecuzione
 [( )] Salva automaticamente una copia del programma su Internet
+[(X)] Chiede a `g++` di conservare i file temporanei intermedi
 
 **Domanda 3**
 
 Dopo la pre-elaborazione, quale file contiene ancora codice testuale vicino al C++?
 
-[(X)] Il file `.ii`, con direttive espanse e commenti rimossi
 [( )] Il file `.o`, già composto solo da testo Assembly
 [( )] Il file `.exe`, che contiene il sorgente originale leggibile
+[(X)] Il file `.ii`, con direttive espanse e commenti rimossi
 
 **Domanda 4**
 
@@ -147,9 +147,9 @@ Quale sequenza descrive meglio il percorso verso l'eseguibile?
 
 Perché il linker deve intervenire anche dopo la traduzione del tuo file?
 
-[(X)] Per collegare il codice oggetto con librerie e codice di avvio
 [( )] Per correggere i punti e virgola dimenticati nel C++
 [( )] Per trasformare l'eseguibile di nuovo nel file sorgente
+[(X)] Per collegare il codice oggetto con librerie e codice di avvio
 
 #### 2. RUN (Esegui)
 
@@ -202,16 +202,16 @@ Perché `ridotto.o` non è ancora l'eseguibile finale?
 Quale trasformazione avviene quando il compilatore produce il file `.s`?
 
 [(X)] Il C++ viene tradotto in Assembly, un linguaggio a basso livello ancora leggibile
-[( )] Il programma viene eseguito e il risultato viene salvato in `.s`
 [( )] I file `.cpp` vengono compressi in un archivio di testo
+[( )] Il programma viene eseguito e il risultato viene salvato in `.s`
 
 **Domanda 3**
 
 Quale ordine di osservazione è coerente con la catena di compilazione?
 
+[( )] `.ii` e `.exe` vengono creati soltanto dopo l'esecuzione
 [(X)] Prima `.ii`, poi `.s`, poi `.o`, infine `.exe`
 [( )] Prima `.exe`, poi `.o`, poi `.s`, infine `.ii`
-[( )] `.ii` e `.exe` vengono creati soltanto dopo l'esecuzione
 
 **Domanda 4**
 
@@ -225,8 +225,8 @@ Nel file Assembly, perché puoi trovare un'istruzione che prepara il valore `0`?
 
 Se il compilatore segnala un errore di sintassi nel `.cpp`, perché la catena non arriva al linker?
 
-[(X)] Senza una traduzione valida non esiste un file oggetto affidabile da collegare
 [( )] Il linker lavora solo sui commenti e quindi ignora il programma
+[(X)] Senza una traduzione valida non esiste un file oggetto affidabile da collegare
 [( )] Il linker viene eseguito prima del compilatore e non può ripartire
 
 | File | Che cosa contiene | Perché ti serve |
@@ -258,25 +258,25 @@ int main() {
 
 Se cambi `return 0;` in `return 7;`, quale effetto vuoi verificare?
 
-[(X)] Il codice di uscita del programma cambia da `0` a `7`
-[( )] Il programma stampa automaticamente il numero `7`
 [( )] Il compilatore salta la fase di assemblaggio
+[( )] Il programma stampa automaticamente il numero `7`
+[(X)] Il codice di uscita del programma cambia da `0` a `7`
 
 **Domanda 2**
 
 Quale modifica permette di ottenere il file finale con il nome `importazione.exe`?
 
 [(X)] Sostituire il nome dopo `-o` con `importazione.exe`
-[( )] Cambiare l'estensione di `ridotto.cpp` in `.exe` prima di compilare
 [( )] Scrivere `importazione.exe` dentro `return`
+[( )] Cambiare l'estensione di `ridotto.cpp` in `.exe` prima di compilare
 
 **Domanda 3**
 
 Se togli `-save-temps`, quale cambiamento è più probabile?
 
-[(X)] Ottieni comunque l'eseguibile, ma i file intermedi possono essere rimossi
-[( )] Il C++ non può più essere compilato
 [( )] Il programma viene trasformato direttamente in Assembly e non in `.exe`
+[( )] Il C++ non può più essere compilato
+[(X)] Ottieni comunque l'eseguibile, ma i file intermedi possono essere rimossi
 
 **Domanda 4**
 
@@ -290,8 +290,8 @@ Quale modifica rende l'Assembly più facile da collegare al sorgente durante l'i
 
 Perché conviene modificare una sola cosa alla volta nel comando o nel codice?
 
-[(X)] Per collegare con chiarezza ogni effetto alla modifica che lo ha causato
 [( )] Perché `g++` accetta una sola modifica per ogni esecuzione
+[(X)] Per collegare con chiarezza ogni effetto alla modifica che lo ha causato
 [( )] Perché i file intermedi non possono contenere più di una riga cambiata
 
 Applica ora le modifiche in ordine e ricompila ogni volta.

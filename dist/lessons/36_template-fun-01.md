@@ -44,10 +44,10 @@ massimo(2.5, 2.7);
 
 Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
 
-[(X)] Sì, il compilatore istanzia le versioni necessarie
-[( )] No, solo su int
 [( )] Solo se T è class
+[(X)] Sì, il compilatore istanzia le versioni necessarie
 [( )] No, serve virtual
+[( )] No, solo su int
 
 <details>
 <summary>💡 Spiegazione</summary>

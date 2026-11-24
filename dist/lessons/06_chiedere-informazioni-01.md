@@ -93,40 +93,40 @@ std::cin >> prezzo;
 Che cosa fa `std::cin >> quantita;` quando il programma arriva a questa riga?
 
 [(X)] Attende un valore da tastiera e lo memorizza nella variabile `quantita`
-[( )] Stampa il nome `quantita` sullo schermo
 [( )] Assegna automaticamente a `quantita` il valore zero
+[( )] Stampa il nome `quantita` sullo schermo
 
 **Domanda 2**
 
 Perché una variabile deve essere dichiarata prima di essere usata con `std::cin`?
 
-[(X)] Il compilatore deve conoscere nome e tipo dello spazio in cui conservare il dato
 [( )] La tastiera può inviare dati solo a variabili dichiarate come `const`
 [( )] Senza dichiarazione `std::cin` stampa sempre un messaggio di errore a video
+[(X)] Il compilatore deve conoscere nome e tipo dello spazio in cui conservare il dato
 
 **Domanda 3**
 
 Se il programma esegue prima `std::cin >> quantita;` e poi `std::cin >> prezzo;`, che cosa deve inserire l'utente?
 
+[( )] Prima il prezzo, perché `double` viene sempre letto per primo
 [(X)] Prima un valore compatibile con `quantita`, poi uno compatibile con `prezzo`
 [( )] Un solo testo che contiene contemporaneamente nome e prezzo
-[( )] Prima il prezzo, perché `double` viene sempre letto per primo
 
 **Domanda 4**
 
 Perché il messaggio `Inserisci la quantità:` va scritto prima di `std::cin`?
 
 [(X)] Per spiegare all'utente quale dato deve digitare prima che il programma attenda
-[( )] Perché `std::cin` legge solo dopo aver stampato almeno tre righe
 [( )] Per trasformare automaticamente un intero in una stringa
+[( )] Perché `std::cin` legge solo dopo aver stampato almeno tre righe
 
 **Domanda 5**
 
 Quale tipo è coerente con una quantità intera di prodotti?
 
-[(X)] `int`, perché una quantità di confezioni può essere un numero intero
-[( )] `double`, perché ogni dato inserito da tastiera contiene decimali
 [( )] `char`, perché la quantità è sempre un singolo carattere
+[( )] `double`, perché ogni dato inserito da tastiera contiene decimali
+[(X)] `int`, perché una quantità di confezioni può essere un numero intero
 
 #### 2. RUN (Esegui)
 
@@ -200,32 +200,32 @@ Qual è l'ordine corretto quando l'utente inserisce `3` e poi `12.50`?
 
 Perché `std::cin` non mostra da solo la richiesta "Quantita:"?
 
-[(X)] `std::cin` legge dati; il messaggio per l'utente deve essere scritto con `std::cout`
 [( )] La tastiera non permette di visualizzare messaggi
 [( )] Ogni variabile deve contenere il testo della richiesta
+[(X)] `std::cin` legge dati; il messaggio per l'utente deve essere scritto con `std::cout`
 
 **Domanda 3**
 
 Che cosa succede se inserisci `3` quando `std::cin` sta leggendo un `double`?
 
-[(X)] Il valore può essere letto come `3.0`, perché un intero è compatibile con un numero decimale
 [( )] Il programma si chiude sempre senza leggere nulla
 [( )] Il numero viene trasformato in una parola composta da tre caratteri
+[(X)] Il valore può essere letto come `3.0`, perché un intero è compatibile con un numero decimale
 
 **Domanda 4**
 
 Perché l'istruzione `double totale = quantita * prezzoUnitario;` deve venire dopo le due letture?
 
+[( )] `std::cin` cancella i valori se il calcolo viene scritto prima
 [(X)] Prima di quel punto le variabili potrebbero non contenere ancora i dati inseriti dall'utente
 [( )] Le moltiplicazioni in C++ sono permesse solo nell'ultima riga di `main`
-[( )] `std::cin` cancella i valori se il calcolo viene scritto prima
 
 **Domanda 5**
 
 Se inserisci testo come `tre` quando `std::cin` attende un `int`, perché il calcolo successivo è inaffidabile?
 
-[(X)] La lettura fallisce e la variabile non riceve il numero atteso
 [( )] C++ converte sempre automaticamente ogni parola nel numero corretto
+[(X)] La lettura fallisce e la variabile non riceve il numero atteso
 [( )] Il testo viene memorizzato nell'intero come se fosse un carattere
 
 | Passo | Istruzione | Stato importante |
@@ -265,41 +265,41 @@ std::cin >> prezzoUnitario;
 
 Quale modifica permette di leggere anche uno sconto percentuale?
 
+[( )] Cambiare `quantita` in `const double` per ricevere un nuovo dato
 [(X)] Dichiarare `double sconto;` e aggiungere `std::cin >> sconto;` dopo il prezzo
 [( )] Scrivere `std::cin << sconto;` senza dichiarare la variabile
-[( )] Cambiare `quantita` in `const double` per ricevere un nuovo dato
 
 **Domanda 2**
 
 Se vuoi leggere prima il prezzo e poi la quantità, quale modifica è necessaria?
 
-[(X)] Invertire sia i messaggi sia l'ordine delle due istruzioni `std::cin`
 [( )] Cambiare solo i nomi delle variabili, lasciando invariato il codice
 [( )] Usare `std::cout` al posto di entrambe le istruzioni di lettura
+[(X)] Invertire sia i messaggi sia l'ordine delle due istruzioni `std::cin`
 
 **Domanda 3**
 
 Che effetto ha aggiungere `std::cout << " euro\n";` dopo il totale?
 
-[(X)] Aggiunge l'unità di misura all'output, senza cambiare il calcolo
 [( )] Converte il totale in un intero arrotondato
+[(X)] Aggiunge l'unità di misura all'output, senza cambiare il calcolo
 [( )] Fa inserire un altro prezzo all'utente
 
 **Domanda 4**
 
 Quale modifica conserva i centesimi del prezzo inserito?
 
-[(X)] Dichiarare il prezzo come `double` e leggerlo con `std::cin`
-[( )] Dichiarare il prezzo come `int` perché è più semplice
 [( )] Leggere il prezzo in un `char` e poi moltiplicarlo
+[( )] Dichiarare il prezzo come `int` perché è più semplice
+[(X)] Dichiarare il prezzo come `double` e leggerlo con `std::cin`
 
 **Domanda 5**
 
 Perché conviene aggiungere una sola lettura o modifica alla volta?
 
-[(X)] Per capire quale passaggio ha causato un errore o un ordine di input inatteso
 [( )] Perché `std::cin` può leggere una sola variabile in tutta la funzione
 [( )] Perché ogni nuova variabile cancella automaticamente la precedente
+[(X)] Per capire quale passaggio ha causato un errore o un ordine di input inatteso
 
 <details>
 <summary>💡 Scaffold di partenza</summary>

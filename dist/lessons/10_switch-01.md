@@ -132,17 +132,17 @@ switch (sceltaMenu) {
 
 Quale `case` viene selezionato con `sceltaMenu = 2`?
 
-[(X)] `case 2`, perché il valore coincide con la sua costante
 [( )] `case 1`, perché è il primo caso scritto
 [( )] `default`, perché ogni scelta deve passare dall'alternativa finale
+[(X)] `case 2`, perché il valore coincide con la sua costante
 
 **Domanda 2**
 
 Perché `break` è importante dopo il messaggio del `case 2`?
 
+[( )] Fa ripartire lo switch dal primo case
 [(X)] Ferma lo switch e impedisce di eseguire i case successivi
 [( )] Rende uguale il valore di tutti i case
-[( )] Fa ripartire lo switch dal primo case
 
 **Domanda 3**
 
@@ -164,8 +164,8 @@ Per quale tipo di dato è adatto questo `switch`?
 
 Che cosa può accadere se togli il `break` da `case 2`?
 
-[(X)] L'esecuzione può continuare nel `case` successivo: è il fall-through
 [( )] Il programma torna automaticamente a `case 1`
+[(X)] L'esecuzione può continuare nel `case` successivo: è il fall-through
 [( )] Il compilatore cancella il messaggio del `case 2`
 
 #### 2. RUN (Esegui)
@@ -248,8 +248,8 @@ switch (sceltaMenu) {
 Qual è il primo passaggio eseguito quando il programma arriva allo `switch`?
 
 [(X)] Confronta il valore di `sceltaMenu` con i valori dei `case`
-[( )] Esegue sempre il primo blocco e poi cerca il valore
 [( )] Esegue prima `default` come controllo di sicurezza
+[( )] Esegue sempre il primo blocco e poi cerca il valore
 
 **Domanda 2**
 
@@ -263,25 +263,25 @@ Perché con `sceltaMenu = 2` non viene eseguito `case 3`?
 
 Che cosa succede senza `break` alla fine di `case 2`?
 
-[(X)] Dopo il messaggio di `case 2`, l'esecuzione continua nel case successivo
 [( )] Il programma si ferma sempre con un errore di compilazione
 [( )] Viene eseguito soltanto `default`
+[(X)] Dopo il messaggio di `case 2`, l'esecuzione continua nel case successivo
 
 **Domanda 4**
 
 Perché `default` non viene eseguito con `sceltaMenu = 2`?
 
 [(X)] Esiste già un case corrispondente e il suo `break` chiude lo switch
-[( )] `default` funziona soltanto con valori negativi
 [( )] Il compilatore elimina sempre `default` quando ci sono tre case
+[( )] `default` funziona soltanto con valori negativi
 
 **Domanda 5**
 
 Perché `double sceltaMenu = 2.0;` non è adatto come espressione dello switch?
 
 [(X)] Lo switch richiede un valore intero o carattere, non un numero decimale
-[( )] Un double può essere usato solo per stampare prezzi
 [( )] I numeri con decimali non possono essere assegnati a variabili
+[( )] Un double può essere usato solo per stampare prezzi
 
 | Passo | Cosa accade | Risultato |
 | :---: | :--- | :--- |
@@ -326,33 +326,33 @@ switch (sceltaMenu) {
 
 Quale modifica aggiunge una voce per la visualizzazione del saldo?
 
-[(X)] Aggiungere `case 3`, stampare il messaggio e chiudere con `break`
 [( )] Aggiungere `default 3:` dopo il case 2
+[(X)] Aggiungere `case 3`, stampare il messaggio e chiudere con `break`
 [( )] Cambiare `switch` in `std::cout`
 
 **Domanda 2**
 
 Quale modifica fa eseguire lo stesso messaggio sia con codice `0` sia con codice `9`?
 
-[(X)] Scrivere `case 0:` seguito da `case 9:` prima delle stesse istruzioni
-[( )] Scrivere `case 0 || 9:` come se fosse una condizione booleana
 [( )] Duplicare `default` due volte
+[( )] Scrivere `case 0 || 9:` come se fosse una condizione booleana
+[(X)] Scrivere `case 0:` seguito da `case 9:` prima delle stesse istruzioni
 
 **Domanda 3**
 
 Che effetto ha aggiungere `break` dopo `default`?
 
-[(X)] Rende esplicita l'uscita dallo switch anche quando nessun case coincide
-[( )] Fa eseguire di nuovo il case precedente
 [( )] Trasforma `default` in un ciclo
+[( )] Fa eseguire di nuovo il case precedente
+[(X)] Rende esplicita l'uscita dallo switch anche quando nessun case coincide
 
 **Domanda 4**
 
 Quale modifica mantiene il prezzo di una ricarica con i centesimi?
 
-[(X)] Usare una variabile `double` per l'importo dentro il case, senza usarla come scelta
-[( )] Usare un `double` come espressione dello switch
 [( )] Memorizzare l'importo nel nome del `case`
+[( )] Usare un `double` come espressione dello switch
+[(X)] Usare una variabile `double` per l'importo dentro il case, senza usarla come scelta
 
 **Domanda 5**
 

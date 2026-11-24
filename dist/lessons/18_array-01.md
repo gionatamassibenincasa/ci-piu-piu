@@ -72,10 +72,10 @@ double x = vendite[30];
 
 Con `double vendite[30];`, cosa succede leggendo `vendite[30]`?
 
-[( )] Compila e legge 0
+[( )] Il programma non parte
 [(X)] Compila ma comportamento indefinito (indice fuori range)
 [( )] Errore di compilazione obbligatorio
-[( )] Il programma non parte
+[( )] Compila e legge 0
 
 <details>
 <summary>💡 Spiegazione</summary>

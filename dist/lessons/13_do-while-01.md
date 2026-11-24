@@ -111,41 +111,41 @@ do {
 
 Quante volte viene eseguito il corpo?
 
+[( )] Cinque volte, perché il ciclo arriva fino a 5
 [(X)] Una volta, perché il corpo viene eseguito prima del controllo
 [( )] Zero volte, perché `10 < 5` è falso
-[( )] Cinque volte, perché il ciclo arriva fino a 5
 
 **Domanda 2**
 
 Perché il `do-while` è utile per chiedere un dato valido?
 
+[( )] Controlla sempre la condizione prima della prima lettura
 [(X)] Permette di chiedere il dato almeno una volta prima di controllarlo
 [( )] Impedisce all'utente di inserire più di un valore
-[( )] Controlla sempre la condizione prima della prima lettura
 
 **Domanda 3**
 
 Dove viene controllata la condizione nel `do-while`?
 
+[( )] Solo quando il programma arriva a `return 0`
 [(X)] Dopo il corpo del ciclo
 [( )] Prima del corpo, come nel `while`
-[( )] Solo quando il programma arriva a `return 0`
 
 **Domanda 4**
 
 Quale elemento sintattico chiude il `do-while`?
 
+[( )] La parola `break` obbligatoria fuori dalle graffe
 [(X)] Il punto e virgola dopo `while (condizione)`
 [( )] Un secondo `else` dopo la condizione
-[( )] La parola `break` obbligatoria fuori dalle graffe
 
 **Domanda 5**
 
 Quale situazione richiede più naturalmente un `do-while` che un `while`?
 
-[(X)] Un modulo che deve essere mostrato e compilato almeno una volta
 [( )] Un conteggio noto da 1 a 12
 [( )] Una classificazione tra fasce di fatturato
+[(X)] Un modulo che deve essere mostrato e compilato almeno una volta
 
 #### 2. RUN (Esegui)
 
@@ -204,40 +204,40 @@ do {
 
 Qual è il primo passaggio eseguito dal programma?
 
-[(X)] Legge un importo dentro il corpo del `do`
 [( )] Controlla subito se `importo` è già valido
+[(X)] Legge un importo dentro il corpo del `do`
 [( )] Confronta prima le due costanti tra loro
 
 **Domanda 2**
 
 Perché con input `250` il ciclo termina dopo il primo giro?
 
-[(X)] 250 non è minore di 1 e non è maggiore di 5000, quindi la condizione è falsa
 [( )] Il primo valore inserito viene sempre considerato valido
+[(X)] 250 non è minore di 1 e non è maggiore di 5000, quindi la condizione è falsa
 [( )] Il `do-while` termina quando incontra un numero pari
 
 **Domanda 3**
 
 Che cosa succede con input `-10` seguito da `250`?
 
-[(X)] Il primo valore mantiene la condizione vera, quindi il programma ripete la lettura e poi accetta 250
-[( )] Il programma accetta subito -10 perché è un numero inserito
 [( )] Il programma esegue il corpo solo una volta e ignora 250
+[( )] Il programma accetta subito -10 perché è un numero inserito
+[(X)] Il primo valore mantiene la condizione vera, quindi il programma ripete la lettura e poi accetta 250
 
 **Domanda 4**
 
 Perché l'operatore `||` mantiene il ciclo per un importo fuori intervallo?
 
 [(X)] Basta che sia vera una delle due condizioni di errore: troppo piccolo o troppo grande
-[( )] Richiede che l'importo sia contemporaneamente minore e maggiore
 [( )] Converte l'importo in un valore booleano senza confrontarlo
+[( )] Richiede che l'importo sia contemporaneamente minore e maggiore
 
 **Domanda 5**
 
 Che errore sintattico può nascere se togli il `;` dopo `while (...)`?
 
-[(X)] Il compilatore segnala che manca il punto e virgola prima dell'istruzione successiva
 [( )] Il ciclo diventa automaticamente un `while` con controllo in testa
+[(X)] Il compilatore segnala che manca il punto e virgola prima dell'istruzione successiva
 [( )] Il programma accetta tutti gli importi senza controllarli
 
 | Giro | `importo` | Condizione di errore | Azione |
@@ -276,41 +276,41 @@ do {
 
 Quale modifica restringe l'intervallo agli importi tra 10 e 1000?
 
+[( )] Sostituire la condizione con `importo == 10.0`
 [(X)] Usare `importo < 10.0 || importo > 1000.0` nella condizione
 [( )] Usare `importo > 10.0 || importo < 1000.0`
-[( )] Sostituire la condizione con `importo == 10.0`
 
 **Domanda 2**
 
 Quale modifica permette al PIN di essere provato al massimo tre volte?
 
-[(X)] Aggiungere un contatore e continuare finché PIN errato e tentativi minori di 3
 [( )] Rimuovere il controllo del PIN e usare solo `break`
+[(X)] Aggiungere un contatore e continuare finché PIN errato e tentativi minori di 3
 [( )] Inserire tre `do` uno dentro l'altro senza contatore
 
 **Domanda 3**
 
 Che effetto ha cambiare `importo <= 0.0` in `importo < 0.0`?
 
+[( )] Il ciclo non esegue più il primo giro
 [(X)] L'importo 0.0 viene accettato, perché non è minore di zero
 [( )] L'importo 0.0 viene sempre rifiutato come prima
-[( )] Il ciclo non esegue più il primo giro
 
 **Domanda 4**
 
 Quale modifica mantiene il messaggio di errore solo per valori non validi?
 
-[(X)] Mettere un `if` nel corpo che controlla lo stesso intervallo
 [( )] Mettere il messaggio dopo `return 0`
 [( )] Sostituire `std::cin` con `std::cout` nel corpo
+[(X)] Mettere un `if` nel corpo che controlla lo stesso intervallo
 
 **Domanda 5**
 
 Perché conviene modificare una sola parte del ciclo alla volta?
 
 [(X)] Per capire se il problema riguarda il corpo, la condizione o il punto e virgola finale
-[( )] Perché un `do-while` può contenere una sola lettura in assoluto
 [( )] Perché ogni modifica elimina la prima iterazione
+[( )] Perché un `do-while` può contenere una sola lettura in assoluto
 
 <details>
 <summary>💡 Scaffold di partenza</summary>

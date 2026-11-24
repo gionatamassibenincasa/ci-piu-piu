@@ -46,9 +46,9 @@ Alla fine di questa lezione sei in grado di:
 
 Qual è il ruolo principale della fase di merge?
 
-[(X)] Fondere due sottosequenze già ordinate
 [( )] Mescolare a caso gli elementi
 [( )] Eliminare i duplicati obbligatoriamente
+[(X)] Fondere due sottosequenze già ordinate
 [( )] Ordinare solo con scambi adiacenti
 
 <details>

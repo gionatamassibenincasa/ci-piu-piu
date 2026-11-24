@@ -56,10 +56,10 @@ Alla fine di questa lezione sei in grado di:
 
 La ricerca binaria su un array disordinato è affidabile?
 
-[( )] Sì, sempre
 [(X)] No: richiede array ordinato
-[( )] Solo se tutti pari
+[( )] Sì, sempre
 [( )] Solo su stringhe
+[( )] Solo se tutti pari
 
 <details>
 <summary>💡 Spiegazione</summary>

@@ -63,10 +63,10 @@ int* p = &x;
 
 Dopo `int x = 10; int* p = &x; *p = 25;`, quanto vale `x`?
 
+[( )] L’indirizzo di x
+[( )] Indefinito
 [( )] 10
 [(X)] 25
-[( )] Indefinito
-[( )] L’indirizzo di x
 
 <details>
 <summary>💡 Spiegazione</summary>

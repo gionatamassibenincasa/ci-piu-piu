@@ -166,7 +166,9 @@ Alla fine di questa lezione sei in grado di:
 
 ### ⚙️ Prima del laboratorio: [concetti essenziali]
 
-[Tabella o elenco breve: pezzi del linguaggio *prima* del codice completo.
+[
+Idee chiave.
+Tabella o elenco breve: pezzi del linguaggio *prima* del codice completo.
 Niente muro di testo: max 1 schermo.]
 
 | Parte | Idea pratica | Perché c'è |

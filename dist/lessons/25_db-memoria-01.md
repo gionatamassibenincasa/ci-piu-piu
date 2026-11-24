@@ -49,8 +49,8 @@ Cosa rappresenta `Record tabella[100];` se Record è una struct?
 
 [(X)] Fino a 100 righe con gli stessi campi
 [( )] Un solo record con 100 campi
-[( )] Una matrice 100×100 di int
 [( )] Un file su disco
+[( )] Una matrice 100×100 di int
 
 <details>
 <summary>💡 Spiegazione</summary>

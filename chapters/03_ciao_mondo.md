@@ -335,7 +335,7 @@ Alla fine di questa lezione sei in grado di:
 
 ---
 
-### ⚙️ Prima del laboratorio: le quattro parti essenziali
+### 📚 Idea chiave
 
 Un programma C++ minimo non è una frase isolata: è un messaggio con indirizzo,
 inizio e fine. Leggilo per blocchi, senza cercare di memorizzare tutto subito.

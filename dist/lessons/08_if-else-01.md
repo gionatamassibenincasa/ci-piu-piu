@@ -120,24 +120,24 @@ if (saldoDisponibile >= importoSpesa) {
 
 Quale ramo viene eseguito con saldo `45.00` e spesa `62.50`?
 
-[(X)] Il ramo `else`, perché il saldo non è sufficiente
-[( )] Il ramo `if`, perché ogni pagamento viene approvato
 [( )] Entrambi i rami, uno dopo l'altro
+[( )] Il ramo `if`, perché ogni pagamento viene approvato
+[(X)] Il ramo `else`, perché il saldo non è sufficiente
 
 **Domanda 2**
 
 Perché `saldoDisponibile >= importoSpesa` è una condizione utile per il POS?
 
 [(X)] Confronta i due importi e produce vero solo quando il saldo basta
-[( )] Somma automaticamente il saldo e la spesa
 [( )] Trasforma i due importi in messaggi di testo
+[( )] Somma automaticamente il saldo e la spesa
 
 **Domanda 3**
 
 Che cosa succede se saldo e importo valgono entrambi `45.00`?
 
-[(X)] La condizione è vera perché `>=` include anche l'uguaglianza
 [( )] La condizione è falsa perché due valori uguali non possono essere confrontati
+[(X)] La condizione è vera perché `>=` include anche l'uguaglianza
 [( )] Il programma esegue sempre il ramo `else` in caso di parità
 
 **Domanda 4**
@@ -145,16 +145,16 @@ Che cosa succede se saldo e importo valgono entrambi `45.00`?
 Perché le graffe sono importanti nell'esempio?
 
 [(X)] Raggruppano tutte le istruzioni che appartengono a ciascun ramo
-[( )] Servono solo a rendere il codice più colorato nell'editor
 [( )] Sostituiscono la condizione tra parentesi
+[( )] Servono solo a rendere il codice più colorato nell'editor
 
 **Domanda 5**
 
 Quale risultato produce un `if` semplice quando la condizione è falsa?
 
-[(X)] Salta il suo blocco e continua con l'istruzione successiva
-[( )] Esegue automaticamente il blocco `else`, anche se non esiste
 [( )] Ripete la condizione finché diventa vera
+[( )] Esegue automaticamente il blocco `else`, anche se non esiste
+[(X)] Salta il suo blocco e continua con l'istruzione successiva
 
 #### 2. RUN (Esegui)
 
@@ -220,25 +220,25 @@ if (saldoDisponibile >= importoSpesa) {
 
 Qual è il primo passaggio eseguito quando il programma arriva all'if?
 
+[( )] Esegue prima tutte le istruzioni dentro le graffe
 [(X)] Confronta `saldoDisponibile` con `importoSpesa`
 [( )] Sottrae sempre la spesa dal saldo
-[( )] Esegue prima tutte le istruzioni dentro le graffe
 
 **Domanda 2**
 
 Perché il saldo non viene sottratto nel caso `45.00` contro `62.50`?
 
-[(X)] La sottrazione si trova nel ramo `if`, che non viene eseguito quando la condizione è falsa
-[( )] I numeri decimali non possono essere sottratti in C++
 [( )] Il ramo `else` annulla sempre tutte le variabili del programma
+[( )] I numeri decimali non possono essere sottratti in C++
+[(X)] La sottrazione si trova nel ramo `if`, che non viene eseguito quando la condizione è falsa
 
 **Domanda 3**
 
 Quale valore viene calcolato dall'espressione `importoSpesa - saldoDisponibile`?
 
+[( )] `-17.50`, perché il saldo viene sempre scritto per primo
 [(X)] `17.50`, cioè l'importo ancora mancante
 [( )] `107.50`, perché i due importi vengono sommati
-[( )] `-17.50`, perché il saldo viene sempre scritto per primo
 
 **Domanda 4**
 
@@ -253,8 +253,8 @@ Perché, dopo il blocco `if-else`, il programma può eseguire altre istruzioni?
 Che cosa accade con questo codice? `if (saldoDisponibile >= importoSpesa); { std::cout << "Approvato"; }`
 
 [(X)] Il punto e virgola chiude subito l'if, quindi il blocco successivo non è più controllato
-[( )] Il punto e virgola rende la condizione più precisa
 [( )] Il compilatore interpreta il punto e virgola come un ramo `else`
+[( )] Il punto e virgola rende la condizione più precisa
 
 | Passo | Cosa osservi | Stato |
 | :---: | :--- | :--- |
@@ -303,9 +303,9 @@ if (saldoDisponibile >= importoSpesa) {
 
 Quale modifica fa approvare la spesa di `62.50` con saldo `100.00`?
 
+[( )] Spostare il messaggio "Negato" dentro il ramo `if`
 [(X)] Cambiare `saldoDisponibile` in `100.00`
 [( )] Cambiare `>=` in `<=`
-[( )] Spostare il messaggio "Negato" dentro il ramo `if`
 
 **Domanda 2**
 
@@ -319,8 +319,8 @@ Quale modifica permette di mostrare anche il nuovo saldo dopo un pagamento appro
 
 Che effetto ha cambiare `>=` in `>` quando saldo e spesa sono uguali?
 
-[(X)] Il pagamento diventa negato, perché l'uguaglianza non soddisfa più la condizione
 [( )] Il pagamento resta approvato perché i due operatori sono equivalenti
+[(X)] Il pagamento diventa negato, perché l'uguaglianza non soddisfa più la condizione
 [( )] Il programma esegue entrambi i rami
 
 **Domanda 4**
@@ -328,16 +328,16 @@ Che effetto ha cambiare `>=` in `>` quando saldo e spesa sono uguali?
 Quale modifica aggiunge un avviso per una scorta sotto cinque pezzi senza creare un secondo ramo obbligatorio?
 
 [(X)] Aggiungere un secondo `if` semplice con condizione `scorte < 5`
-[( )] Aggiungere sempre `else` al primo `if` del pagamento
 [( )] Mettere la quantità dentro una stringa stampata
+[( )] Aggiungere sempre `else` al primo `if` del pagamento
 
 **Domanda 5**
 
 Perché conviene modificare una sola condizione alla volta?
 
-[(X)] Per capire quale cambiamento ha prodotto il nuovo ramo eseguito
-[( )] Perché un programma C++ può contenere una sola condizione
 [( )] Perché `if` funziona soltanto prima della prima modifica
+[( )] Perché un programma C++ può contenere una sola condizione
+[(X)] Per capire quale cambiamento ha prodotto il nuovo ramo eseguito
 
 <details>
 <summary>💡 Scaffold di partenza</summary>

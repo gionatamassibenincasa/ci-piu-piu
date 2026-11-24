@@ -45,8 +45,8 @@ void scheda() const { giacenza = 0; }
 
 Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
 
-[( )] Sì
 [(X)] No: metodo const non modifica lo stato
+[( )] Sì
 [( )] Solo se giacenza è public
 [( )] Solo in main
 

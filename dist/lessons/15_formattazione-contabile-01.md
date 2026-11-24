@@ -67,41 +67,41 @@ int main() {
 
 Perché `std::fixed` è utile quando stampi un importo?
 
-[(X)] Chiede di rappresentare il numero in forma decimale fissa, adatta a un prospetto
-[( )] Trasforma automaticamente l'importo da euro a centesimi
 [( )] Arrotonda sempre il valore memorizzato nella variabile
+[( )] Trasforma automaticamente l'importo da euro a centesimi
+[(X)] Chiede di rappresentare il numero in forma decimale fissa, adatta a un prospetto
 
 **Domanda 2**
 
 Che cosa indica `std::setprecision(2)` insieme a `std::fixed`?
 
 [(X)] Mostrare due cifre dopo il punto decimale
-[( )] Moltiplicare il numero per 2
 [( )] Mostrare al massimo due cifre complessive
+[( )] Moltiplicare il numero per 2
 
 **Domanda 3**
 
 Prima del Run, quale output prevedi per `19.5`?
 
 [(X)] 19.50
-[( )] 19.5
 [( )] 20.00
+[( )] 19.5
 
 **Domanda 4**
 
 Perché nel programma serve `#include <iomanip>`?
 
 [(X)] Per rendere disponibili `std::fixed` e `std::setprecision`
-[( )] Per dichiarare automaticamente tutte le variabili `double`
 [( )] Per sostituire `#include <iostream>` nelle stampe
+[( )] Per dichiarare automaticamente tutte le variabili `double`
 
 **Domanda 5**
 
 Se scrivi `std::setprecision(2)` senza `std::fixed`, quale previsione è più corretta?
 
+[( )] L'output avrà sempre esattamente due cifre dopo il punto
 [(X)] La precisione riguarda le cifre significative, quindi non garantisce sempre due decimali
 [( )] Il programma non può compilare perché `setprecision` richiede un intero positivo diverso da 2
-[( )] L'output avrà sempre esattamente due cifre dopo il punto
 
 Completa prima il quiz: concentrati sulla differenza tra **valore calcolato** e **valore visualizzato**.
 
@@ -154,41 +154,41 @@ int main() {
 
 Perché anche `iva` e `totale` vengono stampate con due decimali?
 
+[( )] La variabile `imponibile` trasferisce il suo formato alle altre variabili
 [(X)] I manipolatori restano attivi per le stampe successive dello stesso `std::cout`
 [( )] Ogni `double` viene sempre stampato con due decimali in C++
-[( )] La variabile `imponibile` trasferisce il suo formato alle altre variabili
 
 **Domanda 2**
 
 Qual è l'ordine corretto nella riga di configurazione?
 
+[( )] Prima `std::setprecision(2)`, poi si chiude `std::cout` con un punto e virgola
 [(X)] Prima `std::fixed`, poi `std::setprecision(2)`, quindi il valore da stampare
 [( )] Prima il valore, poi `std::fixed` e infine `std::setprecision(2)`
-[( )] Prima `std::setprecision(2)`, poi si chiude `std::cout` con un punto e virgola
 
 **Domanda 3**
 
 Perché il risultato di `19.5 * 0.22` può essere visualizzato come `4.29`?
 
-[(X)] Il formato mostra due decimali e arrotonda la rappresentazione visualizzata
-[( )] Il programma sostituisce sempre il valore con il numero intero più vicino
 [( )] La moltiplicazione viene eseguita come testo e non come numero
+[( )] Il programma sostituisce sempre il valore con il numero intero più vicino
+[(X)] Il formato mostra due decimali e arrotonda la rappresentazione visualizzata
 
 **Domanda 4**
 
 Che cosa succede se togli `#include <iomanip>` ma lasci `std::setprecision(2)`?
 
-[(X)] Il compilatore può segnalare che `setprecision` non è dichiarata
 [( )] Il programma compila, ma `std::cout` ignora soltanto la precisione
 [( )] Il valore viene automaticamente stampato come intero
+[(X)] Il compilatore può segnalare che `setprecision` non è dichiarata
 
 **Domanda 5**
 
 Se aggiungi una stampa dopo il prospetto senza cambiare il formato, che cosa accade?
 
-[(X)] Anche quella stampa usa il formato corrente di `std::cout`, finché non lo modifichi
 [( )] Il formato si annulla automaticamente dopo ogni riga
 [( )] Il formato si applica solo alla variabile `imponibile`
+[(X)] Anche quella stampa usa il formato corrente di `std::cout`, finché non lo modifichi
 
 Perché l'impostazione compare una sola volta ma vale per tre stampe? Segui l'ordine delle istruzioni:
 
@@ -222,32 +222,32 @@ Quale modifica fa apparire tre cifre dopo il punto decimale?
 Che effetto ha togliere `std::fixed` lasciando `std::setprecision(2)`?
 
 [(X)] La precisione può indicare due cifre significative, non necessariamente due decimali
-[( )] Il programma stampa sempre due zeri in più
 [( )] Il valore di `totale` viene cancellato
+[( )] Il programma stampa sempre due zeri in più
 
 **Domanda 3**
 
 Quale modifica mantiene il prospetto a due decimali ma stampa prima l'etichetta `Totale`?
 
-[(X)] Spostare l'etichetta nella stessa espressione di output, prima di `totale`
 [( )] Mettere `std::fixed` dopo `totale` e prima dell'etichetta
 [( )] Cambiare `totale` in una variabile `int`
+[(X)] Spostare l'etichetta nella stessa espressione di output, prima di `totale`
 
 **Domanda 4**
 
 Se sostituisci `std::setprecision(2)` con `std::setprecision(0)`, quale effetto prevedi?
 
-[(X)] La stampa usa zero cifre dopo il punto e può arrotondare il valore visualizzato
 [( )] La stampa usa automaticamente due cifre perché gli importi sono monetari
+[(X)] La stampa usa zero cifre dopo il punto e può arrotondare il valore visualizzato
 [( )] Il programma entra in un ciclo infinito
 
 **Domanda 5**
 
 Quale modifica formatta anche la nuova variabile `sconto` con due decimali?
 
-[(X)] Stampare `sconto` con lo stesso `std::cout` dopo aver impostato `fixed` e `setprecision(2)`
-[( )] Dichiarare `sconto` come `char`
 [( )] Inserire `std::setprecision(2)` solo dopo la stampa di `sconto`
+[( )] Dichiarare `sconto` come `char`
+[(X)] Stampare `sconto` con lo stesso `std::cout` dopo aver impostato `fixed` e `setprecision(2)`
 
 Apporta una modifica alla volta e riesegui.
 
