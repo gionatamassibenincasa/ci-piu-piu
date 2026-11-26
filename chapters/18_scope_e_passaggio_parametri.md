@@ -39,8 +39,9 @@ files:
 
 ## 📄 Fotocopia o Originale: passaggio per valore e per riferimento
 
-> "Se ti passo la fotocopia, le tue note non restano sul documento ufficiale."  
-> — *Metafora di gestione documentale*
+Nel laboratorio di un gestionale, una funzione può calcolare uno sconto senza
+modificare il listino oppure aggiornare direttamente il prezzo registrato.
+La differenza dipende da come il dato entra nella funzione.
 
 Una funzione può ricevere:
 - una **copia** del valore (**per valore**) → modifiche locali non tornano al chiamante  
@@ -50,14 +51,21 @@ Una funzione può ricevere:
 > - Per valore = fotocopia del listino  
 > - Per riferimento (`double& prezzo`) = il listino **originale** sul bancone
 
-Lo **scope**: una variabile locale esiste solo nel blocco/funzione dove è dichiarata.
+Lo **scope** completa il quadro: una variabile locale esiste solo nel
+blocco/funzione dove è dichiarata.
+
+**Confini della lezione:** qui osservi scope locale, passaggio per valore e
+passaggio per riferimento. Puntatori, oggetti e strutture dati non fanno parte
+di questo laboratorio.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Distinguere passaggio per valore e per riferimento
-- Scrivere una funzione che aggiorna un `double` del chiamante tramite `double&`
+- distinguere passaggio per valore e per riferimento;
+- prevedere se una chiamata modifica la variabile nel chiamante;
+- scrivere una funzione che aggiorna un `double` tramite `double&`;
+- riconoscere quando una variabile locale non è più visibile fuori dal suo scope.
 
 ---
 
@@ -118,10 +126,11 @@ int main() {
 
 | Chiamata | Effetto su variabile in `main` |
 |----------|---------------------------------|
-| `scontoCopia` | Nessuno |
-| `scontoRef` | Prezzo aggiornato |
+| `scontoCopia(p1, 10.0)` | `p1` resta `100.0`; la copia locale diventa `90.0` |
+| `scontoRef(p2, 10.0)` | `p2` diventa `90.0`; il parametro è un alias |
 
-In [Python Tutor](https://pythontutor.com/cpp.html) confronta i frame e l’alias `&`.
+In [Python Tutor](https://pythontutor.com/cpp.html) confronta i frame, i due
+prezzi e l’alias `&` dopo ogni chiamata.
 
 #### 4. MODIFY (Modifica)
 1. Aggiungi `void scambia(double& a, double& b)`.
@@ -150,10 +159,10 @@ int main() { return 0; }
 ---
 
 ### 📝 Riepilogo tascabile
-- Per valore = fotocopia; per riferimento = originale
-- `T&` nel parametro per modificare il chiamante
-- `const T&` per leggere senza copiare
-- Scope locale: fuori dal blocco la variabile non esiste
+- [ ] Per valore significa lavorare su una copia; per riferimento significa usare l'originale.
+- [ ] `T&` nel parametro permette di modificare il dato del chiamante.
+- [ ] `const T&` permette di leggere senza modificare il dato ricevuto.
+- [ ] Una variabile locale è visibile solo nel proprio blocco o nella propria funzione.
 
 ---
 

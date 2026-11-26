@@ -5618,7 +5618,8 @@ preciso alle variabili e a riconoscere uno schema stabile nei cicli.
 
 ## 🧭 Un ruolo per ogni variabile, uno schema per ogni ciclo
 
-In un gestionale molte parti del codice sembrano ripetizioni. In realtà ogni
+Nel percorso di laboratorio, un gestionale offre un contesto concreto per
+leggere cicli già conosciuti. Molte parti del codice sembrano ripetizioni. In realtà ogni
 variabile svolge un lavoro preciso: sommare, contare, conservare l'ultimo dato,
 tenere il migliore trovato finora o confrontare lo stato precedente.
 
@@ -5994,7 +5995,7 @@ Crea `registro_fatture.cpp` rispettando tutti i requisiti:
 4. Usa un contatore per il numero di fatture valide.
 5. Usa un valore più desiderato per conservare il massimo.
 6. Usa un precedente per riconoscere una diminuzione rispetto alla fattura precedente.
-7. Conta quante diminuzioni consecutive sono state rilevate.
+7. Conta quante volte un importo diminuisce rispetto alla fattura precedente.
 8. Stampa totale, numero, massimo e numero di diminuzioni.
 
 <details>
@@ -6021,7 +6022,7 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- [ ] Valore fissato, contatore e accumulatore hanno responsabilita diverse.
+- [ ] Valore fissato, contatore e accumulatore hanno responsabilità diverse.
 - [ ] Il valore più recente conserva l'ultimo dato letto.
 - [ ] Il valore più desiderato viene aggiornato solo da un candidato migliore.
 - [ ] Il precedente serve a confrontare dati adiacenti.
@@ -6040,11 +6041,13 @@ metterai questa capacità dentro reparti software riutilizzabili: le funzioni.
 
 ## 🏢 Il Primo Reparto: funzioni che restituiscono un valore
 
-> "Un buon processo si scompone in reparti con responsabilità chiare."  
-> — *Organizzazione aziendale e top-down*
+Nel laboratorio di un gestionale, una schermata può calcolare IVA, sconti e
+commissioni. Se tutta la logica resta in `main`, il programma diventa difficile
+da leggere e da riusare.
 
-Finora quasi tutto viveva in `main`.  
-Quando la logica cresce (IVA, sconti, commissioni), conviene **estrarre un reparto**: una **funzione** con nome, parametri e **valore di ritorno**.
+Per questo estraiamo un reparto specializzato: una **funzione** con un nome,
+parametri e un **valore di ritorno**. `main` coordina il lavoro, mentre ogni
+funzione svolge un calcolo circoscritto.
 
 > 💡 **Metafora: sportello specializzato**  
 > - `calcolaIva(imponibile)` = sportello “ufficio IVA”  
@@ -6052,15 +6055,17 @@ Quando la logica cresce (IVA, sconti, commissioni), conviene **estrarre un repar
 > - Ti restituisce l’importo IVA (documento in uscita)  
 > - `main` coordina: chiede, riceve, stampa
 
-In questo chunk: funzioni **semplici** che calcolano e `return`.  
-Passaggio per riferimento e scope fine: capitolo successivo.
+**Confini della lezione:** qui usi funzioni semplici che calcolano e restituiscono
+un valore. Passaggio per riferimento e scope saranno affrontati nel capitolo
+successivo.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare e chiamare una funzione con parametri e `return`
-- Usare il risultato in `main` senza ripetere la formula
+- dichiarare una funzione con parametri e tipo di ritorno;
+- chiamarla da `main` e assegnare il risultato a una variabile;
+- descrivere il percorso del dato dalla chiamata al `return`.
 
 ---
 
@@ -6075,12 +6080,12 @@ double calcolaIva(double imponibile) {
 double iva = calcolaIva(100.0);
 ```
 
-| Parte | Ruolo |
-|-------|--------|
-| Tipo di ritorno | Cosa esce dallo sportello (`double`, `int`, …) |
-| Nome | Verbo + oggetto (`calcolaIva`) |
-| Parametri | Dati in ingresso |
-| `return` | Fine del lavoro + valore |
+| Parte | Domanda guida | Esempio |
+|-------|---------------|---------|
+| Tipo di ritorno | Che tipo di dato esce? | `double` |
+| Nome | Quale lavoro svolge? | `calcolaIva` |
+| Parametri | Quali dati entrano? | `double imponibile` |
+| `return` | Quale risultato torna al chiamante? | `imponibile * 0.22` |
 
 ---
 
@@ -6134,11 +6139,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Momento | Cosa succede |
-|---------|----------------|
-| Chiamata | `main` sospende; parte `calcolaIva` |
-| `return` | Il valore torna a `main` in `iva` |
-| Dopo | `main` usa `iva` nel totale |
+| Momento | Stato osservabile |
+|---------|------------------|
+| Prima della chiamata | `imponibile = 100.0`; `iva` non ha ancora il risultato |
+| Chiamata | `main` sospende; `imponibile` entra nella funzione |
+| `return` | `100.0 * 0.22` produce `22.0`, che torna in `iva` |
+| Dopo la chiamata | `main` usa `iva` per calcolare `totale = 122.0` |
 
 > 🔗 [Python Tutor C++](https://pythontutor.com/cpp.html): osserva lo stack frame della funzione.
 
@@ -6160,10 +6166,10 @@ int main() {
 ```cpp
 #include <iostream>
 double commissione(double importo) {
-    return importo * 0.012;
+    return 0.0; // TODO: calcola la commissione
 }
 int main() {
-    // ...
+    // TODO: leggi un importo e stampa commissione e netto
     return 0;
 }
 ```
@@ -6172,10 +6178,11 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Funzione = reparto con ingresso, lavoro, uscita
-- `return` consegna il risultato a chi ha chiamato
-- `main` orchestra; le funzioni specializzano
-- Un calcolo riusato → una funzione, non copia-incolla
+- [ ] Una funzione riceve dati, svolge un lavoro circoscritto e restituisce un risultato.
+- [ ] Il tipo di ritorno descrive il dato prodotto dalla funzione.
+- [ ] `return` consegna il risultato a chi ha chiamato.
+- [ ] `main` orchestra; le funzioni specializzano.
+- [ ] Un calcolo riusato diventa una funzione, non una copia-incolla.
 
 ---
 
@@ -6187,8 +6194,9 @@ le variabili del chiamante tramite il passaggio per riferimento.
 
 ## 📄 Fotocopia o Originale: passaggio per valore e per riferimento
 
-> "Se ti passo la fotocopia, le tue note non restano sul documento ufficiale."  
-> — *Metafora di gestione documentale*
+Nel laboratorio di un gestionale, una funzione può calcolare uno sconto senza
+modificare il listino oppure aggiornare direttamente il prezzo registrato.
+La differenza dipende da come il dato entra nella funzione.
 
 Una funzione può ricevere:
 - una **copia** del valore (**per valore**) → modifiche locali non tornano al chiamante  
@@ -6198,14 +6206,21 @@ Una funzione può ricevere:
 > - Per valore = fotocopia del listino  
 > - Per riferimento (`double& prezzo`) = il listino **originale** sul bancone
 
-Lo **scope**: una variabile locale esiste solo nel blocco/funzione dove è dichiarata.
+Lo **scope** completa il quadro: una variabile locale esiste solo nel
+blocco/funzione dove è dichiarata.
+
+**Confini della lezione:** qui osservi scope locale, passaggio per valore e
+passaggio per riferimento. Puntatori, oggetti e strutture dati non fanno parte
+di questo laboratorio.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Distinguere passaggio per valore e per riferimento
-- Scrivere una funzione che aggiorna un `double` del chiamante tramite `double&`
+- distinguere passaggio per valore e per riferimento;
+- prevedere se una chiamata modifica la variabile nel chiamante;
+- scrivere una funzione che aggiorna un `double` tramite `double&`;
+- riconoscere quando una variabile locale non è più visibile fuori dal suo scope.
 
 ---
 
@@ -6277,10 +6292,11 @@ int main() {
 
 | Chiamata | Effetto su variabile in `main` |
 |----------|---------------------------------|
-| `scontoCopia` | Nessuno |
-| `scontoRef` | Prezzo aggiornato |
+| `scontoCopia(p1, 10.0)` | `p1` resta `100.0`; la copia locale diventa `90.0` |
+| `scontoRef(p2, 10.0)` | `p2` diventa `90.0`; il parametro è un alias |
 
-In [Python Tutor](https://pythontutor.com/cpp.html) confronta i frame e l’alias `&`.
+In [Python Tutor](https://pythontutor.com/cpp.html) confronta i frame, i due
+prezzi e l’alias `&` dopo ogni chiamata.
 
 #### 4. MODIFY (Modifica)
 1. Aggiungi `void scambia(double& a, double& b)`.
@@ -6309,10 +6325,10 @@ int main() { return 0; }
 ---
 
 ### 📝 Riepilogo tascabile
-- Per valore = fotocopia; per riferimento = originale
-- `T&` nel parametro per modificare il chiamante
-- `const T&` per leggere senza copiare
-- Scope locale: fuori dal blocco la variabile non esiste
+- [ ] Per valore significa lavorare su una copia; per riferimento significa usare l'originale.
+- [ ] `T&` nel parametro permette di modificare il dato del chiamante.
+- [ ] `const T&` permette di leggere senza modificare il dato ricevuto.
+- [ ] Una variabile locale è visibile solo nel proprio blocco o nella propria funzione.
 
 ---
 
@@ -6337,12 +6353,18 @@ Aprire 100 variabili diverse è insostenibile. Serve una **fila ordinata di spor
 > - `vendite[3]` = “apri il locker numero 3” (il **quarto** della fila)  
 > - `vendite[30]` su 30 locker (`0`…`29`) = chiedi un locker che **non esiste** → caos
 
+**Confini della lezione:** qui lavori con array monodimensionali di dimensione
+fissa e con il ciclo `for`. Array bidimensionali e contenitori dinamici saranno
+affrontati nei capitoli successivi.
+
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare un array monodimensionale, indicizzarlo correttamente e scorrerlo con un `for`
-- Riconoscere e evitare l’accesso **fuori dai limiti** (out-of-bounds)
+- dichiarare e inizializzare un array monodimensionale;
+- usare indici validi e scorrerlo con un `for`;
+- riconoscere e prevenire un accesso **fuori dai limiti** (out-of-bounds);
+- accumulare i valori di una sequenza per ottenere un totale.
 
 ---
 
@@ -6363,6 +6385,10 @@ for (int i = 0; i < 12; ++i) {
 | Indice legale | Da `0` a `N - 1` |
 | `vendite[N]` | **Fuori**: il compilatore spesso **non** ti ferma |
 | Tipo | Tutti gli elementi dello stesso tipo |
+
+> ⚠️ **Nota dal Mondo Reale:** gli array raw servono per capire indici e
+> memoria. Nei programmi di produzione si preferisce normalmente `std::vector`,
+> che gestisce meglio la dimensione e offre controlli e strumenti più sicuri.
 
 ---
 
@@ -6416,11 +6442,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Elemento | Ruolo |
-|----------|--------|
-| `vendite[6]` | Sei celle contigue di `double` |
-| `i` da 0 a 5 | Visita ogni locker una volta |
-| `totale = totale + vendite[i]` | Accumulo (stesso schema del `while` contabile) |
+| Passo | Stato osservabile |
+|-------|-------------------|
+| Inizio | `i = 0`, `totale = 0.0` |
+| Durante il ciclo | `vendite[i]` è l'elemento corrente; `totale` cresce |
+| Dopo `i = 5` | Tutti gli indici validi `0`…`5` sono stati visitati |
+| Fine | `totale` contiene la somma dei sei mesi |
 
 > 🔗 Copia il programma su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva l’array nella memoria.
 
@@ -6454,10 +6481,11 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Array = fila di sportelli **stesso tipo**, indici da **0**
-- L’ultimo indice valido è **N − 1**
-- Fuori range = bug silenzioso tipico
-- Si scorre quasi sempre con un `for`
+- [ ] Un array contiene elementi dello stesso tipo e usa indici da **0**.
+- [ ] L’ultimo indice valido è **N − 1**.
+- [ ] Un accesso fuori range è un bug che il compilatore può non segnalare.
+- [ ] Un ciclo `for` permette di visitare sistematicamente gli elementi.
+- [ ] Un accumulatore può sommare i valori della sequenza.
 
 ---
 
@@ -6481,12 +6509,18 @@ In C++ usiamo un **array bidimensionale** (matrice).
 > - Seconda = colonne (periodi)  
 > - Anche qui gli indici partono da **0**
 
+**Confini della lezione:** qui lavori con matrici raw di dimensione fissa e con
+due cicli `for` annidati. Non introduciamo ancora puntatori o strutture dati
+dinamiche.
+
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare e scorrere un array `tipo nome[RIGHE][COLONNE]`
-- Calcolare totali per riga (o per colonna) su dati tabellari
+- dichiarare e inizializzare un array `tipo nome[RIGHE][COLONNE]`;
+- distinguere indice di riga e indice di colonna;
+- scorrere una matrice con due cicli `for` annidati;
+- calcolare totali per riga, per colonna e complessivi.
 
 ---
 
@@ -6501,6 +6535,10 @@ double vendite[2][3] = {
 ```
 
 Due cicli annidati: esterno sulle righe, interno sulle colonne.
+
+> ⚠️ **Nota dal Mondo Reale:** le matrici raw servono qui per capire indici e
+> cicli annidati. Nei programmi di produzione si preferiscono contenitori e
+> strutture dati che gestiscono meglio dimensioni e controlli.
 
 ---
 
@@ -6553,11 +6591,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Variabile | Significato |
-|-----------|-------------|
-| `r` | Indice di riga (reparto) |
-| `c` | Indice di colonna (mese) |
-| `subtotale` | Si azzera a ogni nuova riga |
+| Passo | Stato osservabile |
+|-------|-------------------|
+| Inizio riga | `r = 0`, `c = 0`, `subtotale = 0.0` |
+| Ciclo interno | `c` visita le colonne della riga corrente |
+| Fine riga | `subtotale` contiene il totale del reparto `r` |
+| Nuova riga | `subtotale` si azzera e `r` aumenta |
 
 Segui con [Python Tutor](https://pythontutor.com/cpp.html) l’ordine delle celle visitate.
 
@@ -6588,10 +6627,11 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Matrice = foglio a righe e colonne
-- `m[i][j]`: prima riga, poi colonna
-- Quasi sempre **due** `for` annidati
-- Stessi pericoli di out-of-bounds, su due assi
+- [ ] Una matrice organizza dati in righe e colonne.
+- [ ] In `m[i][j]`, `i` indica prima la riga e `j` la colonna.
+- [ ] Due `for` annidati visitano tutte le celle.
+- [ ] I limiti vanno rispettati su entrambi gli assi.
+- [ ] I totali parziali si inizializzano nel punto coerente con il risultato.
 
 ---
 
@@ -6605,6 +6645,8 @@ memoria con i **puntatori**, in modo guidato e cauto.
 > "Non ti do la merce: ti do la chiave del locker."  
 > — *Metafora operativa*
 
+Nel laboratorio di un gestionale, aggiornare una giacenza o scambiare due prezzi
+richiede talvolta di raggiungere direttamente la variabile originale.
 Finora passavamo **valori** (copie) o **riferimenti** (`&` nei parametri).  
 Un **puntatore** è una variabile che memorizza l’**indirizzo** di un’altra variabile: il *numero dello sportello*, non la merce.
 
@@ -6615,14 +6657,18 @@ Un **puntatore** è una variabile che memorizza l’**indirizzo** di un’altra 
 > - `p = &x` = “annota l’indirizzo di x”  
 > - `*p` = “apri lo sportello indicato e usa la merce”
 
-In questo chunk **non** usiamo ancora `new`/`delete`: solo puntatori a variabili automatiche.
+**Confini della lezione:** qui usi puntatori a variabili automatiche e gli
+operatori `&` e `*`. Non usiamo ancora `new`/`delete` né aritmetica dei
+puntatori.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare un puntatore, assegnargli `&variabile` e usare `*` per leggere/scrivere
-- Spiegare la differenza tra l’indirizzo (`p`) e il valore puntato (`*p`)
+- dichiarare un puntatore e assegnargli l’indirizzo di una variabile;
+- distinguere l’indirizzo (`p`) dal valore puntato (`*p`);
+- usare `*` per leggere o modificare la variabile originale;
+- evitare di dereferenziare un puntatore non inizializzato o non valido.
 
 ---
 
@@ -6634,6 +6680,9 @@ int* p = &giacenza;   // p contiene l'indirizzo di giacenza
 std::cout << *p;      // 40
 *p = 35;              // modifica giacenza tramite il puntatore
 ```
+
+Un puntatore deve contenere un indirizzo valido prima di essere dereferenziato:
+usare `*p` quando `p` non indica una variabile è un errore pericoloso.
 
 ---
 
@@ -6682,12 +6731,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Espressione | Cosa rappresenta |
-|-------------|------------------|
-| `giacenza` | Valore (merce) |
-| `&giacenza` | Indirizzo |
-| `p` | Copia dell’indirizzo |
-| `*p` | Merce nello sportello puntato |
+| Momento | Stato osservabile |
+|---------|------------------|
+| Prima dell'assegnazione | `giacenza = 40`; `p` non è ancora collegato |
+| Dopo `p = &giacenza` | `p` contiene l'indirizzo di `giacenza` |
+| Dopo `*p = *p - 5` | `*p = 35` e anche `giacenza = 35` |
+| In ogni momento | `&giacenza` è l'indirizzo; `*p` è il valore puntato |
 
 Osserva in [Python Tutor](https://pythontutor.com/cpp.html) le frecce tra `p` e `giacenza`.
 
@@ -6721,15 +6770,16 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Puntatore = variabile che tiene un **indirizzo**
-- `&x` indirizzo; `*p` valore puntato
-- `*p = …` modifica la variabile originale
-- In questo corso: prima i puntatori “semplici”, allocazione dinamica più avanti se serve
+- [ ] Un puntatore è una variabile che contiene un **indirizzo**.
+- [ ] `&x` produce un indirizzo; `*p` accede al valore puntato.
+- [ ] `*p = ...` modifica la variabile originale quando `p` è valido.
+- [ ] Un puntatore non inizializzato o non valido non deve essere dereferenziato.
+- [ ] In questa lezione si usano variabili automatiche, senza allocazione dinamica.
 
 ---
 
 ### ➡️ Prossimo passo nel percorso
-Nel capitolo precedente hai osservato indirizzi e memoria.
+Nel capitolo precedente hai organizzato dati in matrici.
 Nel prossimo capitolo, `22_enum_e_struct`, raggrupperai dati eterogenei e stati
 discreti in un record anagrafico.
 

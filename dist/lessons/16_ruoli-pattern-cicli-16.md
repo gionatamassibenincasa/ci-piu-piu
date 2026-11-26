@@ -16,7 +16,8 @@ import:               https://raw.githubusercontent.com/gionata/PythonTutor/main
 
 ## 🧭 Un ruolo per ogni variabile, uno schema per ogni ciclo
 
-In un gestionale molte parti del codice sembrano ripetizioni. In realtà ogni
+Nel percorso di laboratorio, un gestionale offre un contesto concreto per
+leggere cicli già conosciuti. Molte parti del codice sembrano ripetizioni. In realtà ogni
 variabile svolge un lavoro preciso: sommare, contare, conservare l'ultimo dato,
 tenere il migliore trovato finora o confrontare lo stato precedente.
 
@@ -392,7 +393,7 @@ Crea `registro_fatture.cpp` rispettando tutti i requisiti:
 4. Usa un contatore per il numero di fatture valide.
 5. Usa un valore più desiderato per conservare il massimo.
 6. Usa un precedente per riconoscere una diminuzione rispetto alla fattura precedente.
-7. Conta quante diminuzioni consecutive sono state rilevate.
+7. Conta quante volte un importo diminuisce rispetto alla fattura precedente.
 8. Stampa totale, numero, massimo e numero di diminuzioni.
 
 <details>
@@ -419,7 +420,7 @@ int main() {
 
 ### 📝 Riepilogo tascabile
 
-- [ ] Valore fissato, contatore e accumulatore hanno responsabilita diverse.
+- [ ] Valore fissato, contatore e accumulatore hanno responsabilità diverse.
 - [ ] Il valore più recente conserva l'ultimo dato letto.
 - [ ] Il valore più desiderato viene aggiornato solo da un candidato migliore.
 - [ ] Il precedente serve a confrontare dati adiacenti.

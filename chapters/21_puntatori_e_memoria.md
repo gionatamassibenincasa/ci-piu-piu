@@ -42,6 +42,8 @@ files:
 > "Non ti do la merce: ti do la chiave del locker."  
 > — *Metafora operativa*
 
+Nel laboratorio di un gestionale, aggiornare una giacenza o scambiare due prezzi
+richiede talvolta di raggiungere direttamente la variabile originale.
 Finora passavamo **valori** (copie) o **riferimenti** (`&` nei parametri).  
 Un **puntatore** è una variabile che memorizza l’**indirizzo** di un’altra variabile: il *numero dello sportello*, non la merce.
 
@@ -52,14 +54,18 @@ Un **puntatore** è una variabile che memorizza l’**indirizzo** di un’altra 
 > - `p = &x` = “annota l’indirizzo di x”  
 > - `*p` = “apri lo sportello indicato e usa la merce”
 
-In questo chunk **non** usiamo ancora `new`/`delete`: solo puntatori a variabili automatiche.
+**Confini della lezione:** qui usi puntatori a variabili automatiche e gli
+operatori `&` e `*`. Non usiamo ancora `new`/`delete` né aritmetica dei
+puntatori.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare un puntatore, assegnargli `&variabile` e usare `*` per leggere/scrivere
-- Spiegare la differenza tra l’indirizzo (`p`) e il valore puntato (`*p`)
+- dichiarare un puntatore e assegnargli l’indirizzo di una variabile;
+- distinguere l’indirizzo (`p`) dal valore puntato (`*p`);
+- usare `*` per leggere o modificare la variabile originale;
+- evitare di dereferenziare un puntatore non inizializzato o non valido.
 
 ---
 
@@ -71,6 +77,9 @@ int* p = &giacenza;   // p contiene l'indirizzo di giacenza
 std::cout << *p;      // 40
 *p = 35;              // modifica giacenza tramite il puntatore
 ```
+
+Un puntatore deve contenere un indirizzo valido prima di essere dereferenziato:
+usare `*p` quando `p` non indica una variabile è un errore pericoloso.
 
 ---
 
@@ -108,12 +117,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Espressione | Cosa rappresenta |
-|-------------|------------------|
-| `giacenza` | Valore (merce) |
-| `&giacenza` | Indirizzo |
-| `p` | Copia dell’indirizzo |
-| `*p` | Merce nello sportello puntato |
+| Momento | Stato osservabile |
+|---------|------------------|
+| Prima dell'assegnazione | `giacenza = 40`; `p` non è ancora collegato |
+| Dopo `p = &giacenza` | `p` contiene l'indirizzo di `giacenza` |
+| Dopo `*p = *p - 5` | `*p = 35` e anche `giacenza = 35` |
+| In ogni momento | `&giacenza` è l'indirizzo; `*p` è il valore puntato |
 
 Osserva in [Python Tutor](https://pythontutor.com/cpp.html) le frecce tra `p` e `giacenza`.
 
@@ -147,14 +156,15 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Puntatore = variabile che tiene un **indirizzo**
-- `&x` indirizzo; `*p` valore puntato
-- `*p = …` modifica la variabile originale
-- In questo corso: prima i puntatori “semplici”, allocazione dinamica più avanti se serve
+- [ ] Un puntatore è una variabile che contiene un **indirizzo**.
+- [ ] `&x` produce un indirizzo; `*p` accede al valore puntato.
+- [ ] `*p = ...` modifica la variabile originale quando `p` è valido.
+- [ ] Un puntatore non inizializzato o non valido non deve essere dereferenziato.
+- [ ] In questa lezione si usano variabili automatiche, senza allocazione dinamica.
 
 ---
 
 ### ➡️ Prossimo passo nel percorso
-Nel capitolo precedente hai osservato indirizzi e memoria.
+Nel capitolo precedente hai organizzato dati in matrici.
 Nel prossimo capitolo, `22_enum_e_struct`, raggrupperai dati eterogenei e stati
 discreti in un record anagrafico.

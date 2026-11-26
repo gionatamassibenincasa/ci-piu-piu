@@ -29,12 +29,18 @@ In C++ usiamo un **array bidimensionale** (matrice).
 > - Seconda = colonne (periodi)  
 > - Anche qui gli indici partono da **0**
 
+**Confini della lezione:** qui lavori con matrici raw di dimensione fissa e con
+due cicli `for` annidati. Non introduciamo ancora puntatori o strutture dati
+dinamiche.
+
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare e scorrere un array `tipo nome[RIGHE][COLONNE]`
-- Calcolare totali per riga (o per colonna) su dati tabellari
+- dichiarare e inizializzare un array `tipo nome[RIGHE][COLONNE]`;
+- distinguere indice di riga e indice di colonna;
+- scorrere una matrice con due cicli `for` annidati;
+- calcolare totali per riga, per colonna e complessivi.
 
 ---
 
@@ -49,6 +55,10 @@ double vendite[2][3] = {
 ```
 
 Due cicli annidati: esterno sulle righe, interno sulle colonne.
+
+> ⚠️ **Nota dal Mondo Reale:** le matrici raw servono qui per capire indici e
+> cicli annidati. Nei programmi di produzione si preferiscono contenitori e
+> strutture dati che gestiscono meglio dimensioni e controlli.
 
 ---
 
@@ -101,11 +111,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Variabile | Significato |
-|-----------|-------------|
-| `r` | Indice di riga (reparto) |
-| `c` | Indice di colonna (mese) |
-| `subtotale` | Si azzera a ogni nuova riga |
+| Passo | Stato osservabile |
+|-------|-------------------|
+| Inizio riga | `r = 0`, `c = 0`, `subtotale = 0.0` |
+| Ciclo interno | `c` visita le colonne della riga corrente |
+| Fine riga | `subtotale` contiene il totale del reparto `r` |
+| Nuova riga | `subtotale` si azzera e `r` aumenta |
 
 Segui con [Python Tutor](https://pythontutor.com/cpp.html) l’ordine delle celle visitate.
 
@@ -136,10 +147,11 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Matrice = foglio a righe e colonne
-- `m[i][j]`: prima riga, poi colonna
-- Quasi sempre **due** `for` annidati
-- Stessi pericoli di out-of-bounds, su due assi
+- [ ] Una matrice organizza dati in righe e colonne.
+- [ ] In `m[i][j]`, `i` indica prima la riga e `j` la colonna.
+- [ ] Due `for` annidati visitano tutte le celle.
+- [ ] I limiti vanno rispettati su entrambi gli assi.
+- [ ] I totali parziali si inizializzano nel punto coerente con il risultato.
 
 ---
 

@@ -30,12 +30,18 @@ Aprire 100 variabili diverse è insostenibile. Serve una **fila ordinata di spor
 > - `vendite[3]` = “apri il locker numero 3” (il **quarto** della fila)  
 > - `vendite[30]` su 30 locker (`0`…`29`) = chiedi un locker che **non esiste** → caos
 
+**Confini della lezione:** qui lavori con array monodimensionali di dimensione
+fissa e con il ciclo `for`. Array bidimensionali e contenitori dinamici saranno
+affrontati nei capitoli successivi.
+
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare un array monodimensionale, indicizzarlo correttamente e scorrerlo con un `for`
-- Riconoscere e evitare l’accesso **fuori dai limiti** (out-of-bounds)
+- dichiarare e inizializzare un array monodimensionale;
+- usare indici validi e scorrerlo con un `for`;
+- riconoscere e prevenire un accesso **fuori dai limiti** (out-of-bounds);
+- accumulare i valori di una sequenza per ottenere un totale.
 
 ---
 
@@ -56,6 +62,10 @@ for (int i = 0; i < 12; ++i) {
 | Indice legale | Da `0` a `N - 1` |
 | `vendite[N]` | **Fuori**: il compilatore spesso **non** ti ferma |
 | Tipo | Tutti gli elementi dello stesso tipo |
+
+> ⚠️ **Nota dal Mondo Reale:** gli array raw servono per capire indici e
+> memoria. Nei programmi di produzione si preferisce normalmente `std::vector`,
+> che gestisce meglio la dimensione e offre controlli e strumenti più sicuri.
 
 ---
 
@@ -109,11 +119,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Elemento | Ruolo |
-|----------|--------|
-| `vendite[6]` | Sei celle contigue di `double` |
-| `i` da 0 a 5 | Visita ogni locker una volta |
-| `totale = totale + vendite[i]` | Accumulo (stesso schema del `while` contabile) |
+| Passo | Stato osservabile |
+|-------|-------------------|
+| Inizio | `i = 0`, `totale = 0.0` |
+| Durante il ciclo | `vendite[i]` è l'elemento corrente; `totale` cresce |
+| Dopo `i = 5` | Tutti gli indici validi `0`…`5` sono stati visitati |
+| Fine | `totale` contiene la somma dei sei mesi |
 
 > 🔗 Copia il programma su [Python Tutor C++](https://pythontutor.com/cpp.html) e osserva l’array nella memoria.
 
@@ -147,10 +158,11 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Array = fila di sportelli **stesso tipo**, indici da **0**
-- L’ultimo indice valido è **N − 1**
-- Fuori range = bug silenzioso tipico
-- Si scorre quasi sempre con un `for`
+- [ ] Un array contiene elementi dello stesso tipo e usa indici da **0**.
+- [ ] L’ultimo indice valido è **N − 1**.
+- [ ] Un accesso fuori range è un bug che il compilatore può non segnalare.
+- [ ] Un ciclo `for` permette di visitare sistematicamente gli elementi.
+- [ ] Un accumulatore può sommare i valori della sequenza.
 
 ---
 

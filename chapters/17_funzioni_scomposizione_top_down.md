@@ -39,11 +39,13 @@ files:
 
 ## 🏢 Il Primo Reparto: funzioni che restituiscono un valore
 
-> "Un buon processo si scompone in reparti con responsabilità chiare."  
-> — *Organizzazione aziendale e top-down*
+Nel laboratorio di un gestionale, una schermata può calcolare IVA, sconti e
+commissioni. Se tutta la logica resta in `main`, il programma diventa difficile
+da leggere e da riusare.
 
-Finora quasi tutto viveva in `main`.  
-Quando la logica cresce (IVA, sconti, commissioni), conviene **estrarre un reparto**: una **funzione** con nome, parametri e **valore di ritorno**.
+Per questo estraiamo un reparto specializzato: una **funzione** con un nome,
+parametri e un **valore di ritorno**. `main` coordina il lavoro, mentre ogni
+funzione svolge un calcolo circoscritto.
 
 > 💡 **Metafora: sportello specializzato**  
 > - `calcolaIva(imponibile)` = sportello “ufficio IVA”  
@@ -51,15 +53,17 @@ Quando la logica cresce (IVA, sconti, commissioni), conviene **estrarre un repar
 > - Ti restituisce l’importo IVA (documento in uscita)  
 > - `main` coordina: chiede, riceve, stampa
 
-In questo chunk: funzioni **semplici** che calcolano e `return`.  
-Passaggio per riferimento e scope fine: capitolo successivo.
+**Confini della lezione:** qui usi funzioni semplici che calcolano e restituiscono
+un valore. Passaggio per riferimento e scope saranno affrontati nel capitolo
+successivo.
 
 ---
 
 ### 🎯 Obiettivo di questo chunk
 Alla fine di questa lezione sei in grado di:
-- Dichiarare e chiamare una funzione con parametri e `return`
-- Usare il risultato in `main` senza ripetere la formula
+- dichiarare una funzione con parametri e tipo di ritorno;
+- chiamarla da `main` e assegnare il risultato a una variabile;
+- descrivere il percorso del dato dalla chiamata al `return`.
 
 ---
 
@@ -74,12 +78,12 @@ double calcolaIva(double imponibile) {
 double iva = calcolaIva(100.0);
 ```
 
-| Parte | Ruolo |
-|-------|--------|
-| Tipo di ritorno | Cosa esce dallo sportello (`double`, `int`, …) |
-| Nome | Verbo + oggetto (`calcolaIva`) |
-| Parametri | Dati in ingresso |
-| `return` | Fine del lavoro + valore |
+| Parte | Domanda guida | Esempio |
+|-------|---------------|---------|
+| Tipo di ritorno | Che tipo di dato esce? | `double` |
+| Nome | Quale lavoro svolge? | `calcolaIva` |
+| Parametri | Quali dati entrano? | `double imponibile` |
+| `return` | Quale risultato torna al chiamante? | `imponibile * 0.22` |
 
 ---
 
@@ -122,11 +126,12 @@ int main() {
 
 #### 3. INVESTIGATE (Investiga)
 
-| Momento | Cosa succede |
-|---------|----------------|
-| Chiamata | `main` sospende; parte `calcolaIva` |
-| `return` | Il valore torna a `main` in `iva` |
-| Dopo | `main` usa `iva` nel totale |
+| Momento | Stato osservabile |
+|---------|------------------|
+| Prima della chiamata | `imponibile = 100.0`; `iva` non ha ancora il risultato |
+| Chiamata | `main` sospende; `imponibile` entra nella funzione |
+| `return` | `100.0 * 0.22` produce `22.0`, che torna in `iva` |
+| Dopo la chiamata | `main` usa `iva` per calcolare `totale = 122.0` |
 
 > 🔗 [Python Tutor C++](https://pythontutor.com/cpp.html): osserva lo stack frame della funzione.
 
@@ -148,10 +153,10 @@ int main() {
 ```cpp
 #include <iostream>
 double commissione(double importo) {
-    return importo * 0.012;
+    return 0.0; // TODO: calcola la commissione
 }
 int main() {
-    // ...
+    // TODO: leggi un importo e stampa commissione e netto
     return 0;
 }
 ```
@@ -160,10 +165,11 @@ int main() {
 ---
 
 ### 📝 Riepilogo tascabile
-- Funzione = reparto con ingresso, lavoro, uscita
-- `return` consegna il risultato a chi ha chiamato
-- `main` orchestra; le funzioni specializzano
-- Un calcolo riusato → una funzione, non copia-incolla
+- [ ] Una funzione riceve dati, svolge un lavoro circoscritto e restituisce un risultato.
+- [ ] Il tipo di ritorno descrive il dato prodotto dalla funzione.
+- [ ] `return` consegna il risultato a chi ha chiamato.
+- [ ] `main` orchestra; le funzioni specializzano.
+- [ ] Un calcolo riusato diventa una funzione, non una copia-incolla.
 
 ---
 
