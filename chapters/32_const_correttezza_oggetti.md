@@ -140,5 +140,5 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai protetto lo stato con `const`.
-Nel prossimo capitolo, `33_composizione_ha_un`, costruirai oggetti composti da
+Nel prossimo capitolo, `33_costruttori_e_invarianti`, costruirai oggetti composti da
 altri oggetti: **composizione**.

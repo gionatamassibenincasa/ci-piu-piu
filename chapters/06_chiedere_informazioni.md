@@ -546,7 +546,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Ora il programma sa chiedere dati. Nel prossimo capitolo del percorso
-Fondamenti, `07_espressioni_e_operatore_ternario`, trasformi i valori letti in
+Fondamenti, `09_espressioni_e_operatore_ternario`, trasformi i valori letti in
 risultati intermedi con espressioni aritmetiche e operatori. La selezione con
 `if` e `else` viene affrontata nel capitolo successivo.
 

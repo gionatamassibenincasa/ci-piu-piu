@@ -1182,145 +1182,6 @@ Prima di chiudere, verifica di saper fare (o spiegare) quanto segue:
 Dopo questa lezione, nel percorso Fondamenti, si lavora sulla **qualità del codice leggibile** (documentazione leggera con Doxygen) e poi sulle **variabili** e sull'input (`std::cin`): il programma non si limita a parlare, ma inizia a ricordare e ad ascoltare dati di lavoro.
 
 
-## 📝 Parlare al Futuro Te Stesso: documentazione Doxygen
-
-> "Il codice non mente mai, i commenti sì."
->
-> —- Ron Jeffries
-
-Hai già scritto `Ciao, Mondo!` e presto i programmi si allungheranno.  
-Chi li leggerà tra tre mesi? Tu. Un compagno. Il docente. In azienda, un collega che non eri tu.
-
-Non basta che il programma *funzioni*: deve essere **comprensibile**.  
-In questo corso usiamo uno standard leggero e molto diffuso: **Doxygen**.
-
-> 💡 **Metafora:**  
-> Il codice è il prodotto.  
-> I commenti Doxygen sono **etichetta e manuale d’uso**: dicono *cosa fa*, *per chi*, *con quali dati*, senza smontare tutto il meccanismo.
-
-Questo non è un laboratorio PRIMM “classico”: è una **convenzione di lavoro** che userai da qui in poi nei Make e nei progetti.
-
----
-
-**In questa lezione non** generiamo la documentazione HTML, non descriviamo
-ogni tag Doxygen esistente e non introduciamo parametri o funzioni. Ci limitiamo
-all'intestazione essenziale dei programmi brevi del Modulo Fondamenti.
-
----
-
-### 🎯 Obiettivi di apprendimento
-
-Alla fine di questa lezione sei in grado di:
-
-- scrivere un'intestazione di **file** e di **`main`** in stile Doxygen;
-- usare `///` per spiegare il **perché**, non il comportamento già evidente dal codice;
-- scegliere tra intestazione completa e commento breve secondo la proporzionalità del corso.
-
----
-
-### 📋 I tag che usiamo (e basta)
-
-| Tag | A cosa serve | Esempio |
-|-----|--------------|---------|
-| `@file` | Nome del file | `@file presentazione.cpp` |
-| `@brief` | Una riga: cosa fa il programma o la funzione | `@brief Stampa nome e classe.` |
-| `@author` | L'autore del programma | `@author Gionata Massi` |
-| `@date` | La data | `@date 2026-11-03` |
-| `@param` | Descrive un parametro (quando avremo le funzioni) | `@param prezzo Importo netto in euro` |
-| `@return` | Cosa restituisce la funzione | `@return int 0 se successo` |
-
-Commento di riga (tre slash):
-
-```cpp
-/// Aliquota IVA ordinaria vigente (non modificare a caso)
-const double ALIQUOTA_IVA = 0.22;
-```
-
-`@param` lo terrai a mente: tornerà utile con le **funzioni**. Per ora ti servono soprattutto `@file`, `@brief` e `@return`.
-
----
-
-### ✅ Esempio minimo completo
-
-```cpp
-/**
- * @file presentazione.cpp
- * @brief Stampa nome, classe e hobby dello studente.
- */
-#include <iostream>
-
-/**
- * @brief Punto di ingresso del programma.
- * @return int 0 se l'esecuzione termina correttamente.
- */
-int main() {
-    /// Identificativo per lo "scontrino" di presentazione in lab
-    std::cout << "Nome: Alex\n";
-    std::cout << "Classe: 3A SIA\n";
-    std::cout << "Hobby: fotografia\n";
-    return 0;
-}
-```
-
-Nota: **non** generiamo ancora HTML con lo strumento Doxygen.  
-L’obiettivo è **scrivere** i commenti nel modo giusto; l’eventuale generazione automatica arriverà quando i progetti saranno più grandi.
-
----
-
-### ⚖️ Regola di proporzionalità (obbligatoria)
-
-| Situazione | Cosa scrivere |
-|------------|----------------|
-| Programma o funzione **più lungo di ~15 righe** | Intestazione Doxygen (`@file` / `@brief` / `@param` / `@return` dove servono) |
-| Snippet o esercizio **breve** | Solo `///` sul **perché** economico o logico, se serve |
-| **Vietato** | Commenti tautologici (`/// incrementa i di 1`, `/// dichiara la variabile`) |
-
-**Buono** (spiega una scelta di business o un vincolo):
-```cpp
-/// 0.22 = aliquota IVA ordinaria vigente per beni e servizi
-const double ALIQUOTA_IVA = 0.22;
-```
-
-**Da evitare** (ripete solo la sintassi):
-```cpp
-/// dichiara la costante aliquota
-const double ALIQUOTA_IVA = 0.22;
-```
-
----
-
-### 🧪 Mini-esercizio
-
-Prendi il programma di presentazione del capitolo precedente (o riscrivilo) e:
-
-1. Aggiungi in testa al file `@file` e `@brief`
-2. Aggiungi su `main` `@brief` e `@return`
-3. Metti **un** `///` utile (un perché, non un ovvio) su almeno una riga
-
-Compila ed esegui: i commenti non cambiano l’output, ma cambiano quanto il codice è leggibile da un umano.
-
----
-
-### 📝 Riepilogo tascabile
-- [ ] Doxygen = etichette standard per file e funzioni.
-- [ ] Tag minimi ora: `@file`, `@brief`, `@return` (più `@param` più avanti).
-- [ ] `///` = perché / vincolo / regola di business, non il cosa ovvio.
-- [ ] Applico la documentazione completa sopra ~15 righe e uso `///` per gli snippet brevi.
-- [ ] Nei Make uso questa convenzione senza commenti tautologici.
-
----
-
-### ➡️ Prossimo passo nel percorso
-
-Con officina, motore, primo dialogo e etichette chiare, nel prossimo capitolo
-del percorso Fondamenti, `05_variabili_costanti_tipi`, aprirai gli sportelli
-della memoria con variabili, tipi e costanti.
-
----
-
-
-
-
 ## 📦 Gli sportelli della memoria: variabili, costanti e tipi
 
 Finora hai scritto programmi con messaggi fissi. Nel laboratorio di oggi
@@ -2083,10 +1944,425 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Ora il programma sa chiedere dati. Nel prossimo capitolo del percorso
-Fondamenti, `07_espressioni_e_operatore_ternario`, trasformi i valori letti in
+Fondamenti, `09_espressioni_e_operatore_ternario`, trasformi i valori letti in
 risultati intermedi con espressioni aritmetiche e operatori. La selezione con
 `if` e `else` viene affrontata nel capitolo successivo.
 
+
+## 🏢 Nomi senza omonimie: usare i namespace
+
+In un'azienda, il reparto POS e il reparto magazzino possono avere entrambi
+una procedura chiamata “stampa”. Il nome breve è uguale, ma il contesto è
+diverso. In C++ quel contesto si chiama **namespace**.
+
+> 💡 **Metafora:** Un namespace è come l'insegna di un reparto. `stampa` è il
+> nome della procedura sul cartellino; `cassa::stampa` significa “la stampa
+> del reparto cassa”, mentre `magazzino::stampa` indica l'altra.
+
+### 🎯 Obiettivo
+
+Alla fine della lezione sai:
+
+- leggere `std::cout` come nome qualificato;
+- creare un namespace con funzioni dai nomi riutilizzabili;
+- chiamare una funzione con l'operatore `::`;
+- spiegare perché il contesto evita omonimie.
+
+### ⚙️ Il nome completo
+
+```cpp
+namespace cassa {
+    void stampa() {
+        std::cout << "Totale POS\n";
+    }
+}
+
+cassa::stampa();
+```
+
+Il simbolo `::` si legge “appartiene a”. Il nome completo è più lungo, ma
+comunica subito il reparto responsabile.
+
+### 🔬 Laboratorio PRIMM: due reparti, una procedura
+
+#### 1. PREDICT (Prevedi)
+
+```cpp
+#include <iostream>
+
+int main() {
+    std::cout << "Cassa pronta\n";
+    return 0;
+}
+```
+
+**Domanda 1**
+
+Che cosa indica `std::` davanti a `cout`?
+
+[( )] Il tipo numerico usato da `cout`
+[(X)] Il namespace `std`, che raccoglie il nome `cout` della libreria standard
+[( )] Un comando che stampa automaticamente due volte
+
+**Domanda 2**
+
+Perché due aziende possono avere entrambe una funzione chiamata `stampa()` senza creare per forza un conflitto?
+
+[( )] Perché una funzione con lo stesso nome viene cancellata
+[( )] Perché C++ ignora sempre i nomi ripetuti
+[(X)] Possono collocarla in namespace diversi e usare il nome completo
+
+**Domanda 3**
+
+Quale nome identifica senza ambiguità la funzione `stampa` del namespace `magazzino`?
+
+[( )] `stampa::magazzino`
+[(X)] `magazzino::stampa`
+[( )] `namespace.magazzino.stampa`
+
+**Domanda 4**
+
+Che cosa aggiunge l'operatore `::`?
+
+[(X)] Separa il namespace dal nome che contiene
+[( )] Esegue due volte la funzione
+[( )] Trasforma il nome in una variabile
+
+**Domanda 5**
+
+Quale scelta rende più esplicito da dove arriva `cout`?
+
+[(X)] Scrivere `std::cout`
+[( )] Scrivere solo `output`
+[( )] Scrivere `cout::std`
+
+#### 2. RUN (Esegui)
+
+```cpp
+#include <iostream>
+
+namespace cassa {
+    void stampa() {
+        std::cout << "Totale POS\n";
+    }
+}
+
+namespace magazzino {
+    void stampa() {
+        std::cout << "Scorte aggiornate\n";
+    }
+}
+
+int main() {
+    cassa::stampa();
+    magazzino::stampa();
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Indaga)
+
+```cpp
+#include <iostream>
+
+namespace cassa {
+    void stampa() {
+        std::cout << "Totale POS\n";
+    }
+}
+
+namespace magazzino {
+    void stampa() {
+        std::cout << "Scorte aggiornate\n";
+    }
+}
+
+int main() {
+    cassa::stampa();
+    magazzino::stampa();
+    return 0;
+}
+```
+
+**Domanda 1**
+
+Quale messaggio compare per primo?
+
+[(X)] `Totale POS`, perché viene chiamata prima `cassa::stampa()`
+[( )] `Scorte aggiornate`, perché `magazzino` viene dichiarato per ultimo
+[( )] Nessun messaggio, perché i namespace impediscono le chiamate
+
+**Domanda 2**
+
+Perché le due funzioni `stampa()` non sono lo stesso nome completo?
+
+[(X)] Il namespace fa parte del nome completo: `cassa::stampa` e `magazzino::stampa` sono diversi
+[( )] Perché una stampa testo e l'altra no
+[( )] Perché una è scritta prima dell'altra
+
+**Domanda 3**
+
+Che cosa succede se scrivi solo `stampa();` in `main`?
+
+[( )] Chiama sempre la funzione del primo namespace
+[(X)] Il compilatore non sa quale delle due funzioni scegliere
+[( )] Chiama entrambe le funzioni in ordine alfabetico
+
+**Domanda 4**
+
+Quale parte del codice appartiene al namespace `cassa`?
+
+[( )] Solo l'istruzione `std::cout`
+[(X)] La funzione racchiusa tra `namespace cassa {` e la parentesi graffa corrispondente
+[( )] Tutto il file, anche ciò che viene dopo
+
+**Domanda 5**
+
+Perché `std::cout` resta esplicito anche dentro `cassa`?
+
+[(X)] Per distinguere il nome della libreria standard da eventuali nomi locali
+[( )] Perché `std` indica sempre una variabile
+[( )] Perché un namespace può contenere solo numeri
+
+| Passo | Istruzione | Perché è importante |
+|---:|---|---|
+| 1 | `namespace cassa` | Apre il contesto del reparto POS |
+| 2 | `cassa::stampa()` | Seleziona la procedura della cassa |
+| 3 | `namespace magazzino` | Apre un contesto distinto |
+| 4 | `magazzino::stampa()` | Seleziona la procedura del magazzino |
+
+Il compilatore non confonde le due funzioni perché il nome completo contiene
+anche il namespace. Puoi osservare il flusso passo-passo in
+[Python Tutor C++](https://pythontutor.com/cpp.html).
+
+#### 4. MODIFY (Modifica)
+
+```cpp
+namespace cassa {
+    void stampa() {
+        std::cout << "Totale POS\n";
+    }
+}
+
+namespace magazzino {
+    void stampa() {
+        std::cout << "Scorte aggiornate\n";
+    }
+}
+```
+
+**Domanda 1**
+
+Quale modifica aggiunge un terzo reparto senza cambiare i due esistenti?
+
+[(X)] Creare `namespace clienti` con una propria funzione `stampa()`
+[( )] Cancellare i namespace già presenti
+[( )] Rinominare tutte le funzioni in `stampa1`
+
+**Domanda 2**
+
+Come chiami il nuovo reparto `clienti` da `main`?
+
+[( )] `stampa::clienti();`
+[( )] `clienti.stampa();`
+[(X)] `clienti::stampa();`
+
+**Domanda 3**
+
+Quale modifica mantiene chiari i nomi se aggiungi una funzione `totale` alla cassa?
+
+[(X)] Chiamarla con `cassa::totale()` dal punto di utilizzo
+[( )] Metterla nel namespace `std`
+[( )] Usare sempre solo `totale()`
+
+**Domanda 4**
+
+Perché non devi aggiungere funzioni personali dentro `namespace std`?
+
+[(X)] `std` è riservato alla libreria standard; i tuoi nomi devono stare in namespace tuoi
+[( )] Perché il compilatore non riconosce le parentesi graffe
+[( )] Perché `std` può contenere solo stringhe
+
+**Domanda 5**
+
+Quale scelta riduce il rischio di usare la funzione del reparto sbagliato?
+
+[(X)] Scrivere il namespace in modo esplicito nelle chiamate importanti
+[( )] Dare a tutte le funzioni lo stesso corpo
+[( )] Eliminare i nomi dei reparti
+
+<details>
+<summary>💡 Scaffold di partenza</summary>
+
+```cpp
+#include <iostream>
+
+namespace cassa {
+    void stampa() { std::cout << "Totale POS\n"; }
+}
+
+int main() {
+    cassa::stampa();
+    return 0;
+}
+```
+</details>
+
+1. Aggiungi `namespace clienti` con una propria `stampa()`.
+2. Aggiungi `totale()` dentro `cassa` e chiamala con `cassa::totale()`.
+3. Prova a chiamare solo `stampa()` e osserva l'errore di nome non visibile o
+   ambiguo; poi correggi usando il nome qualificato.
+
+#### 5. MAKE (Crea)
+
+Realizza `reparti.cpp` per un gestionale:
+
+1. crea i namespace `pos`, `magazzino` e `clienti`;
+2. definisci in ognuno una funzione `stampa()` con un messaggio diverso;
+3. chiama le tre funzioni da `main` usando sempre `namespace::stampa()`;
+4. aggiungi un commento `///` per spiegare una scelta aziendale.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+
+namespace pos {
+    void stampa() {
+        // TODO: messaggio del reparto POS
+    }
+}
+
+int main() {
+    // TODO: aggiungi gli altri reparti e chiamali con ::
+    return 0;
+}
+```
+</details>
+
+### 📝 Riepilogo tascabile
+
+- [ ] Un namespace raggruppa nomi appartenenti allo stesso contesto.
+- [ ] `::` collega il contesto al nome: `reparto::funzione`.
+- [ ] Due funzioni con lo stesso nome breve possono convivere in namespace diversi.
+- [ ] `std::cout` esplicita che `cout` appartiene alla libreria standard.
+
+### ➡️ Prossimo passo
+
+Ora che i nomi sono ordinati, impari a lasciare etichette utili anche sul
+programma: la documentazione Doxygen.
+
+## 📝 Parlare al futuro te stesso: documentazione Doxygen
+
+> "Il codice non mente mai, i commenti sì."
+>
+> — Ron Jeffries
+
+Un programma può funzionare e restare comunque difficile da leggere. Tra tre
+mesi lo riaprirai tu; più avanti lo leggeranno un compagno, il docente o un
+collega. Per questo adottiamo una convenzione leggera: **Doxygen**.
+
+> 💡 **Metafora:** Il codice è il prodotto; i commenti Doxygen sono l'etichetta
+> e il manuale d'uso. Spiegano lo scopo del prodotto senza costringere chi
+> legge a smontare tutto il meccanismo.
+
+In questo capitolo documentiamo file e programma principale. **Non usiamo
+ancora `@param` e `@return`**: le funzioni con parametri e valori restituiti
+arriveranno più avanti.
+
+### 🎯 Obiettivi
+
+Alla fine sai:
+
+- scrivere un'intestazione Doxygen per un file;
+- usare `@brief`, `@author` e `@date` con misura;
+- usare `///` per spiegare un vincolo economico o logico;
+- scegliere una documentazione proporzionata alla dimensione del codice.
+
+### 📋 I tag di questa fase
+
+| Tag | Uso | Esempio |
+|---|---|---|
+| `@file` | Nome del file | `@file presentazione.cpp` |
+| `@brief` | Scopo in una riga | `@brief Stampa i dati dello studente.` |
+| `@author` | Autore | `@author Alex` |
+| `@date` | Data della revisione | `@date 2026-11-28` |
+
+Per una scelta interna al programma basta un commento breve:
+
+```cpp
+/// Aliquota ordinaria vigente per beni e servizi.
+const double ALIQUOTA_IVA = 0.22;
+```
+
+### ✅ Esempio minimo
+
+```cpp
+/**
+ * @file presentazione.cpp
+ * @brief Stampa nome, classe e hobby dello studente.
+ * @author Alex
+ * @date 2026-11-28
+ */
+#include <iostream>
+
+/**
+ * @brief Punto di ingresso del programma.
+ */
+int main() {
+    /// Dato mostrato nel profilo iniziale dello studente.
+    std::cout << "Nome: Alex\n";
+    std::cout << "Classe: 3A SIA\n";
+    std::cout << "Hobby: fotografia\n";
+    return 0;
+}
+```
+
+Non generiamo ancora pagine HTML con Doxygen: impariamo prima a scrivere
+commenti standard e utili.
+
+### ⚖️ Regola di proporzionalità
+
+| Situazione | Documentazione |
+|---|---|
+| Programma completo più lungo di circa 15 righe | `@file` e `@brief`, più autore/data se richiesti |
+| Snippet o esercizio breve | `///` solo quando chiarisce un perché |
+| Sempre da evitare | Commenti tautologici che ripetono la sintassi |
+
+```cpp
+/// 0.22 è l'aliquota IVA ordinaria usata dal listino.
+const double ALIQUOTA_IVA = 0.22;
+```
+
+Non scrivere invece:
+
+```cpp
+/// Dichiara una costante double.
+const double ALIQUOTA_IVA = 0.22;
+```
+
+### 🧪 Mini-attività
+
+Prendi un programma del capitolo precedente e:
+
+1. aggiungi `@file` e `@brief` in testa;
+2. aggiungi un `@brief` a `main`;
+3. inserisci un solo `///` che spieghi un vincolo del caso aziendale;
+4. verifica che l'output non sia cambiato.
+
+### 📝 Riepilogo tascabile
+
+- [ ] Doxygen usa commenti standard leggibili anche come semplice testo.
+- [ ] In questa fase i tag principali sono `@file`, `@brief`, `@author` e `@date`.
+- [ ] `///` spiega il perché, non il gesto ovvio del codice.
+- [ ] La documentazione deve crescere insieme alla complessità del programma.
+
+### ➡️ Prossimo passo
+
+Ora prosegui con espressioni, confronti e decisioni; più avanti tornerai su
+Doxygen quando avrai funzioni da descrivere davvero.
 
 ## 🧮 La Calcolatrice Fiscale: espressioni e operatore ternario
 
@@ -2458,7 +2734,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Quando una scelta deve eseguire più istruzioni, una riga non basta più.
-Nel prossimo capitolo del percorso Fondamenti, `08_bivi_semplici_if_else`,
+Nel prossimo capitolo del percorso Fondamenti, `10_bivi_semplici_if_else`,
 userai `if` / `else` per costruire un vero bivio nel programma.
 
 
@@ -2881,7 +3157,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Quando le alternative diventano più di due, un solo bivio non basta. Nel
-prossimo capitolo del percorso Fondamenti, `09_bivi_complessi_e_regole_if`,
+prossimo capitolo del percorso Fondamenti, `11_bivi_complessi_e_regole_if`,
 costruirai catene `if / else if / else` per gestire fasce di sconto e stati
 diversi di un ordine.
 
@@ -3302,7 +3578,7 @@ int main() {
 
 Quando la decisione dipende da un valore discreto, come un codice menu o uno
 stato numerico, una lunga catena può diventare difficile da leggere. Nel
-prossimo capitolo del percorso Fondamenti, `10_selezione_multipla_switch`,
+prossimo capitolo del percorso Fondamenti, `12_selezione_multipla_switch`,
 organizzerai questi casi con `switch`.
 
 
@@ -3755,7 +4031,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Finora il programma ha seguito un percorso oppure ha scelto un caso. Nel
-prossimo capitolo del percorso Fondamenti, `11_ciclo_while`, imparerai a
+prossimo capitolo del percorso Fondamenti, `13_ciclo_while`, imparerai a
 ripetere un'azione finché una condizione resta vera.
 
 
@@ -4164,7 +4440,7 @@ int main() {
 
 Quando sai già quante volte ripetere, per esempio dodici mesi o trenta righe,
 `while` può diventare verboso. Nel prossimo capitolo del percorso Fondamenti,
-`12_ciclo_for`, raccoglierai inizializzazione, condizione e aggiornamento in
+`14_ciclo_for`, raccoglierai inizializzazione, condizione e aggiornamento in
 una sola riga.
 
 
@@ -4550,7 +4826,7 @@ int main() {
 
 A volte il corpo deve essere eseguito almeno una volta, per esempio quando
 chiedi un dato prima di poter controllare se è valido. Nel prossimo capitolo
-del percorso Fondamenti, `13_ciclo_do_while`, userai il ciclo `do-while`, con
+del percorso Fondamenti, `15_ciclo_do_while`, userai il ciclo `do-while`, con
 il controllo in coda.
 
 
@@ -4935,7 +5211,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Ora conosci i tre cicli fondamentali. Nel prossimo capitolo del percorso
-Fondamenti, `14_controllo_cicli`, userai `break` e `continue` per guidare con
+Fondamenti, `16_controllo_cicli`, userai `break` e `continue` per guidare con
 maggiore precisione il flusso dentro un ciclo.
 
 
@@ -5286,7 +5562,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Ora sai controllare il flusso dentro un ciclo. Il prossimo capitolo del
-percorso Fondamenti, `15_formattazione_contabile`, consolida presentazione dei
+percorso Fondamenti, `17_formattazione_contabile`, consolida presentazione dei
 dati e output prima della successiva estensione sulle funzioni.
 
 
@@ -5612,7 +5888,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Ora che sai presentare bene un risultato, nel prossimo capitolo del percorso
-Fondamenti, `16_ruoli_variabili_pattern_cicli`, imparerai a dare un ruolo
+Fondamenti, `18_ruoli_variabili_pattern_cicli`, imparerai a dare un ruolo
 preciso alle variabili e a riconoscere uno schema stabile nei cicli.
 
 
@@ -6035,7 +6311,7 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 
 Ora sai riconoscere il ruolo di ogni variabile e scegliere uno schema di ciclo.
-Nel prossimo capitolo del percorso Fondamenti, `17_funzioni_scomposizione_top_down`,
+Nel prossimo capitolo del percorso Fondamenti, `19_funzioni_scomposizione_top_down`,
 metterai questa capacità dentro reparti software riutilizzabili: le funzioni.
 
 
@@ -6189,8 +6465,131 @@ int main() {
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai assegnato ai dati ruoli precisi e riconosciuto
 schemi ricorrenti nei cicli. Nel prossimo capitolo,
-`18_scope_e_passaggio_parametri`, vedrai come una funzione modifica o osserva
+`20_documentazione_doxygen_funzioni`, renderai leggibili le funzioni per i
+lettori e per il tuo editor.
 le variabili del chiamante tramite il passaggio per riferimento.
+
+## 📚 Il manuale dei reparti: documentare le funzioni con Doxygen
+
+Hai già imparato a dividere un programma in funzioni. Ora aggiungi una
+descrizione che renda ogni funzione comprensibile anche fuori dal file in cui
+è stata scritta.
+
+> 💡 **Metafora:** Una funzione è un reparto specializzato. La documentazione
+> Doxygen è la scheda appesa all'ingresso: spiega il lavoro del reparto, i dati
+> che riceve e il risultato che consegna.
+
+Questa scheda serve a due persone: ai **futuri lettori** del codice e agli
+**editor**. VS Code, tramite IntelliSense e le estensioni C++, può mostrare
+`@brief`, `@param` e `@return` quando passi sopra una funzione o la richiami.
+Una documentazione precisa diventa quindi parte dell'aiuto che l'editor ti
+offre mentre scrivi.
+
+### 🎯 Obiettivi
+
+Alla fine sai:
+
+- documentare una funzione con `@brief`, `@param` e `@return`;
+- associare ogni `@param` al nome e al significato corretto;
+- descrivere il valore prodotto da `return`;
+- scrivere una scheda utile sia a un lettore sia all'editor.
+
+### 📋 La scheda di una funzione
+
+| Tag | Domanda a cui risponde | Esempio |
+|---|---|---|
+| `@brief` | Qual è lo scopo? | `Calcola il totale ivato.` |
+| `@param` | Che dato entra? | `@param imponibile Importo netto in euro.` |
+| `@return` | Che dato esce? | `@return double Totale lordo.` |
+
+Il nome dopo `@param` deve coincidere con il parametro del codice. Non
+documentare un parametro inesistente: confonde il lettore e può produrre
+informazioni sbagliate nell'editor.
+
+### ✅ Esempio completo
+
+```cpp
+/**
+ * @brief Calcola il totale ivato di una transazione.
+ * @param imponibile Importo netto della merce in euro.
+ * @return double Totale lordo comprensivo di IVA al 22%.
+ */
+double calcolaTotaleIvato(double imponibile) {
+    /// Aliquota ordinaria usata dal listino aziendale.
+    const double aliquotaIva = 0.22;
+    return imponibile * (1.0 + aliquotaIva);
+}
+```
+
+Quando richiami `calcolaTotaleIvato(100.0)`, l'editor può mostrarti la firma e
+la descrizione senza obbligarti a tornare al punto in cui la funzione è stata
+definita. Il commento non cambia l'esecuzione, ma migliora il contesto mentre
+programmi.
+
+### 🔍 Funzioni con più parametri
+
+Documenta ogni parametro su una riga separata:
+
+```cpp
+/**
+ * @brief Calcola il valore netto dopo uno sconto percentuale.
+ * @param prezzo Prezzo iniziale in euro.
+ * @param percentuale Percentuale di sconto compresa tra 0 e 100.
+ * @return double Prezzo dopo lo sconto.
+ */
+double applicaSconto(double prezzo, double percentuale) {
+    return prezzo * (1.0 - percentuale / 100.0);
+}
+```
+
+La descrizione deve chiarire unità di misura, significato aziendale e vincoli
+utili. Non basta riscrivere il tipo: “`double percentuale`” non dice quanto
+vale né come viene usato.
+
+### 🧭 Checklist prima di consegnare
+
+- [ ] `@brief` descrive un solo lavoro della funzione.
+- [ ] Ogni parametro del codice compare una volta in `@param`.
+- [ ] Nessun `@param` cita un nome che non esiste.
+- [ ] `@return` indica tipo e significato del risultato.
+- [ ] Un eventuale `///` spiega una scelta di business, non la sintassi.
+- [ ] Il commento è vicino alla funzione documentata.
+
+### 🧪 Attività di revisione
+
+Completa la documentazione di questa funzione:
+
+```cpp
+double calcolaCommissione(double importo, double percentuale) {
+    return importo * percentuale / 100.0;
+}
+```
+
+Scrivi `@brief`, due `@param` e `@return`. Poi controlla nel tuo editor se,
+passando sopra il nome della funzione, compare una descrizione leggibile.
+
+<details>
+<summary>💡 Controllo finale</summary>
+
+La scheda deve spiegare l'importo in euro, la percentuale applicata e la
+commissione restituita. Se il tooltip dell'editor è vuoto, verifica che il
+commento sia immediatamente sopra la funzione e che i nomi dei parametri
+coincidano.
+</details>
+
+### 📝 Riepilogo tascabile
+
+- [ ] `@brief` spiega il lavoro della funzione.
+- [ ] `@param` spiega ogni dato in ingresso usando il nome esatto.
+- [ ] `@return` spiega il risultato prodotto.
+- [ ] Doxygen aiuta sia i lettori futuri sia l'editor durante la scrittura.
+- [ ] Una documentazione breve ma precisa è migliore di un commento prolisso.
+
+### ➡️ Prossimo passo
+
+Le tue funzioni ora hanno un contratto leggibile. Nel prossimo capitolo
+studierai scope e passaggio dei parametri: la documentazione ti aiuterà a
+ricordare quali dati entrano e quale risultato esce.
 
 ## 📄 Fotocopia o Originale: passaggio per valore e per riferimento
 
@@ -6334,7 +6733,7 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai visto funzioni per valore e per riferimento.
-Nel prossimo capitolo, `19_array_sequenze_dati`, userai le sequenze dello
+Nel prossimo capitolo, `22_array_sequenze_dati`, userai le sequenze dello
 stesso tipo: gli **array**.
 
 ## 📦 La Batteria di Locker: gli array e le sequenze di dati
@@ -6491,7 +6890,7 @@ int main() {
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai gestito una sequenza lineare di dati.
-Nel prossimo capitolo, `20_array_bidimensionali_matrici`, organizzerai dati a
+Nel prossimo capitolo, `23_array_bidimensionali_matrici`, organizzerai dati a
 **griglia** (reparti × mesi) con array bidimensionali.
 
 ## 📊 Il Foglio Excel in Memoria: array bidimensionali
@@ -6637,7 +7036,7 @@ int main() {
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai organizzato dati in righe e colonne.
-Nel prossimo capitolo, `21_puntatori_e_memoria`, seguirai gli indirizzi in
+Nel prossimo capitolo, `24_puntatori_e_memoria`, seguirai gli indirizzi in
 memoria con i **puntatori**, in modo guidato e cauto.
 
 ## 🔑 Il Numero dello Sportello: puntatori e indirizzi
@@ -6780,7 +7179,7 @@ int main() {
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai organizzato dati in matrici.
-Nel prossimo capitolo, `22_enum_e_struct`, raggrupperai dati eterogenei e stati
+Nel prossimo capitolo, `25_enum_e_struct`, raggrupperai dati eterogenei e stati
 discreti in un record anagrafico.
 
 ## 🏷️ Stati e Schede Anagrafiche: `enum` e `struct`
@@ -6924,7 +7323,7 @@ int main() { /* ... */ return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai composto record con `enum` e `struct`.
-Nel prossimo capitolo, `23_ricerca_dicotomica`, cercherai un codice in un
+Nel prossimo capitolo, `26_ricerca_dicotomica`, cercherai un codice in un
 listino ordinato con la ricerca dicotomica.
 
 ## 🔍 Trovare il Codice nel Listino: ricerca dicotomica
@@ -7062,7 +7461,7 @@ int main() { /* ... */ return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai cercato dividendo ripetutamente l'intervallo.
-Nel prossimo capitolo, `24_ordinamento_selection_sort`, ordinerai i dati con
+Nel prossimo capitolo, `27_ordinamento_selection_sort`, ordinerai i dati con
 selection sort prima di nuove ricerche.
 
 ## 🗂️ Riordinare il Listino: selection sort
@@ -7188,7 +7587,7 @@ int main() { /* ... */ return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai ordinato dati con selection sort.
-Nel prossimo capitolo, `25_ordinamento_divide_et_impera`, userai una strategia
+Nel prossimo capitolo, `28_ordinamento_divide_et_impera`, userai una strategia
 divide et impera per ordinamenti più scalabili.
 
 ## 🧩 Dividere per Ordinare: idea del merge sort
@@ -7314,7 +7713,7 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai confrontato strategie di ordinamento.
-Nel prossimo capitolo, `26_database_in_memoria_progetto`, metterai insieme
+Nel prossimo capitolo, `29_database_in_memoria_progetto`, metterai insieme
 `struct` e array in un piccolo database in memoria.
 
 ## 🗄️ L’Archivio in RAM: array di struct
@@ -7438,7 +7837,7 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai integrato dati e algoritmi in un database in memoria.
-Nel prossimo capitolo, `27_ricorsione_e_strutture_ricorsive`, affronti i
+Nel prossimo capitolo, `30_ricorsione_e_strutture_ricorsive`, affronti i
 problemi definiti in termini di una versione più piccola di se stessi:
 **ricorsione**.
 
@@ -7559,7 +7958,7 @@ int main() { /* ... */ return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel precedente blocco hai consolidato array, struct, ricerca, ordinamento e
-ricorsione. Nel prossimo capitolo, `29_da_struct_a_class`, inizierai il passaggio
+ricorsione. Nel prossimo capitolo, `31_da_struct_a_class`, inizierai il passaggio
 da dati raggruppati a oggetti con responsabilità.
 
 
@@ -7717,8 +8116,127 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai visto il passaggio da `struct` a `class`.
-Nel prossimo capitolo, `30_costruttori_e_invarianti`, costruirai oggetti
+Nel prossimo capitolo, `32_const_correttezza_oggetti`, costruirai oggetti
 **già validi** con i costruttori.
+
+
+## 👁️ Consultare senza modificare: metodi `const`
+
+> "In audit puoi leggere la pratica, non alterarla."  
+> — *Controllo interno*
+
+Alcune operazioni sono di **sola lettura**: scheda, getter, report.  
+In C++ si marca il metodo con **`const`**: promette di non modificare lo stato dell’oggetto.
+
+> 💡 **Metafora: badge visitatore**  
+> Entri in consultazione: vedi i documenti, non li firmi.
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Dichiarare metodi `const` per letture
+- Usare oggetti `const` e capire perché servono getter `const`
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+```cpp
+void scheda() const { giacenza = 0; }
+```
+
+Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
+
+[(X)] No: metodo const non modifica lo stato
+[( )] Sì
+[( )] Solo se giacenza è public
+[( )] Solo in main
+
+<details>
+<summary>💡 Spiegazione</summary>
+Il <code>const</code> dopo i parametri vieta di modificare i membri non mutable dell’oggetto.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file scheda_const.cpp
+ * @brief Metodi const per sola lettura.
+ */
+#include <iostream>
+#include <string>
+
+class Articolo {
+private:
+    std::string codice;
+    double prezzo;
+public:
+    Articolo(const std::string& c, double p) : codice(c), prezzo(p < 0 ? 0 : p) {}
+    double getPrezzo() const { return prezzo; }
+    void scheda() const {
+        std::cout << codice << " € " << prezzo << '\n';
+    }
+};
+
+void stampa(const Articolo& a) {
+    a.scheda();  // ok: scheda è const
+}
+
+int main() {
+    const Articolo a("A-100", 9.5);
+    stampa(a);
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Situazione | Consentito? |
+|------------|-------------|
+| `getPrezzo() const` su oggetto `const` | Sì |
+| Metodo non-const su oggetto `const` | No |
+| `const Articolo&` in lettura | Preferibile (niente copia, niente modifica) |
+
+#### 4. MODIFY (Modifica)
+1. Aggiungi `getCodice() const`.
+2. Prova un metodo non-const su `const Articolo` e osserva l’errore del compilatore.
+3. Formatta il prezzo con `iomanip` dentro `scheda() const`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Scheda articolo in sola lettura**
+
+`scheda_const.cpp`: classe con almeno due metodi `const`; funzione libera `stampa(const Articolo&)`.
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+class Articolo { /* getters const, scheda const */ };
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- `const` sul metodo = sola lettura
+- Getter e report devono essere `const`
+- Oggetti `const` e riferimenti `const&` collaborano
+- Errori di const-correttezza li segnala il compilatore
+
+---
+
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai protetto lo stato con `const`.
+Nel prossimo capitolo, `33_costruttori_e_invarianti`, costruirai oggetti composti da
+altri oggetti: **composizione**.
 
 ## 📋 Assunzione in organico: costruttori e oggetto ben formato
 
@@ -7868,7 +8386,7 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai creato oggetti coerenti con i costruttori.
-Nel prossimo capitolo, `31_metodi_e_responsabilita`, definirai cosa sa fare
+Nel prossimo capitolo, `34_metodi_e_responsabilita`, definirai cosa sa fare
 l'oggetto attraverso metodi e responsabilità.
 
 
@@ -7993,127 +8511,8 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai assegnato responsabilità ai metodi.
-Nel prossimo capitolo, `32_const_correttezza_oggetti`, distinguerai metodi che
+Nel prossimo capitolo, `35_composizione_ha_un`, distinguerai metodi che
 **non** modificano lo stato usando `const`.
-
-
-## 👁️ Consultare senza modificare: metodi `const`
-
-> "In audit puoi leggere la pratica, non alterarla."  
-> — *Controllo interno*
-
-Alcune operazioni sono di **sola lettura**: scheda, getter, report.  
-In C++ si marca il metodo con **`const`**: promette di non modificare lo stato dell’oggetto.
-
-> 💡 **Metafora: badge visitatore**  
-> Entri in consultazione: vedi i documenti, non li firmi.
-
----
-
-### 🎯 Obiettivo di questo chunk
-Alla fine di questa lezione sei in grado di:
-- Dichiarare metodi `const` per letture
-- Usare oggetti `const` e capire perché servono getter `const`
-
----
-
-### 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-```cpp
-void scheda() const { giacenza = 0; }
-```
-
-Un metodo `void scheda() const` può assegnare `giacenza = 0` nel corpo?
-
-[(X)] No: metodo const non modifica lo stato
-[( )] Sì
-[( )] Solo se giacenza è public
-[( )] Solo in main
-
-<details>
-<summary>💡 Spiegazione</summary>
-Il <code>const</code> dopo i parametri vieta di modificare i membri non mutable dell’oggetto.
-</details>
-
-#### 2. RUN (Esegui)
-
-```cpp
-/**
- * @file scheda_const.cpp
- * @brief Metodi const per sola lettura.
- */
-#include <iostream>
-#include <string>
-
-class Articolo {
-private:
-    std::string codice;
-    double prezzo;
-public:
-    Articolo(const std::string& c, double p) : codice(c), prezzo(p < 0 ? 0 : p) {}
-    double getPrezzo() const { return prezzo; }
-    void scheda() const {
-        std::cout << codice << " € " << prezzo << '\n';
-    }
-};
-
-void stampa(const Articolo& a) {
-    a.scheda();  // ok: scheda è const
-}
-
-int main() {
-    const Articolo a("A-100", 9.5);
-    stampa(a);
-    return 0;
-}
-```
-@LIA.cpp
-
-#### 3. INVESTIGATE (Investiga)
-
-| Situazione | Consentito? |
-|------------|-------------|
-| `getPrezzo() const` su oggetto `const` | Sì |
-| Metodo non-const su oggetto `const` | No |
-| `const Articolo&` in lettura | Preferibile (niente copia, niente modifica) |
-
-#### 4. MODIFY (Modifica)
-1. Aggiungi `getCodice() const`.
-2. Prova un metodo non-const su `const Articolo` e osserva l’errore del compilatore.
-3. Formatta il prezzo con `iomanip` dentro `scheda() const`.
-
-#### 5. MAKE (Crea)
-**Scenario SIA — Scheda articolo in sola lettura**
-
-`scheda_const.cpp`: classe con almeno due metodi `const`; funzione libera `stampa(const Articolo&)`.
-
-<details>
-<summary>💡 Scaffold</summary>
-
-```cpp
-#include <iostream>
-#include <string>
-class Articolo { /* getters const, scheda const */ };
-int main() { return 0; }
-```
-</details>
-
----
-
-### 📝 Riepilogo tascabile
-- `const` sul metodo = sola lettura
-- Getter e report devono essere `const`
-- Oggetti `const` e riferimenti `const&` collaborano
-- Errori di const-correttezza li segnala il compilatore
-
----
-
-### ➡️ Prossimo passo nel percorso
-Nel capitolo precedente hai protetto lo stato con `const`.
-Nel prossimo capitolo, `33_composizione_ha_un`, costruirai oggetti composti da
-altri oggetti: **composizione**.
 
 
 ## 🧩 L’azienda è fatta di pezzi: composizione (“ha un”)
@@ -8238,8 +8637,115 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai composto oggetti con la relazione *ha un*.
-Nel prossimo capitolo, `34_ereditarieta_essenziale`, affronterai la relazione
+Nel prossimo capitolo, `36_funzioni_template`, affronterai la relazione
 *è un* con l'ereditarietà essenziale.
+
+
+## 🔧 Stessa procedura, tipi diversi: funzioni template
+
+> "Il confronto ‘chi è maggiore’ vale per pezzi e per prezzi."  
+> — *Riuso algoritmico*
+
+Una **funzione template** descrive un algoritmo **generico**: il compilatore genera le versioni per i tipi usati.
+
+> 💡 **Metafora:** modulo aziendale standard compilato per reparti diversi (stessa procedura, dati diversi).
+
+---
+
+### 🎯 Obiettivo di questo chunk
+Alla fine di questa lezione sei in grado di:
+- Scrivere una funzione `template <typename T>` semplice
+- Usarla con tipi diversi (`int`, `double`)
+
+---
+
+### 🔬 Laboratorio PRIMM
+
+#### 1. PREDICT (Prevedi)
+
+```cpp
+massimo(3, 5);
+massimo(2.5, 2.7);
+```
+
+Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
+
+[( )] Solo se T è class
+[(X)] Sì, il compilatore istanzia le versioni necessarie
+[( )] No, serve virtual
+[( )] No, solo su int
+
+<details>
+<summary>💡 Spiegazione</summary>
+Il compilatore crea istanze distinte di <code>massimo</code> per i tipi dedotti dagli argomenti.
+</details>
+
+#### 2. RUN (Esegui)
+
+```cpp
+/**
+ * @file massimo_template.cpp
+ * @brief Funzione template massimo.
+ */
+#include <iostream>
+
+template <typename T>
+T massimo(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    std::cout << massimo(3, 5) << '\n';
+    std::cout << massimo(2.5, 2.7) << '\n';
+    return 0;
+}
+```
+@LIA.cpp
+
+#### 3. INVESTIGATE (Investiga)
+
+| Chiamata | T dedotto |
+|----------|-----------|
+| `massimo(3, 5)` | `int` |
+| `massimo(2.5, 2.7)` | `double` |
+
+I tipi devono supportare `>`.
+
+#### 4. MODIFY (Modifica)
+1. Scrivi `template <typename T> void scambia(T& a, T& b)`.
+2. Usa `scambia` su due `double`.
+3. Prova `massimo` su due `char`.
+
+#### 5. MAKE (Crea)
+**Scenario SIA — Utility generiche**
+
+`util_template.cpp`: `massimo` e `scambia` template; demo su quantità (`int`) e prezzi (`double`).
+
+<details>
+<summary>💡 Scaffold</summary>
+
+```cpp
+#include <iostream>
+template <typename T>
+T massimo(T a, T b) { /* ... */ }
+int main() { return 0; }
+```
+</details>
+
+---
+
+### 📝 Riepilogo tascabile
+- Template = algoritmo generico
+- Istanziazione a compile-time
+- T deve offrire le operazioni usate
+- Non è magia runtime: è generazione di codice
+
+---
+
+### ➡️ Prossimo passo nel percorso
+Nel capitolo precedente hai scritto funzioni generiche con i template.
+Nel prossimo capitolo, `37_ereditarieta_essenziale`, userai il contenitore template
+standard `std::vector`.
 
 
 ## 🌳 Specializzazioni in organigramma: ereditarietà essenziale
@@ -8367,7 +8873,7 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai definito gerarchie con l'ereditarietà.
-Nel prossimo capitolo, `35_polimorfismo_virtual`, otterrai comportamenti diversi
+Nel prossimo capitolo, `38_polimorfismo_virtual`, otterrai comportamenti diversi
 a runtime nello stesso sportello con `virtual`.
 
 
@@ -8490,7 +8996,7 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai separato comportamento comune e speciale a runtime.
-Nel prossimo capitolo, `36_overloading_operatori_essenziale`, farai parlare il
+Nel prossimo capitolo, `39_overloading_operatori_essenziale`, farai parlare il
 dominio con operatori come `+` e `<<`.
 
 
@@ -8604,115 +9110,8 @@ int main() { return 0; }
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai personalizzato operatori per un tipo.
-Nel prossimo capitolo, `37_funzioni_template`, definirai procedure uguali
+Nel prossimo capitolo, `40_vector_come_cliente`, definirai procedure uguali
 che funzionano su tipi diversi.
-
-
-## 🔧 Stessa procedura, tipi diversi: funzioni template
-
-> "Il confronto ‘chi è maggiore’ vale per pezzi e per prezzi."  
-> — *Riuso algoritmico*
-
-Una **funzione template** descrive un algoritmo **generico**: il compilatore genera le versioni per i tipi usati.
-
-> 💡 **Metafora:** modulo aziendale standard compilato per reparti diversi (stessa procedura, dati diversi).
-
----
-
-### 🎯 Obiettivo di questo chunk
-Alla fine di questa lezione sei in grado di:
-- Scrivere una funzione `template <typename T>` semplice
-- Usarla con tipi diversi (`int`, `double`)
-
----
-
-### 🔬 Laboratorio PRIMM
-
-#### 1. PREDICT (Prevedi)
-
-```cpp
-massimo(3, 5);
-massimo(2.5, 2.7);
-```
-
-Una funzione `template <typename T> T massimo(T a, T b)` può essere usata su `int` e su `double`?
-
-[( )] Solo se T è class
-[(X)] Sì, il compilatore istanzia le versioni necessarie
-[( )] No, serve virtual
-[( )] No, solo su int
-
-<details>
-<summary>💡 Spiegazione</summary>
-Il compilatore crea istanze distinte di <code>massimo</code> per i tipi dedotti dagli argomenti.
-</details>
-
-#### 2. RUN (Esegui)
-
-```cpp
-/**
- * @file massimo_template.cpp
- * @brief Funzione template massimo.
- */
-#include <iostream>
-
-template <typename T>
-T massimo(T a, T b) {
-    return (a > b) ? a : b;
-}
-
-int main() {
-    std::cout << massimo(3, 5) << '\n';
-    std::cout << massimo(2.5, 2.7) << '\n';
-    return 0;
-}
-```
-@LIA.cpp
-
-#### 3. INVESTIGATE (Investiga)
-
-| Chiamata | T dedotto |
-|----------|-----------|
-| `massimo(3, 5)` | `int` |
-| `massimo(2.5, 2.7)` | `double` |
-
-I tipi devono supportare `>`.
-
-#### 4. MODIFY (Modifica)
-1. Scrivi `template <typename T> void scambia(T& a, T& b)`.
-2. Usa `scambia` su due `double`.
-3. Prova `massimo` su due `char`.
-
-#### 5. MAKE (Crea)
-**Scenario SIA — Utility generiche**
-
-`util_template.cpp`: `massimo` e `scambia` template; demo su quantità (`int`) e prezzi (`double`).
-
-<details>
-<summary>💡 Scaffold</summary>
-
-```cpp
-#include <iostream>
-template <typename T>
-T massimo(T a, T b) { /* ... */ }
-int main() { return 0; }
-```
-</details>
-
----
-
-### 📝 Riepilogo tascabile
-- Template = algoritmo generico
-- Istanziazione a compile-time
-- T deve offrire le operazioni usate
-- Non è magia runtime: è generazione di codice
-
----
-
-### ➡️ Prossimo passo nel percorso
-Nel capitolo precedente hai scritto funzioni generiche con i template.
-Nel prossimo capitolo, `38_vector_come_cliente`, userai il contenitore template
-standard `std::vector`.
 
 
 ## 📦 Il magazzino elastico: usare `std::vector` (cliente del template)
@@ -8827,7 +9226,7 @@ int main() {
 
 ### ➡️ Prossimo passo nel percorso
 Nel capitolo precedente hai gestito collezioni con `std::vector`.
-Nel prossimo capitolo, `39_progetto_oop_gestionale`, metterai insieme gli
+Nel prossimo capitolo, `41_progetto_oop_gestionale`, metterai insieme gli
 oggetti in un mini-progetto gestionale.
 
 
